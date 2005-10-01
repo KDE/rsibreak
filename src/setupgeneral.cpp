@@ -48,7 +48,7 @@
 #include "setupgeneral.h"
 
 
-SetupEditor::SetupEditor(QWidget* parent )
+SetupGeneral::SetupGeneral(QWidget* parent )
            : QWidget(parent)
 {
    QVBoxLayout *layout = new QVBoxLayout( parent );
@@ -109,24 +109,24 @@ SetupEditor::SetupEditor(QWidget* parent )
 }
 
     
-SetupEditor::~SetupEditor()
+SetupGeneral::~SetupGeneral()
 {
 }
 
-void SetupEditor::slotHideCounter()
+void SetupGeneral::slotHideCounter()
 {
     m_colorBox->setEnabled(!m_hideCounter->isChecked());
     m_fontBox->setEnabled(!m_hideCounter->isChecked());
 }
 
 
-void SetupEditor::slotFontPicker()
+void SetupGeneral::slotFontPicker()
 {
     KFontDialog::getFont( m_counterFont );
     m_counterFontBut->setText(m_counterFont.family());
 }
 
-void SetupEditor::slotFolderPicker()
+void SetupGeneral::slotFolderPicker()
 {
      QString  result =
              KFileDialog::getExistingDirectory( m_imageFolderEdit->text(), this);
@@ -135,7 +135,7 @@ void SetupEditor::slotFolderPicker()
        m_imageFolderEdit->setText(result);
 }
 
-void SetupEditor::slotFolderEdited(const QString& newPath)
+void SetupGeneral::slotFolderEdited(const QString& newPath)
 {
     if (newPath.isEmpty()) {
         m_imageFolderEdit->setText(QDir::homeDirPath());
@@ -148,7 +148,7 @@ void SetupEditor::slotFolderEdited(const QString& newPath)
 
 }
 
-void SetupEditor::applySettings()
+void SetupGeneral::applySettings()
 {
     KConfig* config = kapp->config();
 
@@ -164,7 +164,7 @@ void SetupEditor::applySettings()
     config->sync();
 }
 
-void SetupEditor::readSettings()
+void SetupGeneral::readSettings()
 {
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);

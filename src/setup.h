@@ -26,7 +26,7 @@
 
 class QFrame;
 
-class SetupEditor;
+class SetupGeneral;
 class SetupTiming;
 
 /**
@@ -61,7 +61,7 @@ private:
 
     QFrame           *page_general;
     QFrame           *page_timing;
-    SetupEditor      *m_generalPage;
+    SetupGeneral     *m_generalPage;
     SetupTiming      *m_timingPage;
 
 private slots:
