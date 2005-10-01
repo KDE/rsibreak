@@ -159,7 +159,7 @@ Dir.chdir( "#{name}" )
 `/bin/mv -f COPYING ..`
 `/bin/mv -f INSTALL ..`
 #`/bin/mv -f README ..`
-#`/bin/mv -f TODO ..`
+`/bin/mv -f TODO ..`
 #`/bin/mv -f HACKING ..`
 `/bin/rm release_rsibreak.rb ../INDEX`
 Dir.chdir( ".." )

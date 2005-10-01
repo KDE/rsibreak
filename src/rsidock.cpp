@@ -27,6 +27,7 @@
 #include <kiconloader.h>
 #include <kaboutkde.h>
 #include <kaboutapplication.h>
+#include <kbugreport.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name )
@@ -35,14 +36,19 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
   setPixmap( dockPixmap );
 
   contextMenu()->insertItem(SmallIcon("configure"),
-                         i18n("Configure..."), this,
+                         i18n("Configure RSIBreak..."), this,
                          SLOT(slotConfigure()));
+  contextMenu()->insertSeparator();
+  contextMenu()->insertItem(i18n("Report Bug..."), this,
+                         SLOT(slotReportBug()));
+  contextMenu()->insertSeparator();
   contextMenu()->insertItem(SmallIcon("about_kde"),
                          i18n("About KDE..."), this,
                          SLOT(slotAboutKDE()));
   contextMenu()->insertItem(SmallIcon("info"),
                          i18n("About RSIBreak..."), this,
                          SLOT(slotAboutRSIBreak()));
+
 }
 
 RSIDock::~RSIDock()
@@ -76,4 +82,13 @@ void RSIDock::slotAboutRSIBreak()
     about.exec();
     emit dialogLeft();
 }
+
+void RSIDock::slotReportBug()
+{
+    KBugReport bug;
+    emit dialogEntered();
+    bug.exec();
+    emit dialogLeft();
+}
+
 #include "rsidock.moc"

@@ -1,0 +1,11 @@
+Whishes (in order of implementation)
+- take idle time into account before bothering the user.
+- progress bar/animated icon to indicate next break
+- progress bar instead of counter during the break
+- rsi instructions
+
+bugs:
+- scaling of the images
+- image extension are hardcoded
+
+

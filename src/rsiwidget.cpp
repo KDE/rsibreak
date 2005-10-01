@@ -33,6 +33,7 @@
 #include <kwin.h>
 #include <klocale.h>
 #include <kapplication.h>
+#include <kmessagebox.h>
 #include <kdebug.h>
 #include <kconfig.h>
 
@@ -53,6 +54,16 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     srand ( time(NULL) );
 
+    KMessageBox::information(parent,
+                             i18n("Welcome to RSIBreak\n\n"
+                                  "In your tray you can now see a clock. "
+                                  "When you right-click on that you will see "
+                                  "a menu, from which you can go to the "
+                                  "configuration for example.\nWhen you want to "
+                                  "know when the next break is, hover "
+                                  "over the icon.\n\nUse RSIBreak wisely."),
+                             i18n("Welcome"),
+                             "dont_show_welcome_again_for_001");
     QBoxLayout *topLayout = new QVBoxLayout( this, 5);
     setEraseColor(QColor("black"));
 
