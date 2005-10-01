@@ -2,7 +2,7 @@
 INCLUDES = $(all_includes)
 
 # these are the headers for your project
-noinst_HEADERS = rsibreak.h
+noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h setuptiming.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -26,7 +26,7 @@ rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp main.c
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO)
 
-# this is where the desktop file will go 
+# this is where the desktop file will go
 shelldesktopdir = $(kde_appsdir)/Utilities
 shelldesktop_DATA = rsibreak.desktop
 
