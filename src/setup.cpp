@@ -34,13 +34,13 @@
 #include "setuptiming.h"
 #include "setup.h"
 
-Setup::Setup(QWidget* parent, const char* name, Setup::Page page)
+Setup::Setup(QWidget* parent, const char* name)
      : KDialogBase(IconList, i18n("Configure"), Help|Ok|Cancel, Ok, parent,
                    name, true, true )
 {
     page_general = addPage(i18n("General"), i18n("General Settings"),
                         BarIcon("configure", KIcon::SizeMedium));
-    m_generalPage = new SetupEditor(page_general);
+    m_generalPage = new SetupGeneral(page_general);
 
     page_timing = addPage(i18n("Timings"), i18n("Timings"),
                             BarIcon("xclock", KIcon::SizeMedium));
@@ -49,7 +49,7 @@ Setup::Setup(QWidget* parent, const char* name, Setup::Page page)
     connect(this, SIGNAL(okClicked()),
             this, SLOT(slotOkClicked()) );
 
-    showPage((int) page);
+    showPage(0);
     show();
 }
 

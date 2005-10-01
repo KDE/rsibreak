@@ -21,8 +21,8 @@
  *
  * ============================================================ */
 
-#ifndef SETUPEDITOR_H
-#define SETUPEDITOR_H
+#ifndef SETUPGENERAL_H
+#define SETUPGENERAL_H
 
 // Qt includes.
 
@@ -38,15 +38,36 @@ class KColorButton;
 class KFileDialog;
 class KIntNumInput;
 
-class SetupEditor : public QWidget
+/** 
+ * @class SetupGeneral
+ * These contain the general settings of RSIBreak, currently
+ * that means settings for the Counter, Image Path and 
+ * minimize button
+ * This file is originally copied from showfoto
+ * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Tom Albers <tomalbers@kde.nl>
+ */
+
+class SetupGeneral : public QWidget
 {
     Q_OBJECT
-    
+
 public:
 
-    SetupEditor(QWidget* parent = 0);
-    ~SetupEditor();
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     */
+    SetupGeneral(QWidget* parent = 0);
 
+    /**
+     * Destructor
+     */
+    ~SetupGeneral();
+
+    /**
+     * Call this if you want the settings saved from this page.
+     */
     void applySettings();
 
 private slots:
@@ -71,4 +92,4 @@ private:
     QCheckBox*      m_hideCounter;
 };
 
-#endif /* SETUPEDITOR_H */
+#endif /* SETUPGENERAL_H */

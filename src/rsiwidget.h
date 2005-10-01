@@ -30,11 +30,22 @@ class QStringList;
 class QPushButton;
 class RSIDock;
 
+/**
+ * @class RSIWidget
+ * This widget is the main widget for RSIBreak. It controls the
+ * timings and minimizes and maximized the widget accordingly.
+ * @author Tom Albers <tomalbers@kde.nl>
+ */
 class RSIWidget : public QWidget
 {
     Q_OBJECT
 
     public:
+        /**
+         * Constructor
+         * @param parent Parent Widget
+         * @param name Name
+         */
         RSIWidget( QWidget *parent = 0, const char *name = 0 );
         ~RSIWidget();
 

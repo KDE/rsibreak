@@ -29,28 +29,40 @@ class QFrame;
 class SetupEditor;
 class SetupTiming;
 
+/**
+ * @class Setup
+ * This class manages the dialog chown in which the user
+ * can make all the necessary settings. Each part of the config
+ * is located in seperate files, See SetupGeneral and SetupTimings
+ * for example
+ * This file is originally copied from showfoto
+ * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Tom Albers <tomalbers@kde.nl>
+ */
 class Setup : public KDialogBase 
 {
     Q_OBJECT
 
 public:
 
-    enum Page 
-    {
-        EditorPage=0,
-        PluginsPage,
-        SlideshowPage
-    };
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     * @param name Name
+     */
+    Setup(QWidget* parent=0, const char* name=0);
 
-    Setup(QWidget* parent=0, const char* name=0, Page page=EditorPage);
+    /**
+     * Destructor
+     */
     ~Setup();
 
 private:
 
     QFrame           *page_general;
     QFrame           *page_timing;
-    SetupEditor     *m_generalPage;
-    SetupTiming    *m_timingPage;
+    SetupEditor      *m_generalPage;
+    SetupTiming      *m_timingPage;
 
 private slots:
 

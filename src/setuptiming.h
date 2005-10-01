@@ -37,15 +37,35 @@ class KColorButton;
 class KFileDialog;
 class KIntNumInput;
 
+/** 
+ * @class SetupTiming
+ * These contain the timings settings of RSIBreak, currently
+ * that means settings for tiny and big breaks
+ * This file is originally copied from showfoto
+ * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Tom Albers <tomalbers@kde.nl>
+ */
+
 class SetupTiming : public QWidget
 {
     Q_OBJECT
-    
+
 public:
 
+    /**
+     * Constructor
+     * @param parent Parent Widget
+         */
     SetupTiming(QWidget* parent = 0);
+
+    /**
+     * Destructor
+     */
     ~SetupTiming();
 
+    /**
+     * Call this if you want the settings saved from this page.
+     */
     void applySettings();
 
 private slots:

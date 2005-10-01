@@ -34,3 +34,4 @@ shelldesktop_DATA = rsibreak.desktop
 #shellrcdir = $(kde_datadir)/rsibreak
 #shellrc_DATA = rsibreakui.rc
 
+include ../../admin/Doxyfile.am

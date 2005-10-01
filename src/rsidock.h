@@ -28,17 +28,50 @@
 
 #include <ksystemtray.h>
 
+/** 
+ * @class RSIDock
+ * This class is resonsible for putting rsibreak in the system tray
+ * and provide a proper menu when right clicked on the icon.
+ * 
+ * Originaly this file was copied from KSynaptics
+ * @author Nadeem Hasan <nhasan@kde.org>
+ * @author Tom Albers <tomalbers@kde.nl>
+ */
 class RSIDock : public KSystemTray
 {
   Q_OBJECT
 
   public:
+    /**
+     * Contructor
+     * @param parent Parent Widget
+     * @param name Name
+     */
     RSIDock( QWidget *parent, const char *name );
+
+    /**
+     * Destructor
+     */
     ~RSIDock();
 
     signals:
+        /**
+         * This signal is emitted when the user has left
+         * the settings.
+         */
         void configChanged();
+
+        /**
+         * This signal is emitted when the user enters a dialog
+         * this can be an about X screen or the settings.
+         */
         void dialogEntered();
+
+        /**
+         * This signal is emitted when the user leaves one of the
+         * about X dialogs, it will not beemitted when the settings
+         * dialog is left, the configChanged() is emitted.
+         */
         void dialogLeft();
 
     private slots:
