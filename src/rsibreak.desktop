@@ -8,4 +8,7 @@ Exec=rsibreak
 Icon=xclock
 DocPath=rsibreak/index.html
 Name=RSIBreak
+Name[sv]=RSIbreak
 Comment=Makes sure you rest now and then
+Comment[pt]=Garanta que descansa agora e depois
+Comment[sv]=Försäkrar att du vilar då och då
