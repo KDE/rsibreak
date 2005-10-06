@@ -145,6 +145,9 @@ void RSIWidget::slotMinimize()
 }
 
 void RSIWidget::slotMaximize()
+// this shows a break request all over the screen. Do not be mislead by
+// the name "slotMaximize", the user cannot maximize the window. This is
+// exclusively triggered by the timer whose signal is connected.
 {
     m_currentInterval--;
     m_timer_max->stop();
