@@ -24,6 +24,7 @@
 #include <qlabel.h>
 #include <qdatetime.h>
 #include <qlineedit.h>
+#include <qimage.h>
 #include <qpixmap.h>
 #include <qwidget.h>
 #include <qdir.h>
@@ -137,41 +138,10 @@ void RSIWidget::slotMinimize()
 
     // Use that number to load the right image
     m_files_done.append(QString::number(j));
-    //     kdDebug() << "Loading " << j
-    //             << " Total " << m_files.count()
-    //             << " Already shown " << m_files_done.count() << endl;
 
-    QPixmap m = QPixmap(maxWidth, maxHeight);
-    m.load(m_files[ j ]);
-    setPaletteBackgroundPixmap( m );
-
-/*
-    TODO: officially we should not load it this way, but 
-          do some resizing of the image to load. I can not
-          see a way to do this right now.
-          Use doubles below ;-)
-
-    if (maxWidth/m.width() < maxHeight/m.height())
-     {
-        newWidth = (int)maxWidth;
-        newHeight = (int)((maxWidth/m.width())*m.height());
-     } else {
-        newHeight = (int)maxHeight;
-        newWidth = (int)((maxHeight/m.height())*m.width());
-    }
-
-    m.resize(newWidth, newHeight); */
-
-
-//     QLabel* temp = new QLabel(this);
-//     temp->setScaledContents(true);
-//     temp->resize(QSize(newWidth,newHeight));
-//     temp->move(0,m_countDown->height());
-//     kdDebug() << "img " << m.width() << "x" << m.height() << endl;
-//     kdDebug() << "max " << maxWidth << "x" << maxHeight << endl;
-//     kdDebug() << "new " << newWidth << "x" << newHeight << endl;
-//     temp->setPixmap(m);
-//     temp->show();
+    QImage m = QImage( m_files[ j ]);
+    setPaletteBackgroundPixmap(
+            QPixmap( m.scale(maxWidth,maxHeight, QImage::ScaleMax) ) );
 }
 
 void RSIWidget::slotMaximize()
