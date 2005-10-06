@@ -79,17 +79,18 @@ private slots:
 private:
     void readSettings();
 
-    QHBox*          m_colorBox;
-    QHBox*          m_fontBox;
-    QPushButton*    m_counterFontBut;
-    QPushButton*    m_folderBut;
-    QLineEdit*      m_imageFolderEdit;
+    QHBox*            m_colorBox;
+    QHBox*            m_fontBox;
+    QPushButton*   m_counterFontBut;
+    QPushButton*   m_folderBut;
+    QLineEdit*        m_imageFolderEdit;
 
-    QFont           m_counterFont;
+    QFont               m_counterFont;
     KColorButton*   m_counterColor;
     QCheckBox*      m_searchRecursiveCheck;
     QCheckBox*      m_hideMinimizeButton;
     QCheckBox*      m_hideCounter;
+    QCheckBox*      m_disableAccel;
 };
 
 #endif /* SETUPGENERAL_H */

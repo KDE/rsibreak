@@ -29,6 +29,7 @@ class QDateTime;
 class QStringList;
 class QPushButton;
 class RSIDock;
+class KAccel;
 
 /**
  * @class RSIWidget
@@ -64,25 +65,26 @@ class RSIWidget : public QWidget
         void findBackgroundImages();
         void readConfig();
 
-        QString             m_basePath;
-        QTime               m_targetTime;
-        QTimer*             m_timer_max;
-        QTimer*             m_timer_min;
-        QLabel*             m_countDown;
+        QString         m_basePath;
+        QTime           m_targetTime;
+        QTimer*         m_timer_max;
+        QTimer*         m_timer_min;
+        QLabel*         m_countDown;
+        KAccel*         m_accel;
 
-        bool                m_searchRecursive;
+        bool            m_searchRecursive;
 
-        int                 m_timeMaximized;
-        int                 m_timeMinimized;
-        int                 m_bigInterval;
-        int                 m_bigTimeMaximized;
-        int                 m_currentInterval;
+        int             m_timeMaximized;
+        int             m_timeMinimized;
+        int             m_bigInterval;
+        int             m_bigTimeMaximized;
+        int             m_currentInterval;
 
-        int                 m_normalTimer;
-        RSIDock            *m_tray;
-        QStringList         m_files;
-        QStringList         m_files_done;
-        QPushButton        *m_miniButton;
+        int             m_normalTimer;
+        RSIDock*        m_tray;
+        QStringList     m_files;
+        QStringList     m_files_done;
+        QPushButton*    m_miniButton;
 };
 
 #endif

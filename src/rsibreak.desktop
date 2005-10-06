@@ -1,8 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Encoding=UTF-8
-Type=Application
 Categories=Qt;KDE;Utility;
 Exec=rsibreak
 Icon=xclock

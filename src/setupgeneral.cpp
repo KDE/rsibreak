@@ -47,7 +47,6 @@
 
 #include "setupgeneral.h"
 
-
 SetupGeneral::SetupGeneral(QWidget* parent )
            : QWidget(parent)
 {
@@ -94,21 +93,30 @@ SetupGeneral::SetupGeneral(QWidget* parent )
            this, SLOT(slotFolderPicker()));
    connect( m_imageFolderEdit, SIGNAL(textChanged(const QString&)),
             this, SLOT(slotFolderEdited(const QString&)) );
-   
-   m_searchRecursiveCheck = new QCheckBox(i18n("Search recursively"), imageBox);
+
+   m_searchRecursiveCheck = new QCheckBox(i18n("Search recursively"),
+                                          imageBox);
    layout->addWidget(imageBox);
 
-
    m_hideMinimizeButton = new QCheckBox(i18n("H&ide minimize button"), parent);
+   QWhatsThis::add( m_hideMinimizeButton,
+                    i18n("Check this option to disable and hide the minimize "
+                          "button. This way you can prevent skipping the "
+                          "break.") );
    layout->addWidget(m_hideMinimizeButton);
 
-   // --------------------------------------------------------
+   m_disableAccel = new QCheckBox(i18n("&Disable shortcut to minimize (ESC)"),
+                                  parent);
+   QWhatsThis::add( m_disableAccel,
+                    i18n("Check this option to disable the minimize shortcut"
+                         "button. This way you can prevent skipping the "
+                         "break, by pressing the Escape key.") );
+   layout->addWidget(m_disableAccel);
 
    readSettings();
    slotHideCounter();
 }
 
-    
 SetupGeneral::~SetupGeneral()
 {
 }
@@ -118,7 +126,6 @@ void SetupGeneral::slotHideCounter()
     m_colorBox->setEnabled(!m_hideCounter->isChecked());
     m_fontBox->setEnabled(!m_hideCounter->isChecked());
 }
-
 
 void SetupGeneral::slotFontPicker()
 {
@@ -161,6 +168,7 @@ void SetupGeneral::applySettings()
     config->writeEntry("SearchRecursiveCheck", 
                        m_searchRecursiveCheck->isChecked());
     config->writeEntry("HideCounter", m_hideCounter->isChecked());
+    config->writeEntry("DisableAccel", m_disableAccel->isChecked());
     config->sync();
 }
 
@@ -170,7 +178,7 @@ void SetupGeneral::readSettings()
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont( "Verdana", 40, 75, true );
     QString d = QDir::home().path();
-    
+
     config->setGroup("General Settings");
     m_counterColor->setColor( config->readColorEntry("CounterColor", Black ) );
     m_counterFont= config->readFontEntry("CounterFont", t ) ;
@@ -181,7 +189,8 @@ void SetupGeneral::readSettings()
     m_searchRecursiveCheck->setChecked(
             config->readBoolEntry("SearchRecursiveCheck", false));
     m_hideCounter->setChecked(config->readBoolEntry("HideCounter", false));
-    
+    m_disableAccel->setChecked(config->readBoolEntry("DisableAccel", false));
+
     delete Black;
 }
 

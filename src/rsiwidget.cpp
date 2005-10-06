@@ -33,6 +33,7 @@
 #include <kwin.h>
 #include <klocale.h>
 #include <kapplication.h>
+#include <kaccel.h>
 #include <kmessagebox.h>
 #include <kdebug.h>
 #include <kconfig.h>
@@ -80,10 +81,15 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     buttonRow->addWidget( m_miniButton );
     connect( m_miniButton, SIGNAL( clicked() ), SLOT( slotStart() ) );
 
+    m_accel = new KAccel(this);
+    m_accel->insert("minimize", i18n("Minimize"),
+                    i18n("Abort a break"),Qt::Key_Escape,
+                    this, SLOT( slotStart() ));
+
     buttonRow->addStretch(10);
 
     QTime m_targetTime;
-    
+
     m_timer_max = new QTimer(this);
     connect(m_timer_max, SIGNAL(timeout()), SLOT(slotMaximize()));
 
@@ -111,8 +117,6 @@ void RSIWidget::slotMinimize()
     maxWidth = QApplication::desktop()->width();
     maxHeight = QApplication::desktop()->height();
 
-    // reset background
-    repaint(0,0,maxWidth,maxHeight);
     hide();
 
     m_timer_min->stop();
@@ -280,7 +284,7 @@ void RSIWidget::readConfig()
 
     // Make something fake, don't load anyyhing if not configured
     QString d = QDir::home().path()+"noimagesfolderconfigured";
-    
+
     config->setGroup("General Settings");
     m_countDown->setPaletteForegroundColor(
             config->readColorEntry("CounterColor", Black ) );
@@ -288,6 +292,8 @@ void RSIWidget::readConfig()
             config->readBoolEntry("HideMinimizeButton", false));
     m_countDown->setHidden(
             config->readBoolEntry("HideCounter", false));
+    m_accel->setEnabled("minimize",
+                        !config->readBoolEntry("DisableAccel", false));
     m_countDown->setFont(
             config->readFontEntry("CounterFont", t ) );
 
