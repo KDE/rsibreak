@@ -47,6 +47,7 @@
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
 {
+    kdDebug() << "Entering RSIWidget" << endl;
     m_tray = new RSIDock(this,"Tray Item");
     m_tray->show();
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
@@ -106,6 +107,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
 RSIWidget::~RSIWidget()
 {
+    kdDebug() << "Entering ~RSIWidget" << endl;
     delete m_timer_max;
     delete m_timer_min;
     delete m_tray;
@@ -113,7 +115,7 @@ RSIWidget::~RSIWidget()
 
 void RSIWidget::slotMinimize()
 {
-
+    kdDebug() << "Entering slotMinimize" << endl;
     int maxWidth, maxHeight;
     maxWidth = QApplication::desktop()->width();
     maxHeight = QApplication::desktop()->height();
@@ -149,6 +151,7 @@ void RSIWidget::slotMaximize()
 // the name "slotMaximize", the user cannot maximize the window. This is
 // exclusively triggered by the timer whose signal is connected.
 {
+    kdDebug() << "Entering slotMaximize" << endl;
     m_currentInterval--;
     m_timer_max->stop();
 
@@ -175,6 +178,7 @@ void RSIWidget::slotMaximize()
 
 void RSIWidget::timerEvent( QTimerEvent* )
 {
+    kdDebug() << "Entering timerEvent" << endl;
     // TODO: tell something about tinyBreaks, bigBreaks.
     int s = QTime::currentTime().secsTo(m_targetTime) +1 ;
     m_countDown->setText( QString::number( s ) );
@@ -237,6 +241,7 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 
 void RSIWidget::findBackgroundImages()
 {
+    kdDebug() << "Entering findBackgroundImages" << endl;
     QDir dir(QDir::home());
 
     QStringList fileList(dir.entryList(QDir::Dirs));
@@ -250,6 +255,7 @@ void RSIWidget::findBackgroundImages()
 
 void RSIWidget::readConfig()
 {
+    kdDebug() << "Entering readConfig" << endl;
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont( "Verdana", 40, 75, true );

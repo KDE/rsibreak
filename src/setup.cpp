@@ -25,6 +25,7 @@
 
 // KDE includes.
 
+#include <kdebug.h>
 #include <klocale.h>
 #include <kiconloader.h>
 
@@ -38,6 +39,7 @@ Setup::Setup(QWidget* parent, const char* name)
      : KDialogBase(IconList, i18n("Configure"), Help|Ok|Cancel, Ok, parent,
                    name, true, true )
 {
+    kdDebug() << "Entering Setup" << endl;
     page_general = addPage(i18n("General"), i18n("General Settings"),
                         BarIcon("configure", KIcon::SizeMedium));
     m_generalPage = new SetupGeneral(page_general);
@@ -55,10 +57,12 @@ Setup::Setup(QWidget* parent, const char* name)
 
 Setup::~Setup()
 {
+kdDebug() << "Entering ~Setup" << endl;
 }
 
 void Setup::slotOkClicked()
 {
+    kdDebug() << "Entering slotOkClicked" << endl;
     m_generalPage->applySettings();
     m_timingPage->applySettings();
     close();

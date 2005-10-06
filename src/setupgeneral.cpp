@@ -33,6 +33,7 @@
 
 // KDE includes.
 
+#include <kdebug.h>
 #include <klocale.h>
 #include <kdialog.h>
 #include <kcolorbutton.h>
@@ -50,6 +51,7 @@
 SetupGeneral::SetupGeneral(QWidget* parent )
            : QWidget(parent)
 {
+   kdDebug() << "Entering SetupGeneral" << endl;
    QVBoxLayout *layout = new QVBoxLayout( parent );
 
    // --------------------------------------------------------
@@ -119,22 +121,26 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
 SetupGeneral::~SetupGeneral()
 {
+kdDebug() << "Entering ~SetupGeneral" << endl;
 }
 
 void SetupGeneral::slotHideCounter()
 {
+    kdDebug() << "Entering slotHideCounter" << endl;
     m_colorBox->setEnabled(!m_hideCounter->isChecked());
     m_fontBox->setEnabled(!m_hideCounter->isChecked());
 }
 
 void SetupGeneral::slotFontPicker()
 {
+    kdDebug() << "Entering slotFontPicker" << endl;
     KFontDialog::getFont( m_counterFont );
     m_counterFontBut->setText(m_counterFont.family());
 }
 
 void SetupGeneral::slotFolderPicker()
 {
+     kdDebug() << "Entering slotFolderPicker" << endl;
      QString  result =
              KFileDialog::getExistingDirectory( m_imageFolderEdit->text(), this);
 
@@ -144,6 +150,7 @@ void SetupGeneral::slotFolderPicker()
 
 void SetupGeneral::slotFolderEdited(const QString& newPath)
 {
+    kdDebug() << "Entering slotFolderEdited" << endl;
     if (newPath.isEmpty()) {
         m_imageFolderEdit->setText(QDir::homeDirPath());
         return;
@@ -157,6 +164,7 @@ void SetupGeneral::slotFolderEdited(const QString& newPath)
 
 void SetupGeneral::applySettings()
 {
+    kdDebug() << "Entering applySettings" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
@@ -174,6 +182,7 @@ void SetupGeneral::applySettings()
 
 void SetupGeneral::readSettings()
 {
+    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont( "Verdana", 40, 75, true );

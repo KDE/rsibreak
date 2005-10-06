@@ -56,6 +56,7 @@
 SetupTiming::SetupTiming(QWidget* parent )
            : QWidget(parent)
 {
+   kdDebug() << "Entering SetupTiming" << endl;
    QVBoxLayout *layout = new QVBoxLayout( parent );
 
    QVGroupBox *tinyBox = new QVGroupBox(parent);
@@ -93,6 +94,7 @@ SetupTiming::SetupTiming(QWidget* parent )
 
 SetupTiming::~SetupTiming()
 {
+kdDebug() << "Entering ~SetupTiming" << endl;
 }
 
 void SetupTiming::applySettings()
@@ -109,6 +111,7 @@ void SetupTiming::applySettings()
 
 void SetupTiming::readSettings()
 {
+    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");

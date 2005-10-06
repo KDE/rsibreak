@@ -22,6 +22,7 @@
 #include "rsidock.h"
 #include "setup.h"
 
+#include <kdebug.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
@@ -33,6 +34,7 @@
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name )
 {
+  kdDebug() << "Entering RSIDock" << endl;
   QPixmap dockPixmap = KSystemTray::loadIcon( "xclock" );
   setPixmap( dockPixmap );
 
@@ -58,10 +60,12 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 
 RSIDock::~RSIDock()
 {
+kdDebug() << "Entering ~RSIDock" << endl;
 }
 
 void RSIDock::slotConfigure()
 {
+    kdDebug() << "Entering slotConfigure" << endl;
     Setup setup(this);
     emit dialogEntered();
     if (setup.exec() != QDialog::Accepted)
@@ -74,6 +78,7 @@ void RSIDock::slotConfigure()
 
 void RSIDock::slotAboutKDE()
 {
+    kdDebug() << "Entering slotAboutKDE" << endl;
     KAboutKDE about;
     emit dialogEntered();
     about.exec();
@@ -82,6 +87,7 @@ void RSIDock::slotAboutKDE()
 
 void RSIDock::slotAboutRSIBreak()
                      {
+    kdDebug() << "Entering slotAboutRSIBreak" << endl;
     KAboutApplication about;
     emit dialogEntered();
     about.exec();
@@ -90,6 +96,7 @@ void RSIDock::slotAboutRSIBreak()
 
 void RSIDock::slotReportBug()
 {
+    kdDebug() << "Entering slotReportBug" << endl;
     KBugReport bug;
     emit dialogEntered();
     bug.exec();
@@ -98,6 +105,7 @@ void RSIDock::slotReportBug()
 
 void RSIDock::slotShorts()
 {
+    kdDebug() << "Entering slotShorts" << endl;
     emit dialogEntered();
     KKeyDialog::configure( actionCollection() );
     emit dialogLeft();
