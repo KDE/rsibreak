@@ -4,8 +4,7 @@ Whishes (in order of implementation)
 - progress bar instead of counter during the break
 - rsi instructions
 
-bugs:
+bugs (this is where you can help ;-)):
 - scaling of the images
 - image extension are hardcoded
-
-
+- howto add the 'esc'-button to the shortcut configuration
