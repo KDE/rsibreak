@@ -5,6 +5,5 @@ Whishes (in order of implementation)
 - rsi instructions
 
 bugs (this is where you can help ;-)):
-- scaling of the images
 - image extension are hardcoded
 - howto add the 'esc'-button to the shortcut configuration

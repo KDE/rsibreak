@@ -166,12 +166,11 @@ void RSIWidget::slotMaximize()
         m_currentInterval=m_bigInterval;
     }
 
+    show(); // Keep it above the KWin calls.
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
-    KWin::setOnAllDesktops(winId(),false);
     KWin::setState(winId(), NET::KeepAbove);
     KWin::setState(winId(), NET::FullScreen);
-    show();
 }
 
 void RSIWidget::timerEvent( QTimerEvent* )
