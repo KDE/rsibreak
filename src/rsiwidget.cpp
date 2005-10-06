@@ -68,11 +68,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                              i18n("Welcome"),
                              "dont_show_welcome_again_for_001");
     QBoxLayout *topLayout = new QVBoxLayout( this, 5);
-    setEraseColor(QColor("black"));
 
     m_countDown = new QLabel(this);
     m_countDown->setAlignment( AlignCenter );
-    m_countDown->setBackgroundOrigin(QWidget::WindowOrigin);
+    m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
     topLayout->addWidget(m_countDown);
 
     topLayout->addStretch(5);
@@ -116,9 +115,6 @@ RSIWidget::~RSIWidget()
 void RSIWidget::slotMinimize()
 {
     kdDebug() << "Entering slotMinimize" << endl;
-    int maxWidth, maxHeight;
-    maxWidth = QApplication::desktop()->width();
-    maxHeight = QApplication::desktop()->height();
 
     hide();
 
@@ -134,16 +130,20 @@ void RSIWidget::slotMinimize()
         m_files_done.clear();
 
     // get a net yet used number
-    int j = (int) ( (m_files.count()) * (rand() / (RAND_MAX + 1.0)));
+    int j = (int) ((m_files.count()) * (rand() / (RAND_MAX + 1.0)));
     while (m_files_done.findIndex( QString::number(j) ) != -1)
         j = (int) ((m_files.count()) * (rand() / (RAND_MAX + 1.0)));
 
     // Use that number to load the right image
     m_files_done.append(QString::number(j));
 
-    QImage m = QImage( m_files[ j ]);
-    setPaletteBackgroundPixmap(
-            QPixmap( m.scale(maxWidth,maxHeight, QImage::ScaleMax) ) );
+    QImage m = QImage( m_files[ j ]).scale(
+                        QApplication::desktop()->width(),
+                        QApplication::desktop()->height(),
+                        QImage::ScaleMax);
+
+    setPaletteBackgroundPixmap( QPixmap( m ) );
+    m_countDown->setPaletteBackgroundPixmap( QPixmap( m ) );
 }
 
 void RSIWidget::slotMaximize()
@@ -178,7 +178,7 @@ void RSIWidget::slotMaximize()
 
 void RSIWidget::timerEvent( QTimerEvent* )
 {
-    kdDebug() << "Entering timerEvent" << endl;
+    // a bit to much debugging with kdDebug() << "Entering timerEvent" << endl;
     // TODO: tell something about tinyBreaks, bigBreaks.
     int s = QTime::currentTime().secsTo(m_targetTime) +1 ;
     m_countDown->setText( QString::number( s ) );
@@ -211,7 +211,7 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 
     // TODO: make an automated filter, maybe with QImageIO.
     QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
-    dir.setNameFilter(ext + ext.upper());
+    dir.setNameFilter(ext + " " + ext.upper());
     dir.setMatchAllDirs ( true );
 
     if ( !dir.exists() or !dir.isReadable() )
@@ -236,20 +236,6 @@ void RSIWidget::findImagesInFolder(const QString& folder)
                  fi->fileName() != "." &&  fi->fileName() != "..")
             findImagesInFolder(fi->absFilePath());
         ++it;
-    }
-}
-
-void RSIWidget::findBackgroundImages()
-{
-    kdDebug() << "Entering findBackgroundImages" << endl;
-    QDir dir(QDir::home());
-
-    QStringList fileList(dir.entryList(QDir::Dirs));
-    for (QStringList::iterator it = fileList.begin(); it != fileList.end(); ++it)
-    {
-        if ((*it) == "." || (*it) == "..")
-            continue;
-        findImagesInFolder( dir.absPath() + "/" + (*it) );
     }
 }
 

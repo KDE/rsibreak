@@ -62,7 +62,6 @@ class RSIWidget : public QWidget
 
     private:
         void findImagesInFolder(const QString& folder);
-        void findBackgroundImages();
         void readConfig();
 
         QString         m_basePath;
