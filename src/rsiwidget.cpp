@@ -137,6 +137,9 @@ void RSIWidget::slotMinimize()
     // Use that number to load the right image
     m_files_done.append(QString::number(j));
 
+    kdDebug() << "Loading: " << m_files[j] << 
+                    "( " << j << " / "  << m_files.count() << " ) " << endl;
+
     QImage m = QImage( m_files[ j ]).scale(
                         QApplication::desktop()->width(),
                         QApplication::desktop()->height(),

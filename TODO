@@ -1,4 +1,5 @@
 Whishes (in order of implementation)
+- put an icon in the rmb popup
 - take idle time into account before bothering the user.
 - progress bar/animated icon to indicate next break
 - progress bar instead of counter during the break
