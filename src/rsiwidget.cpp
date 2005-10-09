@@ -145,6 +145,24 @@ void RSIWidget::slotMinimize()
                         QApplication::desktop()->height(),
                         QImage::ScaleMax);
 
+    if (m.isNull())
+    {
+        kdWarning() << "constructed a null-image" << endl;
+        kdDebug() << "format: " << 
+           QImageIO::imageFormat(m_files[j]) << endl;
+        
+        QImageIO iio;
+        iio.setFileName(m_files[j]);   
+        if ( iio.read() )
+            kdDebug() << "Read is ok" << endl;
+        else
+            kdDebug() << "Read failed" << endl;
+
+        kdDebug() << iio.status() << endl;
+        return;
+    }
+      
+
     setPaletteBackgroundPixmap( QPixmap( m ) );
     m_countDown->setPaletteBackgroundPixmap( QPixmap( m ) );
 }
