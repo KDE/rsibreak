@@ -61,6 +61,7 @@ class RSIWidget : public QWidget
         void timerEvent( QTimerEvent* );
 
     private:
+        void startMinimizeTimer();
         void findImagesInFolder(const QString& folder);
         void readConfig();
 

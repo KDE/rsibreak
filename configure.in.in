@@ -4,3 +4,16 @@ AM_INIT_AUTOMAKE(rsi, 0.1)
 AC_C_BIGENDIAN
 AC_CHECK_KDEMAXPATHLEN
 
+ac_ldflags_safe="$LDFLAGS"
+ac_libs_safe="$LIBS"
+LIBS="-lXext -lX11 $X_LDFLAGS"
+
+LIBXSS=""
+AC_CHECK_LIB(Xss, XScreenSaverAllocInfo, [LIBXSS="-lXext -lXss"])
+if test "x$LIBXSS" != "x"; then
+     AC_DEFINE(HAVE_LIBXSS,1,[Define if you have libXss installed])
+fi
+
+LIBS="$ac_libs_safe"
+LDFLAGS="$ac_ldflags_safe"
+AC_SUBST(LIBXSS)

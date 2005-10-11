@@ -1,5 +1,5 @@
 # set the include path for X, qt and KDE
-INCLUDES = $(all_includes)
+INCLUDES =  -I$(top_srcdir) $(all_includes)
 
 # these are the headers for your project
 noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h setuptiming.h
@@ -11,7 +11,7 @@ messages: rc.cpp
 	$(EXTRACTRC) `find . -name \*.ui -o -name \*.rc` > rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/rsibreak.pot
 
-KDE_ICON = AUTO
+KDE_ICON = xclock 
 
 #########################################################################
 # APPLICATION SECTION
@@ -21,10 +21,10 @@ KDE_ICON = AUTO
 bin_PROGRAMS = rsibreak
 
 # the application source, library search path, and link libraries
-rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp main.cpp \
-	rsiwidget.cpp
+rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
+	main.cpp rsiwidget.cpp
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO)
+rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS)
 
 # this is where the desktop file will go
 shelldesktopdir = $(kde_appsdir)/Utilities

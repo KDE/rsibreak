@@ -1,6 +1,9 @@
 /* This file is part of the KDE project
    Copyright (C) 2005 Tom Albers <tomalbers@kde.nl>
 
+   The parts for idle detection is based on
+   kdepim's karm idletimedetector.cpp/.h
+
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
    License as published by the Free Software Foundation; either
@@ -31,6 +34,14 @@
 #include <qstringlist.h>
 #include <qfileinfo.h>
 
+#include "config.h"     // HAVE_LIBXSS
+#ifdef HAVE_LIBXSS      // Idle detection.
+ #include <X11/Xlib.h>
+ #include <X11/Xutil.h>
+ #include <X11/extensions/scrnsaver.h>
+ #include <fixx11h.h>
+#endif // HAVE_LIBXSS
+
 #include <kwin.h>
 #include <klocale.h>
 #include <kapplication.h>
@@ -54,6 +65,20 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( configChanged() ), SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( dialogEntered() ), SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), SLOT( slotStart() ) );
+
+    bool idleDetection = false;
+
+#ifdef HAVE_LIBXSS      // Idle detection.
+    int event_base, error_base;
+    if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
+        idleDetection = true;
+#endif
+
+    if (idleDetection)
+        kdDebug() << "IDLE Detection is possible" << endl;
+    else
+        kdDebug() << "IDLE Detection is not possible" << endl;
+
 
     srand ( time(NULL) );
 
@@ -112,15 +137,21 @@ RSIWidget::~RSIWidget()
     delete m_tray;
 }
 
+void RSIWidget::startMinimizeTimer()
+{
+    kdDebug() << "Entering startMinimizeTimer" << endl;
+
+    hide();
+    m_timer_min->stop();
+    m_targetTime = QTime::currentTime().addSecs(m_timeMinimized);
+    m_timer_max->start(m_timeMinimized*1000, true);
+}
+
 void RSIWidget::slotMinimize()
 {
     kdDebug() << "Entering slotMinimize" << endl;
 
-    hide();
-
-    m_timer_min->stop();
-    m_targetTime = QTime::currentTime().addSecs(m_timeMinimized);
-    m_timer_max->start(m_timeMinimized*1000, true);
+    startMinimizeTimer();
 
     if (m_files.count() == 0)
         return;
@@ -150,7 +181,7 @@ void RSIWidget::slotMinimize()
         kdWarning() << "constructed a null-image" << endl;
         kdDebug() << "format: " << 
            QImageIO::imageFormat(m_files[j]) << endl;
-        
+
         QImageIO iio;
         iio.setFileName(m_files[j]);   
         if ( iio.read() )
@@ -161,7 +192,6 @@ void RSIWidget::slotMinimize()
         kdDebug() << iio.status() << endl;
         return;
     }
-      
 
     setPaletteBackgroundPixmap( QPixmap( m ) );
     m_countDown->setPaletteBackgroundPixmap( QPixmap( m ) );
@@ -173,6 +203,32 @@ void RSIWidget::slotMaximize()
 // exclusively triggered by the timer whose signal is connected.
 {
     kdDebug() << "Entering slotMaximize" << endl;
+
+    int totalIdle = 0;
+
+#ifdef HAVE_LIBXSS      // Idle detection.
+    XScreenSaverInfo*  _mit_info;
+    _mit_info= XScreenSaverAllocInfo();
+    XScreenSaverQueryInfo(qt_xdisplay(), qt_xrootwin(), _mit_info);
+    totalIdle = (_mit_info->idle/1000);
+#endif // HAVE_LIBXSS
+
+    // if user has been idle since the last break, there is no needed
+    // to have another one. Skip it.
+    if (totalIdle >= m_timeMinimized)
+    {
+        kdDebug() << "No break needed, idle time: " << totalIdle << endl;
+        startMinimizeTimer();
+
+        // If user has been idle twice the time between the breaks, it will
+        // get a bonus in the way that it gains a tinyBreaks
+        if (totalIdle >= m_timeMinimized*2 && m_currentInterval < m_bigInterval)
+                m_currentInterval++;
+
+        kdDebug() << "Next BigBreak in " << m_currentInterval << endl;
+        return;
+    }
+
     m_currentInterval--;
     m_timer_max->stop();
 
@@ -209,14 +265,14 @@ void RSIWidget::timerEvent( QTimerEvent* )
 
 void RSIWidget::slotStop( )
 {
-    kdDebug() << "Timer stopped" << endl;
-    slotMinimize();
+    kdDebug() << "Entering slotStop" << endl;
+    startMinimizeTimer();
     m_timer_max->stop();
 }
 
 void RSIWidget::slotStart( )
 {
-    kdDebug() << "Timer started" << endl;
+    kdDebug() << "Entering slotStart" << endl;
     // the interuption can not be considered a real break
     // only needed fot a big break of course
     if (m_currentInterval == m_bigInterval)
@@ -308,7 +364,7 @@ void RSIWidget::slotReadConfig()
 {
     kdDebug() << "Config changed" << endl;
     readConfig();
-    slotMinimize();
+    startMinimizeTimer();
 }
 
 #include "rsiwidget.moc"

@@ -1,6 +1,5 @@
 Whishes (in order of implementation)
 - put an icon in the rmb popup
-- take idle time into account before bothering the user.
 - progress bar/animated icon to indicate next break
 - progress bar instead of counter during the break
 - rsi instructions
@@ -10,3 +9,4 @@ Whishes (in order of implementation)
 bugs (this is where you can help ;-)):
 - image extension are hardcoded
 - howto add the 'esc'-button to the shortcut configuration
+- add message to configure that libxss is needed for idle detection.
