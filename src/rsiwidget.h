@@ -73,6 +73,7 @@ class RSIWidget : public QWidget
         KAccel*         m_accel;
 
         bool            m_searchRecursive;
+        bool            m_idleLong;
 
         int             m_timeMaximized;
         int             m_timeMinimized;

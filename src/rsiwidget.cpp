@@ -66,6 +66,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( dialogEntered() ), SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), SLOT( slotStart() ) );
 
+    m_idleLong = false;
     bool idleDetection = false;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
@@ -221,13 +222,31 @@ void RSIWidget::slotMaximize()
         startMinimizeTimer();
 
         // If user has been idle twice the time between the breaks, it will
-        // get a bonus in the way that it gains a tinyBreaks
-        if (totalIdle >= m_timeMinimized*2 && m_currentInterval < m_bigInterval)
-                m_currentInterval++;
-
+        // get a bonus in the way that it gains a tinyBreak
+        if (totalIdle >= m_timeMinimized*2)
+        {
+            m_idleLong=true;
+            kdDebug() << "Next real break will be skipped, "
+                         "you have been idle a while now" << endl;
+            if (m_currentInterval < m_bigInterval)
+            m_currentInterval++;
+        }
         kdDebug() << "Next BigBreak in " << m_currentInterval << endl;
         return;
     }
+    else if (m_idleLong)
+    {
+        // if user has been idle for at least two breaks, there is no
+        // need to break immediatly, we can postpone the break for one time
+        kdDebug() << "Skip this break, you have been idle for a while recently" << endl;
+        startMinimizeTimer();
+        m_idleLong=false;
+        return;
+    }
+
+    // idle handling is done now. Time for a break.
+    kdDebug() << "You have been idle for " << totalIdle << "s "
+        << "(need "<< m_timeMinimized << "s to skip) -> time for a break." << endl;
 
     m_currentInterval--;
     m_timer_max->stop();
