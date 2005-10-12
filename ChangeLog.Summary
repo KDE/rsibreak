@@ -1,0 +1,10 @@
+v0.0.2 2005-10-12
+- idle detection
+- improved the showing of the image during the break
+- Transparent counter during the break
+- Added ESC-shortcut to abort a break
+- Added link to bugs.kde.org
+- Added a welcome-screen
+
+v0.0.1 2005-10-01
+- initial release

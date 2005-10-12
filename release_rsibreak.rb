@@ -9,7 +9,7 @@
 
 name       = "rsibreak"
 egmodule   = "utils"
-version    = "0.0.1"
+version    = "0.0.2"
 docs       = "no"
 
 svnbase    = "https://toma@svn.kde.org/home/kde"
@@ -158,10 +158,11 @@ Dir.chdir( "#{name}" )
 `/bin/mv -f AUTHORS ..`
 `/bin/mv -f COPYING ..`
 `/bin/mv -f INSTALL ..`
+`/bin/mv -f ChangeLog* ..`
 #`/bin/mv -f README ..`
 `/bin/mv -f TODO ..`
 #`/bin/mv -f HACKING ..`
-`/bin/rm release_rsibreak.rb ../INDEX`
+`/bin/rm release_rsibreak.rb makechangelog ../INDEX`
 Dir.chdir( ".." )
 
 

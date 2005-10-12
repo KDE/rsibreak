@@ -1,0 +1,4 @@
+svn log -v --xml \
+    https://toma@svn.kde.org/home/kde/trunk/playground/utils/rsibreak \
+ | python /usr/src/kde/branches/KDE/3.5/kde-common/release/svn2log.py  \
+          -u /usr/src/kde/branches/KDE/3.5/kde-common/accounts 

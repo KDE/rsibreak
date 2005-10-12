@@ -1,0 +1,185 @@
+2005-10-12 16:35 +0000 [r469944]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: This prevents a
+	  break immediatly after you return to your desk after been in a
+	  meeting or lunch for example. When you have been away a while,
+	  RSIBreak remembers that and will skip the next break...
+
+2005-10-11 21:46 +0000 [r469662]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/configure.in.in,
+	  trunk/playground/utils/rsibreak/TODO: administrative, should be
+	  able to generate Dox now, but it does not work. Ideas are
+	  welcome, I give up.
+
+2005-10-11 19:16 +0000 [r469634]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/configure.in.in,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/TODO: RSIBreak meets idle
+	  detection! If you have not touched your mouse or keyboard after
+	  the preivous break, there is no need to break again. If you
+	  haven't done it for twice that time, you even gain a break (so
+	  the big break gets postponed one break). This was one of the most
+	  wanted features!
+
+2005-10-09 00:53 +0000 [r468689]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Add some
+	  additional debugging when image loading fails.
+
+2005-10-08 23:39 +0000 [r468674]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/TODO: add some debug
+
+2005-10-07 11:01 +0000 [r468168]  Thorsten Staerk dev@staerk.de
+
+	* trunk/playground/utils/rsibreak/TODO: having tried rsipath on a
+	  fresh installation - without image path
+
+2005-10-06 22:29 +0000 [r467961]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Make the counter
+	  transparent again. + some cleanup.
+
+2005-10-06 21:48 +0000 [r467941]  Thorsten Staerk dev@staerk.de
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: after
+	  having PMS (pimp-my-source)
+
+2005-10-06 21:33 +0000 [r467937]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/TODO: Small change but seems to
+	  solve the taskbar flashing bug
+
+2005-10-06 21:27 +0000 [r467935]  Thorsten Staerk dev@staerk.de
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: finally my
+	  first useful commit ;-)
+
+2005-10-06 21:07 +0000 [r467931]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: With some help
+	  of thorsten, finally got the rescaling right.
+
+2005-10-06 19:59 +0000 [r467912]  Thorsten Staerk dev@staerk.de
+
+	* trunk/playground/utils/rsibreak/AUTHORS: does this work ?
+
+2005-10-06 18:17 +0000 [r467889]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsibreak.desktop,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: - Added
+	  posibility to abort the break with the ESC key, this is not
+	  configurable right now, as I don't understand how to do that. -
+	  Some cleanup (identing, whatsthis and as result of the test
+	  scripts)
+
+2005-10-01 22:24 +0000 [r466207]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/TODO (added),
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Add todo list,
+	  feel free to add things to it. Added a link to KDE's bugreport
+	  system and show a welcome message when you start RSIBreak, so
+	  people actually know it has started.
+
+2005-10-01 16:38 +0000 [r466128]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.h,
+	  trunk/playground/utils/doc/kro,
+	  trunk/playground/utils/doc/ksupplicant,
+	  trunk/playground/utils/doc/kfile_chemical,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Make it
+	  compile again, sorry for the traffic, I'll stop for a while.
+
+2005-10-01 16:31 +0000 [r466125]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/Mainpage.dox (added),
+	  trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
+	  trunk/playground/utils/Makefile.am.in,
+	  trunk/playground/utils/rsibreak/src/setup.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/doc/kfile_chemical,
+	  trunk/playground/utils/rsibreak/src/rsibreak.lsm,
+	  trunk/playground/utils/rsibreak/src/setuptiming.h,
+	  trunk/playground/utils/doc/kro, trunk/playground/utils,
+	  trunk/playground/utils/doc/ksupplicant,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/doc: Added some ignores Added Dox, make
+	  apidox does not work yet though Renamed a class
+
+2005-10-01 12:04 +0000 [r466038]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/Makefile.am: rsibreak builds
+	  now, let the fun begin.
+
+2005-10-01 08:10 +0000 [r465909]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/Makefile.cvs (removed),
+	  trunk/playground/utils/rsibreak/configure.in (removed): Some
+	  redundant cruft which made configure fail.
+
+2005-09-30 21:19 +0000 [r465798]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak: fix adress and one more ignore
+
+2005-09-30 21:05 +0000 [r465791]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/Makefile.cvs (added),
+	  trunk/playground/utils/rsibreak/src/setup.cpp (added),
+	  trunk/playground/utils/rsibreak/COPYING (added),
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp (added),
+	  trunk/playground/utils/rsibreak/Makefile.am (added),
+	  trunk/playground/utils/rsibreak/src/setupgeneral.h (added),
+	  trunk/playground/utils/rsibreak/src/rsidock.h (added),
+	  trunk/playground/utils/rsibreak/src/setup.h (added),
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h (added),
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp (added),
+	  trunk/playground/utils/rsibreak/src/rsibreak.lsm (added),
+	  trunk/playground/utils/rsibreak/Doxyfile (added),
+	  trunk/playground/utils/rsibreak/AUTHORS (added),
+	  trunk/playground/utils/rsibreak/src/setuptiming.h (added),
+	  trunk/playground/utils/rsibreak/configure.in (added),
+	  trunk/playground/utils/rsibreak/src (added),
+	  trunk/playground/utils/rsibreak/src/hi32-app-rsi.png (added),
+	  trunk/playground/utils/rsibreak/src/hi16-app-rsi.png (added),
+	  trunk/playground/utils/rsibreak/src/rsibreakui.rc (added),
+	  trunk/playground/utils/rsibreak/configure.in.in (added),
+	  trunk/playground/utils/rsibreak/src/main.cpp (added),
+	  trunk/playground/utils/rsibreak/src/Makefile.am (added),
+	  trunk/playground/utils/rsibreak (added),
+	  trunk/playground/utils/rsibreak/src/rsibreak.desktop (added),
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp (added),
+	  trunk/playground/utils/rsibreak/INSTALL (added),
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp (added):
+	  Initial import of rsibreak. Its goal is to interrupt yout work
+	  behind the computer at a certain interval, so you have to take a
+	  break. This util can help to prevent rsi, repititive strain
+	  injury, when configured correctly and not pressing the 'minimize'
+	  button continously. ;-) The interval times and duration are
+	  configurable, just like the images you can see during the break.
+	  Also you can disable/enable the counter and minimize button.
+
