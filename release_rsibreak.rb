@@ -47,6 +47,8 @@ if ( docs != "no")
         dg.chomp!
         `svn up doc/#{dg}`
     end
+else
+    `echo 'DO_NOT_COMPILE="$DO_NOT_COMPILE doc"' >> doc/configure.in.in`
 end
 
 `svn co #{adminroot}/kde-common/admin`

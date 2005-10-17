@@ -1,3 +1,7 @@
+Changes since last release:
+- Change to KUniqueApplication to prevent multiple instances
+- Fix icon
+
 v0.0.2 2005-10-12
 - idle detection
 - improved the showing of the image during the break
