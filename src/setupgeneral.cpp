@@ -61,14 +61,19 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
    m_hideCounter = new QCheckBox(i18n("H&ide"), counterBox);
    connect(m_hideCounter, SIGNAL(toggled(bool)), SLOT(slotHideCounter()));
-   QWhatsThis::add( m_hideCounter, i18n("Do you want to see the counter?") );
+   QWhatsThis::add( m_hideCounter, i18n("With this checkbox you can indicate "
+           "if you want to see a counter during the breaks. It will count "
+           "down to zero, so you know how long this break will be. It will "
+           "be shown on top of the image, when images are shown") );
 
    m_colorBox = new QHBox(counterBox);
    QLabel *counterColorlabel = new QLabel( i18n("&Color:"), m_colorBox );
    m_counterColor = new KColorButton(m_colorBox);
    counterColorlabel->setBuddy(m_counterColor);
    QWhatsThis::add( m_counterColor, i18n("Select here the color to use "
-                                            "for the counter.") );
+            "for the counter. As this is used on top of the images, you "
+            "might want to set it to a color which is visible for most "
+            "of the images") );
 
    m_fontBox = new QHBox(counterBox);
    QLabel *counterFontlabel = new QLabel( i18n("&Font:"), m_fontBox );
@@ -81,12 +86,13 @@ SetupGeneral::SetupGeneral(QWidget* parent )
    layout->addWidget(counterBox);
 
    QVGroupBox *imageBox = new QVGroupBox(parent);
-   imageBox->setTitle(i18n("Image folder Path"));
+   imageBox->setTitle(i18n("Image Folder Path"));
 
    QHBox *imageFolderBox = new QHBox(imageBox);
    m_imageFolderEdit = new QLineEdit(imageFolderBox);
    QWhatsThis::add( m_imageFolderEdit, 
         i18n("Select the folder from which you want to see images. "
+             "These images are randomly shown during the breaks. "
              "It will be search recursively if you want...") );
 
    QPushButton *changePathButton = new QPushButton(i18n("&Change..."),
@@ -110,7 +116,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
    m_disableAccel = new QCheckBox(i18n("&Disable shortcut to minimize (ESC)"),
                                   parent);
    QWhatsThis::add( m_disableAccel,
-                    i18n("Check this option to disable the minimize shortcut"
+                    i18n("Check this option to disable the minimize shortcut "
                          "button. This way you can prevent skipping the "
                          "break, by pressing the Escape key.") );
    layout->addWidget(m_disableAccel);
@@ -185,7 +191,7 @@ void SetupGeneral::readSettings()
     kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
-    QFont *t = new QFont( "Verdana", 40, 75, true );
+    QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
     QString d = QDir::home().path();
 
     config->setGroup("General Settings");

@@ -340,7 +340,7 @@ void RSIWidget::readConfig()
     kdDebug() << "Entering readConfig" << endl;
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
-    QFont *t = new QFont( "Verdana", 40, 75, true );
+    QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
 
     // Make something fake, don't load anyyhing if not configured
     QString d = QDir::home().path()+"noimagesfolderconfigured";

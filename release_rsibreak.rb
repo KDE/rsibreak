@@ -160,7 +160,8 @@ Dir.chdir( "#{name}" )
 `/bin/mv -f AUTHORS ..`
 `/bin/mv -f COPYING ..`
 `/bin/mv -f INSTALL ..`
-`/bin/mv -f ChangeLog* ..`
+`/bin/mv -f ChangeLog ..`
+`/bin/mv -f NEWS ..`
 #`/bin/mv -f README ..`
 `/bin/mv -f TODO ..`
 #`/bin/mv -f HACKING ..`

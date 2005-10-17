@@ -52,12 +52,14 @@ Setup::Setup(QWidget* parent, const char* name)
             this, SLOT(slotOkClicked()) );
 
     showPage(0);
+    resize( configDialogSize("Settings") );
     show();
 }
 
 Setup::~Setup()
 {
-kdDebug() << "Entering ~Setup" << endl;
+    kdDebug() << "Entering ~Setup" << endl;
+    saveDialogSize("Settings");
 }
 
 void Setup::slotOkClicked()
