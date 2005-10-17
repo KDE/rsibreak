@@ -16,9 +16,10 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include <kapplication.h>
+#include <kuniqueapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
+#include <stdio.h>
 
 #include "rsiwidget.h"
 
@@ -35,7 +36,13 @@ int main( int argc, char *argv[] )
                          "tomalbers@kde.nl", "http://www.omat.nl");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
-    KApplication a;
+
+    if (!KUniqueApplication::start()) {
+        fprintf(stderr, "RSIBreak is already running!\n");
+        exit(0);
+    }
+
+    KUniqueApplication a;
 
     RSIWidget *rsi = new RSIWidget(  );
 

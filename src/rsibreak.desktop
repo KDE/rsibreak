@@ -5,6 +5,7 @@ Categories=Qt;KDE;Utility;
 Exec=rsibreak
 Icon=xclock
 DocPath=rsibreak/index.html
+X-DCOP-ServiceType=Unique
 Name=RSIBreak
 Name[sv]=RSIbreak
 Comment=Makes sure you rest now and then
