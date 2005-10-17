@@ -11,7 +11,7 @@ messages: rc.cpp
 	$(EXTRACTRC) `find . -name \*.ui -o -name \*.rc` > rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/rsibreak.pot
 
-KDE_ICON = xclock 
+KDE_ICON = rsibreak 
 
 #########################################################################
 # APPLICATION SECTION
