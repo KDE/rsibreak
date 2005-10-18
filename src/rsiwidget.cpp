@@ -124,7 +124,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect(m_timer_min, SIGNAL(timeout()),  SLOT(slotMinimize()));
 
     m_timer_max->start(m_timeMinimized, true);
-    m_normalTimer = startTimer( 500 );
+    m_normalTimer = startTimer( 1000 );
 
     readConfig();
     slotMinimize();
@@ -198,13 +198,8 @@ void RSIWidget::slotMinimize()
     m_countDown->setPaletteBackgroundPixmap( QPixmap( m ) );
 }
 
-void RSIWidget::slotMaximize()
-// this shows a break request all over the screen. Do not be mislead by
-// the name "slotMaximize", the user cannot maximize the window. This is
-// exclusively triggered by the timer whose signal is connected.
+int RSIWidget::idleTime()
 {
-    kdDebug() << "Entering slotMaximize" << endl;
-
     int totalIdle = 0;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
@@ -214,46 +209,79 @@ void RSIWidget::slotMaximize()
     totalIdle = (_mit_info->idle/1000);
 #endif // HAVE_LIBXSS
 
-    // if user has been idle since the last break, there is no needed
+    return totalIdle;
+}
+
+
+void RSIWidget::slotMaximize()
+// this shows a break request all over the screen. Do not be mislead by
+// the name "slotMaximize", the user cannot maximize the window. This is
+// exclusively triggered by the timer whose signal is connected.
+{
+    kdDebug() << "Entering slotMaximize" << endl;
+
+    if (m_currentInterval > 0)
+        m_currentInterval--;
+
+    bool forcedBreak = m_needBreak;
+    m_needBreak = false; // else it would enter this routine the next sec again.
+    m_timer_max->stop();
+
+    // if user has been idle for the duration of the break, there is no needed
     // to have another one. Skip it.
-    if (totalIdle >= m_timeMinimized)
+    int totalIdle = idleTime();
+    int minNeeded;
+    if ( m_currentInterval == 0 )
+        minNeeded = m_bigTimeMaximized;
+    else 
+        minNeeded = m_timeMaximized;
+
+    kdDebug() << "BigBreak in " << m_currentInterval << "; "
+            << "Idle " << totalIdle << "s; "
+            << "Needed " << minNeeded << "s; "
+            << endl;
+
+    if ( !forcedBreak && totalIdle >= minNeeded )
     {
-        kdDebug() << "No break needed, idle time: " << totalIdle << endl;
+        kdDebug() << "No break needed" << endl;
+        m_idleLong=false;
+        if (m_currentInterval < m_bigInterval)
+            m_currentInterval++;
         startMinimizeTimer();
 
-        // If user has been idle twice the time between the breaks, it will
+        // If user has been idle since the last break, it will
         // get a bonus in the way that it gains a tinyBreak
-        if (totalIdle >= m_timeMinimized*2)
+        if (totalIdle >= m_timeMinimized)
         {
             m_idleLong=true;
-            kdDebug() << "Next real break will be skipped, "
+            kdDebug() << "Next break will be delayed, "
                          "you have been idle a while now" << endl;
             if (m_currentInterval < m_bigInterval)
-            m_currentInterval++;
+                m_currentInterval++;
         }
-        kdDebug() << "Next BigBreak in " << m_currentInterval << endl;
         return;
     }
     else if (m_idleLong)
     {
         // if user has been idle for at least two breaks, there is no
-        // need to break immediatly, we can postpone the break for one time
-        kdDebug() << "Skip this break, you have been idle for a while recently" << endl;
+        // need to break immediatly, we can postpone the break
+        kdDebug() << "Break delayed, you have been idle for a while recently" << endl;
+        m_currentInterval++;
         startMinimizeTimer();
         m_idleLong=false;
         return;
     }
-
-    // idle handling is done now. Time for a break.
-    kdDebug() << "You have been idle for " << totalIdle << "s "
-        << "(need "<< m_timeMinimized << "s to skip) -> time for a break." << endl;
-
-    m_currentInterval--;
-    m_timer_max->stop();
+    else if (totalIdle < 5)
+    {
+        kdDebug() << "You seem to be busy, monitoring keyboard for 5 seconds inactivity..." << endl;
+        m_currentInterval++;
+        m_needBreak=true;
+        return;
+    }
 
     if (m_currentInterval > 0)
     {
-        kdDebug() << "TinyBreak, next BigBreak in " << m_currentInterval << endl;
+        kdDebug() << "TinyBreak" << endl;
         m_targetTime = QTime::currentTime().addSecs(m_timeMaximized);
         m_timer_min->start(m_timeMaximized*1000, true);
     }
@@ -265,6 +293,8 @@ void RSIWidget::slotMaximize()
         m_currentInterval=m_bigInterval;
     }
 
+    setCounters();
+
     show(); // Keep it above the KWin calls.
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
@@ -272,14 +302,28 @@ void RSIWidget::slotMaximize()
     KWin::setState(winId(), NET::FullScreen);
 }
 
-void RSIWidget::timerEvent( QTimerEvent* )
+void RSIWidget::setCounters()
 {
-    // a bit to much debugging with kdDebug() << "Entering timerEvent" << endl;
-    // TODO: tell something about tinyBreaks, bigBreaks.
     int s = QTime::currentTime().secsTo(m_targetTime) +1 ;
     m_countDown->setText( QString::number( s ) );
+
+    // TODO: tell something about tinyBreaks, bigBreaks.
     QToolTip::add(m_tray, i18n("One second remaining",
                   "%n seconds remaining",s));
+}
+void RSIWidget::timerEvent( QTimerEvent* )
+{
+    setCounters();
+
+    // If we are waiting for the right time to have a break, check the idle timeout
+    // and activate the break
+    if (m_needBreak)
+    {
+        int t = idleTime();
+        kdDebug() << "Idle for: " << t << endl;
+        if (t > 5)
+            slotMaximize();
+    }
 }
 
 void RSIWidget::slotStop( )

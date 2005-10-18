@@ -64,6 +64,9 @@ class RSIWidget : public QWidget
         void startMinimizeTimer();
         void findImagesInFolder(const QString& folder);
         void readConfig();
+        void setCounters();
+
+        int idleTime();
 
         QString         m_basePath;
         QTime           m_targetTime;
@@ -74,6 +77,7 @@ class RSIWidget : public QWidget
 
         bool            m_searchRecursive;
         bool            m_idleLong;
+        bool            m_needBreak;
 
         int             m_timeMaximized;
         int             m_timeMinimized;
