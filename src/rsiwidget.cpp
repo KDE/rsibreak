@@ -67,6 +67,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( dialogLeft() ), SLOT( slotStart() ) );
 
     m_idleLong = false;
+    m_needBreak = false;
     bool idleDetection = false;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
@@ -284,7 +285,7 @@ void RSIWidget::slotMaximize()
         return;
     }
 
-    // No excuses to no break. Break now.
+    // No excuses to not have a break right now.
     if (m_currentInterval > 0)
     {
         kdDebug() << "TinyBreak" << endl;
