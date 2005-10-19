@@ -227,8 +227,6 @@ void RSIWidget::slotMaximize()
     m_needBreak = false; // else it would enter this routine the next sec again.
     m_timer_max->stop();
 
-    // if user has been idle for the duration of the break, there is no needed
-    // to have another one. Skip it.
     int totalIdle = idleTime();
     int minNeeded;
     if ( m_currentInterval == 0 )
@@ -239,8 +237,12 @@ void RSIWidget::slotMaximize()
     kdDebug() << "BigBreak in " << m_currentInterval << "; "
             << "Idle " << totalIdle << "s; "
             << "Needed " << minNeeded << "s; "
+            << "Forced: " << forcedBreak << "; "
+            << "IdleLong: " << m_idleLong << "; "
             << endl;
 
+    // if user has been idle for the duration of the break, there is no needed
+    // to have another one. Skip it.
     if ( !forcedBreak && totalIdle >= minNeeded )
     {
         kdDebug() << "No break needed" << endl;
@@ -261,17 +263,20 @@ void RSIWidget::slotMaximize()
         }
         return;
     }
-    else if (m_idleLong)
+
+    // if user has been idle for at least two breaks, there is no
+    // need to break immediatly, we can postpone the break
+    if ( !forcedBreak && m_idleLong)
     {
-        // if user has been idle for at least two breaks, there is no
-        // need to break immediatly, we can postpone the break
         kdDebug() << "Break delayed, you have been idle for a while recently" << endl;
         m_currentInterval++;
         startMinimizeTimer();
         m_idleLong=false;
         return;
     }
-    else if (totalIdle < 5)
+
+    //if user is busy, delay the break until he is somewhat less active.
+    if ( !forcedBreak && totalIdle < 5)
     {
         kdDebug() << "You seem to be busy, monitoring keyboard for 5 seconds inactivity..." << endl;
         m_currentInterval++;
@@ -279,6 +284,7 @@ void RSIWidget::slotMaximize()
         return;
     }
 
+    // No excuses to no break. Break now.
     if (m_currentInterval > 0)
     {
         kdDebug() << "TinyBreak" << endl;
