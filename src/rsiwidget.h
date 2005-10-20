@@ -65,7 +65,7 @@ class RSIWidget : public QWidget
         void findImagesInFolder(const QString& folder);
         void readConfig();
         void setCounters();
-
+        void loadImage();
         int idleTime();
 
         QString         m_basePath;

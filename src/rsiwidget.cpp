@@ -154,7 +154,11 @@ void RSIWidget::slotMinimize()
     kdDebug() << "Entering slotMinimize" << endl;
 
     startMinimizeTimer();
+    loadImage();
+}
 
+void RSIWidget::loadImage()
+{
     if (m_files.count() == 0)
         return;
 
@@ -181,11 +185,11 @@ void RSIWidget::slotMinimize()
     if (m.isNull())
     {
         kdWarning() << "constructed a null-image" << endl;
-        kdDebug() << "format: " << 
-           QImageIO::imageFormat(m_files[j]) << endl;
+        kdDebug() << "format: " <<
+                QImageIO::imageFormat(m_files[j]) << endl;
 
         QImageIO iio;
-        iio.setFileName(m_files[j]);   
+        iio.setFileName(m_files[j]);
         if ( iio.read() )
             kdDebug() << "Read is ok" << endl;
         else
@@ -354,6 +358,10 @@ void RSIWidget::slotStart( )
 void RSIWidget::findImagesInFolder(const QString& folder)
 {
     kdDebug() << "Looking for pictures in " << folder << endl;
+
+    if ( folder.isNull() )
+        return;
+
     QDir dir( folder);
 
     // TODO: make an automated filter, maybe with QImageIO.
@@ -379,7 +387,7 @@ void RSIWidget::findImagesInFolder(const QString& folder)
     {
         if ( fi->isFile())
             m_files.append(fi->filePath());
-        else if (fi->isDir() && m_searchRecursive && 
+        else if (fi->isDir() && m_searchRecursive &&
                  fi->fileName() != "." &&  fi->fileName() != "..")
             findImagesInFolder(fi->absFilePath());
         ++it;
@@ -392,9 +400,6 @@ void RSIWidget::readConfig()
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
-
-    // Make something fake, don't load anyyhing if not configured
-    QString d = QDir::home().path()+"noimagesfolderconfigured";
 
     config->setGroup("General Settings");
     m_countDown->setPaletteForegroundColor(
@@ -410,7 +415,8 @@ void RSIWidget::readConfig()
 
     bool recursive =
             config->readBoolEntry("SearchRecursiveCheck", false);
-    QString path = config->readEntry("ImageFolder", d );
+    QString path = config->readEntry("ImageFolder");
+
     if (m_basePath != path || m_searchRecursive != recursive)
     {
         m_files.clear();
@@ -418,6 +424,7 @@ void RSIWidget::readConfig()
         m_basePath = path;
         m_searchRecursive = recursive;
         findImagesInFolder( path );
+        loadImage();
     }
 
     m_timeMinimized = (int)(QString(config->readEntry("TinyInterval", "10")).toFloat()*60);
