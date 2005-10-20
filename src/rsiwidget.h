@@ -67,6 +67,7 @@ class RSIWidget : public QWidget
         void setCounters();
         void loadImage();
         int idleTime();
+        void breakNow( int t );
 
         QString         m_basePath;
         QTime           m_targetTime;
@@ -77,8 +78,9 @@ class RSIWidget : public QWidget
 
         bool            m_searchRecursive;
         bool            m_idleLong;
-        bool            m_needBreak;
+        bool            m_targetReached;
 
+        int             m_needBreak;
         int             m_timeMaximized;
         int             m_timeMinimized;
         int             m_bigInterval;
