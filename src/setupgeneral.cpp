@@ -29,7 +29,6 @@
 #include <qwhatsthis.h>
 #include <qcheckbox.h>
 #include <qdir.h>
-#include <kfiledialog.h>
 
 // KDE includes.
 
@@ -43,6 +42,9 @@
 #include <kapplication.h>
 #include <klistview.h>
 #include <ktrader.h>
+#include <kfiledialog.h>
+#include <kshortcutdialog.h>
+#include <kaccel.h>
 
 // Local includes.
 
@@ -113,16 +115,28 @@ SetupGeneral::SetupGeneral(QWidget* parent )
                           "break.") );
    layout->addWidget(m_hideMinimizeButton);
 
-   m_disableAccel = new QCheckBox(i18n("&Disable shortcut to minimize (ESC)"),
+   m_disableAccel = new QCheckBox(i18n("&Disable shortcut to minimize"),
                                   parent);
    QWhatsThis::add( m_disableAccel,
                     i18n("Check this option to disable the minimize shortcut "
                          "button. This way you can prevent skipping the "
                          "break, by pressing the Escape key.") );
+   connect(m_disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
    layout->addWidget(m_disableAccel);
+
+   m_shortcutBox = new QHBox(parent);
+   QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:"), m_shortcutBox );
+   m_shortcutBut = new QPushButton(i18n("&Change shortcut..."), m_shortcutBox );
+   shortcutlabel->setBuddy(m_shortcutBut);
+   QWhatsThis::add( m_shortcutBut, i18n("Select here the shortcut to use "
+           "for aborting the break.") );
+   connect(m_shortcutBut, SIGNAL(clicked()),
+           this, SLOT(slotShortcutPicker()));
+   layout->addWidget( m_shortcutBox );
 
    readSettings();
    slotHideCounter();
+   slotHideShortcut();
 }
 
 SetupGeneral::~SetupGeneral()
@@ -137,11 +151,27 @@ void SetupGeneral::slotHideCounter()
     m_fontBox->setEnabled(!m_hideCounter->isChecked());
 }
 
+void SetupGeneral::slotHideShortcut()
+{
+    kdDebug() << "Entering slotHideShortcut" << endl;
+    m_shortcutBox->setEnabled(!m_disableAccel->isChecked());
+}
+
 void SetupGeneral::slotFontPicker()
 {
     kdDebug() << "Entering slotFontPicker" << endl;
     KFontDialog::getFont( m_counterFont );
     m_counterFontBut->setText(m_counterFont.family());
+}
+
+void SetupGeneral::slotShortcutPicker()
+{
+    kdDebug() << "Entering slotShortcutPicker" << endl;
+
+    KShortcutDialog key(KShortcut(m_shortcut),true);
+    key.exec();
+    m_shortcut=key.shortcut().toString();
+    m_shortcutBut->setText(m_shortcut);
 }
 
 void SetupGeneral::slotFolderPicker()
@@ -183,6 +213,7 @@ void SetupGeneral::applySettings()
                        m_searchRecursiveCheck->isChecked());
     config->writeEntry("HideCounter", m_hideCounter->isChecked());
     config->writeEntry("DisableAccel", m_disableAccel->isChecked());
+    config->writeEntry("MinimizeKey", m_shortcut);
     config->sync();
 }
 
@@ -205,6 +236,8 @@ void SetupGeneral::readSettings()
             config->readBoolEntry("SearchRecursiveCheck", false));
     m_hideCounter->setChecked(config->readBoolEntry("HideCounter", false));
     m_disableAccel->setChecked(config->readBoolEntry("DisableAccel", false));
+    m_shortcut = config->readEntry("MinimizeKey", "Escape");
+    m_shortcutBut->setText(m_shortcut);
 
     delete Black;
 }

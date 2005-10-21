@@ -79,7 +79,6 @@ class RSIDock : public KSystemTray
         void slotAboutKDE();
         void slotAboutRSIBreak();
         void slotReportBug();
-        void slotShorts();
 };
 
 #endif // RSIDOCK_H

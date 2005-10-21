@@ -37,6 +37,7 @@ class QDir;
 class KColorButton;
 class KFileDialog;
 class KIntNumInput;
+class QString;
 
 /** 
  * @class SetupGeneral
@@ -72,25 +73,29 @@ public:
 
 private slots:
     void slotHideCounter();
+    void slotHideShortcut();
     void slotFontPicker();
     void slotFolderPicker();
     void slotFolderEdited(const QString& newPath);
+    void slotShortcutPicker();
 
 private:
     void readSettings();
 
     QHBox*            m_colorBox;
     QHBox*            m_fontBox;
-    QPushButton*   m_counterFontBut;
-    QPushButton*   m_folderBut;
+    QHBox*            m_shortcutBox;
+    QPushButton*      m_counterFontBut;
+    QPushButton*      m_folderBut;
+    QPushButton*      m_shortcutBut;
     QLineEdit*        m_imageFolderEdit;
-
-    QFont               m_counterFont;
-    KColorButton*   m_counterColor;
-    QCheckBox*      m_searchRecursiveCheck;
-    QCheckBox*      m_hideMinimizeButton;
-    QCheckBox*      m_hideCounter;
-    QCheckBox*      m_disableAccel;
+    QString           m_shortcut;
+    QFont             m_counterFont;
+    KColorButton*     m_counterColor;
+    QCheckBox*        m_searchRecursiveCheck;
+    QCheckBox*        m_hideMinimizeButton;
+    QCheckBox*        m_hideCounter;
+    QCheckBox*        m_disableAccel;
 };
 
 #endif /* SETUPGENERAL_H */

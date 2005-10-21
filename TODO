@@ -8,6 +8,5 @@ Whishes (in order of implementation)
 
 bugs (this is where you can help ;-)):
 - image extension are hardcoded
-- howto add the 'esc'-button to the shortcut configuration
 - Adriaan reported a case were the countdown was painted over the previous time, making a mess.
 

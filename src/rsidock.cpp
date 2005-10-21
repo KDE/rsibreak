@@ -41,10 +41,6 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
   contextMenu()->insertItem(SmallIcon("configure"),
                          i18n("Configure RSIBreak..."), this,
                          SLOT(slotConfigure()));
-// TODO: make escape key visible here so it can be configured.
-//   contextMenu()->insertItem(SmallIcon("configure"),
-//                          i18n("Configure Shortcuts..."), this,
-//                          SLOT(slotShorts()));
   contextMenu()->insertSeparator();
   contextMenu()->insertItem(i18n("Report Bug..."), this,
                          SLOT(slotReportBug()));
@@ -100,14 +96,6 @@ void RSIDock::slotReportBug()
     KBugReport bug;
     emit dialogEntered();
     bug.exec();
-    emit dialogLeft();
-}
-
-void RSIDock::slotShorts()
-{
-    kdDebug() << "Entering slotShorts" << endl;
-    emit dialogEntered();
-    KKeyDialog::configure( actionCollection() );
     emit dialogLeft();
 }
 

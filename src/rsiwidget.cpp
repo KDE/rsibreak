@@ -116,15 +116,12 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     buttonRow->addStretch(10);
 
-    QTime m_targetTime;
-
     m_timer_max = new QTimer(this);
     connect(m_timer_max, SIGNAL(timeout()), SLOT(slotMaximize()));
 
     m_timer_min = new QTimer(this);
     connect(m_timer_min, SIGNAL(timeout()),  SLOT(slotMinimize()));
 
-    m_timer_max->start(m_timeMinimized, true);
     m_normalTimer = startTimer( 1000 );
 
     readConfig();
@@ -249,7 +246,7 @@ void RSIWidget::slotMaximize()
         m_idleLong=true;
         kdDebug() << "Next break will be delayed, "
                      "you have been idle a while now" << endl;
-	
+
         m_currentInterval++; 		// give back the this one
         if (m_currentInterval < m_bigInterval)
             m_currentInterval++;	// give a bonus
@@ -272,7 +269,7 @@ void RSIWidget::slotMaximize()
     kdDebug() << "You need a break, monitoring keyboard for the right moment..." << endl;
     m_needBreak=minNeeded;
     if ( m_currentInterval == 0 )
-	m_currentInterval=m_bigInterval;
+        m_currentInterval=m_bigInterval;
 }
 
 void RSIWidget::breakNow( int t )
@@ -294,18 +291,18 @@ void RSIWidget::breakNow( int t )
 void RSIWidget::setCounters()
 {
     int s = (int)ceil(QTime::currentTime().msecsTo(m_targetTime)/1000);
-   
+
     if (s > 0) 
-    	m_countDown->setText( QString::number( s ) );
+        m_countDown->setText( QString::number( s ) );
     else
-	m_countDown->setText( QString::null );
+        m_countDown->setText( QString::null );
 
     // TODO: tell something about tinyBreaks, bigBreaks.
     if (s > 0) 
-    	QToolTip::add(m_tray, i18n("One second remaining",
+        QToolTip::add(m_tray, i18n("One second remaining",
                   "%n seconds remaining",s));
     else
-	QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
+        QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
 }
 
 void RSIWidget::timerEvent( QTimerEvent* )
@@ -421,6 +418,9 @@ void RSIWidget::readConfig()
             config->readBoolEntry("HideCounter", false));
     m_accel->setEnabled("minimize",
                         !config->readBoolEntry("DisableAccel", false));
+    QString shortcut = config->readEntry("MinimizeKey", "Escape");
+    m_accel->setShortcut("minimize",KShortcut(shortcut));
+
     m_countDown->setFont(
             config->readFontEntry("CounterFont", t ) );
 
