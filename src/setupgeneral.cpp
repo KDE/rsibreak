@@ -92,7 +92,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
    QHBox *imageFolderBox = new QHBox(imageBox);
    m_imageFolderEdit = new QLineEdit(imageFolderBox);
-   QWhatsThis::add( m_imageFolderEdit, 
+   QWhatsThis::add( m_imageFolderEdit,
         i18n("Select the folder from which you want to see images. "
              "These images are randomly shown during the breaks. "
              "It will be search recursively if you want...") );
@@ -168,7 +168,7 @@ void SetupGeneral::slotShortcutPicker()
 {
     kdDebug() << "Entering slotShortcutPicker" << endl;
 
-    KShortcutDialog key(KShortcut(m_shortcut),true);
+    KShortcutDialog key(m_shortcut,true);
     key.exec();
     m_shortcut=key.shortcut().toString();
     m_shortcutBut->setText(m_shortcut);
@@ -207,9 +207,9 @@ void SetupGeneral::applySettings()
     config->writeEntry("CounterColor", m_counterColor->color());
     config->writeEntry("CounterFont", m_counterFont);
     config->writeEntry("ImageFolder", m_imageFolderEdit->text());
-    config->writeEntry("HideMinimizeButton", 
+    config->writeEntry("HideMinimizeButton",
                        m_hideMinimizeButton->isChecked());
-    config->writeEntry("SearchRecursiveCheck", 
+    config->writeEntry("SearchRecursiveCheck",
                        m_searchRecursiveCheck->isChecked());
     config->writeEntry("HideCounter", m_hideCounter->isChecked());
     config->writeEntry("DisableAccel", m_disableAccel->isChecked());
