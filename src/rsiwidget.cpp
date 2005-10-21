@@ -51,6 +51,7 @@
 #include <kconfig.h>
 
 #include <stdlib.h>
+#include <math.h>
 
 #include "rsiwidget.h"
 #include "rsidock.h"
@@ -216,7 +217,6 @@ int RSIWidget::idleTime()
     return totalIdle;
 }
 
-
 void RSIWidget::slotMaximize()
 // Do not be mislead by the name "slotMaximize", the user cannot maximize the window. This is
 // exclusively triggered by the timer whose signal is connected.
@@ -242,26 +242,19 @@ void RSIWidget::slotMaximize()
             << "IdleLong: " << m_idleLong << "; "
             << endl;
 
-    // if user has been idle for the duration of the break, there is no needed
-    // to have another one. Skip it.
-    if ( totalIdle >= minNeeded )
+    // If user has been idle since the last break, it will
+    // get a bonus in the way that it gains a tinyBreak
+    if (totalIdle >= m_timeMinimized)
     {
-        kdDebug() << "No break needed" << endl;
-        m_idleLong=false;
+        m_idleLong=true;
+        kdDebug() << "Next break will be delayed, "
+                     "you have been idle a while now" << endl;
+	
+        m_currentInterval++; 		// give back the this one
         if (m_currentInterval < m_bigInterval)
-            m_currentInterval++;
-        startMinimizeTimer();
+            m_currentInterval++;	// give a bonus
 
-        // If user has been idle since the last break, it will
-        // get a bonus in the way that it gains a tinyBreak
-        if (totalIdle >= m_timeMinimized)
-        {
-            m_idleLong=true;
-            kdDebug() << "Next break will be delayed, "
-                         "you have been idle a while now" << endl;
-            if (m_currentInterval < m_bigInterval)
-                m_currentInterval++;
-        }
+        startMinimizeTimer();
         return;
     }
 
@@ -300,13 +293,21 @@ void RSIWidget::breakNow( int t )
 
 void RSIWidget::setCounters()
 {
-    int s = QTime::currentTime().secsTo(m_targetTime) +1 ;
-    m_countDown->setText( QString::number( s ) );
+    int s = (int)ceil(QTime::currentTime().msecsTo(m_targetTime)/1000);
+   
+    if (s > 0) 
+    	m_countDown->setText( QString::number( s ) );
+    else
+	m_countDown->setText( QString::null );
 
     // TODO: tell something about tinyBreaks, bigBreaks.
-    QToolTip::add(m_tray, i18n("One second remaining",
+    if (s > 0) 
+    	QToolTip::add(m_tray, i18n("One second remaining",
                   "%n seconds remaining",s));
+    else
+	QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
 }
+
 void RSIWidget::timerEvent( QTimerEvent* )
 {
     setCounters();
