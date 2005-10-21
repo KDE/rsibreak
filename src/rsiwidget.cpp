@@ -278,6 +278,8 @@ void RSIWidget::slotMaximize()
 
     kdDebug() << "You need a break, monitoring keyboard for the right moment..." << endl;
     m_needBreak=minNeeded;
+    if ( m_currentInterval == 0 )
+	m_currentInterval=m_bigInterval;
 }
 
 void RSIWidget::breakNow( int t )
