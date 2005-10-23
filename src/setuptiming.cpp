@@ -45,8 +45,6 @@
 #include <knuminput.h>
 #include <kconfig.h>
 #include <kapplication.h>
-#include <klistview.h>
-#include <ktrader.h>
 
 // Local includes.
 
@@ -64,13 +62,15 @@ SetupTiming::SetupTiming(QWidget* parent )
 
    QHBox *m = new QHBox(tinyBox);
    new QLabel(i18n("Bother you every:"), m);
-   m_tinyInterval = new QLineEdit(m);
-   new QLabel(i18n("minutes"), m);
+   m_tinyInterval = new KIntNumInput(m);
+   m_tinyInterval->setRange(1,1000,1,false);
+   m_tinyInterval->setSuffix( " " + i18n("minutes") );
 
    QHBox *m2 = new QHBox(tinyBox);
    new QLabel(i18n("For the amount of:"), m2);
-   m_tinyDuration = new QLineEdit(m2);
-   new QLabel(i18n("seconds"), m2);
+   m_tinyDuration = new KIntNumInput(m2);
+   m_tinyDuration->setRange(1,1000,1,false);
+   m_tinyDuration->setSuffix( " " + i18n("seconds") );
 
    layout->addWidget(tinyBox);
 
@@ -79,16 +79,18 @@ SetupTiming::SetupTiming(QWidget* parent )
 
    QHBox *m3 = new QHBox(bigBox);
    new QLabel(i18n("Big break after:"), m3);
-   m_bigInterval = new QLineEdit(m3);
-   new QLabel(i18n("tiny breaks"), m3);
+   m_bigInterval = new KIntNumInput(m3);
+   m_bigInterval->setRange(1,1000,1,false);
+   m_bigInterval->setSuffix( " " + i18n("tiny breaks") );
 
    QHBox *m4 = new QHBox(bigBox);
    new QLabel(i18n("For the amount of:"), m4);
-   m_bigDuration = new QLineEdit(m4);
-   new QLabel(i18n("minutes"), m4);
+   m_bigDuration = new KIntNumInput(m4);
+   m_bigDuration->setRange(1,1000,1,false);
+   m_bigDuration->setSuffix( " " + i18n("minutes") );
 
    layout->addWidget(bigBox);
-
+   layout->addStretch(10);
    readSettings();
 }
 
@@ -102,10 +104,10 @@ void SetupTiming::applySettings()
     kdDebug() <<"save"<< endl;
     KConfig* config = kapp->config();
     config->setGroup("General Settings");
-    config->writeEntry("TinyInterval", m_tinyInterval->text());
-    config->writeEntry("TinyDuration", m_tinyDuration->text());
-    config->writeEntry("BigInterval", m_bigInterval->text());
-    config->writeEntry("BigDuration", m_bigDuration->text());
+    config->writeEntry("TinyInterval", m_tinyInterval->value());
+    config->writeEntry("TinyDuration", m_tinyDuration->value());
+    config->writeEntry("BigInterval", m_bigInterval->value());
+    config->writeEntry("BigDuration", m_bigDuration->value());
     config->sync();
 }
 
@@ -115,10 +117,10 @@ void SetupTiming::readSettings()
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
-    m_tinyInterval->setText(config->readEntry("TinyInterval", "2"));
-    m_tinyDuration->setText(config->readEntry("TinyDuration", "20"));
-    m_bigInterval->setText(config->readEntry("BigInterval", "10"));
-    m_bigDuration->setText(config->readEntry("BigDuration", "1"));
+    m_tinyInterval->setValue(config->readNumEntry("TinyInterval", 2));
+    m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
+    m_bigInterval->setValue(config->readNumEntry("BigInterval", 10));
+    m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
 }
 
 #include "setuptiming.moc"

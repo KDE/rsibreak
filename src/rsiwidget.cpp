@@ -350,6 +350,7 @@ void RSIWidget::slotStop( )
     kdDebug() << "Entering slotStop" << endl;
     startMinimizeTimer();
     m_timer_max->stop();
+    m_needBreak=false;
 }
 
 void RSIWidget::slotStart( )
@@ -438,12 +439,19 @@ void RSIWidget::readConfig()
         loadImage();
     }
 
-    m_timeMinimized = (int)(QString(config->readEntry("TinyInterval", "10")).toFloat()*60);
-    m_timeMaximized = QString(config->readEntry("TinyDuration", "20")).toInt();
+    m_timeMinimized = config->readNumEntry("TinyInterval", 10)*60;
+    m_timeMaximized = config->readNumEntry("TinyDuration", 20);
 
-    m_bigInterval = QString(config->readEntry("BigInterval", "3")).toInt();
-    m_bigTimeMaximized = (int)(QString(config->readEntry("BigDuration", "1")).toFloat()*60);
+    m_bigInterval = config->readNumEntry("BigInterval", 3);
+    m_bigTimeMaximized = config->readNumEntry("BigDuration", 1)*60;
     m_currentInterval = m_bigInterval;
+
+    if (config->readBoolEntry("DEBUG"))
+    {
+        kdDebug() << "Debug mode activated" << endl;
+        m_timeMinimized = m_timeMinimized/60;
+        m_bigTimeMaximized = m_bigTimeMaximized/60;
+    }
 
     delete Black;
 }

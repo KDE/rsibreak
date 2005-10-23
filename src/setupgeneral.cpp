@@ -34,14 +34,10 @@
 
 #include <kdebug.h>
 #include <klocale.h>
-#include <kdialog.h>
 #include <kcolorbutton.h>
 #include <kfontdialog.h>
-#include <knuminput.h>
 #include <kconfig.h>
 #include <kapplication.h>
-#include <klistview.h>
-#include <ktrader.h>
 #include <kfiledialog.h>
 #include <kshortcutdialog.h>
 #include <kaccel.h>
@@ -66,7 +62,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
    QWhatsThis::add( m_hideCounter, i18n("With this checkbox you can indicate "
            "if you want to see a counter during the breaks. It will count "
            "down to zero, so you know how long this break will be. It will "
-           "be shown on top of the image, when images are shown") );
+           "be shown on top of the image, when images are shown.") );
 
    m_colorBox = new QHBox(counterBox);
    QLabel *counterColorlabel = new QLabel( i18n("&Color:"), m_colorBox );
@@ -75,7 +71,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
    QWhatsThis::add( m_counterColor, i18n("Select here the color to use "
             "for the counter. As this is used on top of the images, you "
             "might want to set it to a color which is visible for most "
-            "of the images") );
+            "of the images.") );
 
    m_fontBox = new QHBox(counterBox);
    QLabel *counterFontlabel = new QLabel( i18n("&Font:"), m_fontBox );
@@ -120,12 +116,13 @@ SetupGeneral::SetupGeneral(QWidget* parent )
    QWhatsThis::add( m_disableAccel,
                     i18n("Check this option to disable the minimize shortcut "
                          "button. This way you can prevent skipping the "
-                         "break, by pressing the Escape key.") );
+                         "break.") );
    connect(m_disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
    layout->addWidget(m_disableAccel);
 
    m_shortcutBox = new QHBox(parent);
    QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:"), m_shortcutBox );
+   shortcutlabel->setIndent( 22 );
    m_shortcutBut = new QPushButton(i18n("&Change shortcut..."), m_shortcutBox );
    shortcutlabel->setBuddy(m_shortcutBut);
    QWhatsThis::add( m_shortcutBut, i18n("Select here the shortcut to use "

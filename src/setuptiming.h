@@ -73,11 +73,11 @@ private slots:
 private:
     void readSettings();
 
-    QLineEdit*          m_tinyInterval;
-    QLineEdit*          m_tinyDuration;
+    KIntNumInput*          m_tinyInterval;
+    KIntNumInput*          m_tinyDuration;
 
-    QLineEdit*          m_bigInterval;
-    QLineEdit*          m_bigDuration;
+    KIntNumInput*          m_bigInterval;
+    KIntNumInput*          m_bigDuration;
 
 };
 
