@@ -30,6 +30,7 @@ class QStringList;
 class QPushButton;
 class RSIDock;
 class KAccel;
+class KPassivePopup;
 
 /**
  * @class RSIWidget
@@ -75,6 +76,9 @@ class RSIWidget : public QWidget
         QTimer*         m_timer_min;
         QLabel*         m_countDown;
         KAccel*         m_accel;
+
+        KPassivePopup*  m_popup;
+        QLabel*         m_tool;
 
         bool            m_searchRecursive;
         bool            m_idleLong;

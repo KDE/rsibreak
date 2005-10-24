@@ -47,6 +47,7 @@
 #include <kapplication.h>
 #include <kaccel.h>
 #include <kmessagebox.h>
+#include <kpassivepopup.h>
 #include <kdebug.h>
 #include <kconfig.h>
 
@@ -69,6 +70,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_idleLong = false;
     m_needBreak = false;
+    m_targetReached = false;
     bool idleDetection = false;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
@@ -123,6 +125,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect(m_timer_min, SIGNAL(timeout()),  SLOT(slotMinimize()));
 
     m_normalTimer = startTimer( 1000 );
+
+    m_popup = new KPassivePopup(m_tray);
+    m_tool = new QLabel(m_popup);
+    m_popup->setView(m_tool);
 
     readConfig();
     startMinimizeTimer();
@@ -314,9 +320,13 @@ void RSIWidget::timerEvent( QTimerEvent* )
     if ( m_needBreak > 0 )
     {
         int t = idleTime();
+        m_tool->setText(i18n("Please relax for 1 second",
+                             "Please relax for %n seconds",
+                             m_needBreak-t));
+        m_popup->show();
 
         // if user is idle for more then 5 seconds, remember that.
-        if (t >= 5 || QTime::currentTime().secsTo(m_targetTime) < -30)
+        if (t >= 5 || QTime::currentTime().secsTo(m_targetTime) <= -30)
             m_targetReached=true;
 
         kdDebug() << "Idle for: " << t << "s; "
@@ -331,6 +341,7 @@ void RSIWidget::timerEvent( QTimerEvent* )
             kdDebug() << "Activity detected, break!" << endl;
             breakNow( m_needBreak );
             m_targetReached=false;
+            m_popup->hide();
             m_needBreak=0;
         }
 
@@ -340,6 +351,7 @@ void RSIWidget::timerEvent( QTimerEvent* )
             kdDebug() << "You have been idle for the duration of the break, thanks!" << endl;
             m_targetReached=false;
             m_needBreak=0;
+            m_popup->hide();
             startMinimizeTimer();
         }
     }
