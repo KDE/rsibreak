@@ -31,6 +31,7 @@ class QPushButton;
 class RSIDock;
 class KAccel;
 class KPassivePopup;
+class QPixmap;
 
 /**
  * @class RSIWidget
@@ -54,12 +55,14 @@ class RSIWidget : public QWidget
     private slots:
         void slotMinimize();
         void slotMaximize();
+        void slotNewSlide();
         void slotReadConfig();
         void slotStop();
         void slotStart();
 
     protected:
         void timerEvent( QTimerEvent* );
+        void paintEvent( QPaintEvent* );
 
     private:
         void startMinimizeTimer();
@@ -70,10 +73,12 @@ class RSIWidget : public QWidget
         int idleTime();
         void breakNow( int t );
 
+        QPixmap*        m_backgroundimage;
         QString         m_basePath;
         QTime           m_targetTime;
         QTimer*         m_timer_max;
         QTimer*         m_timer_min;
+        QTimer*         m_timer_slide;
         QLabel*         m_countDown;
         KAccel*         m_accel;
 
@@ -90,6 +95,7 @@ class RSIWidget : public QWidget
         int             m_bigInterval;
         int             m_bigTimeMaximized;
         int             m_currentInterval;
+        int             m_slideInterval;
 
         int             m_normalTimer;
         RSIDock*        m_tray;

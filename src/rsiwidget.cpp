@@ -68,6 +68,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( dialogEntered() ), SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), SLOT( slotStart() ) );
 
+    m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
+                                    QApplication::desktop()->height());
+
     m_idleLong = false;
     m_needBreak = false;
     m_targetReached = false;
@@ -124,6 +127,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_timer_min = new QTimer(this);
     connect(m_timer_min, SIGNAL(timeout()),  SLOT(slotMinimize()));
 
+    m_timer_slide = new QTimer(this);
+    connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
+
     m_normalTimer = startTimer( 1000 );
 
     m_popup = new KPassivePopup(m_tray);
@@ -140,6 +146,7 @@ RSIWidget::~RSIWidget()
     delete m_timer_max;
     delete m_timer_min;
     delete m_tray;
+    delete m_backgroundimage;
 }
 
 void RSIWidget::startMinimizeTimer()
@@ -150,14 +157,6 @@ void RSIWidget::startMinimizeTimer()
     m_timer_min->stop();
     m_targetTime = QTime::currentTime().addSecs(m_timeMinimized);
     m_timer_max->start(m_timeMinimized*1000, true);
-}
-
-void RSIWidget::slotMinimize()
-{
-    kdDebug() << "Entering slotMinimize" << endl;
-
-    startMinimizeTimer();
-    loadImage();
 }
 
 void RSIWidget::loadImage()
@@ -180,10 +179,11 @@ void RSIWidget::loadImage()
     kdDebug() << "Loading: " << m_files[j] << 
                     "( " << j << " / "  << m_files.count() << " ) " << endl;
 
-    QImage m = QImage( m_files[ j ]).scale(
+    QImage m = QImage( m_files[ j ]).smoothScale(
                         QApplication::desktop()->width(),
                         QApplication::desktop()->height(),
                         QImage::ScaleMax);
+
 
     if (m.isNull())
     {
@@ -202,8 +202,10 @@ void RSIWidget::loadImage()
         return;
     }
 
-    setPaletteBackgroundPixmap( QPixmap( m ) );
-    m_countDown->setPaletteBackgroundPixmap( QPixmap( m ) );
+    if (m_backgroundimage->convertFromImage(m))
+        kdDebug() << "New background image set" << endl;
+    else
+        kdWarning() << "Failed to set new background image" << endl;
 }
 
 int RSIWidget::idleTime()
@@ -219,6 +221,86 @@ int RSIWidget::idleTime()
 
     return totalIdle;
 }
+
+void RSIWidget::breakNow( int t )
+// this shows a break request all over the screen.
+{
+    kdDebug() << "Entering breakNow for " << t << "seconds " << endl;
+    m_targetTime = QTime::currentTime().addSecs(t);
+    m_timer_min->start(t*1000, true);
+
+    if (m_slideInterval>0)
+        m_timer_slide->start( m_slideInterval*1000 );
+
+    setCounters();
+
+    show(); // Keep it above the KWin calls.
+    KWin::forceActiveWindow(winId());
+    KWin::setOnAllDesktops(winId(),true);
+    KWin::setState(winId(), NET::KeepAbove);
+    KWin::setState(winId(), NET::FullScreen);
+}
+
+void RSIWidget::setCounters()
+{
+    int s = (int)ceil(QTime::currentTime().msecsTo(m_targetTime)/1000);
+
+    if (s > 0)
+        m_countDown->setText( QString::number( s ) );
+    else
+        m_countDown->setText( QString::null );
+
+    // TODO: tell something about tinyBreaks, bigBreaks.
+    if (s > 0)
+        QToolTip::add(m_tray, i18n("One second remaining",
+                      "%n seconds remaining",s));
+    else
+        QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
+}
+
+
+void RSIWidget::findImagesInFolder(const QString& folder)
+{
+    kdDebug() << "Looking for pictures in " << folder << endl;
+
+    if ( folder.isNull() )
+        return;
+
+    QDir dir( folder);
+
+    // TODO: make an automated filter, maybe with QImageIO.
+    QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
+    dir.setNameFilter(ext + " " + ext.upper());
+    dir.setMatchAllDirs ( true );
+
+    if ( !dir.exists() or !dir.isReadable() )
+    {
+        kdWarning() << "Folder does not exist or is not readable: "
+                << folder << endl;
+        return;
+    }
+
+    const QFileInfoList *list = dir.entryInfoList();
+    if (!list)
+        return;
+
+    QFileInfoListIterator it( *list );
+    QFileInfo *fi;
+
+    while ( (fi = it.current()) != 0 )
+    {
+        if ( fi->isFile())
+            m_files.append(fi->filePath());
+        else if (fi->isDir() && m_searchRecursive &&
+                 fi->fileName() != "." &&  fi->fileName() != "..")
+            findImagesInFolder(fi->absFilePath());
+        ++it;
+    }
+}
+
+
+// -------------------------- SLOTS ------------------------//
+
 
 void RSIWidget::slotMaximize()
 // Do not be mislead by the name "slotMaximize", the user cannot maximize the window. This is
@@ -278,38 +360,49 @@ void RSIWidget::slotMaximize()
         m_currentInterval=m_bigInterval;
 }
 
-void RSIWidget::breakNow( int t )
-// this shows a break request all over the screen.
+void RSIWidget::slotMinimize()
 {
-    kdDebug() << "Entering breakNow for " << t << "seconds " << endl;
-    m_targetTime = QTime::currentTime().addSecs(t);
-    m_timer_min->start(t*1000, true);
+    kdDebug() << "Entering slotMinimize" << endl;
 
-    setCounters();
-
-    show(); // Keep it above the KWin calls.
-    KWin::forceActiveWindow(winId());
-    KWin::setOnAllDesktops(winId(),true);
-    KWin::setState(winId(), NET::KeepAbove);
-    KWin::setState(winId(), NET::FullScreen);
+    startMinimizeTimer();
+    loadImage();
 }
 
-void RSIWidget::setCounters()
+void RSIWidget::slotNewSlide()
 {
-    int s = (int)ceil(QTime::currentTime().msecsTo(m_targetTime)/1000);
+    kdDebug() << "Entering slotNewSlide" << endl;
 
-    if (s > 0) 
-        m_countDown->setText( QString::number( s ) );
+    if (m_timer_min->isActive())
+    {
+        loadImage();
+        repaint( false );
+    }
     else
-        m_countDown->setText( QString::null );
-
-    // TODO: tell something about tinyBreaks, bigBreaks.
-    if (s > 0) 
-        QToolTip::add(m_tray, i18n("One second remaining",
-                  "%n seconds remaining",s));
-    else
-        QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
+        m_timer_slide->stop();
 }
+
+void RSIWidget::slotStop( )
+{
+    kdDebug() << "Entering slotStop" << endl;
+    startMinimizeTimer();
+    m_timer_max->stop();
+    m_needBreak=false;
+}
+
+void RSIWidget::slotStart( )
+{
+    kdDebug() << "Entering slotStart" << endl;
+    // the interuption can not be considered a real break
+    // only needed fot a big break of course
+    if (m_currentInterval == m_bigInterval)
+        m_currentInterval=0;
+
+    slotMinimize();
+}
+
+
+// ----------------------------- EVENTS -----------------------//
+
 
 void RSIWidget::timerEvent( QTimerEvent* )
 {
@@ -357,63 +450,16 @@ void RSIWidget::timerEvent( QTimerEvent* )
     }
 }
 
-void RSIWidget::slotStop( )
+void RSIWidget::paintEvent( QPaintEvent * )
 {
-    kdDebug() << "Entering slotStop" << endl;
-    startMinimizeTimer();
-    m_timer_max->stop();
-    m_needBreak=false;
+    kdDebug() << "Entering paintEvent" << endl;
+    bitBlt( this, 0, 0, m_backgroundimage );
+    m_countDown->setPaletteBackgroundPixmap( *m_backgroundimage );
 }
 
-void RSIWidget::slotStart( )
-{
-    kdDebug() << "Entering slotStart" << endl;
-    // the interuption can not be considered a real break
-    // only needed fot a big break of course
-    if (m_currentInterval == m_bigInterval)
-        m_currentInterval=0;
 
-    slotMinimize();
-}
+//--------------------------- CONFIG ----------------------------//
 
-void RSIWidget::findImagesInFolder(const QString& folder)
-{
-    kdDebug() << "Looking for pictures in " << folder << endl;
-
-    if ( folder.isNull() )
-        return;
-
-    QDir dir( folder);
-
-    // TODO: make an automated filter, maybe with QImageIO.
-    QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
-    dir.setNameFilter(ext + " " + ext.upper());
-    dir.setMatchAllDirs ( true );
-
-    if ( !dir.exists() or !dir.isReadable() )
-    {
-        kdWarning() << "Folder does not exist or is not readable: "
-                << folder << endl;
-        return;
-    }
-
-    const QFileInfoList *list = dir.entryInfoList();
-    if (!list)
-        return;
-
-    QFileInfoListIterator it( *list );
-    QFileInfo *fi;
-
-    while ( (fi = it.current()) != 0 )
-    {
-        if ( fi->isFile())
-            m_files.append(fi->filePath());
-        else if (fi->isDir() && m_searchRecursive &&
-                 fi->fileName() != "." &&  fi->fileName() != "..")
-            findImagesInFolder(fi->absFilePath());
-        ++it;
-    }
-}
 
 void RSIWidget::readConfig()
 {
@@ -457,6 +503,8 @@ void RSIWidget::readConfig()
     m_bigInterval = config->readNumEntry("BigInterval", 3);
     m_bigTimeMaximized = config->readNumEntry("BigDuration", 1)*60;
     m_currentInterval = m_bigInterval;
+
+    m_slideInterval = config->readNumEntry("SlideInterval", 2);
 
     if (config->readBoolEntry("DEBUG"))
     {

@@ -90,6 +90,17 @@ SetupTiming::SetupTiming(QWidget* parent )
    m_bigDuration->setSuffix( " " + i18n("minutes") );
 
    layout->addWidget(bigBox);
+
+   QVGroupBox *slideBox = new QVGroupBox(parent);
+   slideBox->setTitle(i18n("Slideshow"));
+
+   QHBox *m5 = new QHBox(slideBox);
+   new QLabel(i18n("Change images every:"), m5);
+   m_slideInterval = new KIntNumInput(m5);
+   m_slideInterval->setRange(1,1000,1,false);
+   m_slideInterval->setSuffix( " " + i18n("seconds") );
+
+   layout->addWidget(slideBox);
    layout->addStretch(10);
    readSettings();
 }
@@ -108,6 +119,7 @@ void SetupTiming::applySettings()
     config->writeEntry("TinyDuration", m_tinyDuration->value());
     config->writeEntry("BigInterval", m_bigInterval->value());
     config->writeEntry("BigDuration", m_bigDuration->value());
+    config->writeEntry("SlideInterval", m_slideInterval->value());
     config->sync();
 }
 
@@ -121,6 +133,7 @@ void SetupTiming::readSettings()
     m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
     m_bigInterval->setValue(config->readNumEntry("BigInterval", 10));
     m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
+    m_slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
 
     if (config->readBoolEntry("DEBUG"))
     {

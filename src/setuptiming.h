@@ -79,6 +79,8 @@ private:
     KIntNumInput*          m_bigInterval;
     KIntNumInput*          m_bigDuration;
 
+    KIntNumInput*          m_slideInterval;
+
 };
 
 #endif /* SETUPTIMING_H */
