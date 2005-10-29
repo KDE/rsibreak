@@ -1,7 +1,7 @@
 Begin3
 Title:          rsibreak - Utility to remind you to take a break now and then.
-Version:        0.0.2
-Entered-date:   12-10-2005
+Version:        0.0.3
+Entered-date:   29-10-2005
 Description:    
 Keywords:       KDE Qt
 Author:         Tom Albers <tomalbers@kde.nl>

@@ -27,11 +27,6 @@ rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS)
 
 # this is where the desktop file will go
-shelldesktopdir = $(kde_appsdir)/Utilities
-shelldesktop_DATA = rsibreak.desktop
-
-# this is where the shell's XML-GUI resource file goes
-#shellrcdir = $(kde_datadir)/rsibreak
-#shellrc_DATA = rsibreakui.rc
+xdg_apps_DATA = rsibreak.desktop
 
 include ../../admin/Doxyfile.am

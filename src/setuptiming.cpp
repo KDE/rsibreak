@@ -121,6 +121,12 @@ void SetupTiming::readSettings()
     m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
     m_bigInterval->setValue(config->readNumEntry("BigInterval", 10));
     m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
+
+    if (config->readBoolEntry("DEBUG"))
+    {
+        m_bigDuration->setSuffix( " " + i18n("seconds") );
+        m_tinyInterval->setSuffix( " " + i18n("seconds") );
+    }
 }
 
 #include "setuptiming.moc"

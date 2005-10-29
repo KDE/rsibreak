@@ -1,9 +1,17 @@
-Changes since last release:
+v0.0.3  2005-10-29
 - Change to KUniqueApplication to prevent multiple instances
-- Fix icon
+- Fix icon in context menu
 - Made minimize key configurable
+- Added popup to show RSIBreak is waiting for a break
+- Made a better layout for the settings of timings
+- Rewrote the timing logic completely.
+- Several fixes pointed out by Achim in his debian/rules:
+  - ChangeLog.Summary renamed to NEWS
+  - Desktop installs in right directory
+  - doc folder contains a DONOT_COMPILE entry
+  - distributed png files where corrupt.
 
-v0.0.2 2005-10-12
+v0.0.2  2005-10-12
 - idle detection
 - improved the showing of the image during the break
 - Transparent counter during the break
@@ -11,5 +19,5 @@ v0.0.2 2005-10-12
 - Added link to bugs.kde.org
 - Added a welcome-screen
 
-v0.0.1 2005-10-01
+v0.0.1  2005-10-01
 - initial release

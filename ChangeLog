@@ -1,3 +1,139 @@
+2005-10-24 19:27 +0000 [r473858]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Add a passive
+	  popup to indicate rsibreak is waiting for a break. Unexpectedly
+	  this works quite nicely.
+
+2005-10-23 18:38 +0000 [r473462]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/TODO,
+	  trunk/playground/utils/rsibreak/src/setuptiming.h,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Changed
+	  lineedit to kintnuminput, reading from conf is now done via
+	  readnumentry, You can put a DEBUG=true in the settings so the
+	  minutes filled in the settings become seconds.
+
+2005-10-21 20:51 +0000 [r472741]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Make it
+	  compile.
+
+2005-10-21 17:43 +0000 [r472713]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/TODO,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Finally
+	  managed to make the hardcoded ESC key to minimize the window
+	  configurable.
+
+2005-10-21 14:50 +0000 [r472663]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Since some of
+	  the intelligence is also handled elsewhere, I can remove some of
+	  the code, without functionality loss, but maybe with some
+	  regressions ;-) Also fixed a whatsthis error, showing random
+	  numbers and fixed the counter, which should count down correctly
+	  now. I'm not sure that (int)ceil() is the best way to do it
+	  though (i want the difference in time, rounded up).
+
+2005-10-21 10:30 +0000 [r472589]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Cleaned up a
+	  bit too much yesterday. After a bigBreak counter was not
+	  resetted, so the next break is again a BigBreak.
+
+2005-10-20 18:35 +0000 [r472432]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Again changes in
+	  the logic to have a break: - when it is time to have a break, and
+	  the user is busy, wait for 5 seconds inactivity within a maximum
+	  of 30 seconds - as long as the user stays idle, there will be no
+	  break - when the user stays idle for the duration of the planned
+	  break, the break is skipped. - when the user starts working
+	  again, the break will be activated.... idea from Bram.
+
+2005-10-20 16:31 +0000 [r472396]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Remove warning
+	  for a fresh install and fixed a problem with the loading of
+	  images, right after you change the path in the settings: the
+	  image was only loaded _after_ the first brake.
+
+2005-10-19 19:19 +0000 [r472072]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Not
+	  initialised variable, resulting in sometimes a break at start.
+	  Reported by Bram.
+
+2005-10-19 17:26 +0000 [r472053]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Fixed the
+	  logic a bit more and made the code more readible. Should be ok
+	  now.
+
+2005-10-18 20:02 +0000 [r471799]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Worked on the
+	  idle detection. I used this scheme: - When it is time to break,
+	  wait for 5 seconds inactivity to not completely interrupt the
+	  workflow (<- this part is new) - When it is time to break and the
+	  user is already idle for the duration of that break: delay the
+	  break - when it is time to break and the user is already idle
+	  since the last break: delay this break and the next one.
+	  (keep-it-out-of-my-face-right-after-lunch-feature) testing needed
+
+2005-10-17 21:44 +0000 [r471523]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: - save
+	  dialog size for settings dialog - expanded tooltips - use app
+	  font instead of Verdana
+
+2005-10-17 20:24 +0000 [r471491]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/hi32-app-rsi.png (removed),
+	  trunk/playground/utils/rsibreak/src/hi16-app-rsi.png (removed),
+	  trunk/playground/utils/rsibreak/src/hi32-app-rsibreak.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-app-rsibreak.png
+	  (added), trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/TODO: Fix the application icon.
+	  Deleted non-binary icons and added the xclock icon as long as
+	  there is no alternative...
+
+2005-10-17 18:00 +0000 [r471428]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/rsibreak.desktop,
+	  trunk/playground/utils/rsibreak/TODO: There is no need for
+	  multiple RSIBreaks...
+
+2005-10-12 18:51 +0000 [r469972]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog (added),
+	  trunk/playground/utils/rsibreak/configure.in.bot (added),
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/ChangeLog.Summary (added),
+	  trunk/playground/utils/rsibreak/src/rsibreak.lsm,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/makechangelog (added): Added a
+	  configure.in.bot to tell the user if idle detection will be
+	  possible. Added a Changelog with some secret script found in
+	  kde-common, a summary file and bumped the version so I can make a
+	  new tarball.
+
 2005-10-12 16:35 +0000 [r469944]  Tom Albers tomalbers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,

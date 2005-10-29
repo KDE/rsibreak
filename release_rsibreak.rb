@@ -9,7 +9,7 @@
 
 name       = "rsibreak"
 egmodule   = "utils"
-version    = "0.0.2"
+version    = "0.0.3"
 docs       = "no"
 
 svnbase    = "https://toma@svn.kde.org/home/kde"
