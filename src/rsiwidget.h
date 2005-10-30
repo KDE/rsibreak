@@ -88,6 +88,7 @@ class RSIWidget : public QWidget
         bool            m_searchRecursive;
         bool            m_idleLong;
         bool            m_targetReached;
+        bool            m_idleDetection;
 
         int             m_needBreak;
         int             m_timeMaximized;

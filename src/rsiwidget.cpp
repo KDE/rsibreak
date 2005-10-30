@@ -67,6 +67,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( configChanged() ), SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( dialogEntered() ), SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), SLOT( slotStart() ) );
+    connect( m_tray, SIGNAL( breakRequest() ), SLOT( slotMaximize() ) );
+
 
     m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
                                     QApplication::desktop()->height());
@@ -74,18 +76,19 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_idleLong = false;
     m_needBreak = false;
     m_targetReached = false;
-    bool idleDetection = false;
+    m_idleDetection = false;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
     int event_base, error_base;
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
-        idleDetection = true;
+        m_idleDetection = true;
 #endif
 
-    if (idleDetection)
+    if (m_idleDetection)
         kdDebug() << "IDLE Detection is possible" << endl;
     else
         kdDebug() << "IDLE Detection is not possible" << endl;
+
 
     srand ( time(NULL) );
 
@@ -145,6 +148,7 @@ RSIWidget::~RSIWidget()
     kdDebug() << "Entering ~RSIWidget" << endl;
     delete m_timer_max;
     delete m_timer_min;
+    delete m_timer_slide;
     delete m_tray;
     delete m_backgroundimage;
 }
@@ -412,6 +416,13 @@ void RSIWidget::timerEvent( QTimerEvent* )
     // and activate the break if needed...
     if ( m_needBreak > 0 )
     {
+        if (!m_idleDetection)
+        {
+            breakNow( m_needBreak );
+            m_needBreak=0;
+            return;
+        }
+
         int t = idleTime();
         m_tool->setText(i18n("Please relax for 1 second",
                              "Please relax for %n seconds",
@@ -476,7 +487,7 @@ void RSIWidget::readConfig()
     m_countDown->setHidden(
             config->readBoolEntry("HideCounter", false));
     m_accel->setEnabled("minimize",
-                        !config->readBoolEntry("DisableAccel", false));
+                   !config->readBoolEntry("DisableAccel", false));
     QString shortcut = config->readEntry("MinimizeKey", "Escape");
     m_accel->setShortcut("minimize",KShortcut(shortcut));
 

@@ -29,6 +29,7 @@
 #include <kaboutkde.h>
 #include <kaboutapplication.h>
 #include <kbugreport.h>
+#include <kglobalaccel.h>
 #include <kkeydialog.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
@@ -51,6 +52,13 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
   contextMenu()->insertItem(SmallIcon("info"),
                          i18n("About RSIBreak..."), this,
                          SLOT(slotAboutRSIBreak()));
+
+  m_accel = new KGlobalAccel(this);
+  m_accel->insert("breakRequest", i18n("Take a break now"),
+                  i18n("This way you can have a break now"),
+                  KKey::QtWIN+Key_B, KKey::QtWIN+CTRL+Key_B,
+                  this, SLOT( slotBreakRequest() ));
+  m_accel->updateConnections();
 
 }
 
@@ -82,7 +90,7 @@ void RSIDock::slotAboutKDE()
 }
 
 void RSIDock::slotAboutRSIBreak()
-                     {
+{
     kdDebug() << "Entering slotAboutRSIBreak" << endl;
     KAboutApplication about;
     emit dialogEntered();
@@ -97,6 +105,11 @@ void RSIDock::slotReportBug()
     emit dialogEntered();
     bug.exec();
     emit dialogLeft();
+}
+
+void RSIDock::slotBreakRequest()
+{
+    emit breakRequest();
 }
 
 #include "rsidock.moc"

@@ -26,6 +26,7 @@
 
 #include <qpixmap.h>
 
+class KGlobalAccel;
 #include <ksystemtray.h>
 
 /** 
@@ -74,11 +75,21 @@ class RSIDock : public KSystemTray
          */
         void dialogLeft();
 
+        /**
+         * This signal is emitted when the user wishes to take the break
+         * at this moment, either via the shortcut or the menu (lmb)
+         */
+        void breakRequest();
+
     private slots:
         void slotConfigure();
         void slotAboutKDE();
         void slotAboutRSIBreak();
         void slotReportBug();
+        void slotBreakRequest();
+
+    private:
+        KGlobalAccel* m_accel;
 };
 
 #endif // RSIDOCK_H

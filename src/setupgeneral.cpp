@@ -40,7 +40,6 @@
 #include <kapplication.h>
 #include <kfiledialog.h>
 #include <kshortcutdialog.h>
-#include <kaccel.h>
 
 // Local includes.
 
