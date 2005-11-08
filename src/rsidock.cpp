@@ -36,7 +36,7 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name )
 {
   kdDebug() << "Entering RSIDock" << endl;
-  QPixmap dockPixmap = KSystemTray::loadIcon( "xclock" );
+  QPixmap dockPixmap = KSystemTray::loadIcon( "rsibreak0" );
   setPixmap( dockPixmap );
 
   contextMenu()->insertItem(SmallIcon("configure"),

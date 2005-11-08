@@ -32,8 +32,12 @@ int main( int argc, char *argv[] )
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
                           "(c) 2005, T.M. Albers" );
+
     aboutData.addAuthor( "Tom Albers", I18N_NOOP("Maintainer"),
                          "tomalbers@kde.nl", "http://www.omat.nl");
+
+    aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
+                         "clearbeast@gmail.com");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 

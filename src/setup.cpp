@@ -45,7 +45,7 @@ Setup::Setup(QWidget* parent, const char* name)
     m_generalPage = new SetupGeneral(page_general);
 
     page_timing = addPage(i18n("Timings"), i18n("Timings"),
-                            BarIcon("xclock", KIcon::SizeMedium));
+                            BarIcon("rsibreak3", KIcon::SizeMedium));
     m_timingPage = new SetupTiming(page_timing);
 
     connect(this, SIGNAL(okClicked()),
