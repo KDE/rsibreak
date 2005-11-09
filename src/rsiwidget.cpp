@@ -50,6 +50,7 @@
 #include <kpassivepopup.h>
 #include <kdebug.h>
 #include <kconfig.h>
+#include <dcopclient.h>
 
 #include <stdlib.h>
 #include <math.h>
@@ -58,7 +59,7 @@
 #include "rsidock.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
-    : QWidget( parent, name ), m_idleLong( false ), m_needBreak( false ), m_targetReached( false ), m_idleIndex( 0 )
+    : QWidget( parent, name ), m_idleLong( false ), m_targetReached( false ), m_needBreak( false ), m_idleIndex( 0 )
 {
     kdDebug() << "Entering RSIWidget" << endl;
     m_tray = new RSIDock(this,"Tray Item");
