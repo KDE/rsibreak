@@ -1,5 +1,7 @@
 To be released:
 - Added slideshow feature, during break the shown images gets renewed
+- New logo and icons
+- Added possibility to automatically start RSIBreak when KDE starts
 
 v0.0.3  2005-10-29
 - Change to KUniqueApplication to prevent multiple instances

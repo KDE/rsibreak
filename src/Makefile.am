@@ -28,5 +28,7 @@ rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS)
 
 # this is where the desktop file will go
 xdg_apps_DATA = rsibreak.desktop
+autostart_DATA = rsibreak.desktop
+autostartdir = $(datadir)/autostart
 
 include ../../admin/Doxyfile.am

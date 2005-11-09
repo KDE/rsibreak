@@ -50,8 +50,12 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 {
    kdDebug() << "Entering SetupGeneral" << endl;
    QVBoxLayout *layout = new QVBoxLayout( parent );
+   layout->setSpacing( KDialog::spacingHint() );
 
-   // --------------------------------------------------------
+   m_autoStart = new QCheckBox(i18n("&Automatically start RSIBreak at startup"), parent);
+   QWhatsThis::add( m_autoStart, i18n("With this checkbox you can indicate "
+           "that you want RSIBreak to start when KDE starts.") );
+   layout->addWidget(m_autoStart);
 
    QVGroupBox *counterBox = new QVGroupBox(parent);
    counterBox->setTitle(i18n("Counter"));
@@ -211,6 +215,9 @@ void SetupGeneral::applySettings()
     config->writeEntry("DisableAccel", m_disableAccel->isChecked());
     config->writeEntry("MinimizeKey", m_shortcut);
     config->sync();
+
+    config->setGroup("General");
+    config->writeEntry("AutoStart", m_autoStart->isChecked());
 }
 
 void SetupGeneral::readSettings()
@@ -234,6 +241,9 @@ void SetupGeneral::readSettings()
     m_disableAccel->setChecked(config->readBoolEntry("DisableAccel", false));
     m_shortcut = config->readEntry("MinimizeKey", "Escape");
     m_shortcutBut->setText(m_shortcut);
+
+    config->setGroup("General");
+    m_autoStart->setChecked(config->readBoolEntry("AutoStart", false));
 
     delete Black;
 }

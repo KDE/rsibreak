@@ -92,6 +92,7 @@ private:
     QString           m_shortcut;
     QFont             m_counterFont;
     KColorButton*     m_counterColor;
+    QCheckBox*        m_autoStart;
     QCheckBox*        m_searchRecursiveCheck;
     QCheckBox*        m_hideMinimizeButton;
     QCheckBox*        m_hideCounter;

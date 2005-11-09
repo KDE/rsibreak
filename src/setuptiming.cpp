@@ -56,6 +56,7 @@ SetupTiming::SetupTiming(QWidget* parent )
 {
    kdDebug() << "Entering SetupTiming" << endl;
    QVBoxLayout *layout = new QVBoxLayout( parent );
+   layout->setSpacing( KDialog::spacingHint() );
 
    QVGroupBox *tinyBox = new QVGroupBox(parent);
    tinyBox->setTitle(i18n("Tiny breaks"));
