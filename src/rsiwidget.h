@@ -62,8 +62,9 @@ class RSIWidget : public QWidget
         void slotLock();
 
     protected:
-        void timerEvent( QTimerEvent* );
-        void paintEvent( QPaintEvent* );
+        virtual void timerEvent( QTimerEvent* );
+        virtual void paintEvent( QPaintEvent* );
+        virtual void closeEvent( QCloseEvent* );
 
     private:
         void startMinimizeTimer();

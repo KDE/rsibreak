@@ -401,6 +401,17 @@ void RSIWidget::slotStart( )
     slotMinimize();
 }
 
+void RSIWidget::slotLock()
+{
+    kdDebug() << "slotLock entered" << endl;
+
+    QCString appname( "kdesktop" );
+    int rsibreak_screen = qt_xscreen();
+    if ( rsibreak_screen )
+        appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
+    kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
+}
+
 
 // ----------------------------- EVENTS -----------------------//
 
@@ -484,6 +495,10 @@ void RSIWidget::paintEvent( QPaintEvent * )
     m_countDown->setPaletteBackgroundPixmap( *m_backgroundimage );
 }
 
+void RSIWidget::closeEvent( QCloseEvent * )
+{
+  hide();
+}
 
 //--------------------------- CONFIG ----------------------------//
 
@@ -548,17 +563,6 @@ void RSIWidget::slotReadConfig()
     kdDebug() << "Config changed" << endl;
     readConfig();
     startMinimizeTimer();
-}
-
-void RSIWidget::slotLock()
-{
-    kdDebug() << "slotLock entered" << endl;
-
-    QCString appname( "kdesktop" );
-    int rsibreak_screen = qt_xscreen();
-    if ( rsibreak_screen )
-        appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
-    kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
 }
 
 #include "rsiwidget.moc"
