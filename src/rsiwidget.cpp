@@ -58,7 +58,7 @@
 #include "rsidock.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
-    : QWidget( parent, name )
+    : QWidget( parent, name ), m_idleLong( false ), m_needBreak( false ), m_targetReached( false ), m_idleIndex( 0 )
 {
     kdDebug() << "Entering RSIWidget" << endl;
     m_tray = new RSIDock(this,"Tray Item");
@@ -73,11 +73,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
                                     QApplication::desktop()->height());
 
-    m_idleLong = false;
-    m_needBreak = false;
-    m_targetReached = false;
-    m_idleDetection = false;
-    m_idleIndex = 0;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
     int event_base, error_base;
@@ -181,7 +176,7 @@ void RSIWidget::loadImage()
     // Use that number to load the right image
     m_files_done.append(QString::number(j));
 
-    kdDebug() << "Loading: " << m_files[j] << 
+    kdDebug() << "Loading: " << m_files[j] <<
                     "( " << j << " / "  << m_files.count() << " ) " << endl;
 
     QImage m = QImage( m_files[ j ]).smoothScale(
@@ -323,7 +318,7 @@ void RSIWidget::slotMaximize()
     int minNeeded;
     if ( m_currentInterval == 0 )
         minNeeded = m_bigTimeMaximized;
-    else 
+    else
         minNeeded = m_timeMaximized;
 
     kdDebug() << "BigBreak in " << m_currentInterval << "; "
@@ -552,6 +547,17 @@ void RSIWidget::slotReadConfig()
     kdDebug() << "Config changed" << endl;
     readConfig();
     startMinimizeTimer();
+}
+
+void RSIWidget::slotLock()
+{
+    kdDebug() << "slotLock entered" << endl;
+
+    QCString appname( "kdesktop" );
+    int rsibreak_screen = qt_xscreen();
+    if ( rsibreak_screen )
+        appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
+    kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
 }
 
 #include "rsiwidget.moc"

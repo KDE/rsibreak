@@ -59,6 +59,7 @@ class RSIWidget : public QWidget
         void slotReadConfig();
         void slotStop();
         void slotStart();
+        void slotLock();
 
     protected:
         void timerEvent( QTimerEvent* );
@@ -106,6 +107,7 @@ class RSIWidget : public QWidget
         QStringList     m_files;
         QStringList     m_files_done;
         QPushButton*    m_miniButton;
+        QPushButton*    m_lockButton;
 };
 
 #endif
