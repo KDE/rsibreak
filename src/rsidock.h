@@ -55,6 +55,12 @@ class RSIDock : public KSystemTray
      */
     ~RSIDock();
 
+    /**
+     * With this function you can set the icon used in the tray.
+     * @param level Indicates the icon, you can currently choose from 0-4
+     */
+    void setIcon(int level);
+
     signals:
         /**
          * This signal is emitted when the user has left
@@ -90,6 +96,7 @@ class RSIDock : public KSystemTray
 
     private:
         KGlobalAccel* m_accel;
+        QString       m_currentIcon;
 };
 
 #endif // RSIDOCK_H

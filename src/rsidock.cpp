@@ -37,6 +37,8 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 {
   kdDebug() << "Entering RSIDock" << endl;
   QPixmap dockPixmap = KSystemTray::loadIcon( "rsibreak0" );
+  m_currentIcon = QString("rsibreak0");
+
   setPixmap( dockPixmap );
 
   contextMenu()->insertItem(SmallIcon("configure"),
@@ -65,6 +67,17 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 RSIDock::~RSIDock()
 {
 kdDebug() << "Entering ~RSIDock" << endl;
+}
+
+void RSIDock::setIcon(int level)
+{
+    QString newIcon = "rsibreak"+QString::number(level);
+    if (newIcon != m_currentIcon)
+    {
+        QPixmap dockPixmap = KSystemTray::loadIcon( newIcon );
+        m_currentIcon = newIcon;
+        setPixmap( dockPixmap );
+    }
 }
 
 void RSIDock::slotConfigure()

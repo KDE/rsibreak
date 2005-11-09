@@ -77,6 +77,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_needBreak = false;
     m_targetReached = false;
     m_idleDetection = false;
+    m_idleIndex = 0;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
     int event_base, error_base;
@@ -412,6 +413,26 @@ void RSIWidget::timerEvent( QTimerEvent* )
 {
     setCounters();
 
+    int t = idleTime();
+    if (t == 0)
+        m_idleIndex++;
+    else
+        m_idleIndex--;
+    m_idleIndexAmount++;
+
+    int idleAvg = m_idleIndexAmount == 0 ? 0 : (int)(m_idleIndex*100 / m_idleIndexAmount);
+
+    if ( idleAvg < 0 )
+        m_tray->setIcon( 0 );
+    if ( idleAvg >=20 && idleAvg<40 )
+        m_tray->setIcon( 1 );
+    if ( idleAvg >=40 && idleAvg<50 )
+        m_tray->setIcon( 2 );
+    if ( idleAvg >=50 && idleAvg<60 )
+        m_tray->setIcon( 3 );
+    if ( idleAvg >=60 )
+        m_tray->setIcon( 4 );
+
     // If we are waiting for the right time to have a break, check the idle timeout
     // and activate the break if needed...
     if ( m_needBreak > 0 )
@@ -423,7 +444,6 @@ void RSIWidget::timerEvent( QTimerEvent* )
             return;
         }
 
-        int t = idleTime();
         m_tool->setText(i18n("Please relax for 1 second",
                              "Please relax for %n seconds",
                              m_needBreak-t));

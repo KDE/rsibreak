@@ -98,6 +98,9 @@ class RSIWidget : public QWidget
         int             m_currentInterval;
         int             m_slideInterval;
 
+        int             m_idleIndex;
+        int             m_idleIndexAmount;
+
         int             m_normalTimer;
         RSIDock*        m_tray;
         QStringList     m_files;
