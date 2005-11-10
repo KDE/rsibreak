@@ -17,8 +17,8 @@
 
 */
 
-#ifndef RSIWidget_H
-#define RSIWidget_H
+#ifndef RSITimer_H
+#define RSITimer_H
 
 #include <qdatetime.h>
 
@@ -32,14 +32,15 @@ class RSIDock;
 class KAccel;
 class KPassivePopup;
 class QPixmap;
+class RSIWidget;
 
 /**
- * @class RSIWidget
- * This widget is the main widget for RSIBreak.
- * It minimizes and maximized the widget
+ * @class RSITimer
+ * This class controls the timings and arranges the maximizing
+ * and minimizing of the widget
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIWidget : public QWidget
+class RSITimer : public QWidget
 {
     Q_OBJECT
 
@@ -49,32 +50,41 @@ class RSIWidget : public QWidget
          * @param parent Parent Widget
          * @param name Name
          */
-        RSIWidget( QWidget *parent = 0, const char *name = 0 );
-        ~RSIWidget();
-
-        void minimize();
-        void maximize();
-        void readConfig();
-        void setCountdown( int sec );
+        RSITimer( QWidget *parent = 0, const char *name = 0 );
+        ~RSITimer();
 
     private slots:
-        void slotNewSlide();
-        void slotLock();
         void slotMinimize();
+        void slotMaximize();
+        void slotReadConfig();
+        void slotStop();
+        void slotRestart();
 
     protected:
-        virtual void paintEvent( QPaintEvent* );
+        virtual void timerEvent( QTimerEvent* );
+        virtual void closeEvent( QCloseEvent* );
 
     private:
+        void startMinimizeTimer();
         void findImagesInFolder(const QString& folder);
+        void readConfig();
+        void setCounters();
         void loadImage();
+        int idleTime();
+        void breakNow( int t );
 
         QPixmap*        m_backgroundimage;
         QString         m_basePath;
+        QTime           m_targetTime;
+        QTimer*         m_timer_max;
+        QTimer*         m_timer_min;
         QTimer*         m_timer_slide;
         QLabel*         m_countDown;
         KAccel*         m_accel;
 
+        RSIWidget*      m_RSIWidget;
+
+        KPassivePopup*  m_popup;
         QLabel*         m_tool;
 
         bool            m_searchRecursive;
@@ -82,15 +92,23 @@ class RSIWidget : public QWidget
         bool            m_targetReached;
         bool            m_idleDetection;
 
+        int             m_needBreak;
+        int             m_timeMaximized;
+        int             m_timeMinimized;
+        int             m_bigInterval;
+        int             m_bigTimeMaximized;
+        int             m_currentInterval;
         int             m_slideInterval;
 
+        int             m_idleIndex;
+        int             m_idleIndexAmount;
+
+        int             m_normalTimer;
+        RSIDock*        m_tray;
         QStringList     m_files;
         QStringList     m_files_done;
         QPushButton*    m_miniButton;
         QPushButton*    m_lockButton;
-
-    signals:
-        void requestMinimize();
 };
 
 #endif
