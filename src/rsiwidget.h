@@ -22,10 +22,8 @@
 
 #include <qdatetime.h>
 
-class QString;
 class QTimer;
 class QLabel;
-class QDateTime;
 class QStringList;
 class QPushButton;
 class RSIDock;

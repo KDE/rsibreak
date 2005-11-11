@@ -29,7 +29,6 @@
 #include <qlineedit.h>
 #include <qimage.h>
 #include <qpixmap.h>
-#include <qwidget.h>
 #include <qdir.h>
 #include <qstringlist.h>
 #include <qfileinfo.h>
@@ -116,10 +115,6 @@ RSITimer::RSITimer( QWidget *parent, const char *name )
 RSITimer::~RSITimer()
 {
     kdDebug() << "Entering RSITimer::~RSITimer" << endl;
-    delete m_timer_max;
-    delete m_timer_min;
-    delete m_tray;
-    delete m_RSIWidget;
 }
 
 void RSITimer::startMinimizeTimer()

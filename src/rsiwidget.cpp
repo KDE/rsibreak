@@ -29,7 +29,6 @@
 #include <qlineedit.h>
 #include <qimage.h>
 #include <qpixmap.h>
-#include <qwidget.h>
 #include <qdir.h>
 #include <qstringlist.h>
 #include <qfileinfo.h>
@@ -91,7 +90,6 @@ RSIWidget::~RSIWidget()
 {
     kdDebug() << "Entering RSIWidget::~RSIWidget" << endl;
     delete m_backgroundimage;
-    delete m_timer_slide;
 }
 
 void RSIWidget::minimize()
@@ -118,7 +116,7 @@ void RSIWidget::maximize()
 
 void RSIWidget::setCountdown(int sec)
 {
-    if ( sec > 0 ) 
+    if ( sec > 0 )
         m_countDown->setText( QString::number( sec ) );
     else
         m_countDown->setText (QString::null );
