@@ -20,18 +20,19 @@
 */
 
 #include "config.h"     // HAVE_LIBXSS
-#ifdef HAVE_LIBXSS      // Idle detection.
- #include <X11/Xlib.h>
- #include <X11/Xutil.h>
- #include <X11/extensions/scrnsaver.h>
- #include <fixx11h.h>
-#endif // HAVE_LIBXSS
-
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
-
 #include "rsitimer.h"
+
+//HACK: The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
+
+#ifdef HAVE_LIBXSS      // Idle detection.
+  #include <X11/Xlib.h>
+  #include <X11/Xutil.h>
+  #include <X11/extensions/scrnsaver.h>
+  #include <fixx11h.h>
+#endif // HAVE_LIBXSS
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_idleLong( false ), m_targetReached( false ), m_needBreak( false ), m_idleIndex( 0 )
