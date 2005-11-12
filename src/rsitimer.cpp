@@ -19,20 +19,6 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include <qpushbutton.h>
-#include <qlayout.h>
-#include <qtimer.h>
-#include <qtooltip.h>
-#include <qevent.h>
-#include <qlabel.h>
-#include <qdatetime.h>
-#include <qlineedit.h>
-#include <qimage.h>
-#include <qpixmap.h>
-#include <qdir.h>
-#include <qstringlist.h>
-#include <qfileinfo.h>
-
 #include "config.h"     // HAVE_LIBXSS
 #ifdef HAVE_LIBXSS      // Idle detection.
  #include <X11/Xlib.h>
@@ -41,15 +27,9 @@
  #include <fixx11h.h>
 #endif // HAVE_LIBXSS
 
-#include <kwin.h>
-#include <klocale.h>
 #include <kapplication.h>
-#include <kaccel.h>
 #include <kdebug.h>
 #include <kconfig.h>
-
-#include <stdlib.h>
-#include <math.h>
 
 #include "rsitimer.h"
 

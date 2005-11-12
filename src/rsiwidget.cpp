@@ -24,7 +24,6 @@
 #include <qtimer.h>
 #include <qtooltip.h>
 #include <qevent.h>
-#include <qlabel.h>
 #include <qdatetime.h>
 #include <qlineedit.h>
 #include <qimage.h>

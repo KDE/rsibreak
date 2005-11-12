@@ -19,16 +19,13 @@
 // QT includes.
 
 #include <qlayout.h>
-#include <qcolor.h>
 #include <qhbox.h>
 #include <qvgroupbox.h>
 #include <qhgroupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qstring.h>
 #include <qwhatsthis.h>
 #include <qcheckbox.h>
-#include <qdir.h>
 
 // KDE includes.
 

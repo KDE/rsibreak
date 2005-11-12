@@ -24,9 +24,7 @@
 
 class QTimer;
 class QLabel;
-class QStringList;
 class QPushButton;
-class RSIDock;
 class KAccel;
 class KPassivePopup;
 class QPixmap;

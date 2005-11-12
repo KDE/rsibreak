@@ -20,15 +20,8 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
+#include <qtimer.h>
 #include <qdatetime.h>
-
-class QTimer;
-class QLabel;
-class QDateTime;
-class QStringList;
-class QPushButton;
-class KAccel;
-class QPixmap;
 
 /**
  * @class RSITimer
@@ -76,14 +69,11 @@ class RSITimer : public QObject
         int idleTime();
         void breakNow( int t );
 
-        QPixmap*        m_backgroundimage;
         QString         m_basePath;
         QTime           m_targetTime;
         QTimer*         m_timer_max;
         QTimer*         m_timer_min;
         QTimer*         m_timer_slide;
-        QLabel*         m_countDown;
-        KAccel*         m_accel;
 
 
 
@@ -104,10 +94,6 @@ class RSITimer : public QObject
         int             m_idleIndexAmount;
 
         int             m_normalTimer;
-        QStringList     m_files;
-        QStringList     m_files_done;
-        QPushButton*    m_miniButton;
-        QPushButton*    m_lockButton;
 };
 
 #endif
