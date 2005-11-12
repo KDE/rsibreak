@@ -19,14 +19,15 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include "config.h"     // HAVE_LIBXSS
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
+
 #include "rsitimer.h"
 
-//HACK: The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
+// The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
+#include "config.h"     // HAVE_LIBXSS
 #ifdef HAVE_LIBXSS      // Idle detection.
   #include <X11/Xlib.h>
   #include <X11/Xutil.h>
@@ -35,7 +36,8 @@
 #endif // HAVE_LIBXSS
 
 RSITimer::RSITimer( QObject *parent, const char *name )
-    : QObject( parent, name ), m_idleLong( false ), m_targetReached( false ), m_needBreak( false ), m_idleIndex( 0 )
+    : QObject( parent, name ), m_idleLong( false ), m_targetReached( false ),
+      m_needBreak( 0 ), m_idleIndex( 0 )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
@@ -57,8 +59,6 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     connect(m_timer_min, SIGNAL(timeout()),  SLOT(slotMinimize()));
 
     m_normalTimer = startTimer( 1000 );
-
-
 
     readConfig();
     startMinimizeTimer();
@@ -197,7 +197,6 @@ void RSITimer::slotReadConfig()
 
 // ----------------------------- EVENTS -----------------------//
 
-
 void RSITimer::timerEvent( QTimerEvent* )
 {
     emit setCounters();
@@ -223,7 +222,6 @@ void RSITimer::timerEvent( QTimerEvent* )
             m_needBreak=0;
             return;
         }
-
 
         emit relax( m_needBreak - t );
 
@@ -260,7 +258,6 @@ void RSITimer::timerEvent( QTimerEvent* )
 }
 
 //--------------------------- CONFIG ----------------------------//
-
 
 void RSITimer::readConfig()
 {

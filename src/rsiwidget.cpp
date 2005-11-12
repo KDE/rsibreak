@@ -1,9 +1,6 @@
 /* This file is part of the KDE project
    Copyright (C) 2005 Tom Albers <tomalbers@kde.nl>
 
-   The parts for idle detection is based on
-   kdepim's karm idletimedetector.cpp/.h
-
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
    License as published by the Free Software Foundation; either
@@ -146,14 +143,6 @@ void RSIWidget::maximize()
     KWin::setState(winId(), NET::FullScreen);
 }
 
-void RSIWidget::setCountdown(int sec)
-{
-    if ( sec > 0 )
-        m_countDown->setText( QString::number( sec ) );
-    else
-        m_countDown->setText (QString::null );
-}
-
 void RSIWidget::loadImage()
 {
     if (m_files.count() == 0)
@@ -274,14 +263,18 @@ void RSIWidget::setCounters()
 {
     int s = (int)ceil(QTime::currentTime().msecsTo( m_timer->targetTime() )/1000);
 
-    setCountdown( s );
-
     // TODO: tell something about tinyBreaks, bigBreaks.
     if (s > 0)
+    {
+        m_countDown->setText( QString::number( s ) );
         QToolTip::add(m_tray, i18n("One second remaining",
                       "%n seconds remaining",s));
+    }
     else
+    {
+        m_countDown->setText (QString::null );
         QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
+    }
 }
 
 void RSIWidget::updateIdleAvg( int idleAvg )

@@ -63,21 +63,14 @@ class RSITimer : public QObject
 
     private:
         void startMinimizeTimer();
-        void findImagesInFolder(const QString& folder);
         void readConfig();
-        void loadImage();
         int idleTime();
         void breakNow( int t );
 
-        QString         m_basePath;
         QTime           m_targetTime;
         QTimer*         m_timer_max;
         QTimer*         m_timer_min;
-        QTimer*         m_timer_slide;
 
-
-
-        bool            m_searchRecursive;
         bool            m_idleLong;
         bool            m_targetReached;
         bool            m_idleDetection;
@@ -88,7 +81,6 @@ class RSITimer : public QObject
         int             m_bigInterval;
         int             m_bigTimeMaximized;
         int             m_currentInterval;
-        int             m_slideInterval;
 
         int             m_idleIndex;
         int             m_idleIndexAmount;

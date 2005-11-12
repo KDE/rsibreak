@@ -49,9 +49,11 @@ class RSIWidget : public QWidget
          * @param name Name
          */
         RSIWidget( QWidget *parent = 0, const char *name = 0 );
-        ~RSIWidget();
 
-        void setCountdown( int sec );
+        /**
+         * Destructor
+         */
+        ~RSIWidget();
 
     private slots:
         void slotNewSlide();
@@ -75,7 +77,6 @@ class RSIWidget : public QWidget
         RSIDock*        m_tray;
         RSITimer*       m_timer;
 
-
         QPixmap*        m_backgroundimage;
         QString         m_basePath;
         QTimer*         m_timer_slide;
@@ -85,10 +86,6 @@ class RSIWidget : public QWidget
         QLabel*         m_tool;
 
         bool            m_searchRecursive;
-        bool            m_idleLong;
-        bool            m_targetReached;
-        bool            m_idleDetection;
-
         int             m_slideInterval;
 
         QStringList     m_files;
@@ -97,10 +94,6 @@ class RSIWidget : public QWidget
         QPushButton*    m_lockButton;
 
         KPassivePopup*  m_popup;
-
-
-    signals:
-        void requestMinimize();
 };
 
 #endif
