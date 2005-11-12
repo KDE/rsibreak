@@ -27,11 +27,8 @@ class QLabel;
 class QDateTime;
 class QStringList;
 class QPushButton;
-class RSIDock;
 class KAccel;
-class KPassivePopup;
 class QPixmap;
-class RSIWidget;
 
 /**
  * @class RSITimer
@@ -39,7 +36,7 @@ class RSIWidget;
  * and minimizing of the widget
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSITimer : public QWidget
+class RSITimer : public QObject
 {
     Q_OBJECT
 
@@ -49,10 +46,12 @@ class RSITimer : public QWidget
          * @param parent Parent Widget
          * @param name Name
          */
-        RSITimer( QWidget *parent = 0, const char *name = 0 );
+        RSITimer( QObject *parent = 0, const char *name = 0 );
         ~RSITimer();
 
-    private slots:
+        QTime targetTime() const { return m_targetTime; }
+
+    public slots:
         void slotMinimize();
         void slotMaximize();
         void slotReadConfig();
@@ -61,13 +60,18 @@ class RSITimer : public QWidget
 
     protected:
         virtual void timerEvent( QTimerEvent* );
-        virtual void closeEvent( QCloseEvent* );
+
+    signals:
+        void breakNow();
+        void setCounters();
+        void updateIdleAvg( int );
+        void minimize();
+        void relax( int );
 
     private:
         void startMinimizeTimer();
         void findImagesInFolder(const QString& folder);
         void readConfig();
-        void setCounters();
         void loadImage();
         int idleTime();
         void breakNow( int t );
@@ -81,10 +85,7 @@ class RSITimer : public QWidget
         QLabel*         m_countDown;
         KAccel*         m_accel;
 
-        RSIWidget*      m_RSIWidget;
 
-        KPassivePopup*  m_popup;
-        QLabel*         m_tool;
 
         bool            m_searchRecursive;
         bool            m_idleLong;
@@ -103,7 +104,6 @@ class RSITimer : public QWidget
         int             m_idleIndexAmount;
 
         int             m_normalTimer;
-        RSIDock*        m_tray;
         QStringList     m_files;
         QStringList     m_files_done;
         QPushButton*    m_miniButton;

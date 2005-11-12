@@ -21,7 +21,7 @@
 #include <kaboutdata.h>
 #include <stdio.h>
 
-#include "rsitimer.h"
+#include "rsiwidget.h"
 
 int main( int argc, char *argv[] )
 {
@@ -48,7 +48,7 @@ int main( int argc, char *argv[] )
 
     KUniqueApplication a;
 
-    RSITimer *rsi = new RSITimer(  );
+    RSIWidget *rsi = new RSIWidget(  );
 
     a.setMainWidget( rsi );
     return a.exec();

@@ -45,33 +45,18 @@
 #include <klocale.h>
 #include <kapplication.h>
 #include <kaccel.h>
-#include <kmessagebox.h>
-#include <kpassivepopup.h>
 #include <kdebug.h>
 #include <kconfig.h>
-#include <dcopclient.h>
 
 #include <stdlib.h>
 #include <math.h>
 
 #include "rsitimer.h"
-#include "rsiwidget.h"
-#include "rsidock.h"
 
-RSITimer::RSITimer( QWidget *parent, const char *name )
-    : QWidget( parent, name ), m_idleLong( false ), m_targetReached( false ), m_needBreak( false ), m_idleIndex( 0 )
+RSITimer::RSITimer( QObject *parent, const char *name )
+    : QObject( parent, name ), m_idleLong( false ), m_targetReached( false ), m_needBreak( false ), m_idleIndex( 0 )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
-    m_tray = new RSIDock(this,"Tray Item");
-    m_tray->show();
-    connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
-    connect( m_tray, SIGNAL( configChanged() ), SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( dialogEntered() ), SLOT( slotStop() ) );
-    connect( m_tray, SIGNAL( dialogLeft() ), SLOT( slotRestart() ) );
-    connect( m_tray, SIGNAL( breakRequest() ), SLOT( slotMaximize() ) );
-
-    m_RSIWidget = new RSIWidget(parent, name);
-    connect (m_RSIWidget, SIGNAL( requestMinimize() ), SLOT( slotRestart() ) );
 
 #ifdef HAVE_LIBXSS      // Idle detection.
     int event_base, error_base;
@@ -84,18 +69,6 @@ RSITimer::RSITimer( QWidget *parent, const char *name )
     else
         kdDebug() << "IDLE Detection is not possible" << endl;
 
-
-    KMessageBox::information(parent,
-                             i18n("Welcome to RSIBreak\n\n"
-                                  "In your tray you can now see a clock. "
-                                  "When you right-click on that you will see "
-                                  "a menu, from which you can go to the "
-                                  "configuration for example.\nWhen you want to "
-                                  "know when the next break is, hover "
-                                  "over the icon.\n\nUse RSIBreak wisely."),
-                             i18n("Welcome"),
-                             "dont_show_welcome_again_for_001");
-
     m_timer_max = new QTimer(this);
     connect(m_timer_max, SIGNAL(timeout()), SLOT(slotMaximize()));
 
@@ -104,9 +77,7 @@ RSITimer::RSITimer( QWidget *parent, const char *name )
 
     m_normalTimer = startTimer( 1000 );
 
-    m_popup = new KPassivePopup(m_tray);
-    m_tool = new QLabel(m_popup);
-    m_popup->setView(m_tool);
+
 
     readConfig();
     startMinimizeTimer();
@@ -146,22 +117,8 @@ void RSITimer::breakNow( int t )
     m_targetTime = QTime::currentTime().addSecs(t);
     m_timer_min->start(t*1000, true);
 
-    setCounters();
-    m_RSIWidget->maximize();
-}
-
-void RSITimer::setCounters()
-{
-    int s = (int)ceil(QTime::currentTime().msecsTo(m_targetTime)/1000);
-
-    m_RSIWidget->setCountdown( s );
-
-    // TODO: tell something about tinyBreaks, bigBreaks.
-    if (s > 0)
-        QToolTip::add(m_tray, i18n("One second remaining",
-                      "%n seconds remaining",s));
-    else
-        QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
+    emit setCounters();
+    emit breakNow();
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -225,14 +182,14 @@ void RSITimer::slotMaximize()
 void RSITimer::slotMinimize()
 {
     kdDebug() << "Entering RSITimer::slotMinimize" << endl;
-    m_RSIWidget->minimize();
+    emit minimize();
     startMinimizeTimer();
 }
 
 void RSITimer::slotStop( )
 {
     kdDebug() << "Entering RSITimer::slotStop" << endl;
-    m_RSIWidget->minimize();
+    emit minimize();
     m_timer_max->stop();
     m_needBreak=false;
 }
@@ -245,7 +202,7 @@ void RSITimer::slotRestart( )
     if (m_currentInterval == m_bigInterval)
         m_currentInterval=0;
 
-    m_RSIWidget->minimize();
+    emit minimize();
     startMinimizeTimer();
 }
 
@@ -254,7 +211,6 @@ void RSITimer::slotReadConfig()
 {
     kdDebug() << "Entering RSITimer::slotReadConfig" << endl;
     readConfig();
-    m_RSIWidget->readConfig();
     startMinimizeTimer();
 }
 
@@ -263,7 +219,7 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::timerEvent( QTimerEvent* )
 {
-    setCounters();
+    emit setCounters();
 
     int t = idleTime();
     if (t == 0)
@@ -274,16 +230,7 @@ void RSITimer::timerEvent( QTimerEvent* )
 
     int idleAvg = m_idleIndexAmount == 0 ? 0 : (int)(m_idleIndex*100 / m_idleIndexAmount);
 
-    if ( idleAvg < 0 )
-        m_tray->setIcon( 0 );
-    if ( idleAvg >=20 && idleAvg<40 )
-        m_tray->setIcon( 1 );
-    if ( idleAvg >=40 && idleAvg<50 )
-        m_tray->setIcon( 2 );
-    if ( idleAvg >=50 && idleAvg<60 )
-        m_tray->setIcon( 3 );
-    if ( idleAvg >=60 )
-        m_tray->setIcon( 4 );
+    emit updateIdleAvg( idleAvg );
 
     // If we are waiting for the right time to have a break, check the idle timeout
     // and activate the break if needed...
@@ -296,10 +243,8 @@ void RSITimer::timerEvent( QTimerEvent* )
             return;
         }
 
-        m_tool->setText(i18n("Please relax for 1 second",
-                             "Please relax for %n seconds",
-                             m_needBreak-t));
-        m_popup->show();
+
+        emit relax( m_needBreak - t );
 
         // if user is idle for more then 5 seconds, remember that.
         if (t >= 5 || QTime::currentTime().secsTo(m_targetTime) <= -30)
@@ -317,7 +262,7 @@ void RSITimer::timerEvent( QTimerEvent* )
             kdDebug() << "Activity detected, break!" << endl;
             breakNow( m_needBreak );
             m_targetReached=false;
-            m_popup->hide();
+            emit relax( -1 );
             m_needBreak=0;
         }
 
@@ -327,15 +272,10 @@ void RSITimer::timerEvent( QTimerEvent* )
             kdDebug() << "You have been idle for the duration of the break, thanks!" << endl;
             m_targetReached=false;
             m_needBreak=0;
-            m_popup->hide();
+            emit relax( -1 );
             startMinimizeTimer();
         }
     }
-}
-
-void RSITimer::closeEvent( QCloseEvent * )
-{
-    hide();
 }
 
 //--------------------------- CONFIG ----------------------------//

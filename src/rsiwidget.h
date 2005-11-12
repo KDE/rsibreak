@@ -31,6 +31,9 @@ class KAccel;
 class KPassivePopup;
 class QPixmap;
 
+class RSIDock;
+class RSITimer;
+
 /**
  * @class RSIWidget
  * This widget is the main widget for RSIBreak.
@@ -50,22 +53,30 @@ class RSIWidget : public QWidget
         RSIWidget( QWidget *parent = 0, const char *name = 0 );
         ~RSIWidget();
 
-        void minimize();
-        void maximize();
-        void readConfig();
         void setCountdown( int sec );
 
     private slots:
         void slotNewSlide();
         void slotLock();
         void slotMinimize();
+        void minimize();
+        void maximize();
+        void setCounters();
+        void updateIdleAvg( int );
+        void updateRelaxMsg( int );
+        void readConfig();
 
     protected:
         virtual void paintEvent( QPaintEvent* );
+        virtual void closeEvent ( QCloseEvent * );
 
     private:
         void findImagesInFolder(const QString& folder);
         void loadImage();
+
+        RSIDock*        m_tray;
+        RSITimer*       m_timer;
+
 
         QPixmap*        m_backgroundimage;
         QString         m_basePath;
@@ -86,6 +97,9 @@ class RSIWidget : public QWidget
         QStringList     m_files_done;
         QPushButton*    m_miniButton;
         QPushButton*    m_lockButton;
+
+        KPassivePopup*  m_popup;
+
 
     signals:
         void requestMinimize();
