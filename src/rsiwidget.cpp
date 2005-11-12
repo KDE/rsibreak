@@ -23,11 +23,9 @@
 #include <qlayout.h>
 #include <qtimer.h>
 #include <qtooltip.h>
-#include <qevent.h>
 #include <qdatetime.h>
 #include <qlineedit.h>
 #include <qimage.h>
-#include <qpixmap.h>
 #include <qdir.h>
 #include <qstringlist.h>
 #include <qfileinfo.h>

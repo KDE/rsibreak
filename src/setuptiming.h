@@ -9,7 +9,7 @@
  * Public License as published by the Free Software Foundation;
  * either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -23,21 +23,9 @@
 #ifndef SETUPTIMING_H
 #define SETUPTIMING_H
 
-// Qt includes.
-
-#include <qwidget.h>
-
-class QCheckBox;
-class QPushButton;
-class QLineEdit;
-class QFont;
-class QHBox;
-class QDir;
-class KColorButton;
-class KFileDialog;
 class KIntNumInput;
 
-/** 
+/**
  * @class SetupTiming
  * These contain the timings settings of RSIBreak, currently
  * that means settings for tiny and big breaks
