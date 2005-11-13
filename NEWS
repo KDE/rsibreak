@@ -2,6 +2,9 @@ To be released:
 - Added slideshow feature, during break the shown images gets renewed
 - New logo and icons
 - Added possibility to automatically start RSIBreak when KDE starts
+- Progress bar is shown in the passive popup
+- The passive popup flashes when the user keeps working when he keeps working
+  during the relax moments.
 
 v0.0.3  2005-10-29
 - Change to KUniqueApplication to prevent multiple instances
