@@ -70,7 +70,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
-    connect( m_timer, SIGNAL( setCounters() ), SLOT( setCounters() ) );
+    connect( m_timer, SIGNAL( setCounters( const QTime & ) ), SLOT( setCounters( const QTime & ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( int ) ), SLOT( updateIdleAvg( int ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), SLOT( updateRelaxMsg( int ) ) );
@@ -259,9 +259,9 @@ void RSIWidget::slotMinimize()
     m_timer->slotRestart();
 }
 
-void RSIWidget::setCounters()
+void RSIWidget::setCounters( const QTime &time )
 {
-    int s = (int)ceil(QTime::currentTime().msecsTo( m_timer->targetTime() )/1000);
+    int s = (int)ceil(QTime::currentTime().msecsTo( time )/1000);
 
     // TODO: tell something about tinyBreaks, bigBreaks.
     if (s > 0)

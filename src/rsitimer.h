@@ -42,8 +42,6 @@ class RSITimer : public QObject
         RSITimer( QObject *parent = 0, const char *name = 0 );
         ~RSITimer();
 
-        QTime targetTime() const { return m_targetTime; }
-
     public slots:
         void slotMinimize();
         void slotMaximize();
@@ -56,7 +54,7 @@ class RSITimer : public QObject
 
     signals:
         void breakNow();
-        void setCounters();
+        void setCounters( const QTime & );
         void updateIdleAvg( int );
         void minimize();
         void relax( int );

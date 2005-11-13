@@ -98,7 +98,7 @@ void RSITimer::breakNow( int t )
     m_targetTime = QTime::currentTime().addSecs(t);
     m_timer_min->start(t*1000, true);
 
-    emit setCounters();
+    emit setCounters( m_targetTime );
     emit breakNow();
 }
 
@@ -199,7 +199,7 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::timerEvent( QTimerEvent* )
 {
-    emit setCounters();
+    emit setCounters( m_targetTime );
 
     int t = idleTime();
     if (t == 0)
