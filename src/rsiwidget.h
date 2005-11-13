@@ -26,11 +26,11 @@ class QTimer;
 class QLabel;
 class QPushButton;
 class KAccel;
-class KPassivePopup;
 class QPixmap;
 
 class RSIDock;
 class RSITimer;
+class RSIPopup;
 
 /**
  * @class RSIWidget
@@ -63,7 +63,6 @@ class RSIWidget : public QWidget
         void maximize();
         void setCounters( const QTime & );
         void updateIdleAvg( int );
-        void updateRelaxMsg( int );
         void readConfig();
 
     protected:
@@ -93,7 +92,7 @@ class RSIWidget : public QWidget
         QPushButton*    m_miniButton;
         QPushButton*    m_lockButton;
 
-        KPassivePopup*  m_popup;
+        RSIPopup*       m_popup;
 };
 
 #endif

@@ -39,6 +39,9 @@ int main( int argc, char *argv[] )
     aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
                          "clearbeast@gmail.com");
 
+    aboutData.addCredit( "Bram Schoenmakers", I18N_NOOP("Various contributions"),
+                         "bramschoenmakers@kde.nl" );
+
     KCmdLineArgs::init( argc, argv, &aboutData );
 
     if (!KUniqueApplication::start()) {

@@ -37,7 +37,6 @@
 #include <kconfig.h>
 #include <dcopclient.h>
 #include <kmessagebox.h>
-#include <kpassivepopup.h>
 
 #include <stdlib.h>
 #include <math.h>
@@ -45,6 +44,7 @@
 #include "rsiwidget.h"
 #include "rsitimer.h"
 #include "rsidock.h"
+#include "rsipopup.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
@@ -68,12 +68,14 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_tray = new RSIDock(this,"Tray Item");
     m_tray->show();
 
+    m_popup = new RSIPopup(m_tray);
+
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
     connect( m_timer, SIGNAL( setCounters( const QTime & ) ), SLOT( setCounters( const QTime & ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( int ) ), SLOT( updateIdleAvg( int ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
-    connect( m_timer, SIGNAL( relax( int ) ), SLOT( updateRelaxMsg( int ) ) );
+    connect( m_timer, SIGNAL( relax( int ) ), m_popup, SLOT( relax( int ) ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
@@ -107,10 +109,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
-
-    m_popup = new KPassivePopup(m_tray);
-    m_tool = new QLabel(m_popup);
-    m_popup->setView(m_tool);
 
     readConfig();
 }
@@ -289,21 +287,6 @@ void RSIWidget::updateIdleAvg( int idleAvg )
         m_tray->setIcon( 3 );
     if ( idleAvg >=60 )
         m_tray->setIcon( 4 );
-}
-
-void RSIWidget::updateRelaxMsg( int sec )
-{
-  if ( sec > 0 )
-  {
-    m_tool->setText(i18n("Please relax for 1 second",
-                       "Please relax for %n seconds",
-                       sec ));
-    m_popup->show();
-  }
-  else
-  {
-    m_popup->hide();
-  }
 }
 
 // ----------------------------- EVENTS -----------------------//
