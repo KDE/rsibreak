@@ -56,7 +56,7 @@ SetupTiming::SetupTiming(QWidget* parent )
    layout->setSpacing( KDialog::spacingHint() );
 
    QVGroupBox *tinyBox = new QVGroupBox(parent);
-   tinyBox->setTitle(i18n("Tiny breaks"));
+   tinyBox->setTitle(i18n("Tiny Breaks"));
 
    QHBox *m = new QHBox(tinyBox);
    new QLabel(i18n("Bother you every:"), m);
@@ -73,7 +73,7 @@ SetupTiming::SetupTiming(QWidget* parent )
    layout->addWidget(tinyBox);
 
    QVGroupBox *bigBox = new QVGroupBox(parent);
-   bigBox->setTitle(i18n("Big breaks"));
+   bigBox->setTitle(i18n("Big Breaks"));
 
    QHBox *m3 = new QHBox(bigBox);
    new QLabel(i18n("Big break after:"), m3);

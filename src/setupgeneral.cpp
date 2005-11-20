@@ -123,7 +123,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
    m_shortcutBox = new QHBox(parent);
    QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:"), m_shortcutBox );
    shortcutlabel->setIndent( 22 );
-   m_shortcutBut = new QPushButton(i18n("&Change shortcut..."), m_shortcutBox );
+   m_shortcutBut = new QPushButton(i18n("&Change Shortcut..."), m_shortcutBox );
    shortcutlabel->setBuddy(m_shortcutBut);
    QWhatsThis::add( m_shortcutBut, i18n("Select here the shortcut to use "
            "for aborting the break.") );

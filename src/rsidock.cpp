@@ -49,10 +49,10 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
                          SLOT(slotReportBug()));
   contextMenu()->insertSeparator();
   contextMenu()->insertItem(SmallIcon("about_kde"),
-                         i18n("About KDE..."), this,
+                         i18n("About KDE"), this,
                          SLOT(slotAboutKDE()));
   contextMenu()->insertItem(SmallIcon("info"),
-                         i18n("About RSIBreak..."), this,
+                         i18n("About RSIBreak"), this,
                          SLOT(slotAboutRSIBreak()));
 
   m_accel = new KGlobalAccel(this);
