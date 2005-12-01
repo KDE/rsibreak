@@ -37,7 +37,7 @@
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_idleLong( false ), m_targetReached( false ),
-      m_needBreak( 0 ), m_idleIndex( 0 )
+      m_suspended( false ), m_needBreak( 0 ), m_idleIndex( 0 )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
@@ -173,6 +173,7 @@ void RSITimer::slotStop( )
     emit minimize();
     m_timer_max->stop();
     m_needBreak=false;
+    m_suspended=true;
 }
 
 void RSITimer::slotRestart( )
@@ -185,6 +186,7 @@ void RSITimer::slotRestart( )
 
     emit minimize();
     startMinimizeTimer();
+    m_suspended=false;
 }
 
 

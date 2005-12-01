@@ -42,6 +42,8 @@ class RSITimer : public QObject
         RSITimer( QObject *parent = 0, const char *name = 0 );
         ~RSITimer();
 
+        bool isSuspended() const { return m_suspended; }
+
     public slots:
         void slotMinimize();
         void slotMaximize();
@@ -72,6 +74,7 @@ class RSITimer : public QObject
         bool            m_idleLong;
         bool            m_targetReached;
         bool            m_idleDetection;
+        bool            m_suspended;
 
         int             m_needBreak;
         int             m_timeMaximized;

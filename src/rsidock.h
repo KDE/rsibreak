@@ -29,11 +29,11 @@
 class KGlobalAccel;
 #include <ksystemtray.h>
 
-/** 
+/**
  * @class RSIDock
  * This class is resonsible for putting rsibreak in the system tray
  * and provide a proper menu when right clicked on the icon.
- * 
+ *
  * Originaly this file was copied from KSynaptics
  * @author Nadeem Hasan <nhasan@kde.org>
  * @author Tom Albers <tomalbers@kde.nl>
@@ -87,16 +87,30 @@ class RSIDock : public KSystemTray
          */
         void breakRequest();
 
+        /**
+         * Suspend RSIbreak on user's request.
+        */
+        void suspend();
+
+        /**
+         * Restart RSIbreak again after suspensing.
+        */
+        void unsuspend();
+
     private slots:
         void slotConfigure();
         void slotAboutKDE();
         void slotAboutRSIBreak();
         void slotReportBug();
         void slotBreakRequest();
+        void slotSuspend();
 
     private:
         KGlobalAccel* m_accel;
         QString       m_currentIcon;
+
+        int mSuspendItem;
+        bool m_suspended;
 };
 
 #endif // RSIDOCK_H

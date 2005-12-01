@@ -33,7 +33,7 @@
 #include <kkeydialog.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
-    : KSystemTray( parent, name )
+    : KSystemTray( parent, name ), m_suspended( false )
 {
   kdDebug() << "Entering RSIDock" << endl;
   QPixmap dockPixmap = KSystemTray::loadIcon( "rsibreak0" );
@@ -44,6 +44,9 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
   contextMenu()->insertItem(SmallIcon("configure"),
                          i18n("Configure RSIBreak..."), this,
                          SLOT(slotConfigure()));
+  mSuspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
+                         i18n("Suspend RSIBreak"), this,
+                         SLOT(slotSuspend()));
   contextMenu()->insertSeparator();
   contextMenu()->insertItem(i18n("Report Bug..."), this,
                          SLOT(slotReportBug()));
@@ -123,6 +126,26 @@ void RSIDock::slotReportBug()
 void RSIDock::slotBreakRequest()
 {
     emit breakRequest();
+}
+
+void RSIDock::slotSuspend()
+{
+  if( m_suspended )
+  {
+    emit unsuspend();
+
+    setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
+    contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_pause" ), i18n("Suspend RSIBreak") );
+  }
+  else
+  {
+    emit suspend();
+
+    setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
+    contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_play" ), i18n( "Resume RSIBreak" ) );
+  }
+
+  m_suspended = !m_suspended;
 }
 
 #include "rsidock.moc"

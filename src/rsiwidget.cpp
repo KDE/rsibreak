@@ -82,6 +82,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotRestart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotMaximize() ) );
+    connect( m_tray, SIGNAL( suspend() ), m_timer, SLOT( slotStop() ) );
+    connect( m_tray, SIGNAL( suspend() ), m_popup, SLOT( hide() ) );
+    connect( m_tray, SIGNAL( unsuspend() ), m_timer, SLOT( slotRestart() ) );
 
     srand ( time(NULL) );
 
@@ -267,6 +270,11 @@ void RSIWidget::setCounters( const QTime &time )
         m_countDown->setText( QString::number( s ) );
         QToolTip::add(m_tray, i18n("One second remaining",
                       "%n seconds remaining",s));
+    }
+    else if ( m_timer->isSuspended() )
+    {
+        m_countDown->setText( "Suspended" );
+        QToolTip::add( m_tray, i18n("RSIbreak is currently suspended"));
     }
     else
     {
