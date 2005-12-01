@@ -98,4 +98,11 @@ void RSIPopup::unflash()
   unsetPalette();
 }
 
+void RSIPopup::mouseReleaseEvent( QMouseEvent * )
+{
+  kdDebug() << "Entering RSIPopup::mousePressEvent()" << endl;
+
+  /* eat this! */
+}
+
 #include "rsipopup.moc"

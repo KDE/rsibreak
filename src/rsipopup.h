@@ -53,6 +53,8 @@ class RSIPopup : public KPassivePopup
     */
     void flash();
 
+    virtual void mouseReleaseEvent( QMouseEvent * );
+
   protected slots:
     /** Restores background color after a flash() */
     void unflash();
