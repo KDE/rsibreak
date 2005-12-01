@@ -103,6 +103,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     buttonRow->addWidget( m_miniButton );
     connect( m_miniButton, SIGNAL( clicked() ), SLOT( slotMinimize() ) );
 
+    m_lockButton = new QPushButton( i18n("Lock desktop"), this );
+    buttonRow->addWidget( m_lockButton );
+    connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
+
     m_accel = new KAccel(this);
     m_accel->insert("minimize", i18n("Minimize"),
                     i18n("Abort a break"),Qt::Key_Escape,

@@ -7,6 +7,7 @@ To be released:
   during the relax moments.
 - RSIBreak can be suspended. Rightclick on the dock icon and choose for
   Suspend RSIBreak. This is handy when you're playing a game for example.
+- You can lock your desktop. In case you walk away during a big break.
 
 v0.0.3  2005-10-29
 - Change to KUniqueApplication to prevent multiple instances
