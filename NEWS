@@ -5,6 +5,8 @@ To be released:
 - Progress bar is shown in the passive popup
 - The passive popup flashes when the user keeps working when he keeps working
   during the relax moments.
+- RSIBreak can be suspended. Rightclick on the dock icon and choose for
+  Suspend RSIBreak. This is handy when you're playing a game for example.
 
 v0.0.3  2005-10-29
 - Change to KUniqueApplication to prevent multiple instances
