@@ -22,6 +22,7 @@
 #include <kpassivepopup.h>
 
 class QLabel;
+class QPushButton;
 class KProgress;
 
 /**
@@ -46,6 +47,10 @@ class RSIPopup : public KPassivePopup
     */
     void relax( int n );
 
+  signals:
+    /** Ask the main widget to lock down the desktop. */
+    void lock();
+
   protected:
     /**
       Changes the background color for 0.5 second. The background is restored
@@ -62,6 +67,7 @@ class RSIPopup : public KPassivePopup
   private:
     QLabel *m_message;
     KProgress *m_progress;
+    QPushButton *m_lockbutton;
 
     /**
       Counts how many times a request for relax resets due to detected activity

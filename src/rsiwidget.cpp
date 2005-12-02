@@ -69,6 +69,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_tray->show();
 
     m_popup = new RSIPopup(m_tray);
+    connect( m_popup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );

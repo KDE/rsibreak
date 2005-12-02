@@ -17,10 +17,12 @@
 */
 
 #include <qlabel.h>
+#include <qpushbutton.h>
 #include <qtimer.h>
 #include <qvbox.h>
 
 #include <kdebug.h>
+#include <kiconloader.h>
 #include <klocale.h>
 #include <kprogress.h>
 
@@ -31,19 +33,25 @@ RSIPopup::RSIPopup( QWidget *parent, const char *name )
 {
   kdDebug() << "Entering RSIPopup::RSIPopup" << endl;
 
-  QVBox *box = new QVBox( this );
-  box->setSpacing( KDialog::spacingHint() );
+  QVBox *vbox = new QVBox( this );
+  vbox->setSpacing( KDialog::spacingHint() );
 
-  m_message = new QLabel( box );
+  m_message = new QLabel( vbox );
 
-  m_progress = new KProgress( box );
+  QHBox *hbox = new QHBox( vbox );
+  hbox->setSpacing( 5 );
+
+  m_progress = new KProgress( hbox );
   m_progress->setPercentageVisible( false );
   m_progress->setTotalSteps( 0 );
+
+  m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
+  connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
 
   m_flashtimer = new QTimer( this );
   connect( m_flashtimer, SIGNAL( timeout() ), SLOT( unflash() ) );
 
-  setView( box );
+  setView( vbox );
 }
 
 RSIPopup::~RSIPopup()
