@@ -145,7 +145,13 @@ void RSIDock::slotSuspend()
     contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_play" ), i18n( "Resume RSIBreak" ) );
   }
 
-  m_suspended = !m_suspended;
+    m_suspended = !m_suspended;
+}
+
+void RSIDock::mousePressEvent( QMouseEvent *e )
+{
+    if (e->button() == RightButton)
+        contextMenu()->exec( e->globalPos() );
 }
 
 #include "rsidock.moc"

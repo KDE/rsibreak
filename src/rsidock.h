@@ -97,6 +97,9 @@ class RSIDock : public KSystemTray
         */
         void unsuspend();
 
+    protected:
+        void mousePressEvent( QMouseEvent *e );
+
     private slots:
         void slotConfigure();
         void slotAboutKDE();
