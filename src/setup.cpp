@@ -33,6 +33,8 @@
 
 #include "setupgeneral.h"
 #include "setuptiming.h"
+#include "setuppopup.h"
+#include "setupmaximized.h"
 #include "setup.h"
 
 Setup::Setup(QWidget* parent, const char* name)
@@ -47,6 +49,14 @@ Setup::Setup(QWidget* parent, const char* name)
     page_timing = addPage(i18n("Timings"), i18n("Timings"),
                             BarIcon("rsibreak3", KIcon::SizeMedium));
     m_timingPage = new SetupTiming(page_timing);
+
+    page_popup = addPage(i18n("Popup"), i18n("Popup"),
+                         BarIcon("mark", KIcon::SizeMedium));
+    m_popupPage = new SetupPopup(page_popup);
+
+    page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
+                             BarIcon("background", KIcon::SizeMedium));
+    m_maximizedPage = new SetupMaximized(page_maximized);
 
     connect(this, SIGNAL(okClicked()),
             this, SLOT(slotOkClicked()) );
@@ -67,6 +77,8 @@ void Setup::slotOkClicked()
     kdDebug() << "Entering slotOkClicked" << endl;
     m_generalPage->applySettings();
     m_timingPage->applySettings();
+    m_popupPage->applySettings();
+    m_maximizedPage->applySettings();
     close();
 }
 

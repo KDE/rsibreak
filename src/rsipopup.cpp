@@ -31,86 +31,86 @@
 RSIPopup::RSIPopup( QWidget *parent, const char *name )
 : KPassivePopup( parent, name ), m_resetcount( 0 )
 {
-  kdDebug() << "Entering RSIPopup::RSIPopup" << endl;
+    kdDebug() << "Entering RSIPopup::RSIPopup" << endl;
 
-  QVBox *vbox = new QVBox( this );
-  vbox->setSpacing( KDialog::spacingHint() );
-
-  m_message = new QLabel( vbox );
-
-  QHBox *hbox = new QHBox( vbox );
-  hbox->setSpacing( 5 );
-
-  m_progress = new KProgress( hbox );
-  m_progress->setPercentageVisible( false );
-  m_progress->setTotalSteps( 0 );
-
-  m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
-  connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
-
-  m_flashtimer = new QTimer( this );
-  connect( m_flashtimer, SIGNAL( timeout() ), SLOT( unflash() ) );
-
-  setView( vbox );
+    QVBox *vbox = new QVBox( this );
+    vbox->setSpacing( KDialog::spacingHint() );
+    
+    m_message = new QLabel( vbox );
+    
+    QHBox *hbox = new QHBox( vbox );
+    hbox->setSpacing( 5 );
+    
+    m_progress = new KProgress( hbox );
+    m_progress->setPercentageVisible( false );
+    m_progress->setTotalSteps( 0 );
+    
+    m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
+    connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
+    
+    m_flashtimer = new QTimer( this );
+    connect( m_flashtimer, SIGNAL( timeout() ), SLOT( unflash() ) );
+    
+    setView( vbox );
 }
 
 RSIPopup::~RSIPopup()
 {
-  kdDebug() << "Entering RSIPopup::~RSIPopup()" << endl;
+    kdDebug() << "Entering RSIPopup::~RSIPopup()" << endl;
 }
 
 void RSIPopup::relax( int n )
 {
-  kdDebug() << "Entering RSIPopup::relax()" << endl;
+    kdDebug() << "Entering RSIPopup::relax()" << endl;
 
-  /*
-    If n increases compared to the last call,
-    we want a new request for a relax moment.
-  */
-  if ( n >= m_progress->progress() ) {
-    m_progress->setTotalSteps( n );
-    m_resetcount += 1;
-    if( n > m_progress->progress() )
-      flash();
-    else if ( m_resetcount % 4 == 0 ) // flash regulary when the user keeps working
-      flash();
-  }
+    /*
+        If n increases compared to the last call,
+        we want a new request for a relax moment.
+    */
+    if ( n >= m_progress->progress() ) {
+        m_progress->setTotalSteps( n );
+        m_resetcount += 1;
+        if( n > m_progress->progress() )
+        flash();
+        else if ( m_resetcount % 4 == 0 ) // flash regulary when the user keeps working
+        flash();
+    }
 
-  if ( n > 0 )
-  {
-    m_message->setText(i18n("Please relax for 1 second",
-                       "Please relax for %n seconds",
-                       n ));
+    if ( n > 0 )
+    {
+        m_message->setText(i18n("Please relax for 1 second",
+                                "Please relax for %n seconds",
+                                n ));
 
-    m_progress->setProgress( n );
-    show();
-  }
-  else
-  {
-    hide();
-    m_resetcount = 0;
-  }
+        m_progress->setProgress( n );
+        show();
+    }
+    else
+    {
+        hide();
+        m_resetcount = 0;
+    }
 }
 
 void RSIPopup::flash()
 {
-  kdDebug() << "Entering RSIPopup::flash()" << endl;
-  m_flashtimer->start( 500, true );
-  setPaletteForegroundColor( QColor( 255, 255, 255 ) );
-  setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
+    kdDebug() << "Entering RSIPopup::flash()" << endl;
+    m_flashtimer->start( 500, true );
+    setPaletteForegroundColor( QColor( 255, 255, 255 ) );
+    setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
 }
 
 void RSIPopup::unflash()
 {
-  kdDebug() << "Entering RSIPopup::unflash()" << endl;
-  unsetPalette();
+    kdDebug() << "Entering RSIPopup::unflash()" << endl;
+    unsetPalette();
 }
 
 void RSIPopup::mouseReleaseEvent( QMouseEvent * )
 {
-  kdDebug() << "Entering RSIPopup::mousePressEvent()" << endl;
+    kdDebug() << "Entering RSIPopup::mousePressEvent()" << endl;
 
-  /* eat this! */
+    /* eat this! */
 }
 
 #include "rsipopup.moc"

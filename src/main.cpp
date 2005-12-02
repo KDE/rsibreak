@@ -36,11 +36,16 @@ int main( int argc, char *argv[] )
     aboutData.addAuthor( "Tom Albers", I18N_NOOP("Maintainer"),
                          "tomalbers@kde.nl", "http://www.omat.nl");
 
+    aboutData.addAuthor( "Bram Schoenmakers", I18N_NOOP("Various contributions"),
+                         "bramschoenmakers@kde.nl" );
+
     aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
                          "clearbeast@gmail.com");
 
-    aboutData.addCredit( "Bram Schoenmakers", I18N_NOOP("Various contributions"),
-                         "bramschoenmakers@kde.nl" );
+    aboutData.addCredit( "Achim Bohnet", 
+                         I18N_NOOP("Packaging and help with related issues"),
+                         "ach@mpe.mpg.de");
+
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 

@@ -40,46 +40,38 @@
 
 // Local includes.
 
-#include "setupgeneral.h"
+#include "setuppopup.h"
 
-SetupGeneral::SetupGeneral(QWidget* parent )
+SetupPopup::SetupPopup(QWidget* parent )
            : QWidget(parent)
 {
-   kdDebug() << "Entering SetupGeneral" << endl;
+   kdDebug() << "Entering SetupPopup" << endl;
    QVBoxLayout *layout = new QVBoxLayout( parent );
    layout->setSpacing( KDialog::spacingHint() );
    layout->setAlignment( AlignTop );
 
-   m_autoStart = new QCheckBox(i18n("&Automatically start RSIBreak at startup"), parent);
-   QWhatsThis::add( m_autoStart, i18n("With this checkbox you can indicate "
-           "that you want RSIBreak to start when KDE starts.") );
-   layout->addWidget(m_autoStart);
-   
    readSettings();
+
 }
 
-SetupGeneral::~SetupGeneral()
+SetupPopup::~SetupPopup()
 {
-    kdDebug() << "Entering ~SetupGeneral" << endl;
+    kdDebug() << "Entering ~SetupPopup" << endl;
 }
 
-void SetupGeneral::applySettings()
+
+void SetupPopup::applySettings()
 {
     kdDebug() << "Entering applySettings" << endl;
     KConfig* config = kapp->config();
 
-    config->setGroup("General");
-    config->writeEntry("AutoStart", m_autoStart->isChecked());
     config->sync();
+
 }
 
-void SetupGeneral::readSettings()
+void SetupPopup::readSettings()
 {
     kdDebug() << "Entering readSettings" << endl;
-    KConfig* config = kapp->config();
-    
-    config->setGroup("General");
-    m_autoStart->setChecked(config->readBoolEntry("AutoStart", false));
 }
 
-#include "setupgeneral.moc"
+#include "setuppopup.moc"

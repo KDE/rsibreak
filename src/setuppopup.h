@@ -21,20 +21,18 @@
  *
  * ============================================================ */
 
-#ifndef SETUPGENERAL_H
-#define SETUPGENERAL_H
-
-class QCheckBox;
+#ifndef SETUPPOPUP_H
+#define SETUPPOPUP_H
 
 /**
- * @class SetupGeneral
- * These contain the general settings of RSIBreak
+ * @class SetupPopup
+ * These contain the settings of RSIBreak for the popup.
  * This file is originally copied from showfoto
  * @author Gilles Caulier <caulier dot gilles at free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 
-class SetupGeneral : public QWidget
+class SetupPopup : public QWidget
 {
     Q_OBJECT
 
@@ -44,22 +42,24 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    SetupGeneral(QWidget* parent = 0);
+    SetupPopup(QWidget* parent = 0);
 
     /**
      * Destructor
      */
-    ~SetupGeneral();
+    ~SetupPopup();
 
     /**
      * Call this if you want the settings saved from this page.
      */
     void applySettings();
 
+private slots:
+  
+
 private:
     void readSettings();
 
-    QCheckBox*        m_autoStart;
 };
 
-#endif /* SETUPGENERAL_H */
+#endif /* SETUPPOPUP_H */

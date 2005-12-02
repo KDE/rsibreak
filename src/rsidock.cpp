@@ -130,20 +130,22 @@ void RSIDock::slotBreakRequest()
 
 void RSIDock::slotSuspend()
 {
-  if( m_suspended )
-  {
-    emit unsuspend();
+    if( m_suspended )
+    {
+        emit unsuspend();
 
-    setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
-    contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_pause" ), i18n("Suspend RSIBreak") );
-  }
-  else
-  {
-    emit suspend();
+        setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
+        contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_pause" ), 
+                                   i18n("Suspend RSIBreak") );
+    }
+    else
+    {
+        emit suspend();
 
-    setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
-    contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_play" ), i18n( "Resume RSIBreak" ) );
-  }
+        setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
+        contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_play" ), 
+                                   i18n( "Resume RSIBreak" ) );
+    }
 
     m_suspended = !m_suspended;
 }
