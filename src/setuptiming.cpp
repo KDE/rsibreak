@@ -128,7 +128,7 @@ void SetupTiming::readSettings()
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
-    m_tinyInterval->setValue(config->readNumEntry("TinyInterval", 2));
+    m_tinyInterval->setValue(config->readNumEntry("TinyInterval", 10));
     m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
     m_bigInterval->setValue(config->readNumEntry("BigInterval", 10));
     m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
