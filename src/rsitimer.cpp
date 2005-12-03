@@ -36,8 +36,8 @@
 #endif // HAVE_LIBXSS
 
 RSITimer::RSITimer( QObject *parent, const char *name )
-    : QObject( parent, name ), m_idleLong( false ), m_targetReached( false ),
-      m_suspended( false ), m_needBreak( 0 ), m_idleIndex( 0 )
+    : QObject( parent, name ), m_idleLong( false ),
+      m_suspended( false ), m_needBreak( 0 )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
@@ -47,10 +47,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
         m_idleDetection = true;
 #endif
 
-    if (m_idleDetection)
-        kdDebug() << "IDLE Detection is possible" << endl;
-    else
-        kdDebug() << "IDLE Detection is not possible" << endl;
+    kdDebug() << "IDLE Detection is" << (m_idleDetection?QString::null:"not") << "possible" << endl;
 
     m_timer_max = new QTimer(this);
     connect(m_timer_max, SIGNAL(timeout()), SLOT(slotMaximize()));
@@ -74,8 +71,8 @@ void RSITimer::startMinimizeTimer()
     kdDebug() << "Entering RSITimerstart::startMinimizeTimer" << endl;
 
     m_timer_min->stop();
-    m_targetTime = QTime::currentTime().addSecs(m_timeMinimized);
-    m_timer_max->start(m_timeMinimized*1000, true);
+    m_targetTime = QTime::currentTime().addSecs(m_intervals["time_minimized"]);
+    m_timer_max->start(m_intervals["time_minimized"]*1000, true);
 }
 
 int RSITimer::idleTime()
@@ -117,9 +114,9 @@ void RSITimer::slotMaximize()
     int totalIdle = idleTime();
     int minNeeded;
     if ( m_currentInterval == 0 )
-        minNeeded = m_bigTimeMaximized;
+        minNeeded = m_intervals["big_time_maximized"];
     else
-        minNeeded = m_timeMaximized;
+        minNeeded = m_intervals["time_maximized"];
 
     kdDebug() << "BigBreak in " << m_currentInterval << "; "
             << "Idle " << totalIdle << "s; "
@@ -129,14 +126,14 @@ void RSITimer::slotMaximize()
 
     // If user has been idle since the last break, it will
     // get a bonus in the way that it gains a tinyBreak
-    if (totalIdle >= m_timeMinimized)
+    if (totalIdle >= m_intervals["time_minimized"])
     {
         m_idleLong=true;
         kdDebug() << "Next break will be delayed, "
                      "you have been idle a while now" << endl;
 
         m_currentInterval++; 		// give back the this one
-        if (m_currentInterval < m_bigInterval)
+        if (m_currentInterval < m_intervals["big_interval"])
             m_currentInterval++;	// give a bonus
 
         startMinimizeTimer();
@@ -157,7 +154,7 @@ void RSITimer::slotMaximize()
     kdDebug() << "You need a break, monitoring keyboard for the right moment..." << endl;
     m_needBreak=minNeeded;
     if ( m_currentInterval == 0 )
-        m_currentInterval=m_bigInterval;
+        m_currentInterval=m_intervals["big_interval"];
 }
 
 void RSITimer::slotMinimize()
@@ -181,7 +178,7 @@ void RSITimer::slotRestart( )
     kdDebug() << "Entering RSITimer::slotInterupted" << endl;
     // the interuption can not be considered a real break
     // only needed fot a big break of course
-    if (m_currentInterval == m_bigInterval)
+    if (m_currentInterval == m_intervals["big_interval"])
         m_currentInterval=0;
 
     emit minimize();
@@ -201,16 +198,17 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::timerEvent( QTimerEvent* )
 {
+    static int idleIndexAmount = 0;
+    static int idleIndex = 0;
+    static bool targetReached = false;
+
     emit setCounters( m_targetTime );
 
     int t = idleTime();
-    if (t == 0)
-        m_idleIndex++;
-    else
-        m_idleIndex--;
-    m_idleIndexAmount++;
+    t == 0 ? idleIndex++ : idleIndex--;
+    idleIndexAmount++;
 
-    int idleAvg = m_idleIndexAmount == 0 ? 0 : (int)(m_idleIndex*100 / m_idleIndexAmount);
+    int idleAvg = idleIndexAmount == 0 ? 0 : (int)(idleIndex*100 / idleIndexAmount);
 
     emit updateIdleAvg( idleAvg );
 
@@ -229,29 +227,29 @@ void RSITimer::timerEvent( QTimerEvent* )
 
         // if user is idle for more then 5 seconds, remember that.
         if (t >= 5 || QTime::currentTime().secsTo(m_targetTime) <= -30)
-            m_targetReached=true;
+            targetReached=true;
 
         kdDebug() << "Idle for: " << t << "s; "
                 << "BreakFor "<< m_needBreak << "s; "
-                << "TargetReached " << m_targetReached << "; "
+                << "TargetReached " << targetReached << "; "
                 << "Waiting for " << QTime::currentTime().secsTo(m_targetTime) << "s"
                 << endl;
 
         // User has been idle for 5 seconds, and wants to start working again -> break Now!
-        if (m_targetReached && t < 5)
+        if (targetReached && t < 5)
         {
             kdDebug() << "Activity detected, break!" << endl;
             breakNow( m_needBreak );
-            m_targetReached=false;
+            targetReached=false;
             emit relax( -1 );
             m_needBreak=0;
         }
 
         // User has been idle for the time of the break now, this break is no longer needed!
-        if (m_targetReached && t >= m_needBreak)
+        if (targetReached && t >= m_needBreak)
         {
             kdDebug() << "You have been idle for the duration of the break, thanks!" << endl;
-            m_targetReached=false;
+            targetReached=false;
             m_needBreak=0;
             emit relax( -1 );
             startMinimizeTimer();
@@ -267,17 +265,17 @@ void RSITimer::readConfig()
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
-    m_timeMinimized = config->readNumEntry("TinyInterval", 10)*60;
-    m_timeMaximized = config->readNumEntry("TinyDuration", 20);
-    m_bigInterval = config->readNumEntry("BigInterval", 3);
-    m_bigTimeMaximized = config->readNumEntry("BigDuration", 1)*60;
-    m_currentInterval = m_bigInterval;
+    m_intervals["time_minimized"] = config->readNumEntry("TinyInterval", 10)*60;
+    m_intervals["time_maximized"] = config->readNumEntry("TinyDuration", 20);
+    m_intervals["big_interval"] = config->readNumEntry("BigInterval", 10);
+    m_intervals["big_time_maximized"] = config->readNumEntry("BigDuration", 1)*60;
+    m_currentInterval = m_intervals["big_interval"];
 
-    if (config->readBoolEntry("DEBUG"))
+    if (config->readBoolEntry("DEBUG", false))
     {
         kdDebug() << "Debug mode activated" << endl;
-        m_timeMinimized = m_timeMinimized/60;
-        m_bigTimeMaximized = m_bigTimeMaximized/60;
+        m_intervals["time_minimized"] = m_intervals["time_minimized"]/60;
+        m_intervals["big_time_maximized"] = m_intervals["big_time_maximized"]/60;
     }
 }
 

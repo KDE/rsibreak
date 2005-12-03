@@ -20,6 +20,7 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
+#include <qmap.h>
 #include <qtimer.h>
 #include <qdatetime.h>
 
@@ -72,19 +73,13 @@ class RSITimer : public QObject
         QTimer*         m_timer_min;
 
         bool            m_idleLong;
-        bool            m_targetReached;
         bool            m_idleDetection;
         bool            m_suspended;
 
         int             m_needBreak;
-        int             m_timeMaximized;
-        int             m_timeMinimized;
-        int             m_bigInterval;
-        int             m_bigTimeMaximized;
-        int             m_currentInterval;
 
-        int             m_idleIndex;
-        int             m_idleIndexAmount;
+        int             m_currentInterval;
+        QMap<QString,int> m_intervals;
 
         int             m_normalTimer;
 };
