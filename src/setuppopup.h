@@ -24,6 +24,9 @@
 #ifndef SETUPPOPUP_H
 #define SETUPPOPUP_H
 
+class QCheckBox;
+class QLabel;
+
 /**
  * @class SetupPopup
  * These contain the settings of RSIBreak for the popup.
@@ -55,10 +58,13 @@ public:
     void applySettings();
 
 private slots:
-  
+    void slotHideFlash();
 
 private:
     void readSettings();
+    QCheckBox*        m_usePopup;
+    QCheckBox*        m_useFlash;
+    QLabel*           m_useFlashLabel;
 
 };
 
