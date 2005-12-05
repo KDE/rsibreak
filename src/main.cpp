@@ -23,13 +23,13 @@
 
 #include "rsiwidget.h"
 
-/** 
+/**
  * @class RSIApplication
  * @author Tom Albers <tomalbers@kde.nl>
  * This class is a simple inheritance from KUniqueApplication
- * the reason that it is reimplemented is that when RSIBreak 
+ * the reason that it is reimplemented is that when RSIBreak
  * is launched a second time it would in the orinal implementation
- * make the RSIWidget->show(). which we do not want. This 
+ * make the RSIWidget->show(). which we do not want. This
  * class misses that call.
  */
 class RSIApplication : public KUniqueApplication {
@@ -44,7 +44,7 @@ class RSIApplication : public KUniqueApplication {
         ~RSIApplication() {}
 
         /**
-         * Similar to KUniqueApplication::newInstance, only without 
+         * Similar to KUniqueApplication::newInstance, only without
          * the call to raise the widget when a second instance is started.
          */
         int newInstance() { return 0;};
@@ -69,7 +69,7 @@ int main( int argc, char *argv[] )
     aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
                          "clearbeast@gmail.com");
 
-    aboutData.addCredit( "Achim Bohnet", 
+    aboutData.addCredit( "Achim Bohnet",
                          I18N_NOOP("Packaging and help with related issues"),
                          "ach@mpe.mpg.de");
 
@@ -83,8 +83,8 @@ int main( int argc, char *argv[] )
 
     RSIApplication a;
 
-    RSIWidget *rsi = new RSIWidget(  );
+    RSIWidget rsi;
 
-    a.setMainWidget( rsi );
+    a.setMainWidget( &rsi );
     return a.exec();
 }
