@@ -25,6 +25,8 @@
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kprogress.h>
+#include <kapplication.h>
+#include <kconfig.h>
 
 #include "rsipopup.h"
 
@@ -52,6 +54,7 @@ RSIPopup::RSIPopup( QWidget *parent, const char *name )
     connect( m_flashtimer, SIGNAL( timeout() ), SLOT( unflash() ) );
     
     setView( vbox );
+    readSettings();
 }
 
 RSIPopup::~RSIPopup()
@@ -63,6 +66,9 @@ void RSIPopup::relax( int n )
 {
     kdDebug() << "Entering RSIPopup::relax()" << endl;
 
+    if (!m_usePopup)
+        return;
+    
     /*
         If n increases compared to the last call,
         we want a new request for a relax moment.
@@ -95,9 +101,13 @@ void RSIPopup::relax( int n )
 void RSIPopup::flash()
 {
     kdDebug() << "Entering RSIPopup::flash()" << endl;
-    m_flashtimer->start( 500, true );
-    setPaletteForegroundColor( QColor( 255, 255, 255 ) );
-    setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
+    
+    if ( m_useFlash )
+    {
+        m_flashtimer->start( 500, true );
+        setPaletteForegroundColor( QColor( 255, 255, 255 ) );
+        setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
+    }
 }
 
 void RSIPopup::unflash()
@@ -113,4 +123,18 @@ void RSIPopup::mouseReleaseEvent( QMouseEvent * )
     /* eat this! */
 }
 
+void RSIPopup::slotReadConfig()
+{
+    kdDebug() << "Entering RSIPopup::slotReadConfig" << endl;
+    readSettings();
+}
+
+void RSIPopup::readSettings()
+{
+    kdDebug() << "Entering readSettings" << endl;
+    KConfig* config = kapp->config();
+    config->setGroup("Popup Settings");
+    m_usePopup=config->readBoolEntry("UsePopup", true);
+    m_useFlash=config->readBoolEntry("UseFlash", true);
+}
 #include "rsipopup.moc"

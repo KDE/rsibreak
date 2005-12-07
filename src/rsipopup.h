@@ -40,13 +40,18 @@ class RSIPopup : public KPassivePopup
     RSIPopup( QWidget *parent = 0, const char *name = 0 );
     /** Destructor */
     ~RSIPopup();
-
+    
   public slots:
     /**
       Shows this popup with the message that the user should rest @p n seconds.
     */
     void relax( int n );
 
+    /**
+      Reread config
+    */
+    void slotReadConfig();
+    
   signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();
@@ -65,6 +70,10 @@ class RSIPopup : public KPassivePopup
     void unflash();
 
   private:
+    void readSettings();
+    bool    m_usePopup;
+    bool    m_useFlash;
+
     QLabel *m_message;
     KProgress *m_progress;
     QPushButton *m_lockbutton;
