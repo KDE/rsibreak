@@ -27,6 +27,7 @@
 #include <kpopupmenu.h>
 #include <kiconloader.h>
 #include <kaboutkde.h>
+#include <kaction.h>
 #include <kaboutapplication.h>
 #include <kbugreport.h>
 #include <kglobalaccel.h>
@@ -64,7 +65,6 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
                   KKey::QtWIN+Key_B, KKey::QtWIN+CTRL+Key_B,
                   this, SLOT( slotBreakRequest() ));
   m_accel->updateConnections();
-
 }
 
 RSIDock::~RSIDock()
@@ -148,6 +148,15 @@ void RSIDock::slotSuspend()
     }
 
     m_suspended = !m_suspended;
+}
+ 
+void RSIDock::showEvent( QShowEvent * )
+{
+    contextMenu()->insertSeparator();
+    KAction* action = actionCollection()->
+            action(KStdAction::name(KStdAction::Quit));
+    if (action)
+        action->plug(contextMenu());
 }
 
 void RSIDock::mousePressEvent( QMouseEvent *e )

@@ -98,7 +98,15 @@ class RSIDock : public KSystemTray
         void unsuspend();
 
     protected:
+        /**
+         * Reimplemented because we do not want an action on left click
+        */
+        
         void mousePressEvent( QMouseEvent *e );
+        /**
+         * Reimplemented because we do not want a minimize action in the menu
+        */
+        void showEvent( QShowEvent * );
 
     private slots:
         void slotConfigure();
