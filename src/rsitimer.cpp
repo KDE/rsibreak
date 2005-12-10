@@ -111,6 +111,10 @@ void RSITimer::slotMaximize()
     m_needBreak = 0;
     m_timer_max->stop();
 
+    // extra safeguard
+    if ( m_suspended ) 
+        return;
+                
     int totalIdle = idleTime();
     int minNeeded;
     if ( m_currentInterval == 0 )
@@ -191,6 +195,7 @@ void RSITimer::slotReadConfig()
 {
     kdDebug() << "Entering RSITimer::slotReadConfig" << endl;
     readConfig();
+    m_suspended=false;
     startMinimizeTimer();
 }
 
