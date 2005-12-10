@@ -71,8 +71,11 @@ void RSITimer::startMinimizeTimer()
     kdDebug() << "Entering RSITimerstart::startMinimizeTimer" << endl;
 
     m_timer_min->stop();
-    m_targetTime = QTime::currentTime().addSecs(m_intervals["time_minimized"]);
-    m_timer_max->start(m_intervals["time_minimized"]*1000, true);
+    if ( !m_suspended )
+    {
+        m_targetTime = QTime::currentTime().addSecs(m_intervals["time_minimized"]);
+        m_timer_max->start(m_intervals["time_minimized"]*1000, true);
+    }
 }
 
 int RSITimer::idleTime()
@@ -174,7 +177,24 @@ void RSITimer::slotStop( )
     emit minimize();
     m_timer_max->stop();
     m_needBreak=false;
+    m_targetTime=QTime::currentTime();
+}
+
+void RSITimer::slotSuspend( )
+{
+    // This is separated from slotStop, because changing the
+    // config should not leed to a suspend state, because 
+    // we can not restore that situation afterwards.
+    kdDebug() << "Entering RSITimer::slotSuspend" << endl;
+    slotStop();
     m_suspended=true;
+}
+
+void RSITimer::slotUnSuspend( )
+{
+    kdDebug() << "Entering RSITimer::slotUnSuspend" << endl;
+    slotRestart();
+    m_suspended=false;
 }
 
 void RSITimer::slotRestart( )
@@ -187,7 +207,6 @@ void RSITimer::slotRestart( )
 
     emit minimize();
     startMinimizeTimer();
-    m_suspended=false;
 }
 
 
@@ -195,7 +214,6 @@ void RSITimer::slotReadConfig()
 {
     kdDebug() << "Entering RSITimer::slotReadConfig" << endl;
     readConfig();
-    m_suspended=false;
     startMinimizeTimer();
 }
 
@@ -209,17 +227,22 @@ void RSITimer::timerEvent( QTimerEvent* )
 
     emit setCounters( m_targetTime );
 
+    // Dont change the tray icon when suspended, or evaluate
+    // a possible break.
+    
+    if ( isSuspended() )
+        return;
+    
     int t = idleTime();
+
     t == 0 ? idleIndex++ : idleIndex--;
     idleIndexAmount++;
-
     int idleAvg = idleIndexAmount == 0 ? 0 : (int)(idleIndex*100 / idleIndexAmount);
-
     emit updateIdleAvg( idleAvg );
 
-    // If we are waiting for the right time to have a break, check the idle timeout
+    // If we are waiting for the right time to have a break
     // and activate the break if needed...
-    if ( m_needBreak > 0 )
+    if ( m_needBreak > 0    )
     {
         if (!m_idleDetection)
         {

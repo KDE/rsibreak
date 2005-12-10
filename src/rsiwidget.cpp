@@ -86,9 +86,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotRestart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotMaximize() ) );
-    connect( m_tray, SIGNAL( suspend() ), m_timer, SLOT( slotStop() ) );
+    connect( m_tray, SIGNAL( suspend() ), m_timer, SLOT( slotSuspend() ) );
     connect( m_tray, SIGNAL( suspend() ), m_popup, SLOT( hide() ) );
-    connect( m_tray, SIGNAL( unsuspend() ), m_timer, SLOT( slotRestart() ) );
+    connect( m_tray, SIGNAL( unsuspend() ), m_timer, SLOT( slotUnSuspend() ) );
 
     srand ( time(NULL) );
 

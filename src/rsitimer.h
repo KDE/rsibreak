@@ -50,6 +50,8 @@ class RSITimer : public QObject
         void slotMaximize();
         void slotReadConfig();
         void slotStop();
+        void slotSuspend();
+        void slotUnSuspend();
         void slotRestart();
 
     protected:
