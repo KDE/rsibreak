@@ -26,6 +26,7 @@
 #include <qdir.h>
 #include <qstringlist.h>
 #include <qfileinfo.h>
+#include <qdesktopwidget.h>
 
 #include "config.h"
 
@@ -171,11 +172,13 @@ void RSIWidget::loadImage()
     kdDebug() << "Loading: " << m_files[j] <<
                     "( " << j << " / "  << m_files.count() << " ) " << endl;
 
-    QImage m = QImage( m_files[ j ]).smoothScale(
-                        QApplication::desktop()->width(),
-                        QApplication::desktop()->height(),
-                        QImage::ScaleMax);
+    // Base the size on the size of the screen, for xinerama.
+    QRect size = QApplication::desktop()->screenGeometry( 
+                        QApplication::desktop()->primaryScreen() );
 
+    QImage m = QImage( m_files[ j ]).smoothScale( size.width(), 
+                                                  size.height(), 
+                                                  QImage::ScaleMax);
 
     if (m.isNull())
     {
