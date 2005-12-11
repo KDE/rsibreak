@@ -59,7 +59,7 @@ class RSITimer : public QObject
 
     signals:
         void breakNow();
-        void setCounters( const QTime & );
+        void setCounters( const QTime &, const int );
         void updateIdleAvg( double );
         void minimize();
         void relax( int );

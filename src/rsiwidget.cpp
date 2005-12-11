@@ -74,7 +74,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
-    connect( m_timer, SIGNAL( setCounters( const QTime & ) ), SLOT( setCounters( const QTime & ) ) );
+    connect( m_timer, SIGNAL( setCounters( const QTime &, const int ) ), 
+             SLOT( setCounters( const QTime &, const int ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_popup, SLOT( relax( int ) ) );
@@ -270,15 +271,56 @@ void RSIWidget::slotMinimize()
     m_timer->slotRestart();
 }
 
-void RSIWidget::setCounters( const QTime &time )
+void RSIWidget::setCounters( const QTime &time, const int currentBreak )
 {
     int s = (int)ceil(QTime::currentTime().msecsTo( time )/1000);
 
     if (s > 0)
     {
-        m_countDown->setText( QString::number( s ) );
-        QToolTip::add(m_tray, i18n("One second remaining",
-                      "%n seconds remaining",s));
+        int minutes = (int)floor(s/60);
+        int seconds  = s-(minutes*60);
+        QString mString = i18n("one minute","%n minutes",minutes);
+        QString sString = i18n("one second","%n seconds",seconds);
+        QString finalString;
+        QString cdString;
+        
+        if (minutes > 0 && seconds > 0)
+        {
+            finalString = i18n("First argument: minutes, second: seconds "
+                               "both as you defined earlier",
+                               "%1 and %2 remaining").arg(mString, sString);
+            cdString = i18n("minutes:seconds","%1:%2")
+                    .arg( QString::number( minutes ))
+                    .arg( QString::number( seconds).rightJustify(2,'0'));
+        }
+        if ( minutes == 0 && seconds > 0 )
+        {
+            finalString = i18n("Argument: seconds part or minutes part as "
+                               "defined earlier",
+                               "%1 remaining").arg(sString);
+            cdString = QString::number( seconds );
+        }
+        
+        if ( minutes >0 && seconds == 0 )
+        {
+            finalString = i18n("Argument: seconds part or minutes part as "
+                               "defined earlier",
+                               "%1 remaining").arg(mString);
+            cdString = i18n("minutes:seconds","%1:00")
+                    .arg( QString::number( minutes ) );
+        }
+        
+        int i=currentBreak-1;
+        if (i == 0)
+            finalString.append( "\n" + i18n("Next break is a big break") );
+        else
+            finalString.append( "\n" + i18n("Big break after next break",
+                             "Big break after %n breaks", i) );
+        
+        kdDebug() << cdString << " " << finalString << endl;
+        m_countDown->setText( cdString );
+        QToolTip::add(m_tray, finalString );
+        
     }
     else if ( m_timer->isSuspended() )
     {

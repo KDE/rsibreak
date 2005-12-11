@@ -1,5 +1,5 @@
-Whishes (in order of implementation)
-- progress bar/animated icon to indicate next break
+Whishes:
+- blank the other screens in a multihead / xinerama setup
 - progress bar instead of counter during the break
 - rsi instructions
 - when no image path has yet been entered, default to a reasonable KDE path
@@ -8,4 +8,3 @@ Whishes (in order of implementation)
 bugs (this is where you can help ;-)):
 - image extension are hardcoded
 - Adriaan reported a case were the countdown was painted over the previous time, making a mess.
-

@@ -101,7 +101,7 @@ void RSITimer::breakNow( int t )
     m_targetTime = QTime::currentTime().addSecs(t);
     m_timer_min->start(t*1000, true);
 
-    emit setCounters( m_targetTime );
+    emit setCounters( m_targetTime, m_currentInterval );
     emit breakNow();
 }
 
@@ -227,7 +227,7 @@ void RSITimer::timerEvent( QTimerEvent* )
     static double idleIndexCached = 0.0;
     static bool targetReached = false;
 
-    emit setCounters( m_targetTime );
+    emit setCounters( m_targetTime, m_currentInterval );
 
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
