@@ -246,7 +246,7 @@ void RSITimer::timerEvent( QTimerEvent* )
     }
     else //active
     {
-      idleIndex += (100 / m_intervals["time_minimized"]);
+      idleIndex += 100 / (double)(m_intervals["time_minimized"]);
     }
 
     emit updateIdleAvg( idleIndex );
