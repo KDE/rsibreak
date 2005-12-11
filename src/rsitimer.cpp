@@ -262,7 +262,7 @@ void RSITimer::timerEvent( QTimerEvent* )
             return;
         }
 
-        emit relax( m_needBreak );
+        emit relax( m_needBreak - t );
 
         // if user is idle for more than 5 seconds, remember that.
         if (t >= 5 || QTime::currentTime().secsTo(m_targetTime) <= -30)
