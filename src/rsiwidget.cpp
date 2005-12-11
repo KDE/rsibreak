@@ -173,11 +173,11 @@ void RSIWidget::loadImage()
                     "( " << j << " / "  << m_files.count() << " ) " << endl;
 
     // Base the size on the size of the screen, for xinerama.
-    QRect size = QApplication::desktop()->screenGeometry( 
+    QRect size = QApplication::desktop()->screenGeometry(
                         QApplication::desktop()->primaryScreen() );
 
-    QImage m = QImage( m_files[ j ]).smoothScale( size.width(), 
-                                                  size.height(), 
+    QImage m = QImage( m_files[ j ]).smoothScale( size.width(),
+                                                  size.height(),
                                                   QImage::ScaleMax);
 
     if (m.isNull())
@@ -294,15 +294,15 @@ void RSIWidget::setCounters( const QTime &time )
 
 void RSIWidget::updateIdleAvg( int idleAvg )
 {
-    if ( idleAvg < 0 )
+    if ( idleAvg == 0 )
         m_tray->setIcon( 0 );
-    if ( idleAvg >=20 && idleAvg<40 )
+    else if ( idleAvg >0 && idleAvg<30 )
         m_tray->setIcon( 1 );
-    if ( idleAvg >=40 && idleAvg<50 )
+    else if ( idleAvg >=30 && idleAvg<60 )
         m_tray->setIcon( 2 );
-    if ( idleAvg >=50 && idleAvg<60 )
+    else if ( idleAvg >=60 && idleAvg<90 )
         m_tray->setIcon( 3 );
-    if ( idleAvg >=60 )
+    else
         m_tray->setIcon( 4 );
 }
 

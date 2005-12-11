@@ -115,9 +115,9 @@ void RSITimer::slotMaximize()
     m_timer_max->stop();
 
     // extra safeguard
-    if ( m_suspended ) 
+    if ( m_suspended )
         return;
-                
+
     int totalIdle = idleTime();
     int minNeeded;
     if ( m_currentInterval == 0 )
@@ -183,7 +183,7 @@ void RSITimer::slotStop( )
 void RSITimer::slotSuspend( )
 {
     // This is separated from slotStop, because changing the
-    // config should not leed to a suspend state, because 
+    // config should not leed to a suspend state, because
     // we can not restore that situation afterwards.
     kdDebug() << "Entering RSITimer::slotSuspend" << endl;
     slotStop();
@@ -221,7 +221,6 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::timerEvent( QTimerEvent* )
 {
-    static int idleIndexAmount = 0;
     static int idleIndex = 0;
     static bool targetReached = false;
 
@@ -229,16 +228,16 @@ void RSITimer::timerEvent( QTimerEvent* )
 
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
-    
+
     if ( isSuspended() )
         return;
-    
-    int t = idleTime();
 
-    t == 0 ? idleIndex++ : idleIndex--;
-    idleIndexAmount++;
-    int idleAvg = idleIndexAmount == 0 ? 0 : (int)(idleIndex*100 / idleIndexAmount);
-    emit updateIdleAvg( idleAvg );
+    int t = idleTime();
+    t > 0 ? idleIndex-- : idleIndex++;
+    if( idleIndex < 0 )
+      idleIndex = 0;
+
+    emit updateIdleAvg( (int)(idleIndex*100 / m_intervals["time_minimized"]) );
 
     // If we are waiting for the right time to have a break
     // and activate the break if needed...
@@ -251,9 +250,9 @@ void RSITimer::timerEvent( QTimerEvent* )
             return;
         }
 
-        emit relax( m_needBreak - t );
+        emit relax( m_needBreak );
 
-        // if user is idle for more then 5 seconds, remember that.
+        // if user is idle for more than 5 seconds, remember that.
         if (t >= 5 || QTime::currentTime().secsTo(m_targetTime) <= -30)
             targetReached=true;
 

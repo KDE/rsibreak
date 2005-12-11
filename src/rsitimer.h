@@ -27,7 +27,7 @@
 /**
  * @class RSITimer
  * This class controls the timings and arranges the maximizing
- * and minimizing of the widget
+ * and minimizing of the widget.
  * @author Tom Albers <tomalbers@kde.nl>
  */
 class RSITimer : public QObject
