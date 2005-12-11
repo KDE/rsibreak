@@ -221,23 +221,35 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::timerEvent( QTimerEvent* )
 {
-    static int idleIndex = 0;
+    /* invariant: 0 <= idleIndex{Cached} <= 100 */
+    static double idleIndex = 0.0;
+    static double idleIndexCached = 0.0;
     static bool targetReached = false;
 
     emit setCounters( m_targetTime );
 
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
-
     if ( isSuspended() )
         return;
 
     int t = idleTime();
-    t > 0 ? idleIndex-- : idleIndex++;
-    if( idleIndex < 0 )
-      idleIndex = 0;
 
-    emit updateIdleAvg( (int)(idleIndex*100 / m_intervals["time_minimized"]) );
+    if( t == 1 )
+      idleIndexCached = idleIndex;
+
+    if( t > 0 ) // idle
+    {
+      idleIndex -= (idleIndexCached / m_intervals["time_maximized"]);
+      if( idleIndex < 0.0 )
+        idleIndex = 0.0;
+    }
+    else //active
+    {
+      idleIndex += (100 / m_intervals["time_minimized"]);
+    }
+
+    emit updateIdleAvg( idleIndex );
 
     // If we are waiting for the right time to have a break
     // and activate the break if needed...

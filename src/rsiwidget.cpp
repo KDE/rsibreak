@@ -75,7 +75,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
     connect( m_timer, SIGNAL( setCounters( const QTime & ) ), SLOT( setCounters( const QTime & ) ) );
-    connect( m_timer, SIGNAL( updateIdleAvg( int ) ), SLOT( updateIdleAvg( int ) ) );
+    connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_popup, SLOT( relax( int ) ) );
 
@@ -292,9 +292,11 @@ void RSIWidget::setCounters( const QTime &time )
     }
 }
 
-void RSIWidget::updateIdleAvg( int idleAvg )
+void RSIWidget::updateIdleAvg( double idleAvg )
 {
-    if ( idleAvg == 0 )
+    // kdDebug() << "RSIWidget::updateIdleAvg() entered, idleAvg = " << idleAvg << endl;
+
+    if ( idleAvg == 0.0 )
         m_tray->setIcon( 0 );
     else if ( idleAvg >0 && idleAvg<30 )
         m_tray->setIcon( 1 );
