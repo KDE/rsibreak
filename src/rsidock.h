@@ -88,12 +88,12 @@ class RSIDock : public KSystemTray
         void breakRequest();
 
         /**
-         * Suspend RSIbreak on user's request.
+         * Suspend RSIBreak on user's request.
         */
         void suspend();
 
         /**
-         * Restart RSIbreak again after suspensing.
+         * Restart RSIBreak again after suspensing.
         */
         void unsuspend();
 

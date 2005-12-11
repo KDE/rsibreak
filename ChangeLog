@@ -1,3 +1,360 @@
+2005-12-11 02:13 +0000 [r487572]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Oops.
+
+2005-12-11 01:46 +0000 [r487571]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Better
+	  behaviour of the activity gauge in the docker. Goal for the
+	  victim: keep that gauge at zero as much as possible. Not really
+	  productive, but health++.
+
+2005-12-11 00:46 +0000 [r487562]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Show idle
+	  status in docker.
+
+2005-12-10 23:04 +0000 [r487537]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - Change
+	  solution. Do not always set the suspended state to false, but
+	  keep the state while you are in the config. That means two
+	  seperate slots to suspend. - Also, gives the possibility to set
+	  the targettime to the current time, so the tooltip will show that
+	  rsibreak is suspended instead of counting to 0 and then show that
+	  message. - Also, prevent that the avarage calculation continious
+	  in suspended state, because that will change the tray icon ;-)
+
+2005-12-10 22:19 +0000 [r487524]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Bug fix: after
+	  entering the config (m_suspended gets set to true) and leaving,
+	  m_suspended did not got set to false. Also an extra safeguard to
+	  bail out of maximize when suspended is true.
+
+2005-12-10 22:04 +0000 [r487520]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Base the
+	  resize of the image on the screen size, not on the desktop size,
+	  which will give odd results on xinerama/multihead.
+
+2005-12-07 23:26 +0000 [r486488]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Reimplemented
+	  because original implementation adds a minize item to the
+	  contextmenu, which we do not need. Sigh.
+
+2005-12-07 21:45 +0000 [r486453]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsipopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsipopup.h: Implement the two
+	  settings: use popup and use flash
+
+2005-12-05 22:25 +0000 [r485845]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/main.cpp: Make sure that the
+	  widget does not remain on the heap once we exit RSIBreak.
+
+2005-12-04 22:58 +0000 [r485569]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setuppopup.cpp: o Set buddies
+	  o Fix typo Why two different What's this messages for the label
+	  and it's corresponding widget? Looks like double work for
+	  translators.
+
+2005-12-04 22:20 +0000 [r485563]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setuppopup.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.h: Fill the
+	  setuppopup page, need to implement the settings in the app...
+
+2005-12-04 21:44 +0000 [r485554]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/main.cpp: When RSIBreak was
+	  started a second time, the widget get shown, which is not what
+	  RSIBreaks needs. Reimplemented KUniqueApplication to prevent
+	  that. Not completely sure this is the right way to do it.
+
+2005-12-03 11:20 +0000 [r485201]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Cleanups in the
+	  RSITimer. I'm willing to revert if I broke anything, but some
+	  tests showed me everything still works fine.
+
+2005-12-03 11:13 +0000 [r485199]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setuptiming.cpp: Use the same
+	  default values as in RSITimer::readConfig()
+
+2005-12-02 23:43 +0000 [r485131]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsipopup.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.cpp (added),
+	  trunk/playground/utils/rsibreak/src/setup.h,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp (added),
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.h (added),
+	  trunk/playground/utils/rsibreak/src/setupmaximized.h (added),
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: - general
+	  cleanup (identing (hi bram)) - split general config into general
+	  && maximized - added dummy page for the popup - want config for:
+	  flash yes/no, use the popup in general yes/no, maybe flash color
+	  - upgraded Bram to author, thanks for your work!
+
+2005-12-02 22:27 +0000 [r485115]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Eat everything
+	  in the systemtray except the right click, show menu on right
+	  click. Let me know if this is not the right way. I tried a
+	  e->ignore(), but that does not seem to do what i thought it would
+	  do...
+
+2005-12-02 00:04 +0000 [r484810]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsipopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsipopup.h: Add a little
+	  button to popup window to lock desktop.
+
+2005-12-01 23:32 +0000 [r484802]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/NEWS: Button added to lock your
+	  desktop. In case you walk away during a break.
+
+2005-12-01 23:20 +0000 [r484800-484801]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/NEWS: Administration cruft
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreakx.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreakx.png
+	  (added), trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Feature added:
+	  Suspend RSIBreak with the docker's popup menu. Handy if you're
+	  playing a game for example. CCMAIL:341212@bugs.debian.org
+
+2005-12-01 21:24 +0000 [r484770]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsipopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsipopup.h: Eat mouse release
+	  events, so the user can't click away the popups.
+
+2005-11-20 17:46 +0000 [r481815]  Stephan Binner binner@kde.org
+
+	* trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: i18n style
+	  guide fixes
+
+2005-11-13 11:06 +0000 [r480107]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsipopup.cpp (added),
+	  trunk/playground/utils/rsibreak/src/rsipopup.h (added): And the
+	  popup files of course.
+
+2005-11-13 11:02 +0000 [r480105-480106]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/mainpage.dox: A bunch of
+	  changes for RSIbreak: o Moved the passive popup to a new class:
+	  RSIPopup o Show progress bar in passive popup o Flash progress
+	  bar when the user keeps working during a request-for-relax o
+	  Added my name to main.cpp o mainpage.dox updated o Some issue in
+	  the Makefile.am fixed regarding the split-off of RSITimer
+
+	* trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/AUTHORS: o Added me to authors o
+	  NEWS file updated with my to-be-committed changes
+
+2005-11-13 00:09 +0000 [r480066]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: We don't need
+	  that query function in RSITimer I introduced last night. Just
+	  pass the object along the signal.
+
+2005-11-12 20:28 +0000 [r480017]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/mainpage.cpp (removed),
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/mainpage.dox (added),
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - further
+	  cleanup, think that the separation is now completed - renamed
+	  mainpage.cpp to .dox - fixed apidox...
+
+2005-11-12 19:34 +0000 [r480015]  Ruurd Pels ruurd@tiscali.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Fix
+	  preprocessing issue due to inclusion of X headers
+
+2005-11-12 00:56 +0000 [r479871]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o RSIWidget is
+	  the main widget for the application o RSITimer is a QObject now
+	  instead of a QWidget It looks like everything is still
+	  functioning after these changes. Please report them if there's
+	  something wrong.
+
+2005-11-11 11:20 +0000 [r479676]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Cleanups
+
+2005-11-10 23:27 +0000 [r479591]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h (added),
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp (added):
+	  Seperated the timer to a seperate class. Need to test regressions
+	  and fix api.
+
+2005-11-09 23:03 +0000 [r479299]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: o Don't exit
+	  that thing when you press the topright X o Move my method
+	  somewhere else in the file
+
+2005-11-09 22:27 +0000 [r479285]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Unbreak
+	  rsibreak
+
+2005-11-09 22:04 +0000 [r479277]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Some cleanups
+	  which keep bothering me on my local copy. Also some code to lock
+	  the desktop, but there's no button yet.
+
+2005-11-09 20:02 +0000 [r479259]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Experimental:
+	  the icon in the tray now indicates the level of activity! Now I
+	  have to tune which level of activity shows which icon. Also need
+	  to think about the logic of the breaks into this. Ideas are
+	  welcome. Bram?
+
+2005-11-09 18:59 +0000 [r479241]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupgeneral.h,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsibreak.desktop,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Possibility
+	  to start RSIBreak when KDE starts.
+
+2005-11-08 20:17 +0000 [r479002]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/original_artwork.tar.gz
+	  (added), trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak0.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak1.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak2.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak0.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak1.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak3.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak2.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak4.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak3.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak4.png
+	  (added), trunk/playground/utils/rsibreak/AUTHORS,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/hi32-app-rsibreak.png,
+	  trunk/playground/utils/rsibreak/src/hi16-app-rsibreak.png,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/rsibreak.desktop,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Replaced the
+	  xclock icon with a new icon made by Lee Olson. There are also
+	  actions numbered 0-4 so we can have 5 different stages. That
+	  needs to be implemented. Added Lee as contributer and removed
+	  Thorsten who can not contribute due to lack of time.
+
+2005-10-30 02:04 +0000 [r475651]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Fix the app
+	  in case libxss is missing. Initial support for a key which
+	  activates a break. Currently win+b, need to make that
+	  configurable.
+
+2005-10-29 23:25 +0000 [r475641]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.h: New feature:
+	  During the break the images get renewed, this way the break gets
+	  less boring. Looks like a slideshow. The image loading has been
+	  rewriten by using a paintEvent with a bitBlt().
+
+2005-10-29 15:13 +0000 [r475502]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog,
+	  trunk/playground/utils/rsibreak/src/mainpage.cpp (added),
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsibreak.lsm,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb: - update
+	  version number, new release today. - make DEBUG=true work in
+	  settings as well - added apidox mainpage - install .desktop file
+	  to correct location - updated NEWS and CHANGELOG
+
 2005-10-24 19:27 +0000 [r473858]  Tom Albers tomalbers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,

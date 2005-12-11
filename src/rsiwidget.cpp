@@ -283,7 +283,7 @@ void RSIWidget::setCounters( const QTime &time )
     else if ( m_timer->isSuspended() )
     {
         m_countDown->setText( i18n("Suspended") );
-        QToolTip::add( m_tray, i18n("RSIbreak is currently suspended"));
+        QToolTip::add( m_tray, i18n("RSIBreak is currently suspended"));
     }
     else
     {

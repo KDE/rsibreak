@@ -9,7 +9,7 @@
 
 name       = "rsibreak"
 egmodule   = "utils"
-version    = "0.0.3"
+version    = "0.4.0"
 docs       = "no"
 
 svnbase    = "https://toma@svn.kde.org/home/kde"
@@ -165,7 +165,7 @@ Dir.chdir( "#{name}" )
 #`/bin/mv -f README ..`
 `/bin/mv -f TODO ..`
 #`/bin/mv -f HACKING ..`
-`/bin/rm release_rsibreak.rb makechangelog ../INDEX`
+`/bin/rm release_rsibreak.rb makechangelog ../INDEX src/original_artwork.tar.gz`
 Dir.chdir( ".." )
 
 
@@ -174,11 +174,20 @@ Dir.chdir( ".." )
 
 puts "\n"
 puts "Generating Makefiles..  "
+
+# Remove that ugly warning which is added just because we sit in playground
+`echo "AUTOMAKE_OPTIONS = foreign" > Makefile.am.in`
+`echo "DISTCLEANFILES = inst-apps" >> Makefile.am.in`
+`echo "include admin/deps.am" >> Makefile.am.in`
+`echo "include admin/Doxyfile.am" >> Makefile.am.in`
+
 `make -f Makefile.cvs`
 puts "done.\n"
 
 `rm -rf autom4te.cache`
 `rm stamp-h.in`
+
+
 
 puts "\n"
 puts "Compressing..  "

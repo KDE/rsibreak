@@ -51,7 +51,7 @@ Setup::Setup(QWidget* parent, const char* name)
     m_timingPage = new SetupTiming(page_timing);
 
     page_popup = addPage(i18n("Popup"), i18n("Popup"),
-                         BarIcon("mark", KIcon::SizeMedium));
+                         BarIcon("misc", KIcon::SizeMedium));
     m_popupPage = new SetupPopup(page_popup);
 
     page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
