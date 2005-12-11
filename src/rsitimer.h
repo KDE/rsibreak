@@ -84,6 +84,9 @@ class RSITimer : public QObject
         QMap<QString,int> m_intervals;
 
         int             m_normalTimer;
+
+        /* invariant: 0 <= idleIndex <= 100 */
+        double          m_idleIndex;
 };
 
 #endif

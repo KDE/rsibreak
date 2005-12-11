@@ -37,7 +37,7 @@
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_idleLong( false ),
-      m_suspended( false ), m_needBreak( 0 )
+      m_suspended( false ), m_needBreak( 0 ), m_idleIndex( 0.0 )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
@@ -76,6 +76,9 @@ void RSITimer::startMinimizeTimer()
         m_targetTime = QTime::currentTime().addSecs(m_intervals["time_minimized"]);
         m_timer_max->start(m_intervals["time_minimized"]*1000, true);
     }
+
+    emit updateIdleAvg( 0.0 );
+    m_idleIndex = 0.0;
 }
 
 int RSITimer::idleTime()
@@ -221,8 +224,6 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::timerEvent( QTimerEvent* )
 {
-    /* invariant: 0 <= idleIndex{Cached} <= 100 */
-    static double idleIndex = 0.0;
     static double idleIndexCached = 0.0;
     static bool targetReached = false;
 
@@ -236,20 +237,20 @@ void RSITimer::timerEvent( QTimerEvent* )
     int t = idleTime();
 
     if( t == 1 )
-      idleIndexCached = idleIndex;
+      idleIndexCached = m_idleIndex;
 
     if( t > 0 ) // idle
     {
-      idleIndex -= (idleIndexCached / m_intervals["time_maximized"]);
-      if( idleIndex < 0.0 )
-        idleIndex = 0.0;
+      m_idleIndex -= (idleIndexCached / m_intervals["time_maximized"]);
+      if( m_idleIndex < 0.0 )
+        m_idleIndex = 0.0;
     }
     else //active
     {
-      idleIndex += 100 / (double)(m_intervals["time_minimized"]);
+      m_idleIndex += 100 / (double)(m_intervals["time_minimized"]);
     }
 
-    emit updateIdleAvg( idleIndex );
+    emit updateIdleAvg( m_idleIndex );
 
     // If we are waiting for the right time to have a break
     // and activate the break if needed...
