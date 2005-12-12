@@ -66,7 +66,7 @@ SetupTiming::SetupTiming(QWidget* parent )
    m_tinyInterval->setSuffix( " " + i18n("minutes") );
 
    QHBox *m2 = new QHBox(tinyBox);
-   new QLabel(i18n("For the amount of:"), m2);
+   new QLabel(i18n("For a duration of:"), m2);
    m_tinyDuration = new KIntNumInput(m2);
    m_tinyDuration->setRange(1,1000,1,false);
    m_tinyDuration->setSuffix( " " + i18n("seconds") );
@@ -83,7 +83,7 @@ SetupTiming::SetupTiming(QWidget* parent )
    m_bigInterval->setSuffix( " " + i18n("tiny breaks") );
 
    QHBox *m4 = new QHBox(bigBox);
-   new QLabel(i18n("For the amount of:"), m4);
+   new QLabel(i18n("For a duration of:"), m4);
    m_bigDuration = new KIntNumInput(m4);
    m_bigDuration->setRange(1,1000,1,false);
    m_bigDuration->setSuffix( " " + i18n("minutes") );

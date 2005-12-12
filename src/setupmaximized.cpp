@@ -87,7 +87,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    QWhatsThis::add( m_imageFolderEdit,
         i18n("Select the folder from which you want to see images. "
              "These images are randomly shown during the breaks. "
-             "It will be search recursively if you want...") );
+             "It will be searched recursively if you want...") );
 
    QPushButton *changePathButton = new QPushButton(i18n("&Change..."),
            imageFolderBox);
