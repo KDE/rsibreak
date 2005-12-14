@@ -74,8 +74,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
-    connect( m_timer, SIGNAL( setCounters( const QTime &, int ) ),
-             SLOT( setCounters( const QTime &, int ) ) );
+    connect( m_timer, SIGNAL( setCounters( const QTime &, const int ) ),
+             SLOT( setCounters( const QTime &, const int ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_popup, SLOT( relax( int ) ) );
@@ -310,7 +310,7 @@ void RSIWidget::setCounters( const QTime &time, int currentBreak )
                     .arg( minutes );
         }
 
-        int i=currentBreak;
+        int i=currentBreak-1;
         if (i == 0)
             finalString.append( "\n" + i18n("Next break is a big break") );
         else
