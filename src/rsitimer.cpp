@@ -203,7 +203,10 @@ void RSITimer::slotUnSuspend( )
 void RSITimer::slotRestart( )
 {
     kdDebug() << "Entering RSITimer::slotInterupted" << endl;
-    m_currentInterval = m_intervals["big_interval"];
+    // the interuption can not be considered a real break
+    // only needed for a big break of course
+    if (m_currentInterval == m_intervals["big_interval"])
+      m_currentInterval = 1;
 
     emit minimize();
     startMinimizeTimer();
