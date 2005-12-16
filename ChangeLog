@@ -1,3 +1,76 @@
+2005-12-16 09:04 +0000 [r488877]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: However I don't
+	  understand the condition in the if statement, I'd better revert
+	  this code and set m_currentInterval to 1, as told.
+
+2005-12-14 09:20 +0000 [r488390]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Better fix
+	  for the -1 issue. Don't set to 0 but to
+	  m_intervals["big_interval"] instead. o Reverting some LOC
+	  regarding passing const int with the setCounters signal. const is
+	  not really crucial, so I removed it locally, but I accidently
+	  committed a part of this.
+
+2005-12-13 23:17 +0000 [r488309]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: I will
+	  probably get RSI if I have to wait for 4294967295 tiny breaks
+	  before the big break comes in. Why is the -1 there when setting
+	  the tooltip for the amount of big breaks left? It causes the
+	  symptom described above. Try it yourself: enter the configuration
+	  dialog, cancel it and watch the tooltip. Reason: RSITimer sets
+	  m_currentInterval to 0, and RSIWidget subtracts this with 1.
+	  Result: -1. And i18n() with plurals can't handle -1. Simple.
+	  Summarized: Is that -1 really neccessary?
+
+2005-12-12 18:11 +0000 [r487968]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp: I honestly
+	  promise not to break the freeze anymore. I honestly promise not
+	  to break the freeze anymore. (yy,1000P) Changes after proofread
+	  by Malcolm.
+
+2005-12-11 23:42 +0000 [r487789]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/TODO,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Format the
+	  strings of the tooltip and the countdown, and add info over what
+	  break is upcomming
+
+2005-12-11 23:11 +0000 [r487784]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Set activity
+	  gauge to zero when we reset the counter.
+
+2005-12-11 22:26 +0000 [r487778]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Cast the
+	  requested time to a double to make the division work. The dynamic
+	  timer works now for periods > 100 seconds.
+
+2005-12-11 21:44 +0000 [r487768]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog,
+	  trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb:
+	  Administrative things: - bump version - fix typo (RSIbreak ->
+	  RSIBreak) - remove that depressing message on `make install`,
+	  just because it is playground it can still compile, especially
+	  when you run make install ;-) - update changelog and news -
+	  change icon of popup-page in settings
+
 2005-12-11 02:13 +0000 [r487572]  Bram Schoenmakers bramschoenmakers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Oops.
