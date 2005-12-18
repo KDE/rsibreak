@@ -68,7 +68,7 @@ RSITimer::~RSITimer()
 
 void RSITimer::startMinimizeTimer()
 {
-    kdDebug() << "Entering RSITimerstart::startMinimizeTimer" << endl;
+    kdDebug() << "Entering RSITimer::startMinimizeTimer" << endl;
 
     m_timer_min->stop();
     if ( !m_suspended )
@@ -122,11 +122,8 @@ void RSITimer::slotMaximize()
         return;
 
     int totalIdle = idleTime();
-    int minNeeded;
-    if ( m_currentInterval == 0 )
-        minNeeded = m_intervals["big_time_maximized"];
-    else
-        minNeeded = m_intervals["time_maximized"];
+    int minNeeded = !m_currentInterval ? m_intervals["big_time_maximized"]
+                                       : m_intervals["time_maximized"];
 
     kdDebug() << "BigBreak in " << m_currentInterval << "; "
             << "Idle " << totalIdle << "s; "
@@ -134,37 +131,8 @@ void RSITimer::slotMaximize()
             << "IdleLong: " << m_idleLong << "; "
             << endl;
 
-    // If user has been idle since the last break, it will
-    // get a bonus in the way that it gains a tinyBreak
-    if (totalIdle >= m_intervals["time_minimized"])
-    {
-        m_idleLong=true;
-        kdDebug() << "Next break will be delayed, "
-                     "you have been idle a while now" << endl;
-
-        m_currentInterval++; 		// give back the this one
-        if (m_currentInterval < m_intervals["big_interval"])
-            m_currentInterval++;	// give a bonus
-
-        startMinimizeTimer();
-        return;
-    }
-
-    // if user has been idle for at least two breaks, there is no
-    // need to break immediatly, we can postpone the break
-    if ( m_idleLong )
-    {
-        kdDebug() << "Break delayed, you have been idle for a while recently" << endl;
-        m_currentInterval++;
-        startMinimizeTimer();
-        m_idleLong=false;
-        return;
-    }
-
     kdDebug() << "You need a break, monitoring keyboard for the right moment..." << endl;
     m_needBreak=minNeeded;
-    if ( m_currentInterval == 0 )
-        m_currentInterval=m_intervals["big_interval"];
 }
 
 void RSITimer::slotMinimize()
@@ -208,6 +176,7 @@ void RSITimer::slotRestart( )
     if (m_currentInterval == m_intervals["big_interval"])
       m_currentInterval = 1;
 
+    m_currentInterval = m_intervals["big_interval"];
     emit minimize();
     startMinimizeTimer();
 }
@@ -252,9 +221,16 @@ void RSITimer::timerEvent( QTimerEvent* )
 
     emit updateIdleAvg( m_idleIndex );
 
+    /* TODO: Remove this some time
+    kdDebug() << "t=" << t << " "
+              << "m_needBreak=" << m_needBreak << " "
+              << "m_currentInterval=" << m_currentInterval << " "
+              << endl;
+    */
+
     // If we are waiting for the right time to have a break
     // and activate the break if needed...
-    if ( m_needBreak > 0    )
+    if ( m_needBreak > 0 )
     {
         if (!m_idleDetection)
         {
@@ -292,8 +268,24 @@ void RSITimer::timerEvent( QTimerEvent* )
             targetReached=false;
             m_needBreak=0;
             emit relax( -1 );
+            emit updateIdleAvg( 0 );
             startMinimizeTimer();
         }
+    }
+    else if( t > 0 && t % m_intervals["big_time_maximized" ] == 0 )
+    {
+      kdDebug() << "You have been idle for the duration of a big break." << endl;
+
+      emit updateIdleAvg( 0 );
+      startMinimizeTimer();
+      m_currentInterval = m_intervals["big_interval"];
+    }
+    else if( t > 0 && t % m_intervals["time_maximized" ] == 0 )
+    {
+      kdDebug() << "You have been idle for the duration of a tiny break." << endl;
+
+      emit updateIdleAvg( 0 );
+      startMinimizeTimer();
     }
 }
 
