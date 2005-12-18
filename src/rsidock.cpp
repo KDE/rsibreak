@@ -63,7 +63,7 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
   m_accel->insert("breakRequest", i18n("This is where the user can request a "
                        "break", "Take a break now"),
                   i18n("This way you can have a break now"),
-                  KKey::QtWIN+Key_B, KKey::QtWIN+CTRL+Key_B,
+                  KKey::QtWIN+SHIFT+Key_B, KKey::QtWIN+CTRL+Key_B,
                   this, SLOT( slotBreakRequest() ));
   m_accel->updateConnections();
 }
