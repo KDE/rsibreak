@@ -28,58 +28,64 @@
 #include <kapplication.h>
 #include <kconfig.h>
 
-#include "rsipopup.h"
+#include "rsirelaxpopup.h"
 
-RSIPopup::RSIPopup( QWidget *parent, const char *name )
-: KPassivePopup( parent, name ), m_resetcount( 0 )
+RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
+: KPassivePopup( parent, name )
 {
-    kdDebug() << "Entering RSIPopup::RSIPopup" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::RSIRelaxPopup" << endl;
 
     QVBox *vbox = new QVBox( this );
     vbox->setSpacing( KDialog::spacingHint() );
-    
+
     m_message = new QLabel( vbox );
-    
+
     QHBox *hbox = new QHBox( vbox );
     hbox->setSpacing( 5 );
-    
+
     m_progress = new KProgress( hbox );
     m_progress->setPercentageVisible( false );
     m_progress->setTotalSteps( 0 );
-    
+
     m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
-    
-    m_flashtimer = new QTimer( this );
-    connect( m_flashtimer, SIGNAL( timeout() ), SLOT( unflash() ) );
-    
+
     setView( vbox );
     readSettings();
 }
 
-RSIPopup::~RSIPopup()
+RSIRelaxPopup::~RSIRelaxPopup()
 {
-    kdDebug() << "Entering RSIPopup::~RSIPopup()" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::~RSIRelaxPopup()" << endl;
 }
 
-void RSIPopup::relax( int n )
+void RSIRelaxPopup::relax( int n )
 {
-    kdDebug() << "Entering RSIPopup::relax()" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::relax()" << endl;
+
+    /**
+      Counts how many times a request for relax resets
+      due to detected activity.
+    */
 
     if (!m_usePopup)
         return;
-    
+
+    static int resetcount = 0;
+
     /*
         If n increases compared to the last call,
         we want a new request for a relax moment.
     */
-    if ( n >= m_progress->progress() ) {
+    if ( n >= m_progress->progress() )
+    {
         m_progress->setTotalSteps( n );
-        m_resetcount += 1;
+        // m_progress->setProgress( n );
+        resetcount += 1;
         if( n > m_progress->progress() )
-        flash();
-        else if ( m_resetcount % 4 == 0 ) // flash regulary when the user keeps working
-        flash();
+          flash();
+        else if ( resetcount % 4 == 0 ) // flash regulary when the user keeps working
+          flash();
     }
 
     if ( n > 0 )
@@ -94,42 +100,42 @@ void RSIPopup::relax( int n )
     else
     {
         hide();
-        m_resetcount = 0;
+        resetcount = 0;
     }
 }
 
-void RSIPopup::flash()
+void RSIRelaxPopup::flash()
 {
-    kdDebug() << "Entering RSIPopup::flash()" << endl;
-    
-    if ( m_useFlash )
+    kdDebug() << "Entering RSIRelaxPopup::flash()" << endl;
+
+    if( m_useFlash )
     {
-        m_flashtimer->start( 500, true );
-        setPaletteForegroundColor( QColor( 255, 255, 255 ) );
-        setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
+      QTimer::singleShot( 500, this, SLOT( unflash() ) );
+      setPaletteForegroundColor( QColor( 255, 255, 255 ) );
+      setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
     }
 }
 
-void RSIPopup::unflash()
+void RSIRelaxPopup::unflash()
 {
-    kdDebug() << "Entering RSIPopup::unflash()" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::unflash()" << endl;
     unsetPalette();
 }
 
-void RSIPopup::mouseReleaseEvent( QMouseEvent * )
+void RSIRelaxPopup::mouseReleaseEvent( QMouseEvent * )
 {
-    kdDebug() << "Entering RSIPopup::mousePressEvent()" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::mousePressEvent()" << endl;
 
     /* eat this! */
 }
 
-void RSIPopup::slotReadConfig()
+void RSIRelaxPopup::slotReadConfig()
 {
-    kdDebug() << "Entering RSIPopup::slotReadConfig" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::slotReadConfig" << endl;
     readSettings();
 }
 
-void RSIPopup::readSettings()
+void RSIRelaxPopup::readSettings()
 {
     kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
@@ -137,4 +143,4 @@ void RSIPopup::readSettings()
     m_usePopup=config->readBoolEntry("UsePopup", true);
     m_useFlash=config->readBoolEntry("UseFlash", true);
 }
-#include "rsipopup.moc"
+#include "rsirelaxpopup.moc"

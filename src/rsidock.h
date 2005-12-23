@@ -25,6 +25,7 @@
 #define RSIDOCK_H
 
 #include <qpixmap.h>
+#include <qtimer.h>
 
 class KGlobalAccel;
 #include <ksystemtray.h>
@@ -97,16 +98,32 @@ class RSIDock : public KSystemTray
         */
         void unsuspend();
 
+        /**
+          Shows the tooltip.
+        */
+        void showToolTip();
+
+        /**
+          Hides the tooltip.
+        */
+        void hideToolTip();
+
     protected:
         /**
          * Reimplemented because we do not want an action on left click
         */
-        
+
         void mousePressEvent( QMouseEvent *e );
         /**
          * Reimplemented because we do not want a minimize action in the menu
         */
         void showEvent( QShowEvent * );
+
+        /** Triggered when the mouse enters the icon in the docker. */
+        virtual void enterEvent( QEvent * );
+
+        /** Triggered when the mouse leaves the icon in the docker. */
+        virtual void leaveEvent( QEvent * );
 
     private slots:
         void slotConfigure();
@@ -118,10 +135,11 @@ class RSIDock : public KSystemTray
 
     private:
         KGlobalAccel* m_accel;
-        QString       m_currentIcon;
 
         int mSuspendItem;
         bool m_suspended;
+
+        QTimer *m_tooltiptimer;
 };
 
 #endif // RSIDOCK_H

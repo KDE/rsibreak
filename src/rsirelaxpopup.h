@@ -16,8 +16,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#ifndef RSIPOPUP_H
-#define RSIPOPUP_H
+#ifndef RSIRELAXPOPUP_H
+#define RSIRELAXPOPUP_H
 
 #include <kpassivepopup.h>
 
@@ -26,21 +26,20 @@ class QPushButton;
 class KProgress;
 
 /**
- * @class RSIPopup
+ * @class RSIRelaxPopup
  * This is a KPassivePopup which some extra features.
- * It's shown for example when the user should relax for a
- * couple of seconds.
+ * It's shown when the user should relax for a couple of seconds.
  * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
  */
-class RSIPopup : public KPassivePopup
+class RSIRelaxPopup : public KPassivePopup
 {
   Q_OBJECT
   public:
     /** Constructor */
-    RSIPopup( QWidget *parent = 0, const char *name = 0 );
+    RSIRelaxPopup( QWidget *parent = 0, const char *name = 0 );
     /** Destructor */
-    ~RSIPopup();
-    
+    ~RSIRelaxPopup();
+
   public slots:
     /**
       Shows this popup with the message that the user should rest @p n seconds.
@@ -51,7 +50,7 @@ class RSIPopup : public KPassivePopup
       Reread config
     */
     void slotReadConfig();
-    
+
   signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();
@@ -77,12 +76,6 @@ class RSIPopup : public KPassivePopup
     QLabel *m_message;
     KProgress *m_progress;
     QPushButton *m_lockbutton;
-
-    /**
-      Counts how many times a request for relax resets due to detected activity
-    */
-    int m_resetcount;
-    QTimer *m_flashtimer;
 };
 
-#endif /* RSIPOPUP_H */
+#endif /* RSIRELAXPOPUP_H */

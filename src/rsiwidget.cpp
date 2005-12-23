@@ -19,7 +19,6 @@
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qtimer.h>
-#include <qtooltip.h>
 #include <qdatetime.h>
 #include <qlineedit.h>
 #include <qimage.h>
@@ -38,6 +37,7 @@
 #include <kconfig.h>
 #include <dcopclient.h>
 #include <kmessagebox.h>
+#include <kiconloader.h>
 
 #include <stdlib.h>
 #include <math.h>
@@ -45,7 +45,8 @@
 #include "rsiwidget.h"
 #include "rsitimer.h"
 #include "rsidock.h"
-#include "rsipopup.h"
+#include "rsirelaxpopup.h"
+#include "rsitooltip.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
@@ -69,26 +70,34 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_tray = new RSIDock(this,"Tray Item");
     m_tray->show();
 
-    m_popup = new RSIPopup(m_tray);
-    connect( m_popup, SIGNAL( lock() ), SLOT( slotLock() ) );
+    m_tooltip = new RSIToolTip( m_tray, "Tooltip" );
+    connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
+    connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
+
+    setIcon( 0 );
+
+    m_relaxpopup = new RSIRelaxPopup(m_tray);
+    connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
     connect( m_timer, SIGNAL( setCounters( const QTime &, const int ) ),
              SLOT( setCounters( const QTime &, const int ) ) );
+    connect( m_timer, SIGNAL( setCounters( const QTime &, const int ) ),
+             m_tooltip, SLOT( setCounters( const QTime &, const int ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
-    connect( m_timer, SIGNAL( relax( int ) ), m_popup, SLOT( relax( int ) ) );
+    connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
     connect( m_tray, SIGNAL( configChanged() ), m_timer, SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( configChanged() ), m_popup, SLOT( slotReadConfig() ) );
+    connect( m_tray, SIGNAL( configChanged() ), m_relaxpopup, SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotRestart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotMaximize() ) );
     connect( m_tray, SIGNAL( suspend() ), m_timer, SLOT( slotSuspend() ) );
-    connect( m_tray, SIGNAL( suspend() ), m_popup, SLOT( hide() ) );
+    connect( m_tray, SIGNAL( suspend() ), m_relaxpopup, SLOT( hide() ) );
     connect( m_tray, SIGNAL( unsuspend() ), m_timer, SLOT( slotUnSuspend() ) );
 
     srand ( time(NULL) );
@@ -129,6 +138,7 @@ RSIWidget::~RSIWidget()
 {
     kdDebug() << "Entering RSIWidget::~RSIWidget" << endl;
     delete m_backgroundimage;
+    m_backgroundimage = 0;
 }
 
 void RSIWidget::minimize()
@@ -271,7 +281,7 @@ void RSIWidget::slotMinimize()
     m_timer->slotRestart();
 }
 
-void RSIWidget::setCounters( const QTime &time, int currentBreak )
+void RSIWidget::setCounters( const QTime &time, const int )
 {
     int s = (int)ceil(QTime::currentTime().msecsTo( time )/1000);
 
@@ -279,75 +289,65 @@ void RSIWidget::setCounters( const QTime &time, int currentBreak )
     {
         int minutes = (int)floor(s/60);
         int seconds  = s-(minutes*60);
-        // FIXME: Make capitals of 'one'
-        QString mString = i18n("one minute","%n minutes",minutes);
-        QString sString = i18n("one second","%n seconds",seconds);
-        QString finalString;
         QString cdString;
 
         if (minutes > 0 && seconds > 0)
         {
-            finalString = i18n("First argument: minutes, second: seconds "
-                               "both as you defined earlier",
-                               "%1 and %2 remaining").arg(mString, sString);
             cdString = i18n("minutes:seconds","%1:%2")
                     .arg( QString::number( minutes ))
                     .arg( QString::number( seconds).rightJustify(2,'0'));
         }
         else if ( minutes == 0 && seconds > 0 )
         {
-            finalString = i18n("Argument: seconds part or minutes part as "
-                               "defined earlier",
-                               "%1 remaining").arg(sString);
             cdString = QString::number( seconds );
         }
         else if ( minutes >0 && seconds == 0 )
         {
-            finalString = i18n("Argument: seconds part or minutes part as "
-                               "defined earlier",
-                               "%1 remaining").arg(mString);
             cdString = i18n("minutes:seconds","%1:00")
                     .arg( minutes );
         }
 
-        int i=currentBreak-1;
-        if (i == 0)
-            finalString.append( "\n" + i18n("Next break is a big break") );
-        else
-            finalString.append( "\n" + i18n("Big break after next break",
-                             "Big break after %n breaks", i) );
-
-        kdDebug() << cdString << " " << finalString << endl;
+        // kdDebug() << cdString << " " << finalString << endl;
         m_countDown->setText( cdString );
-        QToolTip::add(m_tray, finalString );
 
     }
     else if ( m_timer->isSuspended() )
     {
         m_countDown->setText( i18n("Suspended") );
-        QToolTip::add( m_tray, i18n("RSIBreak is currently suspended"));
     }
     else
     {
         m_countDown->setText (QString::null );
-        QToolTip::add(m_tray, i18n("Waiting for the right moment to break"));
     }
 }
 
 void RSIWidget::updateIdleAvg( double idleAvg )
 {
-    // kdDebug() << "RSIWidget::updateIdleAvg() entered, idleAvg = " << idleAvg << endl;
-
     if ( idleAvg == 0.0 )
-        m_tray->setIcon( 0 );
+        setIcon( 0 );
     else if ( idleAvg >0 && idleAvg<30 )
-        m_tray->setIcon( 1 );
+        setIcon( 1 );
     else if ( idleAvg >=30 && idleAvg<60 )
-        m_tray->setIcon( 2 );
+        setIcon( 2 );
     else if ( idleAvg >=60 && idleAvg<90 )
-        m_tray->setIcon( 3 );
+        setIcon( 3 );
     else
-        m_tray->setIcon( 4 );
+        setIcon( 4 );
+}
+
+void RSIWidget::setIcon(int level)
+{
+    static QString currentIcon;
+    static KIconLoader il;
+    QString newIcon = "rsibreak"+QString::number(level);
+    if (newIcon != currentIcon)
+    {
+        QPixmap dockPixmap = KSystemTray::loadIcon( newIcon );
+        QPixmap toolPixmap = il.loadIcon( newIcon, KIcon::Desktop );
+        currentIcon = newIcon;
+        m_tray->setPixmap( dockPixmap );
+        m_tooltip->setPixmap( toolPixmap );
+    }
 }
 
 // ----------------------------- EVENTS -----------------------//

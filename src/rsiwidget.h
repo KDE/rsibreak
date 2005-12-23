@@ -30,7 +30,8 @@ class QPixmap;
 
 class RSIDock;
 class RSITimer;
-class RSIPopup;
+class RSIRelaxPopup;
+class RSIToolTip;
 
 /**
  * @class RSIWidget
@@ -69,6 +70,9 @@ class RSIWidget : public QWidget
         virtual void paintEvent( QPaintEvent* );
         virtual void closeEvent ( QCloseEvent * );
 
+        /** Sets appropiate icon in tooltip and docker. */
+        void setIcon( int );
+
     private:
         void findImagesInFolder(const QString& folder);
         void loadImage();
@@ -92,7 +96,8 @@ class RSIWidget : public QWidget
         QPushButton*    m_miniButton;
         QPushButton*    m_lockButton;
 
-        RSIPopup*       m_popup;
+        RSIRelaxPopup*       m_relaxpopup;
+        RSIToolTip*          m_tooltip;
 };
 
 #endif
