@@ -277,7 +277,7 @@ void RSITimer::timerEvent( QTimerEvent* )
       kdDebug() << "You have been idle for the duration of a big break." << endl;
 
       emit updateIdleAvg( 0 );
-      startMinimizeTimer();
+      slotMinimize();
       m_currentInterval = m_intervals["big_interval"];
     }
     else if( t > 0 && t % m_intervals["time_maximized" ] == 0 )
@@ -285,7 +285,7 @@ void RSITimer::timerEvent( QTimerEvent* )
       kdDebug() << "You have been idle for the duration of a tiny break." << endl;
 
       emit updateIdleAvg( 0 );
-      startMinimizeTimer();
+      slotMinimize();
     }
 }
 
