@@ -155,6 +155,8 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 
     if (e->button() == RightButton)
         contextMenu()->exec( e->globalPos() );
+
+    hideToolTip();
 }
 
 void RSIDock::enterEvent( QEvent * )
