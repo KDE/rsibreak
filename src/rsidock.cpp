@@ -153,10 +153,10 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 {
     kdDebug() << "Entering RSIDock::mousePressEvent" << endl;
 
+    emit hideToolTip();
+
     if (e->button() == RightButton)
         contextMenu()->exec( e->globalPos() );
-
-    hideToolTip();
 }
 
 void RSIDock::enterEvent( QEvent * )
