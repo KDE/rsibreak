@@ -88,6 +88,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
+    connect( m_timer, SIGNAL( relax( int ) ), m_tooltip, SLOT( hide() ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
