@@ -51,6 +51,9 @@ class RSIRelaxPopup : public KPassivePopup
     */
     void slotReadConfig();
 
+    /** Hides this widget only when the argument equals false. */
+    void setVisible( bool );
+
   signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();

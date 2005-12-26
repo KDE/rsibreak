@@ -28,7 +28,7 @@
 #include "rsitooltip.h"
 
 RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
-  : KPassivePopup( parent, name )
+  : KPassivePopup( parent, name ), m_suspended( false )
 {
   kdDebug() << "RSIToolTip::RSIToolTip() entered" << endl;
   setTimeout( 10 * 1000 );
@@ -56,7 +56,12 @@ void RSIToolTip::setCounters( const QTime &time, const int currentBreak )
 {
     int s = (int)ceil(QTime::currentTime().msecsTo( time )/1000);
 
-    if (s > 0)
+    if( m_suspended )
+    {
+      mTimeLeft->setText( i18n("Suspended" ) );
+      mInterval->setText( QString::null );
+    }
+    else if (s > 0)
     {
         int minutes = (int)floor(s/60);
         int seconds  = s-(minutes*60);
@@ -96,6 +101,11 @@ void RSIToolTip::setPixmap( const QPixmap &pix )
   kdDebug() << "RSIToolTip::setPixmap() entered" << endl;
 
   mIcon->setPixmap( pix );
+}
+
+void RSIToolTip::setSuspended( bool b )
+{
+  m_suspended = b;
 }
 
 #include "rsitooltip.moc"

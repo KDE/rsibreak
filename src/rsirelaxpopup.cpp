@@ -143,4 +143,10 @@ void RSIRelaxPopup::readSettings()
     m_usePopup=config->readBoolEntry("UsePopup", true);
     m_useFlash=config->readBoolEntry("UseFlash", true);
 }
+
+void RSIRelaxPopup::setVisible( bool b )
+{
+  if( !b ) hide();
+}
+
 #include "rsirelaxpopup.moc"

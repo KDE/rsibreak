@@ -91,12 +91,7 @@ class RSIDock : public KSystemTray
         /**
          * Suspend RSIBreak on user's request.
         */
-        void suspend();
-
-        /**
-         * Restart RSIBreak again after suspensing.
-        */
-        void unsuspend();
+        void suspend( bool );
 
         /**
           Shows the tooltip.

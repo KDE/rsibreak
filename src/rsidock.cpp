@@ -120,7 +120,7 @@ void RSIDock::slotSuspend()
 
     if( m_suspended )
     {
-        emit unsuspend();
+        emit suspend( false );
 
         setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
         contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_pause" ),
@@ -128,7 +128,7 @@ void RSIDock::slotSuspend()
     }
     else
     {
-        emit suspend();
+        emit suspend( true );
 
         setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
         contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_play" ),
@@ -153,6 +153,7 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 {
     kdDebug() << "Entering RSIDock::mousePressEvent" << endl;
 
+    m_tooltiptimer->stop();
     emit hideToolTip();
 
     if (e->button() == RightButton)

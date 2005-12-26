@@ -97,9 +97,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotRestart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotMaximize() ) );
-    connect( m_tray, SIGNAL( suspend() ), m_timer, SLOT( slotSuspend() ) );
-    connect( m_tray, SIGNAL( suspend() ), m_relaxpopup, SLOT( hide() ) );
-    connect( m_tray, SIGNAL( unsuspend() ), m_timer, SLOT( slotUnSuspend() ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspend( bool ) ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( setVisible( bool ) ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
 
     srand ( time(NULL) );
 
@@ -340,7 +340,9 @@ void RSIWidget::setIcon(int level)
 {
     static QString currentIcon;
     static KIconLoader il;
-    QString newIcon = "rsibreak"+QString::number(level);
+    QString newIcon = "rsibreak" +
+                      ( m_timer->isSuspended() ? "x" : QString::number(level) );
+
     if (newIcon != currentIcon)
     {
         QPixmap dockPixmap = KSystemTray::loadIcon( newIcon );

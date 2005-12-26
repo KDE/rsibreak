@@ -149,23 +149,18 @@ void RSITimer::slotStop( )
     m_timer_max->stop();
     m_needBreak=false;
     m_targetTime=QTime::currentTime();
+    emit updateIdleAvg( 0.0 );
 }
 
-void RSITimer::slotSuspend( )
+void RSITimer::slotSuspend( bool b )
 {
     // This is separated from slotStop, because changing the
     // config should not leed to a suspend state, because
     // we can not restore that situation afterwards.
     kdDebug() << "Entering RSITimer::slotSuspend" << endl;
-    slotStop();
-    m_suspended=true;
-}
 
-void RSITimer::slotUnSuspend( )
-{
-    kdDebug() << "Entering RSITimer::slotUnSuspend" << endl;
-    slotRestart();
-    m_suspended=false;
+    m_suspended = b;
+    b ? slotStop() : slotRestart();
 }
 
 void RSITimer::slotRestart( )

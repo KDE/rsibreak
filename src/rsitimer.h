@@ -50,8 +50,11 @@ class RSITimer : public QObject
         void slotMaximize();
         void slotReadConfig();
         void slotStop();
-        void slotSuspend();
-        void slotUnSuspend();
+        /**
+          Called when the user suspends RSIBreak from the docker.
+          True means suspend, false means unsuspend.
+        */
+        void slotSuspend( bool );
         void slotRestart();
 
     protected:
