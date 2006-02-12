@@ -225,17 +225,18 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 
     QDir dir( folder);
 
-    // TODO: make an automated filter, maybe with QImageIO.
-    QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
-    dir.setNameFilter(ext + " " + ext.upper());
-    dir.setMatchAllDirs ( true );
-
     if ( !dir.exists() or !dir.isReadable() )
     {
         kdWarning() << "Folder does not exist or is not readable: "
                 << folder << endl;
         return;
     }
+
+    // TODO: make an automated filter, maybe with QImageIO.
+    QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
+    dir.setNameFilter(ext + " " + ext.upper());
+    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks );
+    dir.setMatchAllDirs ( true );
 
     const QFileInfoList *list = dir.entryInfoList();
     if (!list)

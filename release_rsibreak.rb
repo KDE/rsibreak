@@ -165,7 +165,7 @@ Dir.chdir( "#{name}" )
 #`/bin/mv -f README ..`
 `/bin/mv -f TODO ..`
 #`/bin/mv -f HACKING ..`
-`/bin/rm release_rsibreak.rb makechangelog ../INDEX src/original_artwork.tar.gz`
+`/bin/rm release_rsibreak.rb makechangelog ../INDEX ../README src/original_artwork.tar.gz`
 Dir.chdir( ".." )
 
 
