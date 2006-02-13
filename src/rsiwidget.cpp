@@ -132,6 +132,14 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
 
+    int numScreens = QApplication::desktop()->numScreens();
+    for (int i=0; i != numScreens ; i++)
+    {
+        m_screenList.append(
+                qMakePair( QApplication::desktop()->screen( i ), 
+                           QApplication::desktop()->screenGeometry( i ) ) );
+    }
+    
     readConfig();
 }
 
@@ -156,8 +164,15 @@ void RSIWidget::maximize()
 
     if (m_slideInterval>0)
         m_timer_slide->start( m_slideInterval*1000 );
+    
+    QValueList< QPair<QWidget*,QRect> >::iterator it;
+    for (it = m_screenList.begin() ; it != m_screenList.end(); ++it)
+    {
+        kdDebug() << (*it).second << endl;
 
-    show(); // Keep it above the KWin calls.
+    }
+
+    show(); // Keep it above the KWin calls.    
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
     KWin::setState(winId(), NET::KeepAbove);

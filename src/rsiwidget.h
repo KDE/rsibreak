@@ -81,6 +81,7 @@ class RSIWidget : public QWidget
         RSITimer*       m_timer;
 
         QPixmap*        m_backgroundimage;
+        QValueList< QPair<QWidget*, QRect> >    m_screenList;
         QString         m_basePath;
         QTimer*         m_timer_slide;
         QLabel*         m_countDown;
