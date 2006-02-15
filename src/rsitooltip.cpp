@@ -41,8 +41,8 @@ RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
 
   QVBox *vbox = new QVBox( hbox );
   new QLabel( "<qt><strong>RSIBreak</strong></qt>", vbox );
-  mTimeLeft = new QLabel( vbox );
-  mInterval = new QLabel( vbox );
+  mTinyLeft = new QLabel( vbox );
+  mBigLeft = new QLabel( vbox );
 
   setView( hbox );
 }
@@ -52,47 +52,63 @@ RSIToolTip::~RSIToolTip()
   kdDebug() << "RSIToolTip::~RSIToolTip() entered" << endl;
 }
 
-void RSIToolTip::setCounters( const QTime &time, const int currentBreak )
+void RSIToolTip::setCounters( int tiny_left, int big_left )
 {
-    int s = (int)ceil(QTime::currentTime().msecsTo( time )/1000);
-
     if( m_suspended )
     {
-      mTimeLeft->setText( i18n("Suspended" ) );
-      mInterval->setText( QString::null );
+      mTinyLeft->setText( i18n("Suspended" ) );
+      mBigLeft->setText( QString::null );
     }
-    else if (s > 0)
+    else
     {
-        int minutes = (int)floor(s/60);
-        int seconds  = s-(minutes*60);
-        QString mString = i18n("One minute","%n minutes",minutes);
-        QString sString = i18n("One second","%n seconds",seconds);
-        QString finalString;
+        int minutes = (int)floor(tiny_left/60);
+        int seconds  = tiny_left-(minutes*60);
+        QString mString = i18n("One minute","%n minutes", minutes);
+        QString sString = i18n("One second","%n seconds", seconds);
 
         if (minutes > 0 && seconds > 0)
         {
-            mTimeLeft->setText( i18n("First argument: minutes, second: seconds "
+            mTinyLeft->setText( i18n("First argument: minutes, second: seconds "
                                "both as you defined earlier",
-                               "%1 and %2 remaining").arg(mString, sString) );
+                               "%1 and %2 remaining until next tiny break").arg(mString, sString) );
         }
         else if ( minutes == 0 && seconds > 0 )
         {
-            mTimeLeft->setText( i18n("Argument: seconds part or minutes part as "
+            mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
                                "defined earlier",
-                               "%1 remaining").arg(sString) );
+                               "%1 remaining until next tiny break").arg(sString) );
         }
         else if ( minutes >0 && seconds == 0 )
         {
-            mTimeLeft->setText( i18n("Argument: seconds part or minutes part as "
+            mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
                                "defined earlier",
-                               "%1 remaining").arg(mString) );
+                               "%1 remaining until next tiny break").arg(mString) );
         }
 
-        if (currentBreak - 1 == 0)
-            mInterval->setText( i18n("Next break is a big break") );
-        else
-            mInterval->setText( "\n" + i18n("Big break after next break",
-                             "Big break after %n breaks", currentBreak - 1) );
+        // do the same for the big break
+        minutes = (int)floor(big_left/60);
+        seconds = big_left-(minutes*60);
+        mString = i18n("One minute","%n minutes", minutes);
+        sString = i18n("One second","%n seconds", seconds);
+
+        if (minutes > 0 && seconds > 0)
+        {
+            mBigLeft->setText( i18n("First argument: minutes, second: seconds "
+                               "both as you defined earlier",
+                               "%1 and %2 remaining until next big break").arg(mString, sString) );
+        }
+        else if ( minutes == 0 && seconds > 0 )
+        {
+            mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
+                               "defined earlier",
+                               "%1 remaining until next big break").arg(sString) );
+        }
+        else if ( minutes >0 && seconds == 0 )
+        {
+            mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
+                               "defined earlier",
+                               "%1 remaining until next big break").arg(mString) );
+        }
     }
 }
 

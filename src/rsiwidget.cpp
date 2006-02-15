@@ -74,17 +74,15 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
     connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
 
-    setIcon( 0 );
-
     m_relaxpopup = new RSIRelaxPopup(m_tray);
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
-    connect( m_timer, SIGNAL( setCounters( const QTime &, const int ) ),
-             SLOT( setCounters( const QTime &, const int ) ) );
-    connect( m_timer, SIGNAL( setCounters( const QTime &, const int ) ),
-             m_tooltip, SLOT( setCounters( const QTime &, const int ) ) );
+    connect( m_timer, SIGNAL( updateWidget( int ) ),
+             SLOT( setCounters( int ) ) );
+    connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
+             m_tooltip, SLOT( setCounters( int, int ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
@@ -95,12 +93,13 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( configChanged() ), m_timer, SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( configChanged() ), m_relaxpopup, SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
-    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotRestart() ) );
-    connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotMaximize() ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspend( bool ) ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( setVisible( bool ) ) );
+    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStart() ) );
+    connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( setVisible( bool ) ) );
 
+    setIcon( 0 );
     srand ( time(NULL) );
 
     QBoxLayout *topLayout = new QVBoxLayout( this, 5);
@@ -114,7 +113,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     QBoxLayout *buttonRow = new QHBoxLayout( topLayout );
 
-    m_miniButton = new QPushButton( i18n("Minimize"), this );
+    m_miniButton = new QPushButton( i18n("Skip"), this );
     buttonRow->addWidget( m_miniButton );
     connect( m_miniButton, SIGNAL( clicked() ), SLOT( slotMinimize() ) );
 
@@ -123,7 +122,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
 
     m_accel = new KAccel(this);
-    m_accel->insert("minimize", i18n("Minimize"),
+    m_accel->insert("minimize", i18n("Skip"),
                     i18n("Abort a break"),Qt::Key_Escape,
                     this, SLOT( slotMinimize() ));
 
@@ -295,17 +294,15 @@ void RSIWidget::slotLock()
 void RSIWidget::slotMinimize()
 {
     kdDebug() << "slotMinize entered" << endl;
-    m_timer->slotRestart();
+    m_timer->skipTinyBreak();
 }
 
-void RSIWidget::setCounters( const QTime &time, const int )
+void RSIWidget::setCounters( int timeleft )
 {
-    int s = (int)ceil(QTime::currentTime().msecsTo( time )/1000);
-
-    if (s > 0)
+    if (timeleft > 0)
     {
-        int minutes = (int)floor(s/60);
-        int seconds  = s-(minutes*60);
+        int minutes = (int)floor(timeleft/60);
+        int seconds  = timeleft-(minutes*60);
         QString cdString;
 
         if (minutes > 0 && seconds > 0)
@@ -324,7 +321,6 @@ void RSIWidget::setCounters( const QTime &time, const int )
                     .arg( minutes );
         }
 
-        // kdDebug() << cdString << " " << finalString << endl;
         m_countDown->setText( cdString );
 
     }

@@ -45,51 +45,74 @@ class RSITimer : public QObject
 
         bool isSuspended() const { return m_suspended; }
 
+        enum { TINY_BREAK = 0, BIG_BREAK = 1 };
+
     public slots:
-        void slotMinimize();
-        void slotMaximize();
         void slotReadConfig();
         void slotStop();
         /**
           Called when the user suspends RSIBreak from the docker.
           True means suspend, false means unsuspend.
         */
-        void slotSuspend( bool );
+        void slotSuspended( bool );
+        void slotStart();
+        void slotRequestBreak();
         void slotRestart();
+        void skipTinyBreak();
 
     protected:
         virtual void timerEvent( QTimerEvent* );
 
+        void resetAfterBreak();
+        void resetAfterTinyBreak();
+        void resetAfterBigBreak();
+
     signals:
+        /** Enforce a fullscreen big break. */
         void breakNow();
-        void setCounters( const QTime &, const int );
-        void updateIdleAvg( double );
+
+        /**
+          Update counters in tooltip.
+          @param tiny If <=0 a tiny break is active, else it defines how
+          much time is left until the next tiny break.
+          @param big If <=0 a big break is active, else it defines how
+          much time is left until the next big break.
+        */
+        void updateToolTip( int tiny, int big );
+
+        void updateWidget( int secondsLeft );
+
+        /**
+          Update the systray icon.
+          @param v How much time has passed until a tiny break (relative)
+                   Varies from 0 to 100.
+        */
+        void updateIdleAvg( double v );
         void minimize();
         void relax( int );
 
     private:
-        void startMinimizeTimer();
         void readConfig();
         int idleTime();
         void breakNow( int t );
 
-        QTime           m_targetTime;
-        QTimer*         m_timer_max;
-        QTimer*         m_timer_min;
-
-        bool            m_idleLong;
+        bool            m_breakRequested;
         bool            m_idleDetection;
         bool            m_suspended;
 
-        int             m_needBreak;
+        int             m_tiny_left;
+        int             m_big_left;
+        int             m_pause_left;
+        int             m_relax_left;
+        /**
+          When it's time for a break, we wait patiently till the user
+          becomes idle. We show a relax popup during this interval.
+          But if the user keeps active, our patience runs out and we
+          we force him a break (full screen).
+        */
+        int             m_patience;
 
-        int             m_currentInterval;
         QMap<QString,int> m_intervals;
-
-        int             m_normalTimer;
-
-        /* invariant: 0 <= idleIndex <= 100 */
-        double          m_idleIndex;
 };
 
 #endif

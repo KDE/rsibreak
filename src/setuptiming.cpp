@@ -60,7 +60,7 @@ SetupTiming::SetupTiming(QWidget* parent )
    tinyBox->setTitle(i18n("Tiny Breaks"));
 
    QHBox *m = new QHBox(tinyBox);
-   new QLabel(i18n("Bother you every:"), m);
+   new QLabel(i18n("Tiny break every:"), m);
    m_tinyInterval = new KIntNumInput(m);
    m_tinyInterval->setRange(1,1000,1,false);
    m_tinyInterval->setSuffix( " " + i18n("minutes") );
@@ -77,10 +77,10 @@ SetupTiming::SetupTiming(QWidget* parent )
    bigBox->setTitle(i18n("Big Breaks"));
 
    QHBox *m3 = new QHBox(bigBox);
-   new QLabel(i18n("Big break after:"), m3);
+   new QLabel(i18n("Big break every:"), m3);
    m_bigInterval = new KIntNumInput(m3);
    m_bigInterval->setRange(1,1000,1,false);
-   m_bigInterval->setSuffix( " " + i18n("tiny breaks") );
+   m_bigInterval->setSuffix( " " + i18n("minutes") );
 
    QHBox *m4 = new QHBox(bigBox);
    new QLabel(i18n("For a duration of:"), m4);
@@ -130,7 +130,7 @@ void SetupTiming::readSettings()
     config->setGroup("General Settings");
     m_tinyInterval->setValue(config->readNumEntry("TinyInterval", 10));
     m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
-    m_bigInterval->setValue(config->readNumEntry("BigInterval", 10));
+    m_bigInterval->setValue(config->readNumEntry("BigInterval", 60));
     m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
     m_slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
 
@@ -138,6 +138,7 @@ void SetupTiming::readSettings()
     {
         m_bigDuration->setSuffix( " " + i18n("seconds") );
         m_tinyInterval->setSuffix( " " + i18n("seconds") );
+        m_bigInterval->setSuffix( " " + i18n("seconds") );
     }
 }
 

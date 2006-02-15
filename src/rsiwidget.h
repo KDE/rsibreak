@@ -62,7 +62,7 @@ class RSIWidget : public QWidget
         void slotMinimize();
         void minimize();
         void maximize();
-        void setCounters( const QTime &, const int);
+        void setCounters( int );
         void updateIdleAvg( double );
         void readConfig();
 

@@ -100,17 +100,17 @@ SetupMaximized::SetupMaximized(QWidget* parent )
                                           imageBox);
    layout->addWidget(imageBox);
 
-   m_hideMinimizeButton = new QCheckBox(i18n("H&ide minimize button"), parent);
+   m_hideMinimizeButton = new QCheckBox(i18n("H&ide skip button"), parent);
    QWhatsThis::add( m_hideMinimizeButton,
-                    i18n("Check this option to disable and hide the minimize "
+                    i18n("Check this option to disable and hide the skip "
                           "button. This way you can prevent skipping the "
                           "break.") );
    layout->addWidget(m_hideMinimizeButton);
 
-   m_disableAccel = new QCheckBox(i18n("&Disable shortcut to minimize"),
+   m_disableAccel = new QCheckBox(i18n("&Disable shortcut to skip"),
                                   parent);
    QWhatsThis::add( m_disableAccel,
-                    i18n("Check this option to disable the minimize shortcut "
+                    i18n("Check this option to disable the skip shortcut "
                          "button. This way you can prevent skipping the "
                          "break.") );
    connect(m_disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));

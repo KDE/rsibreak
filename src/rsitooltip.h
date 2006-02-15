@@ -38,15 +38,15 @@ class RSIToolTip : public KPassivePopup
     ~RSIToolTip();
 
   public slots:
-    void setCounters( const QTime &, const int );
+    void setCounters( int, int );
     /** Sets the pixmap for the tooltip. */
     void setPixmap( const QPixmap & );
     /** Sets the tooltip to suspended or unsuspended depending on the parameter. */
     void setSuspended( bool );
 
   private:
-    QLabel *mTimeLeft;
-    QLabel *mInterval;
+    QLabel *mTinyLeft;
+    QLabel *mBigLeft;
 
     QLabel *mIcon;
 
