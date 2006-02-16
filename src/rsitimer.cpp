@@ -100,6 +100,7 @@ void RSITimer::resetAfterTinyBreak()
 
       m_tiny_left = m_intervals["tiny_minimized"];
       resetAfterBreak();
+      emit updateToolTip( m_tiny_left, m_big_left );
 
       if ( m_big_left < m_tiny_left )
       {
@@ -115,6 +116,7 @@ void RSITimer::resetAfterBigBreak()
       m_tiny_left = m_intervals["tiny_minimized"];
       m_big_left = m_intervals["big_minimized"];
       resetAfterBreak();
+      emit updateToolTip( m_tiny_left, m_big_left );
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -143,15 +145,7 @@ void RSITimer::slotSuspended( bool b )
 {
     kdDebug() << "Entering RSITimer::slotSuspend" << endl;
 
-    if( b )
-    {
-      slotStop();
-    }
-    else
-    {
-      slotRestart();
-      slotStart();
-    }
+    b ? slotStop() : slotStart();
 }
 
 void RSITimer::slotRestart()
@@ -159,6 +153,7 @@ void RSITimer::slotRestart()
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
+    slotStart();
 }
 
 void RSITimer::skipTinyBreak()
