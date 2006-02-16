@@ -278,13 +278,14 @@ void RSITimer::timerEvent( QTimerEvent * )
       // just in case the user dares to become active
       --m_patience;
 
-      emit relax( breakInterval - t );
+      emit relax( m_relax_left );
     }
 
-    if ( m_patience == 0 && m_pause_left == 0 && ( m_tiny_left == 0 || m_big_left == 0 ) )
+    if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 && ( m_tiny_left == 0 || m_big_left == 0 ) )
     {
       m_patience = 15;
       emit relax( breakInterval );
+      m_relax_left = breakInterval;
     }
 
     emit updateToolTip( m_tiny_left, m_big_left );
