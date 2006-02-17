@@ -115,11 +115,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_miniButton = new QPushButton( i18n("Skip"), this );
     buttonRow->addWidget( m_miniButton );
-    connect( m_miniButton, SIGNAL( clicked() ), SLOT( slotMinimize() ) );
 
     m_lockButton = new QPushButton( i18n("Lock desktop"), this );
     buttonRow->addWidget( m_lockButton );
-    connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
 
     m_accel = new KAccel(this);
     m_accel->insert("minimize", i18n("Skip"),
@@ -145,6 +143,7 @@ void RSIWidget::minimize()
 {
     kdDebug() << "Entering RSIWidget::Minimize" << endl;
     m_timer_slide->stop();
+    releaseKeyboard();
     releaseMouse();
     hide();
     loadImage();
@@ -157,19 +156,15 @@ void RSIWidget::maximize()
     if (m_slideInterval>0)
         m_timer_slide->start( m_slideInterval*1000 );
     
-    QValueList< QPair<QWidget*,QRect> >::iterator it;
-    for (it = m_screenList.begin() ; it != m_screenList.end(); ++it)
-    {
-        kdDebug() << (*it).second << endl;
-
-    }
-
     show(); // Keep it above the KWin calls.    
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
     KWin::setState(winId(), NET::KeepAbove);
     KWin::setState(winId(), NET::FullScreen);
-    grabMouse(QCursor(PointingHandCursor));
+    
+    // Small delay for grabbing keyboard and mouse, because
+    // it will not grab when widget not visible
+    QTimer::singleShot(1000, this, SLOT(slotGrab()));
 }
 
 void RSIWidget::loadImage()
@@ -291,6 +286,12 @@ void RSIWidget::slotMinimize()
     m_timer->skipTinyBreak();
 }
 
+void RSIWidget::slotGrab()
+{
+    grabMouse( QCursor( ArrowCursor ) );
+    grabKeyboard();
+}
+
 void RSIWidget::setCounters( int timeleft )
 {
     if (timeleft > 0)
@@ -373,28 +374,43 @@ void RSIWidget::closeEvent( QCloseEvent * )
     hide();
 }
 
-
 void RSIWidget::mousePressEvent( QMouseEvent * e )
 {
-    kdDebug() << "Entering RSIWidget::mousePressEvent (" << 
-	    e->x() << "," << e->y() << ")" 
-	    <<  m_miniButton->geometry() << m_lockButton->geometry() << endl;
+    kdDebug() << "Entering RSIWidget::mousePressEvent" << endl;
 
-    if (m_miniButton->geometry().contains(e->pos()))
-    { 
-	e->ignore();
-    	kdDebug() << "minimize button" << endl;
-	return;
-    }
-    if (m_lockButton->geometry().contains(e->pos()))
-    {
-	e->ignore();
-    	kdDebug() << "lock button" << endl;
-	return;
-    }
-    e->accept();
+    if (e->button() != LeftButton)
+        return;
+    
+    if ( m_miniButton->geometry().contains(e->pos()))
+        m_miniButton->setDown( true );
+    
+    else if (m_lockButton->geometry().contains(e->pos()))
+        m_lockButton->setDown( true );
 }
 
+void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
+{
+    if ( m_miniButton->geometry().contains(e->pos()))
+    {
+        m_miniButton->setDown( false );
+        slotMinimize();
+    }
+    
+    else if (m_lockButton->geometry().contains(e->pos()))
+    {
+        m_lockButton->setDown( false );
+        slotLock();
+    }
+}
+
+void RSIWidget::keyPressEvent( QKeyEvent * e)
+{
+    kdDebug() << "Entering RSIWidget::mousePressEvent - Received: "
+            << e->key() << " wanted " << m_accel->shortcut("minimize") << endl;
+    
+    if (e->key() == m_accel->shortcut("minimize"))
+        slotMinimize();
+}
 //--------------------------- CONFIG ----------------------------//
 
 

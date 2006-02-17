@@ -58,19 +58,22 @@ class RSIWidget : public QWidget
 
     private slots:
         void slotNewSlide();
-        void slotLock();
         void slotMinimize();
+        void slotLock();
         void minimize();
         void maximize();
         void setCounters( int );
         void updateIdleAvg( double );
         void readConfig();
+        void slotGrab();
 
     protected:
         virtual void paintEvent( QPaintEvent* );
         virtual void closeEvent ( QCloseEvent * );
-	virtual void mousePressEvent( QMouseEvent * e );
-
+        virtual void mousePressEvent( QMouseEvent * e );
+        virtual void mouseReleaseEvent( QMouseEvent * e );
+        virtual void keyPressEvent( QKeyEvent * e);
+        
         /** Sets appropiate icon in tooltip and docker. */
         void setIcon( int );
 
@@ -82,7 +85,6 @@ class RSIWidget : public QWidget
         RSITimer*       m_timer;
 
         QPixmap*        m_backgroundimage;
-        QValueList< QPair<QWidget*, QRect> >    m_screenList;
         QString         m_basePath;
         QTimer*         m_timer_slide;
         QLabel*         m_countDown;
