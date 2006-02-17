@@ -57,6 +57,8 @@ public:
     void applySettings();
 
 private slots:
+    void slotTinyValueChanged(int i);
+
 
 private:
     void readSettings();

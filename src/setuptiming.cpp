@@ -64,13 +64,14 @@ SetupTiming::SetupTiming(QWidget* parent )
    m_tinyInterval = new KIntNumInput(m);
    m_tinyInterval->setRange(1,1000,1,false);
    m_tinyInterval->setSuffix( " " + i18n("minutes") );
-
+   connect(m_tinyInterval, SIGNAL(valueChanged(int)),
+           SLOT(slotTinyValueChanged( int )));
+   
    QHBox *m2 = new QHBox(tinyBox);
    new QLabel(i18n("For a duration of:"), m2);
    m_tinyDuration = new KIntNumInput(m2);
    m_tinyDuration->setRange(1,1000,1,false);
    m_tinyDuration->setSuffix( " " + i18n("seconds") );
-
    layout->addWidget(tinyBox);
 
    QVGroupBox *bigBox = new QVGroupBox(parent);
@@ -96,7 +97,7 @@ SetupTiming::SetupTiming(QWidget* parent )
    QHBox *m5 = new QHBox(slideBox);
    new QLabel(i18n("Change images every:"), m5);
    m_slideInterval = new KIntNumInput(m5);
-   m_slideInterval->setRange(1,1000,1,false);
+   m_slideInterval->setRange(3,1000,1,false);
    m_slideInterval->setSuffix( " " + i18n("seconds") );
 
    layout->addWidget(slideBox);
@@ -131,6 +132,7 @@ void SetupTiming::readSettings()
     m_tinyInterval->setValue(config->readNumEntry("TinyInterval", 10));
     m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
     m_bigInterval->setValue(config->readNumEntry("BigInterval", 60));
+    m_bigInterval->setMinValue( m_tinyInterval->value() );
     m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
     m_slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
 
@@ -142,4 +144,10 @@ void SetupTiming::readSettings()
     }
 }
 
+void SetupTiming::slotTinyValueChanged( int i)
+{
+    kdDebug() << "Entering slotTinyValueChanged " << i << endl;
+    m_bigInterval->setMinValue( i );
+}
+    
 #include "setuptiming.moc"
