@@ -54,16 +54,16 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak",
                           I18N_NOOP("RSIBreak"),
-                          "0.4.0",
+                          "0.5.0",
                           I18N_NOOP("Try to prevent Repetitive Strain Injury by "
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
-                          "(c) 2005, T.M. Albers" );
+                          "(c) 2005, The RSIBreak developers" );
 
-    aboutData.addAuthor( "Tom Albers", I18N_NOOP("Maintainer"),
+    aboutData.addAuthor( "Tom Albers", I18N_NOOP("Maintainer and Author"),
                          "tomalbers@kde.nl", "http://www.omat.nl");
 
-    aboutData.addAuthor( "Bram Schoenmakers", I18N_NOOP("Various contributions"),
+    aboutData.addAuthor( "Bram Schoenmakers", I18N_NOOP("Author"),
                          "bramschoenmakers@kde.nl" );
 
     aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
@@ -72,7 +72,6 @@ int main( int argc, char *argv[] )
     aboutData.addCredit( "Achim Bohnet",
                          I18N_NOOP("Packaging and help with related issues"),
                          "ach@mpe.mpg.de");
-
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 

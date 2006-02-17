@@ -2,7 +2,8 @@
  * Original copied from showfoto:
  *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
  *
- * Copright 2005 by Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2005-2006 by Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -144,7 +145,7 @@ void SetupTiming::readSettings()
     }
 }
 
-void SetupTiming::slotTinyValueChanged( int i)
+void SetupTiming::slotTinyValueChanged( int i )
 {
     kdDebug() << "Entering slotTinyValueChanged " << i << endl;
     m_bigInterval->setMinValue( i );
