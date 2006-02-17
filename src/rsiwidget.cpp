@@ -25,7 +25,7 @@
 #include <qdir.h>
 #include <qstringlist.h>
 #include <qfileinfo.h>
-#include <qdesktopwidget.h>
+#include <qcursor.h>
 
 #include "config.h"
 
@@ -131,14 +131,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
 
-    int numScreens = QApplication::desktop()->numScreens();
-    for (int i=0; i != numScreens ; i++)
-    {
-        m_screenList.append(
-                qMakePair( QApplication::desktop()->screen( i ), 
-                           QApplication::desktop()->screenGeometry( i ) ) );
-    }
-    
     readConfig();
 }
 
@@ -153,6 +145,7 @@ void RSIWidget::minimize()
 {
     kdDebug() << "Entering RSIWidget::Minimize" << endl;
     m_timer_slide->stop();
+    releaseMouse();
     hide();
     loadImage();
 }
@@ -176,6 +169,7 @@ void RSIWidget::maximize()
     KWin::setOnAllDesktops(winId(),true);
     KWin::setState(winId(), NET::KeepAbove);
     KWin::setState(winId(), NET::FullScreen);
+    grabMouse(QCursor(PointingHandCursor));
 }
 
 void RSIWidget::loadImage()
@@ -377,6 +371,28 @@ void RSIWidget::paintEvent( QPaintEvent * )
 void RSIWidget::closeEvent( QCloseEvent * )
 {
     hide();
+}
+
+
+void RSIWidget::mousePressEvent( QMouseEvent * e )
+{
+    kdDebug() << "Entering RSIWidget::mousePressEvent (" << 
+	    e->x() << "," << e->y() << ")" 
+	    <<  m_miniButton->geometry() << m_lockButton->geometry() << endl;
+
+    if (m_miniButton->geometry().contains(e->pos()))
+    { 
+	e->ignore();
+    	kdDebug() << "minimize button" << endl;
+	return;
+    }
+    if (m_lockButton->geometry().contains(e->pos()))
+    {
+	e->ignore();
+    	kdDebug() << "lock button" << endl;
+	return;
+    }
+    e->accept();
 }
 
 //--------------------------- CONFIG ----------------------------//

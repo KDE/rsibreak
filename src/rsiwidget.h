@@ -69,6 +69,7 @@ class RSIWidget : public QWidget
     protected:
         virtual void paintEvent( QPaintEvent* );
         virtual void closeEvent ( QCloseEvent * );
+	virtual void mousePressEvent( QMouseEvent * e );
 
         /** Sets appropiate icon in tooltip and docker. */
         void setIcon( int );
