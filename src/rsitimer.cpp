@@ -169,7 +169,6 @@ void RSITimer::slotReadConfig()
     readConfig();
 
     slotRestart();
-    slotStart();
 }
 
 void RSITimer::slotRequestBreak()
@@ -247,8 +246,18 @@ void RSITimer::timerEvent( QTimerEvent * )
           m_relax_left = breakInterval;
         }
       }
+      else if ( m_relax_left > 0 )
+      {
+        // no patience left and still moving during a relax moment?
+        // this will teach him
+        breakNow( m_relax_left );
+        m_pause_left = m_relax_left;
+        m_relax_left = 0;
+        emit relax( -1 );
+      }
       else if ( m_pause_left == 0 )
       {
+        // there's no relax moment or break going on.
         --m_tiny_left;
         --m_big_left;
       }

@@ -41,30 +41,79 @@ class RSITimer : public QObject
          * @param name Name
          */
         RSITimer( QObject *parent = 0, const char *name = 0 );
+
+        /**
+          Default destructor.
+        */
         ~RSITimer();
 
+        /**
+          Check whether the timer is suspended.
+        */
         bool isSuspended() const { return m_suspended; }
 
         enum { TINY_BREAK = 0, BIG_BREAK = 1 };
 
     public slots:
+        /**
+          Reads the configuration and restarts the timer with
+          slotRestart.
+        */
         void slotReadConfig();
+
+        /**
+          Stops the timer activity. This does not imply
+          resetting counters.
+        */
         void slotStop();
+
         /**
           Called when the user suspends RSIBreak from the docker.
-          True means suspend, false means unsuspend.
+          @param suspend If true the timer will suspend,
+          if false the timer will unsuspend.
         */
-        void slotSuspended( bool );
+        void slotSuspended( bool suspend );
+
+        /**
+          Prepares the timer so that it can start/continue. This
+          does not imply resetting counters.
+        */
         void slotStart();
+
+        /**
+          The user can request a break from the docker. This function
+          notifies the timer event handler of this request.
+        */
         void slotRequestBreak();
+
+        /**
+          Reset the timer. This implies resetting the counters for a
+          tiny and big break.
+        */
         void slotRestart();
+
+        /**
+          When the user presses the Skip button, this function will be
+          called. It will act like a tiny break has just passed.
+        */
         void skipTinyBreak();
 
     protected:
+        /**
+          The pumping heart of the timer. This will evaluate user's activity
+          and decide what to do (wait, popup a relax notification or a
+          fullscreen break.
+          You shouldn't call this function directly.
+        */
         virtual void timerEvent( QTimerEvent* );
 
+        /** This function is called when a break has passed. */
         void resetAfterBreak();
+
+        /** Called when the user was idle for the duration of a tiny break. */
         void resetAfterTinyBreak();
+
+        /** Called when the user was idle for the duration of a big break. */
         void resetAfterBigBreak();
 
     signals:
@@ -80,6 +129,10 @@ class RSITimer : public QObject
         */
         void updateToolTip( int tiny, int big );
 
+        /**
+          Update the time shown on the fullscreen widget.
+          @param secondsleft Shows the user how many seconds are remaining.
+        */
         void updateWidget( int secondsLeft );
 
         /**
@@ -88,12 +141,33 @@ class RSITimer : public QObject
                    Varies from 0 to 100.
         */
         void updateIdleAvg( double v );
+
+        /**
+          A request to minimize the fullscreen widget, for example when the
+          break is over.
+        */
         void minimize();
-        void relax( int );
+
+        /**
+          Pop up a relax notification to the user for @p sec seconds.
+          @param sec The amount of seconds the user should relax to make the
+          popup disappear. A value of -1 will hide the relax popup.
+        */
+        void relax( int sec );
 
     private:
         void readConfig();
+        /**
+          Queries X how many seconds the user has been idle. A value of 0
+          means there was activity during the last second.
+          @returns The amount of seconds of idling.
+        */
         int idleTime();
+
+        /**
+          Some internal preparations for a fullscreen break window.
+          @param t The amount of seconds to break.
+        */
         void breakNow( int t );
 
         bool            m_breakRequested;
