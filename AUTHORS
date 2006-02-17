@@ -1,7 +1,8 @@
-Maintainer:
-    Tom Albers <tomalbers@kde.nl>
+Authors:
+    Tom Albers <tomalbers@kde.nl>               : Maintainer
+    Bram Schoenmakers <bramschoenmakers@kde.nl>
 
 Contributors:
     Lee Olson <clearbeast@gmail.com>            : Logo and Icons
-    Bram Schoenmakers <bramschoenmakers@kde.nl> : Various contributions
+    Achim Bohnet <ach@mpe.mpg.de>               : Packaging and help with related issues
 

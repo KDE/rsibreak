@@ -25,7 +25,7 @@ bin_PROGRAMS = rsibreak
 # the application source, library search path, and link libraries
 rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
 	main.cpp rsiwidget.cpp rsitimer.cpp rsirelaxpopup.cpp setuppopup.cpp \
-	setupmaximized.cpp rsitooltip.cpp
+	setupmaximized.cpp rsitooltip.cpp dcopiface.cpp dcopiface.skel
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS)
 

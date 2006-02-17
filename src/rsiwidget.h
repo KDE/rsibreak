@@ -21,6 +21,7 @@
 #define RSIWidget_H
 
 #include <qdatetime.h>
+#include <dcopiface.h>
 
 class QTimer;
 class QLabel;
@@ -100,8 +101,11 @@ class RSIWidget : public QWidget
         QPushButton*    m_miniButton;
         QPushButton*    m_lockButton;
 
-        RSIRelaxPopup*       m_relaxpopup;
-        RSIToolTip*          m_tooltip;
+        RSIRelaxPopup*  m_relaxpopup;
+        RSIToolTip*     m_tooltip;
+        
+        DCOPIface*      mDcopIface;
+
 };
 
 #endif

@@ -98,6 +98,14 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( setVisible( bool ) ) );
+    
+    mDcopIface = new DCOPIface(this, "actions");
+    connect( mDcopIface, SIGNAL( signalSuspend( bool) ), 
+             m_tooltip, SLOT( setSuspended( bool ) ) );
+    connect( mDcopIface, SIGNAL( signalSuspend( bool) ), 
+             m_timer, SLOT( slotSuspended( bool ) ) );
+    connect( mDcopIface, SIGNAL( signalSuspend( bool) ), 
+             m_relaxpopup, SLOT( setVisible( bool ) ) );
 
     setIcon( 0 );
     srand ( time(NULL) );
