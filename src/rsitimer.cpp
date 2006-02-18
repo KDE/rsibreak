@@ -1,7 +1,7 @@
 /* This file is part of the KDE project
    Copyright (C) 2005 Tom Albers <tomalbers@kde.nl>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
-   
+
    The parts for idle detection is based on
    kdepim's karm idletimedetector.cpp/.h
 
@@ -106,7 +106,7 @@ void RSITimer::resetAfterTinyBreak()
     if ( m_big_left < m_tiny_left )
     {
         // don't risk a big break just right after a tiny break, so delay it a bit
-        m_big_left += m_big_left - m_tiny_left;
+        m_big_left += m_tiny_left - m_big_left;
     }
 }
 
@@ -116,7 +116,6 @@ void RSITimer::resetAfterBigBreak()
 
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
-    m_bigBreakIsActive = false;
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
 }
@@ -126,7 +125,7 @@ void RSITimer::resetAfterBigBreak()
 void RSITimer::slotStart()
 {
     kdDebug() << "Entering RSITimer::slotStart" << endl;
-    
+
     emit minimize();
     emit updateIdleAvg( 0.0 );
     m_suspended = false;
@@ -194,11 +193,11 @@ void RSITimer::timerEvent( QTimerEvent * )
         return;
 
     int t = idleTime();
-    
-    int breakInterval = m_tiny_left < m_big_left ? 
+
+    int breakInterval = m_tiny_left < m_big_left ?
             m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
     nextBreak = m_tiny_left < m_big_left ? TINY_BREAK : BIG_BREAK;
-    
+
     if ( m_breakRequested )
     {
         breakNow( breakInterval );
@@ -216,26 +215,26 @@ void RSITimer::timerEvent( QTimerEvent * )
         else // user survived the break, set him/her free
         {
             emit minimize();
-    
+
             // make sure we clean up stuff in the code ahead
             if ( nextBreak == TINY_BREAK )
                 resetAfterTinyBreak();
             else if ( nextBreak == BIG_BREAK )
                 resetAfterBigBreak();
-            
+
             emit updateToolTip( m_tiny_left, m_big_left );
-    
+
             return;
         }
     }
-    
+
 /*
-        kdDebug() << " patience: " << m_patience  << " pause_left: " 
-            << m_pause_left << " relax_left: " << m_relax_left 
-            <<  " tiny_left: " << m_tiny_left  << " big_left: " 
+        kdDebug() << " patience: " << m_patience  << " pause_left: "
+            << m_pause_left << " relax_left: " << m_relax_left
+            <<  " tiny_left: " << m_tiny_left  << " big_left: "
             <<  m_big_left << " idle: " << t << endl;
 */
-    
+
     if ( t == 0 ) // activity!
     {
         if ( m_patience > 0 ) // we're trying to break
@@ -245,7 +244,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             {
                 emit relax( -1 );
                 m_relax_left = 0;
-        
+
                 breakNow( breakInterval );
                 m_pause_left = breakInterval;
             }
@@ -274,13 +273,13 @@ void RSITimer::timerEvent( QTimerEvent * )
         double value = 100 - ( ( m_tiny_left / (double)m_intervals["tiny_minimized"] ) * 100 );
         emit updateIdleAvg( value );
     }
-    else if ( t == m_intervals["big_maximized"] && 
+    else if ( t == m_intervals["big_maximized"] &&
               m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
     {
         // the user was sufficiently idle for a big break
         resetAfterBigBreak();
     }
-    else if ( t == m_intervals["tiny_maximized"] && !m_bigBreakIsActive)
+    else if ( t == m_intervals["tiny_maximized"] && m_tiny_left < m_big_left )
     {
         // the user was sufficiently idle for a tiny break
         resetAfterTinyBreak();
@@ -291,16 +290,13 @@ void RSITimer::timerEvent( QTimerEvent * )
 
         // just in case the user dares to become active
         --m_patience;
-    
+
         emit relax( m_relax_left );
     }
 
-    if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 && 
+    if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 &&
          ( m_tiny_left == 0 || m_big_left == 0 ) )
     {
-        if (m_big_left == 0)
-            m_bigBreakIsActive = true;
-        
         m_patience = 15;
         emit relax( breakInterval );
         m_relax_left = breakInterval;

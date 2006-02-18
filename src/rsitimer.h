@@ -1,7 +1,7 @@
 /* This file is part of the KDE project
    Copyright (C) 2005 Tom Albers <tomalbers@kde.nl>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
-   
+
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
    License as published by the Free Software Foundation; either
@@ -174,13 +174,6 @@ class RSITimer : public QObject
         bool            m_breakRequested;
         bool            m_idleDetection;
         bool            m_suspended;
-        /**
-            We need a bool to track if a bigbreak is going on. Because if there is
-            a big break happening, we dont want to detect if a user has been idle for
-            for the duration of a short break and because of that aborting the big
-            break.
-        */        
-        bool            m_bigBreakIsActive;
 
         int             m_tiny_left;
         int             m_big_left;

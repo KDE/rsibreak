@@ -34,14 +34,16 @@
 #include <kkeydialog.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
-    : KSystemTray( parent, name ), m_suspended( false ), m_tooltiptimer( 0 )
+    : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
+    , m_tooltiptimer( 0 )
+
 {
     kdDebug() << "Entering RSIDock" << endl;
-    
+
     contextMenu()->insertItem(SmallIcon("configure"),
                             i18n("Configure RSIBreak..."), this,
                             SLOT(slotConfigure()));
-    mSuspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
+    m_suspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
                             i18n("Suspend RSIBreak"), this,
                             SLOT(slotSuspend()));
     contextMenu()->insertSeparator();
@@ -54,7 +56,7 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     contextMenu()->insertItem(SmallIcon("info"),
                             i18n("About RSIBreak"), this,
                             SLOT(slotAboutRSIBreak()));
-    
+
     m_accel = new KGlobalAccel(this);
     m_accel->insert("breakRequest", i18n("This is where the user can request a "
                         "break", "Take a break now"),
@@ -123,7 +125,7 @@ void RSIDock::slotSuspend()
         emit suspend( false );
 
         setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
-        contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_pause" ),
+        contextMenu()->changeItem( m_suspendItem, SmallIcon( "player_pause" ),
                                    i18n("Suspend RSIBreak") );
     }
     else
@@ -131,7 +133,7 @@ void RSIDock::slotSuspend()
         emit suspend( true );
 
         setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
-        contextMenu()->changeItem( mSuspendItem, SmallIcon( "player_play" ),
+        contextMenu()->changeItem( m_suspendItem, SmallIcon( "player_play" ),
                                    i18n( "Resume RSIBreak" ) );
     }
 
@@ -165,9 +167,9 @@ void RSIDock::enterEvent( QEvent * )
     if( !m_tooltiptimer )
     {
         m_tooltiptimer = new QTimer( this );
-        connect( m_tooltiptimer, SIGNAL( timeout() ), SIGNAL( showToolTip() ) );
+        connect( m_tooltiptimer, SIGNAL( timeout() ), SLOT( slotShowToolTip() ) );
     }
-    
+
     m_tooltiptimer->start( 500, true );
 }
 
@@ -175,8 +177,23 @@ void RSIDock::leaveEvent( QEvent * )
 {
     if( m_tooltiptimer )
         m_tooltiptimer->stop();
-    
+
     emit hideToolTip();
+}
+
+void RSIDock::relaxEntered( int i )
+{
+    kdDebug() << "Entering RSIDock::relaxEntered" << endl;
+
+    m_tooltiphidden = i > 0;
+}
+
+void RSIDock::slotShowToolTip()
+{
+  kdDebug() << "Entering RSIDock::slotShowToolTip" << endl;
+
+  if( !m_tooltiphidden )
+    emit showToolTip();
 }
 
 #include "rsidock.moc"

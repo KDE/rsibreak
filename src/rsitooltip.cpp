@@ -41,6 +41,7 @@ RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
   mIcon->resize( 32, 32 );
 
   QVBox *vbox = new QVBox( hbox );
+  vbox->setSpacing( 5 );
   new QLabel( "<qt><strong>RSIBreak</strong></qt>", vbox );
   mTinyLeft = new QLabel( vbox );
   mBigLeft = new QLabel( vbox );
@@ -64,16 +65,16 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
     {
         int minutes, seconds;
         QString mString, sString;
-        
+
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.
-        if (tiny_left != big_left) 
+        if (tiny_left != big_left)
         {
             minutes = (int)floor(tiny_left/60);
             seconds  = tiny_left-(minutes*60);
             mString = i18n("One minute","%n minutes", minutes);
             sString = i18n("One second","%n seconds", seconds);
-    
+
             if (minutes > 0 && seconds > 0)
                 mTinyLeft->setText( i18n("First argument: minutes, second: seconds "
                                 "both as you defined earlier",
@@ -90,10 +91,10 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
                                 "%1 remaining until next tiny break").arg(mString) );
             else // minutes = 0 and seconds = 0, remove the old text.
                 mTinyLeft->setText( QString::null );
-        } 
+        }
         else // tiny_left eq. big_left, remove this line.
             mTinyLeft->setText( QString::null );
-            
+
         // do the same for the big break
         minutes = (int)floor(big_left/60);
         seconds = big_left-(minutes*60);
@@ -122,7 +123,7 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
 void RSIToolTip::setPixmap( const QPixmap &pix )
 {
     kdDebug() << "RSIToolTip::setPixmap() entered" << endl;
-    
+
     mIcon->setPixmap( pix );
 }
 

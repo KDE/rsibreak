@@ -62,6 +62,13 @@ class RSIDock : public KSystemTray
      */
     void setIcon(int level);
 
+    public slots:
+      /**
+        Notifies the docker that RSIBreak is in relax state.
+        Used to hide the tooltip while showing relax moments.
+      */
+      void relaxEntered( int i );
+
     signals:
         /**
          * This signal is emitted when the user has left
@@ -127,12 +134,14 @@ class RSIDock : public KSystemTray
         void slotReportBug();
         void slotBreakRequest();
         void slotSuspend();
+        void slotShowToolTip();
 
     private:
         KGlobalAccel* m_accel;
 
-        int mSuspendItem;
+        int m_suspendItem;
         bool m_suspended;
+        bool m_tooltiphidden;
 
         QTimer *m_tooltiptimer;
 };

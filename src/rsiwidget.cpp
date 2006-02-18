@@ -87,6 +87,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tooltip, SLOT( hide() ) );
+    connect( m_timer, SIGNAL( relax( int ) ), m_tray, SLOT( relaxEntered( int ) ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
@@ -98,13 +99,13 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( setVisible( bool ) ) );
-    
+
     mDcopIface = new DCOPIface(this, "actions");
-    connect( mDcopIface, SIGNAL( signalSuspend( bool) ), 
+    connect( mDcopIface, SIGNAL( signalSuspend( bool) ),
              m_tooltip, SLOT( setSuspended( bool ) ) );
-    connect( mDcopIface, SIGNAL( signalSuspend( bool) ), 
+    connect( mDcopIface, SIGNAL( signalSuspend( bool) ),
              m_timer, SLOT( slotSuspended( bool ) ) );
-    connect( mDcopIface, SIGNAL( signalSuspend( bool) ), 
+    connect( mDcopIface, SIGNAL( signalSuspend( bool) ),
              m_relaxpopup, SLOT( setVisible( bool ) ) );
 
     setIcon( 0 );
@@ -163,13 +164,13 @@ void RSIWidget::maximize()
 
     if (m_slideInterval>0)
         m_timer_slide->start( m_slideInterval*1000 );
-    
-    show(); // Keep it above the KWin calls.    
+
+    show(); // Keep it above the KWin calls.
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
     KWin::setState(winId(), NET::KeepAbove);
     KWin::setState(winId(), NET::FullScreen);
-    
+
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
     QTimer::singleShot(1000, this, SLOT(slotGrab()));
@@ -388,10 +389,10 @@ void RSIWidget::mousePressEvent( QMouseEvent * e )
 
     if (e->button() != LeftButton)
         return;
-    
+
     if ( m_miniButton->geometry().contains(e->pos()))
         m_miniButton->setDown( true );
-    
+
     else if (m_lockButton->geometry().contains(e->pos()))
         m_lockButton->setDown( true );
 }
@@ -403,7 +404,7 @@ void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
         m_miniButton->setDown( false );
         slotMinimize();
     }
-    
+
     else if (m_lockButton->geometry().contains(e->pos()))
     {
         m_lockButton->setDown( false );
@@ -415,7 +416,7 @@ void RSIWidget::keyPressEvent( QKeyEvent * e)
 {
     kdDebug() << "Entering RSIWidget::mousePressEvent - Received: "
             << e->key() << " wanted " << m_accel->shortcut("minimize") << endl;
-    
+
     if (e->key() == m_accel->shortcut("minimize"))
         slotMinimize();
 }
