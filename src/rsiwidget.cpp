@@ -293,8 +293,6 @@ void RSIWidget::slotMinimize()
 {
     kdDebug() << "slotMinize entered" << endl;
 
-    kdDebug() << "currentIsBigBreak=" << m_timer->currentIsBigBreak() << endl;
-
     m_timer->currentIsBigBreak() ? m_timer->slotRestart()
                                  : m_timer->skipTinyBreak();
 }
