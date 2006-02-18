@@ -86,38 +86,39 @@ void RSITimer::breakNow( int t )
 
 void RSITimer::resetAfterBreak()
 {
-      kdDebug() << "Entering RSITimer::resetAfterBreak" << endl;
+    kdDebug() << "Entering RSITimer::resetAfterBreak" << endl;
 
-      m_pause_left = 0;
-      m_relax_left = 0;
-      m_patience = 0;
-      emit relax( -1 );
-      updateIdleAvg( 0.0 );
+    m_pause_left = 0;
+    m_relax_left = 0;
+    m_patience = 0;
+    emit relax( -1 );
+    updateIdleAvg( 0.0 );
 }
 
 void RSITimer::resetAfterTinyBreak()
 {
-      kdDebug() << "Entering RSITimer::resetAfterTinyBreak" << endl;
+    kdDebug() << "Entering RSITimer::resetAfterTinyBreak" << endl;
 
-      m_tiny_left = m_intervals["tiny_minimized"];
-      resetAfterBreak();
-      emit updateToolTip( m_tiny_left, m_big_left );
+    m_tiny_left = m_intervals["tiny_minimized"];
+    resetAfterBreak();
+    emit updateToolTip( m_tiny_left, m_big_left );
 
-      if ( m_big_left < m_tiny_left )
-      {
+    if ( m_big_left < m_tiny_left )
+    {
         // don't risk a big break just right after a tiny break, so delay it a bit
         m_big_left += m_big_left - m_tiny_left;
-      }
+    }
 }
 
 void RSITimer::resetAfterBigBreak()
 {
-      kdDebug() << "Entering RSITimer::resetAfterBigBreak" << endl;
+    kdDebug() << "Entering RSITimer::resetAfterBigBreak" << endl;
 
-      m_tiny_left = m_intervals["tiny_minimized"];
-      m_big_left = m_intervals["big_minimized"];
-      resetAfterBreak();
-      emit updateToolTip( m_tiny_left, m_big_left );
+    m_tiny_left = m_intervals["tiny_minimized"];
+    m_big_left = m_intervals["big_minimized"];
+    m_bigBreakIsActive = false;
+    resetAfterBreak();
+    emit updateToolTip( m_tiny_left, m_big_left );
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -125,7 +126,7 @@ void RSITimer::resetAfterBigBreak()
 void RSITimer::slotStart()
 {
     kdDebug() << "Entering RSITimer::slotStart" << endl;
-
+    
     emit minimize();
     emit updateIdleAvg( 0.0 );
     m_suspended = false;
@@ -174,8 +175,8 @@ void RSITimer::slotReadConfig()
 
 void RSITimer::slotRequestBreak()
 {
-  kdDebug() << "Entering RSITimer::slotRequestBreak" << endl;
-  m_breakRequested = true;
+    kdDebug() << "Entering RSITimer::slotRequestBreak" << endl;
+    m_breakRequested = true;
 }
 
 // ----------------------------- EVENTS -----------------------//
@@ -190,107 +191,119 @@ void RSITimer::timerEvent( QTimerEvent * )
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
-    {
         return;
-    }
 
     int t = idleTime();
-    int breakInterval = m_tiny_left < m_big_left ? m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
+    
+    int breakInterval = m_tiny_left < m_big_left ? 
+            m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
     nextBreak = m_tiny_left < m_big_left ? TINY_BREAK : BIG_BREAK;
-
+    
     if ( m_breakRequested )
     {
-      breakNow( breakInterval );
-      m_pause_left = breakInterval;
-      m_breakRequested = false;
+        breakNow( breakInterval );
+        m_pause_left = breakInterval;
+        m_breakRequested = false;
     }
 
     if ( t > 0 && m_pause_left > 0 ) // means: widget is maximized
     {
-      if ( m_pause_left - 1 > 0 ) // break is not over yet
-      {
-        --m_pause_left;
-        updateWidget( m_pause_left );
-      }
-      else // user survived the break, set him/her free
-      {
-        emit minimize();
-
-        // make sure we clean up stuff in the code ahead
-        if ( nextBreak == TINY_BREAK )
-          resetAfterTinyBreak();
-        else if ( nextBreak == BIG_BREAK )
-          resetAfterBigBreak();
-
-        emit updateToolTip( m_tiny_left, m_big_left );
-
-        return;
-      }
+        if ( m_pause_left - 1 > 0 ) // break is not over yet
+        {
+            --m_pause_left;
+            updateWidget( m_pause_left );
+        }
+        else // user survived the break, set him/her free
+        {
+            emit minimize();
+    
+            // make sure we clean up stuff in the code ahead
+            if ( nextBreak == TINY_BREAK )
+                resetAfterTinyBreak();
+            else if ( nextBreak == BIG_BREAK )
+                resetAfterBigBreak();
+            
+            emit updateToolTip( m_tiny_left, m_big_left );
+    
+            return;
+        }
     }
-
+    
+/*
+        kdDebug() << " patience: " << m_patience  << " pause_left: " 
+            << m_pause_left << " relax_left: " << m_relax_left 
+            <<  " tiny_left: " << m_tiny_left  << " big_left: " 
+            <<  m_big_left << " idle: " << t << endl;
+*/
+    
     if ( t == 0 ) // activity!
     {
-      if ( m_patience > 0 ) // we're trying to break
-      {
-        --m_patience;
-        if ( !m_patience ) // that's it!
+        if ( m_patience > 0 ) // we're trying to break
         {
-          emit relax( -1 );
-          m_relax_left = 0;
-
-          breakNow( breakInterval );
-          m_pause_left = breakInterval;
+            --m_patience;
+            if ( !m_patience ) // that's it!
+            {
+                emit relax( -1 );
+                m_relax_left = 0;
+        
+                breakNow( breakInterval );
+                m_pause_left = breakInterval;
+            }
+            else // reset relax dialog
+            {
+                emit relax( breakInterval );
+                m_relax_left = breakInterval;
+            }
         }
-        else // reset relax dialog
+        else if ( m_relax_left > 0 )
         {
-          emit relax( breakInterval );
-          m_relax_left = breakInterval;
+            // no patience left and still moving during a relax moment?
+            // this will teach him
+            breakNow( m_relax_left );
+            m_pause_left = m_relax_left;
+            m_relax_left = 0;
+            emit relax( -1 );
         }
-      }
-      else if ( m_relax_left > 0 )
-      {
-        // no patience left and still moving during a relax moment?
-        // this will teach him
-        breakNow( m_relax_left );
-        m_pause_left = m_relax_left;
-        m_relax_left = 0;
-        emit relax( -1 );
-      }
-      else if ( m_pause_left == 0 )
-      {
-        // there's no relax moment or break going on.
-        --m_tiny_left;
-        --m_big_left;
-      }
+        else if ( m_pause_left == 0 )
+        {
+            // there's no relax moment or break going on.
+            --m_tiny_left;
+            --m_big_left;
+        }
 
-      double value = 100 - ( ( m_tiny_left / (double)m_intervals["tiny_minimized"] ) * 100 );
-      emit updateIdleAvg( value );
+        double value = 100 - ( ( m_tiny_left / (double)m_intervals["tiny_minimized"] ) * 100 );
+        emit updateIdleAvg( value );
     }
-    else if ( t == m_intervals["big_maximized"] && m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
+    else if ( t == m_intervals["big_maximized"] && 
+              m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
     {
-      // the user was sufficiently idle for a big break
-      resetAfterBigBreak();
+        // the user was sufficiently idle for a big break
+        resetAfterBigBreak();
     }
-    else if ( t == m_intervals["tiny_maximized"] )
+    else if ( t == m_intervals["tiny_maximized"] && !m_bigBreakIsActive)
     {
-      // the user was sufficiently idle for a tiny break
-      resetAfterTinyBreak();
+        // the user was sufficiently idle for a tiny break
+        resetAfterTinyBreak();
     }
     else if ( m_relax_left > 0 )
     {
-      --m_relax_left;
+        --m_relax_left;
 
-      // just in case the user dares to become active
-      --m_patience;
-
-      emit relax( m_relax_left );
+        // just in case the user dares to become active
+        --m_patience;
+    
+        emit relax( m_relax_left );
     }
 
-    if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 && ( m_tiny_left == 0 || m_big_left == 0 ) )
+    if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 && 
+         ( m_tiny_left == 0 || m_big_left == 0 ) )
     {
-      m_patience = 15;
-      emit relax( breakInterval );
-      m_relax_left = breakInterval;
+        if (m_big_left == 0)
+            m_bigBreakIsActive = true;
+        
+        m_patience = 15;
+        emit relax( breakInterval );
+        m_relax_left = breakInterval;
     }
 
     emit updateToolTip( m_tiny_left, m_big_left );
@@ -314,6 +327,7 @@ void RSITimer::readConfig()
         kdDebug() << "Debug mode activated" << endl;
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
+        m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
     }
 }
 

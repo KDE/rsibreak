@@ -1,5 +1,6 @@
 /* This file is part of the KDE project
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+   Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -61,30 +62,38 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
     }
     else
     {
-        int minutes = (int)floor(tiny_left/60);
-        int seconds  = tiny_left-(minutes*60);
-        QString mString = i18n("One minute","%n minutes", minutes);
-        QString sString = i18n("One second","%n seconds", seconds);
+        int minutes, seconds;
+        QString mString, sString;
+        
+        // Only add the line for the tiny break when there is not
+        // a big break planned at the same time.
+        if (tiny_left != big_left) 
+        {
+            minutes = (int)floor(tiny_left/60);
+            seconds  = tiny_left-(minutes*60);
+            mString = i18n("One minute","%n minutes", minutes);
+            sString = i18n("One second","%n seconds", seconds);
+    
+            if (minutes > 0 && seconds > 0)
+                mTinyLeft->setText( i18n("First argument: minutes, second: seconds "
+                                "both as you defined earlier",
+                                "%1 and %2 remaining until next tiny break").arg(mString, sString) );
 
-        if (minutes > 0 && seconds > 0)
-        {
-            mTinyLeft->setText( i18n("First argument: minutes, second: seconds "
-                               "both as you defined earlier",
-                               "%1 and %2 remaining until next tiny break").arg(mString, sString) );
-        }
-        else if ( minutes == 0 && seconds > 0 )
-        {
-            mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
-                               "defined earlier",
-                               "%1 remaining until next tiny break").arg(sString) );
-        }
-        else if ( minutes >0 && seconds == 0 )
-        {
-            mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
-                               "defined earlier",
-                               "%1 remaining until next tiny break").arg(mString) );
-        }
+            else if ( minutes == 0 && seconds > 0 )
+                mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
+                                "defined earlier",
+                                "%1 remaining until next tiny break").arg(sString) );
 
+            else if ( minutes >0 && seconds == 0 )
+                mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
+                                "defined earlier",
+                                "%1 remaining until next tiny break").arg(mString) );
+            else // minutes = 0 and seconds = 0, remove the old text.
+                mTinyLeft->setText( QString::null );
+        } 
+        else // tiny_left eq. big_left, remove this line.
+            mTinyLeft->setText( QString::null );
+            
         // do the same for the big break
         minutes = (int)floor(big_left/60);
         seconds = big_left-(minutes*60);
@@ -92,36 +101,34 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         sString = i18n("One second","%n seconds", seconds);
 
         if (minutes > 0 && seconds > 0)
-        {
             mBigLeft->setText( i18n("First argument: minutes, second: seconds "
                                "both as you defined earlier",
                                "%1 and %2 remaining until next big break").arg(mString, sString) );
-        }
+
         else if ( minutes == 0 && seconds > 0 )
-        {
             mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
                                "defined earlier",
                                "%1 remaining until next big break").arg(sString) );
-        }
+
         else if ( minutes >0 && seconds == 0 )
-        {
             mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
                                "defined earlier",
                                "%1 remaining until next big break").arg(mString) );
-        }
+        else // minutes = 0 and seconds = 0, remove the old text.
+            mBigLeft->setText( QString::null );
     }
 }
 
 void RSIToolTip::setPixmap( const QPixmap &pix )
 {
-  kdDebug() << "RSIToolTip::setPixmap() entered" << endl;
-
-  mIcon->setPixmap( pix );
+    kdDebug() << "RSIToolTip::setPixmap() entered" << endl;
+    
+    mIcon->setPixmap( pix );
 }
 
 void RSIToolTip::setSuspended( bool b )
 {
-  m_suspended = b;
+    m_suspended = b;
 }
 
 #include "rsitooltip.moc"

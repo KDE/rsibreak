@@ -61,7 +61,7 @@ RSIRelaxPopup::~RSIRelaxPopup()
 
 void RSIRelaxPopup::relax( int n )
 {
-    kdDebug() << "Entering RSIRelaxPopup::relax()" << endl;
+    kdDebug() << "Entering RSIRelaxPopup::relax() " << n << endl;
 
     /**
       Counts how many times a request for relax resets
