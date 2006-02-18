@@ -1,4 +1,15 @@
-v.0.4.0 2005-12-16
+v0.5.0 2006-01-22
+- Instead of a big break after x tiny breaks, the big break is now
+  scheduled at x minutes.
+- Improved idle detection, if you dont touch your mouse/keyboard
+  for one second, the timer wil also hold for a second.
+- dcop interface added for stopping/resuming RSIBreak
+- improved multihead setup: grab mouse and keyboard when slideshow
+  is active, so you can not continue on another screen.
+- new tooltip code, which provides better and live information about the 
+  next big and tiny break
+
+v0.4.0 2005-12-16
 - Added slideshow feature, during break the shown images gets renewed.
 - Image size is based on the screen size (for xinerama users).
 - New logo and icons.

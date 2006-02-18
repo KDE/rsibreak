@@ -1,3 +1,219 @@
+2006-02-18 13:19 +0000 [r510910]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: New welcome
+	  messagebox for 0.5.
+
+2006-02-18 11:09 +0000 [r510855]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Skipping a big
+	  break was handled as a tiny break. Fixed.
+
+2006-02-18 02:43 +0000 [r510787]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Removed
+	  obsoleted boolean var in the timer code o Little bug fixed when a
+	  tiny break has passed and the upcoming break is a big one. Now it
+	  behaves as desired. o Hide tooltip in relax state o Vertical
+	  spacing in tooltip increased o Renamed a member variable
+
+2006-02-18 00:47 +0000 [r510769]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - fixed
+	  identing. - fixed bug: when a big break is going on, and you are
+	  idle for the time of a tiny break, the break was aborted ;-) -
+	  when the short break is scheduled at the same time as the big
+	  break, the delete the tiny break info in the tooltip - remove the
+	  lines of the tooltip, when the time_left is 0 for that line (else
+	  during a break it would state that there is one second left to
+	  that break) - fixed bug: DEBUG=true did not devide the
+	  max_interval by 60, hence giving a strange 1800 seconds when
+	  expecting 20 seconds. Remaining bugs: - do not show the tooltip
+	  when the relaxpopup is active, dont know if that is possible...
+
+2006-02-17 22:18 +0000 [r510744]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/dcopiface.h (added),
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/AUTHORS,
+	  trunk/playground/utils/rsibreak/src/dcopiface.cpp (added): Added
+	  dcop interface.
+
+2006-02-17 21:07 +0000 [r510721]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/mainpage.dox,
+	  trunk/playground/utils/rsibreak/src/setuptiming.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Administrative:
+	  o version++; o copyrights o credits
+
+2006-02-17 20:44 +0000 [r510714]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.h: Dont let the
+	  big break be smaller than the tiny one
+
+2006-02-17 20:21 +0000 [r510699]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Completed the
+	  work to better support multihead setups.
+
+2006-02-17 17:51 +0000 [r510658]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Ok, I officially
+	  give up on proper xinerama support. A different way: we grab
+	  mouse and keyboard, this is the first commit in that direction.
+	  Not finished. I'm not sure how to handle the case above the two
+	  qpushbuttons. This is not the way, but will look into it this
+	  weekend.
+
+2006-02-17 08:16 +0000 [r510407]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Switch to
+	  fullscreen break if user shows still activity during a relax
+	  moment (only after the 15 sec. interval, waiting for the user to
+	  start a break). In the old RSIBreak, this meant the break was
+	  restarted. Now you just have to wait for the remaining seconds. o
+	  APIDOX
+
+2006-02-16 21:32 +0000 [r510315]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Update
+	  tooltip after a break o Do not reset counters when user
+	  unsuspends
+
+2006-02-16 11:05 +0000 [r510087]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Little glitch
+	  in the relax popup removed. It jumped only for one second to the
+	  maximized time and it flashed, even if you didn't touch anything
+	  at all.
+
+2006-02-15 23:22 +0000 [r509975]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Completely
+	  new timer code, based on discussions between Tom and me. o Break
+	  every x seconds of active usage o Big breaks are not expressed in
+	  x tiny breaks, but also get activated after x seconds of active
+	  usage o Detect idleness (so don't break unneccesarily, it's an
+	  annoying bug in the current version) o The docker icon shows an
+	  indication when the next tiny break will occur (#118701) o
+	  Cleanups o Renamed the Minimize button to Skip Still to do: o
+	  APIDOX o Testing FEATURE:118701
+
+2006-02-13 20:48 +0000 [r509165]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Small first step
+	  for xinerama support.
+
+2006-02-12 21:11 +0000 [r508843]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/AUTHORS: - Delete readme when
+	  packaging - EOL fix for AUTHORS file - Dont follow symlinks while
+	  looking for images.
+
+2005-12-26 18:24 +0000 [r491598]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Make tooltip
+	  beware of suspended / unsuspended o Make tooltip behave like a
+	  QToolTip
+
+2005-12-26 17:31 +0000 [r491586]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Hide tooltip
+	  when relax popup shows up.
+
+2005-12-26 17:26 +0000 [r491585]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.cpp: o Actually
+	  'emit' it (i'm sooo n00b) o Emit the hide signal before showing
+	  the popup.
+
+2005-12-26 17:16 +0000 [r491583]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.cpp: Hide tooltip
+	  whenever the user clicks on docker icon.
+
+2005-12-24 13:24 +0000 [r491064]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: This probably
+	  fixed the only regression I could find so far in the new timer
+	  code. In some cases, the main widget was not minimized when the
+	  break was over.
+
+2005-12-23 21:07 +0000 [r490952]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitooltip.cpp (added),
+	  trunk/playground/utils/rsibreak/src/rsitooltip.h (added): And add
+	  these files too, of course.
+
+2005-12-23 20:47 +0000 [r490950]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsipopup.cpp (removed),
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.h (added),
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsipopup.h (removed),
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp (added),
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: o Renamed
+	  RSIPopup to RSIRelaxPopup to avoid confusion with... o A new
+	  tooltip for the docker icon. It's bigger and it's live. You can
+	  actually see the time decreasing, which is (nearly) impossible
+	  with a vanilla QToolTip.
+
+2005-12-18 00:45 +0000 [r489310]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Detect breaks
+	  when the user is passive for the configured amount of time. Won't
+	  work properly if the amount of time for the big break is less
+	  than for the tiny break. But that's not a common case.
+
+2005-12-16 18:57 +0000 [r489005]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog: Update
+
 2005-12-16 09:04 +0000 [r488877]  Bram Schoenmakers bramschoenmakers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: However I don't
