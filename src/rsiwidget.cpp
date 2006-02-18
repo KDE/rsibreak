@@ -52,8 +52,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
 {
     kdDebug() << "Entering RSIWidget::RSIWidget" << endl;
-
-   KMessageBox::information(parent,
+    
+    if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
+    {
+        KMessageBox::information(parent,
                              i18n("Welcome to RSIBreak\n\n"
                                   "In your tray you can now see a clock. "
                                   "When you right-click on that you will see "
@@ -63,7 +65,22 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                   "over the icon.\n\nUse RSIBreak wisely."),
                              i18n("Welcome"),
                              "dont_show_welcome_again_for_001");
-
+        
+        // we dont need to show the blurp about the changes in 0.5 for new users.
+        KMessageBox::saveDontShowAgainContinue("dont_show_welcome_again_for_050");
+    }
+    else 
+        KMessageBox::information(parent,
+                                 i18n("Changes in RSIBreak 0.5.0\n\n"
+                                      "In this version we have changed the way "
+                                      "the timers work. Instead of indicating "
+                                      "after how many tiny breaks you want a "
+                                      "big break, you can now setup after how "
+                                      "many minutes you want a bigbreak.\nPlease "
+                                      "review your current settings.\n\n"),
+                                 i18n("Welcome"),
+                                 "dont_show_welcome_again_for_050");
+    
     m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
                                     QApplication::desktop()->height());
 
