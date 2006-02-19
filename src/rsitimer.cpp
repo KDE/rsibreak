@@ -120,13 +120,6 @@ void RSITimer::resetAfterBigBreak()
     emit updateToolTip( m_tiny_left, m_big_left );
 }
 
-bool RSITimer::currentIsBigBreak()
-{
-    kdDebug() << "Entering RSITimer::currentIsBigBreak" << endl;
-
-    return m_big_left <= m_tiny_left;
-}
-
 // -------------------------- SLOTS ------------------------//
 
 void RSITimer::slotStart()
@@ -164,10 +157,10 @@ void RSITimer::slotRestart()
     slotStart();
 }
 
-void RSITimer::skipTinyBreak()
+void RSITimer::skipBreak()
 {
-    kdDebug() << "Entering RSITimer::skipTinyBreak" << endl;
-    resetAfterTinyBreak();
+    kdDebug() << "Entering RSITimer::skipBreak" << endl;
+    m_big_left <= m_tiny_left ? resetAfterBigBreak() : resetAfterTinyBreak();
     slotStart();
 }
 

@@ -52,7 +52,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
 {
     kdDebug() << "Entering RSIWidget::RSIWidget" << endl;
-    
+
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
         KMessageBox::information(parent,
@@ -65,11 +65,11 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                   "over the icon.\n\nUse RSIBreak wisely."),
                              i18n("Welcome"),
                              "dont_show_welcome_again_for_001");
-        
+
         // we dont need to show the blurp about the changes in 0.5 for new users.
         KMessageBox::saveDontShowAgainContinue("dont_show_welcome_again_for_050");
     }
-    else 
+    else
         KMessageBox::information(parent,
                                  i18n("Changes in RSIBreak 0.5.0\n\n"
                                       "In this version we have changed the way "
@@ -80,7 +80,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                       "review your current settings.\n\n"),
                                  i18n("Welcome"),
                                  "dont_show_welcome_again_for_050");
-    
+
     m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
                                     QApplication::desktop()->height());
 
@@ -148,7 +148,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_accel = new KAccel(this);
     m_accel->insert("minimize", i18n("Skip"),
                     i18n("Abort a break"),Qt::Key_Escape,
-                    this, SLOT( slotMinimize() ));
+                    m_timer, SLOT( skipBreak() ));
 
     buttonRow->addStretch(10);
 
@@ -202,7 +202,7 @@ void RSIWidget::loadImage()
     if (m_files_done.count() == m_files.count())
         m_files_done.clear();
 
-    // get a net yet used number
+    // get a not yet used number
     int j = (int) ((m_files.count()) * (rand() / (RAND_MAX + 1.0)));
     while (m_files_done.findIndex( QString::number(j) ) != -1)
         j = (int) ((m_files.count()) * (rand() / (RAND_MAX + 1.0)));
@@ -304,14 +304,6 @@ void RSIWidget::slotLock()
     if ( rsibreak_screen )
         appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
     kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
-}
-
-void RSIWidget::slotMinimize()
-{
-    kdDebug() << "slotMinize entered" << endl;
-
-    m_timer->currentIsBigBreak() ? m_timer->slotRestart()
-                                 : m_timer->skipTinyBreak();
 }
 
 void RSIWidget::slotGrab()
@@ -421,7 +413,7 @@ void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
     if ( m_miniButton->geometry().contains(e->pos()))
     {
         m_miniButton->setDown( false );
-        slotMinimize();
+        m_timer->skipBreak();
     }
 
     else if (m_lockButton->geometry().contains(e->pos()))
@@ -437,7 +429,7 @@ void RSIWidget::keyPressEvent( QKeyEvent * e)
             << e->key() << " wanted " << m_accel->shortcut("minimize") << endl;
 
     if (e->key() == m_accel->shortcut("minimize"))
-        slotMinimize();
+        m_timer->skipBreak();
 }
 //--------------------------- CONFIG ----------------------------//
 

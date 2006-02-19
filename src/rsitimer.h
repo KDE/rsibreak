@@ -55,11 +55,6 @@ class RSITimer : public QObject
 
         enum { TINY_BREAK = 0, BIG_BREAK = 1 };
 
-        /**
-          Returns true if the next or current break is a big break.
-        */
-        bool currentIsBigBreak();
-
     public slots:
         /**
           Reads the configuration and restarts the timer with
@@ -99,11 +94,11 @@ class RSITimer : public QObject
         void slotRestart();
 
         /**
-          When the user presses the Skip button during a tiny break,
-          this function will be called. It will act like a tiny break has
+          When the user presses the Skip button during a break,
+          this function will be called. It will act like a break has
           just passed.
         */
-        void skipTinyBreak();
+        void skipBreak();
 
     protected:
         /**

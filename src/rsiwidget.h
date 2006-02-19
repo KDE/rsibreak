@@ -59,7 +59,6 @@ class RSIWidget : public QWidget
 
     private slots:
         void slotNewSlide();
-        void slotMinimize();
         void slotLock();
         void minimize();
         void maximize();
@@ -74,7 +73,7 @@ class RSIWidget : public QWidget
         virtual void mousePressEvent( QMouseEvent * e );
         virtual void mouseReleaseEvent( QMouseEvent * e );
         virtual void keyPressEvent( QKeyEvent * e);
-        
+
         /** Sets appropiate icon in tooltip and docker. */
         void setIcon( int );
 
@@ -103,7 +102,7 @@ class RSIWidget : public QWidget
 
         RSIRelaxPopup*  m_relaxpopup;
         RSIToolTip*     m_tooltip;
-        
+
         DCOPIface*      mDcopIface;
 
 };
