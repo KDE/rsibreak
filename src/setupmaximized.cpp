@@ -110,9 +110,8 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    m_disableAccel = new QCheckBox(i18n("&Disable shortcut to skip"),
                                   parent);
    QWhatsThis::add( m_disableAccel,
-                    i18n("Check this option to disable the skip shortcut "
-                         "button. This way you can prevent skipping the "
-                         "break.") );
+                    i18n("Check this option to disable the skip shortcut."
+                         "This way you can prevent skipping the break.") );
    connect(m_disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
    layout->addWidget(m_disableAccel);
 
