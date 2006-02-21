@@ -51,8 +51,6 @@
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
 {
-    kdDebug() << "Entering RSIWidget::RSIWidget" << endl;
-
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
         KMessageBox::information(parent,
@@ -160,7 +158,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
 RSIWidget::~RSIWidget()
 {
-    kdDebug() << "Entering RSIWidget::~RSIWidget" << endl;
     delete m_backgroundimage;
     m_backgroundimage = 0;
 }
@@ -222,25 +219,9 @@ void RSIWidget::loadImage()
                                                   QImage::ScaleMax);
 
     if (m.isNull())
-    {
-        kdWarning() << "constructed a null-image" << endl;
-        kdDebug() << "format: " <<
-                QImageIO::imageFormat(m_files[j]) << endl;
-
-        QImageIO iio;
-        iio.setFileName(m_files[j]);
-        if ( iio.read() )
-            kdDebug() << "Read is ok" << endl;
-        else
-            kdDebug() << "Read failed" << endl;
-
-        kdDebug() << iio.status() << endl;
         return;
-    }
 
-    if (m_backgroundimage->convertFromImage(m))
-        kdDebug() << "New background image set" << endl;
-    else
+    if (!m_backgroundimage->convertFromImage(m))
         kdWarning() << "Failed to set new background image" << endl;
 }
 

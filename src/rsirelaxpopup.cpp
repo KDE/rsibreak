@@ -33,8 +33,6 @@
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
 : KPassivePopup( parent, name )
 {
-    kdDebug() << "Entering RSIRelaxPopup::RSIRelaxPopup" << endl;
-
     QVBox *vbox = new QVBox( this );
     vbox->setSpacing( KDialog::spacingHint() );
 
@@ -56,12 +54,10 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
 
 RSIRelaxPopup::~RSIRelaxPopup()
 {
-    kdDebug() << "Entering RSIRelaxPopup::~RSIRelaxPopup()" << endl;
 }
 
 void RSIRelaxPopup::relax( int n )
 {
-    kdDebug() << "Entering RSIRelaxPopup::relax() " << n << endl;
 
     /**
       Counts how many times a request for relax resets
@@ -106,8 +102,6 @@ void RSIRelaxPopup::relax( int n )
 
 void RSIRelaxPopup::flash()
 {
-    kdDebug() << "Entering RSIRelaxPopup::flash()" << endl;
-
     if( m_useFlash )
     {
       QTimer::singleShot( 500, this, SLOT( unflash() ) );
@@ -118,26 +112,21 @@ void RSIRelaxPopup::flash()
 
 void RSIRelaxPopup::unflash()
 {
-    kdDebug() << "Entering RSIRelaxPopup::unflash()" << endl;
     unsetPalette();
 }
 
 void RSIRelaxPopup::mouseReleaseEvent( QMouseEvent * )
 {
-    kdDebug() << "Entering RSIRelaxPopup::mousePressEvent()" << endl;
-
     /* eat this! */
 }
 
 void RSIRelaxPopup::slotReadConfig()
 {
-    kdDebug() << "Entering RSIRelaxPopup::slotReadConfig" << endl;
     readSettings();
 }
 
 void RSIRelaxPopup::readSettings()
 {
-    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
     config->setGroup("Popup Settings");
     m_usePopup=config->readBoolEntry("UsePopup", true);

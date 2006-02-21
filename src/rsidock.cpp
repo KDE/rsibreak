@@ -38,7 +38,6 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     , m_tooltiptimer( 0 )
 
 {
-    kdDebug() << "Entering RSIDock" << endl;
 
     contextMenu()->insertItem(SmallIcon("configure"),
                             i18n("Configure RSIBreak..."), this,
@@ -68,7 +67,6 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 
 RSIDock::~RSIDock()
 {
-    kdDebug() << "Entering ~RSIDock" << endl;
 }
 
 void RSIDock::slotConfigure()
@@ -183,15 +181,11 @@ void RSIDock::leaveEvent( QEvent * )
 
 void RSIDock::relaxEntered( int i )
 {
-    kdDebug() << "Entering RSIDock::relaxEntered" << endl;
-
     m_tooltiphidden = i > 0;
 }
 
 void RSIDock::slotShowToolTip()
 {
-  kdDebug() << "Entering RSIDock::slotShowToolTip" << endl;
-
   if( !m_tooltiphidden )
     emit showToolTip();
 }

@@ -122,8 +122,6 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
 
 void RSIToolTip::setPixmap( const QPixmap &pix )
 {
-    kdDebug() << "RSIToolTip::setPixmap() entered" << endl;
-
     mIcon->setPixmap( pix );
 }
 
