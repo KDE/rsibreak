@@ -1,3 +1,32 @@
+2006-02-21 15:03 +0000 [r512009]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/TODO,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Update TODO and
+	  remove excessive debug output for the release.
+
+2006-02-19 21:04 +0000 [r511430]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Small cleanup.
+	  I got rid of the currentIsBigBreak() method, it's kinda hackish.
+
+2006-02-19 19:01 +0000 [r511398]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/rsibreak.lsm: typo SVN_SILENT
+
+2006-02-18 15:37 +0000 [r511023]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb: Updates,
+	  prep for rc
+
 2006-02-18 13:19 +0000 [r510910]  Tom Albers tomalbers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: New welcome
