@@ -1,3 +1,6 @@
+v0.5.1 To be released
+- When a break is skipped due to idleness, show a popup that the break is skipped and remove that popup when idle=0.
+
 v0.5.0 2006-01-22
 - Instead of a big break after x tiny breaks, the big break is now
   scheduled at x minutes.

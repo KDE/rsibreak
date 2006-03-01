@@ -66,6 +66,10 @@ class RSIWidget : public QWidget
         void updateIdleAvg( double );
         void readConfig();
         void slotGrab();
+        void tinyBreakSkipped();
+        void bigBreakSkipped();
+        void breakSkipped();
+        void skipBreakEnded();
 
     protected:
         virtual void paintEvent( QPaintEvent* );

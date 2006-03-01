@@ -228,12 +228,12 @@ void RSITimer::timerEvent( QTimerEvent * )
         }
     }
 
-/*
+    /*
         kdDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
             <<  m_big_left << " idle: " << t << endl;
-*/
+    */
 
     if ( t == 0 ) // activity!
     {
@@ -266,6 +266,14 @@ void RSITimer::timerEvent( QTimerEvent * )
         else if ( m_pause_left == 0 )
         {
             // there's no relax moment or break going on.
+            
+            // If we emitted tiny/bigBreakSkipped then we have
+            // to emit a signal again when user becomes active.
+            // so if the timers are original, emit it.
+            if (m_tiny_left == m_intervals["tiny_minimized"] and 
+                m_big_left == m_intervals["big_minimized"])
+                emit skipBreakEnded();
+            
             --m_tiny_left;
             --m_big_left;
         }
@@ -278,11 +286,13 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         // the user was sufficiently idle for a big break
         resetAfterBigBreak();
+        emit bigBreakSkipped();
     }
     else if ( t == m_intervals["tiny_maximized"] && m_tiny_left < m_big_left )
     {
         // the user was sufficiently idle for a tiny break
         resetAfterTinyBreak();
+        emit tinyBreakSkipped();
     }
     else if ( m_relax_left > 0 )
     {

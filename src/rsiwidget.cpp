@@ -103,6 +103,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tooltip, SLOT( hide() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tray, SLOT( relaxEntered( int ) ) );
+    
+    connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
+    connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
+    connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
@@ -359,6 +363,39 @@ void RSIWidget::setIcon(int level)
         m_tray->setPixmap( dockPixmap );
         m_tooltip->setPixmap( toolPixmap );
     }
+}
+
+// ------------------- Popup for skipping break ------------- //
+
+void RSIWidget::tinyBreakSkipped()
+{
+    m_tooltip->setText( i18n("Timer for the tiny break \n"
+                           "has now been reset"));
+    breakSkipped();
+}
+
+void RSIWidget::bigBreakSkipped()
+{
+    m_tooltip->setText( i18n("The timers have now been reset"));
+    breakSkipped();
+}
+
+void RSIWidget::breakSkipped()
+{
+    disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
+                m_tooltip, SLOT( setCounters( int, int ) ) );
+
+    m_tooltip->setPixmap( KSystemTray::loadIcon("rsibreak0") );
+    m_tooltip->setTimeout(0); // autoDelete is false, but after the ->show() it still
+                              // gets hidden after the timeout. Setting to 0 helps.
+    m_tooltip->show();
+}
+
+void RSIWidget::skipBreakEnded()
+{
+    connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
+             m_tooltip, SLOT( setCounters( int, int ) ) );
+    m_tooltip->hide();
 }
 
 // ----------------------------- EVENTS -----------------------//

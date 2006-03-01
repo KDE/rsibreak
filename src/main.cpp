@@ -58,7 +58,7 @@ int main( int argc, char *argv[] )
                           I18N_NOOP("Try to prevent Repetitive Strain Injury by "
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
-                          "(c) 2005, The RSIBreak developers" );
+                          "(c) 2005-2006, The RSIBreak developers" );
 
     aboutData.addAuthor( "Tom Albers", I18N_NOOP("Maintainer and Author"),
                          "tomalbers@kde.nl", "http://www.omat.nl");

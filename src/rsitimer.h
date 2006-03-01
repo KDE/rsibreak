@@ -157,6 +157,23 @@ class RSITimer : public QObject
         */
         void relax( int sec );
 
+        /**
+          Indicates a tinyBreak is skipped because user was enough idle
+        */
+        void tinyBreakSkipped();
+        
+        /**
+           Indicates a bigBreak is skipped because user was enough idle
+         */
+        void bigBreakSkipped();
+        
+        /**
+         Emitted after bigBreakSkipped() and tinyBreakSkipped() on first 
+         activity;
+         */
+        void skipBreakEnded();
+        
+        
     private:
         void readConfig();
         /**

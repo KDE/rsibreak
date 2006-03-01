@@ -43,7 +43,9 @@ class RSIToolTip : public KPassivePopup
     void setPixmap( const QPixmap & );
     /** Sets the tooltip to suspended or unsuspended depending on the parameter. */
     void setSuspended( bool );
-
+    /** Sets the tooltip to @param text */
+    void setText( const QString &text);
+    
   private:
     QLabel *mTinyLeft;
     QLabel *mBigLeft;

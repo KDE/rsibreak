@@ -57,10 +57,7 @@ RSIToolTip::~RSIToolTip()
 void RSIToolTip::setCounters( int tiny_left, int big_left )
 {
     if( m_suspended )
-    {
-      mTinyLeft->setText( i18n("Suspended" ) );
-      mBigLeft->setText( QString::null );
-    }
+        setText( i18n("Suspended" ) );
     else
     {
         int minutes, seconds;
@@ -118,6 +115,12 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         else // minutes = 0 and seconds = 0, remove the old text.
             mBigLeft->setText( QString::null );
     }
+}
+
+void RSIToolTip::setText( const QString &text )
+{
+    mTinyLeft->setText( text );
+    mBigLeft->setText( QString::null );
 }
 
 void RSIToolTip::setPixmap( const QPixmap &pix )

@@ -2,7 +2,6 @@ Whishes:
 - rsi instructions
 - when no image path has yet been entered, default to a reasonable KDE path
 - when no image path is entered, do not display a gray widget, but one with a button "set images path"
-- [TA] when a break is skipped due to idleness, show a popup that the break is skipped and remove that popup when idle=0.
 - [TA||BS] Stats
 - [BS] strict-o-meter
 
