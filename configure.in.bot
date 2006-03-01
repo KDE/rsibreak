@@ -1,14 +1,11 @@
-echo "--"
-echo "-- RSIBreak configure result "
-echo "--"
-if test "x$LIBXSS" != "x"; then
-  echo "-- idle detection will be possible.................. YES"
-else
+if test "x$LIBXSS" == "x"; then
+  echo "--"
+  echo "-- RSIBreak configure result "
+  echo "--"
   echo "-- idle detection will be possible.................. NO"
   echo ""
-  echo "If you want idle detection in RSIBreak, then you should install "
-  echo "the header files of libxss and re-run configure. If you don't "
-  echo "need it, you are ready to compile RSIBreak now."
+  echo "If you want RSIBreak, then you should install "
+  echo "the header files of libxss and re-run configure. "
   echo ""
 fi
 
