@@ -55,6 +55,12 @@ SetupGeneral::SetupGeneral(QWidget* parent )
            "that you want RSIBreak to start when KDE starts.") );
    layout->addWidget(m_autoStart);
    
+   m_useIdleDetection = new QCheckBox(i18n("&Use idle-detection"), parent);
+   QWhatsThis::add( m_useIdleDetection, i18n("With this checkbox you indicate "
+           "that you want to use idle detection. Unchecked RSIBreak will break "
+	   "at fixed times.") );
+   layout->addWidget(m_useIdleDetection);
+   
    readSettings();
 }
 
@@ -70,6 +76,7 @@ void SetupGeneral::applySettings()
 
     config->setGroup("General");
     config->writeEntry("AutoStart", m_autoStart->isChecked());
+    config->writeEntry("UseIdleDetection", m_useIdleDetection->isChecked());
     config->sync();
 }
 
@@ -80,6 +87,7 @@ void SetupGeneral::readSettings()
     
     config->setGroup("General");
     m_autoStart->setChecked(config->readBoolEntry("AutoStart", false));
+    m_useIdleDetection->setChecked(config->readBoolEntry("UseIdleDetection", false));
 }
 
 #include "setupgeneral.moc"

@@ -51,6 +51,12 @@
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
 {
+
+    // Keep these 3 lines _above_ the messagebox, so the text actually is right.
+    m_tray = new RSIDock(this,"Tray Item");
+    m_tray->show();
+    m_tray->setPixmap( KSystemTray::loadIcon("rsibreak0") );
+    
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
         KMessageBox::information(parent,
@@ -81,9 +87,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
                                     QApplication::desktop()->height());
-
-    m_tray = new RSIDock(this,"Tray Item");
-    m_tray->show();
 
     m_tooltip = new RSIToolTip( m_tray, "Tooltip" );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );

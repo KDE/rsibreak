@@ -60,6 +60,7 @@ private:
     void readSettings();
 
     QCheckBox*        m_autoStart;
+    QCheckBox*        m_useIdleDetection;
 };
 
 #endif /* SETUPGENERAL_H */
