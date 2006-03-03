@@ -270,7 +270,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             // If we emitted tiny/bigBreakSkipped then we have
             // to emit a signal again when user becomes active.
             // so if the timers are original, emit it.
-            if (m_tiny_left == m_intervals["tiny_minimized"] and 
+            if (m_tiny_left == m_intervals["tiny_minimized"] || 
                 m_big_left == m_intervals["big_minimized"])
                 emit skipBreakEnded();
             
