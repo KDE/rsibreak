@@ -7,9 +7,7 @@ Whishes:
 
 Bugs: 
 - image extension are hardcoded
-- spotted a 'minutes' and 'seconds' untranslated in tooltip while using the official 0.5 .deb (gnome only?)
 
 Gnome specific bugs:
-- Two Quit's in context menu
 - It is started at login, regardless of the setting
 

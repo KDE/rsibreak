@@ -35,7 +35,7 @@
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
-    , m_tooltiptimer( 0 )
+    , m_hasQuit ( false ), m_tooltiptimer( 0 )
 
 {
 
@@ -142,11 +142,17 @@ void RSIDock::showEvent( QShowEvent * )
 {
     kdDebug() << "Entering RSIDock::showEvent" << endl;
 
-    contextMenu()->insertSeparator();
-    KAction* action = actionCollection()->
-            action(KStdAction::name(KStdAction::Quit));
-    if (action)
-        action->plug(contextMenu());
+    if (!m_hasQuit)
+    {
+        contextMenu()->insertSeparator();
+        
+        KAction* action = actionCollection()->
+                action(KStdAction::name(KStdAction::Quit));
+        if (action)
+            action->plug(contextMenu());
+        
+        m_hasQuit=true;
+    }
 }
 
 void RSIDock::mousePressEvent( QMouseEvent *e )
