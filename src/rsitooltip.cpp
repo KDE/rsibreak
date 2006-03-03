@@ -61,7 +61,7 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
     else
     {
         int minutes, seconds;
-        QString mString, sString;
+        QString mString, sString1, sString2;
 
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.
@@ -70,17 +70,18 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
             minutes = (int)floor(tiny_left/60);
             seconds  = tiny_left-(minutes*60);
             mString = i18n("One minute","%n minutes", minutes);
-            sString = i18n("One second","%n seconds", seconds);
+            sString1 = i18n("One second","%n seconds", seconds);
+            sString2 = i18n("one second","%n seconds", seconds );
 
             if (minutes > 0 && seconds > 0)
                 mTinyLeft->setText( i18n("First argument: minutes, second: seconds "
                                 "both as you defined earlier",
-                                "%1 and %2 remaining until next tiny break").arg(mString, sString) );
+                                "%1 and %2 remaining until next tiny break").arg(mString, sString2) );
 
             else if ( minutes == 0 && seconds > 0 )
                 mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
                                 "defined earlier",
-                                "%1 remaining until next tiny break").arg(sString) );
+                                "%1 remaining until next tiny break").arg(sString1) );
 
             else if ( minutes >0 && seconds == 0 )
                 mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
@@ -96,17 +97,18 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         minutes = (int)floor(big_left/60);
         seconds = big_left-(minutes*60);
         mString = i18n("One minute","%n minutes", minutes);
-        sString = i18n("One second","%n seconds", seconds);
+        sString1 = i18n("One second","%n seconds", seconds);
+        sString2 = i18n("one second","%n seconds", seconds);
 
         if (minutes > 0 && seconds > 0)
             mBigLeft->setText( i18n("First argument: minutes, second: seconds "
                                "both as you defined earlier",
-                               "%1 and %2 remaining until next big break").arg(mString, sString) );
+                               "%1 and %2 remaining until next big break").arg(mString, sString2) );
 
         else if ( minutes == 0 && seconds > 0 )
             mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
                                "defined earlier",
-                               "%1 remaining until next big break").arg(sString) );
+                               "%1 remaining until next big break").arg(sString1) );
 
         else if ( minutes >0 && seconds == 0 )
             mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
