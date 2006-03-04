@@ -133,7 +133,7 @@ class RSITimer : public QObject
 
         /**
           Update the time shown on the fullscreen widget.
-          @param secondsleft Shows the user how many seconds are remaining.
+          @param secondsLeft Shows the user how many seconds are remaining.
         */
         void updateWidget( int secondsLeft );
 
