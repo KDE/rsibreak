@@ -1,12 +1,15 @@
-Whishes:
+Wishes:
 - rsi instructions
 - when no image path has yet been entered, default to a reasonable KDE path
 - when no image path is entered, do not display a gray widget, but one with a button "set images path"
 - [BS] Stats
 - [BS] strict-o-meter
+- [BS] A second timer implementation which ignores idle detection
 
 Bugs: 
 - image extension are hardcoded
+- in some cases, the tooltip does not appear
+- relax popup does not disappear immediately when you choose to suspend RSIBreak
 
 Gnome specific bugs:
 - It is started at login, regardless of the setting.
@@ -14,4 +17,3 @@ Gnome specific bugs:
   start, nor can you disable the startup for GNome when the desktop is in the 
   $prefix/autostart. So: known bug - unresolvable untill a fd.o spec is 
   there and implemented
-
