@@ -9,7 +9,9 @@ Wishes:
 Bugs: 
 - image extension are hardcoded
 - in some cases, the tooltip does not appear
+  ( note: seems only to happen after waiting for a big break in a relax popup )
 - relax popup does not disappear immediately when you choose to suspend RSIBreak
+- when you're idle for the length of a big break, without any break active, it is not detected
 
 Gnome specific bugs:
 - It is started at login, regardless of the setting.
