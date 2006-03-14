@@ -24,6 +24,8 @@
 #include <kdebug.h>
 #include <kconfig.h>
 
+#include "rsistats.h"
+
 #include "rsitimer.h"
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
@@ -55,10 +57,13 @@ RSITimer::RSITimer( QObject *parent, const char *name )
 
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
+
+    restoreSession();
 }
 
 RSITimer::~RSITimer()
 {
+    writeConfig();
     kdDebug() << "Entering RSITimer::~RSITimer" << endl;
 }
 
@@ -71,6 +76,8 @@ int RSITimer::idleTime()
     _mit_info= XScreenSaverAllocInfo();
     XScreenSaverQueryInfo(qt_xdisplay(), qt_xrootwin(), _mit_info);
     totalIdle = (_mit_info->idle/1000);
+#else
+    totalIdle = m_pause_left > 0 ? 1 : 0;
 #endif // HAVE_LIBXSS
 
     return totalIdle;
@@ -160,7 +167,17 @@ void RSITimer::slotRestart()
 void RSITimer::skipBreak()
 {
     kdDebug() << "Entering RSITimer::skipBreak" << endl;
-    m_big_left <= m_tiny_left ? resetAfterBigBreak() : resetAfterTinyBreak();
+
+    if ( m_big_left <= m_tiny_left )
+    {
+        resetAfterBigBreak();
+        RSIStats::instance()->increaseStat( RSIStats::TINY_BREAKS_SKIPPED );
+    }
+    else
+    {
+        resetAfterTinyBreak();
+        RSIStats::instance()->increaseStat( RSIStats::BIG_BREAKS_SKIPPED );
+    }
     slotStart();
 }
 
@@ -191,8 +208,17 @@ void RSITimer::timerEvent( QTimerEvent * )
     // a possible break.
     if ( m_suspended )
         return;
+        
+    RSIStats::instance()->increaseStat( RSIStats::TOTAL_TIME );
 
     int t = idleTime();
+    
+    if ( t == 0 )
+        RSIStats::instance()->increaseStat( RSIStats::ACTIVITY );
+    else
+        RSIStats::instance()->increaseStat( RSIStats::IDLENESS );
+    
+    kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
 
     int breakInterval = m_tiny_left < m_big_left ?
             m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
@@ -227,16 +253,14 @@ void RSITimer::timerEvent( QTimerEvent * )
             return;
         }
     }
-
-    /*
-        kdDebug() << " patience: " << m_patience  << " pause_left: "
+        
+    kdDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
             <<  m_big_left << " idle: " << t << endl;
-    */
 
     if ( t == 0 ) // activity!
-    {
+    {    
         if ( m_patience > 0 ) // we're trying to break
         {
             --m_patience;
@@ -270,9 +294,11 @@ void RSITimer::timerEvent( QTimerEvent * )
             // If we emitted tiny/bigBreakSkipped then we have
             // to emit a signal again when user becomes active.
             // so if the timers are original, emit it.
-            if (m_tiny_left == m_intervals["tiny_minimized"] || 
-                m_big_left == m_intervals["big_minimized"])
+            if ( m_tiny_left == m_intervals["tiny_minimized"] || 
+                m_big_left == m_intervals["big_minimized"] )
+            {
                 emit skipBreakEnded();
+            }
             
             --m_tiny_left;
             --m_big_left;
@@ -285,12 +311,14 @@ void RSITimer::timerEvent( QTimerEvent * )
               m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
     {
         // the user was sufficiently idle for a big break
+        kdDebug() << "Time being idle == big break length" << endl;
         resetAfterBigBreak();
         emit bigBreakSkipped();
     }
     else if ( t == m_intervals["tiny_maximized"] && m_tiny_left < m_big_left )
     {
         // the user was sufficiently idle for a tiny break
+        kdDebug() << "Time being idle == tiny break length" << endl;
         resetAfterTinyBreak();
         emit tinyBreakSkipped();
     }
@@ -307,6 +335,15 @@ void RSITimer::timerEvent( QTimerEvent * )
     if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 &&
          ( m_tiny_left == 0 || m_big_left == 0 ) )
     {
+        if ( nextBreak == TINY_BREAK )
+        {
+            RSIStats::instance()->increaseStat( RSIStats::TINY_BREAKS );
+        }
+        else
+        {
+            RSIStats::instance()->increaseStat( RSIStats::BIG_BREAKS );
+        }
+        
         m_patience = 15;
         emit relax( breakInterval );
         m_relax_left = breakInterval;
@@ -334,6 +371,44 @@ void RSITimer::readConfig()
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
+    }
+
+    config->setGroup("General");
+    QDateTime *tempDt = new QDateTime();
+    m_lastrunDt = config->readDateTimeEntry( "LastRunTimeStamp", tempDt );
+    m_lastrunTiny = config->readNumEntry( "LastRunTinyLeft", 0 );
+    m_lastrunBig = config->readNumEntry( "LastRunBigLeft", 0 );
+
+    delete tempDt;
+    tempDt = 0;
+}
+
+void RSITimer::writeConfig()
+{
+    kdDebug() << "Entering RSITimer::writeConfig" << endl;
+    KConfig *config = kapp->config();
+
+    config->setGroup("General");
+    config->writeEntry( "LastRunTimeStamp", QDateTime::currentDateTime() );
+    config->writeEntry( "LastRunTinyLeft", m_tiny_left );
+    config->writeEntry( "LastRunBigLeft", m_big_left );
+}
+
+void RSITimer::restoreSession()
+{
+    if ( !m_lastrunDt.isNull() )
+    {
+      int between = m_lastrunDt.secsTo( QDateTime::currentDateTime() );
+
+      if ( between < m_intervals["big_minimized"] )
+      {
+          m_big_left = m_lastrunBig - between;
+      }
+
+      if ( between < m_intervals["tiny_minimized"] )
+      {
+          m_tiny_left = m_lastrunTiny - between;
+      }
     }
 }
 

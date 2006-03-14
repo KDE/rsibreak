@@ -20,18 +20,19 @@
 
 #include <klocale.h>
 
+#include "rsistats.h"
 #include "rsistatdialog.h"
 
 RSIStatDialog::RSIStatDialog( QWidget *parent, const char *name )
   : KDialogBase( parent, name, false, i18n("Usage Statistics"), KDialogBase::Ok, KDialogBase::Ok, true )
 {
-  QVBox *layout = new QVBox( this );
-  setMainWidget( layout );
+    mWidget = RSIStats::instance()->widgetFactory( this );
+
+    setMainWidget( mWidget );
 }
 
 RSIStatDialog::~RSIStatDialog()
 {
-
 }
 
 void RSIStatDialog::updateStatistics()

@@ -47,6 +47,7 @@
 #include "rsidock.h"
 #include "rsirelaxpopup.h"
 #include "rsitooltip.h"
+#include "rsistatdialog.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
@@ -372,8 +373,7 @@ void RSIWidget::setIcon(int level)
 
 void RSIWidget::tinyBreakSkipped()
 {
-    m_tooltip->setText( i18n("Timer for the tiny break \n"
-                           "has now been reset"));
+    m_tooltip->setText( i18n("Timer for the tiny break has now been reset"));
     breakSkipped();
 }
 
@@ -385,10 +385,12 @@ void RSIWidget::bigBreakSkipped()
 
 void RSIWidget::breakSkipped()
 {
+    static KIconLoader il;
+
     disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
                 m_tooltip, SLOT( setCounters( int, int ) ) );
 
-    m_tooltip->setPixmap( KSystemTray::loadIcon("rsibreak0") );
+    m_tooltip->setPixmap( il.loadIcon( "rsibreak0", KIcon::Desktop ) );
     m_tooltip->setTimeout(0); // autoDelete is false, but after the ->show() it still
                               // gets hidden after the timeout. Setting to 0 helps.
     m_tooltip->show();

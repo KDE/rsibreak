@@ -21,7 +21,6 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
-#include <qmap.h>
 #include <qtimer.h>
 #include <qdatetime.h>
 
@@ -172,10 +171,17 @@ class RSITimer : public QObject
          activity;
          */
         void skipBreakEnded();
-        
-        
+
     private:
         void readConfig();
+        void writeConfig();
+
+        /**
+          Restores the timers of RSIBreak when the application was closed and
+          started in a short amount of time.
+        */
+        void restoreSession();
+
         /**
           Queries X how many seconds the user has been idle. A value of 0
           means there was activity during the last second.
@@ -197,6 +203,7 @@ class RSITimer : public QObject
         int             m_big_left;
         int             m_pause_left;
         int             m_relax_left;
+
         /**
           When it's time for a break, we wait patiently till the user
           becomes idle. We show a relax popup during this interval.
@@ -205,7 +212,12 @@ class RSITimer : public QObject
         */
         int             m_patience;
 
-        QMap<QString,int> m_intervals;
+        // restore vars
+        QDateTime       m_lastrunDt;
+        int             m_lastrunTiny;
+        int             m_lastrunBig;
+
+        QMap<QString,int>     m_intervals;
 };
 
 #endif

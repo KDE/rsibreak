@@ -21,6 +21,8 @@
 
 #include <qmap.h>
 
+class QWidget;
+
 class RSIStats
 {
 public:
@@ -30,8 +32,9 @@ public:
     static RSIStats *instance();
 
     void reset();
+    int numberOfStats();
 
-    enum RSIStat { TOTALTIME,
+    enum RSIStat { TOTAL_TIME,
                    ACTIVITY,
                    IDLENESS,
                    TINY_BREAKS,
@@ -40,7 +43,10 @@ public:
                    BIG_BREAKS_SKIPPED
                  };
 
+    /** Increase the value of statistic @p stat with 1. */
     void increaseStat( RSIStat stat );
+    
+    /** Gets the value given the @p stat. */
     int getStat( RSIStat stat ) const;
     
     /**
@@ -49,13 +55,18 @@ public:
       @return A string expressed in days, hours, minutes and
       seconds.
     */
+    QString prettifySeconds( int secs );
     
-    QString prettifyTimeInSeconds( int secs );
+    /** Returns a description for the given @p stat. */
+    QString getDescription( RSIStat stat ) const;
+    
+    QWidget *widgetFactory( QWidget *parent = 0 );
     
     // TODO: Afgeleide functies schrijven
     
 private:
-    QMap<QString,int> m_statistics;
+    static RSIStats *m_instance;
+    QMap<RSIStat,int> m_statistics;
 };
 
 #endif // RSISTATS_H

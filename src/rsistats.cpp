@@ -16,9 +16,14 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include <qgrid.h>
+#include <qlabel.h>
+
+#include <klocale.h>
+
 #include "rsistats.h"
 
-static RSIStats *g_instance = 0;
+RSIStats *RSIStats::m_instance = 0;
 
 RSIStats::RSIStats()
 {
@@ -27,58 +32,87 @@ RSIStats::RSIStats()
 
 RSIStats::~RSIStats()
 {
-    delete g_instance; // TODO: ???
+    delete m_instance;
 }
 
 RSIStats *RSIStats::instance()
 {
-  if ( !g_instance )
+  if ( !m_instance )
   {
-      g_instance = new RSIStats();
+      m_instance = new RSIStats();
   }
   
-  return g_instance;
+  return m_instance;
 }
 
 void RSIStats::reset()
 {
-    m_statistics["total_recorded"] = 0;
-    m_statistics["total_activity"] = 0;
-    m_statistics["total_idleness"] = 0;
-    m_statistics["total_tiny_breaks"] = 0;
-    m_statistics["total_big_breaks"] = 0;
-    m_statistics["tiny_breaks_skipped"] = 0;
-    m_statistics["big_breaks_skipped"] = 0;
+    /*
+      Note: The order in this function implies the order
+      in the statistics dialog.
+    */
+    
+    m_statistics[TOTAL_TIME] = 0;
+    m_statistics[ACTIVITY] = 0;
+    m_statistics[IDLENESS] = 0;
+    m_statistics[TINY_BREAKS] = 0;
+    m_statistics[TINY_BREAKS_SKIPPED] = 0;
+    m_statistics[BIG_BREAKS] = 0;
+    m_statistics[BIG_BREAKS_SKIPPED] = 0;
+}
+
+int RSIStats::numberOfStats()
+{
+    return m_statistics.count();
 }
 
 void RSIStats::increaseStat( RSIStat stat )
-{
-    switch ( stat )
-    {
-      case TOTALTIME : ++m_statistics["total_recorded"]; break;
-      case ACTIVITY : ++m_statistics["total_activity"]; break;
-      case IDLENESS : ++m_statistics["total_idleness"]; break;
-      case TINY_BREAKS : ++m_statistics["total_tiny_breaks"]; break;
-      case TINY_BREAKS_SKIPPED : ++m_statistics["tiny_breaks_skipped"]; break;
-      case BIG_BREAKS : ++m_statistics["total_big_breaks"]; break;
-      case BIG_BREAKS_SKIPPED : ++m_statistics["big_breaks_skipped"]; break;
-      default: /* do nothing */ break;
-    }
+{ 
+    ++m_statistics[ stat ];
 }
 
 int RSIStats::getStat( RSIStat stat ) const
 {
+    return m_statistics[ stat ];
+}
+
+QString RSIStats::getDescription( RSIStat stat ) const
+{
     switch ( stat )
     {
-      case TOTALTIME : return m_statistics["total_recorded"];
-      case ACTIVITY : return m_statistics["total_activity"];
-      case IDLENESS : return m_statistics["total_idleness"];
-      case TINY_BREAKS : return m_statistics["total_tiny_breaks"];
-      case TINY_BREAKS_SKIPPED : return m_statistics["tiny_breaks_skipped"];
-      case BIG_BREAKS : return m_statistics["total_big_breaks"];
-      case BIG_BREAKS_SKIPPED : return m_statistics["big_breaks_skipped"];
+      case TOTAL_TIME : return i18n("Total recorded time");
+      case ACTIVITY : return i18n("Total time of activity");
+      case IDLENESS : return i18n("Total time being idle");
+      case TINY_BREAKS : i18n("Total amount of tiny breaks");
+      case TINY_BREAKS_SKIPPED : return i18n("Number of skipped tiny breaks");
+      case BIG_BREAKS : return i18n("Total amount of big breaks");
+      case BIG_BREAKS_SKIPPED : return i18n("Number of skipped big breaks");
       default: /* do nothing */ break;
     }
+
+    return QString::null;
+}
+
+QString RSIStats::prettifySeconds( int secs )
+{
+    // TODO
+    QString s = QString::number( secs );
     
-    return -1;
+    return s;
+}
+
+QWidget *RSIStats::widgetFactory( QWidget *parent )
+{
+  QGrid *w = new QGrid( 2, parent );
+  w->setSpacing( 5 );
+  
+  QMapConstIterator<RSIStat,int> it;
+  for ( it = m_statistics.begin() ; it != m_statistics.end() ; ++it )
+  {
+    new QLabel( getDescription( it.key() ), w );
+    QLabel *l = new QLabel( prettifySeconds( it.data() ), w );
+    l->setAlignment( Qt::AlignRight );
+  }
+  
+  return w;
 }

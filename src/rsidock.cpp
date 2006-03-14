@@ -21,6 +21,7 @@
 
 #include "rsidock.h"
 #include "setup.h"
+#include "rsistatdialog.h"
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -45,6 +46,7 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     m_suspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
                             i18n("Suspend RSIBreak"), this,
                             SLOT(slotSuspend()));
+    contextMenu()->insertItem(SmallIcon("gear"), i18n("Usage Statistics"), this, SLOT( slotShowStatistics() ) );
     contextMenu()->insertSeparator();
     contextMenu()->insertItem(i18n("Report Bug..."), this,
                             SLOT(slotReportBug()));
@@ -192,8 +194,18 @@ void RSIDock::relaxEntered( int i )
 
 void RSIDock::slotShowToolTip()
 {
-  if( !m_tooltiphidden )
-    emit showToolTip();
+    kdDebug() << "Entering RSIDock::slotShowToolTip" << endl;
+
+    if( !m_tooltiphidden )
+      emit showToolTip();
+}
+
+void RSIDock::slotShowStatistics()
+{
+    kdDebug() << "Entering RSIDock::showStatistics()" << endl;
+
+    RSIStatDialog dlg;
+    dlg.exec();
 }
 
 #include "rsidock.moc"

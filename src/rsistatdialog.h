@@ -34,6 +34,8 @@ public:
 
 public slots:
   void updateStatistics();
+private:
+  QWidget *mWidget;
 };
 
 #endif
