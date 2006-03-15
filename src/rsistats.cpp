@@ -83,7 +83,7 @@ QString RSIStats::getDescription( RSIStat stat ) const
       case TOTAL_TIME : return i18n("Total recorded time");
       case ACTIVITY : return i18n("Total time of activity");
       case IDLENESS : return i18n("Total time being idle");
-      case TINY_BREAKS : i18n("Total amount of tiny breaks");
+      case TINY_BREAKS : return i18n("Total amount of tiny breaks");
       case TINY_BREAKS_SKIPPED : return i18n("Number of skipped tiny breaks");
       case BIG_BREAKS : return i18n("Total amount of big breaks");
       case BIG_BREAKS_SKIPPED : return i18n("Number of skipped big breaks");

@@ -218,7 +218,9 @@ void RSITimer::timerEvent( QTimerEvent * )
     else
         RSIStats::instance()->increaseStat( RSIStats::IDLENESS );
     
+    /*
     kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
+    */
 
     int breakInterval = m_tiny_left < m_big_left ?
             m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
@@ -253,11 +255,13 @@ void RSITimer::timerEvent( QTimerEvent * )
             return;
         }
     }
-        
+    
+    /* 
     kdDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
             <<  m_big_left << " idle: " << t << endl;
+    */
 
     if ( t == 0 ) // activity!
     {    
