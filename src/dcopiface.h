@@ -56,9 +56,9 @@ signals:
     
     /**
      * This signal is emitted when @ref suspend() or @ref resume() is called via DCOP
-     * @param bool true to suspend and false when resume is requested.
+     * @param suspend true to suspend and false when resume is requested.
      */
-    void signalSuspend( bool );
+    void signalSuspend( bool suspend );
 
 public:
 

@@ -5,7 +5,6 @@ Wishes:
 - [BS] Stats
 - [BS] strict-o-meter
 - [BS] A second timer implementation which ignores idle detection
-- make idle notifications configurable. Annoying when watching a movie.
 
 Bugs: 
 - image extension are hardcoded

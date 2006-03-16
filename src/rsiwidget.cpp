@@ -373,12 +373,18 @@ void RSIWidget::setIcon(int level)
 
 void RSIWidget::tinyBreakSkipped()
 {
+    if (!m_showTimerReset)
+        return;
+    
     m_tooltip->setText( i18n("Timer for the tiny break has now been reset"));
     breakSkipped();
 }
 
 void RSIWidget::bigBreakSkipped()
 {
+    if (!m_showTimerReset)
+        return;
+    
     m_tooltip->setText( i18n("The timers have now been reset"));
     breakSkipped();
 }
@@ -398,6 +404,9 @@ void RSIWidget::breakSkipped()
 
 void RSIWidget::skipBreakEnded()
 {
+    if (!m_showTimerReset)
+        return;
+    
     connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
              m_tooltip, SLOT( setCounters( int, int ) ) );
     m_tooltip->hide();
@@ -494,7 +503,8 @@ void RSIWidget::readConfig()
     }
 
     m_slideInterval = config->readNumEntry("SlideInterval", 2);
-
+    m_showTimerReset = config->readBoolEntry("ShowTimerReset", true);
+    
     delete Black;
     delete t;
 }

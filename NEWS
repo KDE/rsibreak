@@ -1,5 +1,6 @@
 v0.5.1 To be released
 - When a break is skipped due to idleness, show a popup that the break is skipped and remove that popup when idle=0.
+- idle notifications are now optional, they were annoying when watching a movie
 - libxss is a no longer optional, it is required
 - Statistics
 - RSIBreak reminds the timer states when you quit. It can restore the timers if you restart RSIBreak afterwards in a short timeframe. This is handy for rebooting (for those zealots who believe rebooting solves problems)

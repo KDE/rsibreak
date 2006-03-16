@@ -56,11 +56,15 @@ public:
      */
     void applySettings();
 
+private slots:
+    void slotShowTimer();
+    
 private:
     void readSettings();
 
     QCheckBox*        m_autoStart;
     QCheckBox*        m_useIdleDetection;
+    QCheckBox*        m_showTimerReset;
 };
 
 #endif /* SETUPGENERAL_H */

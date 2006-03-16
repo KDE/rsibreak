@@ -60,13 +60,26 @@ SetupGeneral::SetupGeneral(QWidget* parent )
            "that you want to use idle detection. Unchecked RSIBreak will break "
 	   "at fixed times.") );
    layout->addWidget(m_useIdleDetection);
+   connect(m_useIdleDetection , SIGNAL(toggled(bool)), SLOT(slotShowTimer()));
+   
+   m_showTimerReset = new QCheckBox(i18n("&Show when timers are reset"), parent);
+   QWhatsThis::add( m_showTimerReset, i18n("With this checkbox you indicate "
+           "that you want to see when the timers are reset. This happens when you "
+           "have been idle for a while.") );
+   layout->addWidget(m_showTimerReset);
    
    readSettings();
+   slotShowTimer();
 }
 
 SetupGeneral::~SetupGeneral()
 {
     kdDebug() << "Entering ~SetupGeneral" << endl;
+}
+
+void SetupGeneral::slotShowTimer()
+{
+    m_showTimerReset->setEnabled(m_useIdleDetection->isChecked());
 }
 
 void SetupGeneral::applySettings()
@@ -76,7 +89,10 @@ void SetupGeneral::applySettings()
 
     config->setGroup("General");
     config->writeEntry("AutoStart", m_autoStart->isChecked());
+    
+    config->setGroup("General Settings");
     config->writeEntry("UseIdleDetection", m_useIdleDetection->isChecked());
+    config->writeEntry("ShowTimerReset", m_showTimerReset->isChecked());
     config->sync();
 }
 
@@ -87,7 +103,10 @@ void SetupGeneral::readSettings()
     
     config->setGroup("General");
     m_autoStart->setChecked(config->readBoolEntry("AutoStart", false));
-    m_useIdleDetection->setChecked(config->readBoolEntry("UseIdleDetection", false));
+    
+    config->setGroup("General Settings");
+    m_useIdleDetection->setChecked(config->readBoolEntry("UseIdleDetection", true));
+    m_showTimerReset->setChecked(config->readBoolEntry("ShowTimerReset", true));
 }
 
 #include "setupgeneral.moc"
