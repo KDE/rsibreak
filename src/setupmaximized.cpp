@@ -36,7 +36,13 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
+#include <kdeversion.h>
+
+#if KDE_IS_VERSION(3,3,91)
 #include <kshortcutdialog.h>
+#else
+#include <kmessagebox.h>
+#endif
 
 // Local includes.
 
@@ -160,10 +166,15 @@ void SetupMaximized::slotShortcutPicker()
 {
     kdDebug() << "Entering slotShortcutPicker" << endl;
 
+#if KDE_IS_VERSION(3,3,91)
     KShortcutDialog key(m_shortcut,true);
     key.exec();
     m_shortcut=key.shortcut().toString();
     m_shortcutBut->setText(m_shortcut);
+#else
+    KMessageBox::information(this, i18n("You are using KDE 3.3 or older, "
+          "with this version of KDE, you can not change this shortcut."));
+#endif
 }
 
 void SetupMaximized::slotFolderPicker()

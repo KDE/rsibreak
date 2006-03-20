@@ -36,7 +36,6 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
-#include <kshortcutdialog.h>
 
 // Local includes.
 
