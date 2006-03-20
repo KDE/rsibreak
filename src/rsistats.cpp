@@ -22,6 +22,7 @@
 #include <klocale.h>
 
 #include "rsistats.h"
+#include "rsilib.h"
 
 RSIStats *RSIStats::m_instance = 0;
 
@@ -95,10 +96,7 @@ QString RSIStats::getDescription( RSIStat stat ) const
 
 QString RSIStats::prettifySeconds( int secs )
 {
-    // TODO
-    QString s = QString::number( secs );
-    
-    return s;
+    return RSILib::formatSeconds( secs );
 }
 
 QWidget *RSIStats::widgetFactory( QWidget *parent )

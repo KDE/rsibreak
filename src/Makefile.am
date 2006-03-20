@@ -4,7 +4,7 @@ INCLUDES =  -I$(top_srcdir) $(all_includes)
 # these are the headers for your project
 noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h \
 	setuptiming.h setupmaximized.h setuppopup.h rsitimer.h rsirelaxpopup.h \
-	rsitooltip.h rsistatdialog.h rsistats.h
+	rsitooltip.h rsistatdialog.h rsistats.h rsilib.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -26,7 +26,7 @@ bin_PROGRAMS = rsibreak
 rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
 	main.cpp rsiwidget.cpp rsitimer.cpp rsirelaxpopup.cpp setuppopup.cpp \
 	setupmaximized.cpp rsitooltip.cpp dcopiface.cpp dcopiface.skel \
-	rsistatdialog.cpp rsistats.cpp
+	rsistatdialog.cpp rsistats.cpp rsilib.cpp
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS)
 

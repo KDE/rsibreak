@@ -27,6 +27,7 @@
 #include <math.h>
 
 #include "rsitooltip.h"
+#include "rsilib.h"
 
 RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
   : KPassivePopup( parent, name ), m_suspended( false )
@@ -60,33 +61,13 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         setText( i18n("Suspended" ) );
     else
     {
-        int minutes, seconds;
-        QString mString, sString1, sString2;
-
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.
         if (tiny_left != big_left)
         {
-            minutes = (int)floor(tiny_left/60);
-            seconds  = tiny_left-(minutes*60);
-            mString = i18n("One minute","%n minutes", minutes);
-            sString1 = i18n("One second","%n seconds", seconds);
-            sString2 = i18n("one second","%n seconds", seconds );
-
-            if (minutes > 0 && seconds > 0)
-                mTinyLeft->setText( i18n("First argument: minutes, second: seconds "
-                                "both as you defined earlier",
-                                "%1 and %2 remaining until next tiny break").arg(mString, sString2) );
-
-            else if ( minutes == 0 && seconds > 0 )
-                mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
-                                "defined earlier",
-                                "%1 remaining until next tiny break").arg(sString1) );
-
-            else if ( minutes >0 && seconds == 0 )
-                mTinyLeft->setText( i18n("Argument: seconds part or minutes part as "
-                                "defined earlier",
-                                "%1 remaining until next tiny break").arg(mString) );
+            QString formattedText = RSILib::formatSeconds( tiny_left );
+            if (!formattedText.isNull())
+                mTinyLeft->setText( i18n("%1 remaining until next tiny break").arg(formattedText));
             else // minutes = 0 and seconds = 0, remove the old text.
                 mTinyLeft->setText( QString::null );
         }
@@ -94,26 +75,10 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
             mTinyLeft->setText( QString::null );
 
         // do the same for the big break
-        minutes = (int)floor(big_left/60);
-        seconds = big_left-(minutes*60);
-        mString = i18n("One minute","%n minutes", minutes);
-        sString1 = i18n("One second","%n seconds", seconds);
-        sString2 = i18n("one second","%n seconds", seconds);
+        QString formattedText = RSILib::formatSeconds( big_left );
 
-        if (minutes > 0 && seconds > 0)
-            mBigLeft->setText( i18n("First argument: minutes, second: seconds "
-                               "both as you defined earlier",
-                               "%1 and %2 remaining until next big break").arg(mString, sString2) );
-
-        else if ( minutes == 0 && seconds > 0 )
-            mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
-                               "defined earlier",
-                               "%1 remaining until next big break").arg(sString1) );
-
-        else if ( minutes >0 && seconds == 0 )
-            mBigLeft->setText( i18n("Argument: seconds part or minutes part as "
-                               "defined earlier",
-                               "%1 remaining until next big break").arg(mString) );
+        if (!formattedText.isNull())
+            mBigLeft->setText( i18n("%1 remaining until next big break").arg(formattedText));
         else // minutes = 0 and seconds = 0, remove the old text.
             mBigLeft->setText( QString::null );
     }

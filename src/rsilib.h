@@ -1,0 +1,48 @@
+/* This file is part of the KDE project
+   Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public
+   License as published by the Free Software Foundation; either
+   version 2 of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+*/
+
+#ifndef RSILIB_H
+#define RSILIB_H
+
+#include <qdatetime.h>
+#include <qimage.h>
+
+#include <kpassivepopup.h>
+
+/**
+ * @class RSILib 
+ * This class consists of a few commonly used routines
+ * @author Tom Albers <tomalbers@kde.nl>
+ */
+class RSILib
+{
+  public:
+    /**
+     * Converts @p seconds to a string.
+     * @param seconds the amount of seconds
+     * @returns a formatted string. Examples:
+     * - 60: "One minute"
+     * - 61: "One minute and one second"
+     * - 125: "2 minutes and 5 seconds"
+     * - 2: "2 seconds"
+     * - 0: null
+     */
+    static QString formatSeconds(const int seconds);
+};
+
+#endif // RSITOOLTIP_H
