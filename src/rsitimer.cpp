@@ -50,7 +50,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
         m_idleDetection = true;
 #endif
 
-    kdDebug() << "IDLE Detection is" << (m_idleDetection?QString::null:"not") << "possible" << endl;
+    kdDebug() << "IDLE Detection is " << (m_idleDetection?QString::null:"not") << "possible" << endl;
 
     startTimer( 1000 );
     slotReadConfig();
@@ -76,6 +76,7 @@ int RSITimer::idleTime()
     _mit_info= XScreenSaverAllocInfo();
     XScreenSaverQueryInfo(qt_xdisplay(), qt_xrootwin(), _mit_info);
     totalIdle = (_mit_info->idle/1000);
+    XFree(_mit_info);
 #else
     totalIdle = m_pause_left > 0 ? 1 : 0;
 #endif // HAVE_LIBXSS
