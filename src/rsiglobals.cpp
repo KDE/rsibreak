@@ -21,9 +21,9 @@
 
 #include <math.h>
 
-#include "rsilib.h"
+#include "rsiglobals.h"
 
-QString RSILib::formatSeconds( const int seconds )
+QString RSIGlobals::formatSeconds( const int seconds )
 {
     int mins, secs;
     QString mString, sString1, sString2;

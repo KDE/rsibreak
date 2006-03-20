@@ -27,7 +27,7 @@
 #include <math.h>
 
 #include "rsitooltip.h"
-#include "rsilib.h"
+#include "rsiglobals.h"
 
 RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
   : KPassivePopup( parent, name ), m_suspended( false )
@@ -65,7 +65,7 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         // a big break planned at the same time.
         if (tiny_left != big_left)
         {
-            QString formattedText = RSILib::formatSeconds( tiny_left );
+            QString formattedText = RSIGlobals::formatSeconds( tiny_left );
             if (!formattedText.isNull())
                 mTinyLeft->setText( i18n("%1 remaining until next tiny break").arg(formattedText));
             else // minutes = 0 and seconds = 0, remove the old text.
@@ -75,7 +75,7 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
             mTinyLeft->setText( QString::null );
 
         // do the same for the big break
-        QString formattedText = RSILib::formatSeconds( big_left );
+        QString formattedText = RSIGlobals::formatSeconds( big_left );
 
         if (!formattedText.isNull())
             mBigLeft->setText( i18n("%1 remaining until next big break").arg(formattedText));

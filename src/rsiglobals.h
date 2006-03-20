@@ -16,8 +16,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#ifndef RSILIB_H
-#define RSILIB_H
+#ifndef RSIGLOBALS_H
+#define RSIGLOBALS_H
 
 #include <qdatetime.h>
 #include <qimage.h>
@@ -25,11 +25,11 @@
 #include <kpassivepopup.h>
 
 /**
- * @class RSILib 
+ * @class RSIGlobals
  * This class consists of a few commonly used routines
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSILib
+class RSIGlobals
 {
   public:
     /**
