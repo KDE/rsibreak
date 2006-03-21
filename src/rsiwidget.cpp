@@ -244,7 +244,7 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 
     QDir dir( folder);
 
-    if ( !dir.exists() or !dir.isReadable() )
+    if ( !dir.exists() || !dir.isReadable() )
     {
         kdWarning() << "Folder does not exist or is not readable: "
                 << folder << endl;
