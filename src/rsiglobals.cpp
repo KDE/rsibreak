@@ -25,29 +25,46 @@
 
 QString RSIGlobals::formatSeconds( const int seconds )
 {
-    int mins, secs;
-    QString mString, sString1, sString2;
+    int mins, secs, hours, remaining;
+    QString hString, mString1, mString2, sString1, sString2;
     
-    mins = (int)floor(seconds/60);
-    secs = seconds-(mins*60);
-    mString = i18n("One minute","%n minutes", mins);
+    remaining = seconds;
+    
+    hours= (int)floor(remaining/3600);
+    remaining = remaining-(hours*3600);
+    
+    mins = (int)floor(remaining/60);
+    secs = remaining-(mins*60);
+    
+    hString = i18n("One hour","%n hours", hours);
+    mString1 = i18n("One minute","%n minutes", mins);
+    mString2 = i18n("one minute","%n minutes", mins);
     sString1 = i18n("One second","%n seconds", secs);
     sString2 = i18n("one second","%n seconds", secs);
     
-    if (mins > 0 && secs > 0)
-        return(i18n("First argument: minutes, second: seconds "
+    if (hours > 0 and mins >0)
+        return(i18n("Arguments: hours, minutes "
                     "both as you defined earlier",
-                    "%1 and %2").arg(mString, sString2) );
+                    "%1 and %2").arg(hString, mString2) );
+    else if (hours > 0 and mins == 0)
+        return( hString );
     
-    else if ( mins == 0 && secs > 0 )
-        return( i18n("Argument: seconds part or minutes part as "
-                      "defined earlier",
-                      "%1").arg(sString1) );
+    else if (hours == 0)
+    {
+        if (mins > 0 && secs > 0)
+            return(i18n("First argument: minutes, second: seconds "
+                        "both as you defined earlier",
+                        "%1 and %2").arg(mString1, sString2) );
+        
+        else if ( mins == 0 && secs > 0 )
+            return( sString1 );
+        
+        else if ( mins >0 && secs == 0 )
+            return( mString1) ;
+        
+        else // minutes = 0 and seconds = 0, remove the old text.
+            return( QString::null );
+    }
     
-    else if ( mins >0 && secs == 0 )
-        return( i18n("Argument: seconds part or minutes part as "
-                     "defined earlier",
-                     "%1").arg(mString) );
-    else // minutes = 0 and seconds = 0, remove the old text.
-        return( QString::null );
+    return( QString::null ); //should not get here
 }

@@ -33,9 +33,11 @@ class RSIGlobals
 {
   public:
     /**
-     * Converts @p seconds to a string.
+     * Converts @p seconds to a reasonable string.
      * @param seconds the amount of seconds
      * @returns a formatted string. Examples:
+     * - 3601: "One hour"
+     * - 3665: "One hour and one minute"
      * - 60: "One minute"
      * - 61: "One minute and one second"
      * - 125: "2 minutes and 5 seconds"

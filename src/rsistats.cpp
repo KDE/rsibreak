@@ -108,7 +108,14 @@ QWidget *RSIStats::widgetFactory( QWidget *parent )
   for ( it = m_statistics.begin() ; it != m_statistics.end() ; ++it )
   {
     new QLabel( getDescription( it.key() ), w );
-    QLabel *l = new QLabel( prettifySeconds( it.data() ), w );
+    
+    QLabel *l;
+    if ( it.key() == TOTAL_TIME || it.key() == ACTIVITY || 
+         it.key() == IDLENESS ) 
+        l = new QLabel( prettifySeconds( it.data() ), w );
+    else
+        l = new QLabel( QString::number(it.data()),w );
+        
     l->setAlignment( Qt::AlignRight );
   }
   
