@@ -18,7 +18,9 @@
 
 #include <qvbox.h>
 
+#include <kdebug.h>
 #include <klocale.h>
+#include <qtimer.h>
 
 #include "rsistats.h"
 #include "rsistatdialog.h"
@@ -29,15 +31,20 @@ RSIStatDialog::RSIStatDialog( QWidget *parent, const char *name )
     mWidget = RSIStats::instance()->widgetFactory( this );
 
     setMainWidget( mWidget );
+    
+    mTimer = new QTimer(this);
+    connect(mTimer, SIGNAL(timeout()),  SLOT(updateStatistics()));
+    mTimer->start(1000);
 }
 
 RSIStatDialog::~RSIStatDialog()
 {
+    delete mTimer;
 }
 
 void RSIStatDialog::updateStatistics()
 {
-
+    kdDebug() << "refresh" << endl;
 }
 
 #include "rsistatdialog.moc"

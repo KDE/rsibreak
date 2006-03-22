@@ -42,7 +42,7 @@ class RSIGlobals
      * - 61: "One minute and one second"
      * - 125: "2 minutes and 5 seconds"
      * - 2: "2 seconds"
-     * - 0: null
+     * - 0: "0 seconds"
      */
     static QString formatSeconds(const int seconds);
 };

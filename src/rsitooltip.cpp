@@ -75,10 +75,9 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
             mTinyLeft->setText( QString::null );
 
         // do the same for the big break
-        QString formattedText = RSIGlobals::formatSeconds( big_left );
-
-        if (!formattedText.isNull())
-            mBigLeft->setText( i18n("%1 remaining until next big break").arg(formattedText));
+        if (big_left>0)
+            mBigLeft->setText( i18n("%1 remaining until next big break")
+                    .arg(RSIGlobals::formatSeconds( big_left )));
         else // minutes = 0 and seconds = 0, remove the old text.
             mBigLeft->setText( QString::null );
     }

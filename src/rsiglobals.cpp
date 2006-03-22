@@ -62,8 +62,8 @@ QString RSIGlobals::formatSeconds( const int seconds )
         else if ( mins >0 && secs == 0 )
             return( mString1) ;
         
-        else // minutes = 0 and seconds = 0, remove the old text.
-            return( QString::null );
+        else
+            return( i18n("0 seconds") );
     }
     
     return( QString::null ); //should not get here

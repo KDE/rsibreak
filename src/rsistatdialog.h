@@ -24,6 +24,7 @@
 #include <kdialogbase.h>
 
 class RSIStats;
+class QTimer;
 
 class RSIStatDialog : public KDialogBase
 {
@@ -36,6 +37,7 @@ public slots:
   void updateStatistics();
 private:
   QWidget *mWidget;
+  QTimer  *mTimer;
 };
 
 #endif
