@@ -25,13 +25,12 @@
 #include <kpassivepopup.h>
 
 /**
- * @class RSIGlobals
+ * @namespace RSIGlobals
  * This class consists of a few commonly used routines
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIGlobals
+namespace RSIGlobals
 {
-  public:
     /**
      * Converts @p seconds to a reasonable string.
      * @param seconds the amount of seconds
@@ -44,7 +43,7 @@ class RSIGlobals
      * - 2: "2 seconds"
      * - 0: "0 seconds"
      */
-    static QString formatSeconds(const int seconds);
+    QString formatSeconds(const int seconds);
 };
 
 #endif // RSITOOLTIP_H
