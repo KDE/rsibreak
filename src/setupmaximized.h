@@ -24,12 +24,7 @@
 #ifndef SETUPMAXIMIZED_H
 #define SETUPMAXIMIZED_H
 
-class QCheckBox;
-class QPushButton;
-class QLineEdit;
-class QFont;
-class QHBox;
-class KColorButton;
+class SetupMaximizedPriv;
 
 /**
  * @class SetupMaximized
@@ -73,21 +68,7 @@ private slots:
 
 private:
     void readSettings();
-
-    QHBox*            m_colorBox;
-    QHBox*            m_fontBox;
-    QHBox*            m_shortcutBox;
-    QPushButton*      m_counterFontBut;
-    QPushButton*      m_folderBut;
-    QPushButton*      m_shortcutBut;
-    QLineEdit*        m_imageFolderEdit;
-    QString           m_shortcut;
-    QFont             m_counterFont;
-    KColorButton*     m_counterColor;
-    QCheckBox*        m_searchRecursiveCheck;
-    QCheckBox*        m_hideMinimizeButton;
-    QCheckBox*        m_hideCounter;
-    QCheckBox*        m_disableAccel;
+    SetupMaximizedPriv  *d;
 };
 
 #endif /* SETUPMAXIMIZED_H */

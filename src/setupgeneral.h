@@ -24,7 +24,7 @@
 #ifndef SETUPGENERAL_H
 #define SETUPGENERAL_H
 
-class QCheckBox;
+class SetupGeneralPriv;
 
 /**
  * @class SetupGeneral
@@ -62,9 +62,7 @@ private slots:
 private:
     void readSettings();
 
-    QCheckBox*        m_autoStart;
-    QCheckBox*        m_useIdleDetection;
-    QCheckBox*        m_showTimerReset;
+    SetupGeneralPriv    *d;
 };
 
 #endif /* SETUPGENERAL_H */

@@ -48,67 +48,79 @@
 
 #include "setuptiming.h"
 
+class SetupTimingPriv
+{
+public:
+    KIntNumInput*          tinyInterval;
+    KIntNumInput*          tinyDuration;
+    KIntNumInput*          bigInterval;
+    KIntNumInput*          bigDuration;
+    KIntNumInput*          slideInterval;
+};
 
 SetupTiming::SetupTiming(QWidget* parent )
            : QWidget(parent)
 {
-   kdDebug() << "Entering SetupTiming" << endl;
-   QVBoxLayout *layout = new QVBoxLayout( parent );
-   layout->setSpacing( KDialog::spacingHint() );
-   layout->setAlignment( AlignTop );
-
-   QVGroupBox *tinyBox = new QVGroupBox(parent);
-   tinyBox->setTitle(i18n("Tiny Breaks"));
-
-   QHBox *m = new QHBox(tinyBox);
-   new QLabel(i18n("Tiny break every:"), m);
-   m_tinyInterval = new KIntNumInput(m);
-   m_tinyInterval->setRange(1,1000,1,false);
-   m_tinyInterval->setSuffix( " " + i18n("minutes") );
-   connect(m_tinyInterval, SIGNAL(valueChanged(int)),
-           SLOT(slotTinyValueChanged( int )));
-   
-   QHBox *m2 = new QHBox(tinyBox);
-   new QLabel(i18n("For a duration of:"), m2);
-   m_tinyDuration = new KIntNumInput(m2);
-   m_tinyDuration->setRange(1,1000,1,false);
-   m_tinyDuration->setSuffix( " " + i18n("seconds") );
-   layout->addWidget(tinyBox);
-
-   QVGroupBox *bigBox = new QVGroupBox(parent);
-   bigBox->setTitle(i18n("Big Breaks"));
-
-   QHBox *m3 = new QHBox(bigBox);
-   new QLabel(i18n("Big break every:"), m3);
-   m_bigInterval = new KIntNumInput(m3);
-   m_bigInterval->setRange(1,1000,1,false);
-   m_bigInterval->setSuffix( " " + i18n("minutes") );
-
-   QHBox *m4 = new QHBox(bigBox);
-   new QLabel(i18n("For a duration of:"), m4);
-   m_bigDuration = new KIntNumInput(m4);
-   m_bigDuration->setRange(1,1000,1,false);
-   m_bigDuration->setSuffix( " " + i18n("minutes") );
-
-   layout->addWidget(bigBox);
-
-   QVGroupBox *slideBox = new QVGroupBox(parent);
-   slideBox->setTitle(i18n("Slideshow"));
-
-   QHBox *m5 = new QHBox(slideBox);
-   new QLabel(i18n("Change images every:"), m5);
-   m_slideInterval = new KIntNumInput(m5);
-   m_slideInterval->setRange(3,1000,1,false);
-   m_slideInterval->setSuffix( " " + i18n("seconds") );
-
-   layout->addWidget(slideBox);
-   layout->addStretch(10);
-   readSettings();
+    kdDebug() << "Entering SetupTiming" << endl;
+    d = new SetupTimingPriv;
+    
+    QVBoxLayout *layout = new QVBoxLayout( parent );
+    layout->setSpacing( KDialog::spacingHint() );
+    layout->setAlignment( AlignTop );
+    
+    QVGroupBox *tinyBox = new QVGroupBox(parent);
+    tinyBox->setTitle(i18n("Tiny Breaks"));
+    
+    QHBox *m = new QHBox(tinyBox);
+    new QLabel(i18n("Tiny break every:"), m);
+    d->tinyInterval = new KIntNumInput(m);
+    d->tinyInterval->setRange(1,1000,1,false);
+    d->tinyInterval->setSuffix( " " + i18n("minutes") );
+    connect(d->tinyInterval, SIGNAL(valueChanged(int)),
+            SLOT(slotTinyValueChanged( int )));
+    
+    QHBox *m2 = new QHBox(tinyBox);
+    new QLabel(i18n("For a duration of:"), m2);
+    d->tinyDuration = new KIntNumInput(m2);
+    d->tinyDuration->setRange(1,1000,1,false);
+    d->tinyDuration->setSuffix( " " + i18n("seconds") );
+    layout->addWidget(tinyBox);
+    
+    QVGroupBox *bigBox = new QVGroupBox(parent);
+    bigBox->setTitle(i18n("Big Breaks"));
+    
+    QHBox *m3 = new QHBox(bigBox);
+    new QLabel(i18n("Big break every:"), m3);
+    d->bigInterval = new KIntNumInput(m3);
+    d->bigInterval->setRange(1,1000,1,false);
+    d->bigInterval->setSuffix( " " + i18n("minutes") );
+    
+    QHBox *m4 = new QHBox(bigBox);
+    new QLabel(i18n("For a duration of:"), m4);
+    d->bigDuration = new KIntNumInput(m4);
+    d->bigDuration->setRange(1,1000,1,false);
+    d->bigDuration->setSuffix( " " + i18n("minutes") );
+    
+    layout->addWidget(bigBox);
+    
+    QVGroupBox *slideBox = new QVGroupBox(parent);
+    slideBox->setTitle(i18n("Slideshow"));
+    
+    QHBox *m5 = new QHBox(slideBox);
+    new QLabel(i18n("Change images every:"), m5);
+    d->slideInterval = new KIntNumInput(m5);
+    d->slideInterval->setRange(3,1000,1,false);
+    d->slideInterval->setSuffix( " " + i18n("seconds") );
+    
+    layout->addWidget(slideBox);
+    layout->addStretch(10);
+    readSettings();
 }
 
 SetupTiming::~SetupTiming()
 {
-kdDebug() << "Entering ~SetupTiming" << endl;
+    kdDebug() << "Entering ~SetupTiming" << endl;
+    delete d;
 }
 
 void SetupTiming::applySettings()
@@ -116,11 +128,11 @@ void SetupTiming::applySettings()
     kdDebug() <<"save"<< endl;
     KConfig* config = kapp->config();
     config->setGroup("General Settings");
-    config->writeEntry("TinyInterval", m_tinyInterval->value());
-    config->writeEntry("TinyDuration", m_tinyDuration->value());
-    config->writeEntry("BigInterval", m_bigInterval->value());
-    config->writeEntry("BigDuration", m_bigDuration->value());
-    config->writeEntry("SlideInterval", m_slideInterval->value());
+    config->writeEntry("TinyInterval", d->tinyInterval->value());
+    config->writeEntry("TinyDuration", d->tinyDuration->value());
+    config->writeEntry("BigInterval", d->bigInterval->value());
+    config->writeEntry("BigDuration", d->bigDuration->value());
+    config->writeEntry("SlideInterval", d->slideInterval->value());
     config->sync();
 }
 
@@ -130,25 +142,25 @@ void SetupTiming::readSettings()
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
-    m_tinyInterval->setValue(config->readNumEntry("TinyInterval", 10));
-    m_tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
-    m_bigInterval->setValue(config->readNumEntry("BigInterval", 60));
-    m_bigInterval->setMinValue( m_tinyInterval->value() );
-    m_bigDuration->setValue(config->readNumEntry("BigDuration", 1));
-    m_slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
+    d->tinyInterval->setValue(config->readNumEntry("TinyInterval", 10));
+    d->tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
+    d->bigInterval->setValue(config->readNumEntry("BigInterval", 60));
+    d->bigInterval->setMinValue( d->tinyInterval->value() );
+    d->bigDuration->setValue(config->readNumEntry("BigDuration", 1));
+    d->slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
 
     if (config->readBoolEntry("DEBUG"))
     {
-        m_bigDuration->setSuffix( " " + i18n("seconds") );
-        m_tinyInterval->setSuffix( " " + i18n("seconds") );
-        m_bigInterval->setSuffix( " " + i18n("seconds") );
+        d->bigDuration->setSuffix( " " + i18n("seconds") );
+        d->tinyInterval->setSuffix( " " + i18n("seconds") );
+        d->bigInterval->setSuffix( " " + i18n("seconds") );
     }
 }
 
 void SetupTiming::slotTinyValueChanged( int i )
 {
     kdDebug() << "Entering slotTinyValueChanged " << i << endl;
-    m_bigInterval->setMinValue( i );
+    d->bigInterval->setMinValue( i );
 }
     
 #include "setuptiming.moc"

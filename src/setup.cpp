@@ -37,26 +37,41 @@
 #include "setupmaximized.h"
 #include "setup.h"
 
+class SetupPriv
+{
+public:
+    QFrame           *page_general;
+    QFrame           *page_timing;
+    QFrame           *page_popup;
+    QFrame           *page_maximized;
+    SetupGeneral     *generalPage;
+    SetupTiming      *timingPage;
+    SetupPopup       *popupPage;
+    SetupMaximized   *maximizedPage;
+};
+
 Setup::Setup(QWidget* parent, const char* name)
      : KDialogBase(IconList, i18n("Configure"), Help|Ok|Cancel, Ok, parent,
                    name, true, true )
 {
     kdDebug() << "Entering Setup" << endl;
-    page_general = addPage(i18n("General"), i18n("General Settings"),
+    d = new SetupPriv;
+    
+    d->page_general = addPage(i18n("General"), i18n("General Settings"),
                         BarIcon("configure", KIcon::SizeMedium));
-    m_generalPage = new SetupGeneral(page_general);
+    d->generalPage = new SetupGeneral(d->page_general);
 
-    page_timing = addPage(i18n("Timings"), i18n("Timings"),
+    d->page_timing = addPage(i18n("Timings"), i18n("Timings"),
                             BarIcon("rsibreak3", KIcon::SizeMedium));
-    m_timingPage = new SetupTiming(page_timing);
+    d->timingPage = new SetupTiming(d->page_timing);
 
-    page_popup = addPage(i18n("Popup"), i18n("Popup"),
+    d->page_popup = addPage(i18n("Popup"), i18n("Popup"),
                          BarIcon("misc", KIcon::SizeMedium));
-    m_popupPage = new SetupPopup(page_popup);
+    d->popupPage = new SetupPopup(d->page_popup);
 
-    page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
+    d->page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
                              BarIcon("background", KIcon::SizeMedium));
-    m_maximizedPage = new SetupMaximized(page_maximized);
+    d->maximizedPage = new SetupMaximized(d->page_maximized);
 
     connect(this, SIGNAL(okClicked()),
             this, SLOT(slotOkClicked()) );
@@ -75,11 +90,12 @@ Setup::~Setup()
 void Setup::slotOkClicked()
 {
     kdDebug() << "Entering slotOkClicked" << endl;
-    m_generalPage->applySettings();
-    m_timingPage->applySettings();
-    m_popupPage->applySettings();
-    m_maximizedPage->applySettings();
+    d->generalPage->applySettings();
+    d->timingPage->applySettings();
+    d->popupPage->applySettings();
+    d->maximizedPage->applySettings();
     close();
+    delete d;
 }
 
 #include "setup.moc"

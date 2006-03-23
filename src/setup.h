@@ -24,8 +24,7 @@
 
 #include <kdialogbase.h>
 
-class QFrame;
-
+class SetupPriv;
 class SetupGeneral;
 class SetupTiming;
 class SetupPopup;
@@ -61,15 +60,8 @@ public:
 
 private:
 
-    QFrame           *page_general;
-    QFrame           *page_timing;
-    QFrame           *page_popup;
-    QFrame           *page_maximized;
-    SetupGeneral     *m_generalPage;
-    SetupTiming      *m_timingPage;
-    SetupPopup       *m_popupPage;
-    SetupMaximized   *m_maximizedPage;
-
+    SetupPriv        *d;
+    
 private slots:
 
     void slotOkClicked();

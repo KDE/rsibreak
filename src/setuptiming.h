@@ -23,7 +23,7 @@
 #ifndef SETUPTIMING_H
 #define SETUPTIMING_H
 
-class KIntNumInput;
+class SetupTimingPriv;
 
 /**
  * @class SetupTiming
@@ -62,15 +62,7 @@ private slots:
 
 private:
     void readSettings();
-
-    KIntNumInput*          m_tinyInterval;
-    KIntNumInput*          m_tinyDuration;
-
-    KIntNumInput*          m_bigInterval;
-    KIntNumInput*          m_bigDuration;
-
-    KIntNumInput*          m_slideInterval;
-
+    SetupTimingPriv     *d;
 };
 
 #endif /* SETUPTIMING_H */
