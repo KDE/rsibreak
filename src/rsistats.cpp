@@ -187,14 +187,21 @@ void RSIStats::updateDependentStats( RSIStat stat )
         {
         case PAUSE_SCORE:
         {
-          /*
-                            tiny_skip + 2*big_skip
-            score = 100 - -------------------------- * 100
-                          tiny_breaks + 2*big_breaks
-          */
+          double a = m_statistics[ TINY_BREAKS_SKIPPED ].getValue().toDouble();
+          double b = m_statistics[ BIG_BREAKS_SKIPPED ].getValue().toDouble();
+          double c = m_statistics[ IDLENESS_CAUSED_SKIP_TINY ].getValue().toDouble();
+          double d = m_statistics[ IDLENESS_CAUSED_SKIP_BIG ].getValue().toDouble();
 
-          double skipped = m_statistics[ TINY_BREAKS_SKIPPED ].getValue().toDouble() + 2 * m_statistics[ BIG_BREAKS_SKIPPED ].getValue().toDouble();
-          double total = m_statistics[ TINY_BREAKS ].getValue().toDouble() + 2 * m_statistics[ BIG_BREAKS ].getValue().toDouble();
+          double skipped = a;
+          if ( a > c )
+            skipped -= c;
+
+          skipped += 2 * b;
+          if ( b > d )
+            skipped -= 2 * d;
+
+          double total = m_statistics[ TINY_BREAKS ].getValue().toDouble();
+          total += 2 * m_statistics[ BIG_BREAKS ].getValue().toDouble();
 
           if ( total > 0 )
             m_statistics[ *it ].setValue( 100 - ( ( skipped / total ) * 100 ) );
@@ -285,9 +292,9 @@ void RSIStats::updateLabel( RSIStat stat )
 
         // doubles
         case PAUSE_SCORE:
-      case ACTIVITY_PERC:
+        case ACTIVITY_PERC:
         l->setText( QString::number(
-                        m_statistics[ stat ].getValue().toDouble() ) );
+                        m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
         break;
 
         // datetimes

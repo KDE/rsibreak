@@ -322,6 +322,7 @@ void RSITimer::timerEvent( QTimerEvent * )
 
         //RSIStats::instance()->increaseStat( BIG_BREAKS );
         RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
+        RSIStats::instance()->increaseStat( BIG_BREAKS );
 
         resetAfterBigBreak();
         emit bigBreakSkipped();
@@ -334,6 +335,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         //RSIStats::instance()->increaseStat( TINY_BREAKS );
 
         RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
+        RSIStats::instance()->increaseStat( TINY_BREAKS );
 
         resetAfterTinyBreak();
         emit tinyBreakSkipped();
