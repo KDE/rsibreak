@@ -30,6 +30,8 @@
 class KGlobalAccel;
 #include <ksystemtray.h>
 
+class RSIStatWidget;
+
 /**
  * @class RSIDock
  * This class is resonsible for putting rsibreak in the system tray
@@ -143,13 +145,14 @@ class RSIDock : public KSystemTray
         int m_suspendItem;
         bool m_suspended;
         bool m_tooltiphidden;
-        
+
         /** This bool is needed to determine if Quit is added to the context
             menu. Although not needed for KDE, GNome will plug the Quit item
             twice in the contextmenu. */
         bool m_hasQuit;
 
         QTimer *m_tooltiptimer;
+        RSIStatWidget *m_statsWidget;
 };
 
 #endif // RSIDOCK_H

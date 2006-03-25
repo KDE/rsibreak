@@ -27,44 +27,44 @@ QString RSIGlobals::formatSeconds( const int seconds )
 {
     int mins, secs, hours, remaining;
     QString hString, mString1, mString2, sString1, sString2;
-    
+
     remaining = seconds;
-    
+
     hours= (int)floor(remaining/3600);
     remaining = remaining-(hours*3600);
-    
+
     mins = (int)floor(remaining/60);
     secs = remaining-(mins*60);
-    
+
     hString = i18n("One hour","%n hours", hours);
     mString1 = i18n("One minute","%n minutes", mins);
     mString2 = i18n("one minute","%n minutes", mins);
     sString1 = i18n("One second","%n seconds", secs);
     sString2 = i18n("one second","%n seconds", secs);
-    
+
     if (hours > 0 and mins >0)
         return(i18n("Arguments: hours, minutes "
                     "both as you defined earlier",
                     "%1 and %2").arg(hString, mString2) );
     else if (hours > 0 and mins == 0)
         return( hString );
-    
+
     else if (hours == 0)
     {
         if (mins > 0 && secs > 0)
             return(i18n("First argument: minutes, second: seconds "
                         "both as you defined earlier",
                         "%1 and %2").arg(mString1, sString2) );
-        
+
         else if ( mins == 0 && secs > 0 )
             return( sString1 );
-        
+
         else if ( mins >0 && secs == 0 )
             return( mString1) ;
-        
+
         else
             return( i18n("0 seconds") );
     }
-    
+
     return( QString::null ); //should not get here
 }

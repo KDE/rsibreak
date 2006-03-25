@@ -19,25 +19,23 @@
 #ifndef RSISTATDIALOG_H
 #define RSISTATDIALOG_H
 
-#include <qmap.h>
+#include <qlayout.h>
 
-#include <kdialogbase.h>
+#include "rsistats.h"
 
-class RSIStats;
 class QTimer;
 
-class RSIStatDialog : public KDialogBase
+class RSIStatWidget : public QWidget
 {
   Q_OBJECT
 public:
-  RSIStatDialog( QWidget *parent = 0, const char *name = 0 );
-  ~RSIStatDialog();
+  RSIStatWidget( QWidget *parent = 0, const char *name = 0 );
+  ~RSIStatWidget();
 
-public slots:
-  void updateStatistics();
+protected:
+  void addStat( RSIStat stat, int row );
 private:
-  QWidget *mWidget;
-  QTimer  *mTimer;
+  QGridLayout *mGrid;
 };
 
 #endif

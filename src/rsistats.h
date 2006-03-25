@@ -19,9 +19,25 @@
 #ifndef RSISTATS_H
 #define RSISTATS_H
 
+#include <qlabel.h>
 #include <qmap.h>
+#include <qvaluelist.h>
+#include <qvariant.h>
 
-class QWidget;
+enum RSIStat { // integers
+               TOTAL_TIME,
+               ACTIVITY,
+               IDLENESS,
+               TINY_BREAKS,
+               TINY_BREAKS_SKIPPED,
+               BIG_BREAKS,
+               BIG_BREAKS_SKIPPED,
+
+               // doubles
+               PAUSE_SCORE
+             };
+
+class RSIStatItem;
 
 class RSIStats
 {
@@ -32,41 +48,35 @@ public:
     static RSIStats *instance();
 
     void reset();
-    int numberOfStats();
+    // int numberOfStats() const;
 
-    enum RSIStat { TOTAL_TIME,
-                   ACTIVITY,
-                   IDLENESS,
-                   TINY_BREAKS,
-                   TINY_BREAKS_SKIPPED,
-                   BIG_BREAKS,
-                   BIG_BREAKS_SKIPPED
-                 };
+    /** Increase the value of statistic @p stat with @p delta (default: 1). */
+    void increaseStat( RSIStat stat, int delta = 1 );
 
-    /** Increase the value of statistic @p stat with 1. */
-    void increaseStat( RSIStat stat );
-    
-    /** Gets the value given the @p stat. */
-    int getStat( RSIStat stat ) const;
-    
-    /**
-      Makes a nice string given the amount of seconds.
-      @param secs The amount of seconds to parse
-      @return A string expressed in days, hours, minutes and
-      seconds.
-    */
-    QString prettifySeconds( int secs );
-    
     /** Returns a description for the given @p stat. */
     QString getDescription( RSIStat stat ) const;
-    
-    QWidget *widgetFactory( QWidget *parent = 0 );
-    
-    // TODO: Afgeleide functies schrijven
-    
+
+    /** TODO Doxy */
+    void updateLabels();
+
+    /** Gets the value given the @p stat.  */
+    QVariant getStat( RSIStat stat ) const;
+    QLabel *getLabel( RSIStat stat ) const;
+
+protected:
+    /** TODO Doxy */
+    void updateLabel( RSIStat );
+
+    void updateDependentStats( RSIStat );
+
+    void updateStat( RSIStat );
+
 private:
     static RSIStats *m_instance;
-    QMap<RSIStat,int> m_statistics;
+
+    QMap<RSIStat,RSIStatItem> m_statistics;
+    /** Contains formatted labels. */
+    QMap<RSIStat,QLabel *> m_labels;
 };
 
 #endif // RSISTATS_H

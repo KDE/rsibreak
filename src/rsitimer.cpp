@@ -172,12 +172,12 @@ void RSITimer::skipBreak()
     if ( m_big_left <= m_tiny_left )
     {
         resetAfterBigBreak();
-        RSIStats::instance()->increaseStat( RSIStats::TINY_BREAKS_SKIPPED );
+        RSIStats::instance()->increaseStat( BIG_BREAKS_SKIPPED );
     }
     else
     {
         resetAfterTinyBreak();
-        RSIStats::instance()->increaseStat( RSIStats::BIG_BREAKS_SKIPPED );
+        RSIStats::instance()->increaseStat( TINY_BREAKS_SKIPPED );
     }
     slotStart();
 }
@@ -209,16 +209,16 @@ void RSITimer::timerEvent( QTimerEvent * )
     // a possible break.
     if ( m_suspended )
         return;
-        
-    RSIStats::instance()->increaseStat( RSIStats::TOTAL_TIME );
+
+    RSIStats::instance()->increaseStat( TOTAL_TIME );
 
     int t = idleTime();
-    
+
     if ( t == 0 )
-        RSIStats::instance()->increaseStat( RSIStats::ACTIVITY );
+        RSIStats::instance()->increaseStat( ACTIVITY );
     else
-        RSIStats::instance()->increaseStat( RSIStats::IDLENESS );
-    
+        RSIStats::instance()->increaseStat( IDLENESS );
+
     /*
     kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
     */
@@ -256,8 +256,8 @@ void RSITimer::timerEvent( QTimerEvent * )
             return;
         }
     }
-    
-    /* 
+
+    /*
     kdDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
@@ -265,7 +265,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     */
 
     if ( t == 0 ) // activity!
-    {    
+    {
         if ( m_patience > 0 ) // we're trying to break
         {
             --m_patience;
@@ -295,16 +295,16 @@ void RSITimer::timerEvent( QTimerEvent * )
         else if ( m_pause_left == 0 )
         {
             // there's no relax moment or break going on.
-            
+
             // If we emitted tiny/bigBreakSkipped then we have
             // to emit a signal again when user becomes active.
             // so if the timers are original, emit it.
-            if ( m_tiny_left == m_intervals["tiny_minimized"] || 
+            if ( m_tiny_left == m_intervals["tiny_minimized"] ||
                 m_big_left == m_intervals["big_minimized"] )
             {
                 emit skipBreakEnded();
             }
-            
+
             --m_tiny_left;
             --m_big_left;
         }
@@ -342,13 +342,13 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         if ( nextBreak == TINY_BREAK )
         {
-            RSIStats::instance()->increaseStat( RSIStats::TINY_BREAKS );
+            RSIStats::instance()->increaseStat( TINY_BREAKS );
         }
         else
         {
-            RSIStats::instance()->increaseStat( RSIStats::BIG_BREAKS );
+            RSIStats::instance()->increaseStat( BIG_BREAKS );
         }
-        
+
         m_patience = 15;
         emit relax( breakInterval );
         m_relax_left = breakInterval;

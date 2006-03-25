@@ -58,7 +58,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_tray = new RSIDock(this,"Tray Item");
     m_tray->show();
     m_tray->setPixmap( KSystemTray::loadIcon("rsibreak0") );
-    
+
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
         KMessageBox::information(parent,
@@ -108,7 +108,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tooltip, SLOT( hide() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tray, SLOT( relaxEntered( int ) ) );
-    
+
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
     connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
     connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ) );
@@ -376,7 +376,7 @@ void RSIWidget::tinyBreakSkipped()
 {
     if (!m_showTimerReset)
         return;
-    
+
     m_tooltip->setText( i18n("Timer for the tiny break has now been reset"));
     breakSkipped();
 }
@@ -385,7 +385,7 @@ void RSIWidget::bigBreakSkipped()
 {
     if (!m_showTimerReset)
         return;
-    
+
     m_tooltip->setText( i18n("The timers have now been reset"));
     breakSkipped();
 }
@@ -407,7 +407,7 @@ void RSIWidget::skipBreakEnded()
 {
     if (!m_showTimerReset)
         return;
-    
+
     connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
              m_tooltip, SLOT( setCounters( int, int ) ) );
     m_tooltip->hide();
@@ -429,7 +429,7 @@ void RSIWidget::closeEvent( QCloseEvent * )
 
 void RSIWidget::mousePressEvent( QMouseEvent * e )
 {
-    kdDebug() << "Entering RSIWidget::mousePressEvent" << endl;
+    kdDebug() << e->pos() << " is within " <<  m_miniButton->geometry() << endl;
 
     if (e->button() != LeftButton)
         return;
@@ -505,7 +505,7 @@ void RSIWidget::readConfig()
 
     m_slideInterval = config->readNumEntry("SlideInterval", 2);
     m_showTimerReset = config->readBoolEntry("ShowTimerReset", true);
-    
+
     delete Black;
     delete t;
 }

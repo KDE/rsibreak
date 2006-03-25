@@ -16,35 +16,39 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include <qvbox.h>
-
 #include <kdebug.h>
 #include <klocale.h>
 #include <qtimer.h>
 
-#include "rsistats.h"
 #include "rsistatdialog.h"
 
-RSIStatDialog::RSIStatDialog( QWidget *parent, const char *name )
-  : KDialogBase( parent, name, false, i18n("Usage Statistics"), KDialogBase::Ok, KDialogBase::Ok, true )
+RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
+: QWidget( parent, name )
 {
-    mWidget = RSIStats::instance()->widgetFactory( this );
+    mGrid = new QGridLayout( this );
 
-    setMainWidget( mWidget );
-    
-    mTimer = new QTimer(this);
-    connect(mTimer, SIGNAL(timeout()),  SLOT(updateStatistics()));
-    mTimer->start(1000);
+    addStat( TOTAL_TIME, 0 );
+    addStat( ACTIVITY, 1 );
+    addStat( IDLENESS, 2 );
+    addStat( TINY_BREAKS, 3 );
+    addStat( TINY_BREAKS_SKIPPED, 4 );
+    addStat( BIG_BREAKS, 5 );
+    addStat( BIG_BREAKS_SKIPPED, 6 );
+    addStat( PAUSE_SCORE, 7 );
 }
 
-RSIStatDialog::~RSIStatDialog()
+RSIStatWidget::~RSIStatWidget()
 {
-    delete mTimer;
 }
 
-void RSIStatDialog::updateStatistics()
+void RSIStatWidget::addStat( RSIStat stat, int row )
 {
-    kdDebug() << "refresh" << endl;
+    QLabel *l = new QLabel( RSIStats::instance()->getDescription( stat ), this );
+    mGrid->addWidget( l, row, 0 );
+    l = RSIStats::instance()->getLabel( stat );
+    l->reparent( this, 0, QPoint() );
+    l->setAlignment( Qt::AlignRight );
+    mGrid->addWidget( l, row, 1 );
 }
 
 #include "rsistatdialog.moc"

@@ -36,7 +36,7 @@
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
-    , m_hasQuit ( false ), m_tooltiptimer( 0 )
+    , m_hasQuit ( false ), m_tooltiptimer( 0 ), m_statsWidget( 0 )
 
 {
 
@@ -69,6 +69,8 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 
 RSIDock::~RSIDock()
 {
+    delete m_statsWidget;
+    m_statsWidget = 0;
 }
 
 void RSIDock::slotConfigure()
@@ -90,7 +92,9 @@ void RSIDock::slotAboutKDE()
     KAboutKDE about;
     emit dialogEntered();
     about.exec();
-    emit dialogLeft();
+
+    if ( !m_suspended ) // don't start the timer!
+      emit dialogLeft();
 }
 
 void RSIDock::slotAboutRSIBreak()
@@ -99,7 +103,9 @@ void RSIDock::slotAboutRSIBreak()
     KAboutApplication about;
     emit dialogEntered();
     about.exec();
-    emit dialogLeft();
+
+    if ( !m_suspended ) // don't start the timer!
+      emit dialogLeft();
 }
 
 void RSIDock::slotReportBug()
@@ -108,7 +114,9 @@ void RSIDock::slotReportBug()
     KBugReport bug;
     emit dialogEntered();
     bug.exec();
-    emit dialogLeft();
+
+    if ( !m_suspended ) // don't start the timer!
+      emit dialogLeft();
 }
 
 void RSIDock::slotBreakRequest()
@@ -147,12 +155,12 @@ void RSIDock::showEvent( QShowEvent * )
     if (!m_hasQuit)
     {
         contextMenu()->insertSeparator();
-        
+
         KAction* action = actionCollection()->
                 action(KStdAction::name(KStdAction::Quit));
         if (action)
             action->plug(contextMenu());
-        
+
         m_hasQuit=true;
     }
 }
@@ -204,8 +212,17 @@ void RSIDock::slotShowStatistics()
 {
     kdDebug() << "Entering RSIDock::showStatistics()" << endl;
 
-    RSIStatDialog dlg;
+    if ( !m_statsWidget )
+      m_statsWidget = new RSIStatWidget();
+
+    KDialogBase dlg( this, 0, false, i18n("Usage Statistics"), KDialogBase::Ok, KDialogBase::Ok, true );
+    m_statsWidget->reparent( &dlg, 0, QPoint() );
+    dlg.setMainWidget( m_statsWidget );
+
     dlg.exec();
+
+    // don't point to dialog since it's gonna be destroyed again
+    m_statsWidget->reparent( 0, 0, QPoint() );
 }
 
 #include "rsidock.moc"
