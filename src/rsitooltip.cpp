@@ -58,7 +58,7 @@ RSIToolTip::~RSIToolTip()
 void RSIToolTip::setCounters( int tiny_left, int big_left )
 {
     if( m_suspended )
-        setText( i18n("Suspended" ) );
+        setText( i18n("Suspended") );
     else
     {
         // Only add the line for the tiny break when there is not

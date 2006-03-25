@@ -40,10 +40,6 @@
 class SetupPriv
 {
 public:
-    QFrame           *page_general;
-    QFrame           *page_timing;
-    QFrame           *page_popup;
-    QFrame           *page_maximized;
     SetupGeneral     *generalPage;
     SetupTiming      *timingPage;
     SetupPopup       *popupPage;
@@ -57,21 +53,21 @@ Setup::Setup(QWidget* parent, const char* name)
     kdDebug() << "Entering Setup" << endl;
     d = new SetupPriv;
     
-    d->page_general = addPage(i18n("General"), i18n("General Settings"),
+    QFrame *page_general = addPage(i18n("General"), i18n("General Settings"),
                         BarIcon("configure", KIcon::SizeMedium));
-    d->generalPage = new SetupGeneral(d->page_general);
+    d->generalPage = new SetupGeneral(page_general);
 
-    d->page_timing = addPage(i18n("Timings"), i18n("Timings"),
+    QFrame *page_timing = addPage(i18n("Timings"), i18n("Timings"),
                             BarIcon("rsibreak3", KIcon::SizeMedium));
-    d->timingPage = new SetupTiming(d->page_timing);
+    d->timingPage = new SetupTiming(page_timing);
 
-    d->page_popup = addPage(i18n("Popup"), i18n("Popup"),
+    QFrame *page_popup = addPage(i18n("Popup"), i18n("Popup"),
                          BarIcon("misc", KIcon::SizeMedium));
-    d->popupPage = new SetupPopup(d->page_popup);
+    d->popupPage = new SetupPopup(page_popup);
 
-    d->page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
+    QFrame *page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
                              BarIcon("background", KIcon::SizeMedium));
-    d->maximizedPage = new SetupMaximized(d->page_maximized);
+    d->maximizedPage = new SetupMaximized(page_maximized);
 
     connect(this, SIGNAL(okClicked()),
             this, SLOT(slotOkClicked()) );

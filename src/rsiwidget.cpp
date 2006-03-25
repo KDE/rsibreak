@@ -443,6 +443,7 @@ void RSIWidget::mousePressEvent( QMouseEvent * e )
 
 void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
 {
+    kdDebug() << e->pos() << " is within " <<  m_miniButton->geometry() << endl;
     if ( m_miniButton->geometry().contains(e->pos()))
     {
         m_miniButton->setDown( false );

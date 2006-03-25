@@ -6,7 +6,7 @@ Description:
 Keywords:       KDE Qt
 Author:         Tom Albers <tomalbers@kde.nl>, Bram Schoenmakers <bramschoenmakers@kde.nl> 
 Maintained-by:  Tom Albers <tomalbers@kde.nl>
-Home-page:      http://www.omat.nl
+Home-page:      http://www.rsibreak.org
 Platform:       Linux. Needs KDE, needs libxss for idle detection
 Copying-policy: Custom
 End

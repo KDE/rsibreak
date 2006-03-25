@@ -1,6 +1,7 @@
 /* This file is part of the KDE project
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
-
+   Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
+   
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
    License as published by the Free Software Foundation; either
@@ -28,6 +29,7 @@ enum RSIStat { // integers
                TOTAL_TIME,
                ACTIVITY,
                IDLENESS,
+               MAX_IDLENESS,
                TINY_BREAKS,
                TINY_BREAKS_SKIPPED,
                BIG_BREAKS,
@@ -52,6 +54,7 @@ public:
 
     /** Increase the value of statistic @p stat with @p delta (default: 1). */
     void increaseStat( RSIStat stat, int delta = 1 );
+    void setStat( RSIStat stat, QVariant val, bool ifmax = false );
 
     /** Returns a description for the given @p stat. */
     QString getDescription( RSIStat stat ) const;

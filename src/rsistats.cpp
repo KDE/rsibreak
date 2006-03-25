@@ -37,8 +37,8 @@ class RSIStatItem
     ~RSIStatItem() {}
 
     QString getDescription() const { return m_description; }
-
-    QVariant getValue() const { return m_value; }
+    QVariant getValue()      const { return m_value; }
+    
     void setValue( QVariant v ) { m_value = v; }
 
     void addDerivedItem( RSIStat stat ) { m_derived += stat; }
@@ -66,6 +66,10 @@ RSIStats::RSIStats()
 
     m_statistics[IDLENESS] = RSIStatItem(i18n("Total time being idle"));
     m_labels[IDLENESS] = new QLabel(0);
+
+    m_statistics[MAX_IDLENESS] = RSIStatItem(i18n("Maximum idle period"));
+    m_statistics[MAX_IDLENESS].addDerivedItem( IDLENESS );
+    m_labels[MAX_IDLENESS] = new QLabel(0);
 
     m_statistics[TINY_BREAKS] = RSIStatItem(i18n("Total amount of tiny breaks"));
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
@@ -107,12 +111,10 @@ RSIStats::~RSIStats()
 
 RSIStats *RSIStats::instance()
 {
-  if ( !m_instance )
-  {
-      m_instance = new RSIStats();
-  }
-
-  return m_instance;
+    if ( !m_instance )
+        m_instance = new RSIStats();
+    
+    return m_instance;
 }
 
 void RSIStats::reset()
@@ -123,7 +125,6 @@ void RSIStats::reset()
     for( it = m_statistics.begin(); it != m_statistics.end(); ++it )
       m_statistics[ it.key() ].setValue( 0 );
 }
-
 
 void RSIStats::increaseStat( RSIStat stat, int delta )
 {
@@ -136,6 +137,20 @@ void RSIStats::increaseStat( RSIStat stat, int delta )
     else
       m_statistics[stat].setValue( v.toDouble() + (double)delta );
 
+    updateStat( stat );
+}
+
+void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
+{
+    // kdDebug() << "RSIStats::increaseStat() entered" << endl;
+
+    QVariant v = m_statistics[stat].getValue();
+
+    if ( !ifmax ||
+          (v.type() == QVariant::Int && val.toInt()>v.toInt()) ||
+          (v.type() == QVariant::Double && val.toDouble()>v.toDouble()))
+            m_statistics[stat].setValue( val );
+    
     updateStat( stat );
 }
 
@@ -168,6 +183,11 @@ void RSIStats::updateDependentStats( RSIStat stat )
           updateStat( *it );
           break;
         }
+        case IDLENESS:
+        {
+            increaseStat( IDLENESS );
+        }
+              
         default: ;// nada
       }
     }
@@ -193,20 +213,24 @@ void RSIStats::updateLabel( RSIStat stat )
       case TOTAL_TIME:
       case ACTIVITY:
       case IDLENESS:
-         l->setText( RSIGlobals::formatSeconds( m_statistics[ stat ].getValue().toInt() ) );
-         break;
+      case MAX_IDLENESS:
+        l->setText( RSIGlobals::formatSeconds(
+                        m_statistics[ stat ].getValue().toInt() ) );
+        break;
 
       // plain integer values
       case TINY_BREAKS:
       case TINY_BREAKS_SKIPPED:
       case BIG_BREAKS:
       case BIG_BREAKS_SKIPPED:
-        l->setText( QString::number( m_statistics[ stat ].getValue().toInt() ) );
+        l->setText( QString::number( 
+                        m_statistics[ stat ].getValue().toInt() ) );
         break;
 
       // doubles
       case PAUSE_SCORE:
-        l->setText( QString::number( m_statistics[ stat ].getValue().toDouble() ) );
+        l->setText( QString::number( 
+                        m_statistics[ stat ].getValue().toDouble() ) );
         break;
       default: ; // nada
     }

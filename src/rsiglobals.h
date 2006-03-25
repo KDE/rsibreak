@@ -46,4 +46,4 @@ namespace RSIGlobals
     QString formatSeconds(const int seconds);
 };
 
-#endif // RSITOOLTIP_H
+#endif // RSIGLOBALS_H

@@ -50,7 +50,9 @@ RSITimer::RSITimer( QObject *parent, const char *name )
         m_idleDetection = true;
 #endif
 
-    kdDebug() << "IDLE Detection is " << (m_idleDetection?QString::null:"not") << "possible" << endl;
+    kdDebug() << "IDLE Detection is " 
+              << (m_idleDetection?QString::null:"not") 
+              << "possible" << endl;
 
     startTimer( 1000 );
     slotReadConfig();
@@ -217,7 +219,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     if ( t == 0 )
         RSIStats::instance()->increaseStat( ACTIVITY );
     else
-        RSIStats::instance()->increaseStat( IDLENESS );
+        RSIStats::instance()->setStat( MAX_IDLENESS, t, true );
 
     /*
     kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
