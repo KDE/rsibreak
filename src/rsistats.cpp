@@ -155,8 +155,11 @@ void RSIStats::increaseStat( RSIStat stat, int delta )
 
     if ( v.type() == QVariant::Int )
       m_statistics[stat].setValue( v.toInt() + delta );
-    else
+    else if ( v.type() == QVariant::Double )
       m_statistics[stat].setValue( v.toDouble() + (double)delta );
+    else if ( v.type() == QVariant::DateTime )
+                m_statistics[stat].setValue( 
+                    QDateTime(v.toDateTime()).addSecs( delta ));
 
     updateStat( stat );
 }
@@ -168,8 +171,9 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
     QVariant v = m_statistics[stat].getValue();
 
     if ( !ifmax ||
-          (v.type() == QVariant::Int && val.toInt()>v.toInt()) ||
-          (v.type() == QVariant::Double && val.toDouble()>v.toDouble()))
+           (v.type() == QVariant::Int && val.toInt()>v.toInt()) ||
+           (v.type() == QVariant::Double && val.toDouble()>v.toDouble()) ||
+           (v.type() == QVariant::DateTime && val.toDateTime()>v.toDateTime()))
             m_statistics[stat].setValue( val );
 
     updateStat( stat );
@@ -239,13 +243,13 @@ void RSIStats::updateDependentStats( RSIStat stat )
 
         case LAST_BIG_BREAK:
         {
-            setStat( LAST_BIG_BREAK, QDateTime::currentDateTime().toTime_t() );
+            setStat( LAST_BIG_BREAK, QDateTime::currentDateTime() );
             break;
         }
 
         case LAST_TINY_BREAK:
         {
-            setStat( LAST_TINY_BREAK, QDateTime::currentDateTime().toTime_t() );
+            setStat( LAST_TINY_BREAK, QDateTime::currentDateTime() );
             break;
         }
 
@@ -301,17 +305,10 @@ void RSIStats::updateLabel( RSIStat stat )
         case LAST_BIG_BREAK:
         case LAST_TINY_BREAK:
         {
-            int i = m_statistics[ stat ].getValue().toInt();
-            if (i > 0)
-            {
-                KLocale *localize = KGlobal::locale();
-                QDateTime when;
-                when.setTime_t( i );
-                if ( when.isValid() )
-                    l->setText( localize->formatDateTime(when, true, true) );
-            }
-            else
-                l->setText( QString::null );
+            KLocale *localize = KGlobal::locale();
+            QDateTime when(m_statistics[ stat ].getValue().toDateTime());
+            when.isValid() ? l->setText( localize->formatDateTime(when, true, true) )
+                           : l->setText( QString::null );
             break;
         }
 
