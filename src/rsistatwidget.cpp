@@ -20,7 +20,7 @@
 #include <klocale.h>
 #include <qtimer.h>
 
-#include "rsistatdialog.h"
+#include "rsistatwidget.h"
 
 RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
 : QWidget( parent, name )
@@ -52,4 +52,4 @@ void RSIStatWidget::addStat( RSIStat stat, int row )
     mGrid->addWidget( l, row, 1 );
 }
 
-#include "rsistatdialog.moc"
+#include "rsistatwidget.moc"

@@ -21,7 +21,7 @@
 
 #include "rsidock.h"
 #include "setup.h"
-#include "rsistatdialog.h"
+#include "rsistatwidget.h"
 
 #include <kdebug.h>
 #include <klocale.h>
