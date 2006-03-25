@@ -33,12 +33,14 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( IDLENESS, 2 );
     addStat( MAX_IDLENESS, 3 );
     addStat( TINY_BREAKS, 4 );
-    addStat( TINY_BREAKS_SKIPPED, 5 );
-    addStat( LAST_TINY_BREAK, 6 );
-    addStat( BIG_BREAKS, 7 );
-    addStat( BIG_BREAKS_SKIPPED, 8 );
+    addStat( LAST_TINY_BREAK, 5 );
+    addStat( TINY_BREAKS_SKIPPED, 6 );
+    addStat( IDLENESS_CAUSED_SKIP_TINY, 7 );
+    addStat( BIG_BREAKS, 8 );
     addStat( LAST_BIG_BREAK, 9 );
-    addStat( PAUSE_SCORE, 10 );
+    addStat( BIG_BREAKS_SKIPPED, 10 );
+    addStat( IDLENESS_CAUSED_SKIP_BIG, 11 );
+    addStat( PAUSE_SCORE, 12 );
 }
 
 RSIStatWidget::~RSIStatWidget()

@@ -30,6 +30,8 @@ enum RSIStat {
                ACTIVITY,
                IDLENESS,
                MAX_IDLENESS,
+               IDLENESS_CAUSED_SKIP_TINY,
+               IDLENESS_CAUSED_SKIP_BIG,
                TINY_BREAKS,
                TINY_BREAKS_SKIPPED,
                LAST_TINY_BREAK,

@@ -77,24 +77,34 @@ RSIStats::RSIStats()
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
     m_labels[TINY_BREAKS] = new QLabel(0);
 
-    m_statistics[TINY_BREAKS_SKIPPED] = RSIStatItem(i18n("Number of skipped tiny breaks"));
+    m_statistics[LAST_TINY_BREAK] = RSIStatItem(i18n("Last tiny break"));
+    m_labels[LAST_TINY_BREAK] = new QLabel(0);
+
+    m_statistics[TINY_BREAKS_SKIPPED] = 
+            RSIStatItem(i18n("Number of skipped tiny breaks (user)"));
     m_statistics[TINY_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
     m_labels[TINY_BREAKS_SKIPPED] = new QLabel(0);
 
-    m_statistics[LAST_TINY_BREAK] = RSIStatItem(i18n("Last tiny break"));
-    m_labels[LAST_TINY_BREAK] = new QLabel(0);
+    m_statistics[IDLENESS_CAUSED_SKIP_TINY] = 
+            RSIStatItem(i18n("Number of skipped tiny breaks (idle)"));
+    m_labels[IDLENESS_CAUSED_SKIP_TINY] = new QLabel(0);
 
     m_statistics[BIG_BREAKS] = RSIStatItem(i18n("Total amount of big breaks"));
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
     m_labels[BIG_BREAKS] = new QLabel(0);
 
-    m_statistics[BIG_BREAKS_SKIPPED] = RSIStatItem(i18n("Number of skipped big breaks"));
+    m_statistics[LAST_BIG_BREAK] = RSIStatItem(i18n("Last big break"));
+    m_labels[LAST_BIG_BREAK] = new QLabel(0);
+
+    m_statistics[BIG_BREAKS_SKIPPED] = 
+            RSIStatItem(i18n("Number of skipped big breaks (user)"));
     m_statistics[BIG_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
     m_labels[BIG_BREAKS_SKIPPED] = new QLabel(0);
 
-    m_statistics[LAST_BIG_BREAK] = RSIStatItem(i18n("Last big break"));
-    m_labels[LAST_BIG_BREAK] = new QLabel(0);
+    m_statistics[IDLENESS_CAUSED_SKIP_BIG] = 
+            RSIStatItem(i18n("Number of skipped big breaks (idle)"));
+    m_labels[IDLENESS_CAUSED_SKIP_BIG] = new QLabel(0);
 
     // FIXME: Find better name
     m_statistics[PAUSE_SCORE] = RSIStatItem(i18n("Pause score"));
@@ -244,8 +254,10 @@ void RSIStats::updateLabel( RSIStat stat )
         // plain integer values
         case TINY_BREAKS:
         case TINY_BREAKS_SKIPPED:
+        case IDLENESS_CAUSED_SKIP_TINY:
         case BIG_BREAKS:
         case BIG_BREAKS_SKIPPED:
+        case IDLENESS_CAUSED_SKIP_BIG:
         l->setText( QString::number( 
                         m_statistics[ stat ].getValue().toInt() ) );
         break;

@@ -319,6 +319,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         // the user was sufficiently idle for a big break
         kdDebug() << "Time being idle == big break length" << endl;
+        RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
         resetAfterBigBreak();
         emit bigBreakSkipped();
     }
@@ -326,6 +327,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         // the user was sufficiently idle for a tiny break
         kdDebug() << "Time being idle == tiny break length" << endl;
+        RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
         resetAfterTinyBreak();
         emit tinyBreakSkipped();
     }
