@@ -20,6 +20,7 @@
 #include <qlabel.h>
 
 #include <kdebug.h>
+#include <kglobal.h>
 #include <klocale.h>
 
 #include "rsistats.h"
@@ -73,19 +74,27 @@ RSIStats::RSIStats()
 
     m_statistics[TINY_BREAKS] = RSIStatItem(i18n("Total amount of tiny breaks"));
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
+    m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
     m_labels[TINY_BREAKS] = new QLabel(0);
 
     m_statistics[TINY_BREAKS_SKIPPED] = RSIStatItem(i18n("Number of skipped tiny breaks"));
     m_statistics[TINY_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
     m_labels[TINY_BREAKS_SKIPPED] = new QLabel(0);
 
+    m_statistics[LAST_TINY_BREAK] = RSIStatItem(i18n("Last tiny break"));
+    m_labels[LAST_TINY_BREAK] = new QLabel(0);
+
     m_statistics[BIG_BREAKS] = RSIStatItem(i18n("Total amount of big breaks"));
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
+    m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
     m_labels[BIG_BREAKS] = new QLabel(0);
 
     m_statistics[BIG_BREAKS_SKIPPED] = RSIStatItem(i18n("Number of skipped big breaks"));
     m_statistics[BIG_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
     m_labels[BIG_BREAKS_SKIPPED] = new QLabel(0);
+
+    m_statistics[LAST_BIG_BREAK] = RSIStatItem(i18n("Last big break"));
+    m_labels[LAST_BIG_BREAK] = new QLabel(0);
 
     // FIXME: Find better name
     m_statistics[PAUSE_SCORE] = RSIStatItem(i18n("Pause score"));
@@ -156,14 +165,14 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
 
 void RSIStats::updateDependentStats( RSIStat stat )
 {
-    // kdDebug() << "RSIStats::updateDependentStats" << endl;
+    // kdDebug() << "RSIStats::updateDependentStats " << stat << endl;
 
     QValueList<RSIStat> stats = m_statistics[ stat ].getDerivedItems();
     QValueList<RSIStat>::ConstIterator it;
     for( it = stats.begin() ; it != stats.end(); ++it )
     {
-      switch( *it )
-      {
+        switch( (*it) )
+        {
         case PAUSE_SCORE:
         {
           /*
@@ -183,11 +192,25 @@ void RSIStats::updateDependentStats( RSIStat stat )
           updateStat( *it );
           break;
         }
+        
         case IDLENESS:
         {
             increaseStat( IDLENESS );
+            break;
         }
               
+        case LAST_BIG_BREAK:
+        {
+            setStat( LAST_BIG_BREAK, QDateTime::currentDateTime().toTime_t() );
+            break;
+        }
+        
+        case LAST_TINY_BREAK:
+        {
+            setStat( LAST_TINY_BREAK, QDateTime::currentDateTime().toTime_t() );
+            break;
+        }
+
         default: ;// nada
       }
     }
@@ -209,35 +232,54 @@ void RSIStats::updateLabel( RSIStat stat )
 
     switch ( stat )
     {
-      // integer values representing a time
-      case TOTAL_TIME:
-      case ACTIVITY:
-      case IDLENESS:
-      case MAX_IDLENESS:
+        // integer values representing a time
+        case TOTAL_TIME:
+        case ACTIVITY:
+        case IDLENESS:
+        case MAX_IDLENESS:
         l->setText( RSIGlobals::formatSeconds(
                         m_statistics[ stat ].getValue().toInt() ) );
         break;
-
-      // plain integer values
-      case TINY_BREAKS:
-      case TINY_BREAKS_SKIPPED:
-      case BIG_BREAKS:
-      case BIG_BREAKS_SKIPPED:
+    
+        // plain integer values
+        case TINY_BREAKS:
+        case TINY_BREAKS_SKIPPED:
+        case BIG_BREAKS:
+        case BIG_BREAKS_SKIPPED:
         l->setText( QString::number( 
                         m_statistics[ stat ].getValue().toInt() ) );
         break;
-
-      // doubles
-      case PAUSE_SCORE:
+    
+        // doubles
+        case PAUSE_SCORE:
         l->setText( QString::number( 
                         m_statistics[ stat ].getValue().toDouble() ) );
         break;
-      default: ; // nada
+        
+        // datetimes
+        case LAST_BIG_BREAK:
+        case LAST_TINY_BREAK:
+        {
+            int i = m_statistics[ stat ].getValue().toInt();
+            if (i > 0) 
+            {
+                KLocale *localize = KGlobal::locale();
+                QDateTime when;
+                when.setTime_t( i );
+                if ( when.isValid() )
+                    l->setText( localize->formatDateTime(when, true, true) );
+            } 
+            else
+                l->setText( QString::null );
+            break;
+        }
+    
+        default: ; // nada
     }
-
+    
     // some stats need a %
     if ( stat == PAUSE_SCORE )
-      l->setText( l->text() + "%" );
+        l->setText( l->text() + "%" );
 }
 
 void RSIStats::updateLabels()

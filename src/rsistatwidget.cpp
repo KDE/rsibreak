@@ -31,11 +31,14 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( TOTAL_TIME, 0 );
     addStat( ACTIVITY, 1 );
     addStat( IDLENESS, 2 );
-    addStat( TINY_BREAKS, 3 );
-    addStat( TINY_BREAKS_SKIPPED, 4 );
-    addStat( BIG_BREAKS, 5 );
-    addStat( BIG_BREAKS_SKIPPED, 6 );
-    addStat( PAUSE_SCORE, 7 );
+    addStat( MAX_IDLENESS, 3 );
+    addStat( TINY_BREAKS, 4 );
+    addStat( TINY_BREAKS_SKIPPED, 5 );
+    addStat( LAST_TINY_BREAK, 6 );
+    addStat( BIG_BREAKS, 7 );
+    addStat( BIG_BREAKS_SKIPPED, 8 );
+    addStat( LAST_BIG_BREAK, 9 );
+    addStat( PAUSE_SCORE, 10 );
 }
 
 RSIStatWidget::~RSIStatWidget()

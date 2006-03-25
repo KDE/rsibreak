@@ -25,17 +25,17 @@
 #include <qvaluelist.h>
 #include <qvariant.h>
 
-enum RSIStat { // integers
+enum RSIStat { 
                TOTAL_TIME,
                ACTIVITY,
                IDLENESS,
                MAX_IDLENESS,
                TINY_BREAKS,
                TINY_BREAKS_SKIPPED,
+               LAST_TINY_BREAK,
                BIG_BREAKS,
                BIG_BREAKS_SKIPPED,
-
-               // doubles
+               LAST_BIG_BREAK,
                PAUSE_SCORE
              };
 
