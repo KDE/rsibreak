@@ -27,8 +27,10 @@
 #include <qpixmap.h>
 #include <qtimer.h>
 
-class KGlobalAccel;
+#include <kdialogbase.h>
 #include <ksystemtray.h>
+
+class KGlobalAccel;
 
 class RSIStatWidget;
 
@@ -152,6 +154,7 @@ class RSIDock : public KSystemTray
         bool m_hasQuit;
 
         QTimer *m_tooltiptimer;
+        KDialogBase *m_statsDialog;
         RSIStatWidget *m_statsWidget;
 };
 

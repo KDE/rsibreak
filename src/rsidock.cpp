@@ -36,7 +36,8 @@
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
-    , m_hasQuit ( false ), m_tooltiptimer( 0 ), m_statsWidget( 0 )
+    , m_hasQuit ( false ), m_tooltiptimer( 0 ), m_statsDialog( 0 )
+    , m_statsWidget( 0 )
 
 {
 
@@ -213,17 +214,14 @@ void RSIDock::slotShowStatistics()
 {
     kdDebug() << "Entering RSIDock::showStatistics()" << endl;
 
-    if ( !m_statsWidget )
-      m_statsWidget = new RSIStatWidget();
+    if ( !m_statsDialog )
+    {
+      m_statsDialog = new KDialogBase( this, 0, false, i18n("Usage Statistics"), KDialogBase::Ok, KDialogBase::Ok, true );
+      m_statsWidget = new RSIStatWidget(m_statsDialog);
+      m_statsDialog->setMainWidget( m_statsWidget );
+    }
 
-    KDialogBase dlg( this, 0, false, i18n("Usage Statistics"), KDialogBase::Ok, KDialogBase::Ok, true );
-    m_statsWidget->reparent( &dlg, 0, QPoint() );
-    dlg.setMainWidget( m_statsWidget );
-
-    dlg.exec();
-
-    // don't point to dialog since it's gonna be destroyed again
-    m_statsWidget->reparent( 0, 0, QPoint() );
+    m_statsDialog->show();
 }
 
 #include "rsidock.moc"
