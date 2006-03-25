@@ -50,8 +50,8 @@ RSITimer::RSITimer( QObject *parent, const char *name )
         m_idleDetection = true;
 #endif
 
-    kdDebug() << "IDLE Detection is " 
-              << (m_idleDetection?QString::null:"not") 
+    kdDebug() << "IDLE Detection is "
+              << (m_idleDetection?QString::null:"not")
               << "possible" << endl;
 
     startTimer( 1000 );
@@ -319,7 +319,10 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         // the user was sufficiently idle for a big break
         kdDebug() << "Time being idle == big break length" << endl;
+
+        //RSIStats::instance()->increaseStat( BIG_BREAKS );
         RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
+
         resetAfterBigBreak();
         emit bigBreakSkipped();
     }
@@ -327,7 +330,11 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         // the user was sufficiently idle for a tiny break
         kdDebug() << "Time being idle == tiny break length" << endl;
+
+        //RSIStats::instance()->increaseStat( TINY_BREAKS );
+
         RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
+
         resetAfterTinyBreak();
         emit tinyBreakSkipped();
     }

@@ -1,7 +1,7 @@
 /* This file is part of the KDE project
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
    Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
-   
+
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
    License as published by the Free Software Foundation; either
@@ -25,10 +25,11 @@
 #include <qvaluelist.h>
 #include <qvariant.h>
 
-enum RSIStat { 
+enum RSIStat {
                TOTAL_TIME,
                ACTIVITY,
                IDLENESS,
+               ACTIVITY_PERC,
                MAX_IDLENESS,
                IDLENESS_CAUSED_SKIP_TINY,
                IDLENESS_CAUSED_SKIP_BIG,
