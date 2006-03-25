@@ -80,7 +80,8 @@ void RSIDock::slotConfigure()
     emit dialogEntered();
     if (setup.exec() != QDialog::Accepted)
     {
-        emit dialogLeft();
+        if ( !m_suspended )
+          emit dialogLeft();
         return;
     }
     emit configChanged();
