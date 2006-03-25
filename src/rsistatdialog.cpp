@@ -26,6 +26,7 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
 : QWidget( parent, name )
 {
     mGrid = new QGridLayout( this );
+    mGrid->setSpacing( 5 );
 
     addStat( TOTAL_TIME, 0 );
     addStat( ACTIVITY, 1 );
