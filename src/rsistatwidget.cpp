@@ -41,7 +41,6 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( ACTIVITY, subgrid );
     addStat( IDLENESS, subgrid );
     addStat( MAX_IDLENESS, subgrid );
-    addStat( ACTIVITY_PERC, subgrid );
     mGrid->addWidget( gb, 0, 0 );
 
     gb = new QGroupBox( 1, Qt::Vertical, i18n("Tiny breaks"), this );
@@ -56,6 +55,7 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     gb = new QGroupBox( 1, Qt::Vertical, i18n("Pause"), this );
     subgrid = new QGrid( 2, Qt::Horizontal, gb );
     subgrid->setSpacing( 5 );
+    addStat( ACTIVITY_PERC, subgrid );
     addStat( PAUSE_SCORE, subgrid );
     mGrid->addWidget( gb, 1, 0 );
 
