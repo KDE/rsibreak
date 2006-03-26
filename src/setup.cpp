@@ -81,6 +81,7 @@ Setup::~Setup()
 {
     kdDebug() << "Entering ~Setup" << endl;
     saveDialogSize("Settings");
+    delete d;
 }
 
 void Setup::slotOkClicked()
@@ -91,7 +92,6 @@ void Setup::slotOkClicked()
     d->popupPage->applySettings();
     d->maximizedPage->applySettings();
     close();
-    delete d;
 }
 
 #include "setup.moc"

@@ -65,10 +65,12 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             "that you want RSIBreak to start when KDE starts.") );
     layout->addWidget(d->autoStart);
     
-    d->useIdleDetection = new QCheckBox(i18n("&Use idle-detection"), parent);
+    d->useIdleDetection = new QCheckBox(
+            i18n("&Reset timers after period of idleness"), parent);
     QWhatsThis::add( d->useIdleDetection, i18n("With this checkbox you indicate "
-            "that you want to use idle detection. Unchecked RSIBreak will break "
-        "at fixed times.") );
+            "that you want to use idle detection. Unchecked RSIBreak will not "
+            "reset the timers when you are idle for the duration of a break, but "
+            "it will take into account the seconds you work/are idle.") );
     layout->addWidget(d->useIdleDetection);
     connect(d->useIdleDetection , SIGNAL(toggled(bool)), SLOT(slotShowTimer()));
     

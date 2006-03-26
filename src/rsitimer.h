@@ -203,6 +203,7 @@ class RSITimer : public QObject
         int             m_big_left;
         int             m_pause_left;
         int             m_relax_left;
+        int             m_useIdleDetection;
 
         /**
           When it's time for a break, we wait patiently till the user

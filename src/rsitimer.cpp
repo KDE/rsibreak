@@ -314,8 +314,8 @@ void RSITimer::timerEvent( QTimerEvent * )
         double value = 100 - ( ( m_tiny_left / (double)m_intervals["tiny_minimized"] ) * 100 );
         emit updateIdleAvg( value );
     }
-    else if ( t == m_intervals["big_maximized"] &&
-              m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
+    else if ( m_useIdleDetection && t == m_intervals["big_maximized"] &&
+             m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
     {
         // the user was sufficiently idle for a big break
         kdDebug() << "Time being idle == big break length" << endl;
@@ -326,7 +326,8 @@ void RSITimer::timerEvent( QTimerEvent * )
         resetAfterBigBreak();
         emit bigBreakSkipped();
     }
-    else if ( t == m_intervals["tiny_maximized"] && m_tiny_left < m_big_left )
+    else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] && 
+              m_tiny_left < m_big_left )
     {
         // the user was sufficiently idle for a tiny break
         kdDebug() << "Time being idle == tiny break length" << endl;
@@ -379,6 +380,8 @@ void RSITimer::readConfig()
     m_intervals["tiny_maximized"] = config->readNumEntry("TinyDuration", 20);
     m_intervals["big_minimized"] = config->readNumEntry("BigInterval", 60)*60;
     m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
+    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
+    m_useIdleDetection = config->readBoolEntry("UseIdleDetection", true);
 
     if (config->readBoolEntry("DEBUG", false))
     {
