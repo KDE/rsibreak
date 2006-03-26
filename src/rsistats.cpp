@@ -28,13 +28,13 @@ class RSIStatItem
   public:
     RSIStatItem( const QString &description )
     {
-      m_description = description;
+      m_description = new QLabel( description, 0 );
       m_value = QVariant(0);
     }
     RSIStatItem() : m_value( QVariant(0) ) {}
     ~RSIStatItem() {}
 
-    QString getDescription() const { return m_description; }
+    QLabel *getDescription() const { return m_description; }
     QVariant getValue()      const { return m_value; }
 
     void setValue( QVariant v ) { m_value = v; }
@@ -44,7 +44,7 @@ class RSIStatItem
 
   private:
     QVariant m_value;
-    QString m_description;
+    QLabel *m_description;
 
     /** Contains a list of RSIStats which depend on *this* item. */
     QValueList< RSIStat > m_derived;
@@ -56,60 +56,61 @@ RSIStats::RSIStats()
 {
     kdDebug() << "RSIStats::RSIStats() entered" << endl;
 
-    m_statistics[TOTAL_TIME] = RSIStatItem(i18n("Total recorded time"));
+    //m_statistics[TOTAL_TIME] = RSIStatItem(i18n("Total recorded time"));
+    m_statistics.insert( TOTAL_TIME, RSIStatItem(i18n("Total recorded time") ) );
     m_labels[TOTAL_TIME] = new QLabel(0);
     m_statistics[TOTAL_TIME].addDerivedItem( ACTIVITY_PERC );
 
-    m_statistics[ACTIVITY] = RSIStatItem(i18n("Total time of activity"));
+    m_statistics.insert( ACTIVITY, RSIStatItem(i18n("Total time of activity") ) );
     m_labels[ACTIVITY] = new QLabel(0);
     m_statistics[ACTIVITY].addDerivedItem( ACTIVITY_PERC );
 
-    m_statistics[IDLENESS] = RSIStatItem(i18n("Total time being idle"));
+    m_statistics.insert( IDLENESS, RSIStatItem(i18n("Total time being idle") ) );
     m_labels[IDLENESS] = new QLabel(0);
 
-    m_statistics[ACTIVITY_PERC] = RSIStatItem(i18n("Percentage of activity"));
+    m_statistics.insert( ACTIVITY_PERC, RSIStatItem(i18n("Percentage of activity") ) );
     m_labels[ACTIVITY_PERC] = new QLabel(0);
 
-    m_statistics[MAX_IDLENESS] = RSIStatItem(i18n("Maximum idle period"));
+    m_statistics.insert( MAX_IDLENESS, RSIStatItem(i18n("Maximum idle period") ) );
     m_statistics[MAX_IDLENESS].addDerivedItem( IDLENESS );
     m_labels[MAX_IDLENESS] = new QLabel(0);
 
-    m_statistics[TINY_BREAKS] = RSIStatItem(i18n("Total amount of tiny breaks"));
+    m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total amount of tiny breaks") ) );
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
     m_labels[TINY_BREAKS] = new QLabel(0);
 
-    m_statistics[LAST_TINY_BREAK] = RSIStatItem(i18n("Last tiny break"));
+    m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last tiny break") ) );
     m_labels[LAST_TINY_BREAK] = new QLabel(0);
 
-    m_statistics[TINY_BREAKS_SKIPPED] =
-            RSIStatItem(i18n("Number of skipped tiny breaks (user)"));
+    m_statistics.insert( TINY_BREAKS_SKIPPED,
+            RSIStatItem(i18n("Number of skipped tiny breaks (user)") ) );
     m_statistics[TINY_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
     m_labels[TINY_BREAKS_SKIPPED] = new QLabel(0);
 
-    m_statistics[IDLENESS_CAUSED_SKIP_TINY] =
-            RSIStatItem(i18n("Number of skipped tiny breaks (idle)"));
+    m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
+            RSIStatItem(i18n("Number of skipped tiny breaks (idle)") ) );
     m_labels[IDLENESS_CAUSED_SKIP_TINY] = new QLabel(0);
 
-    m_statistics[BIG_BREAKS] = RSIStatItem(i18n("Total amount of big breaks"));
+    m_statistics.insert( BIG_BREAKS, RSIStatItem(i18n("Total amount of big breaks") ) );
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
     m_labels[BIG_BREAKS] = new QLabel(0);
 
-    m_statistics[LAST_BIG_BREAK] = RSIStatItem(i18n("Last big break"));
+    m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last big break") ) );
     m_labels[LAST_BIG_BREAK] = new QLabel(0);
 
-    m_statistics[BIG_BREAKS_SKIPPED] =
-            RSIStatItem(i18n("Number of skipped big breaks (user)"));
+    m_statistics.insert( BIG_BREAKS_SKIPPED,
+            RSIStatItem(i18n("Number of skipped big breaks (user)") ) );
     m_statistics[BIG_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
     m_labels[BIG_BREAKS_SKIPPED] = new QLabel(0);
 
-    m_statistics[IDLENESS_CAUSED_SKIP_BIG] =
-            RSIStatItem(i18n("Number of skipped big breaks (idle)"));
+    m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
+            RSIStatItem(i18n("Number of skipped big breaks (idle)") ) );
     m_labels[IDLENESS_CAUSED_SKIP_BIG] = new QLabel(0);
 
     // FIXME: Find better name
-    m_statistics[PAUSE_SCORE] = RSIStatItem(i18n("Pause score"));
+    m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score") ) );
     m_labels[PAUSE_SCORE] = new QLabel(0);
 
     updateLabels();
@@ -124,7 +125,16 @@ RSIStats::~RSIStats()
     for ( it = m_labels.begin() ; it != m_labels.end(); ++it )
     {
       delete it.data();
-      it.data() = 0;
+      it.data() = 0L;
+    }
+
+    QMap<RSIStat,RSIStatItem>::Iterator it2;
+    for ( it2 = m_statistics.begin() ; it2 != m_statistics.end(); ++it2 )
+    {
+
+      QLabel *l = it2.data().getDescription();
+      delete l;
+      l = 0L;
     }
 
     delete m_instance;
@@ -271,6 +281,8 @@ void RSIStats::updateLabel( RSIStat stat )
     // kdDebug() << "RSIStats::updateLabel() entered" << endl;
 
     QLabel *l = m_labels[ stat ];
+    QColor c;
+    double v;
 
     switch ( stat )
     {
@@ -296,7 +308,18 @@ void RSIStats::updateLabel( RSIStat stat )
 
         // doubles
         case PAUSE_SCORE:
+        v = m_statistics[ stat ].getValue().toDouble();
+        c = QColor( (int)(255 - 2.55 * v), (int)(1.60 * v), 0 );
+        l->setPaletteForegroundColor( c );
+        m_statistics[stat].getDescription()->setPaletteForegroundColor( c );
+        l->setText( QString::number(
+                        m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
+        break;
         case ACTIVITY_PERC:
+        v = m_statistics[stat].getValue().toDouble();
+        c = QColor( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 );
+        l->setPaletteForegroundColor( c );
+        m_statistics[stat].getDescription()->setPaletteForegroundColor( c );
         l->setText( QString::number(
                         m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
         break;
@@ -343,7 +366,7 @@ QLabel *RSIStats::getLabel( RSIStat stat ) const
     return m_labels[ stat ];
 }
 
-QString RSIStats::getDescription( RSIStat stat ) const
+QLabel *RSIStats::getDescription( RSIStat stat ) const
 {
     kdDebug() << "RSIStats::getDescription() entered" << endl;
 

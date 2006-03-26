@@ -50,12 +50,14 @@ RSIStatWidget::~RSIStatWidget()
 
 void RSIStatWidget::addStat( RSIStat stat, int row )
 {
-    QLabel *l = new QLabel( RSIStats::instance()->getDescription( stat ), this );
-    mGrid->addWidget( l, row, 0 );
-    l = RSIStats::instance()->getLabel( stat );
+    QLabel *l = RSIStats::instance()->getDescription( stat );
     l->reparent( this, 0, QPoint() );
-    l->setAlignment( Qt::AlignRight );
-    mGrid->addWidget( l, row, 1 );
+    mGrid->addWidget( l, row, 0 );
+
+    QLabel *m = RSIStats::instance()->getLabel( stat );
+    m->reparent( this, 0, QPoint() );
+    m->setAlignment( Qt::AlignRight );
+    mGrid->addWidget( m, row, 1 );
 }
 
 #include "rsistatwidget.moc"

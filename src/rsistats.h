@@ -60,7 +60,7 @@ public:
     void setStat( RSIStat stat, QVariant val, bool ifmax = false );
 
     /** Returns a description for the given @p stat. */
-    QString getDescription( RSIStat stat ) const;
+    QLabel *getDescription( RSIStat stat ) const;
 
     /** TODO Doxy */
     void updateLabels();
