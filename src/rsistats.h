@@ -77,6 +77,8 @@ protected:
 
     void updateStat( RSIStat );
 
+    QString getWhatsThisText( RSIStat stat ) const;
+
 private:
     static RSIStats *m_instance;
 

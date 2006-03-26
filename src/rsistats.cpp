@@ -59,89 +59,60 @@ RSIStats::RSIStats()
     kdDebug() << "RSIStats::RSIStats() entered" << endl;
 
     m_statistics.insert( TOTAL_TIME, RSIStatItem(i18n("Total recorded time") ) );
-    QWhatsThis::add( m_labels[TOTAL_TIME], 
-                     i18n("This is the total time RSIBreak is running.") );
     m_statistics[TOTAL_TIME].addDerivedItem( ACTIVITY_PERC );
 
     m_statistics.insert( ACTIVITY, RSIStatItem(i18n("Total time of activity") ) );
-    QWhatsThis::add( m_labels[ACTIVITY], 
-                     i18n("This is the total amount of time you used the "
-                          "keyboard or mouse.") );
     m_statistics[ACTIVITY].addDerivedItem( ACTIVITY_PERC );
 
     m_statistics.insert( IDLENESS, RSIStatItem(i18n("Total time being idle") ) );
-    QWhatsThis::add( m_labels[IDLENESS], 
-                     i18n("This is the total amount of time you did not use "
-                          "the keyboard or mouse.") );
 
     m_statistics.insert( ACTIVITY_PERC, RSIStatItem(i18n("Percentage of activity") ) );
-    QWhatsThis::add( m_labels[ACTIVITY_PERC], 
-                     i18n("This is a percentage of activity, based on the "
-                          "seconds of activity vs. total time RSIBreak is running.") );
 
     m_statistics.insert( MAX_IDLENESS, RSIStatItem(i18n("Maximum idle period") ) );
     m_statistics[MAX_IDLENESS].addDerivedItem( IDLENESS );
-    QWhatsThis::add( m_labels[MAX_IDLENESS], 
-                     i18n("This is the biggest period of inactivity measured "
-                          "while RSIBreak is running.") );
 
     m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total amount of tiny breaks") ) );
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
-    QWhatsThis::add( m_labels[TINY_BREAKS], 
-                     i18n("This is the total amount of tiny breaks") );
 
     m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last tiny break") ) );
-    QWhatsThis::add( m_labels[LAST_TINY_BREAK], 
-                     i18n("This is the time and date of the last tiny break.") );
 
     m_statistics.insert( TINY_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped tiny breaks (user)") ) );
     m_statistics[TINY_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
-    QWhatsThis::add( m_labels[TINY_BREAKS_SKIPPED], 
-                     i18n("This is the total amount of tiny breaks "
-                          "which you skipped.") );
+
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
             RSIStatItem(i18n("Number of skipped tiny breaks (idle)") ) );
     m_labels[IDLENESS_CAUSED_SKIP_TINY] = new QLabel(0);
-    QWhatsThis::add( m_labels[IDLENESS_CAUSED_SKIP_TINY], 
-                     i18n("This is the total amount of tiny breaks "
-                             "which are skipped because you where idle.") );
 
     m_statistics.insert( BIG_BREAKS, RSIStatItem(i18n("Total amount of big breaks") ) );
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
-    QWhatsThis::add( m_labels[BIG_BREAKS], 
-                     i18n("This is the total amount of big breaks.") );
 
     m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last big break") ) );
-    QWhatsThis::add( m_labels[LAST_BIG_BREAK], 
-                     i18n("This is the time and date of the last big break.") );
 
     m_statistics.insert( BIG_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped big breaks (user)") ) );
     m_statistics[BIG_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
-    QWhatsThis::add( m_labels[BIG_BREAKS_SKIPPED], 
-                     i18n("This is the total amount of big breaks "
-                          "which you skipped.") );
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
             RSIStatItem(i18n("Number of skipped big breaks (idle)") ) );
-    QWhatsThis::add( m_labels[IDLENESS_CAUSED_SKIP_BIG], 
-                     i18n("This is the total amount of big breaks "
-                          "which are skipped because you where idle.") );
 
     // FIXME: Find better name and whatsthis
     m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score") ) );
-    QWhatsThis::add( m_labels[PAUSE_SCORE], 
-                     i18n("This is an indication how well you bahaved "
-                          "with the brakes.") );
 
+    // initialise labels
     QMap<RSIStat,RSIStatItem>::Iterator it;
     for ( it = m_statistics.begin(); it != m_statistics.end(); ++it )
+    {
       m_labels[it.key()] = new QLabel( 0 );
+      QWhatsThis::add( m_labels[it.key()], getWhatsThisText( it.key() ) );
+      QWhatsThis::add( m_statistics[it.key()].getDescription(), getWhatsThisText( it.key() ) );
+    }
 
+
+    // initialise statistics
     updateLabels();
     reset();
 }
@@ -408,4 +379,37 @@ QLabel *RSIStats::getDescription( RSIStat stat ) const
     // kdDebug() << "RSIStats::getDescription() entered" << endl;
 
     return m_statistics[stat].getDescription();
+}
+
+QString RSIStats::getWhatsThisText( RSIStat stat ) const
+{
+    switch ( stat )
+    {
+      case TOTAL_TIME: return i18n("This is the total time RSIBreak is running.");
+      case ACTIVITY: return i18n("This is the total amount of time you used the "
+                          "keyboard or mouse.");
+      case IDLENESS: return i18n("This is the total amount of time you did not use "
+                          "the keyboard or mouse.");
+      case ACTIVITY_PERC: return i18n("This is a percentage of activity, based on the "
+                          "seconds of activity vs. total time RSIBreak is running.");
+      case MAX_IDLENESS: return i18n("This is the biggest period of inactivity measured "
+                          "while RSIBreak is running.");
+      case TINY_BREAKS: return i18n("This is the total amount of tiny breaks");
+      case LAST_TINY_BREAK: return i18n("This is the time and date of the last tiny break.");
+      case TINY_BREAKS_SKIPPED: return i18n("This is the total amount of tiny breaks "
+                          "which you skipped.");
+      case IDLENESS_CAUSED_SKIP_TINY: return i18n("This is the total amount of tiny breaks "
+                             "which are skipped because you where idle.");
+      case BIG_BREAKS: return i18n("This is the total amount of big breaks.");
+      case LAST_BIG_BREAK: return i18n("This is the time and date of the last big break.");
+      case BIG_BREAKS_SKIPPED: return i18n("This is the total amount of big breaks "
+                          "which you skipped.");
+      case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total amount of big breaks "
+                          "which are skipped because you where idle." );
+      case PAUSE_SCORE: return i18n("This is an indication how well you bahaved "
+                          "with the brakes.");
+      default: ;
+    }
+
+    return QString::null;
 }
