@@ -58,35 +58,27 @@ RSIStats::RSIStats()
 
     //m_statistics[TOTAL_TIME] = RSIStatItem(i18n("Total recorded time"));
     m_statistics.insert( TOTAL_TIME, RSIStatItem(i18n("Total recorded time") ) );
-    m_labels[TOTAL_TIME] = new QLabel(0);
     m_statistics[TOTAL_TIME].addDerivedItem( ACTIVITY_PERC );
 
     m_statistics.insert( ACTIVITY, RSIStatItem(i18n("Total time of activity") ) );
-    m_labels[ACTIVITY] = new QLabel(0);
     m_statistics[ACTIVITY].addDerivedItem( ACTIVITY_PERC );
 
     m_statistics.insert( IDLENESS, RSIStatItem(i18n("Total time being idle") ) );
-    m_labels[IDLENESS] = new QLabel(0);
 
     m_statistics.insert( ACTIVITY_PERC, RSIStatItem(i18n("Percentage of activity") ) );
-    m_labels[ACTIVITY_PERC] = new QLabel(0);
 
     m_statistics.insert( MAX_IDLENESS, RSIStatItem(i18n("Maximum idle period") ) );
     m_statistics[MAX_IDLENESS].addDerivedItem( IDLENESS );
-    m_labels[MAX_IDLENESS] = new QLabel(0);
 
     m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total amount of tiny breaks") ) );
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
-    m_labels[TINY_BREAKS] = new QLabel(0);
 
     m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last tiny break") ) );
-    m_labels[LAST_TINY_BREAK] = new QLabel(0);
 
     m_statistics.insert( TINY_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped tiny breaks (user)") ) );
     m_statistics[TINY_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
-    m_labels[TINY_BREAKS_SKIPPED] = new QLabel(0);
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
             RSIStatItem(i18n("Number of skipped tiny breaks (idle)") ) );
@@ -95,23 +87,22 @@ RSIStats::RSIStats()
     m_statistics.insert( BIG_BREAKS, RSIStatItem(i18n("Total amount of big breaks") ) );
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
-    m_labels[BIG_BREAKS] = new QLabel(0);
 
     m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last big break") ) );
-    m_labels[LAST_BIG_BREAK] = new QLabel(0);
 
     m_statistics.insert( BIG_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped big breaks (user)") ) );
     m_statistics[BIG_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
-    m_labels[BIG_BREAKS_SKIPPED] = new QLabel(0);
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
             RSIStatItem(i18n("Number of skipped big breaks (idle)") ) );
-    m_labels[IDLENESS_CAUSED_SKIP_BIG] = new QLabel(0);
 
     // FIXME: Find better name
     m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score") ) );
-    m_labels[PAUSE_SCORE] = new QLabel(0);
+
+    QMap<RSIStat,RSIStatItem>::Iterator it;
+    for ( it = m_statistics.begin(); it != m_statistics.end(); ++it )
+      m_labels[it.key()] = new QLabel( 0 );
 
     updateLabels();
     reset();
@@ -159,8 +150,8 @@ void RSIStats::reset()
         QVariant v = m_statistics[stat].getValue();
         if ( v.type() == QVariant::Int || v.type() == QVariant::Double )
             m_statistics[stat].setValue( 0 );
-        else if ( v.type() == QVariant::DateTime )
-            m_statistics[stat].setValue( QDateTime());
+        else if ( v.type() == QVariant::Time )
+            m_statistics[stat].setValue( QTime());
         updateStat( stat );
     }
 }
@@ -175,9 +166,9 @@ void RSIStats::increaseStat( RSIStat stat, int delta )
       m_statistics[stat].setValue( v.toInt() + delta );
     else if ( v.type() == QVariant::Double )
       m_statistics[stat].setValue( v.toDouble() + (double)delta );
-    else if ( v.type() == QVariant::DateTime )
-                m_statistics[stat].setValue( 
-                    QDateTime(v.toDateTime()).addSecs( delta ));
+    else if ( v.type() == QVariant::Time )
+                m_statistics[stat].setValue(
+                    QTime(v.toTime()).addSecs( delta ));
 
     updateStat( stat );
 }
@@ -191,7 +182,7 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
     if ( !ifmax ||
            (v.type() == QVariant::Int && val.toInt()>v.toInt()) ||
            (v.type() == QVariant::Double && val.toDouble()>v.toDouble()) ||
-           (v.type() == QVariant::DateTime && val.toDateTime()>v.toDateTime()))
+           (v.type() == QVariant::Time && val.toTime()>v.toTime()))
             m_statistics[stat].setValue( val );
 
     updateStat( stat );
@@ -261,13 +252,13 @@ void RSIStats::updateDependentStats( RSIStat stat )
 
         case LAST_BIG_BREAK:
         {
-            setStat( LAST_BIG_BREAK, QDateTime::currentDateTime() );
+            setStat( LAST_BIG_BREAK, QTime::currentTime() );
             break;
         }
 
         case LAST_TINY_BREAK:
         {
-            setStat( LAST_TINY_BREAK, QDateTime::currentDateTime() );
+            setStat( LAST_TINY_BREAK, QTime::currentTime() );
             break;
         }
 
@@ -332,13 +323,13 @@ void RSIStats::updateLabel( RSIStat stat )
                         m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
         break;
 
-        // datetimes
+        // times
         case LAST_BIG_BREAK:
         case LAST_TINY_BREAK:
         {
             KLocale *localize = KGlobal::locale();
-            QDateTime when(m_statistics[ stat ].getValue().toDateTime());
-            when.isValid() ? l->setText( localize->formatDateTime(when, true, true) )
+            QTime when(m_statistics[ stat ].getValue().toTime());
+            when.isValid() ? l->setText( localize->formatTime(when, true, true) )
                            : l->setText( QString::null );
             break;
         }

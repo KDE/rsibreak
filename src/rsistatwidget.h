@@ -19,6 +19,7 @@
 #ifndef RSISTATWIDGET_H
 #define RSISTATWIDGET_H
 
+#include <qgroupbox.h>
 #include <qlayout.h>
 
 #include "rsistats.h"
@@ -33,7 +34,7 @@ public:
   ~RSIStatWidget();
 
 protected:
-  void addStat( RSIStat stat, int row );
+  void addStat( RSIStat stat, QGrid * );
 private:
   QGridLayout *mGrid;
 };
