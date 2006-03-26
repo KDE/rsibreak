@@ -31,7 +31,6 @@
 #include <qlineedit.h>
 #include <qwhatsthis.h>
 #include <qcheckbox.h>
-#include <kfiledialog.h>
 
 // KDE includes.
 
@@ -43,6 +42,7 @@
 #include <knuminput.h>
 #include <kconfig.h>
 #include <kapplication.h>
+#include <kfiledialog.h>
 
 // Local includes.
 
@@ -72,34 +72,46 @@ SetupTiming::SetupTiming(QWidget* parent )
     tinyBox->setTitle(i18n("Tiny Breaks"));
     
     QHBox *m = new QHBox(tinyBox);
-    new QLabel(i18n("Tiny break every:"), m);
+    QLabel *l1 = new QLabel(i18n("Tiny break every:"), m);
+    QWhatsThis::add( l1, i18n("Here you can set how often you want a tiny "
+                              "break. One minute means 60 seconds of "
+                              "movement with the mouse or work on the keyboard.") );
     d->tinyInterval = new KIntNumInput(m);
     d->tinyInterval->setRange(1,1000,1,false);
     d->tinyInterval->setSuffix( " " + i18n("minutes") );
+    l1->setBuddy(d->tinyInterval);
     connect(d->tinyInterval, SIGNAL(valueChanged(int)),
             SLOT(slotTinyValueChanged( int )));
     
     QHBox *m2 = new QHBox(tinyBox);
-    new QLabel(i18n("For a duration of:"), m2);
+    QLabel *l2 = new QLabel(i18n("For a duration of:"), m2);
+    QWhatsThis::add( l2, i18n("Here you can set how long the tiny break is.") );
     d->tinyDuration = new KIntNumInput(m2);
     d->tinyDuration->setRange(1,1000,1,false);
     d->tinyDuration->setSuffix( " " + i18n("seconds") );
+    l2->setBuddy(d->tinyDuration);
     layout->addWidget(tinyBox);
     
     QVGroupBox *bigBox = new QVGroupBox(parent);
     bigBox->setTitle(i18n("Big Breaks"));
     
     QHBox *m3 = new QHBox(bigBox);
-    new QLabel(i18n("Big break every:"), m3);
+    QLabel *l3 = new QLabel(i18n("Big break every:"), m3);
+    QWhatsThis::add( l3, i18n("Here you can set how often you want a big "
+                              "break. One minute means 60 seconds of "
+                              "movement with the mouse or work on the keyboard") );
     d->bigInterval = new KIntNumInput(m3);
     d->bigInterval->setRange(1,1000,1,false);
     d->bigInterval->setSuffix( " " + i18n("minutes") );
+    l3->setBuddy(d->bigInterval);
     
     QHBox *m4 = new QHBox(bigBox);
-    new QLabel(i18n("For a duration of:"), m4);
+    QLabel *l4 = new QLabel(i18n("For a duration of:"), m4);
+    QWhatsThis::add( l4, i18n("Here you can set how long the big break is.") );
     d->bigDuration = new KIntNumInput(m4);
     d->bigDuration->setRange(1,1000,1,false);
     d->bigDuration->setSuffix( " " + i18n("minutes") );
+    l4->setBuddy(d->bigDuration);
     
     layout->addWidget(bigBox);
     
@@ -107,10 +119,13 @@ SetupTiming::SetupTiming(QWidget* parent )
     slideBox->setTitle(i18n("Slideshow"));
     
     QHBox *m5 = new QHBox(slideBox);
-    new QLabel(i18n("Change images every:"), m5);
+    QLabel *l5 = new QLabel(i18n("Change images every:"), m5);
+    QWhatsThis::add( l5, i18n("Here you can set how long one image should be "
+                              "shown before it is replaced by the next one."));
     d->slideInterval = new KIntNumInput(m5);
     d->slideInterval->setRange(3,1000,1,false);
     d->slideInterval->setSuffix( " " + i18n("seconds") );
+    l5->setBuddy(d->slideInterval);
     
     layout->addWidget(slideBox);
     layout->addStretch(10);
