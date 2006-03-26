@@ -154,7 +154,15 @@ void RSIStats::reset()
 
     QMap<RSIStat,RSIStatItem>::ConstIterator it;
     for( it = m_statistics.begin(); it != m_statistics.end(); ++it )
-      m_statistics[ it.key() ].setValue( 0 );
+    {
+        RSIStat stat = it.key();
+        QVariant v = m_statistics[stat].getValue();
+        if ( v.type() == QVariant::Int || v.type() == QVariant::Double )
+            m_statistics[stat].setValue( 0 );
+        else if ( v.type() == QVariant::DateTime )
+            m_statistics[stat].setValue( QDateTime());
+        updateStat( stat );
+    }
 }
 
 void RSIStats::increaseStat( RSIStat stat, int delta )

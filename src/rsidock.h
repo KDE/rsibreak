@@ -140,6 +140,7 @@ class RSIDock : public KSystemTray
         void slotSuspend();
         void slotShowToolTip();
         void slotShowStatistics();
+        void slotResetStats();
 
     private:
         KGlobalAccel* m_accel;

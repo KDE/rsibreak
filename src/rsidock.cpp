@@ -22,6 +22,7 @@
 #include "rsidock.h"
 #include "setup.h"
 #include "rsistatwidget.h"
+#include "rsistats.h"
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -33,6 +34,7 @@
 #include <kbugreport.h>
 #include <kglobalaccel.h>
 #include <kkeydialog.h>
+#include <kmessagebox.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
@@ -47,7 +49,9 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     m_suspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
                             i18n("Suspend RSIBreak"), this,
                             SLOT(slotSuspend()));
-    contextMenu()->insertItem(SmallIcon("gear"), i18n("Usage Statistics"), this, SLOT( slotShowStatistics() ) );
+    contextMenu()->insertItem(SmallIcon("gear"), 
+                            i18n("Usage Statistics"), this, 
+                            SLOT( slotShowStatistics() ) );
     contextMenu()->insertSeparator();
     contextMenu()->insertItem(i18n("Report Bug..."), this,
                             SLOT(slotReportBug()));
@@ -216,12 +220,33 @@ void RSIDock::slotShowStatistics()
 
     if ( !m_statsDialog )
     {
-      m_statsDialog = new KDialogBase( this, 0, false, i18n("Usage Statistics"), KDialogBase::Ok, KDialogBase::Ok, true );
+      m_statsDialog = new KDialogBase( this, 0, false, 
+                                       i18n("Usage Statistics"), 
+                                       KDialogBase::Ok|KDialogBase::User1, 
+                                       KDialogBase::Ok, true,
+                                       i18n("Reset"));
       m_statsWidget = new RSIStatWidget(m_statsDialog);
+      connect(m_statsDialog, SIGNAL(user1Clicked()),
+              this, SLOT(slotResetStats()));
+              
       m_statsDialog->setMainWidget( m_statsWidget );
     }
 
     m_statsDialog->show();
+}
+
+void RSIDock::slotResetStats()
+{
+    kdDebug() << "Entering RSIDock::slotResetStats" << endl;
+    int i = KMessageBox::warningContinueCancel( this,
+                i18n("This will reset all statistics to zero. "
+                     "Is that what you want?"),
+                i18n("Reset the statistics"), 
+                i18n("Reset"), 
+                "resetStatistics"); 
+    
+    if (i == KMessageBox::Continue)                                                
+        RSIStats::instance()->reset();
 }
 
 #include "rsidock.moc"
