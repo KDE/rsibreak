@@ -380,7 +380,6 @@ void RSITimer::readConfig()
     m_intervals["tiny_maximized"] = config->readNumEntry("TinyDuration", 20);
     m_intervals["big_minimized"] = config->readNumEntry("BigInterval", 60)*60;
     m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
-    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
     m_useIdleDetection = config->readBoolEntry("UseIdleDetection", true);
 
     if (config->readBoolEntry("DEBUG", false))
@@ -390,7 +389,15 @@ void RSITimer::readConfig()
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
     }
-
+    
+    // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
+    // guard against that situation.
+    if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
+    {
+        kdDebug() << "max big > max tiny, not allowed & corrected" << endl;
+        m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
+    }
+    
     config->setGroup("General");
     QDateTime *tempDt = new QDateTime();
     m_lastrunDt = config->readDateTimeEntry( "LastRunTimeStamp", tempDt );
