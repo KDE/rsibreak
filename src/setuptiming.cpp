@@ -56,6 +56,7 @@ public:
     KIntNumInput*          bigInterval;
     KIntNumInput*          bigDuration;
     KIntNumInput*          slideInterval;
+    bool                   debug;
 };
 
 SetupTiming::SetupTiming(QWidget* parent )
@@ -78,7 +79,6 @@ SetupTiming::SetupTiming(QWidget* parent )
                               "movement with the mouse or work on the keyboard.") );
     d->tinyInterval = new KIntNumInput(m);
     d->tinyInterval->setRange(1,1000,1,false);
-    d->tinyInterval->setSuffix( " " + i18n("minutes") );
     l1->setBuddy(d->tinyInterval);
     connect(d->tinyInterval, SIGNAL(valueChanged(int)),
             SLOT(slotTinyValueChanged( int )));
@@ -88,9 +88,10 @@ SetupTiming::SetupTiming(QWidget* parent )
     QWhatsThis::add( l2, i18n("Here you can set how long the tiny break is.") );
     d->tinyDuration = new KIntNumInput(m2);
     d->tinyDuration->setRange(1,1000,1,false);
-    d->tinyDuration->setSuffix( " " + i18n("seconds") );
     l2->setBuddy(d->tinyDuration);
     layout->addWidget(tinyBox);
+    connect(d->tinyDuration, SIGNAL(valueChanged(int)),
+            SLOT(slotTinyDurationValueChanged( int )));
     
     QVGroupBox *bigBox = new QVGroupBox(parent);
     bigBox->setTitle(i18n("Big Breaks"));
@@ -102,16 +103,19 @@ SetupTiming::SetupTiming(QWidget* parent )
                               "movement with the mouse or work on the keyboard") );
     d->bigInterval = new KIntNumInput(m3);
     d->bigInterval->setRange(1,1000,1,false);
-    d->bigInterval->setSuffix( " " + i18n("minutes") );
     l3->setBuddy(d->bigInterval);
+    connect(d->bigInterval, SIGNAL(valueChanged(int)),
+            SLOT(slotBigValueChanged( int )));
+
     
     QHBox *m4 = new QHBox(bigBox);
     QLabel *l4 = new QLabel(i18n("For a duration of:"), m4);
     QWhatsThis::add( l4, i18n("Here you can set how long the big break is.") );
     d->bigDuration = new KIntNumInput(m4);
     d->bigDuration->setRange(1,1000,1,false);
-    d->bigDuration->setSuffix( " " + i18n("minutes") );
     l4->setBuddy(d->bigDuration);
+    connect(d->bigDuration, SIGNAL(valueChanged(int)),
+            SLOT(slotBigDurationValueChanged( int )));
     
     layout->addWidget(bigBox);
     
@@ -124,12 +128,21 @@ SetupTiming::SetupTiming(QWidget* parent )
                               "shown before it is replaced by the next one."));
     d->slideInterval = new KIntNumInput(m5);
     d->slideInterval->setRange(3,1000,1,false);
-    d->slideInterval->setSuffix( " " + i18n("seconds") );
     l5->setBuddy(d->slideInterval);
+    connect(d->slideInterval, SIGNAL(valueChanged(int)),
+            SLOT(slotSlideIntervalValueChanged( int )));
     
     layout->addWidget(slideBox);
     layout->addStretch(10);
     readSettings();
+    
+    // set the suffix
+    slotTinyValueChanged( d->tinyInterval->value() );
+    slotBigValueChanged( d->bigInterval->value() );
+    slotTinyDurationValueChanged( d->tinyDuration->value() );
+    slotBigDurationValueChanged( d->bigInterval->value() );
+    slotSlideIntervalValueChanged( d->slideInterval->value() );
+
 }
 
 SetupTiming::~SetupTiming()
@@ -163,19 +176,41 @@ void SetupTiming::readSettings()
     d->bigInterval->setMinValue( d->tinyInterval->value() );
     d->bigDuration->setValue(config->readNumEntry("BigDuration", 1));
     d->slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
-
-    if (config->readBoolEntry("DEBUG"))
-    {
-        d->bigDuration->setSuffix( " " + i18n("seconds") );
-        d->tinyInterval->setSuffix( " " + i18n("seconds") );
-        d->bigInterval->setSuffix( " " + i18n("seconds") );
-    }
+    
+    d->debug = config->readBoolEntry("DEBUG");
 }
 
 void SetupTiming::slotTinyValueChanged( int i )
 {
     kdDebug() << "Entering slotTinyValueChanged " << i << endl;
     d->bigInterval->setMinValue( i );
-}
     
+    d->debug ? d->tinyInterval->setSuffix( " " + i18n("second","seconds",i) )
+             : d->tinyInterval->setSuffix( " " + i18n("minute","minutes",i) );
+
+}
+   
+void SetupTiming::slotBigValueChanged( int i )
+{
+    d->debug ? d->bigInterval->setSuffix( " " + i18n("second","seconds",i) )
+             : d->bigInterval->setSuffix( " " + i18n("minute","minutes",i) );
+}
+
+void SetupTiming::slotTinyDurationValueChanged( int i )
+{
+    d->tinyDuration->setSuffix( " " + i18n("second","seconds",i) );
+}
+
+void SetupTiming::slotBigDurationValueChanged( int i )
+{
+    d->debug ? d->bigDuration->setSuffix( " " + i18n("second","seconds",i) )
+             : d->bigDuration->setSuffix( " " + i18n("minute","minutes",i) );
+
+}
+
+void SetupTiming::slotSlideIntervalValueChanged( int i )
+{
+    d->slideInterval->setSuffix( " " + i18n("second","seconds",i) );
+}
+
 #include "setuptiming.moc"
