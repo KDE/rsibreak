@@ -325,7 +325,8 @@ void RSITimer::timerEvent( QTimerEvent * )
         emit updateIdleAvg( value );
     }
     else if ( m_useIdleDetection && t == m_intervals["big_maximized"] &&
-             m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
+             m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] &&
+             m_relax_left == 0 && m_pause_left == 0 )
     {
         // the user was sufficiently idle for a big break
         kdDebug() << "Time being idle == big break length" << endl;
@@ -337,7 +338,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         emit bigBreakSkipped();
     }
     else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] &&
-              m_tiny_left < m_big_left )
+              m_tiny_left < m_big_left && m_relax_left == 0 && m_pause_left == 0 )
     {
         // the user was sufficiently idle for a tiny break
         kdDebug() << "Time being idle == tiny break length" << endl;
