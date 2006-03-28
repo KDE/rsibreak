@@ -158,7 +158,7 @@ void RSIStats::reset()
             m_statistics[stat].setValue( 0 );
         else if ( v.type() == QVariant::Time )
             m_statistics[stat].setValue( QTime());
-        updateStat( stat );
+        updateStat( stat, false );
     }
 }
 
@@ -273,11 +273,12 @@ void RSIStats::updateDependentStats( RSIStat stat )
     }
 }
 
-void RSIStats::updateStat( RSIStat stat )
+void RSIStats::updateStat( RSIStat stat, bool updateDerived )
 {
     // kdDebug() << "RSIStats::updateStat() entered" << endl;
 
-    updateDependentStats( stat );
+    if ( updateDerived )
+      updateDependentStats( stat );
     updateLabel( stat );
 }
 

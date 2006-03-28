@@ -75,7 +75,13 @@ protected:
 
     void updateDependentStats( RSIStat );
 
-    void updateStat( RSIStat );
+    /**
+      Updates the given statistic.
+      @param stat The statistic you've just assigned a value to.
+      @param updateDerived If true, update the derived statistics when
+      calling this function.
+    */
+    void updateStat( RSIStat stat, bool updateDerived = true );
 
     QString getWhatsThisText( RSIStat stat ) const;
 
