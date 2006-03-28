@@ -84,7 +84,6 @@ RSIStats::RSIStats()
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
             RSIStatItem(i18n("Number of skipped tiny breaks (idle)") ) );
-    m_labels[IDLENESS_CAUSED_SKIP_TINY] = new QLabel(0);
 
     m_statistics.insert( BIG_BREAKS, RSIStatItem(i18n("Total amount of big breaks") ) );
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
@@ -136,8 +135,6 @@ RSIStats::~RSIStats()
       delete l;
       l = 0L;
     }
-
-    delete m_instance;
 }
 
 RSIStats *RSIStats::instance()
@@ -299,7 +296,7 @@ void RSIStats::updateLabel( RSIStat stat )
         case ACTIVITY:
         case IDLENESS:
         case MAX_IDLENESS:
-        l->setText( RSIGlobals::formatSeconds(
+        l->setText( RSIGlobals::instance()->formatSeconds(
                         m_statistics[ stat ].getValue().toInt() ) );
         break;
 

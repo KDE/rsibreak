@@ -24,6 +24,7 @@
 #include <kdebug.h>
 #include <kconfig.h>
 
+#include "rsiglobals.h"
 #include "rsistats.h"
 
 #include "rsitimer.h"
@@ -41,6 +42,7 @@
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_breakRequested( false ), m_suspended( false )
     , m_pause_left( 0 ), m_relax_left( 0 )
+    , m_intervals( RSIGlobals::instance()->intervals() )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
@@ -53,6 +55,14 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     kdDebug() << "IDLE Detection is "
               << (m_idleDetection?QString::null:"not")
               << "possible" << endl;
+
+    // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
+    // guard against that situation.
+    if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
+    {
+      kdDebug() << "max big > max tiny, not allowed & corrected" << endl;
+      m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
+    }
 
     startTimer( 1000 );
     slotReadConfig();
@@ -326,7 +336,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         resetAfterBigBreak();
         emit bigBreakSkipped();
     }
-    else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] && 
+    else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] &&
               m_tiny_left < m_big_left )
     {
         // the user was sufficiently idle for a tiny break
@@ -376,28 +386,9 @@ void RSITimer::readConfig()
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
-    m_intervals["tiny_minimized"] = config->readNumEntry("TinyInterval", 10)*60;
-    m_intervals["tiny_maximized"] = config->readNumEntry("TinyDuration", 20);
-    m_intervals["big_minimized"] = config->readNumEntry("BigInterval", 60)*60;
-    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
+
     m_useIdleDetection = config->readBoolEntry("UseIdleDetection", true);
 
-    if (config->readBoolEntry("DEBUG", false))
-    {
-        kdDebug() << "Debug mode activated" << endl;
-        m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
-        m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
-        m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
-    }
-    
-    // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
-    // guard against that situation.
-    if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
-    {
-        kdDebug() << "max big > max tiny, not allowed & corrected" << endl;
-        m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
-    }
-    
     config->setGroup("General");
     QDateTime *tempDt = new QDateTime();
     m_lastrunDt = config->readDateTimeEntry( "LastRunTimeStamp", tempDt );

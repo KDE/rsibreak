@@ -160,14 +160,14 @@ class RSITimer : public QObject
           Indicates a tinyBreak is skipped because user was enough idle
         */
         void tinyBreakSkipped();
-        
+
         /**
            Indicates a bigBreak is skipped because user was enough idle
          */
         void bigBreakSkipped();
-        
+
         /**
-         Emitted after bigBreakSkipped() and tinyBreakSkipped() on first 
+         Emitted after bigBreakSkipped() and tinyBreakSkipped() on first
          activity;
          */
         void skipBreakEnded();
@@ -218,7 +218,7 @@ class RSITimer : public QObject
         int             m_lastrunTiny;
         int             m_lastrunBig;
 
-        QMap<QString,int>     m_intervals;
+        QMap<QString,int> &m_intervals;
 };
 
 #endif

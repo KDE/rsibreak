@@ -16,12 +16,34 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include <kapplication.h>
+#include <kconfig.h>
 #include <kdebug.h>
 #include <klocale.h>
 
 #include <math.h>
 
 #include "rsiglobals.h"
+
+RSIGlobals *RSIGlobals::m_instance = 0;
+
+RSIGlobals::RSIGlobals( QObject *parent, const char *name )
+: QObject( parent, name )
+{
+    slotReadConfig();
+}
+
+RSIGlobals::~RSIGlobals()
+{
+}
+
+RSIGlobals *RSIGlobals::instance()
+{
+    if ( !m_instance )
+      m_instance = new RSIGlobals();
+
+    return m_instance;
+}
 
 QString RSIGlobals::formatSeconds( const int seconds )
 {
@@ -68,3 +90,26 @@ QString RSIGlobals::formatSeconds( const int seconds )
 
     return( QString::null ); //should not get here
 }
+
+void RSIGlobals::slotReadConfig()
+{
+    KConfig* config = kapp->config();
+
+    config->setGroup("General Settings");
+
+    m_intervals["tiny_minimized"] = config->readNumEntry("TinyInterval", 10)*60;
+    m_intervals["tiny_maximized"] = config->readNumEntry("TinyDuration", 20);
+    m_intervals["big_minimized"] = config->readNumEntry("BigInterval", 60)*60;
+    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
+    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
+
+    if (config->readBoolEntry("DEBUG", false))
+    {
+        kdDebug() << "Debug mode activated" << endl;
+        m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
+        m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
+        m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
+    }
+}
+
+#include "rsiglobals.moc"

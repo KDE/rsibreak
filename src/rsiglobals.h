@@ -25,12 +25,19 @@
 #include <kpassivepopup.h>
 
 /**
- * @namespace RSIGlobals
- * This class consists of a few commonly used routines
+ * @class RSIGlobals
+ * This class consists of a few commonly used routines and values.
  * @author Tom Albers <tomalbers@kde.nl>
  */
-namespace RSIGlobals
+class RSIGlobals : public QObject
 {
+  Q_OBJECT
+  public:
+    RSIGlobals( QObject *parent = 0, const char *name = 0 );
+    ~RSIGlobals();
+
+    static RSIGlobals *instance();
+
     /**
      * Converts @p seconds to a reasonable string.
      * @param seconds the amount of seconds
@@ -44,6 +51,15 @@ namespace RSIGlobals
      * - 0: "0 seconds"
      */
     QString formatSeconds(const int seconds);
+
+    QMap<QString,int> &intervals() { return m_intervals; }
+
+  public slots:
+    void slotReadConfig();
+
+  private:
+    static RSIGlobals *m_instance;
+    QMap<QString,int> m_intervals;
 };
 
 #endif // RSIGLOBALS_H
