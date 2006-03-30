@@ -189,8 +189,10 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
            (v.type() == QVariant::Int && val.toInt()>v.toInt()) ||
            (v.type() == QVariant::Double && val.toDouble()>v.toDouble()) ||
            (v.type() == QVariant::Time && val.toTime()>v.toTime()))
-            m_statistics[stat].setValue( val );
-
+        m_statistics[stat].setValue( val );
+    
+    // WATCH OUT: IDLENESS is derived from MAX_IDLENESS and needs to be 
+    // updated regardless if a new value is set.
     updateStat( stat );
 }
 

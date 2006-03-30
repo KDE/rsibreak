@@ -42,6 +42,7 @@
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_breakRequested( false ), m_suspended( false )
     , m_pause_left( 0 ), m_relax_left( 0 )
+    , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
@@ -90,10 +91,11 @@ int RSITimer::idleTime()
     totalIdle = (_mit_info->idle/1000);
     XFree(_mit_info);
     
-    // There is a bug somewhere, which causes totalIdle to never be bigger
-    // then 1199 seconds, this workaround worksaround it
-    
-    if (totalIdle == 0)
+    // X turns off the monitor after 1199 seconds and reports idle=0 
+    // at that moment. as a workaround, i eat the activity in that area.
+    // I just hope it is hardcoded in X.
+    int t = m_lastActivity.secsTo(QDateTime::currentDateTime());
+    if (totalIdle == 0 && ( t < 1197 || t > 1203))
         m_lastActivity=QDateTime::currentDateTime();
     else
         totalIdle = m_lastActivity.secsTo(QDateTime::currentDateTime());
