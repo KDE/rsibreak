@@ -330,6 +330,17 @@ void RSITimer::timerEvent( QTimerEvent * )
 
             --m_tiny_left;
             --m_big_left;
+            
+            // This is an extra safeguard. When m_useIdleDetection is false
+            // timers are not reset after the user have had a break. This 
+            // will make sure the timers are being reset when this happens.
+            if (m_tiny_left < -1 || m_big_left < -1)
+            {
+                if ( nextBreak == TINY_BREAK )
+                    resetAfterTinyBreak();
+                else if ( nextBreak == BIG_BREAK )
+                    resetAfterBigBreak();
+            }
         }
 
         double value = 100 - ( ( m_tiny_left / (double)m_intervals["tiny_minimized"] ) * 100 );
