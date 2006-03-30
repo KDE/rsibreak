@@ -118,7 +118,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
     connect( m_tray, SIGNAL( configChanged() ), m_timer, SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( configChanged() ), m_relaxpopup, SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( configChanged() ), RSIGlobals::instance(), SLOT( slotReadconfig() ) );
+    connect( m_tray, SIGNAL( configChanged() ), RSIGlobals::instance(), SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
