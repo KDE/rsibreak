@@ -205,6 +205,7 @@ class RSITimer : public QObject
         int             m_relax_left;
         int             m_useIdleDetection;
 
+        QDateTime       m_lastActivity;
         /**
           When it's time for a break, we wait patiently till the user
           becomes idle. We show a relax popup during this interval.

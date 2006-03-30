@@ -89,6 +89,15 @@ int RSITimer::idleTime()
     XScreenSaverQueryInfo(qt_xdisplay(), qt_xrootwin(), _mit_info);
     totalIdle = (_mit_info->idle/1000);
     XFree(_mit_info);
+    
+    // There is a bug somewhere, which causes totalIdle to never be bigger
+    // then 1199 seconds, this workaround worksaround it
+    
+    if (totalIdle == 0)
+        m_lastActivity=QDateTime::currentDateTime();
+    else
+        totalIdle = m_lastActivity.secsTo(QDateTime::currentDateTime());
+    
 #else
     totalIdle = m_pause_left > 0 ? 1 : 0;
 #endif // HAVE_LIBXSS
