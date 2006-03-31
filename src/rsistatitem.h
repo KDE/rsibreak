@@ -26,18 +26,49 @@
 
 #include "rsiglobals.h"
 
+/**
+ * This class represents one statistic.
+ * It consists of a value, a description and a list
+ * of items which have this statistic as a dependency.
+ */
 class RSIStatItem
 {
   public:
+    /**
+     * Constructor. Pass a @p description along to give the
+     * statistic a useful description. It will be visible in the
+     * statistics widget.
+     * @param description A i18n()'d text representing this statistic's meaning.
+     */
     RSIStatItem( const QString &description = QString::null );
+
+    /** Default destructor. */
     ~RSIStatItem();
 
+    /** Retrieve the item's description in QLabel format. */
     QLabel *getDescription() const { return m_description; }
+
+    /** Retrieve the item's value in QVariant format. */
     QVariant getValue()      const { return m_value; }
 
+    /**
+     * Sets the value of this item.
+     * @param v The new value of this statistic item.
+     *
+     * @see QVariant documentation for supported types of values.
+     */
     void setValue( QVariant v ) { m_value = v; }
 
+    /**
+     * When other statistics depend on this statistic item, it should
+     * be added to this list. When this statistic is updated, it will
+     * iterate through the list of derived statistics and update them.
+     */
     void addDerivedItem( RSIStat stat );
+
+    /**
+     * Returns the list of derived statistics.
+     */
     QValueList<RSIStat> getDerivedItems() const { return m_derived; }
 
   private:

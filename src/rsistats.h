@@ -41,7 +41,7 @@ class RSIStatItem;
   The last step involves to actually put it in the statistics widget. Use
   the addStat() method there.
 
-  @see RSIGlobal
+  @see RSIGlobals
   @see RSIStatDialog
   @see RSITimer
 */
@@ -60,21 +60,21 @@ public:
     void increaseStat( RSIStat stat, int delta = 1 );
 
     /**
-      Sets the value of a statistic.
-      @param stat The statistic in question.
-      @param stat The value to be assigned to the statistic. In QVariant format.
-      @param stat If true, the value will only be assigned if the current
-      value is lower than the given @p value.
-    */
+     * Sets the value of a statistic.
+     * @param stat The statistic in question.
+     * @param stat The value to be assigned to the statistic. In QVariant format.
+     * @param stat If true, the value will only be assigned if the current
+     * value is lower than the given @p value.
+     */
     void setStat( RSIStat stat, QVariant val, bool ifmax = false );
 
     /** Returns a description for the given @p stat. */
     QLabel *getDescription( RSIStat stat ) const;
 
     /**
-      Updates all labels to the current value of their corresponding
-      statistic.
-    */
+     * Updates all labels to the current value of their corresponding
+     * statistic.
+     */
     void updateLabels();
 
     /** Gets the value given the @p stat.*/
@@ -88,22 +88,22 @@ protected:
     void updateLabel( RSIStat stat );
 
     /**
-      Some statistics are calculated based on values of other statistics.
-      This function updates all statistics with @p stat as dependency.
-    */
+     * Some statistics are calculated based on values of other statistics.
+     * This function updates all statistics with @p stat as dependency.
+     */
     void updateDependentStats( RSIStat stat );
 
     /**
-      Updates the given statistic.
-      @param stat The statistic you've just assigned a value to.
-      @param updateDerived If true, update the derived statistics when
-      calling this function.
-    */
+     * Updates the given statistic.
+     * @param stat The statistic you've just assigned a value to.
+     * @param updateDerived If true, update the derived statistics when
+     * calling this function.
+     */
     void updateStat( RSIStat stat, bool updateDerived = true );
 
     /**
-      Retrieves What's This? text for a given statistic @p stat.
-    */
+     * Retrieves What's This? text for a given statistic @p stat.
+     */
     QString getWhatsThisText( RSIStat stat ) const;
 
 private:

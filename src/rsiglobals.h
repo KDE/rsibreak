@@ -55,11 +55,24 @@ class RSIGlobals : public QObject
 {
   Q_OBJECT
   public:
+    /** Default constructor. */
     RSIGlobals( QObject *parent = 0, const char *name = 0 );
+
+    /** Default destructor. */
     ~RSIGlobals();
 
+    /**
+     * Returns an instance of RSIGlobals. Never create your own instance
+     * of RSIGlobals, but use this method instead to get the one and only
+     * instance.
+     */
     static RSIGlobals *instance();
 
+    /**
+     * Returns the one and only statistics component.
+     *
+     * @see RSIStats
+     */
     RSIStats *stats() { return m_stats; }
 
     /**
@@ -76,12 +89,29 @@ class RSIGlobals : public QObject
      */
     QString formatSeconds(const int seconds);
 
+    /**
+     * Returns a reference to the mapping containing all intervals.
+     * These intervals define when a tiny or big break should occur and for how
+     * long.
+     */
     QMap<QString,int> &intervals() { return m_intervals; }
 
+    /**
+     * This function returns a color ranging from green to red.
+     * The more red, the more the user needs a tiny break.
+     */
     QColor getTinyBreakColor() const;
+
+    /**
+     * This function returns a color ranging from green to red.
+     * The more red, the more the user needs a tiny break.
+     */
     QColor getBigBreakColor() const;
 
   public slots:
+    /**
+     * Reads the configuration.
+     */
     void slotReadConfig();
 
   private:
