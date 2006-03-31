@@ -238,9 +238,15 @@ void RSITimer::timerEvent( QTimerEvent * )
     int t = idleTime();
 
     if ( t == 0 )
+    {
         RSIGlobals::instance()->stats()->increaseStat( ACTIVITY );
+        RSIGlobals::instance()->stats()->setStat( CURRENT_IDLE_TIME, 0 );
+    }
     else
+    {
         RSIGlobals::instance()->stats()->setStat( MAX_IDLENESS, t, true );
+        RSIGlobals::instance()->stats()->setStat( CURRENT_IDLE_TIME, t );
+    }
 
     /*
     kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;

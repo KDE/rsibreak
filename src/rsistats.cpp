@@ -31,11 +31,11 @@ RSIStats::RSIStats()
 
     m_statistics.insert( TOTAL_TIME, RSIStatItem(i18n("Total recorded time") ) );
     m_statistics[TOTAL_TIME].addDerivedItem( ACTIVITY_PERC );
-    m_statistics[TOTAL_TIME].addDerivedItem( LAST_TINY_BREAK_COLOR );
-    m_statistics[TOTAL_TIME].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( ACTIVITY, RSIStatItem(i18n("Total time of activity") ) );
     m_statistics[ACTIVITY].addDerivedItem( ACTIVITY_PERC );
+    m_statistics[ACTIVITY].addDerivedItem( LAST_TINY_BREAK_COLOR );
+    m_statistics[ACTIVITY].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( IDLENESS, RSIStatItem(i18n("Total time being idle") ) );
 
@@ -43,6 +43,8 @@ RSIStats::RSIStats()
 
     m_statistics.insert( MAX_IDLENESS, RSIStatItem(i18n("Maximum idle period") ) );
     m_statistics[MAX_IDLENESS].addDerivedItem( IDLENESS );
+
+    m_statistics.insert( CURRENT_IDLE_TIME, RSIStatItem(i18n("Currently idle for") ) );
 
     m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total amount of tiny breaks") ) );
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
@@ -203,6 +205,7 @@ void RSIStats::updateDependentStats( RSIStat stat )
             increaseStat( IDLENESS );
             break;
         }
+
         case ACTIVITY_PERC:
         {
           /*
@@ -280,6 +283,7 @@ void RSIStats::updateLabel( RSIStat stat )
         case ACTIVITY:
         case IDLENESS:
         case MAX_IDLENESS:
+        case CURRENT_IDLE_TIME:
         l->setText( RSIGlobals::instance()->formatSeconds(
                         m_statistics[ stat ].getValue().toInt() ) );
         break;
@@ -389,6 +393,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
                           "which are skipped because you where idle." );
       case PAUSE_SCORE: return i18n("This is an indication how well you bahaved "
                           "with the brakes.");
+      case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
       default: ;
     }
 

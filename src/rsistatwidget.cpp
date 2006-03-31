@@ -41,6 +41,7 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( TOTAL_TIME, subgrid );
     addStat( ACTIVITY, subgrid );
     addStat( IDLENESS, subgrid );
+    addStat( CURRENT_IDLE_TIME, subgrid );
     addStat( MAX_IDLENESS, subgrid );
     mGrid->addWidget( gb, 0, 0 );
 
