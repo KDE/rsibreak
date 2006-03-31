@@ -387,6 +387,22 @@ void RSITimer::timerEvent( QTimerEvent * )
         emit relax( m_relax_left );
     }
 
+    // update the stats properly when breaking
+    if ( m_useIdleDetection && t > m_intervals["big_maximized"] &&
+         m_relax_left == 0 && m_pause_left == 0 )
+    {
+        RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK, QVariant( QDateTime::currentDateTime() ) );
+    }
+
+    // update the stats properly when breaking
+    if ( m_useIdleDetection && t > m_intervals["tiny_maximized"] &&
+         m_relax_left == 0 && m_pause_left == 0 )
+    {
+        RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK, QVariant( QDateTime::currentDateTime() ) );
+    }
+
+
+    // show relax popup
     if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 &&
          ( m_tiny_left == 0 || m_big_left == 0 ) )
     {
