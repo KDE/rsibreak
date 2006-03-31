@@ -22,7 +22,7 @@
 #include <qgroupbox.h>
 #include <qlayout.h>
 
-#include "rsistats.h"
+#include "rsiglobals.h"
 
 class QTimer;
 

@@ -90,8 +90,8 @@ int RSITimer::idleTime()
     XScreenSaverQueryInfo(qt_xdisplay(), qt_xrootwin(), _mit_info);
     totalIdle = (_mit_info->idle/1000);
     XFree(_mit_info);
-    
-    // X turns off the monitor after 1199 seconds and reports idle=0 
+
+    // X turns off the monitor after 1199 seconds and reports idle=0
     // at that moment. as a workaround, i eat the activity in that area.
     // I just hope it is hardcoded in X.
     int t = m_lastActivity.secsTo(QDateTime::currentDateTime());
@@ -99,7 +99,7 @@ int RSITimer::idleTime()
         m_lastActivity=QDateTime::currentDateTime();
     else
         totalIdle = m_lastActivity.secsTo(QDateTime::currentDateTime());
-    
+
 #else
     totalIdle = m_pause_left > 0 ? 1 : 0;
 #endif // HAVE_LIBXSS
@@ -195,12 +195,12 @@ void RSITimer::skipBreak()
     if ( m_big_left <= m_tiny_left )
     {
         resetAfterBigBreak();
-        RSIStats::instance()->increaseStat( BIG_BREAKS_SKIPPED );
+        RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS_SKIPPED );
     }
     else
     {
         resetAfterTinyBreak();
-        RSIStats::instance()->increaseStat( TINY_BREAKS_SKIPPED );
+        RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS_SKIPPED );
     }
     slotStart();
 }
@@ -233,14 +233,14 @@ void RSITimer::timerEvent( QTimerEvent * )
     if ( m_suspended )
         return;
 
-    RSIStats::instance()->increaseStat( TOTAL_TIME );
+    RSIGlobals::instance()->stats()->increaseStat( TOTAL_TIME );
 
     int t = idleTime();
 
     if ( t == 0 )
-        RSIStats::instance()->increaseStat( ACTIVITY );
+        RSIGlobals::instance()->stats()->increaseStat( ACTIVITY );
     else
-        RSIStats::instance()->setStat( MAX_IDLENESS, t, true );
+        RSIGlobals::instance()->stats()->setStat( MAX_IDLENESS, t, true );
 
     /*
     kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
@@ -330,9 +330,9 @@ void RSITimer::timerEvent( QTimerEvent * )
 
             --m_tiny_left;
             --m_big_left;
-            
+
             // This is an extra safeguard. When m_useIdleDetection is false
-            // timers are not reset after the user have had a break. This 
+            // timers are not reset after the user have had a break. This
             // will make sure the timers are being reset when this happens.
             if (m_tiny_left < -1 || m_big_left < -1)
             {
@@ -353,8 +353,8 @@ void RSITimer::timerEvent( QTimerEvent * )
         // the user was sufficiently idle for a big break
         kdDebug() << "Time being idle == big break length" << endl;
 
-        RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
-        RSIStats::instance()->increaseStat( BIG_BREAKS );
+        RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
+        RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
 
         resetAfterBigBreak();
         emit bigBreakSkipped();
@@ -365,8 +365,8 @@ void RSITimer::timerEvent( QTimerEvent * )
         // the user was sufficiently idle for a tiny break
         kdDebug() << "Time being idle == tiny break length" << endl;
 
-        RSIStats::instance()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
-        RSIStats::instance()->increaseStat( TINY_BREAKS );
+        RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
+        RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
 
         resetAfterTinyBreak();
         emit tinyBreakSkipped();
@@ -386,11 +386,11 @@ void RSITimer::timerEvent( QTimerEvent * )
     {
         if ( nextBreak == TINY_BREAK )
         {
-            RSIStats::instance()->increaseStat( TINY_BREAKS );
+            RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
         }
         else
         {
-            RSIStats::instance()->increaseStat( BIG_BREAKS );
+            RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
         }
 
         m_patience = 15;

@@ -23,6 +23,7 @@
 #include "setup.h"
 #include "rsistatwidget.h"
 #include "rsistats.h"
+#include "rsiglobals.h"
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -246,7 +247,7 @@ void RSIDock::slotResetStats()
                 "resetStatistics");
 
     if (i == KMessageBox::Continue)
-        RSIStats::instance()->reset();
+        RSIGlobals::instance()->stats()->reset();
 }
 
 #include "rsidock.moc"

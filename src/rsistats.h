@@ -22,27 +22,9 @@
 
 #include <qlabel.h>
 #include <qmap.h>
-#include <qvaluelist.h>
 #include <qvariant.h>
 
-enum RSIStat {
-               TOTAL_TIME,
-               ACTIVITY,
-               IDLENESS,
-               ACTIVITY_PERC,
-               MAX_IDLENESS,
-               IDLENESS_CAUSED_SKIP_TINY,
-               IDLENESS_CAUSED_SKIP_BIG,
-               TINY_BREAKS,
-               TINY_BREAKS_SKIPPED,
-               LAST_TINY_BREAK,
-               LAST_TINY_BREAK_COLOR, /* internal */
-               BIG_BREAKS,
-               BIG_BREAKS_SKIPPED,
-               LAST_BIG_BREAK,
-               LAST_BIG_BREAK_COLOR, /* internal */
-               PAUSE_SCORE
-             };
+#include "rsiglobals.h"
 
 class RSIStatItem;
 
@@ -54,10 +36,7 @@ public:
     /** Default destructor. */
     ~RSIStats();
 
-    static RSIStats *instance();
-
     void reset();
-    // int numberOfStats() const;
 
     /** Increase the value of statistic @p stat with @p delta (default: 1). */
     void increaseStat( RSIStat stat, int delta = 1 );

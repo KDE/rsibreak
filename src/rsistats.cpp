@@ -23,36 +23,7 @@
 #include <klocale.h>
 
 #include "rsistats.h"
-#include "rsiglobals.h"
-
-class RSIStatItem
-{
-  public:
-    RSIStatItem( const QString &description )
-    {
-      m_description = new QLabel( description, 0 );
-      m_value = QVariant(0);
-    }
-    RSIStatItem() : m_value( QVariant(0) ) {}
-    ~RSIStatItem() {}
-
-    QLabel *getDescription() const { return m_description; }
-    QVariant getValue()      const { return m_value; }
-
-    void setValue( QVariant v ) { m_value = v; }
-
-    void addDerivedItem( RSIStat stat ) { m_derived += stat; }
-    QValueList<RSIStat> getDerivedItems() const { return m_derived; }
-
-  private:
-    QVariant m_value;
-    QLabel *m_description;
-
-    /** Contains a list of RSIStats which depend on *this* item. */
-    QValueList< RSIStat > m_derived;
-};
-
-RSIStats *RSIStats::m_instance = 0;
+#include "rsistatitem.h"
 
 RSIStats::RSIStats()
 {
@@ -113,7 +84,6 @@ RSIStats::RSIStats()
       QWhatsThis::add( m_statistics[it.key()].getDescription(), getWhatsThisText( it.key() ) );
     }
 
-
     // initialise statistics
     updateLabels();
     reset();
@@ -138,14 +108,6 @@ RSIStats::~RSIStats()
       delete l;
       l = 0L;
     }
-}
-
-RSIStats *RSIStats::instance()
-{
-    if ( !m_instance )
-        m_instance = new RSIStats();
-
-    return m_instance;
 }
 
 void RSIStats::reset()

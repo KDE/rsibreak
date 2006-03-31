@@ -28,6 +28,7 @@
 #include "rsiglobals.h"
 
 RSIGlobals *RSIGlobals::m_instance = 0;
+RSIStats *RSIGlobals::m_stats = 0;
 
 RSIGlobals::RSIGlobals( QObject *parent, const char *name )
 : QObject( parent, name )
@@ -37,12 +38,17 @@ RSIGlobals::RSIGlobals( QObject *parent, const char *name )
 
 RSIGlobals::~RSIGlobals()
 {
+    delete m_stats;
+    m_stats = 0L;
 }
 
 RSIGlobals *RSIGlobals::instance()
 {
     if ( !m_instance )
+    {
       m_instance = new RSIGlobals();
+      m_stats = new RSIStats();
+    }
 
     return m_instance;
 }
@@ -117,7 +123,7 @@ void RSIGlobals::slotReadConfig()
 QColor RSIGlobals::getTinyBreakColor() const
 {
     int minimized = m_intervals["tiny_minimized"];
-    QDateTime dt = RSIStats::instance()->getStat( LAST_TINY_BREAK ).toDateTime();
+    QDateTime dt = m_stats->getStat( LAST_TINY_BREAK ).toDateTime();
     if ( dt.isValid() )
     {
         double v = 100 * dt.secsTo( QDateTime::currentDateTime() ) / (double)minimized;
@@ -130,7 +136,7 @@ QColor RSIGlobals::getTinyBreakColor() const
 QColor RSIGlobals::getBigBreakColor() const
 {
     int minimized = m_intervals["big_minimized"];
-    QDateTime dt = RSIStats::instance()->getStat( LAST_BIG_BREAK ).toDateTime();
+    QDateTime dt = m_stats->getStat( LAST_BIG_BREAK ).toDateTime();
     if ( dt.isValid() )
     {
         double v = 100 * dt.secsTo( QDateTime::currentDateTime() ) / (double)minimized;

@@ -24,6 +24,7 @@
 #include <kglobalsettings.h>
 #include <klocale.h>
 
+#include "rsistats.h"
 #include "rsistatwidget.h"
 
 RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
@@ -77,10 +78,10 @@ void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
 {
     kdDebug() << "RSIStatWidget::addStat()" << endl;
 
-    QLabel *l = RSIStats::instance()->getDescription( stat );
+    QLabel *l = RSIGlobals::instance()->stats()->getDescription( stat );
     l->reparent( grid, 0, QPoint() );
 
-    QLabel *m = RSIStats::instance()->getLabel( stat );
+    QLabel *m = RSIGlobals::instance()->stats()->getLabel( stat );
     m->reparent( grid, 0, QPoint() );
     m->setAlignment( Qt::AlignRight );
 

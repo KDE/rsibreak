@@ -172,7 +172,6 @@ RSIWidget::~RSIWidget()
     delete m_backgroundimage;
     m_backgroundimage = 0;
 
-    delete RSIStats::instance();
     delete RSIGlobals::instance();
 }
 

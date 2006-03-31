@@ -24,6 +24,27 @@
 
 #include <kpassivepopup.h>
 
+class RSIStats;
+
+enum RSIStat {
+               TOTAL_TIME,
+               ACTIVITY,
+               IDLENESS,
+               ACTIVITY_PERC,
+               MAX_IDLENESS,
+               IDLENESS_CAUSED_SKIP_TINY,
+               IDLENESS_CAUSED_SKIP_BIG,
+               TINY_BREAKS,
+               TINY_BREAKS_SKIPPED,
+               LAST_TINY_BREAK,
+               LAST_TINY_BREAK_COLOR, /* internal */
+               BIG_BREAKS,
+               BIG_BREAKS_SKIPPED,
+               LAST_BIG_BREAK,
+               LAST_BIG_BREAK_COLOR, /* internal */
+               PAUSE_SCORE
+             };
+
 /**
  * @class RSIGlobals
  * This class consists of a few commonly used routines and values.
@@ -37,6 +58,8 @@ class RSIGlobals : public QObject
     ~RSIGlobals();
 
     static RSIGlobals *instance();
+
+    RSIStats *stats() { return m_stats; }
 
     /**
      * Converts @p seconds to a reasonable string.
@@ -63,6 +86,7 @@ class RSIGlobals : public QObject
   private:
     static RSIGlobals *m_instance;
     QMap<QString,int> m_intervals;
+    static RSIStats *m_stats;
 };
 
 #endif // RSIGLOBALS_H
