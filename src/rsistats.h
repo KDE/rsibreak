@@ -36,9 +36,11 @@ enum RSIStat {
                TINY_BREAKS,
                TINY_BREAKS_SKIPPED,
                LAST_TINY_BREAK,
+               LAST_TINY_BREAK_COLOR, /* internal */
                BIG_BREAKS,
                BIG_BREAKS_SKIPPED,
                LAST_BIG_BREAK,
+               LAST_BIG_BREAK_COLOR, /* internal */
                PAUSE_SCORE
              };
 
@@ -47,7 +49,9 @@ class RSIStatItem;
 class RSIStats
 {
 public:
+    /** Default constructor. */
     RSIStats();
+    /** Default destructor. */
     ~RSIStats();
 
     static RSIStats *instance();

@@ -22,6 +22,7 @@
 #include <qvbox.h>
 
 #include <kdebug.h>
+#include <kglobalsettings.h>
 #include <klocale.h>
 
 #include <math.h>
@@ -61,13 +62,18 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         setText( i18n("Suspended") );
     else
     {
+        mTinyLeft->setPaletteForegroundColor( RSIGlobals::instance()->getTinyBreakColor() );
+        mBigLeft->setPaletteForegroundColor( RSIGlobals::instance()->getBigBreakColor() );
+
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.
         if (tiny_left != big_left)
         {
             QString formattedText = RSIGlobals::instance()->formatSeconds( tiny_left );
             if (!formattedText.isNull())
+            {
                 mTinyLeft->setText( i18n("%1 remaining until next tiny break").arg(formattedText));
+            }
             else // minutes = 0 and seconds = 0, remove the old text.
                 mTinyLeft->setText( QString::null );
         }
@@ -85,6 +91,7 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
 
 void RSIToolTip::setText( const QString &text )
 {
+    mTinyLeft->setPaletteForegroundColor( KGlobalSettings::textColor() );
     mTinyLeft->setText( text );
     mBigLeft->setText( QString::null );
 }

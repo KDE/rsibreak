@@ -19,10 +19,12 @@
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
+#include <kglobalsettings.h>
 #include <klocale.h>
 
 #include <math.h>
 
+#include "rsistats.h"
 #include "rsiglobals.h"
 
 RSIGlobals *RSIGlobals::m_instance = 0;
@@ -110,6 +112,32 @@ void RSIGlobals::slotReadConfig()
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
     }
+}
+
+QColor RSIGlobals::getTinyBreakColor() const
+{
+    int minimized = m_intervals["tiny_minimized"];
+    QDateTime dt = RSIStats::instance()->getStat( LAST_TINY_BREAK ).toDateTime();
+    if ( dt.isValid() )
+    {
+        double v = 100 * dt.secsTo( QDateTime::currentDateTime() ) / (double)minimized;
+        return QColor ( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 );
+    }
+
+    return KGlobalSettings::textColor();
+}
+
+QColor RSIGlobals::getBigBreakColor() const
+{
+    int minimized = m_intervals["big_minimized"];
+    QDateTime dt = RSIStats::instance()->getStat( LAST_BIG_BREAK ).toDateTime();
+    if ( dt.isValid() )
+    {
+        double v = 100 * dt.secsTo( QDateTime::currentDateTime() ) / (double)minimized;
+        return QColor ( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 );
+    }
+
+    return KGlobalSettings::textColor();
 }
 
 #include "rsiglobals.moc"

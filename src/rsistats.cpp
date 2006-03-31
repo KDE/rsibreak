@@ -60,6 +60,8 @@ RSIStats::RSIStats()
 
     m_statistics.insert( TOTAL_TIME, RSIStatItem(i18n("Total recorded time") ) );
     m_statistics[TOTAL_TIME].addDerivedItem( ACTIVITY_PERC );
+    m_statistics[TOTAL_TIME].addDerivedItem( LAST_TINY_BREAK_COLOR );
+    m_statistics[TOTAL_TIME].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( ACTIVITY, RSIStatItem(i18n("Total time of activity") ) );
     m_statistics[ACTIVITY].addDerivedItem( ACTIVITY_PERC );
@@ -76,6 +78,7 @@ RSIStats::RSIStats()
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
 
     m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last tiny break") ) );
+    m_statistics[LAST_TINY_BREAK].addDerivedItem( LAST_TINY_BREAK_COLOR );
 
     m_statistics.insert( TINY_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped tiny breaks (user)") ) );
@@ -90,6 +93,7 @@ RSIStats::RSIStats()
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
 
     m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last big break") ) );
+    m_statistics[LAST_BIG_BREAK].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( BIG_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped big breaks (user)") ) );
@@ -98,7 +102,6 @@ RSIStats::RSIStats()
     m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
             RSIStatItem(i18n("Number of skipped big breaks (idle)") ) );
 
-    // FIXME: Find better name and whatsthis
     m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score") ) );
 
     // initialise labels
@@ -156,8 +159,8 @@ void RSIStats::reset()
         QVariant v = m_statistics[stat].getValue();
         if ( v.type() == QVariant::Int || v.type() == QVariant::Double )
             m_statistics[stat].setValue( 0 );
-        else if ( v.type() == QVariant::Time )
-            m_statistics[stat].setValue( QTime());
+        else if ( v.type() == QVariant::DateTime )
+            m_statistics[stat].setValue( QDateTime());
         updateStat( stat, false );
     }
 }
@@ -172,9 +175,9 @@ void RSIStats::increaseStat( RSIStat stat, int delta )
       m_statistics[stat].setValue( v.toInt() + delta );
     else if ( v.type() == QVariant::Double )
       m_statistics[stat].setValue( v.toDouble() + (double)delta );
-    else if ( v.type() == QVariant::Time )
+    else if ( v.type() == QVariant::DateTime )
                 m_statistics[stat].setValue(
-                    QTime(v.toTime()).addSecs( delta ));
+                    QDateTime(v.toDateTime()).addSecs( delta ));
 
     updateStat( stat );
 }
@@ -188,10 +191,10 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
     if ( !ifmax ||
            (v.type() == QVariant::Int && val.toInt()>v.toInt()) ||
            (v.type() == QVariant::Double && val.toDouble()>v.toDouble()) ||
-           (v.type() == QVariant::Time && val.toTime()>v.toTime()))
+           (v.type() == QVariant::DateTime && val.toDateTime()>v.toDateTime()))
         m_statistics[stat].setValue( val );
-    
-    // WATCH OUT: IDLENESS is derived from MAX_IDLENESS and needs to be 
+
+    // WATCH OUT: IDLENESS is derived from MAX_IDLENESS and needs to be
     // updated regardless if a new value is set.
     updateStat( stat );
 }
@@ -260,13 +263,29 @@ void RSIStats::updateDependentStats( RSIStat stat )
 
         case LAST_BIG_BREAK:
         {
-            setStat( LAST_BIG_BREAK, QTime::currentTime() );
+            setStat( LAST_BIG_BREAK, QDateTime::currentDateTime() );
             break;
         }
 
         case LAST_TINY_BREAK:
         {
-            setStat( LAST_TINY_BREAK, QTime::currentTime() );
+            setStat( LAST_TINY_BREAK, QDateTime::currentDateTime() );
+            break;
+        }
+
+        case LAST_BIG_BREAK_COLOR:
+        {
+            QColor c = RSIGlobals::instance()->getBigBreakColor();
+            m_statistics[ LAST_BIG_BREAK ].getDescription()->setPaletteForegroundColor( c );
+            m_labels[ LAST_BIG_BREAK ]->setPaletteForegroundColor( c );
+            break;
+        }
+
+        case LAST_TINY_BREAK_COLOR:
+        {
+            QColor c = RSIGlobals::instance()->getTinyBreakColor();
+            m_statistics[ LAST_TINY_BREAK ].getDescription()->setPaletteForegroundColor( c );
+            m_labels[ LAST_TINY_BREAK ]->setPaletteForegroundColor( c );
             break;
         }
 
@@ -332,13 +351,13 @@ void RSIStats::updateLabel( RSIStat stat )
                         m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
         break;
 
-        // times
+        // datetimes
         case LAST_BIG_BREAK:
         case LAST_TINY_BREAK:
         {
             KLocale *localize = KGlobal::locale();
-            QTime when(m_statistics[ stat ].getValue().toTime());
-            when.isValid() ? l->setText( localize->formatTime(when, true, true) )
+            QDateTime when(m_statistics[ stat ].getValue().toDateTime());
+            when.isValid() ? l->setText( localize->formatDateTime(when, true, true) )
                            : l->setText( QString::null );
             break;
         }
@@ -395,13 +414,13 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
       case MAX_IDLENESS: return i18n("This is the biggest period of inactivity measured "
                           "while RSIBreak is running.");
       case TINY_BREAKS: return i18n("This is the total amount of tiny breaks");
-      case LAST_TINY_BREAK: return i18n("This is the time of the last tiny break.");
+      case LAST_TINY_BREAK: return i18n("This is the time and date of the last tiny break.");
       case TINY_BREAKS_SKIPPED: return i18n("This is the total amount of tiny breaks "
                           "which you skipped.");
       case IDLENESS_CAUSED_SKIP_TINY: return i18n("This is the total amount of tiny breaks "
                              "which are skipped because you where idle.");
       case BIG_BREAKS: return i18n("This is the total amount of big breaks.");
-      case LAST_BIG_BREAK: return i18n("This is the time of the last big break.");
+      case LAST_BIG_BREAK: return i18n("This is the time and date of the last big break.");
       case BIG_BREAKS_SKIPPED: return i18n("This is the total amount of big breaks "
                           "which you skipped.");
       case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total amount of big breaks "

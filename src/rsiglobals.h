@@ -54,6 +54,9 @@ class RSIGlobals : public QObject
 
     QMap<QString,int> &intervals() { return m_intervals; }
 
+    QColor getTinyBreakColor() const;
+    QColor getBigBreakColor() const;
+
   public slots:
     void slotReadConfig();
 

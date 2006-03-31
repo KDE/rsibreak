@@ -93,7 +93,7 @@ void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
       case ACTIVITY:
       case IDLENESS:
       case MAX_IDLENESS:
-        width = fm.width( "One one and " + 
+        width = fm.width( "One one and " +
             i18n("Translate this as the longest plural form. This is used to "
                  "calculate the width of window","minutes") +
             i18n("Translate this as the longest plural form. This is used to "
@@ -102,8 +102,8 @@ void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
       case LAST_TINY_BREAK:
       case LAST_BIG_BREAK:
       {
-        QTime dt( QTime::currentTime() );
-        width = fm.width( KGlobal::locale()->formatTime( dt ) );
+        QDateTime dt( QDateTime::currentDateTime() );
+        width = (int)(fm.width( KGlobal::locale()->formatDateTime( dt ) ) * 1.25);
         break;
       }
       default: ;
