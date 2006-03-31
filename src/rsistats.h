@@ -28,6 +28,23 @@
 
 class RSIStatItem;
 
+/**
+  This class records all statistics, gathered by the RSITimer.
+  To add a stat, you should add an alias to the RSIStat enum, found
+  in RSIGlobal. Then, add the statistic to the constructor of this class
+  and to the updateLabel method. Don't forget to add a What's This text as well
+  in the getWhatsThisText() method.
+  If you add a statistic which is calculated from other statistics, don't
+  forget to add those statistics as a dependency in the constructor of this
+  class. The value of the derived statistic will be calculated in
+  updateDependentStats().
+  The last step involves to actually put it in the statistics widget. Use
+  the addStat() method there.
+
+  @see RSIGlobal
+  @see RSIStatDialog
+  @see RSITimer
+*/
 class RSIStats
 {
 public:
@@ -36,27 +53,45 @@ public:
     /** Default destructor. */
     ~RSIStats();
 
+    /** Sets all statistics to it's initial value. */
     void reset();
 
     /** Increase the value of statistic @p stat with @p delta (default: 1). */
     void increaseStat( RSIStat stat, int delta = 1 );
+
+    /**
+      Sets the value of a statistic.
+      @param stat The statistic in question.
+      @param stat The value to be assigned to the statistic. In QVariant format.
+      @param stat If true, the value will only be assigned if the current
+      value is lower than the given @p value.
+    */
     void setStat( RSIStat stat, QVariant val, bool ifmax = false );
 
     /** Returns a description for the given @p stat. */
     QLabel *getDescription( RSIStat stat ) const;
 
-    /** TODO Doxy */
+    /**
+      Updates all labels to the current value of their corresponding
+      statistic.
+    */
     void updateLabels();
 
-    /** Gets the value given the @p stat.  */
+    /** Gets the value given the @p stat.*/
     QVariant getStat( RSIStat stat ) const;
+
+    /** Gets the value of the statistic @p stat in QLabel format. */
     QLabel *getLabel( RSIStat stat ) const;
 
 protected:
-    /** TODO Doxy */
-    void updateLabel( RSIStat );
+    /** Update the label of given @p stat to it's corresponding value. */
+    void updateLabel( RSIStat stat );
 
-    void updateDependentStats( RSIStat );
+    /**
+      Some statistics are calculated based on values of other statistics.
+      This function updates all statistics with @p stat as dependency.
+    */
+    void updateDependentStats( RSIStat stat );
 
     /**
       Updates the given statistic.
@@ -66,6 +101,9 @@ protected:
     */
     void updateStat( RSIStat stat, bool updateDerived = true );
 
+    /**
+      Retrieves What's This? text for a given statistic @p stat.
+    */
     QString getWhatsThisText( RSIStat stat ) const;
 
 private:
