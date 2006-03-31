@@ -240,7 +240,11 @@ void RSIStats::updateDependentStats( RSIStat stat )
 
         case LAST_BIG_BREAK_COLOR:
         {
-            QColor c = RSIGlobals::instance()->getBigBreakColor();
+            QDateTime dt( m_statistics[ LAST_BIG_BREAK ].getValue().toDateTime() );
+            if ( !dt.isValid() )
+              dt = QDateTime::currentDateTime();
+            int left = RSIGlobals::instance()->intervals()["big_minimized"] - dt.secsTo( QDateTime::currentDateTime() );
+            QColor c = RSIGlobals::instance()->getBigBreakColor( left );
             m_statistics[ LAST_BIG_BREAK ].getDescription()->setPaletteForegroundColor( c );
             m_labels[ LAST_BIG_BREAK ]->setPaletteForegroundColor( c );
             break;
@@ -248,10 +252,14 @@ void RSIStats::updateDependentStats( RSIStat stat )
 
         case LAST_TINY_BREAK_COLOR:
         {
-            QColor c = RSIGlobals::instance()->getTinyBreakColor();
-            m_statistics[ LAST_TINY_BREAK ].getDescription()->setPaletteForegroundColor( c );
-            m_labels[ LAST_TINY_BREAK ]->setPaletteForegroundColor( c );
-            break;
+           QDateTime dt( m_statistics[ LAST_TINY_BREAK ].getValue().toDateTime() );
+           if ( !dt.isValid() )
+             dt = QDateTime::currentDateTime();
+           int left = RSIGlobals::instance()->intervals()["tiny_minimized"] - dt.secsTo( QDateTime::currentDateTime() );
+           QColor c = RSIGlobals::instance()->getTinyBreakColor( left );
+           m_statistics[ LAST_TINY_BREAK ].getDescription()->setPaletteForegroundColor( c );
+           m_labels[ LAST_TINY_BREAK ]->setPaletteForegroundColor( c );
+           break;
         }
 
         default: ;// nada

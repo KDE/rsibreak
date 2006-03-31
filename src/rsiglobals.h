@@ -100,13 +100,13 @@ class RSIGlobals : public QObject
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */
-    QColor getTinyBreakColor() const;
+    QColor getTinyBreakColor(int secsToBreak ) const;
 
     /**
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */
-    QColor getBigBreakColor() const;
+    QColor getBigBreakColor(int secsToBreak ) const;
 
   public slots:
     /**

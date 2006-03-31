@@ -62,8 +62,10 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
         setText( i18n("Suspended") );
     else
     {
-        mTinyLeft->setPaletteForegroundColor( RSIGlobals::instance()->getTinyBreakColor() );
-        mBigLeft->setPaletteForegroundColor( RSIGlobals::instance()->getBigBreakColor() );
+        mTinyLeft->setPaletteForegroundColor( RSIGlobals::instance()->
+            getTinyBreakColor( tiny_left ) );
+        mBigLeft->setPaletteForegroundColor( RSIGlobals::instance()->
+            getBigBreakColor( big_left ) );
 
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.

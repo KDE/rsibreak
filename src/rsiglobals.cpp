@@ -120,30 +120,26 @@ void RSIGlobals::slotReadConfig()
     }
 }
 
-QColor RSIGlobals::getTinyBreakColor() const
+QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
 {
     int minimized = m_intervals["tiny_minimized"];
-    QDateTime dt = m_stats->getStat( LAST_TINY_BREAK ).toDateTime();
-    if ( dt.isValid() )
-    {
-        double v = 100 * dt.secsTo( QDateTime::currentDateTime() ) / (double)minimized;
-        return QColor ( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 );
-    }
+    double v = 100 * secsToBreak / (double)minimized;
 
-    return KGlobalSettings::textColor();
+    v = v > 100 ? 100 : v;
+    v = v < 0 ? 0 : v;
+
+    return QColor ( (int)(255 - 2.55 * v), (int)(1.60 * v), 0 );
 }
 
-QColor RSIGlobals::getBigBreakColor() const
+QColor RSIGlobals::getBigBreakColor( int secsToBreak ) const
 {
-    int minimized = m_intervals["big_minimized"];
-    QDateTime dt = m_stats->getStat( LAST_BIG_BREAK ).toDateTime();
-    if ( dt.isValid() )
-    {
-        double v = 100 * dt.secsTo( QDateTime::currentDateTime() ) / (double)minimized;
-        return QColor ( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 );
-    }
+    int minimized = m_intervals["tiny_minimized"];
+    double v = 100 * secsToBreak / (double)minimized;
 
-    return KGlobalSettings::textColor();
+    v = v > 100 ? 100 : v;
+    v = v < 0 ? 0 : v;
+
+    return QColor ( (int)(255 - 2.55 * v), (int)(1.60 * v), 0 );
 }
 
 #include "rsiglobals.moc"
