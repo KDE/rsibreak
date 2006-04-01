@@ -44,7 +44,7 @@ RSIStats::RSIStats()
     m_statistics.insert( MAX_IDLENESS, RSIStatItem(i18n("Maximum idle period") ) );
     m_statistics[MAX_IDLENESS].addDerivedItem( IDLENESS );
 
-    m_statistics.insert( CURRENT_IDLE_TIME, RSIStatItem(i18n("Currently idle for") ) );
+    m_statistics.insert( CURRENT_IDLE_TIME, RSIStatItem(i18n("Current idle period") ) );
 
     m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total amount of tiny breaks") ) );
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
@@ -388,13 +388,13 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
       case MAX_IDLENESS: return i18n("This is the biggest period of inactivity measured "
                           "while RSIBreak is running.");
       case TINY_BREAKS: return i18n("This is the total amount of tiny breaks");
-      case LAST_TINY_BREAK: return i18n("This is the time and date of the last tiny break.");
+      case LAST_TINY_BREAK: return i18n("This is the time of the last tiny break.");
       case TINY_BREAKS_SKIPPED: return i18n("This is the total amount of tiny breaks "
                           "which you skipped.");
       case IDLENESS_CAUSED_SKIP_TINY: return i18n("This is the total amount of tiny breaks "
                              "which are skipped because you where idle.");
       case BIG_BREAKS: return i18n("This is the total amount of big breaks.");
-      case LAST_BIG_BREAK: return i18n("This is the time and date of the last big break.");
+      case LAST_BIG_BREAK: return i18n("This is the time of the last big break.");
       case BIG_BREAKS_SKIPPED: return i18n("This is the total amount of big breaks "
                           "which you skipped.");
       case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total amount of big breaks "

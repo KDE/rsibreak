@@ -64,7 +64,8 @@ public:
      * @param stat The statistic in question.
      * @param val The value to be assigned to the statistic. In QVariant format.
      * @param ifmax If true, the value will only be assigned if the current
-     * value is lower than the given @p value.
+     * value is lower than the given @p value. Please note that derived stats
+     * are updated regardless of the fact if a new value is set.
      */
     void setStat( RSIStat stat, QVariant val, bool ifmax = false );
 

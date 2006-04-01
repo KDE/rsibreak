@@ -58,7 +58,6 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
         m_idleDetection = true;
 
-    /* check for DPMS extension */
     CARD16 standby, suspend, off;
     if (DPMSQueryExtension(qt_xdisplay(), &event_base, &error_base))
         if (DPMSCapable(qt_xdisplay()))
