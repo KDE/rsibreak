@@ -20,6 +20,10 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#ifndef QT_CLEAN_NAMESPACE
+#define QT_CLEAN_NAMESPACE  // needed for a INT32 clash in xmd.h
+#endif
+
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
@@ -33,15 +37,16 @@
 
 #include "config.h"     // HAVE_LIBXSS
 #ifdef HAVE_LIBXSS      // Idle detection.
-  #include <X11/Xlib.h>
-  #include <X11/Xutil.h>
-  #include <X11/extensions/scrnsaver.h>
-  #include <fixx11h.h>
+    #include <X11/Xlib.h>
+    #include <X11/Xutil.h>
+    #include <X11/extensions/dpms.h>
+    #include <X11/extensions/scrnsaver.h>
+    #include <fixx11h.h>
 #endif // HAVE_LIBXSS
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_breakRequested( false ), m_suspended( false )
-    , m_pause_left( 0 ), m_relax_left( 0 )
+    , m_pause_left( 0 ), m_relax_left( 0 ), dpmsOff( -10 )
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
@@ -51,6 +56,17 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     int event_base, error_base;
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
         m_idleDetection = true;
+    
+    /* check for DPMS extension */
+    CARD16 standby, suspend, off;
+    if (DPMSQueryExtension(qt_xdisplay(), &event_base, &error_base)) 
+        if (DPMSCapable(qt_xdisplay())) 
+            if (DPMSGetTimeouts(qt_xdisplay(), &standby, &suspend, &off)) 
+            {
+                kdDebug() << "DPMSInfo " << standby << " - "
+                          <<  suspend << " - " <<  off << endl;
+                dpmsOff = (int)off;
+            }
 #endif
 
     kdDebug() << "IDLE Detection is "
@@ -91,11 +107,10 @@ int RSITimer::idleTime()
     totalIdle = (_mit_info->idle/1000);
     XFree(_mit_info);
 
-    // X turns off the monitor after 1199 seconds and reports idle=0
-    // at that moment. as a workaround, i eat the activity in that area.
-    // I just hope it is hardcoded in X.
+    // When dpms turns off the monitor the idle gets a reset to 0
+    // Eat the activity in that area. Bug 6439 bugs.freedesktop.org
     int t = m_lastActivity.secsTo(QDateTime::currentDateTime());
-    if (totalIdle == 0 && ( t < 1197 || t > 1203))
+    if (totalIdle == 0 && ( t < dpmsOff-1 || t > dpmsOff+1))
         m_lastActivity=QDateTime::currentDateTime();
     else
         totalIdle = m_lastActivity.secsTo(QDateTime::currentDateTime());

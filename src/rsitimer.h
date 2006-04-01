@@ -204,6 +204,7 @@ class RSITimer : public QObject
         int             m_pause_left;
         int             m_relax_left;
         int             m_useIdleDetection;
+        int             dpmsOff;
 
         QDateTime       m_lastActivity;
         /**
