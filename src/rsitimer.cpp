@@ -46,6 +46,7 @@
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_breakRequested( false ), m_suspended( false )
+    , m_needRestart( false )
     , m_pause_left( 0 ), m_relax_left( 0 ), dpmsOff( -10 )
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
@@ -56,12 +57,12 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     int event_base, error_base;
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
         m_idleDetection = true;
-    
+
     /* check for DPMS extension */
     CARD16 standby, suspend, off;
-    if (DPMSQueryExtension(qt_xdisplay(), &event_base, &error_base)) 
-        if (DPMSCapable(qt_xdisplay())) 
-            if (DPMSGetTimeouts(qt_xdisplay(), &standby, &suspend, &off)) 
+    if (DPMSQueryExtension(qt_xdisplay(), &event_base, &error_base))
+        if (DPMSCapable(qt_xdisplay()))
+            if (DPMSGetTimeouts(qt_xdisplay(), &standby, &suspend, &off))
             {
                 kdDebug() << "DPMSInfo " << standby << " - "
                           <<  suspend << " - " <<  off << endl;
@@ -82,7 +83,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     }
 
     startTimer( 1000 );
-    slotReadConfig();
+    slotReadConfig( /* restart */ true );
 
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
@@ -192,15 +193,18 @@ void RSITimer::slotSuspended( bool b )
 {
     kdDebug() << "Entering RSITimer::slotSuspend" << endl;
 
-    b ? slotStop() : slotStart();
+    m_needRestart ? slotRestart() : (b ? slotStop() : slotStart() );
 }
 
 void RSITimer::slotRestart()
 {
+    kdDebug() << "Entering RSITimer::slotRestart" << endl;
+
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     slotStart();
+    m_needRestart = false;
 }
 
 void RSITimer::skipBreak()
@@ -220,12 +224,16 @@ void RSITimer::skipBreak()
     slotStart();
 }
 
-void RSITimer::slotReadConfig()
+void RSITimer::slotReadConfig( bool restart )
 {
     kdDebug() << "Entering RSITimer::slotReadConfig" << endl;
     readConfig();
 
-    slotRestart();
+    m_intervals = RSIGlobals::instance()->intervals();
+    if ( restart )
+      slotRestart();
+    else
+      m_needRestart = true;
 }
 
 void RSITimer::slotRequestBreak()

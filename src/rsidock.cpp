@@ -84,13 +84,11 @@ void RSIDock::slotConfigure()
     kdDebug() << "Entering slotConfigure" << endl;
     Setup setup(this);
     emit dialogEntered();
-    if (setup.exec() != QDialog::Accepted)
-    {
-        if ( !m_suspended )
-          emit dialogLeft();
-        return;
-    }
-    emit configChanged();
+    if (setup.exec() == QDialog::Accepted)
+      emit configChanged( !m_suspended );
+
+    if ( !m_suspended )
+      emit dialogLeft();
 }
 
 void RSIDock::slotAboutKDE()

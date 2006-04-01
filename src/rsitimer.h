@@ -58,8 +58,11 @@ class RSITimer : public QObject
         /**
           Reads the configuration and restarts the timer with
           slotRestart.
+          @param restart If this is true, restart immediately. That
+          means the timer is not suspended. If false, it will restart
+          as soon the timer gets unsuspended.
         */
-        void slotReadConfig();
+        void slotReadConfig( bool restart );
 
         /**
           Stops the timer activity. This does not imply
@@ -198,6 +201,7 @@ class RSITimer : public QObject
         bool            m_breakRequested;
         bool            m_idleDetection;
         bool            m_suspended;
+        bool            m_needRestart;
 
         int             m_tiny_left;
         int             m_big_left;

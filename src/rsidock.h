@@ -77,8 +77,11 @@ class RSIDock : public KSystemTray
         /**
          * This signal is emitted when the user has left
          * the settings.
+         * @param restart Defines whether the timer should
+         * immediately restarted. This should not happen
+         * when RSIBreak is suspended.
          */
-        void configChanged();
+        void configChanged( bool restart );
 
         /**
          * This signal is emitted when the user enters a dialog
