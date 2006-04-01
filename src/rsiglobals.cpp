@@ -101,6 +101,8 @@ QString RSIGlobals::formatSeconds( const int seconds )
 
 void RSIGlobals::slotReadConfig()
 {
+    kdDebug() << "RSIGlobals::slotReadConfig() entered" << endl;
+
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");

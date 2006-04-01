@@ -116,9 +116,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged() ), SLOT( readConfig() ) );
+    connect( m_tray, SIGNAL( configChanged() ), RSIGlobals::instance(), SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( configChanged() ), m_timer, SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( configChanged() ), m_relaxpopup, SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( configChanged() ), RSIGlobals::instance(), SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
@@ -188,6 +188,11 @@ void RSIWidget::minimize()
 void RSIWidget::maximize()
 {
     kdDebug() << "Entering RSIWidget::Maximize" << endl;
+
+    // prevent that users accidently press this button while
+    // they were writing text when the break appears
+    m_miniButton->clearFocus();
+    m_lockButton->clearFocus();
 
     if (m_slideInterval>0)
         m_timer_slide->start( m_slideInterval*1000 );
