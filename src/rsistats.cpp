@@ -330,8 +330,8 @@ void RSIStats::updateLabel( RSIStat stat )
         case LAST_TINY_BREAK:
         {
             KLocale *localize = KGlobal::locale();
-            QDateTime when(m_statistics[ stat ].getValue().toDateTime());
-            when.isValid() ? l->setText( localize->formatDateTime(when, true, true) )
+            QTime when(m_statistics[ stat ].getValue().toTime());
+            when.isValid() ? l->setText( localize->formatTime(when, true, true) )
                            : l->setText( QString::null );
             break;
         }
