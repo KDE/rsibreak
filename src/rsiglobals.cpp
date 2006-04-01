@@ -135,7 +135,7 @@ QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
 
 QColor RSIGlobals::getBigBreakColor( int secsToBreak ) const
 {
-    int minimized = m_intervals["tiny_minimized"];
+    int minimized = m_intervals["big_minimized"];
     double v = 100 * secsToBreak / (double)minimized;
 
     v = v > 100 ? 100 : v;
