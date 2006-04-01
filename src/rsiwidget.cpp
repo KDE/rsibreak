@@ -49,7 +49,6 @@
 #include "rsirelaxpopup.h"
 #include "rsitooltip.h"
 #include "rsiglobals.h"
-#include "rsistats.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
     : QWidget( parent, name )
