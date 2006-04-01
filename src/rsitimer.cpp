@@ -210,8 +210,7 @@ void RSITimer::slotReadConfig()
     kdDebug() << "Entering RSITimer::slotReadConfig" << endl;
     readConfig();
 
-    if ( !m_suspended )
-      slotRestart();
+    slotRestart();
 }
 
 void RSITimer::slotRequestBreak()
