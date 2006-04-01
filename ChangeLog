@@ -1,3 +1,22 @@
+2006-04-01 17:45 +0000 [r525337]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp: Stupid
+	  copypaste mistake.
+
+2006-04-01 17:42 +0000 [r525336]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog,
+	  trunk/playground/utils/rsibreak/src/rsistats.h,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/src/mainpage.dox,
+	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - Version++ -
+	  renamed stat to "current idle period" - fixed two whatsthis -
+	  updated NEWS, CHANGELOG, mainpage.dox - removed comment - added
+	  comment to documentation about derived stats w/setStat() - Will
+	  tag rc1 now
+
 2006-04-01 17:17 +0000 [r525332]  Bram Schoenmakers bramschoenmakers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
