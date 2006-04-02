@@ -46,34 +46,34 @@ RSIStats::RSIStats()
 
     m_statistics.insert( CURRENT_IDLE_TIME, RSIStatItem(i18n("Current idle period") ) );
 
-    m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total amount of tiny breaks") ) );
+    m_statistics.insert( TINY_BREAKS, RSIStatItem(i18n("Total number of short breaks") ) );
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
 
-    m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last tiny break") ) );
+    m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last short break") ) );
     m_statistics[LAST_TINY_BREAK].addDerivedItem( LAST_TINY_BREAK_COLOR );
 
     m_statistics.insert( TINY_BREAKS_SKIPPED,
-            RSIStatItem(i18n("Number of skipped tiny breaks (user)") ) );
+            RSIStatItem(i18n("Number of skipped short breaks (user)") ) );
     m_statistics[TINY_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
 
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
-            RSIStatItem(i18n("Number of skipped tiny breaks (idle)") ) );
+            RSIStatItem(i18n("Number of skipped short breaks (idle)") ) );
 
-    m_statistics.insert( BIG_BREAKS, RSIStatItem(i18n("Total amount of big breaks") ) );
+    m_statistics.insert( BIG_BREAKS, RSIStatItem(i18n("Total number of long breaks") ) );
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
 
-    m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last big break") ) );
+    m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last long break") ) );
     m_statistics[LAST_BIG_BREAK].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( BIG_BREAKS_SKIPPED,
-            RSIStatItem(i18n("Number of skipped big breaks (user)") ) );
+            RSIStatItem(i18n("Number of skipped long breaks (user)") ) );
     m_statistics[BIG_BREAKS_SKIPPED].addDerivedItem( PAUSE_SCORE );
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
-            RSIStatItem(i18n("Number of skipped big breaks (idle)") ) );
+            RSIStatItem(i18n("Number of skipped long breaks (idle)") ) );
 
     m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score") ) );
 
@@ -378,29 +378,29 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
 {
     switch ( stat )
     {
-      case TOTAL_TIME: return i18n("This is the total time RSIBreak is running.");
+      case TOTAL_TIME: return i18n("This is the total time RSIBreak has been running.");
       case ACTIVITY: return i18n("This is the total amount of time you used the "
                           "keyboard or mouse.");
       case IDLENESS: return i18n("This is the total amount of time you did not use "
                           "the keyboard or mouse.");
       case ACTIVITY_PERC: return i18n("This is a percentage of activity, based on the "
-                          "seconds of activity vs. total time RSIBreak is running.");
-      case MAX_IDLENESS: return i18n("This is the biggest period of inactivity measured "
-                          "while RSIBreak is running.");
-      case TINY_BREAKS: return i18n("This is the total amount of tiny breaks");
-      case LAST_TINY_BREAK: return i18n("This is the time of the last tiny break.");
-      case TINY_BREAKS_SKIPPED: return i18n("This is the total amount of tiny breaks "
+                          "periods of activity vs. the total time RSIBreak has been running.");
+      case MAX_IDLENESS: return i18n("This is the longest period of inactivity measured "
+                          "while RSIBreak has been running.");
+      case TINY_BREAKS: return i18n("This is the total number of short breaks");
+      case LAST_TINY_BREAK: return i18n("This is the time of the last short break.");
+      case TINY_BREAKS_SKIPPED: return i18n("This is the total number of short breaks "
                           "which you skipped.");
-      case IDLENESS_CAUSED_SKIP_TINY: return i18n("This is the total amount of tiny breaks "
-                             "which are skipped because you where idle.");
-      case BIG_BREAKS: return i18n("This is the total amount of big breaks.");
-      case LAST_BIG_BREAK: return i18n("This is the time of the last big break.");
-      case BIG_BREAKS_SKIPPED: return i18n("This is the total amount of big breaks "
+      case IDLENESS_CAUSED_SKIP_TINY: return i18n("This is the total number of short breaks "
+                             "which were skipped because you were idle.");
+      case BIG_BREAKS: return i18n("This is the total number of long breaks.");
+      case LAST_BIG_BREAK: return i18n("This is the time of the last long break.");
+      case BIG_BREAKS_SKIPPED: return i18n("This is the total number of long breaks "
                           "which you skipped.");
-      case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total amount of big breaks "
-                          "which are skipped because you where idle." );
-      case PAUSE_SCORE: return i18n("This is an indication how well you bahaved "
-                          "with the brakes.");
+      case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total number of long breaks "
+                          "which were skipped because you were idle." );
+      case PAUSE_SCORE: return i18n("This is an indication of how well you behaved "
+                          "with the breaks.");
       case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
       default: ;
     }

@@ -73,10 +73,10 @@ SetupTiming::SetupTiming(QWidget* parent )
     tinyBox->setTitle(i18n("Tiny Breaks"));
     
     QHBox *m = new QHBox(tinyBox);
-    QLabel *l1 = new QLabel(i18n("Tiny break every:"), m);
-    QWhatsThis::add( l1, i18n("Here you can set how often you want a tiny "
+    QLabel *l1 = new QLabel(i18n("Short break every:"), m);
+    QWhatsThis::add( l1, i18n("Here you can set how often you want a short "
                               "break. One minute means 60 seconds of "
-                              "movement with the mouse or work on the keyboard.") );
+                              "movement with the mouse or typing on the keyboard.") );
     d->tinyInterval = new KIntNumInput(m);
     d->tinyInterval->setRange(1,1000,1,false);
     l1->setBuddy(d->tinyInterval);
@@ -85,7 +85,7 @@ SetupTiming::SetupTiming(QWidget* parent )
     
     QHBox *m2 = new QHBox(tinyBox);
     QLabel *l2 = new QLabel(i18n("For a duration of:"), m2);
-    QWhatsThis::add( l2, i18n("Here you can set how long the tiny break is.") );
+    QWhatsThis::add( l2, i18n("Here you can set the duration of the short break.") );
     d->tinyDuration = new KIntNumInput(m2);
     d->tinyDuration->setRange(1,1000,1,false);
     l2->setBuddy(d->tinyDuration);
@@ -97,10 +97,10 @@ SetupTiming::SetupTiming(QWidget* parent )
     bigBox->setTitle(i18n("Big Breaks"));
     
     QHBox *m3 = new QHBox(bigBox);
-    QLabel *l3 = new QLabel(i18n("Big break every:"), m3);
-    QWhatsThis::add( l3, i18n("Here you can set how often you want a big "
+    QLabel *l3 = new QLabel(i18n("Long break every:"), m3);
+    QWhatsThis::add( l3, i18n("Here you can set how often you want a long "
                               "break. One minute means 60 seconds of "
-                              "movement with the mouse or work on the keyboard") );
+                              "movement with the mouse or typing on the keyboard") );
     d->bigInterval = new KIntNumInput(m3);
     d->bigInterval->setRange(1,1000,1,false);
     l3->setBuddy(d->bigInterval);
@@ -110,7 +110,7 @@ SetupTiming::SetupTiming(QWidget* parent )
     
     QHBox *m4 = new QHBox(bigBox);
     QLabel *l4 = new QLabel(i18n("For a duration of:"), m4);
-    QWhatsThis::add( l4, i18n("Here you can set how long the big break is.") );
+    QWhatsThis::add( l4, i18n("Here you can set the duration of the long break.") );
     d->bigDuration = new KIntNumInput(m4);
     d->bigDuration->setRange(1,1000,1,false);
     l4->setBuddy(d->bigDuration);

@@ -80,10 +80,11 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                  i18n("Changes in RSIBreak 0.5.0\n\n"
                                       "In this version we have changed the way "
                                       "the timers work. Instead of indicating "
-                                      "after how many tiny breaks you want a "
-                                      "big break, you can now setup after how "
-                                      "many minutes you want a bigbreak.\nPlease "
-                                      "review your current settings.\n\n"),
+                                      "the number of short breaks you want to "
+                                      "take before taking a long break, you "
+                                      "can now setup how often, in minutes, "
+                                      "you want a lomg break.\nPlease review "
+                                      "your current settings.\n\n"),
                                  i18n("Welcome"),
                                  "dont_show_welcome_again_for_050");
 
@@ -385,7 +386,7 @@ void RSIWidget::tinyBreakSkipped()
     if (!m_showTimerReset)
         return;
 
-    m_tooltip->setText( i18n("Timer for the tiny break has now been reset"));
+    m_tooltip->setText( i18n("Timer for the short break has now been reset"));
     breakSkipped();
 }
 
