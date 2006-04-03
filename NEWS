@@ -1,6 +1,6 @@
 v0.6.0-rc1 2006-04-01
 - Extensive amount of statistics.
-- Colors to indicate how far away you are from a break in the toolt
+- Colors to indicate how far away you are from a break in the tooltip
 - libxss for the idle detection is a no longer optional, it is required.
 - RSIBreak remembers the timer states when you quit. It can restore the timers
   if you restart RSIBreak afterwards in a short timeframe. This is handy for 

@@ -20,18 +20,9 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#ifndef QT_CLEAN_NAMESPACE
-#define QT_CLEAN_NAMESPACE  // needed for a INT32 clash in xmd.h
-#endif
-
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
-
-#include "rsiglobals.h"
-#include "rsistats.h"
-
-#include "rsitimer.h"
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
@@ -39,10 +30,15 @@
 #ifdef HAVE_LIBXSS      // Idle detection.
     #include <X11/Xlib.h>
     #include <X11/Xutil.h>
-    #include <X11/extensions/dpms.h>
     #include <X11/extensions/scrnsaver.h>
     #include <fixx11h.h>
 #endif // HAVE_LIBXSS
+
+#include "rsiglobals.h"
+#include "rsistats.h"
+#include "rsitimer.h"
+#include "rsitimer_dpms.h"
+
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_breakRequested( false ), m_suspended( false )
@@ -58,21 +54,17 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
         m_idleDetection = true;
 
-    CARD16 standby, suspend, off;
-    if (DPMSQueryExtension(qt_xdisplay(), &event_base, &error_base))
-        if (DPMSCapable(qt_xdisplay()))
-            if (DPMSGetTimeouts(qt_xdisplay(), &standby, &suspend, &off))
-            {
-                kdDebug() << "DPMSInfo " << standby << " - "
-                          <<  suspend << " - " <<  off << endl;
-                dpmsOff = (int)off;
-            }
+    int off;
+    if (true == QueryDPMSTimeouts(qt_xdisplay(), off))
+      dpmsOff = off;
 #endif
 
     kdDebug() << "IDLE Detection is "
               << (m_idleDetection?QString::null:"not")
               << "possible" << endl;
 
+    kdDebug() << "DPMS is set to " << off << endl;
+    
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])

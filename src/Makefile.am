@@ -4,7 +4,8 @@ INCLUDES =  -I$(top_srcdir) $(all_includes)
 # these are the headers for your project
 noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h \
 	setuptiming.h setupmaximized.h setuppopup.h rsitimer.h rsirelaxpopup.h \
-	rsitooltip.h rsistatwidget.h rsistats.h rsiglobals.h rsistatitem.h
+	rsitooltip.h rsistatwidget.h rsistats.h rsiglobals.h rsistatitem.h \
+	rsitimer_dpms.h
 
 # let automoc handle all of the meta source files (moc)
 METASOURCES = AUTO
@@ -14,6 +15,9 @@ messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/rsibreak.pot
 
 KDE_ICON = AUTO
+
+lib_LTLIBRARIES = librsibreak.la
+librsibreak_la_SOURCES = rsitimer_dpms.cpp
 
 #########################################################################
 # APPLICATION SECTION
@@ -28,7 +32,8 @@ rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
 	setupmaximized.cpp rsitooltip.cpp dcopiface.cpp dcopiface.skel \
 	rsistatwidget.cpp rsistats.cpp rsiglobals.cpp rsistatitem.cpp
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS)
+rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS) \
+				 $(top_builddir)/rsibreak/src/librsibreak.la
 
 # this is where the desktop file will go
 xdg_apps_DATA = rsibreak.desktop
