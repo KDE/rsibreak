@@ -4,13 +4,15 @@ Wishes:
 - when no image path is entered, do not display a gray widget, but one with a button "set images path"
 - [BS] strict-o-meter
 - [BS] A second timer implementation which ignores idle detection
+- Save statistics
+- Set Kopete in "Be Right Back" mode when going into a big break
 
 Bugs:
 - image extension are hardcoded
 - in some cases, the tooltip does not appear
   ( note: seems only to happen after waiting for a big break in a relax popup )
-- relax popup does not disappear immediately when you choose to suspend RSIBreak
 - when you're idle for the length of a big break, without any break active, it is not detected
+- counter invisible when a black picture is shown on screen
 
 Gnome specific bugs:
 - It is started at login, regardless of the setting.
