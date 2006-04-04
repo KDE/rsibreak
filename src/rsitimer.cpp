@@ -64,7 +64,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
               << "possible" << endl;
 
     kdDebug() << "DPMS is set to " << off << endl;
-    
+
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
@@ -237,7 +237,7 @@ void RSITimer::slotRequestBreak()
 
 void RSITimer::timerEvent( QTimerEvent * )
 {
-    /**
+    /*
       Contains the amount of time left for a big fullscreen break.
     */
     static int nextBreak = TINY_BREAK;
@@ -367,26 +367,31 @@ void RSITimer::timerEvent( QTimerEvent * )
         emit updateIdleAvg( value );
     }
     else if ( m_useIdleDetection && t == m_intervals["big_maximized"] &&
-             m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] &&
-             m_relax_left == 0 && m_pause_left == 0 )
+             m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
     {
         // the user was sufficiently idle for a big break
         kdDebug() << "Time being idle == big break length" << endl;
 
-        RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
-        RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
+        if ( m_relax_left == 0 && m_pause_left == 0 )
+        {
+            RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
+            RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
+        }
 
         resetAfterBigBreak();
         emit bigBreakSkipped();
     }
     else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] &&
-              m_tiny_left < m_big_left && m_relax_left == 0 && m_pause_left == 0 )
+              m_tiny_left < m_big_left  )
     {
         // the user was sufficiently idle for a tiny break
         kdDebug() << "Time being idle == tiny break length" << endl;
 
-        RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
-        RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+        if ( m_relax_left == 0 && m_pause_left == 0 )
+        {
+            RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
+            RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+        }
 
         resetAfterTinyBreak();
         emit tinyBreakSkipped();
