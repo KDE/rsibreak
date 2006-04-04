@@ -69,6 +69,13 @@ public:
      */
     void setStat( RSIStat stat, QVariant val, bool ifmax = false );
 
+    /**
+     * Set the color of a given statistic.
+     * @param stat The statistic in question.
+     * @param color The color in QColor format.
+     */
+    void setColor( RSIStat stat, QColor color );
+
     /** Returns a description for the given @p stat. */
     QLabel *getDescription( RSIStat stat ) const;
 

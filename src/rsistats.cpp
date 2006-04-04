@@ -34,8 +34,6 @@ RSIStats::RSIStats()
 
     m_statistics.insert( ACTIVITY, RSIStatItem(i18n("Total time of activity") ) );
     m_statistics[ACTIVITY].addDerivedItem( ACTIVITY_PERC );
-    m_statistics[ACTIVITY].addDerivedItem( LAST_TINY_BREAK_COLOR );
-    m_statistics[ACTIVITY].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( IDLENESS, RSIStatItem(i18n("Total time being idle") ) );
 
@@ -51,7 +49,6 @@ RSIStats::RSIStats()
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
 
     m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last short break") ) );
-    m_statistics[LAST_TINY_BREAK].addDerivedItem( LAST_TINY_BREAK_COLOR );
 
     m_statistics.insert( TINY_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped short breaks (user)") ) );
@@ -66,7 +63,6 @@ RSIStats::RSIStats()
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
 
     m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last long break") ) );
-    m_statistics[LAST_BIG_BREAK].addDerivedItem( LAST_BIG_BREAK_COLOR );
 
     m_statistics.insert( BIG_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped long breaks (user)") ) );
@@ -238,30 +234,6 @@ void RSIStats::updateDependentStats( RSIStat stat )
             break;
         }
 
-        case LAST_BIG_BREAK_COLOR:
-        {
-            QDateTime dt( m_statistics[ LAST_BIG_BREAK ].getValue().toDateTime() );
-            if ( !dt.isValid() )
-              dt = QDateTime::currentDateTime();
-            int left = RSIGlobals::instance()->intervals()["big_minimized"] - dt.secsTo( QDateTime::currentDateTime() );
-            QColor c = RSIGlobals::instance()->getBigBreakColor( left );
-            m_statistics[ LAST_BIG_BREAK ].getDescription()->setPaletteForegroundColor( c );
-            m_labels[ LAST_BIG_BREAK ]->setPaletteForegroundColor( c );
-            break;
-        }
-
-        case LAST_TINY_BREAK_COLOR:
-        {
-           QDateTime dt( m_statistics[ LAST_TINY_BREAK ].getValue().toDateTime() );
-           if ( !dt.isValid() )
-             dt = QDateTime::currentDateTime();
-           int left = RSIGlobals::instance()->intervals()["tiny_minimized"] - dt.secsTo( QDateTime::currentDateTime() );
-           QColor c = RSIGlobals::instance()->getTinyBreakColor( left );
-           m_statistics[ LAST_TINY_BREAK ].getDescription()->setPaletteForegroundColor( c );
-           m_labels[ LAST_TINY_BREAK ]->setPaletteForegroundColor( c );
-           break;
-        }
-
         default: ;// nada
       }
     }
@@ -310,17 +282,13 @@ void RSIStats::updateLabel( RSIStat stat )
         // doubles
         case PAUSE_SCORE:
         v = m_statistics[ stat ].getValue().toDouble();
-        c = QColor( (int)(255 - 2.55 * v), (int)(1.60 * v), 0 );
-        l->setPaletteForegroundColor( c );
-        m_statistics[stat].getDescription()->setPaletteForegroundColor( c );
+        setColor( stat, QColor( (int)(255 - 2.55 * v), (int)(1.60 * v), 0 ) );
         l->setText( QString::number(
                         m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
         break;
         case ACTIVITY_PERC:
         v = m_statistics[stat].getValue().toDouble();
-        c = QColor( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 );
-        l->setPaletteForegroundColor( c );
-        m_statistics[stat].getDescription()->setPaletteForegroundColor( c );
+        setColor( stat, QColor( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 ) );
         l->setText( QString::number(
                         m_statistics[ stat ].getValue().toDouble(), 'f', 1 ) );
         break;
@@ -330,7 +298,7 @@ void RSIStats::updateLabel( RSIStat stat )
         case LAST_TINY_BREAK:
         {
             KLocale *localize = KGlobal::locale();
-            QTime when(m_statistics[ stat ].getValue().toTime());
+            QTime when( m_statistics[ stat ].getValue().asTime() );
             when.isValid() ? l->setText( localize->formatTime(when, true, true) )
                            : l->setText( QString::null );
             break;
@@ -406,4 +374,10 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
     }
 
     return QString::null;
+}
+
+void RSIStats::setColor( RSIStat stat, QColor color )
+{
+    m_statistics[ stat ].getDescription()->setPaletteForegroundColor( color );
+    m_labels[ stat ]->setPaletteForegroundColor( color );
 }
