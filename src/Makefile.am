@@ -16,7 +16,7 @@ messages: rc.cpp
 
 KDE_ICON = AUTO
 
-lib_LTLIBRARIES = librsibreak.la
+noinst_LTLIBRARIES = librsibreak.la
 librsibreak_la_SOURCES = rsitimer_dpms.cpp
 
 #########################################################################

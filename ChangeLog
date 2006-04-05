@@ -1,3 +1,58 @@
+2006-04-04 21:49 +0000 [r526550]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitooltip.cpp: Oh, it didn't
+	  compile. How could I've missed that.
+
+2006-04-04 16:45 +0000 [r526439]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsistats.h,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistats.cpp: o A color is
+	  now easily assignable to every stat with RSIStats::setColor() o
+	  Sync colors last big/tiny break with colors in tooltip o Cleanups
+	  thanks to the new method. Hackish enums like LAST_BIG_BREAK_COLOR
+	  are not required anymore
+
+2006-04-04 16:05 +0000 [r526424]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Call hide()
+	  immediately when suspending. There's no need to evaluate the bool
+	  coming along with suspend(), just always hide when emitted.
+
+2006-04-04 14:31 +0000 [r526397]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: In commit
+	  #523619 I made the idle detection guards too strong. Moved the
+	  guards one level deeper. This fixes the issue that the timers
+	  were not reset when a break has passed (with popup). A symptom
+	  was that the docker icon was still filled after a relax moment.
+
+2006-04-03 19:31 +0000 [r526075]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer_dpms.cpp (added),
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/rsitimer_dpms.h (added),
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Because
+	  --enable-final is broken (int32 clash in qglobal), Ruurd
+	  suggested to put it in a seperate library.
+
+2006-04-02 20:46 +0000 [r525786]  Malcolm Hunter malcolm.hunter@gmx.co.uk
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp:
+	  Typographical corrections and changes
+
+2006-04-01 20:23 +0000 [r525376]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Forgot this
+	  one.
+
 2006-04-01 17:45 +0000 [r525337]  Bram Schoenmakers bramschoenmakers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp: Stupid
