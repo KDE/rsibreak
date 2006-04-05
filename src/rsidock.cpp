@@ -179,6 +179,12 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 
     if (e->button() == RightButton)
         contextMenu()->exec( e->globalPos() );
+    
+    if (e->button() == LeftButton)
+        if (!m_statsDialog)
+            slotShowStatistics();
+        else
+            m_statsDialog->raise();
 }
 
 void RSIDock::enterEvent( QEvent * )
