@@ -36,6 +36,7 @@
 #include <kglobalaccel.h>
 #include <kkeydialog.h>
 #include <kmessagebox.h>
+#include <kwin.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
     : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
@@ -184,7 +185,10 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
         if (!m_statsDialog)
             slotShowStatistics();
         else
+        {
+            KWin::forceActiveWindow(m_statsDialog->winId());
             m_statsDialog->raise();
+        }
 }
 
 void RSIDock::enterEvent( QEvent * )
