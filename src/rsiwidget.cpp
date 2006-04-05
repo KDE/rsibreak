@@ -514,7 +514,7 @@ void RSIWidget::readConfig()
     }
 
     m_slideInterval = config->readNumEntry("SlideInterval", 2);
-    m_showTimerReset = config->readBoolEntry("ShowTimerReset", true);
+    m_showTimerReset = config->readBoolEntry("ShowTimerReset", false);
 
     delete Black;
     delete t;

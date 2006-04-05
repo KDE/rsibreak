@@ -119,7 +119,7 @@ void SetupGeneral::readSettings()
     
     config->setGroup("General Settings");
     d->useIdleDetection->setChecked(config->readBoolEntry("UseIdleDetection", true));
-    d->showTimerReset->setChecked(config->readBoolEntry("ShowTimerReset", true));
+    d->showTimerReset->setChecked(config->readBoolEntry("ShowTimerReset", false));
 }
 
 #include "setupgeneral.moc"
