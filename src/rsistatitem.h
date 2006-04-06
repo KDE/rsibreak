@@ -39,8 +39,10 @@ class RSIStatItem
      * statistic a useful description. It will be visible in the
      * statistics widget.
      * @param description A i18n()'d text representing this statistic's meaning.
+     * @param init The initial value of this statistic. Default value is an
+     * integer zero.
      */
-    RSIStatItem( const QString &description = QString::null );
+    RSIStatItem( const QString &description = QString::null, QVariant init = QVariant(0) );
 
     /** Default destructor. */
     ~RSIStatItem();
@@ -71,8 +73,15 @@ class RSIStatItem
      */
     QValueList<RSIStat> getDerivedItems() const { return m_derived; }
 
+    /**
+     * Resets current value to initial value, passed along with the
+     * constructor.
+     */
+    void reset();
+
   private:
     QVariant m_value;
+    QVariant m_init;
     QLabel *m_description;
 
     /** Contains a list of RSIStats which depend on *this* item. */

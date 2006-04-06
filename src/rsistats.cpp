@@ -71,7 +71,7 @@ RSIStats::RSIStats()
     m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
             RSIStatItem(i18n("Number of skipped long breaks (idle)") ) );
 
-    m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score") ) );
+    m_statistics.insert( PAUSE_SCORE, RSIStatItem(i18n("Pause score"), 100 ) );
 
     // initialise labels
     QMap<RSIStat,RSIStatItem>::Iterator it;
@@ -115,13 +115,8 @@ void RSIStats::reset()
     QMap<RSIStat,RSIStatItem>::ConstIterator it;
     for( it = m_statistics.begin(); it != m_statistics.end(); ++it )
     {
-        RSIStat stat = it.key();
-        QVariant v = m_statistics[stat].getValue();
-        if ( v.type() == QVariant::Int || v.type() == QVariant::Double )
-            m_statistics[stat].setValue( 0 );
-        else if ( v.type() == QVariant::DateTime )
-            m_statistics[stat].setValue( QDateTime());
-        updateStat( stat, false );
+        m_statistics[ it.key() ].reset();
+        updateStat( it.key(), /* update derived stats */ false );
     }
 }
 

@@ -19,10 +19,11 @@
 
 #include "rsistatitem.h"
 
-RSIStatItem::RSIStatItem( const QString &description )
+RSIStatItem::RSIStatItem( const QString &description, QVariant init )
 {
     m_description = new QLabel( description, 0 );
-    m_value = QVariant(0);
+    m_value = init;
+    m_init = init;
 }
 
 RSIStatItem::~RSIStatItem()
@@ -32,4 +33,9 @@ RSIStatItem::~RSIStatItem()
 void RSIStatItem::addDerivedItem( RSIStat stat )
 {
     m_derived += stat;
+}
+
+void RSIStatItem::reset()
+{
+    m_value = m_init;
 }
