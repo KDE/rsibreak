@@ -163,6 +163,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
+    
+    m_grab = new QTimer(this);
+    connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
     readConfig();
 }
@@ -178,6 +181,12 @@ RSIWidget::~RSIWidget()
 void RSIWidget::minimize()
 {
     kdDebug() << "Entering RSIWidget::Minimize" << endl;
+
+    // stop the m_grab, if the break is ESCaped during the
+    // first second, slotGrab is called after the widget 
+    // is minimized again.
+    m_grab->stop();
+
     m_timer_slide->stop();
     releaseKeyboard();
     releaseMouse();
@@ -205,7 +214,7 @@ void RSIWidget::maximize()
 
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
-    QTimer::singleShot(1000, this, SLOT(slotGrab()));
+    m_grab->start(1000, true);
 }
 
 void RSIWidget::loadImage()

@@ -91,6 +91,7 @@ class RSIWidget : public QWidget
         QPixmap*        m_backgroundimage;
         QString         m_basePath;
         QTimer*         m_timer_slide;
+        QTimer*         m_grab;
         QLabel*         m_countDown;
         KAccel*         m_accel;
 
