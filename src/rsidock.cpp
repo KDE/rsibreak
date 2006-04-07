@@ -182,13 +182,7 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
         contextMenu()->exec( e->globalPos() );
     
     if (e->button() == LeftButton)
-        if (!m_statsDialog)
             slotShowStatistics();
-        else
-        {
-            KWin::forceActiveWindow(m_statsDialog->winId());
-            m_statsDialog->raise();
-        }
 }
 
 void RSIDock::enterEvent( QEvent * )
@@ -242,6 +236,11 @@ void RSIDock::slotShowStatistics()
     }
 
     m_statsDialog->show();
+
+    if (!m_statsDialog->isActiveWindow())
+	    KWin::forceActiveWindow(m_statsDialog->winId());
+
+    m_statsDialog->raise();
 }
 
 void RSIDock::slotResetStats()
