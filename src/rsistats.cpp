@@ -48,7 +48,8 @@ RSIStats::RSIStats()
     m_statistics[TINY_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[TINY_BREAKS].addDerivedItem( LAST_TINY_BREAK );
 
-    m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last short break") ) );
+    QDateTime dt( QDate( -1, -1, -1 ), QTime( -1, -1, -1 ) );
+    m_statistics.insert( LAST_TINY_BREAK, RSIStatItem(i18n("Last short break"), dt ) );
 
     m_statistics.insert( TINY_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped short breaks (user)") ) );
@@ -62,7 +63,7 @@ RSIStats::RSIStats()
     m_statistics[BIG_BREAKS].addDerivedItem( PAUSE_SCORE );
     m_statistics[BIG_BREAKS].addDerivedItem( LAST_BIG_BREAK );
 
-    m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last long break") ) );
+    m_statistics.insert( LAST_BIG_BREAK, RSIStatItem(i18n("Last long break"), dt ) );
 
     m_statistics.insert( BIG_BREAKS_SKIPPED,
             RSIStatItem(i18n("Number of skipped long breaks (user)") ) );
