@@ -163,7 +163,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
-    
+
     m_grab = new QTimer(this);
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
@@ -183,7 +183,7 @@ void RSIWidget::minimize()
     kdDebug() << "Entering RSIWidget::Minimize" << endl;
 
     // stop the m_grab, if the break is ESCaped during the
-    // first second, slotGrab is called after the widget 
+    // first second, slotGrab is called after the widget
     // is minimized again.
     m_grab->stop();
 
@@ -376,7 +376,7 @@ void RSIWidget::setIcon(int level)
     static QString currentIcon;
     static KIconLoader il;
     QString newIcon = "rsibreak" +
-                      ( m_timer->isSuspended() ? "x" : QString::number(level) );
+                      ( m_timer->isSuspended() ? QString("x") : QString::number(level) );
 
     if (newIcon != currentIcon)
     {
