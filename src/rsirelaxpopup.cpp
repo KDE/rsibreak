@@ -17,14 +17,12 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-
 #include <qlabel.h>
 #include <qpushbutton.h>
 #include <qtimer.h>
 #include <qvbox.h>
 
 #include <kdebug.h>
-#include <kglobalsettings.h>
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kprogress.h>
@@ -61,28 +59,23 @@ RSIRelaxPopup::~RSIRelaxPopup()
 
 void RSIRelaxPopup::relax( int n )
 {
-    if (!m_usePopup)
-        return;
 
-    /*
+    /**
       Counts how many times a request for relax resets
       due to detected activity.
     */
+
+    if (!m_usePopup)
+        return;
+
     static int resetcount = 0;
 
     /*
         If n increases compared to the last call,
         we want a new request for a relax moment.
     */
-
-    QString message = i18n( "Please relax for 1 second",
-        "Please relax for %n seconds", n );
-
     if ( n >= m_progress->progress() )
     {
-        QFontMetrics fm( KGlobalSettings::generalFont() );
-        m_message->setMinimumWidth( fm.width( message ) );
-
         m_progress->setTotalSteps( n );
         // m_progress->setProgress( n );
         resetcount += 1;
@@ -94,7 +87,9 @@ void RSIRelaxPopup::relax( int n )
 
     if ( n > 0 )
     {
-        m_message->setText( message );
+        m_message->setText(i18n("Please relax for 1 second",
+                                "Please relax for %n seconds",
+                                n ));
 
         m_progress->setProgress( n );
         show();
