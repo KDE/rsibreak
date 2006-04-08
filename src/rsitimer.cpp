@@ -57,13 +57,14 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     int off;
     if (true == QueryDPMSTimeouts(qt_xdisplay(), off))
       dpmsOff = off;
+    
+    kdDebug() << "DPMS is set to " << off << endl;
 #endif
 
     kdDebug() << "IDLE Detection is "
               << (m_idleDetection?QString::null:"not")
               << "possible" << endl;
 
-    kdDebug() << "DPMS is set to " << off << endl;
 
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
