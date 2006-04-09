@@ -168,6 +168,12 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
     readConfig();
+
+    // if there are no images found, the break will appear in black.
+    // if the text color is black (default) then change that.
+    if (m_files.count() == 0 &&
+        m_countDown->paletteForegroundColor() == Qt::black)
+        m_countDown->setPaletteForegroundColor( Qt::white );
 }
 
 RSIWidget::~RSIWidget()
