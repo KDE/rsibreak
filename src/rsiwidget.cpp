@@ -307,6 +307,10 @@ void RSIWidget::slotLock()
 {
     kdDebug() << "Entering RSIWidget::slotLock" << endl;
 
+    m_timer_slide->stop();
+    releaseKeyboard();
+    releaseMouse();
+
     QCString appname( "kdesktop" );
     int rsibreak_screen = qt_xscreen();
     if ( rsibreak_screen )

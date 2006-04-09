@@ -57,7 +57,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     int off;
     if (true == QueryDPMSTimeouts(qt_xdisplay(), off))
       dpmsOff = off;
-    
+
     kdDebug() << "DPMS is set to " << off << endl;
 #endif
 
