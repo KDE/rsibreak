@@ -154,6 +154,12 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_lockButton = new QPushButton( i18n("Lock desktop"), this );
     buttonRow->addWidget( m_lockButton );
 
+    // These two connects only get used when there the user locks and
+    // unlocks before the break is over. The lock releases the mouse
+    // and keyboard, and that way the event methods are not called.
+    connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
+    connect(m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
+
     m_accel = new KAccel(this);
     m_accel->insert("minimize", i18n("Skip"),
                     i18n("Abort a break"),Qt::Key_Escape,
