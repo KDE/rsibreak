@@ -172,16 +172,15 @@ void RSIStats::updateDependentStats( RSIStat stat )
           double c = m_statistics[ IDLENESS_CAUSED_SKIP_TINY ].getValue().toDouble();
           double d = m_statistics[ IDLENESS_CAUSED_SKIP_BIG ].getValue().toDouble();
 
-          double skipped = a;
-          if ( a > c )
-            skipped -= c;
+          RSIGlobals *glbl = RSIGlobals::instance();
+          double ratio = (double)(glbl->intervals()["big_maximized"]) /
+              (double)(glbl->intervals()["tiny_maximized"]);
 
-          skipped += 2 * b;
-          if ( b > d )
-            skipped -= 2 * d;
+          double skipped = a - c + ratio * ( b - d );
+          skipped = skipped < 0 ? 0 : skipped;
 
           double total = m_statistics[ TINY_BREAKS ].getValue().toDouble();
-          total += 2 * m_statistics[ BIG_BREAKS ].getValue().toDouble();
+          total += ratio * m_statistics[ BIG_BREAKS ].getValue().toDouble();
 
           if ( total > 0 )
             m_statistics[ *it ].setValue( 100 - ( ( skipped / total ) * 100 ) );
