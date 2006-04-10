@@ -1,9 +1,4 @@
-v0.6.0-rc2 2006-04-05
-- resolved some tiny bugs
-- one piece of code has been moved to a convenience library, which is 
-  linked statically.
-
-v0.6.0-rc1 2006-04-01
+v0.6.0 2006-04-10
 - Extensive amount of statistics.
 - Colors to indicate how far away you are from a break in the tooltip
 - libxss for the idle detection is a no longer optional, it is required.
