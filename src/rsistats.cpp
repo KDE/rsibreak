@@ -347,23 +347,29 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
       case IDLENESS: return i18n("This is the total amount of time you did not use "
                           "the keyboard or mouse.");
       case ACTIVITY_PERC: return i18n("This is a percentage of activity, based on the "
-                          "periods of activity vs. the total time RSIBreak has been running.");
+                          "periods of activity vs. the total time RSIBreak has been running."
+                          "The color indicates the level of your activity. When the color is"
+                          "close to full red it's recommended to lower your work pace.");
       case MAX_IDLENESS: return i18n("This is the longest period of inactivity measured "
                           "while RSIBreak has been running.");
       case TINY_BREAKS: return i18n("This is the total number of short breaks");
-      case LAST_TINY_BREAK: return i18n("This is the time of the last short break.");
+      case LAST_TINY_BREAK: return i18n("This is the time of the last finished short break."
+                          "The color of this texts gradually turns from green to red,"
+                          "indicating when you can expect the next tiny break.");
       case TINY_BREAKS_SKIPPED: return i18n("This is the total number of short breaks "
                           "which you skipped.");
       case IDLENESS_CAUSED_SKIP_TINY: return i18n("This is the total number of short breaks "
                              "which were skipped because you were idle.");
       case BIG_BREAKS: return i18n("This is the total number of long breaks.");
-      case LAST_BIG_BREAK: return i18n("This is the time of the last long break.");
+      case LAST_BIG_BREAK: return i18n("This is the time of the last finished long break."
+                          "The color of this texts gradually turns from green to red,"
+                          "indicating when you can expect the next big break.");
       case BIG_BREAKS_SKIPPED: return i18n("This is the total number of long breaks "
                           "which you skipped.");
       case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total number of long breaks "
                           "which were skipped because you were idle." );
       case PAUSE_SCORE: return i18n("This is an indication of how well you behaved "
-                          "with the breaks.");
+                          "with the breaks. It decreases everytime you skip a break.");
       case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
       default: ;
     }
