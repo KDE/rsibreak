@@ -8,8 +8,8 @@ INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}
 
 ############# Find LIBXSS for idle detection and write outcome to config.h ####
 
-# FIND_LIBRARY does not seem to find it, but FIND_FILE does. How to do that?
-FIND_FILE(HAVE_LIBXSS libXss.so /usr/lib /usr/local/lib)
+include (CheckLibraryExists)
+check_library_exists(Xss XScreenSaverQueryInfo "" HAVE_LIBXSS)
 
 # Not having libxss is fatal at the moment.
 IF (NOT HAVE_LIBXSS)
