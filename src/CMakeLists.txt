@@ -14,6 +14,8 @@ check_library_exists(Xss XScreenSaverQueryInfo "" HAVE_LIBXSS)
 # Not having libxss is fatal at the moment.
 IF (NOT HAVE_LIBXSS)
      MESSAGE(FATAL_ERROR "Missing libxss library")
+ELSE (NOT HAVE_LIBXSS)
+    SET (IDLE_DETECTION_LIB "Xss")
 ENDIF (NOT HAVE_LIBXSS)
 
 # Write it down to the config.h
@@ -58,7 +60,7 @@ KDE3_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
 ########### linking #####################
 
-TARGET_LINK_LIBRARIES(rsibreak kio kdeui librsibreak ${HAVE_LIBXSS})
+TARGET_LINK_LIBRARIES(rsibreak kio kdeui librsibreak ${IDLE_DETECTION_LIB})
 
 ########### install files ###############
 
