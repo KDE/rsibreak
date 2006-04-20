@@ -62,7 +62,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
 #endif
 
     kdDebug() << "IDLE Detection is "
-              << (m_idleDetection?QString::null:"not")
+              << (m_idleDetection?QString::null:QString("not"))
               << "possible" << endl;
 
 
