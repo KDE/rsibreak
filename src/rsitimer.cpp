@@ -41,7 +41,10 @@
 
 
 RSITimer::RSITimer( QObject *parent, const char *name )
-    : QObject( parent, name ), m_breakRequested( false ), m_suspended( false )
+    : QObject( parent, name ), m_breakRequested( false )
+    , m_tinyBreakRequested( false )
+    , m_bigBreakRequested( false )
+    , m_suspended( false )
     , m_needRestart( false )
     , m_pause_left( 0 ), m_relax_left( 0 ), dpmsOff( -10 )
     , m_lastActivity( QDateTime::currentDateTime() )
@@ -234,6 +237,24 @@ void RSITimer::slotRequestBreak()
     m_breakRequested = true;
 }
 
+void RSITimer::slotRequestTinyBreak()
+{
+  kdDebug() << "Entering RSITimer::slotRequestTinyBreak" << endl;
+  m_breakRequested = true;
+  RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+  if ( !m_bigBreakRequested )
+    m_tinyBreakRequested = true;
+}
+
+void RSITimer::slotRequestBigBreak()
+{
+  kdDebug() << "Entering RSITimer::slotRequestBigBreak" << endl;
+  m_breakRequested = true;
+  RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
+  if ( !m_tinyBreakRequested )
+    m_bigBreakRequested = true;
+}
+
 // ----------------------------- EVENTS -----------------------//
 
 void RSITimer::timerEvent( QTimerEvent * )
@@ -273,9 +294,25 @@ void RSITimer::timerEvent( QTimerEvent * )
 
     if ( m_breakRequested )
     {
-        breakNow( breakInterval );
-        m_pause_left = breakInterval;
+        if ( m_tinyBreakRequested )
+        {
+          breakNow( m_intervals["tiny_maximized"] );
+          m_pause_left = m_intervals["tiny_maximized"];
+        }
+        else if ( m_bigBreakRequested )
+        {
+          breakNow( m_intervals["big_maximized"] );
+          m_pause_left = m_intervals["big_maximized"];
+        }
+        else
+        {
+          breakNow( breakInterval );
+          m_pause_left = breakInterval;
+        }
+
         m_breakRequested = false;
+        m_bigBreakRequested = false;
+        m_tinyBreakRequested = false;
     }
 
     if ( t > 0 && m_pause_left > 0 ) // means: widget is maximized
@@ -296,9 +333,9 @@ void RSITimer::timerEvent( QTimerEvent * )
                 resetAfterBigBreak();
 
             emit updateToolTip( m_tiny_left, m_big_left );
-
-            return;
         }
+
+        return;
     }
 
     /*

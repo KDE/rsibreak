@@ -89,6 +89,12 @@ class RSITimer : public QObject
         */
         void slotRequestBreak();
 
+        /** Forces a tiny break. */
+        void slotRequestTinyBreak();
+
+        /** Forces a big break. */
+        void slotRequestBigBreak();
+
         /**
           Reset the timer. This implies resetting the counters for a
           tiny and big break.
@@ -199,6 +205,8 @@ class RSITimer : public QObject
         void breakNow( int t );
 
         bool            m_breakRequested;
+        bool            m_tinyBreakRequested;
+        bool            m_bigBreakRequested;
         bool            m_idleDetection;
         bool            m_suspended;
         bool            m_needRestart;

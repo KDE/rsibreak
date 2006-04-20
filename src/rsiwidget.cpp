@@ -133,6 +133,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
              m_timer, SLOT( slotSuspended( bool ) ) );
     connect( mDcopIface, SIGNAL( signalSuspend( bool) ),
              m_relaxpopup, SLOT( setVisible( bool ) ) );
+    connect( mDcopIface, SIGNAL( signalDoTinyBreak() ),
+             m_timer, SLOT( slotRequestTinyBreak() ) );
+    connect( mDcopIface, SIGNAL( signalDoBigBreak() ),
+             m_timer, SLOT( slotRequestBigBreak() ) );
 
     setIcon( 0 );
     srand ( time(NULL) );

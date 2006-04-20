@@ -1,5 +1,5 @@
 /* ============================================================
- * 
+ *
  * Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
  *
  * Orginal copied from digikam: Leonid Zeitlin <lz@europe.com>
@@ -9,14 +9,14 @@
  * Public License as published by the Free Software Foundation;
  * either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * ============================================================ */
- 
+
 #ifndef DCOPIFACE_H
 #define DCOPIFACE_H
 
@@ -53,25 +53,41 @@ public:
     ~DCOPIface();
 
 signals:
-    
+
     /**
      * This signal is emitted when @ref suspend() or @ref resume() is called via DCOP
      * @param suspend true to suspend and false when resume is requested.
      */
     void signalSuspend( bool suspend );
 
+    /** Force a tiny break, initiated by the doTinyBreak DCOP method. */
+    void signalDoTinyBreak();
+
+    /** Force a big break, initiated by the doBigBreak DCOP method. */
+    void signalDoBigBreak();
+
 public:
 
 k_dcop:
     /**
-     * This method can be called via DCOP to interrupt RSIBreak
+     * This method can be called via DCOP to interrupt RSIBreak.
      */
     ASYNC suspend();
 
     /**
-     * This method can be called via DCOP to resume RSIBreak
+     * This method can be called via DCOP to resume RSIBreak.
      */
     ASYNC resume();
+
+    /**
+     * Force a tiny break. Does not work when RSIBreak is in suspended mode.
+     */
+    ASYNC doTinyBreak();
+
+    /**
+     * Force a big break. Does not work when RSIBreak is in suspended mode.
+     */
+    ASYNC doBigBreak();
 };
 
 #endif // DCOPIFACE_H
