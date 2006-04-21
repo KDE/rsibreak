@@ -1,11 +1,13 @@
+- Two new DCOP calls: doTinyBreak and doBigBreak.
+
 v0.6.0 2006-04-10
 - Extensive amount of statistics.
 - Colors to indicate how far away you are from a break in the tooltip
 - libxss for the idle detection is a no longer optional, it is required.
 - RSIBreak remembers the timer states when you quit. It can restore the timers
-  if you restart RSIBreak afterwards in a short timeframe. This is handy for 
+  if you restart RSIBreak afterwards in a short timeframe. This is handy for
   rebooting (for those zealots who believe rebooting solves problems).
-- Bug fixes: 
+- Bug fixes:
   - For Gnome there were two Quit entries in the context menu.
   - Welcome message on first launch was incorrect.
   - Compiles with KDE 3.3 and probably with gcc 2.9x.
@@ -22,7 +24,7 @@ v0.5.0 2006-02-22
 - dcop interface added for stopping/resuming RSIBreak
 - improved multihead setup: grab mouse and keyboard when slideshow
   is active, so you can not continue on another screen.
-- new tooltip code, which provides better and live information about the 
+- new tooltip code, which provides better and live information about the
   next big and tiny break
 
 v0.4.0 2005-12-16
