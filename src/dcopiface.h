@@ -1,6 +1,7 @@
 /* ============================================================
  *
  * Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl
  *
  * Orginal copied from digikam: Leonid Zeitlin <lz@europe.com>
  *
