@@ -287,7 +287,7 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 
     // TODO: make an automated filter, maybe with QImageIO.
     QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
-    dir.setNameFilter(ext + " " + ext.upper());
+    dir.setNameFilter(ext + ' ' + ext.upper());
     dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks );
     dir.setMatchAllDirs ( true );
 

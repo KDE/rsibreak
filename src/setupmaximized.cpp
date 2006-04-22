@@ -72,9 +72,9 @@ SetupMaximized::SetupMaximized(QWidget* parent )
            : QWidget(parent)
 {
    kdDebug() << "Entering SetupMaximized" << endl;
-   
+
    d = new SetupMaximizedPriv;
-   
+
    QVBoxLayout *layout = new QVBoxLayout( parent );
    layout->setSpacing( KDialog::spacingHint() );
    layout->setAlignment( AlignTop );
@@ -220,7 +220,7 @@ void SetupMaximized::slotFolderEdited(const QString& newPath)
     }
 
     if (!newPath.startsWith("/")) {
-        d->imageFolderEdit->setText(QDir::homeDirPath()+"/"+newPath);
+        d->imageFolderEdit->setText(QDir::homeDirPath()+'/'+newPath);
     }
 
 }
