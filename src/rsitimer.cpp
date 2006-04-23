@@ -530,4 +530,74 @@ void RSITimer::restoreSession()
     }
 }
 
+
+
+RSITimerNoIdle::RSITimerNoIdle( QObject *parent, const char *name )
+: RSITimer( parent, name )
+{
+}
+
+RSITimerNoIdle::~RSITimerNoIdle()
+{
+}
+
+void RSITimerNoIdle::timerEvent( QTimerEvent * )
+{
+    // TODO: Statistics
+    // TODO: Set docker icon properly
+    // TODO: m_tinyBreakRequested && m_bigBreakRequested
+
+    int breakInterval = m_tiny_left < m_big_left ?
+            m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
+    static int currentBreak = NO_BREAK;
+
+    if ( m_pause_left > 0 )
+    {
+        --m_pause_left;
+        if ( m_pause_left == 0 )
+        {
+            // break is over
+            emit relax( -1 );
+            if ( currentBreak == TINY_BREAK )
+            {
+                resetAfterTinyBreak();
+            }
+            else if ( currentBreak == BIG_BREAK )
+            {
+                resetAfterBigBreak();
+            }
+
+            currentBreak = NO_BREAK;
+        }
+        else
+        {
+            emit relax( m_pause_left );
+        }
+    }
+
+    if ( m_pause_left == 0 && m_tiny_left == 0 )
+    {
+        emit relax( breakInterval );
+        m_pause_left = breakInterval;
+        currentBreak = TINY_BREAK;
+    }
+    else
+    {
+        --m_tiny_left;
+    }
+
+    if ( m_pause_left == 0 && m_big_left == 0 )
+    {
+        emit relax( breakInterval );
+        m_pause_left = breakInterval;
+        currentBreak = BIG_BREAK;
+    }
+    else
+    {
+        --m_big_left;
+    }
+
+    emit updateToolTip( m_tiny_left, m_big_left );
+}
+
 #include "rsitimer.moc"

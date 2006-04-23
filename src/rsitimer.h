@@ -52,7 +52,7 @@ class RSITimer : public QObject
         */
         bool isSuspended() const { return m_suspended; }
 
-        enum { TINY_BREAK = 0, BIG_BREAK = 1 };
+        enum { TINY_BREAK = 0, BIG_BREAK = 1, NO_BREAK = 2 };
 
     public slots:
         /**
@@ -181,7 +181,7 @@ class RSITimer : public QObject
          */
         void skipBreakEnded();
 
-    private:
+    protected: // TODO: What should be private and what not?
         void readConfig();
         void writeConfig();
 
@@ -233,6 +233,22 @@ class RSITimer : public QObject
         int             m_lastrunBig;
 
         QMap<QString,int> &m_intervals;
+};
+
+/**
+ * This timer is almost the same as the RSITimer, except it does not take
+ * idle detection into account.
+ *
+ * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
+*/
+class RSITimerNoIdle : public RSITimer
+{
+  Q_OBJECT
+  public:
+    RSITimerNoIdle( QObject *parent = 0, const char *name = 0 );
+    ~RSITimerNoIdle();
+  protected:
+    virtual void timerEvent( QTimerEvent * );
 };
 
 #endif
