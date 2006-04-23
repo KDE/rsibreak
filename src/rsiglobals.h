@@ -19,6 +19,7 @@
 #ifndef RSIGLOBALS_H
 #define RSIGLOBALS_H
 
+#include <qbitarray.h>
 #include <qdatetime.h>
 #include <qimage.h>
 
@@ -31,6 +32,7 @@ enum RSIStat {
                ACTIVITY,
                IDLENESS,
                ACTIVITY_PERC,
+               ACTIVITY_PERC_MINUTE, // TODO: More stats
                MAX_IDLENESS,
                CURRENT_IDLE_TIME,
                IDLENESS_CAUSED_SKIP_TINY,
@@ -106,6 +108,21 @@ class RSIGlobals : public QObject
      */
     QColor getBigBreakColor(int secsToBreak ) const;
 
+    /**
+     * Returns the array which keeps track per second for 24 hours when the
+     * user was active or idle. Activity = 1, idle = 0.
+     * The RSIStatBitArrayItem can read and write a certain interval of this
+     * array, for example to measure the activity in 60 seconds or 1 hour.
+     *
+     * @see RSIStatBitArrayItem
+     */
+    QBitArray *usageArray() { return &m_usageArray; }
+
+    /**
+     * Resets the usage array, with all values to 0.
+     */
+    void resetUsage();
+
   public slots:
     /**
      * Reads the configuration.
@@ -116,6 +133,7 @@ class RSIGlobals : public QObject
     static RSIGlobals *m_instance;
     QMap<QString,int> m_intervals;
     static RSIStats *m_stats;
+    QBitArray m_usageArray;
 };
 
 #endif // RSIGLOBALS_H

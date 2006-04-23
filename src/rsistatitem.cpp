@@ -17,7 +17,11 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include <kdebug.h>
+
 #include "rsistatitem.h"
+
+const int totalarraysize = 60 * 60 * 24;
 
 RSIStatItem::RSIStatItem( const QString &description, QVariant init )
 {
@@ -38,4 +42,65 @@ void RSIStatItem::addDerivedItem( RSIStat stat )
 void RSIStatItem::reset()
 {
     m_value = m_init;
+}
+
+
+RSIStatBitArrayItem::RSIStatBitArrayItem( const QString &description, QVariant init, int size )
+: RSIStatItem( description, init ), m_size( size ), m_counter( 0 )
+{
+  kdDebug() << "RSIStatBitArrayItem::RSIStatBitArrayItem entered" << endl;
+
+  Q_ASSERT ( size <= totalarraysize );
+
+  m_end = 0;
+  m_begin = totalarraysize - size;
+}
+
+RSIStatBitArrayItem::~RSIStatBitArrayItem()
+{
+}
+
+void RSIStatBitArrayItem::reset()
+{
+  RSIStatItem::reset();
+  RSIGlobals::instance()->resetUsage();
+
+  m_end = 0;
+  m_begin = totalarraysize - m_size;
+}
+
+void RSIStatBitArrayItem::setActivity()
+{
+  //kdDebug() << "RSIStatBitArrayItem::setActivity() entered" << endl;
+
+  QBitArray *array = RSIGlobals::instance()->usageArray();
+
+  if ( !array->testBit( m_begin ) )
+    ++m_counter;
+
+  array->setBit( m_end );
+
+  Q_ASSERT( m_counter <= m_size );
+
+  m_value = QVariant( 100.0 * (double)(m_counter) / (double)(m_size) );
+  m_begin = ( m_begin + 1 ) % totalarraysize;
+  m_end = ( m_end + 1 ) % totalarraysize;
+}
+
+void RSIStatBitArrayItem::setIdle()
+{
+  //kdDebug() << "RSIStatBitArrayItem::setIdle() entered" << endl;
+
+  QBitArray *array = RSIGlobals::instance()->usageArray();
+
+  if ( array->testBit( m_begin ) )
+    m_counter > 0 ? --m_counter : m_counter;
+
+  array->clearBit( m_end );
+
+  Q_ASSERT( m_counter <= m_size );
+
+  m_value = QVariant( 100.0 * (double)(m_counter) / (double)(m_size) );
+  m_begin = ( m_begin + 1 ) % totalarraysize;
+  m_end = ( m_end + 1 ) % totalarraysize;
 }

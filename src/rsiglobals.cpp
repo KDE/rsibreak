@@ -33,6 +33,7 @@ RSIStats *RSIGlobals::m_stats = 0;
 RSIGlobals::RSIGlobals( QObject *parent, const char *name )
 : QObject( parent, name )
 {
+    resetUsage();
     slotReadConfig();
 }
 
@@ -142,6 +143,11 @@ QColor RSIGlobals::getBigBreakColor( int secsToBreak ) const
     v = v < 0 ? 0 : v;
 
     return QColor ( (int)(255 - 2.55 * v), (int)(1.60 * v), 0 );
+}
+
+void RSIGlobals::resetUsage()
+{
+    m_usageArray.fill( false, 60 * 60 * 24 );
 }
 
 #include "rsiglobals.moc"

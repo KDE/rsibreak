@@ -58,6 +58,7 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     subgrid = new QGrid( 2, Qt::Horizontal, gb );
     subgrid->setSpacing( 5 );
     addStat( ACTIVITY_PERC, subgrid );
+    addStat( ACTIVITY_PERC_MINUTE, subgrid );
     addStat( PAUSE_SCORE, subgrid );
     mGrid->addWidget( gb, 1, 0 );
 

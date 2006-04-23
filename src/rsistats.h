@@ -117,7 +117,7 @@ protected:
 private:
     static RSIStats *m_instance;
 
-    QMap<RSIStat,RSIStatItem> m_statistics;
+    QMap<RSIStat,RSIStatItem *> m_statistics;
     /** Contains formatted labels. */
     QMap<RSIStat,QLabel *> m_labels;
 };
