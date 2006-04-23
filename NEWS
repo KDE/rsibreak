@@ -1,4 +1,5 @@
 - Two new DCOP calls: doTinyBreak and doBigBreak.
+- New statistic: percentage of activity during the last minute
 
 v0.6.0 2006-04-10
 - Extensive amount of statistics.
