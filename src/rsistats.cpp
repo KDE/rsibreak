@@ -76,7 +76,6 @@ RSIStats::RSIStats()
 
     m_statistics.insert( PAUSE_SCORE, new RSIStatItem(i18n("Pause score"), 100 ) );
 
-    // TODO: Whatsthis
     m_statistics.insert( ACTIVITY_PERC_MINUTE, new RSIStatBitArrayItem( i18n("Percentage of activity last minute:"), QVariant( 0 ), 60 ) );
 
     // initialise labels
@@ -388,6 +387,9 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
       case PAUSE_SCORE: return i18n("This is an indication of how well you behaved "
                           "with the breaks. It decreases everytime you skip a break.");
       case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
+      case ACTIVITY_PERC_MINUTE: return i18n("This is a percentage of activity during the last minute."
+                          "The color indicates the level of your activity. When the color is"
+                          "close to full red it's recommended to lower your work pace.");
       default: ;
     }
 
