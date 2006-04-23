@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copright 2005-2006 by Tom Albers <tomalbers@kde.nl>
  *
@@ -53,18 +53,18 @@ SetupGeneral::SetupGeneral(QWidget* parent )
            : QWidget(parent)
 {
     kdDebug() << "Entering SetupGeneral" << endl;
-    
+
     d = new SetupGeneralPriv;
-    
+
     QVBoxLayout *layout = new QVBoxLayout( parent );
     layout->setSpacing( KDialog::spacingHint() );
     layout->setAlignment( AlignTop );
-    
+
     d->autoStart = new QCheckBox(i18n("&Automatically start RSIBreak at startup"), parent);
     QWhatsThis::add( d->autoStart, i18n("With this checkbox you can indicate "
             "that you want RSIBreak to start when KDE starts.") );
     layout->addWidget(d->autoStart);
-    
+
     d->useIdleDetection = new QCheckBox(
             i18n("&Reset timers after period of idleness"), parent);
     QWhatsThis::add( d->useIdleDetection, i18n("With this checkbox you indicate "
@@ -73,13 +73,13 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             "will take into account the periods you are working or idle.") );
     layout->addWidget(d->useIdleDetection);
     connect(d->useIdleDetection , SIGNAL(toggled(bool)), SLOT(slotShowTimer()));
-    
+
     d->showTimerReset = new QCheckBox(i18n("&Show when timers are reset"), parent);
     QWhatsThis::add( d->showTimerReset, i18n("With this checkbox you indicate "
             "that you want to see when the timers are reset. This happens when you "
             "have been idle for a while.") );
     layout->addWidget(d->showTimerReset);
-    
+
     readSettings();
     slotShowTimer();
 }
@@ -102,7 +102,7 @@ void SetupGeneral::applySettings()
 
     config->setGroup("General");
     config->writeEntry("AutoStart", d->autoStart->isChecked());
-    
+
     config->setGroup("General Settings");
     config->writeEntry("UseIdleDetection", d->useIdleDetection->isChecked());
     config->writeEntry("ShowTimerReset", d->showTimerReset->isChecked());
@@ -113,10 +113,10 @@ void SetupGeneral::readSettings()
 {
     kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
-    
+
     config->setGroup("General");
     d->autoStart->setChecked(config->readBoolEntry("AutoStart", false));
-    
+
     config->setGroup("General Settings");
     d->useIdleDetection->setChecked(config->readBoolEntry("UseIdleDetection", true));
     d->showTimerReset->setChecked(config->readBoolEntry("ShowTimerReset", false));

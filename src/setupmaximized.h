@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copright 2005 by Tom Albers <tomalbers@kde.nl>
  *
@@ -28,7 +28,7 @@ class SetupMaximizedPriv;
 
 /**
  * @class SetupMaximized
- * These contain the general settings of RSIBreak when maximized 
+ * These contain the general settings of RSIBreak when maximized
  * that means settings for the Counter, Image Path and
  * minimize button
  * This file is originally copied from showfoto

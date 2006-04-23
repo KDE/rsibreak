@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copyright (C) 2006 by Tom Albers <tomalbers@kde.nl>
  *
@@ -43,7 +43,7 @@ public:
     /**
      * Constructor
      * @param parent Parent Widget
-         */
+     */
     SetupTiming(QWidget* parent = 0);
 
     /**

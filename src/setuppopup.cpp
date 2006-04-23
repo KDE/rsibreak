@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copright 2005 by Tom Albers <tomalbers@kde.nl>
  *
@@ -54,7 +54,7 @@ SetupPopup::SetupPopup(QWidget* parent )
 {
     kdDebug() << "Entering SetupPopup" << endl;
     d = new SetupPopupPriv;
-    
+
     QVBoxLayout *layout = new QVBoxLayout( parent );
     layout->setSpacing( KDialog::spacingHint() );
     layout->setAlignment( AlignTop );

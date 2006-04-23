@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copright 2005 by Tom Albers <tomalbers@kde.nl>
  *
@@ -9,14 +9,14 @@
  * Public License as published by the Free Software Foundation;
  * either version 2, or (at your option)
  * any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * ============================================================ */
- 
+
 #ifndef SETUP_H
 #define SETUP_H
 
@@ -40,7 +40,7 @@ class SetupMaximized;
  * @author Gilles Caulier <caulier dot gilles at free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class Setup : public KDialogBase 
+class Setup : public KDialogBase
 {
     Q_OBJECT
 
@@ -61,7 +61,7 @@ public:
 private:
 
     SetupPriv        *d;
-    
+
 private slots:
 
     void slotOkClicked();

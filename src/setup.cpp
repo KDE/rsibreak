@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *    Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copright 2005 by Tom Albers <tomalbers@kde.nl>
  *
@@ -52,7 +52,7 @@ Setup::Setup(QWidget* parent, const char* name)
 {
     kdDebug() << "Entering Setup" << endl;
     d = new SetupPriv;
-    
+
     QFrame *page_general = addPage(i18n("General"), i18n("General Settings"),
                         BarIcon("configure", KIcon::SizeMedium));
     d->generalPage = new SetupGeneral(page_general);
