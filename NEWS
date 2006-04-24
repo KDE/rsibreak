@@ -1,3 +1,5 @@
+v0.6.1 not released yet
+- New icons from Lee Olson.
 - Two new DCOP calls: doTinyBreak and doBigBreak.
 - New statistic: percentage of activity during the last minute
 

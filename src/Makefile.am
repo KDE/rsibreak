@@ -14,8 +14,6 @@ messages: rc.cpp
 	$(EXTRACTRC) `find . -name \*.ui -o -name \*.rc` > rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/rsibreak.pot
 
-KDE_ICON = AUTO
-
 noinst_LTLIBRARIES = librsibreak.la
 librsibreak_la_SOURCES = rsitimer_dpms.cpp
 

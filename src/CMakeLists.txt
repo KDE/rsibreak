@@ -67,5 +67,4 @@ TARGET_LINK_LIBRARIES(rsibreak kio kdeui librsibreak ${IDLE_DETECTION_LIB})
 INSTALL_TARGETS(/bin rsibreak )
 INSTALL_FILES( /share/applications/kde FILES  rsibreak.desktop )
 INSTALL_FILES( /share/autostart FILES  rsibreak.desktop )
-KDE3_INSTALL_ICONS( hicolor )
 
