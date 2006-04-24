@@ -30,7 +30,7 @@ class SetupTimingPriv;
  * These contain the timings settings of RSIBreak, currently
  * that means settings for tiny and big breaks
  * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 

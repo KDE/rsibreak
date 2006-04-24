@@ -30,7 +30,7 @@ class SetupPopupPriv;
  * @class SetupPopup
  * These contain the settings of RSIBreak for the popup.
  * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 class SetupPopup : public QWidget

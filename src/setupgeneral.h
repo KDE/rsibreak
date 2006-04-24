@@ -1,6 +1,6 @@
 /* ============================================================
  * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier dot gilles at free.fr>
+ *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
  *
  * Copright 2005-2006 by Tom Albers <tomalbers@kde.nl>
  *
@@ -30,7 +30,7 @@ class SetupGeneralPriv;
  * @class SetupGeneral
  * These contain the general settings of RSIBreak
  * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 
@@ -58,7 +58,7 @@ public:
 
 private slots:
     void slotShowTimer();
-    
+
 private:
     void readSettings();
 

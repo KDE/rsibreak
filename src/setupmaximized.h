@@ -32,7 +32,7 @@ class SetupMaximizedPriv;
  * that means settings for the Counter, Image Path and
  * minimize button
  * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 

@@ -37,7 +37,7 @@ class SetupMaximized;
  * is located in seperate files, See SetupGeneral and SetupTimings
  * for example
  * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier dot gilles at free.fr>
+ * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 class Setup : public KDialogBase
