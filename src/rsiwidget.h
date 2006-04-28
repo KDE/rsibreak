@@ -109,8 +109,8 @@ class RSIWidget : public QWidget
         RSIRelaxPopup*  m_relaxpopup;
         RSIToolTip*     m_tooltip;
 
-        DCOPIface*      mDcopIface;
-
+        DCOPIface*      m_dcopIface;
+        bool            m_useIdleDetection;
 };
 
 #endif
