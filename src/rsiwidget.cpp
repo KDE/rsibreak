@@ -98,39 +98,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_relaxpopup = new RSIRelaxPopup(m_tray);
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
-    setIcon( 0 );
-    srand ( time(NULL) );
-
-    QBoxLayout *topLayout = new QVBoxLayout( this, 5);
-
-    m_countDown = new QLabel(this);
-    m_countDown->setAlignment( AlignCenter );
-    m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
-    topLayout->addWidget(m_countDown);
-
-    topLayout->addStretch(5);
-
-    QBoxLayout *buttonRow = new QHBoxLayout( topLayout );
-
-    m_miniButton = new QPushButton( i18n("Skip"), this );
-    buttonRow->addWidget( m_miniButton );
-
-    m_lockButton = new QPushButton( i18n("Lock desktop"), this );
-    buttonRow->addWidget( m_lockButton );
-
-    m_accel = new KAccel(this);
-
-    buttonRow->addStretch(10);
-
-    m_timer_slide = new QTimer(this);
-    connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
-
-    m_grab = new QTimer(this);
-    connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
-
-    readConfig();
-
-    m_timer = m_useIdleDetection ? new RSITimerNoIdle(this,"Timer") : new RSITimer(this,"Timer");
+    m_timer = new RSITimer(this,"Timer");
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
     connect( m_timer, SIGNAL( updateWidget( int ) ),
              SLOT( setCounters( int ) ) );
@@ -158,12 +126,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( hide() ) );
 
-    // These two connects only get used when there the user locks and
-    // unlocks before the break is over. The lock releases the mouse
-    // and keyboard, and that way the event methods are not called.
-    connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
-    connect(m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
-
     m_dcopIface = new DCOPIface(this, "actions");
     connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
              m_tooltip, SLOT( setSuspended( bool ) ) );
@@ -176,9 +138,46 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_dcopIface, SIGNAL( signalDoBigBreak() ),
              m_timer, SLOT( slotRequestBigBreak() ) );
 
+    setIcon( 0 );
+    srand ( time(NULL) );
+
+    QBoxLayout *topLayout = new QVBoxLayout( this, 5);
+
+    m_countDown = new QLabel(this);
+    m_countDown->setAlignment( AlignCenter );
+    m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
+    topLayout->addWidget(m_countDown);
+
+    topLayout->addStretch(5);
+
+    QBoxLayout *buttonRow = new QHBoxLayout( topLayout );
+
+    m_miniButton = new QPushButton( i18n("Skip"), this );
+    buttonRow->addWidget( m_miniButton );
+
+    m_lockButton = new QPushButton( i18n("Lock desktop"), this );
+    buttonRow->addWidget( m_lockButton );
+
+    // These two connects only get used when there the user locks and
+    // unlocks before the break is over. The lock releases the mouse
+    // and keyboard, and that way the event methods are not called.
+    connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
+    connect(m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
+
+    m_accel = new KAccel(this);
     m_accel->insert("minimize", i18n("Skip"),
                     i18n("Abort a break"),Qt::Key_Escape,
                     m_timer, SLOT( skipBreak() ));
+
+    buttonRow->addStretch(10);
+
+    m_timer_slide = new QTimer(this);
+    connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
+
+    m_grab = new QTimer(this);
+    connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
+
+    readConfig();
 
     // if there are no images found, the break will appear in black.
     // if the text color is black (default) then change that.
@@ -525,7 +524,6 @@ void RSIWidget::readConfig()
                    !config->readBoolEntry("DisableAccel", false));
     QString shortcut = config->readEntry("MinimizeKey", "Escape");
     m_accel->setShortcut("minimize",KShortcut(shortcut));
-    m_useIdleDetection = config->readBoolEntry("UseIdleDetect", true );
 
     m_countDown->setFont(
             config->readFontEntry("CounterFont", t ) );
