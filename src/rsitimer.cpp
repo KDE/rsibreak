@@ -298,11 +298,13 @@ void RSITimer::timerEvent( QTimerEvent * )
         {
           breakNow( m_intervals["tiny_maximized"] );
           m_pause_left = m_intervals["tiny_maximized"];
+          nextBreak = TINY_BREAK;
         }
         else if ( m_bigBreakRequested )
         {
           breakNow( m_intervals["big_maximized"] );
           m_pause_left = m_intervals["big_maximized"];
+          nextBreak = BIG_BREAK;
         }
         else
         {
