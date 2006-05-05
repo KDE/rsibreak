@@ -523,12 +523,14 @@ void RSITimer::restoreSession()
     {
       int between = m_lastrunDt.secsTo( QDateTime::currentDateTime() );
 
-      if ( between < m_intervals["big_minimized"] )
+      if ( between < m_intervals["big_minimized"] && 
+           (m_lastrunBig - between) > 20 )
       {
           m_big_left = m_lastrunBig - between;
       }
 
-      if ( between < m_intervals["tiny_minimized"] )
+      if ( between < m_intervals["tiny_minimized"] && 
+           (m_lastrunTiny - between) > 20 )
       {
           m_tiny_left = m_lastrunTiny - between;
       }
