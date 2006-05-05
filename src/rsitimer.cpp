@@ -349,8 +349,7 @@ void RSITimer::timerEvent( QTimerEvent * )
 
     if ( t == 0 ) // activity!
     {
-        if ( m_patience > 0  && 
-             (m_tiny_left == 0 || m_big_left == 0) ) // we're trying to break
+        if ( m_patience > 0 ) // we're trying to break
         {
             --m_patience;
             if ( !m_patience ) // that's it!
@@ -476,6 +475,9 @@ void RSITimer::timerEvent( QTimerEvent * )
         }
 
         m_patience = 15;
+        if (m_patience > breakInterval)
+            m_patience=breakInterval;
+
         emit relax( breakInterval );
         m_relax_left = breakInterval;
     }
