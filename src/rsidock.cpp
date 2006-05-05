@@ -72,6 +72,9 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
                     KKey::QtWIN+SHIFT+Key_B, KKey::QtWIN+CTRL+Key_B,
                     this, SLOT( slotBreakRequest() ));
     m_accel->updateConnections();
+
+    m_tooltiptimer = new QTimer( this );
+    connect( m_tooltiptimer, SIGNAL( timeout() ), SLOT( slotShowToolTip() ) );
 }
 
 RSIDock::~RSIDock()
@@ -180,19 +183,13 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 
     if (e->button() == RightButton)
         contextMenu()->exec( e->globalPos() );
-    
+
     if (e->button() == LeftButton)
             slotShowStatistics();
 }
 
 void RSIDock::enterEvent( QEvent * )
 {
-    if( !m_tooltiptimer )
-    {
-        m_tooltiptimer = new QTimer( this );
-        connect( m_tooltiptimer, SIGNAL( timeout() ), SLOT( slotShowToolTip() ) );
-    }
-
     m_tooltiptimer->start( 500, true );
 }
 
