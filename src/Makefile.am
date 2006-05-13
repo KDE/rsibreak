@@ -31,7 +31,7 @@ rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
 	rsistatwidget.cpp rsistats.cpp rsiglobals.cpp rsistatitem.cpp
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS) \
-				 $(top_builddir)/rsibreak/src/librsibreak.la
+				 librsibreak.la
 
 # this is where the desktop file will go
 xdg_apps_DATA = rsibreak.desktop
