@@ -26,6 +26,7 @@
 #include <qstringlist.h>
 #include <qfileinfo.h>
 #include <qcursor.h>
+#include <qpainter.h>
 
 #include "config.h"
 
@@ -56,19 +57,67 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
     m_tray = new RSIDock(this,"Tray Item");
-    m_tray->show();
     m_tray->setPixmap( KSystemTray::loadIcon("rsibreak0") );
+    m_tray->show();
 
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
+        // Process the events else the icon will not be there and the screenie will fail!
+        kapp->processEvents();
+
+        // ********************************************************************************
+        // This block is copied from Konversation - KonversationMainWindow::queryClose()
+        // The part about the border is copied from  KSystemTray::displayCloseMessage()
+        //
+        // Compute size and position of the pixmap to be grabbed:
+        QPoint g = m_tray->mapToGlobal( m_tray-> pos() );
+        kdDebug() << "TRAY: "<< m_tray->pos() << g << m_tray->isVisible() << endl;
+        int desktopWidth  = kapp->desktop()->width();
+        int desktopHeight = kapp->desktop()->height();
+        int tw = m_tray->width();
+        int th = m_tray->height();
+        int w = desktopWidth / 4;
+        int h = desktopHeight / 9;
+        int x = g.x() + tw/2 - w/2;               // Center the rectange in the systray icon
+        int y = g.y() + th/2 - h/2;
+        if ( x < 0 )                 x = 0;       // Move the rectangle to stay in the desktop limits
+        if ( y < 0 )                 y = 0;
+        if ( x + w > desktopWidth )  x = desktopWidth - w;
+        if ( y + h > desktopHeight ) y = desktopHeight - h;
+
+        // Grab the desktop and draw a circle arround the icon:
+        QPixmap shot = QPixmap::grabWindow( qt_xrootwin(),  x,  y,  w,  h );
+        QPainter painter( &shot );
+        const int MARGINS = 6;
+        const int WIDTH   = 3;
+        int ax = g.x() - x - MARGINS -1;
+        int ay = g.y() - y - MARGINS -1;
+        painter.setPen(  QPen( Qt::red,  WIDTH ) );
+        painter.drawArc( ax,  ay,  tw + 2*MARGINS,  th + 2*MARGINS,  0,  16*360 );
+        painter.end();
+
+        // Then, we add a border arround the image to make it more visible:
+        QPixmap finalShot(w + 2, h + 2);
+        finalShot.fill(KApplication::palette().active().foreground());
+        painter.begin(&finalShot);
+        painter.drawPixmap(1, 1, shot);
+        painter.end();
+
+        // Associate source to image and show the dialog:
+        QMimeSourceFactory::defaultFactory()->setPixmap( "systray_shot", finalShot );
+
+        // End copied block 
+        // ********************************************************************************
+
         KMessageBox::information(parent,
-                             i18n("Welcome to RSIBreak\n\n"
-                                  "In your tray you can now see a clock. "
-                                  "When you right-click on that you will see "
+                             i18n("<p>Welcome to RSIBreak<p><p>"
+                                  "In your tray you can now see RSIBreak: ")
+                             + "<p><center><img source=\"systray_shot\"></center></p><p>"
+                             + i18n("When you right-click on that you will see "
                                   "a menu, from which you can go to the "
-                                  "configuration for example.\nWhen you want to "
+                                  "configuration for example.<p>When you want to "
                                   "know when the next break is, hover "
-                                  "over the icon.\n\nUse RSIBreak wisely."),
+                                  "over the icon.<p>Use RSIBreak wisely."),
                              i18n("Welcome"),
                              "dont_show_welcome_again_for_001");
 
