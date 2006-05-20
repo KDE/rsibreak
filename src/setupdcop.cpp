@@ -19,6 +19,7 @@
 
 // QT includes.
 
+#include <qcstring.h> // FIXME
 #include <qlayout.h>
 #include <qhbox.h>
 #include <qvgroupbox.h>
@@ -84,7 +85,7 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     itemTwo->setText(2,"karm KarmDCOPIface starttimerfor dfdfdf");
     d->table->insertItem(itemTwo);
 
-    QCheckListItem* item3 = new QCheckListItem(d->table,"KOpete",
+    QCheckListItem* item3 = new QCheckListItem(d->table,"Kopete",
             QCheckListItem::CheckBox);
     item3->setText(1,"kopete in stop");
     item3->setText(2,"kopete in start");
@@ -225,13 +226,22 @@ void SetupDCOP::slotDescChanged(const QString &text)
 
 void SetupDCOP::slotTestStart()
 {
-    kdDebug() << "execute" << d->current->text(1) << endl;
-    QCString app=d->current->text(1).section(" ",0,0).utf8();
-    QCString obj=d->current->text(1).section(" ",1,1).utf8();
-    QCString fun=d->current->text(1).section(" ",2,2).utf8();
-    QCString data=d->current->text(1).section(" ",3,3).utf8();
+    /* FIXME
+    Data is not correctly passed to the DCOP call.
+    Syntax without data: "kopete" "KopeteIface" "setAway()"
+    Syntax with data: "kopete" "KopeteIface" "setAway(QString)" "someStringContainingData"
+    */
 
-    kapp->dcopClient()->attach();
+    kdDebug() << "execute" << d->current->text(1) << endl;
+    QCString app=d->current->text(1).section(' ',0,0).utf8();
+    QCString obj=d->current->text(1).section(' ',1,1).utf8();
+    QCString fun=d->current->text(1).section(' ',2,2).utf8();
+    QCString data=d->current->text(1).section(' ',3,3).utf8();
+
+    if ( data.isEmpty() && fun.right(2) != "()" )
+      fun += "()";
+
+    // kapp->dcopClient()->attach();
     kdDebug() << "app " << app << " obj " << obj
               << " fun " << fun << " data " << data << endl;
     if (!kapp->dcopClient()->send(app,obj,fun, data))
