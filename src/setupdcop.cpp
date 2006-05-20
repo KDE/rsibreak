@@ -40,6 +40,7 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
+#include <dcopclient.h>
 
 // Local includes.
 
@@ -48,11 +49,14 @@
 class SetupDCOPPriv
 {
 public:
-    QListView   *table;
-    QLineEdit   *start;
-    QLineEdit   *end;
-    QLineEdit   *desc;
-    QCheckBox   *active;
+    QListView       *table;
+    QLineEdit       *start;
+    QLineEdit       *end;
+    QLineEdit       *desc;
+    QCheckBox       *active;
+    QCheckListItem  *current;
+    QPushButton     *startButton;
+    QPushButton     *endButton;
 };
 
 SetupDCOP::SetupDCOP(QWidget* parent )
@@ -76,14 +80,14 @@ SetupDCOP::SetupDCOP(QWidget* parent )
 
     QCheckListItem* itemTwo = new QCheckListItem(d->table,"KArm",
             QCheckListItem::CheckBox);
-    itemTwo->setText(1,"dcop karm stop");
-    itemTwo->setText(2,"dcop karm start");
+    itemTwo->setText(1,"karm KarmDCOPIface stoptimerfor dfdfdf");
+    itemTwo->setText(2,"karm KarmDCOPIface starttimerfor dfdfdf");
     d->table->insertItem(itemTwo);
 
     QCheckListItem* item3 = new QCheckListItem(d->table,"KOpete",
             QCheckListItem::CheckBox);
-    item3->setText(1,"dcop kopete stop");
-    item3->setText(2,"dcop kopete start");
+    item3->setText(1,"kopete in stop");
+    item3->setText(2,"kopete in start");
     d->table->insertItem(item3);
 
     layout->addWidget(d->table);
@@ -94,43 +98,64 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     //--- settings ---//
     // TODO: put it into a box
 
-    QGridLayout *gbox = new QGridLayout( 4, 2 );
+    QGridLayout *gbox = new QGridLayout( 4, 3 );
 
     QLabel *l2 = new QLabel(i18n("Name:"), parent);
     QWhatsThis::add( l2, i18n("What is the name of the application") );
     d->desc = new QLineEdit(parent);
     l2->setBuddy(d->desc);
+    connect( d->desc, SIGNAL(textChanged(const QString&) ),
+             SLOT(slotDescChanged(const QString&) ) );
 
-    QLabel *l3 = new QLabel(i18n("At Break Start:"), parent);
+    QLabel *l3 = new QLabel(i18n("DCOP At Break Start:"), parent);
     QWhatsThis::add( l3, i18n("Here you can set the command to issue when "
             "the break begins") );
     d->start = new QLineEdit(parent);
     l3->setBuddy(d->start);
+    connect( d->start, SIGNAL(textChanged(const QString&) ),
+             SLOT(slotDCOPStartChanged(const QString&) ) );
 
-    QLabel *l4 = new QLabel(i18n("At Break End:"), parent);
+    QLabel *l4 = new QLabel(i18n("DCOP At Break End:"), parent);
     QWhatsThis::add( l3, i18n("Here you can set the command to issue when "
             "the break ends") );
     d->end = new QLineEdit(parent);
     l4->setBuddy(d->end);
+    connect( d->end, SIGNAL(textChanged(const QString&) ),
+             SLOT(slotDCOPStopChanged(const QString&) ) );
 
     QLabel *l5 = new QLabel(i18n("Activated:"), parent);
     QWhatsThis::add( l5, i18n("Here you can activate or deactivate the "
             "command" ) );
     d->active = new QCheckBox(parent);
     l4->setBuddy(d->active);
+    connect( d->active, SIGNAL(clicked()), SLOT( slotCheckActive() ) );
+
+    d->startButton = new QPushButton( i18n("Test"), parent);
+    connect( d->startButton, SIGNAL(clicked()), SLOT( slotTestStart()));
+
+    d->endButton = new QPushButton( i18n("Test"), parent);
+    connect( d->endButton, SIGNAL(clicked()), SLOT( slotTestStop()));
 
     gbox->addWidget(l2,0,0);
     gbox->addWidget(d->desc,0,1);
     gbox->addWidget(l3,2,0);
     gbox->addWidget(d->start,2,1);
+    gbox->addWidget(d->startButton,2,2);
     gbox->addWidget(l4,3,0);
     gbox->addWidget(d->end,3,1);
+    gbox->addWidget(d->endButton,3,2);
     gbox->addWidget(l5,1,0);
     gbox->addWidget(d->active,1,1);
 
     layout->addLayout(gbox);
-    readSettings();
+    d->desc->setEnabled(false);
+    d->active->setEnabled(false);
+    d->start->setEnabled(false);
+    d->end->setEnabled(false);
+    d->startButton->setEnabled(false);
+    d->endButton->setEnabled(false);
 
+    readSettings();
 }
 
 SetupDCOP::~SetupDCOP()
@@ -156,16 +181,66 @@ void SetupDCOP::readSettings()
 
 void SetupDCOP::slotTableClicked( QListViewItem * item )
 {
-    kdDebug() << "KLIK" << endl;
+    kdDebug() << "Entering slotTableClicked" << endl;
+
     //TODO: Someone please check this....
-    QCheckListItem *i = dynamic_cast<QCheckListItem*>(item);
-    if (!i)
+    d->current = dynamic_cast<QCheckListItem*>(item);
+    if (!d->current)
         return;
 
-    d->desc->setText( i->text(0));
-    d->active->setChecked( i->isOn() );
-    d->start->setText( i->text(1));
-    d->end->setText( i->text(2));
+    d->desc->setText( d->current->text(0));
+    d->active->setChecked( d->current->isOn() );
+    d->start->setText( d->current->text(1));
+    d->end->setText( d->current->text(2));
+
+    d->desc->setEnabled(true);
+    d->active->setEnabled(true);
+    d->start->setEnabled(true);
+    d->end->setEnabled(true);
+    d->startButton->setEnabled(true);
+    d->endButton->setEnabled(true);
+
+}
+
+void SetupDCOP::slotCheckActive()
+{
+    d->active->isChecked() ? d->current->setState( QCheckListItem::On ):
+                             d->current->setState( QCheckListItem::Off );
+}
+
+void SetupDCOP::slotDCOPStartChanged(const QString &text)
+{
+    d->current->setText(1,text);
+}
+
+void SetupDCOP::slotDCOPStopChanged(const QString &text)
+{
+    d->current->setText(2,text);
+}
+
+void SetupDCOP::slotDescChanged(const QString &text)
+{
+    d->current->setText(0,text);
+}
+
+void SetupDCOP::slotTestStart()
+{
+    kdDebug() << "execute" << d->current->text(1) << endl;
+    QCString app=d->current->text(1).section(" ",0,0).utf8();
+    QCString obj=d->current->text(1).section(" ",1,1).utf8();
+    QCString fun=d->current->text(1).section(" ",2,2).utf8();
+    QCString data=d->current->text(1).section(" ",3,3).utf8();
+
+    kapp->dcopClient()->attach();
+    kdDebug() << "app " << app << " obj " << obj
+              << " fun " << fun << " data " << data << endl;
+    if (!kapp->dcopClient()->send(app,obj,fun, data))
+        kdDebug() << "Command exectution failed" << endl;
+}
+
+void SetupDCOP::slotTestStop()
+{
+    kdDebug() << "execute" << d->current->text(2) << endl;
 }
 
 #include "setupdcop.moc"

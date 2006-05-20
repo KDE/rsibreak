@@ -54,6 +54,12 @@ public:
 
 private slots:
     void slotTableClicked( QListViewItem * item );
+    void slotCheckActive();
+    void slotDCOPStartChanged(const QString &text);
+    void slotDCOPStopChanged(const QString &text);
+    void slotDescChanged(const QString &text);
+    void slotTestStart();
+    void slotTestStop();
 
 private:
     void readSettings();
