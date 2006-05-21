@@ -21,6 +21,7 @@
 #include <kdebug.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
+#include <dcopclient.h>
 
 #include <math.h>
 
@@ -148,6 +149,28 @@ QColor RSIGlobals::getBigBreakColor( int secsToBreak ) const
 void RSIGlobals::resetUsage()
 {
     m_usageArray.fill( false, 60 * 60 * 24 );
+}
+
+void RSIGlobals::executeDCOP(const QString &command)
+{
+    /*
+            Syntax without data: "kopete" "KopeteIface" "setAway()"
+            Syntax with data: "kopete" "KopeteIface" "setAway(QString)" "someStringContainingData"
+    */
+
+    kdDebug() << "execute " << command << endl;
+    QCString app=command.section(' ',0,0).utf8();
+    QCString obj=command.section(' ',1,1).utf8();
+    QCString fun=command.section(' ',2,2).utf8();
+    QCString data=command.section(' ',3,3).utf8();
+
+    if ( data.isEmpty() && fun.right(2) != "()" )
+        fun += "()";
+
+    kdDebug() << "app " << app << " obj " << obj
+            << " fun " << fun << " data " << data << endl;
+    if (!kapp->dcopClient()->send(app,obj,fun, data))
+        kdDebug() << "Command exectution failed" << endl;
 }
 
 #include "rsiglobals.moc"

@@ -123,6 +123,12 @@ class RSIGlobals : public QObject
      */
     void resetUsage();
 
+    /**
+     * Executes a DCOP command.
+     * @param command something like "app object func data"
+     */
+    void executeDCOP(const QString &command);
+
   public slots:
     /**
      * Reads the configuration.

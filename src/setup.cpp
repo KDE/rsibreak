@@ -97,6 +97,7 @@ void Setup::slotOkClicked()
     d->timingPage->applySettings();
     d->popupPage->applySettings();
     d->maximizedPage->applySettings();
+    d->DCOPPage->applySettings();
     close();
 }
 

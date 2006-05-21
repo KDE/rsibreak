@@ -41,11 +41,11 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
-#include <dcopclient.h>
 
 // Local includes.
 
 #include "setupdcop.h"
+#include "rsiglobals.h"
 
 class SetupDCOPPriv
 {
@@ -69,8 +69,8 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     layout->setSpacing( KDialog::spacingHint() );
     layout->setAlignment( AlignTop );
 
-    QLabel *l1 = new QLabel(i18n("Here you can tell RSIBreak which\n"
-            "applications should stop when a break is starting\n and be "
+    QLabel *l1 = new QLabel(i18n("Here you can tell RSIBreak which"
+            "applications should stop when a break is starting\nand be "
             "restarted when the break is over"), parent);
     layout->addWidget(l1);
 
@@ -78,18 +78,6 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->table->addColumn( i18n("Application") );
     d->table->addColumn( i18n("Start") );
     d->table->addColumn( i18n("End") );
-
-    QCheckListItem* itemTwo = new QCheckListItem(d->table,"KArm",
-            QCheckListItem::CheckBox);
-    itemTwo->setText(1,"karm KarmDCOPIface stoptimerfor dfdfdf");
-    itemTwo->setText(2,"karm KarmDCOPIface starttimerfor dfdfdf");
-    d->table->insertItem(itemTwo);
-
-    QCheckListItem* item3 = new QCheckListItem(d->table,"Kopete",
-            QCheckListItem::CheckBox);
-    item3->setText(1,"kopete in stop");
-    item3->setText(2,"kopete in start");
-    d->table->insertItem(item3);
 
     layout->addWidget(d->table);
 
@@ -157,6 +145,23 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->endButton->setEnabled(false);
 
     readSettings();
+
+    // Some examples...
+    if ( !d->table->firstChild() )
+    {
+        QCheckListItem* item = new QCheckListItem(d->table,"KArm",
+                QCheckListItem::CheckBox);
+        item->setText(1,"karm KarmDCOPIface stoptimerfor replacewithtask");
+        item->setText(2,"karm KarmDCOPIface starttimerfor replacewithtask");
+        d->table->insertItem(item);
+
+        QCheckListItem* item3 = new QCheckListItem(d->table,"Kopete",
+                QCheckListItem::CheckBox);
+        item3->setText(1,"kopete KopeteIface setAway()");
+        item3->setText(2,"kopete KopeteIface setAvailable()");
+        d->table->insertItem(item3);
+    }
+
 }
 
 SetupDCOP::~SetupDCOP()
@@ -167,9 +172,25 @@ SetupDCOP::~SetupDCOP()
 
 void SetupDCOP::applySettings()
 {
-    kdDebug() <<"save"<< endl;
+    if ( !d->table->firstChild() )
+        return;
+
     KConfig* config = kapp->config();
-    config->setGroup("General Settings");
+    config->deleteGroup("DCOP");
+    config->sync();
+    config->setGroup("DCOP");
+
+    QListViewItemIterator it( d->table );
+    for ( ;it.current(); ++it )
+    {
+        QCheckListItem *item = dynamic_cast<QCheckListItem*>(it.current());
+        QStringList data;
+        data << item->text(1) << item->text(2);
+        item->isOn() ? data << "On" : data << "Off";
+        kdDebug() << "Writing" << item->text(0) << data << endl;
+        config->writeEntry(item->text(0), data);
+
+    }
     config->sync();
 }
 
@@ -177,7 +198,26 @@ void SetupDCOP::readSettings()
 {
     kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
-    config->setGroup("General Settings");
+
+    QMap<QString,QString> map;
+    map=config->entryMap("DCOP");
+
+    QMap<QString, QString>::const_iterator i;
+    for (i = map.constBegin(); i != map.constEnd(); ++i)
+    {
+        kdDebug() << i.key() << ": " << i.data() << endl;
+        QStringList list = QStringList::split(",",i.data());
+
+        QCheckListItem* item = new QCheckListItem(d->table,i.key(),
+                QCheckListItem::CheckBox);
+        item->setText(1,list[0]);
+        item->setText(2,list[1]);
+        list[2] == "On" ? item->setState(QCheckListItem::On) :
+                          item->setState(QCheckListItem::Off);
+
+        d->table->insertItem(item);
+
+    }
 }
 
 void SetupDCOP::slotTableClicked( QListViewItem * item )
@@ -226,31 +266,12 @@ void SetupDCOP::slotDescChanged(const QString &text)
 
 void SetupDCOP::slotTestStart()
 {
-    /* FIXME
-    Data is not correctly passed to the DCOP call.
-    Syntax without data: "kopete" "KopeteIface" "setAway()"
-    Syntax with data: "kopete" "KopeteIface" "setAway(QString)" "someStringContainingData"
-    */
-
-    kdDebug() << "execute" << d->current->text(1) << endl;
-    QCString app=d->current->text(1).section(' ',0,0).utf8();
-    QCString obj=d->current->text(1).section(' ',1,1).utf8();
-    QCString fun=d->current->text(1).section(' ',2,2).utf8();
-    QCString data=d->current->text(1).section(' ',3,3).utf8();
-
-    if ( data.isEmpty() && fun.right(2) != "()" )
-      fun += "()";
-
-    // kapp->dcopClient()->attach();
-    kdDebug() << "app " << app << " obj " << obj
-              << " fun " << fun << " data " << data << endl;
-    if (!kapp->dcopClient()->send(app,obj,fun, data))
-        kdDebug() << "Command exectution failed" << endl;
+    RSIGlobals::instance()->executeDCOP(d->current->text(1));
 }
 
 void SetupDCOP::slotTestStop()
 {
-    kdDebug() << "execute" << d->current->text(2) << endl;
+    RSIGlobals::instance()->executeDCOP(d->current->text(2));
 }
 
 #include "setupdcop.moc"
