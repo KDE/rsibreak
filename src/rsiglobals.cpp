@@ -122,6 +122,26 @@ void RSIGlobals::slotReadConfig()
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
     }
+
+    //--------------- read the DCOP settings
+    m_dcopstart.clear();
+    m_dcopend.clear();
+
+    QMap<QString,QString> map;
+    map=config->entryMap("DCOP");
+
+    QMap<QString, QString>::const_iterator i;
+    for (i = map.constBegin(); i != map.constEnd(); ++i)
+    {
+        kdDebug() << i.key() << ": " << i.data() << endl;
+        QStringList list = QStringList::split(",",i.data());
+
+        if (list[2] == "On")
+        {
+            m_dcopstart.append(list[0]);
+            m_dcopend.append(list[1]);
+        }
+    }
 }
 
 QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
@@ -171,6 +191,17 @@ void RSIGlobals::executeDCOP(const QString &command)
             << " fun " << fun << " data " << data << endl;
     if (!kapp->dcopClient()->send(app,obj,fun, data))
         kdDebug() << "Command exectution failed" << endl;
+}
+
+void RSIGlobals::DCOPBreak(bool start)
+{
+    QStringList commands;
+    start ? commands=m_dcopstart : commands=m_dcopend;
+    for( QStringList::Iterator it = commands.begin(); it != commands.end() ;
+         ++it)
+    {
+        executeDCOP(*it);
+    }
 }
 
 #include "rsiglobals.moc"

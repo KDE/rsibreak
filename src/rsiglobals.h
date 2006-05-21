@@ -129,6 +129,14 @@ class RSIGlobals : public QObject
      */
     void executeDCOP(const QString &command);
 
+    /**
+     * Executes the commands which are defined as commands which should
+     * be executed at a break.
+     * @param start when true the start commands are executed, false executes
+     *              the ones at the end of a break.
+     */
+    void DCOPBreak(bool start);
+
   public slots:
     /**
      * Reads the configuration.
@@ -140,6 +148,8 @@ class RSIGlobals : public QObject
     QMap<QString,int> m_intervals;
     static RSIStats *m_stats;
     QBitArray m_usageArray;
+    QStringList m_dcopstart;
+    QStringList m_dcopend;
 };
 
 #endif // RSIGLOBALS_H

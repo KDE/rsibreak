@@ -53,16 +53,19 @@ public:
     void applySettings();
 
 private slots:
-    void slotTableClicked( QListViewItem * item );
+    void slotTableClicked(  int button, QListViewItem * item,
+                            const QPoint & pos);
     void slotCheckActive();
     void slotDCOPStartChanged(const QString &text);
     void slotDCOPStopChanged(const QString &text);
     void slotDescChanged(const QString &text);
     void slotTestStart();
     void slotTestStop();
+    void slotAddNewItem();
 
 private:
     void readSettings();
+    void updateEditArea();
     SetupDCOPPriv     *d;
 };
 

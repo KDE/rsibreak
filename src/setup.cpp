@@ -78,7 +78,7 @@ Setup::Setup(QWidget* parent, const char* name)
     connect(this, SIGNAL(okClicked()),
             this, SLOT(slotOkClicked()) );
 
-    showPage(4);
+    showPage(0);
     resize( configDialogSize("Settings") );
     show();
 }

@@ -29,6 +29,7 @@
 #include <qwhatsthis.h>
 #include <qcheckbox.h>
 #include <qlistview.h>
+#include <qpopupmenu.h>
 
 // KDE includes.
 
@@ -78,11 +79,15 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->table->addColumn( i18n("Application") );
     d->table->addColumn( i18n("Start") );
     d->table->addColumn( i18n("End") );
+    d->table->setAllColumnsShowFocus( true );
+    d->table->setColumnWidthMode(1,QListView::Manual);
+    d->table->setColumnWidthMode(2,QListView::Manual);
 
     layout->addWidget(d->table);
 
-    connect( d->table, SIGNAL(clicked ( QListViewItem * )),
-             SLOT( slotTableClicked( QListViewItem *) ) );
+    connect( d->table,
+             SIGNAL( mouseButtonPressed(int, QListViewItem*,const QPoint&, int)),
+             SLOT( slotTableClicked(int, QListViewItem*,const QPoint&)));
 
     //--- settings ---//
     // TODO: put it into a box
@@ -162,6 +167,10 @@ SetupDCOP::SetupDCOP(QWidget* parent )
         d->table->insertItem(item3);
     }
 
+    // now that the table contains data, set the width and stick to it.
+    d->table->adjustColumn(1);
+    d->table->adjustColumn(2);
+
 }
 
 SetupDCOP::~SetupDCOP()
@@ -220,27 +229,75 @@ void SetupDCOP::readSettings()
     }
 }
 
-void SetupDCOP::slotTableClicked( QListViewItem * item )
+void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
+                                  const QPoint & pos)
 {
-    kdDebug() << "Entering slotTableClicked" << endl;
+    kdDebug() << "Entering slotTableClicked " << button << endl;
 
     //TODO: Someone please check this....
     d->current = dynamic_cast<QCheckListItem*>(item);
-    if (!d->current)
-        return;
 
-    d->desc->setText( d->current->text(0));
-    d->active->setChecked( d->current->isOn() );
-    d->start->setText( d->current->text(1));
-    d->end->setText( d->current->text(2));
+    if (button == Qt::LeftButton)
+    {
+        if (!d->current)
+            slotAddNewItem();
+        updateEditArea();
+    }
+    else if (button == Qt::RightButton )
+    {
+        kdDebug() << "conext please...." << endl;
+        QPopupMenu *menu = new QPopupMenu();
+        if (d->current)
+            menu->insertItem(i18n("Remove"), 0);
+        menu->insertItem(i18n("Add"), 1);
 
-    d->desc->setEnabled(true);
-    d->active->setEnabled(true);
-    d->start->setEnabled(true);
-    d->end->setEnabled(true);
-    d->startButton->setEnabled(true);
-    d->endButton->setEnabled(true);
+        int i = menu->exec(pos);
 
+        if (i == 0)
+        {
+            d->table->takeItem( d->current );
+
+            d->desc->clear();
+            d->desc->setEnabled(false);
+            d->active->setChecked(false);
+            d->active->setEnabled(false);
+            d->start->clear();
+            d->start->setEnabled(false);
+            d->end->clear();
+            d->end->setEnabled(false);
+            d->startButton->setEnabled(false);
+            d->endButton->setEnabled(false);
+        }
+        else if (i == 1)
+            slotAddNewItem();
+    }
+}
+
+void SetupDCOP::slotAddNewItem()
+{
+    QCheckListItem* item = new QCheckListItem(d->table,i18n("New"),
+                                              QCheckListItem::CheckBox);
+    item->setText(1,i18n("Start command"));
+    item->setText(2,i18n("End command"));
+    d->table->insertItem(item);
+    d->table->setSelected(item, true);
+    d->table->ensureItemVisible(item);
+    d->current=item;
+}
+
+void SetupDCOP::updateEditArea()
+{
+        d->desc->setText( d->current->text(0));
+        d->active->setChecked( d->current->isOn() );
+        d->start->setText( d->current->text(1));
+        d->end->setText( d->current->text(2));
+
+        d->desc->setEnabled(true);
+        d->active->setEnabled(true);
+        d->start->setEnabled(true);
+        d->end->setEnabled(true);
+        d->startButton->setEnabled(true);
+        d->endButton->setEnabled(true);
 }
 
 void SetupDCOP::slotCheckActive()

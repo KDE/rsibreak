@@ -106,7 +106,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
         // Associate source to image and show the dialog:
         QMimeSourceFactory::defaultFactory()->setPixmap( "systray_shot", finalShot );
 
-        // End copied block 
+        // End copied block
         // ********************************************************************************
 
         KMessageBox::information(parent,
@@ -256,6 +256,7 @@ void RSIWidget::minimize()
     releaseKeyboard();
     releaseMouse();
     hide();
+    RSIGlobals::instance()->DCOPBreak( false );
     loadImage();
 }
 
@@ -280,6 +281,7 @@ void RSIWidget::maximize()
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
     m_grab->start(1000, true);
+    RSIGlobals::instance()->DCOPBreak( true );
 }
 
 void RSIWidget::loadImage()
