@@ -315,6 +315,9 @@ void RSITimer::timerEvent( QTimerEvent * )
         m_breakRequested = false;
         m_bigBreakRequested = false;
         m_tinyBreakRequested = false;
+        m_relax_left = 0;
+
+        // TODO: Start DCOP commands
     }
 
     if ( t > 0 && m_pause_left > 0 ) // means: widget is maximized
@@ -352,12 +355,13 @@ void RSITimer::timerEvent( QTimerEvent * )
         if ( m_patience > 0 ) // we're trying to break
         {
             --m_patience;
-            if ( !m_patience ) // that's it!
+            if ( m_patience == 0 ) // that's it!
             {
                 emit relax( -1 );
                 m_relax_left = 0;
 
                 breakNow( breakInterval );
+                // TODO: Start DCOP commands
                 m_pause_left = breakInterval;
             }
             else // reset relax dialog
@@ -443,6 +447,9 @@ void RSITimer::timerEvent( QTimerEvent * )
         // just in case the user dares to become active
         --m_patience;
 
+        if ( m_patience == 0 )
+          ; // TODO Start DCOP commands
+
         emit relax( m_relax_left );
     }
 
@@ -523,13 +530,13 @@ void RSITimer::restoreSession()
     {
       int between = m_lastrunDt.secsTo( QDateTime::currentDateTime() );
 
-      if ( between < m_intervals["big_minimized"] && 
+      if ( between < m_intervals["big_minimized"] &&
            (m_lastrunBig - between) > 20 )
       {
           m_big_left = m_lastrunBig - between;
       }
 
-      if ( between < m_intervals["tiny_minimized"] && 
+      if ( between < m_intervals["tiny_minimized"] &&
            (m_lastrunTiny - between) > 20 )
       {
           m_tiny_left = m_lastrunTiny - between;
