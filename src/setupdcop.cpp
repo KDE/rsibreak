@@ -19,7 +19,6 @@
 
 // QT includes.
 
-#include <qcstring.h> // FIXME
 #include <qlayout.h>
 #include <qhbox.h>
 #include <qvgroupbox.h>

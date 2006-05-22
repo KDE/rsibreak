@@ -135,6 +135,7 @@ void RSITimer::resetAfterBreak()
     m_patience = 0;
     emit relax( -1 );
     updateIdleAvg( 0.0 );
+    RSIGlobals::instance()->DCOPBreak( false );
 }
 
 void RSITimer::resetAfterTinyBreak()
@@ -317,7 +318,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         m_tinyBreakRequested = false;
         m_relax_left = 0;
 
-        // TODO: Start DCOP commands
+        RSIGlobals::instance()->DCOPBreak( true );
     }
 
     if ( t > 0 && m_pause_left > 0 ) // means: widget is maximized
@@ -361,7 +362,7 @@ void RSITimer::timerEvent( QTimerEvent * )
                 m_relax_left = 0;
 
                 breakNow( breakInterval );
-                // TODO: Start DCOP commands
+                RSIGlobals::instance()->DCOPBreak( true );
                 m_pause_left = breakInterval;
             }
             else // reset relax dialog
@@ -448,7 +449,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         --m_patience;
 
         if ( m_patience == 0 )
-          ; // TODO Start DCOP commands
+          RSIGlobals::instance()->DCOPBreak( true );
 
         emit relax( m_relax_left );
     }
