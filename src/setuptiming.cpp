@@ -73,7 +73,8 @@ SetupTiming::SetupTiming(QWidget* parent )
     tinyBox->setTitle(i18n("Tiny Breaks"));
 
     QHBox *m = new QHBox(tinyBox);
-    QLabel *l1 = new QLabel(i18n("Short break every:"), m);
+    QLabel *l1 = new QLabel(i18n("Short break every:") + ' ', m);
+    l1->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     QWhatsThis::add( l1, i18n("Here you can set how often you want a short "
                               "break. One minute means 60 seconds of "
                               "movement with the mouse or typing on the keyboard.") );
@@ -84,7 +85,8 @@ SetupTiming::SetupTiming(QWidget* parent )
             SLOT(slotTinyValueChanged( int )));
 
     QHBox *m2 = new QHBox(tinyBox);
-    QLabel *l2 = new QLabel(i18n("For a duration of:"), m2);
+    QLabel *l2 = new QLabel(i18n("For a duration of:") + ' ', m2);
+    l2->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     QWhatsThis::add( l2, i18n("Here you can set the duration of the short break.") );
     d->tinyDuration = new KIntNumInput(m2);
     d->tinyDuration->setRange(1,1000,1,false);
@@ -97,7 +99,8 @@ SetupTiming::SetupTiming(QWidget* parent )
     bigBox->setTitle(i18n("Big Breaks"));
 
     QHBox *m3 = new QHBox(bigBox);
-    QLabel *l3 = new QLabel(i18n("Long break every:"), m3);
+    QLabel *l3 = new QLabel(i18n("Long break every:") + ' ', m3);
+    l3->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     QWhatsThis::add( l3, i18n("Here you can set how often you want a long "
                               "break. One minute means 60 seconds of "
                               "movement with the mouse or typing on the keyboard") );
@@ -109,7 +112,8 @@ SetupTiming::SetupTiming(QWidget* parent )
 
 
     QHBox *m4 = new QHBox(bigBox);
-    QLabel *l4 = new QLabel(i18n("For a duration of:"), m4);
+    QLabel *l4 = new QLabel(i18n("For a duration of:") + ' ', m4);
+    l4->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     QWhatsThis::add( l4, i18n("Here you can set the duration of the long break.") );
     d->bigDuration = new KIntNumInput(m4);
     d->bigDuration->setRange(1,1000,1,false);
@@ -123,7 +127,8 @@ SetupTiming::SetupTiming(QWidget* parent )
     slideBox->setTitle(i18n("Slideshow"));
 
     QHBox *m5 = new QHBox(slideBox);
-    QLabel *l5 = new QLabel(i18n("Change images every:"), m5);
+    QLabel *l5 = new QLabel(i18n("Change images every:") + ' ', m5);
+    l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     QWhatsThis::add( l5, i18n("Here you can set how long one image should be "
                               "shown before it is replaced by the next one."));
     d->slideInterval = new KIntNumInput(m5);
@@ -143,6 +148,12 @@ SetupTiming::SetupTiming(QWidget* parent )
     slotBigDurationValueChanged( d->bigInterval->value() );
     slotSlideIntervalValueChanged( d->slideInterval->value() );
 
+    // Resize to minimum possible.
+    d->tinyInterval->setFixedSize( d->tinyInterval->minimumSizeHint()  );
+    d->bigInterval->setFixedSize( d->tinyInterval->minimumSizeHint() );
+    d->tinyDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
+    d->bigDuration->setFixedSize( d->tinyInterval->minimumSizeHint()  );
+    d->slideInterval->setFixedSize( d->tinyInterval->minimumSizeHint()  );
 }
 
 SetupTiming::~SetupTiming()

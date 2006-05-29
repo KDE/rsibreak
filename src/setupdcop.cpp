@@ -70,8 +70,9 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     layout->setAlignment( AlignTop );
 
     QLabel *l1 = new QLabel(i18n("Here you can tell RSIBreak which"
-            "applications should stop when a break is starting\nand be "
+            "applications should stop when a break is starting and be "
             "restarted when the break is over"), parent);
+    l1->setAlignment(Qt::WordBreak);
     layout->addWidget(l1);
 
     d->table = new QListView( parent,0, QListView::Single);
