@@ -66,6 +66,11 @@ public:
     QCheckBox*        hideMinimizeButton;
     QCheckBox*        hideCounter;
     QCheckBox*        disableAccel;
+
+    QCheckBox*             usePopup;
+    QCheckBox*             useFlash;
+    QLabel*                useFlashLabel;
+
 };
 
 SetupMaximized::SetupMaximized(QWidget* parent )
@@ -75,11 +80,17 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    d = new SetupMaximizedPriv;
 
+   //--- Vertical to start with
    QVBoxLayout *layout = new QVBoxLayout( parent );
    layout->setSpacing( KDialog::spacingHint() );
    layout->setAlignment( AlignTop );
 
-   QVGroupBox *counterBox = new QVGroupBox(parent);
+   // Counterbox and skipbox next to eachother
+   QHBox *boxes= new QHBox(parent);
+   boxes->setSpacing( KDialog::spacingHint() );
+
+   //-------------------- Counterbox
+   QVGroupBox *counterBox = new QVGroupBox(boxes);
    counterBox->setTitle(i18n("Counter"));
 
    d->hideCounter = new QCheckBox(i18n("H&ide"), counterBox);
@@ -90,7 +101,8 @@ SetupMaximized::SetupMaximized(QWidget* parent )
            "be shown on top of the image, when images are shown.") );
 
    d->colorBox = new QHBox(counterBox);
-   QLabel *counterColorlabel = new QLabel( i18n("&Color:"), d->colorBox );
+   QLabel *counterColorlabel = new QLabel( i18n("&Color:")+' ', d->colorBox );
+   counterColorlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterColor = new KColorButton(d->colorBox);
    counterColorlabel->setBuddy(d->counterColor);
    QWhatsThis::add( d->counterColor, i18n("Select here the color to use "
@@ -99,15 +111,47 @@ SetupMaximized::SetupMaximized(QWidget* parent )
             "of the images.") );
 
    d->fontBox = new QHBox(counterBox);
-   QLabel *counterFontlabel = new QLabel( i18n("&Font:"), d->fontBox );
+   QLabel *counterFontlabel = new QLabel( i18n("&Font:")+' ', d->fontBox );
+   counterFontlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterFontBut = new QPushButton("font",d->fontBox);
    counterFontlabel->setBuddy(d->counterFontBut);
    QWhatsThis::add( d->counterFontBut, i18n("Select here the font to use "
            "for the counter.") );
    connect(d->counterFontBut, SIGNAL(clicked()), SLOT(slotFontPicker()));
 
-   layout->addWidget(counterBox);
+   //layout->addWidget(counterBox);
 
+   //---------------- SKIP BOX
+   QVGroupBox *skipBox = new QVGroupBox(boxes);
+   skipBox->setTitle(i18n("Skipping breaks"));
+
+   d->hideMinimizeButton = new QCheckBox(i18n("H&ide button"), skipBox);
+   QWhatsThis::add( d->hideMinimizeButton,
+                    i18n("Check this option to disable and hide the skip "
+                            "button. This way you can prevent skipping the "
+                            "break.") );
+
+   d->disableAccel = new QCheckBox(i18n("&Disable shortcut"),
+                                   skipBox);
+   QWhatsThis::add( d->disableAccel,
+                    i18n("Check this option to disable the skip shortcut."
+                            "This way you can prevent skipping the break.") );
+   connect(d->disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
+
+   d->shortcutBox = new QHBox(skipBox);
+   QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:") + ' ', d->shortcutBox );
+   shortcutlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+   d->shortcutBut = new QPushButton(i18n("&Change Shortcut..."), d->shortcutBox );
+   shortcutlabel->setBuddy(d->shortcutBut);
+   QWhatsThis::add( d->shortcutBut, i18n("Select here the shortcut to use "
+           "for aborting the break.") );
+   connect(d->shortcutBut, SIGNAL(clicked()),
+           this, SLOT(slotShortcutPicker()));
+
+   //-- Add the two boxes.
+   layout->addWidget( boxes );
+
+   //------------------ PATH Setup
    QVGroupBox *imageBox = new QVGroupBox(parent);
    imageBox->setTitle(i18n("Image Folder Path"));
 
@@ -129,35 +173,41 @@ SetupMaximized::SetupMaximized(QWidget* parent )
                                           imageBox);
    layout->addWidget(imageBox);
 
-   d->hideMinimizeButton = new QCheckBox(i18n("H&ide skip button"), parent);
-   QWhatsThis::add( d->hideMinimizeButton,
-                    i18n("Check this option to disable and hide the skip "
-                          "button. This way you can prevent skipping the "
-                          "break.") );
-   layout->addWidget(d->hideMinimizeButton);
+   //---------------- Popup setup
 
-   d->disableAccel = new QCheckBox(i18n("&Disable shortcut to skip"),
-                                  parent);
-   QWhatsThis::add( d->disableAccel,
-                    i18n("Check this option to disable the skip shortcut."
-                         "This way you can prevent skipping the break.") );
-   connect(d->disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
-   layout->addWidget(d->disableAccel);
+   QVGroupBox *popupBox = new QVGroupBox(parent);
+   popupBox->setTitle(i18n("Popup"));
 
-   d->shortcutBox = new QHBox(parent);
-   QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:"), d->shortcutBox );
-   shortcutlabel->setIndent( 22 );
-   d->shortcutBut = new QPushButton(i18n("&Change Shortcut..."), d->shortcutBox );
-   shortcutlabel->setBuddy(d->shortcutBut);
-   QWhatsThis::add( d->shortcutBut, i18n("Select here the shortcut to use "
-           "for aborting the break.") );
-   connect(d->shortcutBut, SIGNAL(clicked()),
-           this, SLOT(slotShortcutPicker()));
-   layout->addWidget( d->shortcutBox );
+   QLabel *label = new QLabel( i18n("RSIBreak can show a popup near the "
+           "systray instead of replacing your whole screen with a picture."),
+            popupBox);
+   label->setAlignment(Qt::WordBreak);
+
+   d->usePopup = new QCheckBox(i18n("&Use the popup"), popupBox);
+   connect(d->usePopup, SIGNAL(toggled(bool)), SLOT(slotHideFlash()));
+   QWhatsThis::add( d->usePopup, i18n("With this checkbox you can indicate "
+           "if you want to see the popup when it "
+                   "is time to break. It will count "
+                   "down to zero, so you know how long this "
+                   "break will be.") );
+   label->setBuddy(d->usePopup);
+
+   d->useFlashLabel = new QLabel( "\n" + i18n("The popup can flash when it "
+           "detects that you are still active."), popupBox);
+   d->useFlashLabel->setAlignment(Qt::WordBreak);
+
+   d->useFlash = new QCheckBox(i18n("&Flash on activity"), popupBox);
+   QWhatsThis::add( d->useFlash, i18n("With this checkbox you can indicate "
+           "if you want to see the popup flash "
+                   "when there is activity.") );
+   d->useFlashLabel->setBuddy( d->useFlashLabel );
+
+   layout->addWidget(popupBox);
 
    readSettings();
    slotHideCounter();
    slotHideShortcut();
+   slotHideFlash();
 }
 
 SetupMaximized::~SetupMaximized()
@@ -225,6 +275,13 @@ void SetupMaximized::slotFolderEdited(const QString& newPath)
 
 }
 
+void SetupMaximized::slotHideFlash()
+{
+    kdDebug() << "Entering slotHideFlash" << endl;
+    d->useFlash->setEnabled(d->usePopup->isChecked());
+    d->useFlashLabel->setEnabled(d->usePopup->isChecked());
+}
+
 void SetupMaximized::applySettings()
 {
     kdDebug() << "Entering applySettings" << endl;
@@ -241,6 +298,13 @@ void SetupMaximized::applySettings()
     config->writeEntry("HideCounter", d->hideCounter->isChecked());
     config->writeEntry("DisableAccel", d->disableAccel->isChecked());
     config->writeEntry("MinimizeKey", d->shortcut);
+
+    config->setGroup("Popup Settings");
+    config->writeEntry("UsePopup",
+                       d->usePopup->isChecked());
+    config->writeEntry("UseFlash",
+                       d->useFlash->isChecked());
+
     config->sync();
 }
 
@@ -265,6 +329,12 @@ void SetupMaximized::readSettings()
     d->disableAccel->setChecked(config->readBoolEntry("DisableAccel", false));
     d->shortcut = config->readEntry("MinimizeKey", "Escape");
     d->shortcutBut->setText(d->shortcut);
+
+    config->setGroup("Popup Settings");
+    d->usePopup->setChecked(
+            config->readBoolEntry("UsePopup", true));
+    d->useFlash->setChecked(
+            config->readBoolEntry("UseFlash", true));
 
     delete Black;
 }

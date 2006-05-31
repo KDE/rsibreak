@@ -3,7 +3,7 @@ INCLUDES =  -I$(top_srcdir) $(all_includes)
 
 # these are the headers for your project
 noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h setupdcop.h \
-	setuptiming.h setupmaximized.h setuppopup.h rsitimer.h rsirelaxpopup.h \
+	setuptiming.h setupmaximized.h rsitimer.h rsirelaxpopup.h \
 	rsitooltip.h rsistatwidget.h rsistats.h rsiglobals.h rsistatitem.h \
 	rsitimer_dpms.h
 
@@ -26,7 +26,7 @@ bin_PROGRAMS = rsibreak
 
 # the application source, library search path, and link libraries
 rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
-	main.cpp rsiwidget.cpp rsitimer.cpp rsirelaxpopup.cpp setuppopup.cpp \
+	main.cpp rsiwidget.cpp rsitimer.cpp rsirelaxpopup.cpp \
 	setupmaximized.cpp rsitooltip.cpp dcopiface.cpp dcopiface.skel \
 	rsistatwidget.cpp rsistats.cpp rsiglobals.cpp rsistatitem.cpp setupdcop.cpp
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)

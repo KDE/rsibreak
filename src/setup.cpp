@@ -33,7 +33,6 @@
 
 #include "setupgeneral.h"
 #include "setuptiming.h"
-#include "setuppopup.h"
 #include "setupmaximized.h"
 #include "setupdcop.h"
 #include "setup.h"
@@ -63,12 +62,9 @@ Setup::Setup(QWidget* parent, const char* name)
                             BarIcon("rsibreak3", KIcon::SizeMedium));
     d->timingPage = new SetupTiming(page_timing);
 
-    QFrame *page_popup = addPage(i18n("Popup"), i18n("Popup"),
-                         BarIcon("misc", KIcon::SizeMedium));
-    d->popupPage = new SetupPopup(page_popup);
-
-    QFrame *page_maximized = addPage(i18n("Maximized"), i18n("Maximized"),
-                             BarIcon("background", KIcon::SizeMedium));
+    QFrame *page_maximized = addPage(i18n("During Breaks"),
+                              i18n("During Breaks"),
+                              BarIcon("background", KIcon::SizeMedium));
     d->maximizedPage = new SetupMaximized(page_maximized);
 
     QFrame *page_dcop = addPage(i18n("DCOP"), i18n("DCOP"),
@@ -95,7 +91,6 @@ void Setup::slotOkClicked()
     kdDebug() << "Entering slotOkClicked" << endl;
     d->generalPage->applySettings();
     d->timingPage->applySettings();
-    d->popupPage->applySettings();
     d->maximizedPage->applySettings();
     d->DCOPPage->applySettings();
     close();

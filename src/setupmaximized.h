@@ -65,6 +65,7 @@ private slots:
     void slotFolderPicker();
     void slotFolderEdited(const QString& newPath);
     void slotShortcutPicker();
+    void slotHideFlash();
 
 private:
     void readSettings();
