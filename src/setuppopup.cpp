@@ -56,15 +56,12 @@ SetupPopup::SetupPopup(QWidget* parent )
     d = new SetupPopupPriv;
 
     QVBoxLayout *layout = new QVBoxLayout( parent );
-    layout->setSpacing( KDialog::spacingHint() );
+    //layout->setSpacing( KDialog::spacingHint() );
     layout->setAlignment( AlignTop );
 
-    QLabel *label = new QLabel( i18n("When it is time to break, RSIBreak can "
-                                     "show a popup near the systemtray, then "
-                                     "you can take a break without the screen "
-                                     "being replaced by a picture. If you "
-                                     "want to see pictures and not the popup, "
-                                     "turn this function off."), parent);
+    QLabel *label = new QLabel( i18n("RSIBreak can show a popup near the "
+            "systray instead of replacing your whole screen with a picture."),
+            parent);
     label->setAlignment(Qt::WordBreak);
     layout->addWidget(label);
 
@@ -78,10 +75,8 @@ SetupPopup::SetupPopup(QWidget* parent )
     layout->addWidget(d->usePopup);
     label->setBuddy(d->usePopup);
 
-    d->useFlashLabel = new QLabel( i18n("When the popup is shown, it can flash "
-                                       "when there is activity detected. You "
-                                       "can turn it off when you find it too "
-                                       "intrusive."), parent);
+    d->useFlashLabel = new QLabel( "\n" + i18n("The popup can flash when it "
+            "detects that you are still active."), parent);
     d->useFlashLabel->setAlignment(Qt::WordBreak);
     layout->addWidget(d->useFlashLabel);
 
