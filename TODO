@@ -5,8 +5,6 @@ Wishes:
 - [BS] strict-o-meter
 - [BS] A second timer implementation which ignores idle detection
 - Save statistics
-- Set Kopete in "Be Right Back" mode when going into a big break
-- Talk to KArm
 
 Bugs:
 - image extension are hardcoded
