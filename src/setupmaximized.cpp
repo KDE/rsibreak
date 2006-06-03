@@ -269,7 +269,7 @@ void SetupMaximized::slotFolderEdited(const QString& newPath)
         return;
     }
 
-    if (!newPath.startsWith('/')) {
+    if (!newPath.startsWith("/")) {
         d->imageFolderEdit->setText(QDir::homeDirPath()+'/'+newPath);
     }
 
