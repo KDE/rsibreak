@@ -66,9 +66,16 @@ class RSITimer : public QObject
 
         /**
           Stops the timer activity. This does not imply
-          resetting counters.
+          resetting counters. Will not load an image
         */
-        void slotStop();
+        void slotStopNoImage();
+
+        /**
+          Stops the timer activity. This does not imply
+          resetting counters.
+          @param newImage Load a new image
+         */
+        void slotStop( bool newImage=true );
 
         /**
           Called when the user suspends RSIBreak from the docker.
@@ -81,7 +88,14 @@ class RSITimer : public QObject
           Prepares the timer so that it can start/continue. This
           does not imply resetting counters.
         */
-        void slotStart();
+        void slotStartNoImage();
+
+        /**
+          Prepares the timer so that it can start/continue. This
+          does not imply resetting counters.
+          @param newImage Load a new image
+         */
+        void slotStart( bool newImage=true );
 
         /**
           The user can request a break from the docker. This function
@@ -155,8 +169,9 @@ class RSITimer : public QObject
         /**
           A request to minimize the fullscreen widget, for example when the
           break is over.
+          @param newImage Load a new image
         */
-        void minimize();
+        void minimize( bool newImage );
 
         /**
           Pop up a relax notification to the user for @p sec seconds.

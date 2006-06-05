@@ -60,7 +60,7 @@ class RSIWidget : public QWidget
     private slots:
         void slotNewSlide();
         void slotLock();
-        void minimize();
+        void minimize( bool newImage = true );
         void maximize();
         void setCounters( int );
         void updateIdleAvg( double );

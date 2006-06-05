@@ -154,7 +154,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
              m_tooltip, SLOT( setCounters( int, int ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
-    connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ) );
+    connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tooltip, SLOT( hide() ) );
     connect( m_timer, SIGNAL( relax( int ) ), m_tray, SLOT( relaxEntered( int ) ) );
@@ -168,8 +168,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( configChanged( bool ) ), RSIGlobals::instance(), SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_relaxpopup, SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
-    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStart() ) );
+    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStopNoImage( ) ) );
+    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStartNoImage() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
@@ -243,7 +243,7 @@ RSIWidget::~RSIWidget()
     delete RSIGlobals::instance();
 }
 
-void RSIWidget::minimize()
+void RSIWidget::minimize( bool newImage )
 {
     kdDebug() << "Entering RSIWidget::Minimize" << endl;
 
@@ -257,7 +257,8 @@ void RSIWidget::minimize()
     releaseMouse();
     hide();
     RSIGlobals::instance()->DCOPBreak( false );
-    loadImage();
+    if (newImage)
+        loadImage();
 }
 
 void RSIWidget::maximize()
