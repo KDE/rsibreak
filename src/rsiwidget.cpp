@@ -590,7 +590,9 @@ void RSIWidget::readConfig()
         m_basePath = path;
         m_searchRecursive = recursive;
         findImagesInFolder( path );
-        loadImage();
+        // LoadImage (smoothscale) takes some time, so when booting this seriously
+        // drains startup speed. So, deleay this a few seconds...
+        QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
     }
 
     m_slideInterval = config->readNumEntry("SlideInterval", 2);
