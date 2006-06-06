@@ -16,13 +16,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include "config.h"     // HAVE_LIBXSS
-#ifdef HAVE_LIBXSS      // Idle detection.
-    #include <X11/Xutil.h>
-    #include <X11/extensions/dpms.h>
-#endif // HAVE_LIBXSS
-//#include <iostream>
-//using namespace std;
+#include <X11/Xutil.h>
+#include <X11/extensions/dpms.h>
 
 bool QueryDPMSTimeouts(Display* display, int& standby, int& suspend, int& off)
 {
@@ -31,7 +26,6 @@ bool QueryDPMSTimeouts(Display* display, int& standby, int& suspend, int& off)
   suspend = 0;
   off = 0;
 
-#ifdef HAVE_LIBXSS      // Idle detection.
   int event_base;
   int error_base;
   CARD16 x_standby;
@@ -46,8 +40,6 @@ bool QueryDPMSTimeouts(Display* display, int& standby, int& suspend, int& off)
         suspend = (int)x_suspend;
         off     = (int)x_off;
         result  = true;
-//	cout << (int)x_standby << " - " << (int)x_suspend << " - " << (int)x_off << endl;
       }
-#endif
   return result;
 }

@@ -53,27 +53,14 @@ RSITimer::RSITimer( QObject *parent, const char *name )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
-#ifdef HAVE_LIBXSS      // Idle detection.
+#ifdef HAVE_LIBXSS      // Idle detection based on screensaver lib
     int event_base, error_base;
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
         m_idleDetection = true;
-
-    int off,suspend,standby;
-    if (true == QueryDPMSTimeouts(qt_xdisplay(), standby, suspend, off))
-    {
-    	dpmsOff = off;
-	dpmsStandby = standby;
-	dpmsSuspend = suspend;
-    }
-
-    kdDebug() << "DPMS settings: " << standby << " - " 
-	    			   << suspend << " - " << off << endl;
 #endif
-
     kdDebug() << "IDLE Detection is "
               << (m_idleDetection?QString::null:QString("not"))
               << "possible" << endl;
-
 
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
@@ -112,9 +99,19 @@ int RSITimer::idleTime()
     // When dpms turns off the monitor the idle gets a reset to 0
     // Eat the activity in that area. Bug 6439 bugs.freedesktop.org
     int t = m_lastActivity.secsTo(QDateTime::currentDateTime());
-    if (totalIdle == 0 && ( t < dpmsOff-1     || t > dpmsOff+1)
-		       && ( t < dpmsStandby-1 || t > dpmsStandby+1)
-		       && ( t < dpmsSuspend-1 || t > dpmsSuspend+1))
+
+    // refresh timings when there is idleness for 6 minutes, should be
+    // enough to have values before it is needed.
+    if (t == 3600)
+    {
+        QueryDPMSTimeouts(qt_xdisplay(), dpmsStandby, dpmsSuspend, dpmsOff);
+        kdDebug() << "DPMS settings: " << dpmsStandby << " - "
+                << dpmsSuspend << " - " << dpmsOff << endl;
+    }
+
+    if (totalIdle == 0 && ( t < dpmsOff-1     || t > dpmsOff+1     )
+                       && ( t < dpmsStandby-1 || t > dpmsStandby+1 )
+                       && ( t < dpmsSuspend-1 || t > dpmsSuspend+1 ))
         m_lastActivity=QDateTime::currentDateTime();
     else
         totalIdle = m_lastActivity.secsTo(QDateTime::currentDateTime());
