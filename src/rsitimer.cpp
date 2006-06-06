@@ -53,15 +53,6 @@ RSITimer::RSITimer( QObject *parent, const char *name )
 {
     kdDebug() << "Entering RSITimer::RSITimer" << endl;
 
-#ifdef HAVE_LIBXSS      // Idle detection based on screensaver lib
-    int event_base, error_base;
-    if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
-        m_idleDetection = true;
-#endif
-    kdDebug() << "IDLE Detection is "
-              << (m_idleDetection?QString::null:QString("not"))
-              << "possible" << endl;
-
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])

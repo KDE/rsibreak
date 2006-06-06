@@ -222,7 +222,6 @@ class RSITimer : public QObject
         bool            m_breakRequested;
         bool            m_tinyBreakRequested;
         bool            m_bigBreakRequested;
-        bool            m_idleDetection;
         bool            m_suspended;
         bool            m_needRestart;
 
