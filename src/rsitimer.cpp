@@ -46,7 +46,8 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     , m_bigBreakRequested( false )
     , m_suspended( false )
     , m_needRestart( false )
-    , m_pause_left( 0 ), m_relax_left( 0 ), dpmsOff( -10 )
+    , m_pause_left( 0 ), m_relax_left( 0 )
+    , dpmsOff( -10 ), dpmsStandby(-10), dpmsSuspend(-10)
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
@@ -57,11 +58,16 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     if(XScreenSaverQueryExtension(qt_xdisplay(), &event_base, &error_base))
         m_idleDetection = true;
 
-    int off;
-    if (true == QueryDPMSTimeouts(qt_xdisplay(), off))
-      dpmsOff = off;
+    int off,suspend,standby;
+    if (true == QueryDPMSTimeouts(qt_xdisplay(), standby, suspend, off))
+    {
+    	dpmsOff = off;
+	dpmsStandby = standby;
+	dpmsSuspend = suspend;
+    }
 
-    kdDebug() << "DPMS is set to " << off << endl;
+    kdDebug() << "DPMS settings: " << standby << " - " 
+	    			   << suspend << " - " << off << endl;
 #endif
 
     kdDebug() << "IDLE Detection is "
@@ -106,7 +112,9 @@ int RSITimer::idleTime()
     // When dpms turns off the monitor the idle gets a reset to 0
     // Eat the activity in that area. Bug 6439 bugs.freedesktop.org
     int t = m_lastActivity.secsTo(QDateTime::currentDateTime());
-    if (totalIdle == 0 && ( t < dpmsOff-1 || t > dpmsOff+1))
+    if (totalIdle == 0 && ( t < dpmsOff-1     || t > dpmsOff+1)
+		       && ( t < dpmsStandby-1 || t > dpmsStandby+1)
+		       && ( t < dpmsSuspend-1 || t > dpmsSuspend+1))
         m_lastActivity=QDateTime::currentDateTime();
     else
         totalIdle = m_lastActivity.secsTo(QDateTime::currentDateTime());

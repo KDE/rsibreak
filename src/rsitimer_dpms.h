@@ -20,6 +20,6 @@
 #ifndef RSITimer_DPMS_H
 #define RSITimer_DPMS_H
 
-bool QueryDPMSTimeouts(Display* display, int& off);
+bool QueryDPMSTimeouts(Display* display, int& standby, int& suspend, int& off);
 
 #endif

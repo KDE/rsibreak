@@ -21,10 +21,14 @@
     #include <X11/Xutil.h>
     #include <X11/extensions/dpms.h>
 #endif // HAVE_LIBXSS
+//#include <iostream>
+//using namespace std;
 
-bool QueryDPMSTimeouts(Display* display, int& off)
+bool QueryDPMSTimeouts(Display* display, int& standby, int& suspend, int& off)
 {
   bool result = false;
+  standby = 0;
+  suspend = 0;
   off = 0;
 
 #ifdef HAVE_LIBXSS      // Idle detection.
@@ -38,8 +42,11 @@ bool QueryDPMSTimeouts(Display* display, int& off)
     if (DPMSCapable(display))
       if (DPMSGetTimeouts(display, &x_standby, &x_suspend, &x_off))
       {
-        off = (int)x_off;
-        result = true;
+        standby = (int)x_standby;
+        suspend = (int)x_suspend;
+        off     = (int)x_off;
+        result  = true;
+//	cout << (int)x_standby << " - " << (int)x_suspend << " - " << (int)x_off << endl;
       }
 #endif
   return result;
