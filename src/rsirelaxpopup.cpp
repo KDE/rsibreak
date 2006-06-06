@@ -49,6 +49,7 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
     m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
 
+    setTimeout( 0 ); // no auto close
     setView( vbox );
     readSettings();
 }
@@ -59,15 +60,13 @@ RSIRelaxPopup::~RSIRelaxPopup()
 
 void RSIRelaxPopup::relax( int n )
 {
-
-    /**
-      Counts how many times a request for relax resets
-      due to detected activity.
-    */
-
     if (!m_usePopup)
         return;
 
+    /*
+      Counts how many times a request for relax resets
+      due to detected activity.
+    */
     static int resetcount = 0;
 
     /*
@@ -77,7 +76,6 @@ void RSIRelaxPopup::relax( int n )
     if ( n >= m_progress->progress() )
     {
         m_progress->setTotalSteps( n );
-        // m_progress->setProgress( n );
         resetcount += 1;
         if( n > m_progress->progress() )
           flash();
@@ -92,11 +90,16 @@ void RSIRelaxPopup::relax( int n )
                                 n ));
 
         m_progress->setProgress( n );
-        show();
+
+        // ProcessEvents prevents jumping of the dialog and only call show()
+        // once to prevent resizing when the label changes.
+        kapp->processEvents();
+        if (resetcount == 1)
+            show();
     }
     else
     {
-        hide();
+        setVisible( false );
         resetcount = 0;
     }
 }
@@ -136,7 +139,7 @@ void RSIRelaxPopup::readSettings()
 
 void RSIRelaxPopup::setVisible( bool b )
 {
-  if( !b ) hide();
+    if( !b ) hide();
 }
 
 #include "rsirelaxpopup.moc"
