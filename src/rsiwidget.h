@@ -70,9 +70,9 @@ class RSIWidget : public QWidget
         void bigBreakSkipped();
         void breakSkipped();
         void skipBreakEnded();
+        void slotGrayEffect();
 
     protected:
-        virtual void paintEvent( QPaintEvent* );
         virtual void closeEvent ( QCloseEvent * );
         virtual void mousePressEvent( QMouseEvent * e );
         virtual void mouseReleaseEvent( QMouseEvent * e );
@@ -88,7 +88,8 @@ class RSIWidget : public QWidget
         RSIDock*        m_tray;
         RSITimer*       m_timer;
 
-        QPixmap*        m_backgroundimage;
+        QPixmap         m_backgroundimage;
+        int             m_currentY;
         QString         m_basePath;
         QTimer*         m_timer_slide;
         QTimer*         m_grab;

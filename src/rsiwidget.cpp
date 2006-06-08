@@ -39,6 +39,8 @@
 #include <dcopclient.h>
 #include <kmessagebox.h>
 #include <kiconloader.h>
+#include <kpixmap.h>
+#include <kimageeffect.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -52,7 +54,8 @@
 #include "rsiglobals.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
-    : QWidget( parent, name )
+    : QWidget( parent, name, WType_Popup),
+     m_currentY( 0 )
 {
 
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
@@ -137,9 +140,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                  i18n("Welcome"),
                                  "dont_show_welcome_again_for_050");
 
-    m_backgroundimage = new QPixmap(QApplication::desktop()->width(),
-                                    QApplication::desktop()->height());
-
+    m_backgroundimage.resize(QApplication::desktop()->width(),
+                             QApplication::desktop()->height());
+    resize(0,0);
+    move(0,0);
     m_tooltip = new RSIToolTip( m_tray, "Tooltip" );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
     connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
@@ -200,12 +204,11 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     topLayout->addStretch(5);
 
     QBoxLayout *buttonRow = new QHBoxLayout( topLayout );
-
     m_miniButton = new QPushButton( i18n("Skip"), this );
     buttonRow->addWidget( m_miniButton );
-
     m_lockButton = new QPushButton( i18n("Lock desktop"), this );
     buttonRow->addWidget( m_lockButton );
+    buttonRow->addStretch(10);
 
     // These two connects only get used when there the user locks and
     // unlocks before the break is over. The lock releases the mouse
@@ -218,7 +221,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                     i18n("Abort a break"),Qt::Key_Escape,
                     m_timer, SLOT( skipBreak() ));
 
-    buttonRow->addStretch(10);
 
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
@@ -237,9 +239,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
 RSIWidget::~RSIWidget()
 {
-    delete m_backgroundimage;
-    m_backgroundimage = 0;
-
     delete RSIGlobals::instance();
 }
 
@@ -270,6 +269,23 @@ void RSIWidget::maximize()
     m_miniButton->clearFocus();
     m_lockButton->clearFocus();
 
+    // If there are no images found, we gray the screen and wait....
+    if (m_files.count() == 0)
+    {
+        resize(0,0);
+        move(0,0);
+        show();
+        setBackgroundMode( QWidget::NoBackground );
+        setGeometry( QApplication::desktop()->geometry() );
+        QTimer::singleShot( 10, this, SLOT( slotPaintEffect() ) );
+        m_backgroundimage.resize( width(), height() );
+        return;
+    }
+
+    resize(QApplication::desktop()->width(),
+           QApplication::desktop()->height());
+    move(0,0);
+
     if (m_slideInterval>0)
         m_timer_slide->start( m_slideInterval*1000 );
 
@@ -278,6 +294,7 @@ void RSIWidget::maximize()
     KWin::setOnAllDesktops(winId(),true);
     KWin::setState(winId(), NET::KeepAbove);
     KWin::setState(winId(), NET::FullScreen);
+    bitBlt( this, 0, 0, &m_backgroundimage );
 
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
@@ -316,7 +333,7 @@ void RSIWidget::loadImage()
     if (m.isNull())
         return;
 
-    if (!m_backgroundimage->convertFromImage(m))
+    if (!m_backgroundimage.convertFromImage(m))
         kdWarning() << "Failed to set new background image" << endl;
 }
 
@@ -361,6 +378,31 @@ void RSIWidget::findImagesInFolder(const QString& folder)
     }
 }
 
+// This slot is copied from KDE's logout screen.
+// from various authors found in:
+// branches/KDE/3.5/kdebase/ksmserver/shutdowndlg.cpp
+void RSIWidget::slotGrayEffect()
+{
+    if ( m_currentY >= height() ) {
+        if ( backgroundMode() == QWidget::NoBackground ) {
+            setBackgroundMode( QWidget::NoBackground );
+            setBackgroundPixmap( m_backgroundimage );
+        }
+        return;
+    }
+
+    KPixmap pixmap;
+    pixmap = QPixmap::grabWindow( qt_xrootwin(), 0, m_currentY, width(), 10 );
+    QImage image = pixmap.convertToImage();
+    KImageEffect::blend( Qt::black, image, 0.4 );
+    KImageEffect::toGray( image, true );
+    pixmap.convertFromImage( image );
+    bitBlt( this, 0, m_currentY, &pixmap );
+    bitBlt( &m_backgroundimage, 0, m_currentY, &pixmap );
+    m_currentY += 10;
+    QTimer::singleShot( 1, this, SLOT( slotPaintEffect() ) );
+}
+
 // -------------------------- SLOTS ------------------------//
 
 void RSIWidget::slotNewSlide()
@@ -368,7 +410,7 @@ void RSIWidget::slotNewSlide()
     kdDebug() << "Entering RSIWidget::slotNewSlide" << endl;
 
     loadImage();
-    repaint( false );
+    bitBlt( this, 0, 0, &m_backgroundimage );
 }
 
 void RSIWidget::slotLock()
@@ -504,13 +546,6 @@ void RSIWidget::skipBreakEnded()
 }
 
 // ----------------------------- EVENTS -----------------------//
-
-void RSIWidget::paintEvent( QPaintEvent * )
-{
-    kdDebug() << "Entering RSIWidget::paintEvent" << endl;
-    bitBlt( this, 0, 0, m_backgroundimage );
-    m_countDown->setPaletteBackgroundPixmap( *m_backgroundimage );
-}
 
 void RSIWidget::closeEvent( QCloseEvent * )
 {
