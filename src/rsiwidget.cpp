@@ -272,12 +272,13 @@ void RSIWidget::maximize()
     // If there are no images found, we gray the screen and wait....
     if (m_files.count() == 0)
     {
+        m_currentY=0;
         resize(0,0);
         move(0,0);
         show();
         setBackgroundMode( QWidget::NoBackground );
         setGeometry( QApplication::desktop()->geometry() );
-        QTimer::singleShot( 10, this, SLOT( slotPaintEffect() ) );
+        QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
         m_backgroundimage.resize( width(), height() );
         return;
     }
@@ -400,7 +401,7 @@ void RSIWidget::slotGrayEffect()
     bitBlt( this, 0, m_currentY, &pixmap );
     bitBlt( &m_backgroundimage, 0, m_currentY, &pixmap );
     m_currentY += 10;
-    QTimer::singleShot( 1, this, SLOT( slotPaintEffect() ) );
+    QTimer::singleShot( 1, this, SLOT( slotGrayEffect() ) );
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -408,6 +409,9 @@ void RSIWidget::slotGrayEffect()
 void RSIWidget::slotNewSlide()
 {
     kdDebug() << "Entering RSIWidget::slotNewSlide" << endl;
+
+    if (m_files.count() == 1)
+        return;
 
     loadImage();
     bitBlt( this, 0, 0, &m_backgroundimage );
