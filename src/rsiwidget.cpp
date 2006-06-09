@@ -142,8 +142,10 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     m_backgroundimage.resize(QApplication::desktop()->width(),
                              QApplication::desktop()->height());
-    resize(0,0);
+    setBackgroundMode( QWidget::NoBackground );
+    setGeometry( QApplication::desktop()->geometry() );
     move(0,0);
+
     m_tooltip = new RSIToolTip( m_tray, "Tooltip" );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
     connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
@@ -255,6 +257,7 @@ void RSIWidget::minimize( bool newImage )
     releaseKeyboard();
     releaseMouse();
     hide();
+    setBackgroundMode( QWidget::NoBackground );
     RSIGlobals::instance()->DCOPBreak( false );
     if (newImage)
         loadImage();
@@ -265,7 +268,6 @@ void RSIWidget::maximize()
     kdDebug() << "Entering RSIWidget::Maximize" << endl;
 
     show(); // Keep it above the KWin calls.
-    move(0,0);
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
     KWin::setState(winId(), NET::KeepAbove);
@@ -279,23 +281,15 @@ void RSIWidget::maximize()
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
     m_grab->start(1000, true);
-    
+
     // If there are no images found, we gray the screen and wait....
     if (m_files.count() == 0)
     {
         m_currentY=0;
-        resize(0,0);
-        setBackgroundMode( QWidget::NoBackground );
-        setGeometry( QApplication::desktop()->geometry() );
         QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
-        m_backgroundimage.resize( width(), height() );
     }
     else
     {
-
-	resize(QApplication::desktop()->width(),
-               QApplication::desktop()->height());
-
         if (m_slideInterval>0)
             m_timer_slide->start( m_slideInterval*1000 );
 
