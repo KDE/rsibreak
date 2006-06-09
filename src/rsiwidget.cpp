@@ -283,7 +283,7 @@ void RSIWidget::maximize()
     m_grab->start(1000, true);
 
     // If there are no images found, we gray the screen and wait....
-    if (m_files.count() == 0)
+    if (m_files.count() == 0 || !m_useImages)
     {
         m_currentY=0;
         QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
@@ -406,7 +406,7 @@ void RSIWidget::slotNewSlide()
 {
     kdDebug() << "Entering RSIWidget::slotNewSlide" << endl;
 
-    if (m_files.count() == 1)
+    if (m_files.count() == 1 || !m_useImages)
         return;
 
     loadImage();
@@ -615,20 +615,27 @@ void RSIWidget::readConfig()
     m_countDown->setFont(
             config->readFontEntry("CounterFont", t ) );
 
+    bool uImages = config->readBoolEntry("ShowImages", false);
+
     bool recursive =
             config->readBoolEntry("SearchRecursiveCheck", false);
     QString path = config->readEntry("ImageFolder");
 
-    if (m_basePath != path || m_searchRecursive != recursive)
+    if (m_basePath != path || m_searchRecursive != recursive ||
+        m_useImages != uImages )
     {
         m_files.clear();
         m_files_done.clear();
         m_basePath = path;
         m_searchRecursive = recursive;
-        findImagesInFolder( path );
-        // LoadImage (smoothscale) takes some time, so when booting this seriously
-        // drains startup speed. So, deleay this a few seconds...
-        QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
+        m_useImages = uImages;
+        if (m_useImages)
+        {
+            findImagesInFolder( path );
+            // LoadImage (smoothscale) takes some time, so when booting this seriously
+            // drains startup speed. So, deleay this a few seconds...
+            QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
+        }
     }
 
     m_slideInterval = config->readNumEntry("SlideInterval", 2);

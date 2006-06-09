@@ -66,10 +66,11 @@ public:
     QCheckBox*        hideMinimizeButton;
     QCheckBox*        hideCounter;
     QCheckBox*        disableAccel;
-
-    QCheckBox*             usePopup;
-    QCheckBox*             useFlash;
-    QLabel*                useFlashLabel;
+    QPushButton*      changePathButton;
+    QCheckBox*        useImages;
+    QCheckBox*        usePopup;
+    QCheckBox*        useFlash;
+    QLabel*           useFlashLabel;
 
 };
 
@@ -155,6 +156,13 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    QVGroupBox *imageBox = new QVGroupBox(parent);
    imageBox->setTitle(i18n("Image Folder Path"));
 
+   QHBox *rBox = new QHBox(imageBox);
+   d->useImages = new QCheckBox(i18n("Show Images"),rBox);
+   d->searchRecursiveCheck = new QCheckBox(i18n("Search path recursively"),
+                                           rBox);
+   layout->addWidget(rBox);
+   connect(d->useImages, SIGNAL(toggled(bool)), SLOT(slotUseImages()));
+
    QHBox *imageFolderBox = new QHBox(imageBox);
    d->imageFolderEdit = new QLineEdit(imageFolderBox);
    QWhatsThis::add( d->imageFolderEdit,
@@ -162,15 +170,13 @@ SetupMaximized::SetupMaximized(QWidget* parent )
              "These images are randomly shown during the breaks. "
              "It will be searched recursively if you want...") );
 
-   QPushButton *changePathButton = new QPushButton(i18n("&Change..."),
+   d->changePathButton = new QPushButton(i18n("&Change..."),
            imageFolderBox);
-   connect(changePathButton, SIGNAL(clicked()),
+   connect(d->changePathButton, SIGNAL(clicked()),
            this, SLOT(slotFolderPicker()));
    connect( d->imageFolderEdit, SIGNAL(textChanged(const QString&)),
             this, SLOT(slotFolderEdited(const QString&)) );
 
-   d->searchRecursiveCheck = new QCheckBox(i18n("Search recursively"),
-                                          imageBox);
    layout->addWidget(imageBox);
 
    //---------------- Popup setup
@@ -208,12 +214,21 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    slotHideCounter();
    slotHideShortcut();
    slotHideFlash();
+   slotUseImages();
 }
 
 SetupMaximized::~SetupMaximized()
 {
     kdDebug() << "Entering ~SetupMaximized" << endl;
     delete d;
+}
+
+void SetupMaximized::slotUseImages()
+{
+    kdDebug() << "Entering slotHideCounter" << endl;
+    d->searchRecursiveCheck->setEnabled(d->useImages->isChecked());
+    d->imageFolderEdit->setEnabled(d->useImages->isChecked());
+    d->changePathButton->setEnabled(d->useImages->isChecked());
 }
 
 void SetupMaximized::slotHideCounter()
@@ -295,6 +310,9 @@ void SetupMaximized::applySettings()
                        d->hideMinimizeButton->isChecked());
     config->writeEntry("SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked());
+    config->writeEntry("ShowImages",
+                       d->useImages->isChecked());
+
     config->writeEntry("HideCounter", d->hideCounter->isChecked());
     config->writeEntry("DisableAccel", d->disableAccel->isChecked());
     config->writeEntry("MinimizeKey", d->shortcut);
@@ -323,6 +341,8 @@ void SetupMaximized::readSettings()
     d->counterFontBut->setText(d->counterFont.family());
     d->hideMinimizeButton->setChecked(
             config->readBoolEntry("HideMinimizeButton", false));
+    d->useImages->setChecked(
+            config->readBoolEntry("ShowImages", false));
     d->searchRecursiveCheck->setChecked(
             config->readBoolEntry("SearchRecursiveCheck", false));
     d->hideCounter->setChecked(config->readBoolEntry("HideCounter", false));

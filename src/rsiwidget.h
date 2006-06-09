@@ -98,6 +98,7 @@ class RSIWidget : public QWidget
 
         QLabel*         m_tool;
 
+        bool            m_useImages;
         bool            m_searchRecursive;
         bool            m_showTimerReset;
         int             m_slideInterval;
