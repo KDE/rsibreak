@@ -35,9 +35,13 @@ RSIStats::RSIStats()
     m_statistics.insert( ACTIVITY, new RSIStatItem(i18n("Total time of activity") ) );
     m_statistics[ACTIVITY]->addDerivedItem( ACTIVITY_PERC );
     m_statistics[ACTIVITY]->addDerivedItem( ACTIVITY_PERC_MINUTE );
+    m_statistics[ACTIVITY]->addDerivedItem( ACTIVITY_PERC_HOUR );
+    m_statistics[ACTIVITY]->addDerivedItem( ACTIVITY_PERC_6HOUR );
 
     m_statistics.insert( IDLENESS, new RSIStatItem(i18n("Total time being idle") ) );
     m_statistics[IDLENESS]->addDerivedItem( ACTIVITY_PERC_MINUTE );
+    m_statistics[IDLENESS]->addDerivedItem( ACTIVITY_PERC_HOUR );
+    m_statistics[IDLENESS]->addDerivedItem( ACTIVITY_PERC_6HOUR );
 
     m_statistics.insert( ACTIVITY_PERC, new RSIStatItem(i18n("Percentage of activity"), 0 ) );
 
@@ -77,6 +81,8 @@ RSIStats::RSIStats()
     m_statistics.insert( PAUSE_SCORE, new RSIStatItem(i18n("Pause score"), 100 ) );
 
     m_statistics.insert( ACTIVITY_PERC_MINUTE, new RSIStatBitArrayItem( i18n("Percentage of activity last minute:"), QVariant( 0 ), 60 ) );
+    m_statistics.insert( ACTIVITY_PERC_HOUR, new RSIStatBitArrayItem( i18n("Percentage of activity last hour:"), QVariant( 0 ), 3600 ) );
+    m_statistics.insert( ACTIVITY_PERC_6HOUR, new RSIStatBitArrayItem( i18n("Percentage of activity last 6 hours:"), QVariant( 0 ), 6 * 3600 ) );
 
     // initialise labels
     QMap<RSIStat,RSIStatItem *>::Iterator it;
@@ -222,6 +228,8 @@ void RSIStats::updateDependentStats( RSIStat stat )
         }
 
         case ACTIVITY_PERC_MINUTE:
+        case ACTIVITY_PERC_HOUR:
+        case ACTIVITY_PERC_6HOUR:
         {
             if ( stat == ACTIVITY )
               static_cast<RSIStatBitArrayItem *>(m_statistics[*it])->setActivity();
@@ -298,6 +306,8 @@ void RSIStats::updateLabel( RSIStat stat )
         break;
         case ACTIVITY_PERC:
         case ACTIVITY_PERC_MINUTE:
+        case ACTIVITY_PERC_HOUR:
+        case ACTIVITY_PERC_6HOUR:
         v = m_statistics[stat]->getValue().toDouble();
         setColor( stat, QColor( (int)(2.55 * v), (int)(160 - 1.60 * v), 0 ) );
         l->setText( QString::number(
@@ -319,7 +329,8 @@ void RSIStats::updateLabel( RSIStat stat )
     }
 
     // some stats need a %
-    if ( stat == PAUSE_SCORE || stat == ACTIVITY_PERC || stat == ACTIVITY_PERC_MINUTE )
+    if ( stat == PAUSE_SCORE || stat == ACTIVITY_PERC || stat == ACTIVITY_PERC_MINUTE ||
+         stat == ACTIVITY_PERC_HOUR || stat == ACTIVITY_PERC_6HOUR )
         l->setText( l->text() + '%' );
 }
 
@@ -388,6 +399,12 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
                           "with the breaks. It decreases everytime you skip a break.");
       case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
       case ACTIVITY_PERC_MINUTE: return i18n("This is a percentage of activity during the last minute."
+                          "The color indicates the level of your activity. When the color is"
+                          "close to full red it's recommended to lower your work pace.");
+      case ACTIVITY_PERC_HOUR: return i18n("This is a percentage of activity during the last hour."
+                          "The color indicates the level of your activity. When the color is"
+                          "close to full red it's recommended to lower your work pace.");
+      case ACTIVITY_PERC_6HOUR: return i18n("This is a percentage of activity during the last 6 hours."
                           "The color indicates the level of your activity. When the color is"
                           "close to full red it's recommended to lower your work pace.");
       default: ;

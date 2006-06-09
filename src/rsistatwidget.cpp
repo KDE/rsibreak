@@ -59,6 +59,8 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     subgrid->setSpacing( 5 );
     addStat( ACTIVITY_PERC, subgrid );
     addStat( ACTIVITY_PERC_MINUTE, subgrid );
+    addStat( ACTIVITY_PERC_HOUR, subgrid );
+    addStat( ACTIVITY_PERC_6HOUR, subgrid );
     addStat( PAUSE_SCORE, subgrid );
     mGrid->addWidget( gb, 1, 0 );
 

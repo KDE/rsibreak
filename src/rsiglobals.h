@@ -32,7 +32,9 @@ enum RSIStat {
                ACTIVITY,
                IDLENESS,
                ACTIVITY_PERC,
-               ACTIVITY_PERC_MINUTE, // TODO: More stats
+               ACTIVITY_PERC_MINUTE,
+               ACTIVITY_PERC_HOUR,
+               ACTIVITY_PERC_6HOUR,
                MAX_IDLENESS,
                CURRENT_IDLE_TIME,
                IDLENESS_CAUSED_SKIP_TINY,
