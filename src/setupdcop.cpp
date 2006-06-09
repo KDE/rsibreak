@@ -151,20 +151,14 @@ SetupDCOP::SetupDCOP(QWidget* parent )
 
     readSettings();
 
-    // Some examples...
+    // An example...
     if ( !d->table->firstChild() )
     {
-        QCheckListItem* item = new QCheckListItem(d->table,"KArm",
+        QCheckListItem* item = new QCheckListItem(d->table,"Kopete",
                 QCheckListItem::CheckBox);
-        item->setText(1,"karm KarmDCOPIface stoptimerfor replacewithtask");
-        item->setText(2,"karm KarmDCOPIface starttimerfor replacewithtask");
+        item->setText(1,"kopete KopeteIface setAway()");
+        item->setText(2,"kopete KopeteIface setAvailable()");
         d->table->insertItem(item);
-
-        QCheckListItem* item3 = new QCheckListItem(d->table,"Kopete",
-                QCheckListItem::CheckBox);
-        item3->setText(1,"kopete KopeteIface setAway()");
-        item3->setText(2,"kopete KopeteIface setAvailable()");
-        d->table->insertItem(item3);
     }
 
     // now that the table contains data, set the width and stick to it.

@@ -264,42 +264,44 @@ void RSIWidget::maximize()
 {
     kdDebug() << "Entering RSIWidget::Maximize" << endl;
 
+    show(); // Keep it above the KWin calls.
+    move(0,0);
+    KWin::forceActiveWindow(winId());
+    KWin::setOnAllDesktops(winId(),true);
+    KWin::setState(winId(), NET::KeepAbove);
+    KWin::setState(winId(), NET::FullScreen);
+
     // prevent that users accidently press this button while
     // they were writing text when the break appears
     m_miniButton->clearFocus();
     m_lockButton->clearFocus();
 
+    // Small delay for grabbing keyboard and mouse, because
+    // it will not grab when widget not visible
+    m_grab->start(1000, true);
+    
     // If there are no images found, we gray the screen and wait....
     if (m_files.count() == 0)
     {
         m_currentY=0;
         resize(0,0);
-        move(0,0);
-        show();
         setBackgroundMode( QWidget::NoBackground );
         setGeometry( QApplication::desktop()->geometry() );
         QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
         m_backgroundimage.resize( width(), height() );
-        return;
+    }
+    else
+    {
+
+	resize(QApplication::desktop()->width(),
+               QApplication::desktop()->height());
+
+        if (m_slideInterval>0)
+            m_timer_slide->start( m_slideInterval*1000 );
+
+        bitBlt( this, 0, 0, &m_backgroundimage );
     }
 
-    resize(QApplication::desktop()->width(),
-           QApplication::desktop()->height());
-    move(0,0);
-
-    if (m_slideInterval>0)
-        m_timer_slide->start( m_slideInterval*1000 );
-
-    show(); // Keep it above the KWin calls.
-    KWin::forceActiveWindow(winId());
-    KWin::setOnAllDesktops(winId(),true);
-    KWin::setState(winId(), NET::KeepAbove);
-    KWin::setState(winId(), NET::FullScreen);
-    bitBlt( this, 0, 0, &m_backgroundimage );
-
-    // Small delay for grabbing keyboard and mouse, because
-    // it will not grab when widget not visible
-    m_grab->start(1000, true);
     RSIGlobals::instance()->DCOPBreak( true );
 }
 
