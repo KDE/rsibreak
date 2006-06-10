@@ -1,5 +1,6 @@
 /* This file is part of the KDE project
    Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -35,18 +36,29 @@ class RSITimer;
 class RSIRelaxPopup;
 class RSIToolTip;
 
+/**
+ * @class RSILabel
+ * This label supports a transparent background, used for the
+ * RSIWidget when it's maximized.
+ * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
+ */
 class RSILabel : public QLabel
 {
   Q_OBJECT
 
   public:
+    /** Constructor */
     RSILabel( QWidget * = 0, const char * = 0 );
+
+    /** Destructor */
     ~RSILabel();
 
   public slots:
+    /** Sets the text of the label and updates the mask. */
     virtual void setText( const QString & );
 
   protected:
+    /** Update mask according to the text. Called by setText(). */
     virtual void updateMask();
 };
 
