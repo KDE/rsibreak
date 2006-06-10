@@ -164,7 +164,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ) );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tray, SLOT( relaxEntered( int ) ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tray, SLOT( relaxEntered( int, bool ) ) );
 
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
     connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );

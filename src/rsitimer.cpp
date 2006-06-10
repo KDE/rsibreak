@@ -374,7 +374,7 @@ void RSITimer::timerEvent( QTimerEvent * )
                 m_relax_left = 0;
 
                 breakNow( breakInterval );
-                nextBreak == TINY_BREAK  ?
+                m_nextBreak == TINY_BREAK  ?
                         RSIGlobals::instance()->DCOPBreak( true, false ):
                         RSIGlobals::instance()->DCOPBreak( true, true );
                 m_pause_left = breakInterval;
