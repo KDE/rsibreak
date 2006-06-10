@@ -59,6 +59,11 @@ public:
     QCheckListItem  *current;
     QPushButton     *startButton;
     QPushButton     *endButton;
+    QLabel          *l2;
+    QLabel          *l3;
+    QLabel          *l4;
+    QLabel          *l5;
+    QLabel          *l6;
 };
 
 SetupDCOP::SetupDCOP(QWidget* parent )
@@ -90,41 +95,41 @@ SetupDCOP::SetupDCOP(QWidget* parent )
 
     QGridLayout *gbox = new QGridLayout( 4, 3 );
 
-    QLabel *l2 = new QLabel(i18n("Name:"), parent);
-    QWhatsThis::add( l2, i18n("What is the name of the application") );
+    d->l2 = new QLabel(i18n("Name:"), parent);
+    QWhatsThis::add( d->l2, i18n("What is the name of the application") );
     d->desc = new QLineEdit(parent);
-    l2->setBuddy(d->desc);
+    d->l2->setBuddy(d->desc);
     connect( d->desc, SIGNAL(textChanged(const QString&) ),
              SLOT(slotDescChanged(const QString&) ) );
 
-    QLabel *l3 = new QLabel(i18n("DCOP At Break Start:"), parent);
-    QWhatsThis::add( l3, i18n("Here you can set the command to issue when "
+    d->l3 = new QLabel(i18n("DCOP At Break Start:"), parent);
+    QWhatsThis::add( d->l3, i18n("Here you can set the command to issue when "
             "the break begins") );
     d->start = new QLineEdit(parent);
-    l3->setBuddy(d->start);
+    d->l3->setBuddy(d->start);
     connect( d->start, SIGNAL(textChanged(const QString&) ),
              SLOT(slotDCOPStartChanged(const QString&) ) );
 
-    QLabel *l4 = new QLabel(i18n("DCOP At Break End:"), parent);
-    QWhatsThis::add( l3, i18n("Here you can set the command to issue when "
+    d->l4 = new QLabel(i18n("DCOP At Break End:"), parent);
+    QWhatsThis::add( d->l4, i18n("Here you can set the command to issue when "
             "the break ends") );
     d->end = new QLineEdit(parent);
-    l4->setBuddy(d->end);
+    d->l4->setBuddy(d->end);
     connect( d->end, SIGNAL(textChanged(const QString&) ),
              SLOT(slotDCOPStopChanged(const QString&) ) );
 
-    QLabel *l5 = new QLabel(i18n("Activated:"), parent);
-    QWhatsThis::add( l5, i18n("Here you can activate or deactivate the "
+    d->l5 = new QLabel(i18n("Activated:"), parent);
+    QWhatsThis::add( d->l5, i18n("Here you can activate or deactivate the "
             "command" ) );
     d->active = new QCheckBox(parent);
-    l5->setBuddy(d->active);
+    d->l5->setBuddy(d->active);
     connect( d->active, SIGNAL(clicked()), SLOT( slotCheckActive() ) );
 
-    QLabel *l6 = new QLabel(i18n("Only at Long Breaks:"), parent);
-    QWhatsThis::add( l5, i18n("Here you can indicate if the command should"
+    d->l6 = new QLabel(i18n("Only at Long Breaks:"), parent);
+    QWhatsThis::add( d->l6, i18n("Here you can indicate if the command should"
             "only be executed at Long Breaks or also on Short Breaks" ) );
     d->onlyAtBigBreak = new QCheckBox(parent);
-    l6->setBuddy(d->onlyAtBigBreak);
+    d->l6->setBuddy(d->onlyAtBigBreak);
     connect( d->onlyAtBigBreak,SIGNAL(clicked()),SLOT( slotCheckOnlyAtBigBreak()));
 
     d->startButton = new QPushButton( i18n("Test"), parent);
@@ -133,17 +138,17 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->endButton = new QPushButton( i18n("Test"), parent);
     connect( d->endButton, SIGNAL(clicked()), SLOT( slotTestStop()));
 
-    gbox->addWidget(l2,0,0, Qt::AlignRight);
+    gbox->addWidget(d->l2,0,0, Qt::AlignRight);
     gbox->addMultiCellWidget(d->desc,0,0,1,2);
-    gbox->addWidget(l3,2,0, Qt::AlignRight);
+    gbox->addWidget(d->l3,2,0, Qt::AlignRight);
     gbox->addMultiCellWidget(d->start,2,2,1,2);
     gbox->addWidget(d->startButton,2,3);
-    gbox->addWidget(l4,3,0, Qt::AlignRight);
+    gbox->addWidget(d->l4,3,0, Qt::AlignRight);
     gbox->addMultiCellWidget(d->end,3,3,1,2);
     gbox->addWidget(d->endButton,3,3);
-    gbox->addWidget(l5,1,0, Qt::AlignRight);
+    gbox->addWidget(d->l5,1,0, Qt::AlignRight);
     gbox->addWidget(d->active,1,1);
-    gbox->addWidget(l6,1,2, Qt::AlignRight);
+    gbox->addWidget(d->l6,1,2, Qt::AlignRight);
     gbox->addWidget(d->onlyAtBigBreak,1,3);
 
     layout->addLayout(gbox);
@@ -154,7 +159,11 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->end->setEnabled(false);
     d->startButton->setEnabled(false);
     d->endButton->setEnabled(false);
-
+    d->l2->setEnabled(false);
+    d->l3->setEnabled(false);
+    d->l4->setEnabled(false);
+    d->l5->setEnabled(false);
+    d->l6->setEnabled(false);
     readSettings();
 
     // An example...
@@ -259,6 +268,11 @@ void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
             d->end->setEnabled(false);
             d->startButton->setEnabled(false);
             d->endButton->setEnabled(false);
+            d->l2->setEnabled(false);
+            d->l3->setEnabled(false);
+            d->l4->setEnabled(false);
+            d->l5->setEnabled(false);
+            d->l6->setEnabled(false);
         }
         else if (i == 1)
             slotAddNewItem();
@@ -290,16 +304,24 @@ void SetupDCOP::updateEditArea()
     d->onlyAtBigBreak->setEnabled(true);
     d->current->text(3) == "true" ? d->onlyAtBigBreak->setChecked(true) :
                                     d->onlyAtBigBreak->setChecked(false);
-    d->start->setEnabled(true);
-    d->end->setEnabled(true);
-    d->startButton->setEnabled(true);
-    d->endButton->setEnabled(true);
+    d->l2->setEnabled( true );
+    d->l5->setEnabled( true );
+    slotCheckActive();
 }
 
 void SetupDCOP::slotCheckActive()
 {
-    d->active->isChecked() ? d->current->setState( QCheckListItem::On ):
-                             d->current->setState( QCheckListItem::Off );
+    bool b = d->active->isChecked();
+    b ? d->current->setState( QCheckListItem::On ):
+        d->current->setState( QCheckListItem::Off );
+    d->onlyAtBigBreak->setEnabled( b );
+    d->start->setEnabled( b );
+    d->end->setEnabled( b );
+    d->startButton->setEnabled( b );
+    d->endButton->setEnabled( b );
+    d->l3->setEnabled( b );
+    d->l4->setEnabled( b );
+    d->l6->setEnabled( b );
 }
 
 void SetupDCOP::slotCheckOnlyAtBigBreak()
