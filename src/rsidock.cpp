@@ -85,7 +85,6 @@ RSIDock::~RSIDock()
 
 void RSIDock::slotConfigure()
 {
-    kdDebug() << "Entering slotConfigure" << endl;
     Setup setup(this);
     emit dialogEntered();
     if (setup.exec() == QDialog::Accepted)
@@ -97,13 +96,8 @@ void RSIDock::slotConfigure()
 
 void RSIDock::slotAboutKDE()
 {
-    kdDebug() << "Entering slotAboutKDE" << endl;
     KAboutKDE about;
-    emit dialogEntered();
     about.exec();
-
-    if ( !m_suspended ) // don't start the timer!
-      emit dialogLeft();
 }
 
 void RSIDock::slotAboutRSIBreak()
@@ -114,13 +108,8 @@ void RSIDock::slotAboutRSIBreak()
 
 void RSIDock::slotReportBug()
 {
-    kdDebug() << "Entering slotReportBug" << endl;
     KBugReport bug;
-    emit dialogEntered();
     bug.exec();
-
-    if ( !m_suspended ) // don't start the timer!
-      emit dialogLeft();
 }
 
 void RSIDock::slotBreakRequest()
@@ -130,8 +119,6 @@ void RSIDock::slotBreakRequest()
 
 void RSIDock::slotSuspend()
 {
-    kdDebug() << "Entering RSIDock::slotSuspend" << endl;
-
     if( m_suspended )
     {
         emit suspend( false );
@@ -154,8 +141,6 @@ void RSIDock::slotSuspend()
 
 void RSIDock::showEvent( QShowEvent * )
 {
-    kdDebug() << "Entering RSIDock::showEvent" << endl;
-
     if (!m_hasQuit)
     {
         contextMenu()->insertSeparator();
@@ -171,8 +156,6 @@ void RSIDock::showEvent( QShowEvent * )
 
 void RSIDock::mousePressEvent( QMouseEvent *e )
 {
-    kdDebug() << "Entering RSIDock::mousePressEvent" << endl;
-
     m_tooltiptimer->stop();
     emit hideToolTip();
 
@@ -203,16 +186,12 @@ void RSIDock::relaxEntered( int i )
 
 void RSIDock::slotShowToolTip()
 {
-    kdDebug() << "Entering RSIDock::slotShowToolTip" << endl;
-
     if( !m_tooltiphidden )
       emit showToolTip();
 }
 
 void RSIDock::slotShowStatistics()
 {
-    kdDebug() << "Entering RSIDock::showStatistics()" << endl;
-
     if ( !m_statsDialog )
     {
       m_statsDialog = new KDialogBase( this, 0, false,
@@ -237,7 +216,6 @@ void RSIDock::slotShowStatistics()
 
 void RSIDock::slotResetStats()
 {
-    kdDebug() << "Entering RSIDock::slotResetStats" << endl;
     int i = KMessageBox::warningContinueCancel( this,
                 i18n("This will reset all statistics to zero. "
                      "Is that what you want?"),
