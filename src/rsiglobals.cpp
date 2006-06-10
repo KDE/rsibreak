@@ -133,7 +133,6 @@ void RSIGlobals::slotReadConfig()
     QMap<QString, QString>::const_iterator i;
     for (i = map.constBegin(); i != map.constEnd(); ++i)
     {
-        kdDebug() << i.key() << ": " << i.data() << endl;
         QStringList list = QStringList::split(",",i.data());
 
         if (list[2] == "On")    // only active ones

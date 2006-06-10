@@ -76,7 +76,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
         //
         // Compute size and position of the pixmap to be grabbed:
         QPoint g = m_tray->mapToGlobal( m_tray-> pos() );
-        kdDebug() << "TRAY: "<< m_tray->pos() << g << m_tray->isVisible() << endl;
         int desktopWidth  = kapp->desktop()->width();
         int desktopHeight = kapp->desktop()->height();
         int tw = m_tray->width();
@@ -250,8 +249,6 @@ RSIWidget::~RSIWidget()
 
 void RSIWidget::minimize( bool newImage )
 {
-    kdDebug() << "Entering RSIWidget::Minimize" << endl;
-
     // stop the m_grab, if the break is ESCaped during the
     // first second, slotGrab is called after the widget
     // is minimized again.
@@ -268,8 +265,6 @@ void RSIWidget::minimize( bool newImage )
 
 void RSIWidget::maximize()
 {
-    kdDebug() << "Entering RSIWidget::Maximize" << endl;
-
     show(); // Keep it above the KWin calls.
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
@@ -340,8 +335,6 @@ void RSIWidget::loadImage()
 
 void RSIWidget::findImagesInFolder(const QString& folder)
 {
-    kdDebug() << "Looking for pictures in " << folder << endl;
-
     if ( folder.isNull() )
         return;
 
@@ -408,8 +401,6 @@ void RSIWidget::slotGrayEffect()
 
 void RSIWidget::slotNewSlide()
 {
-    kdDebug() << "Entering RSIWidget::slotNewSlide" << endl;
-
     if (m_files.count() == 1 || !m_useImages)
         return;
 
@@ -419,8 +410,6 @@ void RSIWidget::slotNewSlide()
 
 void RSIWidget::slotLock()
 {
-    kdDebug() << "Entering RSIWidget::slotLock" << endl;
-
     m_timer_slide->stop();
     releaseKeyboard();
     releaseMouse();
@@ -563,8 +552,6 @@ void RSIWidget::closeEvent( QCloseEvent * )
 
 void RSIWidget::mousePressEvent( QMouseEvent * e )
 {
-    kdDebug() << e->pos() << " is within " <<  m_miniButton->geometry() << endl;
-
     if (e->button() != LeftButton)
         return;
 
@@ -577,7 +564,6 @@ void RSIWidget::mousePressEvent( QMouseEvent * e )
 
 void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
 {
-    kdDebug() << e->pos() << " is within " <<  m_miniButton->geometry() << endl;
     if ( m_miniButton->geometry().contains(e->pos()))
     {
         m_miniButton->setDown( false );
@@ -593,9 +579,6 @@ void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
 
 void RSIWidget::keyPressEvent( QKeyEvent * e)
 {
-    kdDebug() << "Entering RSIWidget::mousePressEvent - Received: "
-            << e->key() << " wanted " << m_accel->shortcut("minimize") << endl;
-
     if (e->key() == m_accel->shortcut("minimize"))
         m_timer->skipBreak();
 }
@@ -604,7 +587,6 @@ void RSIWidget::keyPressEvent( QKeyEvent * e)
 
 void RSIWidget::readConfig()
 {
-    kdDebug() << "Entering RSIWidget::readConfig" << endl;
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );

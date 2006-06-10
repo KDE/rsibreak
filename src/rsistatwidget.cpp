@@ -30,8 +30,6 @@
 RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
 : QWidget( parent, name )
 {
-    kdDebug() << "RSIStatWidget::RSIStatWidget() entered" << endl;
-
     mGrid = new QGridLayout( this );
     mGrid->setSpacing( 5 );
 
@@ -80,8 +78,6 @@ RSIStatWidget::~RSIStatWidget()
 
 void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
 {
-    kdDebug() << "RSIStatWidget::addStat()" << endl;
-
     QLabel *l = RSIGlobals::instance()->stats()->getDescription( stat );
     l->reparent( grid, 0, QPoint() );
 

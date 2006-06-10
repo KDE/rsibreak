@@ -51,7 +51,6 @@ Setup::Setup(QWidget* parent, const char* name)
      : KDialogBase(IconList, i18n("Configure"), Help|Ok|Cancel, Ok, parent,
                    name, true, true )
 {
-    kdDebug() << "Entering Setup" << endl;
     d = new SetupPriv;
 
     QFrame *page_general = addPage(i18n("General"), i18n("General Settings"),
@@ -81,14 +80,12 @@ Setup::Setup(QWidget* parent, const char* name)
 
 Setup::~Setup()
 {
-    kdDebug() << "Entering ~Setup" << endl;
     saveDialogSize("Settings");
     delete d;
 }
 
 void Setup::slotOkClicked()
 {
-    kdDebug() << "Entering slotOkClicked" << endl;
     d->generalPage->applySettings();
     d->timingPage->applySettings();
     d->maximizedPage->applySettings();

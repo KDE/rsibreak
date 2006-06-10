@@ -48,8 +48,6 @@ void RSIStatItem::reset()
 RSIStatBitArrayItem::RSIStatBitArrayItem( const QString &description, QVariant init, int size )
 : RSIStatItem( description, init ), m_size( size ), m_counter( 0 )
 {
-  kdDebug() << "RSIStatBitArrayItem::RSIStatBitArrayItem entered" << endl;
-
   Q_ASSERT ( size <= totalarraysize );
 
   m_end = 0;
@@ -71,8 +69,6 @@ void RSIStatBitArrayItem::reset()
 
 void RSIStatBitArrayItem::setActivity()
 {
-  //kdDebug() << "RSIStatBitArrayItem::setActivity() entered" << endl;
-
   QBitArray *array = RSIGlobals::instance()->usageArray();
 
   if ( !array->testBit( m_begin ) )
@@ -89,8 +85,6 @@ void RSIStatBitArrayItem::setActivity()
 
 void RSIStatBitArrayItem::setIdle()
 {
-  //kdDebug() << "RSIStatBitArrayItem::setIdle() entered" << endl;
-
   QBitArray *array = RSIGlobals::instance()->usageArray();
 
   if ( array->testBit( m_begin ) )

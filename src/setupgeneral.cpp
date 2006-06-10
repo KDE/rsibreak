@@ -52,8 +52,6 @@ public:
 SetupGeneral::SetupGeneral(QWidget* parent )
            : QWidget(parent)
 {
-    kdDebug() << "Entering SetupGeneral" << endl;
-
     d = new SetupGeneralPriv;
 
     QVBoxLayout *layout = new QVBoxLayout( parent );
@@ -86,7 +84,6 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
 SetupGeneral::~SetupGeneral()
 {
-    kdDebug() << "Entering ~SetupGeneral" << endl;
     delete d;
 }
 
@@ -97,7 +94,6 @@ void SetupGeneral::slotShowTimer()
 
 void SetupGeneral::applySettings()
 {
-    kdDebug() << "Entering applySettings" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General");
@@ -111,7 +107,6 @@ void SetupGeneral::applySettings()
 
 void SetupGeneral::readSettings()
 {
-    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General");

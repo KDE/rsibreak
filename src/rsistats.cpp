@@ -27,8 +27,6 @@
 
 RSIStats::RSIStats()
 {
-    kdDebug() << "RSIStats::RSIStats() entered" << endl;
-
     m_statistics.insert( TOTAL_TIME, new RSIStatItem(i18n("Total recorded time") ) );
     m_statistics[TOTAL_TIME]->addDerivedItem( ACTIVITY_PERC );
 
@@ -100,8 +98,6 @@ RSIStats::RSIStats()
 
 RSIStats::~RSIStats()
 {
-    kdDebug() << "RSIStats::~RSIStats() entered" << endl;
-
     QMap<RSIStat,QLabel *>::Iterator it;
     for ( it = m_labels.begin() ; it != m_labels.end(); ++it )
     {
@@ -121,8 +117,6 @@ RSIStats::~RSIStats()
 
 void RSIStats::reset()
 {
-    kdDebug() << "RSIStats::reset() entered" << endl;
-
     QMap<RSIStat,RSIStatItem *>::ConstIterator it;
     for( it = m_statistics.begin(); it != m_statistics.end(); ++it )
     {
@@ -133,8 +127,6 @@ void RSIStats::reset()
 
 void RSIStats::increaseStat( RSIStat stat, int delta )
 {
-    // kdDebug() << "RSIStats::increaseStat() entered" << endl;
-
     QVariant v = m_statistics[stat]->getValue();
 
     if ( v.type() == QVariant::Int )
@@ -150,8 +142,6 @@ void RSIStats::increaseStat( RSIStat stat, int delta )
 
 void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
 {
-    // kdDebug() << "RSIStats::increaseStat() entered" << endl;
-
     QVariant v = m_statistics[stat]->getValue();
 
     if ( !ifmax ||
@@ -167,8 +157,6 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
 
 void RSIStats::updateDependentStats( RSIStat stat )
 {
-    // kdDebug() << "RSIStats::updateDependentStats " << stat << endl;
-
     QValueList<RSIStat> stats = m_statistics[ stat ]->getDerivedItems();
     QValueList<RSIStat>::ConstIterator it;
     for( it = stats.begin() ; it != stats.end(); ++it )
@@ -259,8 +247,6 @@ void RSIStats::updateDependentStats( RSIStat stat )
 
 void RSIStats::updateStat( RSIStat stat, bool updateDerived )
 {
-    // kdDebug() << "RSIStats::updateStat() entered" << endl;
-
     if ( updateDerived )
       updateDependentStats( stat );
     updateLabel( stat );
@@ -268,8 +254,6 @@ void RSIStats::updateStat( RSIStat stat, bool updateDerived )
 
 void RSIStats::updateLabel( RSIStat stat )
 {
-    // kdDebug() << "RSIStats::updateLabel() entered" << endl;
-
     QLabel *l = m_labels[ stat ];
     QColor c;
     double v;
@@ -336,8 +320,6 @@ void RSIStats::updateLabel( RSIStat stat )
 
 void RSIStats::updateLabels()
 {
-    // kdDebug() << "RSIStats::updateLabels()" << endl;
-
     QMapConstIterator<RSIStat,RSIStatItem *> it;
     for ( it = m_statistics.begin() ; it != m_statistics.end() ; ++it )
       updateLabel( it.key() );
@@ -345,22 +327,16 @@ void RSIStats::updateLabels()
 
 QVariant RSIStats::getStat( RSIStat stat ) const
 {
-    // kdDebug() << "RSIStats::getStat() entered" << endl;
-
     return m_statistics[ stat ]->getValue();
 }
 
 QLabel *RSIStats::getLabel( RSIStat stat ) const
 {
-    // kdDebug() << "RSIStats::getFormattedStat() entered" << endl;
-
     return m_labels[ stat ];
 }
 
 QLabel *RSIStats::getDescription( RSIStat stat ) const
 {
-    // kdDebug() << "RSIStats::getDescription() entered" << endl;
-
     return m_statistics[stat]->getDescription();
 }
 

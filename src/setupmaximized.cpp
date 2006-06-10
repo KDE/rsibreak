@@ -55,6 +55,7 @@ public:
     QHBox*            colorBox;
     QHBox*            fontBox;
     QHBox*            shortcutBox;
+    QVGroupBox*       slideshowBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
     QPushButton*      shortcutBut;
@@ -67,7 +68,6 @@ public:
     QCheckBox*        hideCounter;
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
-    QCheckBox*        useImages;
     QCheckBox*        usePopup;
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
@@ -77,8 +77,6 @@ public:
 SetupMaximized::SetupMaximized(QWidget* parent )
            : QWidget(parent)
 {
-   kdDebug() << "Entering SetupMaximized" << endl;
-
    d = new SetupMaximizedPriv;
 
    //--- Vertical to start with
@@ -87,7 +85,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    layout->setAlignment( AlignTop );
 
    // Counterbox and skipbox next to eachother
-   QHBox *boxes= new QHBox(parent);
+   QHBox *boxes= new QHBox(parent,"mainbox");
    boxes->setSpacing( KDialog::spacingHint() );
 
    //-------------------- Counterbox
@@ -101,7 +99,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
            "down to zero, so you know how long this break will be. It will "
            "be shown on top of the image, when images are shown.") );
 
-   d->colorBox = new QHBox(counterBox);
+   d->colorBox = new QHBox(counterBox,"colorbox");
    QLabel *counterColorlabel = new QLabel( i18n("&Color:")+' ', d->colorBox );
    counterColorlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterColor = new KColorButton(d->colorBox);
@@ -111,7 +109,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
             "might want to set it to a color which is visible for most "
             "of the images.") );
 
-   d->fontBox = new QHBox(counterBox);
+   d->fontBox = new QHBox(counterBox,"counterbox");
    QLabel *counterFontlabel = new QLabel( i18n("&Font:")+' ', d->fontBox );
    counterFontlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterFontBut = new QPushButton("font",d->fontBox);
@@ -139,7 +137,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
                             "This way you can prevent skipping the break.") );
    connect(d->disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
 
-   d->shortcutBox = new QHBox(skipBox);
+   d->shortcutBox = new QHBox(skipBox,"chortcutbox");
    QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:") + ' ', d->shortcutBox );
    shortcutlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->shortcutBut = new QPushButton(i18n("&Change Shortcut..."), d->shortcutBox );
@@ -153,31 +151,28 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    layout->addWidget( boxes );
 
    //------------------ PATH Setup
-   QVGroupBox *imageBox = new QVGroupBox(parent);
-   imageBox->setTitle(i18n("Image Folder Path"));
+   d->slideshowBox = new QVGroupBox(parent);
+   d->slideshowBox->setTitle(i18n("Slideshow"));
+   d->slideshowBox->setCheckable( true );
+   connect(d->slideshowBox, SIGNAL( toggled(bool)), SLOT(slotUseImages()));
 
-   QHBox *rBox = new QHBox(imageBox);
-   d->useImages = new QCheckBox(i18n("Show Images"),rBox);
-   d->searchRecursiveCheck = new QCheckBox(i18n("Search path recursively"),
-                                           rBox);
-   layout->addWidget(rBox);
-   connect(d->useImages, SIGNAL(toggled(bool)), SLOT(slotUseImages()));
-
-   QHBox *imageFolderBox = new QHBox(imageBox);
+   QHBox *imageFolderBox = new QHBox(d->slideshowBox,"imagefolderbox");
    d->imageFolderEdit = new QLineEdit(imageFolderBox);
    QWhatsThis::add( d->imageFolderEdit,
         i18n("Select the folder from which you want to see images. "
              "These images are randomly shown during the breaks. "
              "It will be searched recursively if you want...") );
-
    d->changePathButton = new QPushButton(i18n("&Change..."),
            imageFolderBox);
+   d->searchRecursiveCheck = new QCheckBox(i18n("Search path recursively"),
+                                           d->slideshowBox);
+
    connect(d->changePathButton, SIGNAL(clicked()),
            this, SLOT(slotFolderPicker()));
    connect( d->imageFolderEdit, SIGNAL(textChanged(const QString&)),
             this, SLOT(slotFolderEdited(const QString&)) );
 
-   layout->addWidget(imageBox);
+   layout->addWidget(d->slideshowBox);
 
    //---------------- Popup setup
 
@@ -219,42 +214,35 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
 SetupMaximized::~SetupMaximized()
 {
-    kdDebug() << "Entering ~SetupMaximized" << endl;
     delete d;
 }
 
 void SetupMaximized::slotUseImages()
 {
-    kdDebug() << "Entering slotHideCounter" << endl;
-    d->searchRecursiveCheck->setEnabled(d->useImages->isChecked());
-    d->imageFolderEdit->setEnabled(d->useImages->isChecked());
-    d->changePathButton->setEnabled(d->useImages->isChecked());
+    d->searchRecursiveCheck->setEnabled(d->slideshowBox->isChecked());
+    d->imageFolderEdit->setEnabled(d->slideshowBox->isChecked());
+    d->changePathButton->setEnabled(d->slideshowBox->isChecked());
 }
 
 void SetupMaximized::slotHideCounter()
 {
-    kdDebug() << "Entering slotHideCounter" << endl;
     d->colorBox->setEnabled(!d->hideCounter->isChecked());
     d->fontBox->setEnabled(!d->hideCounter->isChecked());
 }
 
 void SetupMaximized::slotHideShortcut()
 {
-    kdDebug() << "Entering slotHideShortcut" << endl;
     d->shortcutBox->setEnabled(!d->disableAccel->isChecked());
 }
 
 void SetupMaximized::slotFontPicker()
 {
-    kdDebug() << "Entering slotFontPicker" << endl;
     KFontDialog::getFont( d->counterFont );
     d->counterFontBut->setText(d->counterFont.family());
 }
 
 void SetupMaximized::slotShortcutPicker()
 {
-    kdDebug() << "Entering slotShortcutPicker" << endl;
-
 #if KDE_IS_VERSION(3,3,91)
     KShortcutDialog key(d->shortcut,true);
     key.exec();
@@ -268,7 +256,6 @@ void SetupMaximized::slotShortcutPicker()
 
 void SetupMaximized::slotFolderPicker()
 {
-     kdDebug() << "Entering slotFolderPicker" << endl;
      QString  result =
              KFileDialog::getExistingDirectory( d->imageFolderEdit->text(), this);
 
@@ -278,7 +265,6 @@ void SetupMaximized::slotFolderPicker()
 
 void SetupMaximized::slotFolderEdited(const QString& newPath)
 {
-    kdDebug() << "Entering slotFolderEdited" << endl;
     if (newPath.isEmpty()) {
         d->imageFolderEdit->setText(QDir::homeDirPath());
         return;
@@ -292,14 +278,12 @@ void SetupMaximized::slotFolderEdited(const QString& newPath)
 
 void SetupMaximized::slotHideFlash()
 {
-    kdDebug() << "Entering slotHideFlash" << endl;
     d->useFlash->setEnabled(d->usePopup->isChecked());
     d->useFlashLabel->setEnabled(d->usePopup->isChecked());
 }
 
 void SetupMaximized::applySettings()
 {
-    kdDebug() << "Entering applySettings" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
@@ -311,7 +295,7 @@ void SetupMaximized::applySettings()
     config->writeEntry("SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked());
     config->writeEntry("ShowImages",
-                       d->useImages->isChecked());
+                       d->slideshowBox->isChecked());
 
     config->writeEntry("HideCounter", d->hideCounter->isChecked());
     config->writeEntry("DisableAccel", d->disableAccel->isChecked());
@@ -328,7 +312,6 @@ void SetupMaximized::applySettings()
 
 void SetupMaximized::readSettings()
 {
-    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
@@ -341,7 +324,7 @@ void SetupMaximized::readSettings()
     d->counterFontBut->setText(d->counterFont.family());
     d->hideMinimizeButton->setChecked(
             config->readBoolEntry("HideMinimizeButton", false));
-    d->useImages->setChecked(
+    d->slideshowBox->setChecked(
             config->readBoolEntry("ShowImages", false));
     d->searchRecursiveCheck->setChecked(
             config->readBoolEntry("SearchRecursiveCheck", false));

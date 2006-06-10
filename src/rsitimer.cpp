@@ -51,8 +51,6 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
-    kdDebug() << "Entering RSITimer::RSITimer" << endl;
-
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
@@ -73,7 +71,6 @@ RSITimer::RSITimer( QObject *parent, const char *name )
 RSITimer::~RSITimer()
 {
     writeConfig();
-    kdDebug() << "Entering RSITimer::~RSITimer" << endl;
 }
 
 int RSITimer::idleTime()
@@ -116,16 +113,12 @@ int RSITimer::idleTime()
 
 void RSITimer::breakNow( int t )
 {
-    kdDebug() << "Entering RSITimer::breakNow for " << t << "seconds " << endl;
-
     emit updateWidget( t );
     emit breakNow();
 }
 
 void RSITimer::resetAfterBreak()
 {
-    kdDebug() << "Entering RSITimer::resetAfterBreak" << endl;
-
     m_pause_left = 0;
     m_relax_left = 0;
     m_patience = 0;
@@ -140,8 +133,6 @@ void RSITimer::resetAfterBreak()
 
 void RSITimer::resetAfterTinyBreak()
 {
-    kdDebug() << "Entering RSITimer::resetAfterTinyBreak" << endl;
-
     m_tiny_left = m_intervals["tiny_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
@@ -156,8 +147,6 @@ void RSITimer::resetAfterTinyBreak()
 
 void RSITimer::resetAfterBigBreak()
 {
-    kdDebug() << "Entering RSITimer::resetAfterBigBreak" << endl;
-
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
@@ -175,8 +164,6 @@ void RSITimer::slotStartNoImage( )
 
 void RSITimer::slotStart( bool newImage )
 {
-    kdDebug() << "Entering RSITimer::slotStart " << newImage << endl;
-
     emit minimize( newImage );
     emit updateIdleAvg( 0.0 );
     m_suspended = false;
@@ -189,8 +176,6 @@ void RSITimer::slotStopNoImage()
 
 void RSITimer::slotStop( bool newImage )
 {
-    kdDebug() << "Entering RSITimer::slotStop " << newImage << endl;
-
     m_suspended = true;
 
     emit minimize( newImage );
@@ -200,15 +185,11 @@ void RSITimer::slotStop( bool newImage )
 
 void RSITimer::slotSuspended( bool b )
 {
-    kdDebug() << "Entering RSITimer::slotSuspend" << endl;
-
     m_needRestart ? slotRestart() : (b ? slotStop() : slotStart() );
 }
 
 void RSITimer::slotRestart()
 {
-    kdDebug() << "Entering RSITimer::slotRestart" << endl;
-
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
@@ -218,8 +199,6 @@ void RSITimer::slotRestart()
 
 void RSITimer::skipBreak()
 {
-    kdDebug() << "Entering RSITimer::skipBreak" << endl;
-
     if ( m_big_left <= m_tiny_left )
     {
         resetAfterBigBreak();
@@ -235,7 +214,6 @@ void RSITimer::skipBreak()
 
 void RSITimer::slotReadConfig( bool restart )
 {
-    kdDebug() << "Entering RSITimer::slotReadConfig" << endl;
     readConfig();
 
     m_intervals = RSIGlobals::instance()->intervals();
@@ -247,30 +225,27 @@ void RSITimer::slotReadConfig( bool restart )
 
 void RSITimer::slotRequestBreak()
 {
-    kdDebug() << "Entering RSITimer::slotRequestBreak" << endl;
     m_breakRequested = true;
 }
 
 void RSITimer::slotRequestTinyBreak()
 {
-  kdDebug() << "Entering RSITimer::slotRequestTinyBreak" << endl;
-  slotRequestBreak();
-  if ( !m_bigBreakRequested )
-  {
-    m_tinyBreakRequested = true;
-    RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
-  }
+    slotRequestBreak();
+    if ( !m_bigBreakRequested )
+    {
+        m_tinyBreakRequested = true;
+        RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+    }
 }
 
 void RSITimer::slotRequestBigBreak()
 {
-  kdDebug() << "Entering RSITimer::slotRequestBigBreak" << endl;
-  slotRequestBreak();
-  if ( !m_tinyBreakRequested )
-  {
-    RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
-    m_bigBreakRequested = true;
-  }
+    slotRequestBreak();
+    if ( !m_tinyBreakRequested )
+    {
+        RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
+        m_bigBreakRequested = true;
+    }
 }
 
 // ----------------------------- EVENTS -----------------------//
@@ -429,8 +404,6 @@ void RSITimer::timerEvent( QTimerEvent * )
              m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] )
     {
         // the user was sufficiently idle for a big break
-        kdDebug() << "Time being idle == big break length" << endl;
-
         if ( m_relax_left == 0 && m_pause_left == 0 )
         {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
@@ -444,8 +417,6 @@ void RSITimer::timerEvent( QTimerEvent * )
               m_tiny_left < m_big_left  )
     {
         // the user was sufficiently idle for a tiny break
-        kdDebug() << "Time being idle == tiny break length" << endl;
-
         if ( m_relax_left == 0 && m_pause_left == 0 )
         {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
@@ -508,7 +479,6 @@ void RSITimer::timerEvent( QTimerEvent * )
 
 void RSITimer::readConfig()
 {
-    kdDebug() << "Entering RSITimer::readConfig" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
@@ -527,7 +497,6 @@ void RSITimer::readConfig()
 
 void RSITimer::writeConfig()
 {
-    kdDebug() << "Entering RSITimer::writeConfig" << endl;
     KConfig *config = kapp->config();
 
     config->setGroup("General");

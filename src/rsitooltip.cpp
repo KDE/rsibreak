@@ -34,7 +34,6 @@
 RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
   : KPassivePopup( parent, name ), m_suspended( false )
 {
-  kdDebug() << "RSIToolTip::RSIToolTip() entered" << endl;
   setTimeout( 10 * 1000 );
 
   QHBox *hbox = new QHBox( this );
@@ -54,7 +53,6 @@ RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
 
 RSIToolTip::~RSIToolTip()
 {
-  kdDebug() << "RSIToolTip::~RSIToolTip() entered" << endl;
 }
 
 void RSIToolTip::setCounters( int tiny_left, int big_left )

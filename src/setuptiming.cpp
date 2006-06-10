@@ -62,7 +62,6 @@ public:
 SetupTiming::SetupTiming(QWidget* parent )
            : QWidget(parent)
 {
-    kdDebug() << "Entering SetupTiming" << endl;
     d = new SetupTimingPriv;
 
     QVBoxLayout *layout = new QVBoxLayout( parent );
@@ -158,13 +157,11 @@ SetupTiming::SetupTiming(QWidget* parent )
 
 SetupTiming::~SetupTiming()
 {
-    kdDebug() << "Entering ~SetupTiming" << endl;
     delete d;
 }
 
 void SetupTiming::applySettings()
 {
-    kdDebug() <<"save"<< endl;
     KConfig* config = kapp->config();
     config->setGroup("General Settings");
     config->writeEntry("TinyInterval", d->tinyInterval->value());
@@ -177,7 +174,6 @@ void SetupTiming::applySettings()
 
 void SetupTiming::readSettings()
 {
-    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
@@ -193,7 +189,6 @@ void SetupTiming::readSettings()
 
 void SetupTiming::slotTinyValueChanged( int i )
 {
-    kdDebug() << "Entering slotTinyValueChanged " << i << endl;
     d->bigInterval->setMinValue( i );
 
     d->debug ? d->tinyInterval->setSuffix( ' ' + i18n("second","seconds",i) )
