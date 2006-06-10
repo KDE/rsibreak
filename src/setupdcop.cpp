@@ -55,6 +55,7 @@ public:
     QLineEdit       *end;
     QLineEdit       *desc;
     QCheckBox       *active;
+    QCheckBox       *onlyAtBigBreak;
     QCheckListItem  *current;
     QPushButton     *startButton;
     QPushButton     *endButton;
@@ -76,13 +77,8 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     layout->addWidget(l1);
 
     d->table = new QListView( parent,0, QListView::Single);
-    d->table->addColumn( i18n("Application") );
-    d->table->addColumn( i18n("Start") );
-    d->table->addColumn( i18n("End") );
-    d->table->setAllColumnsShowFocus( true );
-    d->table->setColumnWidthMode(1,QListView::Manual);
-    d->table->setColumnWidthMode(2,QListView::Manual);
-
+    d->table->addColumn( i18n("Application")  );
+    d->table->setResizeMode( QListView::AllColumns );
     layout->addWidget(d->table);
 
     connect( d->table,
@@ -121,8 +117,15 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     QWhatsThis::add( l5, i18n("Here you can activate or deactivate the "
             "command" ) );
     d->active = new QCheckBox(parent);
-    l4->setBuddy(d->active);
+    l5->setBuddy(d->active);
     connect( d->active, SIGNAL(clicked()), SLOT( slotCheckActive() ) );
+
+    QLabel *l6 = new QLabel(i18n("Only at Long Breaks:"), parent);
+    QWhatsThis::add( l5, i18n("Here you can indicate if the command should"
+            "only be executed at Long Breaks or also on Short Breaks" ) );
+    d->onlyAtBigBreak = new QCheckBox(parent);
+    l6->setBuddy(d->onlyAtBigBreak);
+    connect( d->onlyAtBigBreak,SIGNAL(clicked()),SLOT( slotCheckOnlyAtBigBreak()));
 
     d->startButton = new QPushButton( i18n("Test"), parent);
     connect( d->startButton, SIGNAL(clicked()), SLOT( slotTestStart()));
@@ -130,20 +133,23 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->endButton = new QPushButton( i18n("Test"), parent);
     connect( d->endButton, SIGNAL(clicked()), SLOT( slotTestStop()));
 
-    gbox->addWidget(l2,0,0);
-    gbox->addWidget(d->desc,0,1);
-    gbox->addWidget(l3,2,0);
-    gbox->addWidget(d->start,2,1);
-    gbox->addWidget(d->startButton,2,2);
-    gbox->addWidget(l4,3,0);
-    gbox->addWidget(d->end,3,1);
-    gbox->addWidget(d->endButton,3,2);
-    gbox->addWidget(l5,1,0);
+    gbox->addWidget(l2,0,0, Qt::AlignRight);
+    gbox->addMultiCellWidget(d->desc,0,0,1,2);
+    gbox->addWidget(l3,2,0, Qt::AlignRight);
+    gbox->addMultiCellWidget(d->start,2,2,1,2);
+    gbox->addWidget(d->startButton,2,3);
+    gbox->addWidget(l4,3,0, Qt::AlignRight);
+    gbox->addMultiCellWidget(d->end,3,3,1,2);
+    gbox->addWidget(d->endButton,3,3);
+    gbox->addWidget(l5,1,0, Qt::AlignRight);
     gbox->addWidget(d->active,1,1);
+    gbox->addWidget(l6,1,2, Qt::AlignRight);
+    gbox->addWidget(d->onlyAtBigBreak,1,3);
 
     layout->addLayout(gbox);
     d->desc->setEnabled(false);
     d->active->setEnabled(false);
+    d->onlyAtBigBreak->setEnabled(false);
     d->start->setEnabled(false);
     d->end->setEnabled(false);
     d->startButton->setEnabled(false);
@@ -158,18 +164,13 @@ SetupDCOP::SetupDCOP(QWidget* parent )
                 QCheckListItem::CheckBox);
         item->setText(1,"kopete KopeteIface setAway()");
         item->setText(2,"kopete KopeteIface setAvailable()");
+        item->setText(3,"true");
         d->table->insertItem(item);
     }
-
-    // now that the table contains data, set the width and stick to it.
-    d->table->adjustColumn(1);
-    d->table->adjustColumn(2);
-
 }
 
 SetupDCOP::~SetupDCOP()
 {
-    kdDebug() << "Entering ~SetupDCOP" << endl;
     delete d;
 }
 
@@ -190,7 +191,7 @@ void SetupDCOP::applySettings()
         QStringList data;
         data << item->text(1) << item->text(2);
         item->isOn() ? data << "On" : data << "Off";
-        kdDebug() << "Writing" << item->text(0) << data << endl;
+        data << item->text(3);
         config->writeEntry(item->text(0), data);
 
     }
@@ -199,7 +200,6 @@ void SetupDCOP::applySettings()
 
 void SetupDCOP::readSettings()
 {
-    kdDebug() << "Entering readSettings" << endl;
     KConfig* config = kapp->config();
 
     QMap<QString,QString> map;
@@ -208,7 +208,6 @@ void SetupDCOP::readSettings()
     QMap<QString, QString>::const_iterator i;
     for (i = map.constBegin(); i != map.constEnd(); ++i)
     {
-        kdDebug() << i.key() << ": " << i.data() << endl;
         QStringList list = QStringList::split(",",i.data());
 
         QCheckListItem* item = new QCheckListItem(d->table,i.key(),
@@ -217,7 +216,7 @@ void SetupDCOP::readSettings()
         item->setText(2,list[1]);
         list[2] == "On" ? item->setState(QCheckListItem::On) :
                           item->setState(QCheckListItem::Off);
-
+        item->setText(3,list[3]);
         d->table->insertItem(item);
 
     }
@@ -226,8 +225,6 @@ void SetupDCOP::readSettings()
 void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
                                   const QPoint & pos)
 {
-    kdDebug() << "Entering slotTableClicked " << button << endl;
-
     //TODO: Someone please check this....
     d->current = dynamic_cast<QCheckListItem*>(item);
 
@@ -239,7 +236,6 @@ void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
     }
     else if (button == Qt::RightButton )
     {
-        kdDebug() << "conext please...." << endl;
         QPopupMenu *menu = new QPopupMenu();
         if (d->current)
             menu->insertItem(i18n("Remove"), 0);
@@ -255,6 +251,8 @@ void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
             d->desc->setEnabled(false);
             d->active->setChecked(false);
             d->active->setEnabled(false);
+            d->onlyAtBigBreak->setChecked(false);
+            d->onlyAtBigBreak->setEnabled(false);
             d->start->clear();
             d->start->setEnabled(false);
             d->end->clear();
@@ -273,6 +271,7 @@ void SetupDCOP::slotAddNewItem()
                                               QCheckListItem::CheckBox);
     item->setText(1,i18n("Start command"));
     item->setText(2,i18n("End command"));
+    item->setText(3,"true");
     d->table->insertItem(item);
     d->table->setSelected(item, true);
     d->table->ensureItemVisible(item);
@@ -281,23 +280,32 @@ void SetupDCOP::slotAddNewItem()
 
 void SetupDCOP::updateEditArea()
 {
-        d->desc->setText( d->current->text(0));
-        d->active->setChecked( d->current->isOn() );
-        d->start->setText( d->current->text(1));
-        d->end->setText( d->current->text(2));
+    d->desc->setText( d->current->text(0));
+    d->active->setChecked( d->current->isOn() );
+    d->start->setText( d->current->text(1));
+    d->end->setText( d->current->text(2));
 
-        d->desc->setEnabled(true);
-        d->active->setEnabled(true);
-        d->start->setEnabled(true);
-        d->end->setEnabled(true);
-        d->startButton->setEnabled(true);
-        d->endButton->setEnabled(true);
+    d->desc->setEnabled(true);
+    d->active->setEnabled(true);
+    d->onlyAtBigBreak->setEnabled(true);
+    d->current->text(3) == "true" ? d->onlyAtBigBreak->setChecked(true) :
+                                    d->onlyAtBigBreak->setChecked(false);
+    d->start->setEnabled(true);
+    d->end->setEnabled(true);
+    d->startButton->setEnabled(true);
+    d->endButton->setEnabled(true);
 }
 
 void SetupDCOP::slotCheckActive()
 {
     d->active->isChecked() ? d->current->setState( QCheckListItem::On ):
                              d->current->setState( QCheckListItem::Off );
+}
+
+void SetupDCOP::slotCheckOnlyAtBigBreak()
+{
+    d->onlyAtBigBreak->isChecked() ? d->current->setText(3, "true" ):
+                                     d->current->setText(3, "false" );
 }
 
 void SetupDCOP::slotDCOPStartChanged(const QString &text)

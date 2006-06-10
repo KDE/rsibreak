@@ -103,8 +103,6 @@ QString RSIGlobals::formatSeconds( const int seconds )
 
 void RSIGlobals::slotReadConfig()
 {
-    kdDebug() << "RSIGlobals::slotReadConfig() entered" << endl;
-
     KConfig* config = kapp->config();
 
     config->setGroup("General Settings");
@@ -124,8 +122,10 @@ void RSIGlobals::slotReadConfig()
     }
 
     //--------------- read the DCOP settings
-    m_dcopstart.clear();
-    m_dcopend.clear();
+    m_dcopstartbig.clear();
+    m_dcopstarttiny.clear();
+    m_dcopendbig.clear();
+    m_dcopendtiny.clear();
 
     QMap<QString,QString> map;
     map=config->entryMap("DCOP");
@@ -136,11 +136,14 @@ void RSIGlobals::slotReadConfig()
         kdDebug() << i.key() << ": " << i.data() << endl;
         QStringList list = QStringList::split(",",i.data());
 
-        if (list[2] == "On")
-        {
-            m_dcopstart.append(list[0]);
-            m_dcopend.append(list[1]);
-        }
+        if (list[2] == "On")    // only active ones
+            if (list[3] != "true") // tiny breaks as well?
+            {
+                m_dcopstarttiny.append(list[0]);
+                m_dcopendtiny.append(list[1]);
+            }
+            m_dcopstartbig.append(list[0]);
+            m_dcopendbig.append(list[1]);
     }
 }
 
@@ -178,7 +181,7 @@ void RSIGlobals::executeDCOP(const QString &command)
             Syntax with data: "kopete" "KopeteIface" "setAway(QString)" "someStringContainingData"
     */
 
-    kdDebug() << "execute " << command << endl;
+    kdDebug() << "Execute " << command << endl;
     QCString app=command.section(' ',0,0).utf8();
     QCString obj=command.section(' ',1,1).utf8();
     QCString fun=command.section(' ',2,2).utf8();
@@ -187,16 +190,18 @@ void RSIGlobals::executeDCOP(const QString &command)
     if ( data.isEmpty() && fun.right(2) != "()" )
         fun += "()";
 
-    kdDebug() << "app " << app << " obj " << obj
-            << " fun " << fun << " data " << data << endl;
     if (!kapp->dcopClient()->send(app,obj,fun, data))
         kdDebug() << "Command exectution failed" << endl;
 }
 
-void RSIGlobals::DCOPBreak(bool start)
+void RSIGlobals::DCOPBreak(bool start, bool big)
 {
     QStringList commands;
-    start ? commands=m_dcopstart : commands=m_dcopend;
+    if (start)
+        big ? commands=m_dcopstartbig : commands=m_dcopstarttiny;
+    else
+        big ? commands=m_dcopendbig : commands=m_dcopendtiny;
+
     for( QStringList::Iterator it = commands.begin(); it != commands.end() ;
          ++it)
     {

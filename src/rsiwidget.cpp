@@ -258,7 +258,6 @@ void RSIWidget::minimize( bool newImage )
     releaseMouse();
     hide();
     setBackgroundMode( QWidget::NoBackground );
-    RSIGlobals::instance()->DCOPBreak( false );
     if (newImage)
         loadImage();
 }
@@ -295,8 +294,6 @@ void RSIWidget::maximize()
 
         bitBlt( this, 0, 0, &m_backgroundimage );
     }
-
-    RSIGlobals::instance()->DCOPBreak( true );
 }
 
 void RSIWidget::loadImage()

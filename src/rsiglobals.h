@@ -137,7 +137,7 @@ class RSIGlobals : public QObject
      * @param start when true the start commands are executed, false executes
      *              the ones at the end of a break.
      */
-    void DCOPBreak(bool start);
+    void DCOPBreak(bool start, bool big);
 
   public slots:
     /**
@@ -150,8 +150,11 @@ class RSIGlobals : public QObject
     QMap<QString,int> m_intervals;
     static RSIStats *m_stats;
     QBitArray m_usageArray;
-    QStringList m_dcopstart;
-    QStringList m_dcopend;
+    QStringList m_dcopstartbig;
+    QStringList m_dcopendbig;
+    QStringList m_dcopstarttiny;
+    QStringList m_dcopendtiny;
+
 };
 
 #endif // RSIGLOBALS_H

@@ -131,7 +131,6 @@ void RSITimer::resetAfterBreak()
     m_patience = 0;
     emit relax( -1 );
     updateIdleAvg( 0.0 );
-    RSIGlobals::instance()->DCOPBreak( false );
 }
 
 void RSITimer::resetAfterTinyBreak()
@@ -141,6 +140,7 @@ void RSITimer::resetAfterTinyBreak()
     m_tiny_left = m_intervals["tiny_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
+    RSIGlobals::instance()->DCOPBreak( false, false );
 
     if ( m_big_left < m_tiny_left )
     {
@@ -157,6 +157,7 @@ void RSITimer::resetAfterBigBreak()
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
+    RSIGlobals::instance()->DCOPBreak( false, true );
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -307,12 +308,14 @@ void RSITimer::timerEvent( QTimerEvent * )
           breakNow( m_intervals["tiny_maximized"] );
           m_pause_left = m_intervals["tiny_maximized"];
           nextBreak = TINY_BREAK;
+          RSIGlobals::instance()->DCOPBreak( true, false );
         }
         else if ( m_bigBreakRequested )
         {
           breakNow( m_intervals["big_maximized"] );
           m_pause_left = m_intervals["big_maximized"];
           nextBreak = BIG_BREAK;
+          RSIGlobals::instance()->DCOPBreak( true, true );
         }
         else
         {
@@ -324,8 +327,6 @@ void RSITimer::timerEvent( QTimerEvent * )
         m_bigBreakRequested = false;
         m_tinyBreakRequested = false;
         m_relax_left = 0;
-
-        RSIGlobals::instance()->DCOPBreak( true );
     }
 
     if ( t > 0 && m_pause_left > 0 ) // means: widget is maximized
@@ -369,7 +370,9 @@ void RSITimer::timerEvent( QTimerEvent * )
                 m_relax_left = 0;
 
                 breakNow( breakInterval );
-                RSIGlobals::instance()->DCOPBreak( true );
+                nextBreak == TINY_BREAK  ?
+                        RSIGlobals::instance()->DCOPBreak( true, false ):
+                        RSIGlobals::instance()->DCOPBreak( true, true );
                 m_pause_left = breakInterval;
             }
             else // reset relax dialog
@@ -454,9 +457,6 @@ void RSITimer::timerEvent( QTimerEvent * )
 
         // just in case the user dares to become active
         --m_patience;
-
-        if ( m_patience == 0 )
-          RSIGlobals::instance()->DCOPBreak( true );
 
         emit relax( m_relax_left );
     }

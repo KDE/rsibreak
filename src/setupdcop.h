@@ -56,6 +56,7 @@ private slots:
     void slotTableClicked(  int button, QListViewItem * item,
                             const QPoint & pos);
     void slotCheckActive();
+    void slotCheckOnlyAtBigBreak();
     void slotDCOPStartChanged(const QString &text);
     void slotDCOPStopChanged(const QString &text);
     void slotDescChanged(const QString &text);

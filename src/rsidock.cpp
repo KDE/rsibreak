@@ -108,13 +108,8 @@ void RSIDock::slotAboutKDE()
 
 void RSIDock::slotAboutRSIBreak()
 {
-    kdDebug() << "Entering slotAboutRSIBreak" << endl;
-    KAboutApplication about;
-    emit dialogEntered();
-    about.exec();
-
-    if ( !m_suspended ) // don't start the timer!
-      emit dialogLeft();
+    KAboutApplication a( KGlobal::instance()->aboutData(), this );
+    a.exec();
 }
 
 void RSIDock::slotReportBug()
