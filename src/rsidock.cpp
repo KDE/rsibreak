@@ -179,7 +179,7 @@ void RSIDock::leaveEvent( QEvent * )
     emit hideToolTip();
 }
 
-void RSIDock::relaxEntered( int i )
+void RSIDock::relaxEntered( int i, bool )
 {
     m_tooltiphidden = i > 0;
 }

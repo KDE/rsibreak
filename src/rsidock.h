@@ -71,7 +71,7 @@ class RSIDock : public KSystemTray
         Notifies the docker that RSIBreak is in relax state.
         Used to hide the tooltip while showing relax moments.
       */
-      void relaxEntered( int i );
+      void relaxEntered( int i, bool );
 
     signals:
         /**

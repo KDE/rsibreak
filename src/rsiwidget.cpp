@@ -27,6 +27,7 @@
 #include <qfileinfo.h>
 #include <qcursor.h>
 #include <qpainter.h>
+#include <qbitmap.h>
 
 #include "config.h"
 
@@ -161,9 +162,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
              m_tooltip, SLOT( setCounters( int, int ) ) );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
     connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
-    connect( m_timer, SIGNAL( relax( int ) ), m_relaxpopup, SLOT( relax( int ) ) );
-    connect( m_timer, SIGNAL( relax( int ) ), m_tooltip, SLOT( hide() ) );
-    connect( m_timer, SIGNAL( relax( int ) ), m_tray, SLOT( relaxEntered( int ) ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tray, SLOT( relaxEntered( int ) ) );
 
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
     connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
@@ -198,8 +199,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     QBoxLayout *topLayout = new QVBoxLayout( this, 5);
 
-    m_countDown = new QLabel(this);
+    m_countDown = new RSILabel(this);
     m_countDown->setAlignment( AlignCenter );
+    m_countDown->setBackgroundMode( Qt::NoBackground );
     m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
     topLayout->addWidget(m_countDown);
 
@@ -282,6 +284,7 @@ void RSIWidget::maximize()
     m_grab->start(1000, true);
 
     // If there are no images found, we gray the screen and wait....
+    m_countDown->hide();
     if (m_files.count() == 0 || !m_useImages)
     {
         m_currentY=0;
@@ -329,6 +332,7 @@ void RSIWidget::loadImage()
 
     if (!m_backgroundimage.convertFromImage(m))
         kdWarning() << "Failed to set new background image" << endl;
+
 }
 
 
@@ -381,6 +385,7 @@ void RSIWidget::slotGrayEffect()
         if ( backgroundMode() == QWidget::NoBackground ) {
             setBackgroundMode( QWidget::NoBackground );
             setBackgroundPixmap( m_backgroundimage );
+            m_countDown->show();
         }
         return;
     }
@@ -456,7 +461,6 @@ void RSIWidget::setCounters( int timeleft )
         }
 
         m_countDown->setText( cdString );
-
     }
     else if ( m_timer->isSuspended() )
     {
@@ -640,6 +644,40 @@ void RSIWidget::readConfig()
 
     delete Black;
     delete t;
+}
+
+
+
+
+
+RSILabel::RSILabel( QWidget *parent, const char *name )
+: QLabel( parent, name )
+{
+}
+
+RSILabel::~RSILabel()
+{
+}
+
+void RSILabel::setText( const QString &str )
+{
+    QLabel::setText( str );
+    updateMask();
+}
+
+void RSILabel::updateMask()
+{
+    QBitmap b( size() );
+    b.fill( color0 );
+
+    QPainter p;
+    p.setPen( color1 );
+
+    p.begin( &b, this );
+    drawContents( &p );
+    p.end();
+
+    setMask( b );
 }
 
 #include "rsiwidget.moc"

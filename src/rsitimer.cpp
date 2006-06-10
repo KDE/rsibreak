@@ -129,8 +129,13 @@ void RSITimer::resetAfterBreak()
     m_pause_left = 0;
     m_relax_left = 0;
     m_patience = 0;
-    emit relax( -1 );
+    emit relax( -1, false );
     updateIdleAvg( 0.0 );
+    m_nextBreak = m_tiny_left < m_big_left ? TINY_BREAK : BIG_BREAK;
+    // and what about the break after the next break? pass it along relax()
+    // so we can warn the user in advance
+    m_nextnextBreak = m_nextBreak == TINY_BREAK &&
+                      m_big_left <= 2 * m_tiny_left ? BIG_BREAK : TINY_BREAK;
 }
 
 void RSITimer::resetAfterTinyBreak()
@@ -249,30 +254,29 @@ void RSITimer::slotRequestBreak()
 void RSITimer::slotRequestTinyBreak()
 {
   kdDebug() << "Entering RSITimer::slotRequestTinyBreak" << endl;
-  m_breakRequested = true;
-  RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+  slotRequestBreak();
   if ( !m_bigBreakRequested )
+  {
     m_tinyBreakRequested = true;
+    RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+  }
 }
 
 void RSITimer::slotRequestBigBreak()
 {
   kdDebug() << "Entering RSITimer::slotRequestBigBreak" << endl;
-  m_breakRequested = true;
-  RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
+  slotRequestBreak();
   if ( !m_tinyBreakRequested )
+  {
+    RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
     m_bigBreakRequested = true;
+  }
 }
 
 // ----------------------------- EVENTS -----------------------//
 
 void RSITimer::timerEvent( QTimerEvent * )
 {
-    /*
-      Contains the amount of time left for a big fullscreen break.
-    */
-    static int nextBreak = TINY_BREAK;
-
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
@@ -299,7 +303,7 @@ void RSITimer::timerEvent( QTimerEvent * )
 
     int breakInterval = m_tiny_left < m_big_left ?
             m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
-    nextBreak = m_tiny_left < m_big_left ? TINY_BREAK : BIG_BREAK;
+
 
     if ( m_breakRequested )
     {
@@ -307,14 +311,14 @@ void RSITimer::timerEvent( QTimerEvent * )
         {
           breakNow( m_intervals["tiny_maximized"] );
           m_pause_left = m_intervals["tiny_maximized"];
-          nextBreak = TINY_BREAK;
+          m_nextBreak = TINY_BREAK;
           RSIGlobals::instance()->DCOPBreak( true, false );
         }
         else if ( m_bigBreakRequested )
         {
           breakNow( m_intervals["big_maximized"] );
           m_pause_left = m_intervals["big_maximized"];
-          nextBreak = BIG_BREAK;
+          m_nextBreak = BIG_BREAK;
           RSIGlobals::instance()->DCOPBreak( true, true );
         }
         else
@@ -341,9 +345,9 @@ void RSITimer::timerEvent( QTimerEvent * )
             emit minimize( true );
 
             // make sure we clean up stuff in the code ahead
-            if ( nextBreak == TINY_BREAK )
+            if ( m_nextBreak == TINY_BREAK )
                 resetAfterTinyBreak();
-            else if ( nextBreak == BIG_BREAK )
+            else if ( m_nextBreak == BIG_BREAK )
                 resetAfterBigBreak();
 
             emit updateToolTip( m_tiny_left, m_big_left );
@@ -366,7 +370,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             --m_patience;
             if ( m_patience == 0 ) // that's it!
             {
-                emit relax( -1 );
+                emit relax( -1, false );
                 m_relax_left = 0;
 
                 breakNow( breakInterval );
@@ -377,7 +381,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             }
             else // reset relax dialog
             {
-                emit relax( breakInterval );
+                emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
                 m_relax_left = breakInterval;
             }
         }
@@ -388,7 +392,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             breakNow( m_relax_left );
             m_pause_left = m_relax_left;
             m_relax_left = 0;
-            emit relax( -1 );
+            emit relax( -1, false );
         }
         else if ( m_pause_left == 0 )
         {
@@ -411,9 +415,9 @@ void RSITimer::timerEvent( QTimerEvent * )
             // will make sure the timers are being reset when this happens.
             if (m_tiny_left < -1 || m_big_left < -1)
             {
-                if ( nextBreak == TINY_BREAK )
+                if ( m_nextBreak == TINY_BREAK )
                     resetAfterTinyBreak();
-                else if ( nextBreak == BIG_BREAK )
+                else if ( m_nextBreak == BIG_BREAK )
                     resetAfterBigBreak();
             }
         }
@@ -458,7 +462,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         // just in case the user dares to become active
         --m_patience;
 
-        emit relax( m_relax_left );
+        emit relax( m_relax_left, m_nextnextBreak == BIG_BREAK );
     }
 
     // update the stats properly when breaking
@@ -480,7 +484,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     if ( m_patience == 0 && m_pause_left == 0 && m_relax_left == 0 &&
          ( m_tiny_left == 0 || m_big_left == 0 ) )
     {
-        if ( nextBreak == TINY_BREAK )
+        if ( m_nextBreak == TINY_BREAK )
         {
             RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
         }
@@ -493,7 +497,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         if (m_patience > breakInterval)
             m_patience=breakInterval;
 
-        emit relax( breakInterval );
+        emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_relax_left = breakInterval;
     }
 
@@ -579,7 +583,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         if ( m_pause_left == 0 )
         {
             // break is over
-            emit relax( -1 );
+            emit relax( -1, false );
             if ( currentBreak == TINY_BREAK )
             {
                 resetAfterTinyBreak();
@@ -593,13 +597,13 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         }
         else
         {
-            emit relax( m_pause_left );
+            emit relax( m_pause_left, false );
         }
     }
 
     if ( m_pause_left == 0 && m_tiny_left == 0 )
     {
-        emit relax( breakInterval );
+        emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
         currentBreak = TINY_BREAK;
     }
@@ -610,7 +614,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
 
     if ( m_pause_left == 0 && m_big_left == 0 )
     {
-        emit relax( breakInterval );
+        emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
         currentBreak = BIG_BREAK;
     }

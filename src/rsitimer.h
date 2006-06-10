@@ -177,8 +177,10 @@ class RSITimer : public QObject
           Pop up a relax notification to the user for @p sec seconds.
           @param sec The amount of seconds the user should relax to make the
           popup disappear. A value of -1 will hide the relax popup.
+          @param nextBreakIsBig True if the break after the next break is a big break.
+          We can warn the user in advance.
         */
-        void relax( int sec );
+        void relax( int sec, bool nextBreakIsBig );
 
         /**
           Indicates a tinyBreak is skipped because user was enough idle
@@ -224,6 +226,8 @@ class RSITimer : public QObject
         bool            m_bigBreakRequested;
         bool            m_suspended;
         bool            m_needRestart;
+        bool            m_nextBreak;
+        bool            m_nextnextBreak;
 
         int             m_tiny_left;
         int             m_big_left;

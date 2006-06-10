@@ -58,7 +58,7 @@ RSIRelaxPopup::~RSIRelaxPopup()
 {
 }
 
-void RSIRelaxPopup::relax( int n )
+void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 {
     if (!m_usePopup)
         return;
@@ -85,9 +85,14 @@ void RSIRelaxPopup::relax( int n )
 
     if ( n > 0 )
     {
-        m_message->setText(i18n("Please relax for 1 second",
-                                "Please relax for %n seconds",
-                                n ));
+        QString text = i18n("Please relax for 1 second",
+                            "Please relax for %n seconds",
+                            n );
+
+        if ( bigBreakNext )
+          text.append('\n'+i18n("Note: next break is a big break") );
+
+        m_message->setText( text );
 
         m_progress->setProgress( n );
 

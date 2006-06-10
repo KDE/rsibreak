@@ -43,8 +43,11 @@ class RSIRelaxPopup : public KPassivePopup
   public slots:
     /**
       Shows this popup with the message that the user should rest @p n seconds.
+      @param n Amount of seconds to relax
+      @param bigBreakNext If true, it shows a warning that the next break will be
+      a big break.
     */
-    void relax( int n );
+    void relax( int n, bool bigBreakNext );
 
     /**
       Reread config

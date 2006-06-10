@@ -21,10 +21,11 @@
 #define RSIWidget_H
 
 #include <qdatetime.h>
+#include <qlabel.h>
+
 #include <dcopiface.h>
 
 class QTimer;
-class QLabel;
 class QPushButton;
 class KAccel;
 class QPixmap;
@@ -33,6 +34,21 @@ class RSIDock;
 class RSITimer;
 class RSIRelaxPopup;
 class RSIToolTip;
+
+class RSILabel : public QLabel
+{
+  Q_OBJECT
+
+  public:
+    RSILabel( QWidget * = 0, const char * = 0 );
+    ~RSILabel();
+
+  public slots:
+    virtual void setText( const QString & );
+
+  protected:
+    virtual void updateMask();
+};
 
 /**
  * @class RSIWidget
@@ -93,7 +109,7 @@ class RSIWidget : public QWidget
         QString         m_basePath;
         QTimer*         m_timer_slide;
         QTimer*         m_grab;
-        QLabel*         m_countDown;
+        RSILabel*         m_countDown;
         KAccel*         m_accel;
 
         QLabel*         m_tool;
