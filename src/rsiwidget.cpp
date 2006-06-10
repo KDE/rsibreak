@@ -203,6 +203,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_countDown->setAlignment( AlignCenter );
     m_countDown->setBackgroundMode( Qt::NoBackground );
     m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
+    m_countDown->hide();
     topLayout->addWidget(m_countDown);
 
     topLayout->addStretch(5);
@@ -382,10 +383,10 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 void RSIWidget::slotGrayEffect()
 {
     if ( m_currentY >= height() ) {
+        m_countDown->show();
         if ( backgroundMode() == QWidget::NoBackground ) {
             setBackgroundMode( QWidget::NoBackground );
             setBackgroundPixmap( m_backgroundimage );
-            m_countDown->show();
         }
         return;
     }
@@ -469,6 +470,12 @@ void RSIWidget::setCounters( int timeleft )
     else
     {
         m_countDown->setText (QString::null );
+    }
+
+    if( m_useImages )
+    {
+      setBackgroundPixmap( m_backgroundimage );
+      m_countDown->show();
     }
 }
 
