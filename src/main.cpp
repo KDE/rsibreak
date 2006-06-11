@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2005 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -54,7 +54,7 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak",
                           I18N_NOOP("RSIBreak"),
-                          "0.6.0",
+                          "0.7.0",
                           I18N_NOOP("Try to prevent Repetitive Strain Injury by "
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
@@ -65,6 +65,9 @@ int main( int argc, char *argv[] )
 
     aboutData.addAuthor( "Bram Schoenmakers", I18N_NOOP("Author"),
                          "bramschoenmakers@kde.nl" );
+
+    aboutData.addCredit( "Tina Trillitzsch", I18N_NOOP("Usability"),
+                         "t.trillitzsch@gmx.de");
 
     aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
                          "clearbeast@gmail.com");

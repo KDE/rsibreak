@@ -1,7 +1,5 @@
 Wishes:
-- rsi instructions
-- when no image path has yet been entered, default to a reasonable KDE path
-- when no image path is entered, do not display a gray widget, but one with a button "set images path"
+- rsi instructions <---- please contact us if you can do this....
 - [BS] strict-o-meter
 - [BS] A second timer implementation which ignores idle detection
 - Save statistics
@@ -11,7 +9,6 @@ Bugs:
 - in some cases, the tooltip does not appear
   ( note: seems only to happen after waiting for a big break in a relax popup ) (fixed?)
 - when you're idle for the length of a big break, without any break active, it is not detected
-- counter invisible when a black picture is shown on screen
 - only reset timers after closing configure dialog if the timer settings were changed
 
 Gnome specific bugs:

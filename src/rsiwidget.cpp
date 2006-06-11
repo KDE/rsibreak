@@ -661,9 +661,8 @@ void RSILabel::updateMask()
     b.fill( color0 );
 
     QPainter p;
-    p.setPen( color1 );
-
     p.begin( &b, this );
+    p.setPen( color1 );
     drawContents( &p );
     p.end();
 
