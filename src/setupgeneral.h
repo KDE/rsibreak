@@ -58,6 +58,7 @@ public:
 
 private slots:
     void slotShowTimer();
+    void slotUseNoIdleTimer();
 
 private:
     void readSettings();

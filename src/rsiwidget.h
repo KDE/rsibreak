@@ -112,6 +112,7 @@ class RSIWidget : public QWidget
     private:
         void findImagesInFolder(const QString& folder);
         void loadImage();
+        void startTimer( bool idle);
 
         RSIDock*        m_tray;
         RSITimer*       m_timer;

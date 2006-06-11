@@ -46,6 +46,7 @@ class SetupGeneralPriv
 public:
     QCheckBox*        autoStart;
     QCheckBox*        useIdleDetection;
+    QCheckBox*        useNoIdleTimer;
     QCheckBox*        showTimerReset;
 };
 
@@ -78,8 +79,17 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             "have been idle for a while.") );
     layout->addWidget(d->showTimerReset);
 
+    d->useNoIdleTimer = new QCheckBox(i18n("&Break at fixed times and ignore "
+            "movement during breaks"), parent);
+    QWhatsThis::add( d->useNoIdleTimer, i18n("With this checkbox you indicate "
+            "that you want to ignore movements during breaks and want to break "
+            "at fixed intervals") );
+    layout->addWidget(d->useNoIdleTimer);
+    connect(d->useNoIdleTimer , SIGNAL(toggled(bool)), SLOT(slotUseNoIdleTimer()));
+
     readSettings();
     slotShowTimer();
+    slotUseNoIdleTimer();
 }
 
 SetupGeneral::~SetupGeneral()
@@ -92,6 +102,12 @@ void SetupGeneral::slotShowTimer()
     d->showTimerReset->setEnabled(d->useIdleDetection->isChecked());
 }
 
+void SetupGeneral::slotUseNoIdleTimer()
+{
+    d->useIdleDetection->setEnabled(!d->useNoIdleTimer->isChecked());
+    d->showTimerReset->setEnabled(!d->useNoIdleTimer->isChecked());
+}
+
 void SetupGeneral::applySettings()
 {
     KConfig* config = kapp->config();
@@ -102,6 +118,7 @@ void SetupGeneral::applySettings()
     config->setGroup("General Settings");
     config->writeEntry("UseIdleDetection", d->useIdleDetection->isChecked());
     config->writeEntry("ShowTimerReset", d->showTimerReset->isChecked());
+    config->writeEntry("UseNoIdleTimer", d->useNoIdleTimer->isChecked());
     config->sync();
 }
 
@@ -115,6 +132,7 @@ void SetupGeneral::readSettings()
     config->setGroup("General Settings");
     d->useIdleDetection->setChecked(config->readBoolEntry("UseIdleDetection", true));
     d->showTimerReset->setChecked(config->readBoolEntry("ShowTimerReset", false));
+    d->useNoIdleTimer->setChecked(config->readBoolEntry("UseNoIdleTimer", false));
 }
 
 #include "setupgeneral.moc"

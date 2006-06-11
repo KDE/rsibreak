@@ -51,6 +51,8 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
+    kdDebug() << "Starting timer constructor" << endl;
+
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
@@ -530,6 +532,7 @@ void RSITimer::restoreSession()
 RSITimerNoIdle::RSITimerNoIdle( QObject *parent, const char *name )
 : RSITimer( parent, name )
 {
+    kdDebug() << "Starting noIdle timer" << endl;
 }
 
 RSITimerNoIdle::~RSITimerNoIdle()

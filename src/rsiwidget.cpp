@@ -154,45 +154,18 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_relaxpopup = new RSIRelaxPopup(m_tray);
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
-    m_timer = new RSITimer(this,"Timer");
-    connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
-    connect( m_timer, SIGNAL( updateWidget( int ) ),
-             SLOT( setCounters( int ) ) );
-    connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
-             m_tooltip, SLOT( setCounters( int, int ) ) );
-    connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
-    connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tray, SLOT( relaxEntered( int, bool ) ) );
-
-    connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
-    connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
-    connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ) );
-
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), SLOT( readConfig() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), RSIGlobals::instance(), SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_relaxpopup, SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStopNoImage( ) ) );
-    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStartNoImage() ) );
-    connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( hide() ) );
 
     m_dcopIface = new DCOPIface(this, "actions");
     connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
              m_tooltip, SLOT( setSuspended( bool ) ) );
     connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
-             m_timer, SLOT( slotSuspended( bool ) ) );
-    connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
              m_relaxpopup, SLOT( setVisible( bool ) ) );
-    connect( m_dcopIface, SIGNAL( signalDoTinyBreak() ),
-             m_timer, SLOT( slotRequestTinyBreak() ) );
-    connect( m_dcopIface, SIGNAL( signalDoBigBreak() ),
-             m_timer, SLOT( slotRequestBigBreak() ) );
 
     setIcon( 0 );
     srand ( time(NULL) );
@@ -215,10 +188,9 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     buttonRow->addWidget( m_lockButton );
     buttonRow->addStretch(10);
 
-    // These two connects only get used when there the user locks and
+    // This connects only get used when there the user locks and
     // unlocks before the break is over. The lock releases the mouse
     // and keyboard, and that way the event methods are not called.
-    connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
     connect(m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
 
     m_accel = new KAccel(this);
@@ -233,6 +205,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_grab = new QTimer(this);
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
+    m_timer = new RSITimer();
     readConfig();
 
     // if there are no images found, the break will appear in black.
@@ -584,6 +557,59 @@ void RSIWidget::keyPressEvent( QKeyEvent * e)
 }
 //--------------------------- CONFIG ----------------------------//
 
+void RSIWidget::startTimer( bool idle)
+{
+    kdDebug() << "Current Timer: " << m_timer->className()
+            << " wanted: " << (idle ? "RSITimer" : "RSITimerNoIdle") << endl;
+
+    if (!idle && m_timer->isA("RSITimerNoIdle"))
+        return;
+
+    if (idle && m_timer->isA("RSITimer"))
+        return;
+
+    kdDebug() << "Switching timers" << endl;
+
+    if (m_timer->isA("RSITimer"))
+        m_timer->deleteLater();
+
+    if (idle)
+        m_timer = new RSITimer(this,"Timer");
+    else
+        m_timer = new RSITimerNoIdle(this,"Timer");
+
+    connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
+    connect( m_timer, SIGNAL( updateWidget( int ) ),
+             SLOT( setCounters( int ) ) );
+    connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
+             m_tooltip, SLOT( setCounters( int, int ) ) );
+    connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
+    connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ) );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tray, SLOT( relaxEntered( int, bool ) ) );
+    connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
+    connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
+    connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ) );
+
+    connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
+    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStopNoImage( ) ) );
+    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStartNoImage() ) );
+    connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
+
+    connect( m_dcopIface, SIGNAL( signalDoTinyBreak() ),
+             m_timer, SLOT( slotRequestTinyBreak() ) );
+    connect( m_dcopIface, SIGNAL( signalDoBigBreak() ),
+             m_timer, SLOT( slotRequestBigBreak() ) );
+    connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
+             m_timer, SLOT( slotSuspended( bool ) ) );
+
+    // This connects only get used when there the user locks and
+    // unlocks before the break is over. The lock releases the mouse
+    // and keyboard, and that way the event methods are not called.
+    connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
+}
 
 void RSIWidget::readConfig()
 {
@@ -611,6 +637,9 @@ void RSIWidget::readConfig()
     bool recursive =
             config->readBoolEntry("SearchRecursiveCheck", false);
     QString path = config->readEntry("ImageFolder");
+
+    bool timertype = config->readBoolEntry("UseNoIdleTimer", false);
+    startTimer(!timertype);
 
     if (m_basePath != path || m_searchRecursive != recursive ||
         m_useImages != uImages )
