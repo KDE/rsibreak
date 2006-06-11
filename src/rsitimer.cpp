@@ -545,9 +545,24 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     // TODO: Set docker icon properly
     // TODO: m_tinyBreakRequested && m_bigBreakRequested
 
+    // Dont change the tray icon when suspended, or evaluate
+    // a possible break.
+    if ( m_suspended )
+        return;
+
+    RSIGlobals::instance()->stats()->increaseStat( TOTAL_TIME );
+    RSIGlobals::instance()->stats()->increaseStat( ACTIVITY );
+
     int breakInterval = m_tiny_left < m_big_left ?
             m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
     static int currentBreak = NO_BREAK;
+
+    /*
+    kdDebug() << " patience: " << m_patience  << " pause_left: "
+    << m_pause_left << " relax_left: " << m_relax_left
+    <<  " tiny_left: " << m_tiny_left  << " big_left: "
+    <<  m_big_left << endl;
+    */
 
     if ( m_pause_left > 0 )
     {
@@ -555,7 +570,8 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         if ( m_pause_left == 0 )
         {
             // break is over
-            emit relax( -1, false );
+            emit minimize( true );
+            //emit relax( -1, false );
             if ( currentBreak == TINY_BREAK )
             {
                 resetAfterTinyBreak();
@@ -570,6 +586,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         else
         {
             emit relax( m_pause_left, false );
+            emit updateWidget( m_pause_left );
         }
     }
 
@@ -578,6 +595,10 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
         currentBreak = TINY_BREAK;
+        breakNow( breakInterval );
+        RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK,
+                                QVariant( QDateTime::currentDateTime() ) );
+        RSIGlobals::instance()->DCOPBreak( true, false );
     }
     else
     {
@@ -589,6 +610,10 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
         currentBreak = BIG_BREAK;
+        breakNow( breakInterval );
+        RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK,
+                                QVariant( QDateTime::currentDateTime() ) );
+        RSIGlobals::instance()->DCOPBreak( true, true );
     }
     else
     {
