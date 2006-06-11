@@ -599,6 +599,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK,
                                 QVariant( QDateTime::currentDateTime() ) );
         RSIGlobals::instance()->DCOPBreak( true, false );
+        RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
     }
     else
     {
@@ -614,6 +615,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK,
                                 QVariant( QDateTime::currentDateTime() ) );
         RSIGlobals::instance()->DCOPBreak( true, true );
+        RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
     }
     else
     {
