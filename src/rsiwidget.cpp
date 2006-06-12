@@ -188,16 +188,12 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     buttonRow->addWidget( m_lockButton );
     buttonRow->addStretch(10);
 
+    m_accel = new KAccel(this);
+
     // This connects only get used when there the user locks and
     // unlocks before the break is over. The lock releases the mouse
     // and keyboard, and that way the event methods are not called.
     connect(m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
-
-    m_accel = new KAccel(this);
-    m_accel->insert("minimize", i18n("Skip"),
-                    i18n("Abort a break"),Qt::Key_Escape,
-                    m_timer, SLOT( skipBreak() ));
-
 
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
@@ -205,7 +201,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_grab = new QTimer(this);
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
-    m_timer = new RSITimer();
     readConfig();
 
     // if there are no images found, the break will appear in black.
@@ -559,19 +554,25 @@ void RSIWidget::keyPressEvent( QKeyEvent * e)
 
 void RSIWidget::startTimer( bool idle)
 {
-    kdDebug() << "Current Timer: " << m_timer->className()
-            << " wanted: " << (idle ? "RSITimer" : "RSITimerNoIdle") << endl;
 
-    if (!idle && m_timer->isA("RSITimerNoIdle"))
-        return;
+    static bool first = true;
 
-    if (idle && m_timer->isA("RSITimer"))
-        return;
+    if (!first)
+    {
+        kdDebug() << "Current Timer: " << m_timer->className()
+                << " wanted: " << (idle ? "RSITimer" : "RSITimerNoIdle") << endl;
 
-    kdDebug() << "Switching timers" << endl;
+        if (!idle && m_timer->isA("RSITimerNoIdle"))
+            return;
 
-    if (m_timer->isA("RSITimer"))
+        if (idle && m_timer->isA("RSITimer"))
+            return;
+
+        kdDebug() << "Switching timers" << endl;
+
         m_timer->deleteLater();
+        m_accel->remove("minimize");
+    }
 
     if (idle)
         m_timer = new RSITimer(this,"Timer");
@@ -609,6 +610,12 @@ void RSIWidget::startTimer( bool idle)
     // unlocks before the break is over. The lock releases the mouse
     // and keyboard, and that way the event methods are not called.
     connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
+
+    m_accel->insert("minimize", i18n("Skip"),
+                    i18n("Abort a break"),Qt::Key_Escape,
+                    m_timer, SLOT( skipBreak() ));
+
+    first = false;
 }
 
 void RSIWidget::readConfig()
@@ -624,10 +631,6 @@ void RSIWidget::readConfig()
             config->readBoolEntry("HideMinimizeButton", false));
     m_countDown->setHidden(
             config->readBoolEntry("HideCounter", false));
-    m_accel->setEnabled("minimize",
-                   !config->readBoolEntry("DisableAccel", false));
-    QString shortcut = config->readEntry("MinimizeKey", "Escape");
-    m_accel->setShortcut("minimize",KShortcut(shortcut));
 
     m_countDown->setFont(
             config->readFontEntry("CounterFont", t ) );
@@ -640,6 +643,12 @@ void RSIWidget::readConfig()
 
     bool timertype = config->readBoolEntry("UseNoIdleTimer", false);
     startTimer(!timertype);
+
+    // Hook in the shortcut after the timer initialisation.
+    m_accel->setEnabled("minimize",
+                        !config->readBoolEntry("DisableAccel", false));
+    QString shortcut = config->readEntry("MinimizeKey", "Escape");
+    m_accel->setShortcut("minimize",KShortcut(shortcut));
 
     if (m_basePath != path || m_searchRecursive != recursive ||
         m_useImages != uImages )
