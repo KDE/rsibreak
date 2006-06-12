@@ -541,10 +541,6 @@ RSITimerNoIdle::~RSITimerNoIdle()
 
 void RSITimerNoIdle::timerEvent( QTimerEvent * )
 {
-    // TODO: Statistics
-    // TODO: Set docker icon properly
-    // TODO: m_tinyBreakRequested && m_bigBreakRequested
-
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
@@ -555,7 +551,31 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
 
     int breakInterval = m_tiny_left < m_big_left ?
             m_intervals["tiny_maximized"] : m_intervals["big_maximized"];
-    static int currentBreak = NO_BREAK;
+
+    if ( m_breakRequested )
+    {
+        if ( m_tinyBreakRequested )
+        {
+            breakNow( m_intervals["tiny_maximized"] );
+            m_pause_left = m_intervals["tiny_maximized"];
+            m_nextBreak = TINY_BREAK;
+            RSIGlobals::instance()->DCOPBreak( true, false );
+        }
+        else if ( m_bigBreakRequested )
+        {
+            breakNow( m_intervals["big_maximized"] );
+            m_pause_left = m_intervals["big_maximized"];
+            m_nextBreak = BIG_BREAK;
+            RSIGlobals::instance()->DCOPBreak( true, true );
+        }
+
+        breakNow( breakInterval );
+        m_pause_left = breakInterval;
+        m_breakRequested = false;
+        m_bigBreakRequested = false;
+        m_tinyBreakRequested = false;
+        m_relax_left = 0;
+    }
 
     /*
     kdDebug() << " patience: " << m_patience  << " pause_left: "
@@ -571,21 +591,20 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         {
             // break is over
             emit minimize( true );
-            //emit relax( -1, false );
-            if ( currentBreak == TINY_BREAK )
+            emit relax( -1, false );
+            if ( m_nextBreak == TINY_BREAK )
             {
                 resetAfterTinyBreak();
             }
-            else if ( currentBreak == BIG_BREAK )
+            else if ( m_nextBreak == BIG_BREAK )
             {
                 resetAfterBigBreak();
             }
 
-            currentBreak = NO_BREAK;
+            m_nextBreak = NO_BREAK;
         }
         else
         {
-            emit relax( m_pause_left, false );
             emit updateWidget( m_pause_left );
         }
     }
@@ -594,7 +613,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     {
         emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
-        currentBreak = TINY_BREAK;
+        m_nextBreak = TINY_BREAK;
         breakNow( breakInterval );
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK,
                                 QVariant( QDateTime::currentDateTime() ) );
@@ -610,7 +629,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     {
         emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
-        currentBreak = BIG_BREAK;
+        m_nextBreak = BIG_BREAK;
         breakNow( breakInterval );
         RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK,
                                 QVariant( QDateTime::currentDateTime() ) );
@@ -621,6 +640,9 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     {
         --m_big_left;
     }
+
+    double value = 100 - ( ( m_tiny_left / (double)m_intervals["tiny_minimized"] ) * 100 );
+    emit updateIdleAvg( value );
 
     emit updateToolTip( m_tiny_left, m_big_left );
 }
