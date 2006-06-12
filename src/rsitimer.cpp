@@ -611,7 +611,6 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
 
     if ( m_pause_left == 0 && m_tiny_left == 0 )
     {
-        emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
         m_nextBreak = TINY_BREAK;
         breakNow( breakInterval );
@@ -627,7 +626,6 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
 
     if ( m_pause_left == 0 && m_big_left == 0 )
     {
-        emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_pause_left = breakInterval;
         m_nextBreak = BIG_BREAK;
         breakNow( breakInterval );
