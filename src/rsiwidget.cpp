@@ -226,13 +226,13 @@ void RSIWidget::minimize( bool newImage )
     releaseKeyboard();
     releaseMouse();
     hide();
-    setBackgroundMode( QWidget::NoBackground );
     if (newImage)
         loadImage();
 }
 
 void RSIWidget::maximize()
 {
+    setBackgroundMode( QWidget::NoBackground );
     show(); // Keep it above the KWin calls.
     KWin::forceActiveWindow(winId());
     KWin::setOnAllDesktops(winId(),true);
