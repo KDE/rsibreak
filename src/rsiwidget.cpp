@@ -144,7 +144,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     m_backgroundimage.resize(QApplication::desktop()->width(),
                              QApplication::desktop()->height());
     setBackgroundMode( QWidget::NoBackground );
-    setGeometry( QApplication::desktop()->geometry() );
+    setGeometry( QApplication::desktop()->screenGeometry( this ) );
     move(0,0);
 
     m_tooltip = new RSIToolTip( m_tray, "Tooltip" );

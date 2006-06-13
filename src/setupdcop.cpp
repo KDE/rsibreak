@@ -76,7 +76,7 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     layout->setSpacing( KDialog::spacingHint() );
     layout->setAlignment( AlignTop );
 
-    QLabel *l1 = new QLabel(i18n("Here you can tell RSIBreak which"
+    QLabel *l1 = new QLabel(i18n("Here you can tell RSIBreak which "
             "applications should stop when a break is starting and be "
             "restarted when the break is over"), parent);
     l1->setAlignment(Qt::WordBreak);
