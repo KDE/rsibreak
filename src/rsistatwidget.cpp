@@ -104,7 +104,7 @@ void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
       case LAST_BIG_BREAK:
       {
         QTime dt( QTime::currentTime() );
-        width = (int)(fm.width( KGlobal::locale()->formatTime( dt ) ) * 1.25);
+        width = (int)(fm.width( KGlobal::locale()->formatTime( dt, true, false ) ) * 1.25);
         break;
       }
       default: ;

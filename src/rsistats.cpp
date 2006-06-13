@@ -304,7 +304,7 @@ void RSIStats::updateLabel( RSIStat stat )
         {
             KLocale *localize = KGlobal::locale();
             QTime when( m_statistics[ stat ]->getValue().asTime() );
-            when.isValid() ? l->setText( localize->formatTime(when, true, true) )
+            when.isValid() ? l->setText( localize->formatTime(when, true, false) )
                            : l->setText( QString::null );
             break;
         }
