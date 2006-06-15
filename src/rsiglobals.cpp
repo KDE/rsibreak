@@ -180,17 +180,25 @@ void RSIGlobals::executeDCOP(const QString &command)
             Syntax with data: "kopete" "KopeteIface" "setAway(QString)" "someStringContainingData"
     */
 
-    kdDebug() << "Execute " << command << endl;
-    QCString app=command.section(' ',0,0).utf8();
-    QCString obj=command.section(' ',1,1).utf8();
-    QCString fun=command.section(' ',2,2).utf8();
-    QCString data=command.section(' ',3,3).utf8();
+    QString _command = command;
 
-    if ( data.isEmpty() && fun.right(2) != "()" )
-        fun += "()";
+    if ( command.startsWith( "dcop " ) )
+        _command = _command.remove( 0, 5 );
 
-    if (!kapp->dcopClient()->send(app,obj,fun, data))
-        kdDebug() << "Command exectution failed" << endl;
+    kdDebug() << "Execute " << _command << endl;
+    QCString app =  _command.section(' ',0,0).utf8();
+    QCString obj =  _command.section(' ',1,1).utf8();
+    QCString fun =  _command.section(' ',2,2).utf8();
+    QCString data = _command.section(' ',3,3).utf8();
+
+    if ( app != "rsibreak" )
+    {
+        if ( data.isEmpty() && fun.right(2) != "()" )
+            fun += "()";
+
+        if (!kapp->dcopClient()->send(app,obj,fun, data))
+            kdDebug() << "Command exectution failed" << endl;
+    }
 }
 
 void RSIGlobals::DCOPBreak(bool start, bool big)
