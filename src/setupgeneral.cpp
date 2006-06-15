@@ -64,6 +64,14 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             "that you want RSIBreak to start when KDE starts.") );
     layout->addWidget(d->autoStart);
 
+    d->useNoIdleTimer = new QCheckBox(i18n("&Break at fixed times and ignore "
+            "movement during breaks"), parent);
+    QWhatsThis::add( d->useNoIdleTimer, i18n("With this checkbox you indicate "
+            "that you want to ignore movements during breaks and want to break "
+            "at fixed intervals") );
+    layout->addWidget(d->useNoIdleTimer);
+    connect(d->useNoIdleTimer , SIGNAL(toggled(bool)), SLOT(slotUseNoIdleTimer()));
+
     d->useIdleDetection = new QCheckBox(
             i18n("&Reset timers after period of idleness"), parent);
     QWhatsThis::add( d->useIdleDetection, i18n("With this checkbox you indicate "
@@ -78,14 +86,6 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             "that you want to see when the timers are reset. This happens when you "
             "have been idle for a while.") );
     layout->addWidget(d->showTimerReset);
-
-    d->useNoIdleTimer = new QCheckBox(i18n("&Break at fixed times and ignore "
-            "movement during breaks"), parent);
-    QWhatsThis::add( d->useNoIdleTimer, i18n("With this checkbox you indicate "
-            "that you want to ignore movements during breaks and want to break "
-            "at fixed intervals") );
-    layout->addWidget(d->useNoIdleTimer);
-    connect(d->useNoIdleTimer , SIGNAL(toggled(bool)), SLOT(slotUseNoIdleTimer()));
 
     readSettings();
     slotShowTimer();
