@@ -1,3 +1,590 @@
+2006-06-15 20:31 +0000 [r551866]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/NEWS: Update NEWS
+
+2006-06-15 16:13 +0000 [r551800]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp: o Allow the
+	  user to type "dcop " at the start of the command, like she's used
+	  to in the command line. o Don't allow the user to call functions
+	  on rsibreak itself.
+
+2006-06-15 15:51 +0000 [r551789]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Looking
+	  through my usability glasses (maybe I need a new opticien, who
+	  knows), I concluded to move the idle less option somewhat
+	  upwards. The other options are affected by it (disabled/enabled),
+	  so it makes more sense to show them after the idle less option.
+
+2006-06-13 17:02 +0000 [r551093]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsistats.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp: Two little
+	  bugfixes, first is that formatTime() should not be called with
+	  true for isDuration, because it is not. And the calculation of
+	  the width in the stats was done without taking the seconds into
+	  account, thereby off by three characters.
+
+2006-06-13 16:41 +0000 [r551089]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Little bug in
+	  the new timer, did not increase stats for breaks which the user
+	  did not skip. Does that happen?
+
+2006-06-13 09:37 +0000 [r550959]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Move the
+	  clearing of the background of the widget from minimize() to
+	  maximize(). This prevents that when you skip the break the next
+	  break reuses the previous screenshot, so it will eventually
+	  become totally black after a few escaped breaks.
+
+2006-06-13 08:24 +0000 [r550938]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp: Xinerama fix,
+	  only show countdown / gray out the active screen, otherwise the
+	  counter will end up in the middle.
+
+2006-06-12 19:09 +0000 [r550788]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: More work on
+	  the noIdleTimer: - Set docker icon properly - implement
+	  m_tinyBreakRequested && m_bigBreakRequested - fix the artifect on
+	  the lower right corner during gray out - issue the right dcop
+	  commands (hang in m_nextrbreak instead of the static
+	  currentbreak) Thats it for now.
+
+2006-06-12 16:54 +0000 [r550759]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Fixes a crash
+	  in the shortcut to minimize a break and setup the right timer
+	  properly.
+
+2006-06-11 22:20 +0000 [r550480]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp:
+	  svn_silent:stats
+
+2006-06-11 22:02 +0000 [r550476]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Make the noIdle
+	  timer work, add some stats and add execution of dcop commands.
+	  Seems to work quite well. BUG: 122954
+
+2006-06-11 21:05 +0000 [r550468]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Add the
+	  config option for the noIdleTimer.
+
+2006-06-11 00:08 +0000 [r550092]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/AUTHORS,
+	  trunk/playground/utils/rsibreak/TODO: add Tina as contributor,
+	  bump version, fix warning, update TODO
+
+2006-06-10 23:51 +0000 [r550088]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistatitem.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: - Remove
+	  debugging as far as I dont need it - Changed the 'Use images'
+	  checkbox to a checkbox in the groupbox and moved the recursive
+	  setting beack below the path. CCBUG: 128780 (transparant counter
+	  is also fixed now, there is a little glitch just when the show
+	  starts, but we have to live with that)
+
+2006-06-10 23:12 +0000 [r550084]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Improvements
+	  for transparent label
+
+2006-06-10 21:40 +0000 [r550065]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: o Warn in relax
+	  popup when the next break will be a big break (big breaks always
+	  came quite suddenly for me) o Attempt to make a transparent label
+	  in the full screen widget. Works only with the grey out effect,
+	  not with image mode.
+
+2006-06-10 20:54 +0000 [r550057]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupdcop.cpp: Only enable
+	  what's needed
+
+2006-06-10 14:30 +0000 [r549976]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.cpp: svn_silent:
+	  Clean up the dock
+
+2006-06-10 14:22 +0000 [r549973]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.h,
+	  trunk/playground/utils/rsibreak/src/rsidock.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Make the
+	  execution of dcop commands depend on the type of the break -
+	  adjust config - adjust execution routines - adjust callers
+	  Removed the dcop commands columns from the listview Removed some
+	  kddebug, it is time to remove all of them where possible Dont
+	  suspend rsibreak when about dialog is shown
+
+2006-06-09 22:37 +0000 [r549814]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.h: Make the
+	  gray out configurable. Make it the default setting. Counterbox
+	  will be fixed later. BUG: 128780
+
+2006-06-09 22:15 +0000 [r549805]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiglobals.h,
+	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp: Two new
+	  statistics: percentage of activity during the last hour and the
+	  last 6 hours.
+
+2006-06-09 22:01 +0000 [r549801]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: reorganise the
+	  resizing.
+
+2006-06-09 12:11 +0000 [r549642]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp: Remove not
+	  working karm dcop calls and rearrange maximize() in rsiwidget so
+	  it steals focus again. CCBUG: 128780
+
+2006-06-08 22:26 +0000 [r549518]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Make sure that
+	  the second break has the fade effect as well, dont load another
+	  image when there is only one image and dont rename slots just
+	  before commits, thats asking for it.
+
+2006-06-08 22:10 +0000 [r549515]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Ok, this commit
+	  will change rsiwidget in a few ways. When there is no image found
+	  in the folder, it will gray out as in the kde logout sequence.
+	  Next to that, some artifacts seem to have been solved by these
+	  changes.... Todo: - place the counter in a box, maybe use the
+	  rsipopup for it - make this behaviour configurable, next to the
+	  images. - make this behaviour the default setting. Please check
+	  for regressions and other issues. CCBUG: 128780 I can not support
+	  transparant images as part of your image collection, but the aim
+	  is the title of the bugreport ;-)
+
+2006-06-06 19:33 +0000 [r548887]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp: Fix
+	  jumping of the passivepopup and resizing when the label changes.
+
+2006-06-06 17:55 +0000 [r548870]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Libxss is
+	  required for compiling. I don't see a reason to check it at
+	  runtime.
+
+2006-06-06 17:43 +0000 [r548869]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer_dpms.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - Dont query
+	  the dpms settings in the constructor, but after 6 minutes idle
+	  time, improves startup speed (yes, it is not impressive), and if
+	  the user changes the setting during the session, it will be
+	  picked up. - Remove the have_libxss from the rsitimer_dpms, the
+	  functionality does not depend on that lib. If it is not needed it
+	  will not be queried. So this is cleaner.
+
+2006-06-06 15:27 +0000 [r548826]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer_dpms.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer_dpms.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Maximum idle
+	  time was again limited (my lunch break was definitly greater than
+	  20 minutes). This time it seems the 'standby' state of DPMS was
+	  the maximum. Fixed this by expanding the workaround to also
+	  ignore the standby and suspend interval second. Why o why does X
+	  emit activity when blanking the screen....
+
+2006-06-05 15:24 +0000 [r548441]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Since
+	  smootscale is time consuming, limit the loading of images to a
+	  bare minimum. Before this commit a new image was loaded when the
+	  config was entered (minimize() to make sure there was no active
+	  break) and when leaving the dialog another image was loaded
+	  (minimize() to reset timers). After this commit, only an image is
+	  loaded when needed. Hence the dialogs appear faster and when
+	  dialog is closed, rsibreak is immediatly picking up its task.
+
+2006-06-05 14:44 +0000 [r548426]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Playing with
+	  callgrind, i don't really understand it, but smoothscale seems to
+	  delay startup enormously.
+
+2006-05-31 22:14 +0000 [r547133]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.cpp (removed),
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.h (removed),
+	  trunk/playground/utils/rsibreak/src/setupmaximized.h: More work
+	  on usability report: - merge popup tab with maximized tab -
+	  reorganise all options in setupmaximized - renamed maximize tab
+	  to 'During Break' - remove popup tab Completes Issue 2.2
+	  usability review. CCMAIL: t.trillitzsch@gmx.de,
+	  clearbeast@gmail.com
+
+2006-05-31 21:19 +0000 [r547115]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setuppopup.cpp: Usability
+	  work on the setuppopup page. - brought the checkbox closer to the
+	  label - reduced the text of the label - a bit more space between
+	  the options Finished issue 2.1 from the report. CCMAIL:
+	  t.trillitzsch@gmx.de
+
+2006-05-29 18:47 +0000 [r546323]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setuppopup.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp: Point 1.1
+	  usability report. timing: - resize kintnuminput to minimum
+	  possible - align the associated labels to the right dcop: - make
+	  label break automatically according to the width, this was
+	  causing the wide display. popup: - make label break automatically
+	  according to the width, this was causing the small text in the
+	  wide display. CCMAIL: t.trillitzsch@gmx.de
+
+2006-05-22 19:31 +0000 [r543783]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Actually call
+	  the DCOP commands in the timer (on the right places I hope).
+	  Executed both on tiny breaks and big breaks (for now)
+
+2006-05-21 20:15 +0000 [r543355]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.h: Ok, missing
+	  pieces: start using it && implement add and delete. We can now
+	  start to test it.
+
+2006-05-21 13:53 +0000 [r543170]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp: continued work
+	  on dcop calls. Implemented load and save functions. Only load
+	  example data when list is empty. Move execution to rsiglobals to
+	  share it with rsitimer later on. Todo: add new rule, delete new
+	  rule and make adjust rsitimer to make it work.
+
+2006-05-20 16:11 +0000 [r542919]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupdcop.cpp: Mind the "()"
+	  when you're not passing data.
+
+2006-05-20 15:14 +0000 [r542910]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.h: Another step
+	  towards executing dcop calls at start and ending of a break.
+	  Still wip... Bram, any can you look at slotTestStart(), i've no
+	  clue what i'm doing wrong there.
+
+2006-05-19 23:22 +0000 [r542678]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.cpp (added),
+	  trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/setupdcop.h (added): First
+	  steps to be able to execute dcop commands on start and ending of
+	  a break. Work in progress...
+
+2006-05-19 14:18 +0000 [r542517]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Usability
+	  recomendation from Tina. Show where the icon sits in the tray.
+	  Shameless copy from various places. CCMAIL: t.trillitzsch@gmx.de
+
+2006-05-13 17:29 +0000 [r540509]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/configure.in.bot: Small typo.
+	  Patch from the FreeBSD people via Alex Dupre.
+
+2006-05-13 17:20 +0000 [r540507]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/Makefile.am: Compiling with
+	  -jN with N>1 was broken. Gentoo bug 132875. Patch from Diego
+	  'Flameeyes' Pettenò <flameeyes@gentoo.org>.
+
+2006-05-05 21:45 +0000 [r537810]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsidock.cpp: Always create
+	  timeout timer for tooltip, not only when entering the docker
+	  icon. Sometimes the timer seems to be uninitialized when pressing
+	  the mouse button on it. Should fix Tom's crash report.
+
+2006-05-05 10:39 +0000 [r537617]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: At least keep
+	  20 sec popup free when starting.
+
+2006-05-05 10:30 +0000 [r537612]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: But m_tiny_left
+	  is not resetted, so is 0, so enters loop. Revert last fix and try
+	  another approach.
+
+2006-05-05 08:38 +0000 [r537586]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Finally fixed
+	  this bug ( I hope ). Right after a break of 10 seconds, it can
+	  happen that m_patience is still > 0, because that is set to 15
+	  seconds. That causes the break to not be resetted and a full
+	  screen widget appears. Ideally the m_patience should be reset to
+	  0, but as the order in the code does this later on, so now
+	  prevent entering the loop.
+
+2006-04-29 21:45 +0000 [r535617]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Reset timers
+	  properly after a forced (DCOP invoked) big break, while the next
+	  break was actually a tiny break.
+
+2006-04-28 14:57 +0000 [r535101]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Revert
+	  attaching the timer to the "Reset when idle" option.
+
+2006-04-28 09:31 +0000 [r534971]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/rsiwidget.h: o New timer
+	  accessible now, under the option "Reset timers when idle" in the
+	  setup dialog. This is only evaluated when starting RSIBreak,
+	  which means you have to restart RSIBreak to load the new timer
+	  code if you change the idle detection setting. Will be improved
+	  sometime. o mDcopIface -> m_dcopIface
+
+2006-04-24 17:59 +0000 [r533401]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/CMakeLists.txt,
+	  trunk/playground/utils/rsibreak/icons/hi32-app-rsibreak.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-app-rsibreak.png
+	  (added), trunk/playground/utils/rsibreak/icons/artwork-v1.tar.gz
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi32-app-rsibreak.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak0.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak1.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-app-rsibreak.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak2.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak0.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak3.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak1.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak4.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak2.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak3.png
+	  (added), trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak4.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi64-action-rsibreak3.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreakx.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreakx.png
+	  (added),
+	  trunk/playground/utils/rsibreak/src/original_artwork.tar.gz
+	  (removed), trunk/playground/utils/rsibreak/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak0.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak1.png
+	  (removed), trunk/playground/utils/rsibreak/icons (added),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak2.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak0.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak3.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak1.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreak4.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak2.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak3.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreak4.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/src/hi32-action-rsibreakx.png
+	  (removed), trunk/playground/utils/rsibreak/icons/Makefile.am
+	  (added),
+	  trunk/playground/utils/rsibreak/src/hi16-action-rsibreakx.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/icons/hi128-action-rsibreak3.png
+	  (added), trunk/playground/utils/rsibreak/icons/CMakeLists.txt
+	  (added), trunk/playground/utils/rsibreak/icons/artwork-v2.tar.gz
+	  (added), trunk/playground/utils/rsibreak/src/Makefile.am,
+	  trunk/playground/utils/rsibreak/src/CMakeLists.txt: New icons
+	  from Lee Olson - put into a separate icons folder - removed old
+	  ones - adjusted buildsystems - moved tarballs with the raw
+	  material - adjusted release script - updated NEWS.
+
+2006-04-23 21:31 +0000 [r533164]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: First attempt
+	  for a timer without idle detection (wish 122954). It's not
+	  finished, nor accessible and thus completely untested, but at
+	  least it compiles. It relies for a great part on the existing
+	  timer $ Will work on this later on. CCBUG:122954
+
+2006-04-23 18:10 +0000 [r533119]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsistats.cpp: What's this for
+	  my new statistic.
+
+2006-04-23 17:58 +0000 [r533116]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistats.h,
+	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
+	  trunk/playground/utils/rsibreak/src/rsistatitem.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
+	  trunk/playground/utils/rsibreak/src/rsistatitem.h,
+	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp: o New
+	  class of RSIStatItems introduced: items which keeps track of the
+	  user's usage. A global array keeps track of every second of usage
+	  or idleness in the last 24h. The new class is able to record
+	  parts of this array to calculate the percentage of usage in the
+	  last minute, hour or day (whatever interval <24h). At the moment
+	  only the activity of the last minute is added, as proof of
+	  concept. It should be possible to query more kinds of intervals.
+	  o The statistic mapping uses pointers instead of direct instances
+	  of statistic items. o One more krazy report fixed. FEATURE
+
+2006-04-23 09:33 +0000 [r532908]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.cpp,
+	  trunk/playground/utils/rsibreak/src/setup.h,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/playground/utils/rsibreak/src/setuppopup.h,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.h,
+	  trunk/playground/utils/rsibreak/src/setuptiming.h,
+	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: More krazy
+	  reports fixed: changed the copyright headers.
+
+2006-04-22 22:47 +0000 [r532835]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/playground/utils/rsibreak/src/setuptiming.cpp: Make krazy
+	  shut up a bit.
+
+2006-04-21 17:50 +0000 [r532336]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp: syntax error
+	  before "mins"
+
+2006-04-20 22:12 +0000 [r532048]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/playground/utils/rsibreak/src/dcopiface.h,
+	  trunk/playground/utils/rsibreak/src/rsitimer.h,
+	  trunk/playground/utils/rsibreak/src/dcopiface.cpp,
+	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Two new DCOP
+	  calls: o Force tiny break o Force big break
+
+2006-04-20 19:32 +0000 [r531995]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: ambiguous
+	  overload for `bool & ? const QString & : const char[4]'
+
+2006-04-12 18:32 +0000 [r529202]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/CMakeLists.txt: Finally found
+	  the correct way
+
+2006-04-11 19:12 +0000 [r528781]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/config.h.cmake (added),
+	  trunk/playground/utils/rsibreak/CMakeLists.txt (added),
+	  trunk/playground/utils/rsibreak/src/CMakeLists.txt (added): CMake
+	  build files, has some errors, will polish them as I learn CMake
+	  better.
+
+2006-04-11 18:47 +0000 [r528761]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsistats.cpp: Extended the
+	  what's this explanations a bit.
+
+2006-04-10 18:53 +0000 [r528324]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/main.cpp,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/TODO: prep 0.6.0
+
 2006-04-09 21:58 +0000 [r528030]  Tom Albers tomalbers@kde.nl
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Fix corner
