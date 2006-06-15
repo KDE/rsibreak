@@ -1,5 +1,6 @@
 /* ============================================================
  * Copyright (C) 2006 by Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2006 by Bram Schoenmakers <bramschoenmakers@kde.nl>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -25,6 +26,12 @@
 class SetupDCOPPriv;
 class QListViewItem;
 
+/**
+  @class RSIDcopEdit
+  Re-implementation of QLineEdit, to clear the view when
+  some text is dropped.
+  @author Bram Schoenmakers <bramschoenmakers@kde.nl>
+*/
 class RSIDcopEdit : public QLineEdit
 {
   Q_OBJECT
