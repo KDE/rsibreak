@@ -20,8 +20,21 @@
 #ifndef SETUPDCOP_H
 #define SETUPDCOP_H
 
+#include <qlineedit.h>
+
 class SetupDCOPPriv;
 class QListViewItem;
+
+class RSIDcopEdit : public QLineEdit
+{
+  Q_OBJECT
+public:
+    RSIDcopEdit( QWidget *name = 0, const char *name = 0 );
+    ~RSIDcopEdit() {};
+
+protected:
+    virtual void dropEvent( QDropEvent * );
+};
 
 /**
  * @class SetupDCOP

@@ -25,7 +25,6 @@
 #include <qvgroupbox.h>
 #include <qhgroupbox.h>
 #include <qlabel.h>
-#include <qlineedit.h>
 #include <qwhatsthis.h>
 #include <qcheckbox.h>
 #include <qlistview.h>
@@ -49,12 +48,23 @@
 #include "setupdcop.h"
 #include "rsiglobals.h"
 
+RSIDcopEdit::RSIDcopEdit( QWidget *parent, const char *name )
+: QLineEdit( parent, name )
+{
+}
+
+void RSIDcopEdit::dropEvent( QDropEvent *e )
+{
+    clear();
+    QLineEdit::dropEvent( e );
+}
+
 class SetupDCOPPriv
 {
 public:
     QListView       *table;
-    QLineEdit       *start;
-    QLineEdit       *end;
+    RSIDcopEdit     *start;
+    RSIDcopEdit     *end;
     QLineEdit       *desc;
     QCheckBox       *active;
     QCheckBox       *onlyAtBigBreak;
@@ -117,7 +127,7 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->l3 = new QLabel(i18n("DCOP At Break Start:"), parent);
     QWhatsThis::add( d->l3, i18n("Here you can set the command to issue when "
             "the break begins") );
-    d->start = new QLineEdit(parent);
+    d->start = new RSIDcopEdit(parent);
     d->l3->setBuddy(d->start);
     connect( d->start, SIGNAL(textChanged(const QString&) ),
              SLOT(slotDCOPStartChanged(const QString&) ) );
@@ -125,7 +135,7 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->l4 = new QLabel(i18n("DCOP At Break End:"), parent);
     QWhatsThis::add( d->l4, i18n("Here you can set the command to issue when "
             "the break ends") );
-    d->end = new QLineEdit(parent);
+    d->end = new RSIDcopEdit(parent);
     d->l4->setBuddy(d->end);
     connect( d->end, SIGNAL(textChanged(const QString&) ),
              SLOT(slotDCOPStopChanged(const QString&) ) );
