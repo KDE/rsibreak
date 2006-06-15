@@ -42,6 +42,7 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
+#include <kiconloader.h>
 
 // Local includes.
 
@@ -60,17 +61,27 @@ public:
     QCheckListItem  *current;
     QPushButton     *startButton;
     QPushButton     *endButton;
+    QPushButton     *pickButton;
     QLabel          *l2;
     QLabel          *l3;
     QLabel          *l4;
     QLabel          *l5;
     QLabel          *l6;
+    QLabel          *l7;
+    QPopupMenu      *menu;
 };
 
 SetupDCOP::SetupDCOP(QWidget* parent )
            : QWidget(parent)
 {
     d = new SetupDCOPPriv;
+
+    KIconLoader il;
+
+    d->menu = new QPopupMenu();
+
+    d->menu->insertItem( il.loadIconSet("remove", KIcon::Small), i18n("Remove"), this, SLOT( slotRemoveItem() ), 0);
+    d->menu->insertItem( il.loadIconSet("add", KIcon::Small), i18n("Add"), this, SLOT( slotAddNewItem() ), 1);
 
     QVBoxLayout *layout = new QVBoxLayout( parent );
     layout->setSpacing( KDialog::spacingHint() );
@@ -139,8 +150,15 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->endButton = new QPushButton( i18n("Test"), parent);
     connect( d->endButton, SIGNAL(clicked()), SLOT( slotTestStop()));
 
+    d->pickButton = new QPushButton( i18n("Start KDCOP..."), parent );
+    connect( d->pickButton, SIGNAL( clicked() ), SLOT( slotPicked() ) );
+
+    d->l7 = new QLabel( i18n("Use KDCOP to drag and drop DCOP commands to the fields above:"), parent );
+    QWhatsThis::add( d->l7, i18n("KDCOP is a little application which allows to see which DCOP commands are available for all running applications. You can simply drag and drop commands to the command fields above.") );
+    d->l7->setBuddy( d->pickButton );
+
     gbox->addWidget(d->l2,0,0, Qt::AlignRight);
-    gbox->addMultiCellWidget(d->desc,0,0,1,2);
+    gbox->addMultiCellWidget(d->desc,0,0,1,3);
     gbox->addWidget(d->l3,2,0, Qt::AlignRight);
     gbox->addMultiCellWidget(d->start,2,2,1,2);
     gbox->addWidget(d->startButton,2,3);
@@ -151,6 +169,8 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     gbox->addWidget(d->active,1,1);
     gbox->addWidget(d->l6,1,2, Qt::AlignRight);
     gbox->addWidget(d->onlyAtBigBreak,1,3);
+    gbox->addMultiCellWidget(d->l7, 4,4, 0, 2, Qt::AlignRight );
+    gbox->addWidget(d->pickButton, 4, 3 );
 
     layout->addLayout(gbox);
     d->desc->setEnabled(false);
@@ -160,11 +180,13 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->end->setEnabled(false);
     d->startButton->setEnabled(false);
     d->endButton->setEnabled(false);
+    d->pickButton->setEnabled(false);
     d->l2->setEnabled(false);
     d->l3->setEnabled(false);
     d->l4->setEnabled(false);
     d->l5->setEnabled(false);
     d->l6->setEnabled(false);
+    d->l7->setEnabled(false);
     readSettings();
 
     // An example...
@@ -235,8 +257,7 @@ void SetupDCOP::readSettings()
 void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
                                   const QPoint & pos)
 {
-    //TODO: Someone please check this....
-    d->current = dynamic_cast<QCheckListItem*>(item);
+    d->current = static_cast<QCheckListItem*>(item);
 
     if (button == Qt::LeftButton)
     {
@@ -246,37 +267,7 @@ void SetupDCOP::slotTableClicked( int button, QListViewItem * item,
     }
     else if (button == Qt::RightButton )
     {
-        QPopupMenu *menu = new QPopupMenu();
-        if (d->current)
-            menu->insertItem(i18n("Remove"), 0);
-        menu->insertItem(i18n("Add"), 1);
-
-        int i = menu->exec(pos);
-
-        if (i == 0)
-        {
-            d->table->takeItem( d->current );
-
-            d->desc->clear();
-            d->desc->setEnabled(false);
-            d->active->setChecked(false);
-            d->active->setEnabled(false);
-            d->onlyAtBigBreak->setChecked(false);
-            d->onlyAtBigBreak->setEnabled(false);
-            d->start->clear();
-            d->start->setEnabled(false);
-            d->end->clear();
-            d->end->setEnabled(false);
-            d->startButton->setEnabled(false);
-            d->endButton->setEnabled(false);
-            d->l2->setEnabled(false);
-            d->l3->setEnabled(false);
-            d->l4->setEnabled(false);
-            d->l5->setEnabled(false);
-            d->l6->setEnabled(false);
-        }
-        else if (i == 1)
-            slotAddNewItem();
+        d->menu->exec(pos);
     }
 }
 
@@ -291,6 +282,31 @@ void SetupDCOP::slotAddNewItem()
     d->table->setSelected(item, true);
     d->table->ensureItemVisible(item);
     d->current=item;
+}
+
+void SetupDCOP::slotRemoveItem()
+{
+    d->table->takeItem( d->current );
+
+    d->desc->clear();
+    d->desc->setEnabled(false);
+    d->active->setChecked(false);
+    d->active->setEnabled(false);
+    d->onlyAtBigBreak->setChecked(false);
+    d->onlyAtBigBreak->setEnabled(false);
+    d->start->clear();
+    d->start->setEnabled(false);
+    d->end->clear();
+    d->end->setEnabled(false);
+    d->startButton->setEnabled(false);
+    d->endButton->setEnabled(false);
+    d->pickButton->setEnabled(false);
+    d->l2->setEnabled(false);
+    d->l3->setEnabled(false);
+    d->l4->setEnabled(false);
+    d->l5->setEnabled(false);
+    d->l6->setEnabled(false);
+    d->l7->setEnabled(false);
 }
 
 void SetupDCOP::updateEditArea()
@@ -320,9 +336,11 @@ void SetupDCOP::slotCheckActive()
     d->end->setEnabled( b );
     d->startButton->setEnabled( b );
     d->endButton->setEnabled( b );
+    d->pickButton->setEnabled( b );
     d->l3->setEnabled( b );
     d->l4->setEnabled( b );
     d->l6->setEnabled( b );
+    d->l7->setEnabled( b );
 }
 
 void SetupDCOP::slotCheckOnlyAtBigBreak()
@@ -354,6 +372,11 @@ void SetupDCOP::slotTestStart()
 void SetupDCOP::slotTestStop()
 {
     RSIGlobals::instance()->executeDCOP(d->current->text(2));
+}
+
+void SetupDCOP::slotPicked()
+{
+    KApplication::kdeinitExec( "kdcop", QStringList(), 0, 0, "kdcop" );
 }
 
 #include "setupdcop.moc"

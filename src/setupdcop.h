@@ -63,6 +63,8 @@ private slots:
     void slotTestStart();
     void slotTestStop();
     void slotAddNewItem();
+    void slotRemoveItem();
+    void slotPicked();
 
 private:
     void readSettings();
