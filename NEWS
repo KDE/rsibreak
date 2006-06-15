@@ -1,7 +1,9 @@
-v0.6.1 not released yet
+v0.7.0 not released yet
 - New icons from Lee Olson.
 - Two new DCOP calls: doTinyBreak and doBigBreak.
-- New statistic: percentage of activity during the last minute
+- New statistics: percentage of activity during the last minute, last hour and last 6 hours.
+- Ability to make DCOP calls to the start and end of breaks. Eventually in combination with KDCOP.
+- When no images are in the selected directory, a grey out effect will be used.
 
 v0.6.0 2006-04-10
 - Extensive amount of statistics.
