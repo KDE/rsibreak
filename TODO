@@ -2,18 +2,16 @@ Wishes:
 - rsi instructions <---- please contact us if you can do this....
 - [BS] strict-o-meter
 - [BS] A second timer implementation which ignores idle detection
-- Save statistics
+- Save statistics (sqlite?)
+- Visualize stats with libraries behind mrtg or ganglia
 
 Bugs:
 - image extension are hardcoded
-- in some cases, the tooltip does not appear
-  ( note: seems only to happen after waiting for a big break in a relax popup ) (fixed?)
-- when you're idle for the length of a big break, without any break active, it is not detected
 - only reset timers after closing configure dialog if the timer settings were changed
 
 Gnome specific bugs:
 - It is started at login, regardless of the setting.
   Gnome does not have a setting where you can set a condition to start / not
-  start, nor can you disable the startup for GNome when the desktop is in the
+  start, nor can you disable the startup for Gnome when the desktop is in the
   $prefix/autostart. So: known bug - unresolvable untill a fd.o spec is
   there and implemented
