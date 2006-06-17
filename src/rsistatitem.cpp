@@ -65,6 +65,7 @@ void RSIStatBitArrayItem::reset()
 
   m_end = 0;
   m_begin = totalarraysize - m_size;
+  m_counter = 0;
 }
 
 void RSIStatBitArrayItem::setActivity()
