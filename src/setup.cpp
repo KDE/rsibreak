@@ -58,16 +58,16 @@ Setup::Setup(QWidget* parent, const char* name)
     d->generalPage = new SetupGeneral(page_general);
 
     QFrame *page_timing = addPage(i18n("Timings"), i18n("Timings"),
-                            BarIcon("rsibreak3", KIcon::SizeMedium));
+                              BarIcon("timings", KIcon::SizeMedium));
     d->timingPage = new SetupTiming(page_timing);
 
     QFrame *page_maximized = addPage(i18n("During Breaks"),
                               i18n("During Breaks"),
-                              BarIcon("background", KIcon::SizeMedium));
+                              BarIcon("duringbreaks", KIcon::SizeMedium));
     d->maximizedPage = new SetupMaximized(page_maximized);
 
     QFrame *page_dcop = addPage(i18n("DCOP"), i18n("DCOP"),
-                                     BarIcon("background", KIcon::SizeMedium));
+                              BarIcon("dcop", KIcon::SizeMedium));
     d->DCOPPage = new SetupDCOP(page_dcop);
 
     connect(this, SIGNAL(okClicked()),

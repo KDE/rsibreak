@@ -9,10 +9,10 @@
 
 name       = "rsibreak"
 egmodule   = "utils"
-version    = "0.6.0"
+version    = "0.7.0"
 docs       = "no"
 
-svnbase    = "https://toma@svn.kde.org/home/kde"
+svnbase    = "svn+ssh://toma@svn.kde.org/home/kde"
 svnroot    = "#{svnbase}/trunk"
 adminroot  = "#{svnbase}/branches/KDE/3.5"
 
@@ -166,6 +166,7 @@ Dir.chdir( "#{name}" )
 `/bin/mv -f TODO ..`
 #`/bin/mv -f HACKING ..`
 `/bin/rm release_rsibreak.rb makechangelog ../INDEX ../README icons/artwork-v1.tar.gz icons/artwork-v2.tar.gz`
+`/bin/rm icons/artwork-v3.tar.gz`
 Dir.chdir( ".." )
 
 
