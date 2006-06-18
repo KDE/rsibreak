@@ -88,7 +88,6 @@ SetupGeneral::SetupGeneral(QWidget* parent )
     layout->addWidget(d->showTimerReset);
 
     readSettings();
-    slotShowTimer();
     slotUseNoIdleTimer();
 }
 
@@ -99,13 +98,15 @@ SetupGeneral::~SetupGeneral()
 
 void SetupGeneral::slotShowTimer()
 {
-    d->showTimerReset->setEnabled(d->useIdleDetection->isChecked());
+    d->showTimerReset->setEnabled(d->useIdleDetection->isChecked() &&
+                                  !d->useNoIdleTimer->isChecked());
 }
 
 void SetupGeneral::slotUseNoIdleTimer()
 {
     d->useIdleDetection->setEnabled(!d->useNoIdleTimer->isChecked());
     d->showTimerReset->setEnabled(!d->useNoIdleTimer->isChecked());
+    slotShowTimer();
 }
 
 void SetupGeneral::applySettings()
