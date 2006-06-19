@@ -19,7 +19,7 @@
 #include <kuniqueapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
-#include <stdio.h>
+#include <stdlib.h>
 
 #include "rsiwidget.h"
 
