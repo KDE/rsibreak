@@ -167,7 +167,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
              m_relaxpopup, SLOT( setVisible( bool ) ) );
 
-    setIcon( 0 );
     srand ( time(NULL) );
 
     QBoxLayout *topLayout = new QVBoxLayout( this, 5);
@@ -202,6 +201,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
     readConfig();
+
+    setIcon( 0 );
 
     // if there are no images found, the break will appear in black.
     // if the text color is black (default) then change that.
