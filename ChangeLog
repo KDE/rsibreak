@@ -1,3 +1,79 @@
+2006-06-18 18:48 +0000 [r552669]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/icons/hi16-action-rsibreakx.png,
+	  trunk/playground/utils/rsibreak/icons/artwork-v3.tar.gz,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak0.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak1.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak0.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak2.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak1.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak3.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak2.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak4.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak3.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak4.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreakx.png:
+	  New versions. Made by Lee Olson.
+
+2006-06-18 14:11 +0000 [r552610]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Fix enable
+	  state of the items.
+
+2006-06-18 12:19 +0000 [r552587]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/icons/hi128-app-rsibreak.png
+	  (added), trunk/playground/utils/rsibreak/src/setup.cpp,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreakx.png,
+	  trunk/playground/utils/rsibreak/icons,
+	  trunk/playground/utils/rsibreak/icons/hi16-app-rsibreak.png,
+	  trunk/playground/utils/rsibreak/icons/Makefile.am,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-timings.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi128-action-rsibreak3.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-duringbreaks.png
+	  (added), trunk/playground/utils/rsibreak/icons/artwork-v3.tar.gz
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak0.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak1.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak2.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak0.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak3.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak1.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-dcop.png
+	  (added),
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak2.png,
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreak4.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak3.png,
+	  trunk/playground/utils/rsibreak/icons/hi16-action-rsibreak4.png,
+	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
+	  trunk/playground/utils/rsibreak/icons/hi64-action-rsibreak3.png
+	  (removed),
+	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreakx.png:
+	  New icons. Changed the installation path of the icons to an app
+	  specific one, instead of globally. Not sure how that behaves on
+	  upgrades though.
+
+2006-06-17 12:13 +0000 [r552309]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/rsistatitem.cpp: Reset bit
+	  array items properly.
+
+2006-06-15 21:17 +0000 [r551878]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.h: Clear contents
+	  before you drop something on the command fields.
+
+2006-06-15 21:01 +0000 [r551872]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/playground/utils/rsibreak/src/setupdcop.cpp,
+	  trunk/playground/utils/rsibreak/src/setupdcop.h: o Button added
+	  which starts KDCOP (useful for Drag 'n Dropping DCOP calls) o
+	  Don't construct popup menu with every right click (it leaked
+	  memory as well) o Add icons to popup
+
 2006-06-15 20:31 +0000 [r551866]  Bram Schoenmakers bramschoenmakers@kde.nl
 
 	* trunk/playground/utils/rsibreak/NEWS: Update NEWS

@@ -1,12 +1,14 @@
-v0.7.0 not released yet
+v0.7.0 2006-06-19
 - New icons from Lee Olson.
 - Usability review from  Tina Trillitzsch.
 - Two new DCOP calls: doTinyBreak and doBigBreak.
 - New statistics: percentage of activity during the last minute, last hour and last 6 hours.
-- Warn when next break will be a big break.
-- Ability to make DCOP calls to the start and end of breaks. Eventually in combination with KDCOP.
+- Inform the user when the next break will be a big break.
+- Ability to make DCOP calls to the start and end of breaks.
+- Possibility to use KDCOP to set that up.
 - When no images are in the selected directory, a grey out effect will be used.
 - Possibility to break at fixed times.
+- Various smaller enhancements and bug fixes.
 
 v0.6.0 2006-04-10
 - Extensive amount of statistics.
