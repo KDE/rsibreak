@@ -1,3 +1,26 @@
+2006-06-19 20:07 +0000 [r553043]  Tom Albers tomalbers@kde.nl
+
+	* trunk/kdereview/rsibreak/src/rsiwidget.cpp,
+	  trunk/kdereview/rsibreak/icons/hi32-app-rsibreak.png: Fix crash
+	  on startup and fix one of the icons.
+
+2006-06-19 19:06 +0000 [r553034]  Tom Albers tomalbers@kde.nl
+
+	* trunk/kdereview/rsibreak/src/main.cpp: Fix compilation in
+	  kdereview.
+
+2006-06-19 19:02 +0000 [r553033]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak (removed),
+	  trunk/kdereview/rsibreak (added): Move to kdereview
+
+2006-06-19 17:42 +0000 [r553015]  Tom Albers tomalbers@kde.nl
+
+	* trunk/playground/utils/rsibreak/ChangeLog,
+	  trunk/playground/utils/rsibreak/NEWS,
+	  trunk/playground/utils/rsibreak/src/rsibreak.lsm: Closing 0.7.0.
+	  tarball in a minute.
+
 2006-06-18 18:48 +0000 [r552669]  Tom Albers tomalbers@kde.nl
 
 	* trunk/playground/utils/rsibreak/icons/hi16-action-rsibreakx.png,

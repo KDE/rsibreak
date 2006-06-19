@@ -8,8 +8,8 @@
 
 
 name       = "rsibreak"
-egmodule   = "utils"
-version    = "0.7.0"
+egmodule   = "kdereview"
+version    = "0.7.1"
 docs       = "no"
 
 svnbase    = "svn+ssh://toma@svn.kde.org/home/kde"
@@ -37,7 +37,7 @@ puts "Fetching #{egmodule}/#{name}..."
 Dir.mkdir( folder )
 Dir.chdir( folder )
 
-`svn co -N #{svnroot}/playground/#{egmodule}`
+`svn co -N #{svnroot}/#{egmodule}`
 Dir.chdir( egmodule )
 `svn up #{name}`
 `svn up -N doc`
@@ -78,7 +78,7 @@ for lang in i18nlangs
   for dg in addDocs
     dg.chomp!
     `rm -rf #{dg}`
-    docdirname = "l10n/#{lang}/docs/playground-#{egmodule}/#{dg}"
+    docdirname = "l10n/#{lang}/docs/playground-utils/#{dg}"
     if ( docs != "no")
         `svn co -q #{svnroot}/#{docdirname} > /dev/null 2>&1`
     end
@@ -114,7 +114,7 @@ for lang in i18nlangs
 
   for dg in addPo
     dg.chomp!
-    pofilename = "l10n/#{lang}/messages/playground-#{egmodule}/#{dg}.po"
+    pofilename = "l10n/#{lang}/messages/playground-utils/#{dg}.po"
     `svn cat #{svnroot}/#{pofilename} 2> /dev/null | tee l10n/#{dg}.po`
     next if FileTest.size( "l10n/#{dg}.po" ) == 0
 
@@ -181,6 +181,9 @@ puts "Generating Makefiles..  "
 `echo "DISTCLEANFILES = inst-apps" >> Makefile.am.in`
 `echo "include admin/deps.am" >> Makefile.am.in`
 `echo "include admin/Doxyfile.am" >> Makefile.am.in`
+
+ENV["ACLOCAL"]="aclocal"
+ENV["AUTOCONF"]="autoconf"
 
 `make -f Makefile.cvs`
 puts "done.\n"

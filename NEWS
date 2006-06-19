@@ -1,3 +1,7 @@
+v0.7.1 2006-06-19
+- fix crash on startup reported on some systems.
+- fix one of the icons.
+
 v0.7.0 2006-06-19
 - New icons from Lee Olson.
 - Usability review from  Tina Trillitzsch.
