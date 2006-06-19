@@ -351,7 +351,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
                           "the keyboard or mouse.");
       case ACTIVITY_PERC: return i18n("This is a percentage of activity, based on the "
                           "periods of activity vs. the total time RSIBreak has been running."
-                          "The color indicates the level of your activity. When the color is"
+                          "The color indicates the level of your activity. When the color is "
                           "close to full red it's recommended to lower your work pace.");
       case MAX_IDLENESS: return i18n("This is the longest period of inactivity measured "
                           "while RSIBreak has been running.");
@@ -375,13 +375,13 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
                           "with the breaks. It decreases everytime you skip a break.");
       case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
       case ACTIVITY_PERC_MINUTE: return i18n("This is a percentage of activity during the last minute."
-                          "The color indicates the level of your activity. When the color is"
+                          "The color indicates the level of your activity. When the color is "
                           "close to full red it's recommended to lower your work pace.");
       case ACTIVITY_PERC_HOUR: return i18n("This is a percentage of activity during the last hour."
-                          "The color indicates the level of your activity. When the color is"
+                          "The color indicates the level of your activity. When the color is "
                           "close to full red it's recommended to lower your work pace.");
       case ACTIVITY_PERC_6HOUR: return i18n("This is a percentage of activity during the last 6 hours."
-                          "The color indicates the level of your activity. When the color is"
+                          "The color indicates the level of your activity. When the color is "
                           "close to full red it's recommended to lower your work pace.");
       default: ;
     }

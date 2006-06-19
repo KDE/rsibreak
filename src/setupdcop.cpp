@@ -155,7 +155,7 @@ SetupDCOP::SetupDCOP(QWidget* parent )
     d->l6->setBuddy(d->onlyAtBigBreak);
     connect( d->onlyAtBigBreak,SIGNAL(clicked()),SLOT( slotCheckOnlyAtBigBreak()));
 
-    d->startButton = new QPushButton( i18n("Test"), parent);
+    d->startButton = new QPushButton( i18n("verb", "Test"), parent);
     connect( d->startButton, SIGNAL(clicked()), SLOT( slotTestStart()));
 
     d->endButton = new QPushButton( i18n("Test"), parent);
