@@ -1,9 +1,20 @@
 Wishes:
 - rsi instructions <---- please contact us if you can do this....
 - [BS] strict-o-meter
-- [BS] A second timer implementation which ignores idle detection
 - Save statistics (sqlite?)
 - Visualize stats with libraries behind mrtg or ganglia
+
+To be fixed for next release:
+- [BS] fix buttons accel on breaks. reported by tsdgeos
+- [TA] when started a second time, show screenie where it sits in the tray.
+- [ST4N] add an option to only reset timers when being idle for the duration of a long break.
+- [LO] fix the proportion of the 'during break' icon. reported by Diego Iastrubni
+- [TA/BS] sometimes the amount of skipped/sat down breaks don't match its total. reported by toma
+- [TA] fix height of config screen, seems options dont fit. reported by Diego Iastrubni
+
+To be fixed for KDE4:
+- [TA] hook into KNotificationRestrictions - so you will not be bothered during presentations
+  or games when they hook into that system as well. Reported by Achim.
 
 Bugs:
 - image extension are hardcoded
