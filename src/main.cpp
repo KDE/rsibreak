@@ -17,6 +17,7 @@
 */
 
 #include <kuniqueapplication.h>
+#include <kstartupinfo.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <stdio.h>
@@ -79,12 +80,15 @@ int main( int argc, char *argv[] )
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
-    if (!KUniqueApplication::start()) {
+    if (!KUniqueApplication::start()) 
+    {
+        KStartupInfo::handleAutoAppStartedSending();
         fprintf(stderr, "RSIBreak is already running!\n");
         exit(0);
     }
 
     RSIApplication a;
+    a.disableSessionManagement();
 
     RSIWidget rsi;
 
