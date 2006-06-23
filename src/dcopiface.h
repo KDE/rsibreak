@@ -67,6 +67,9 @@ signals:
     /** Force a big break, initiated by the doBigBreak DCOP method. */
     void signalDoBigBreak();
 
+    /** Show where I am, initiated by the whereAmI DCOP method. */
+    void signalWhereAmI();
+
 public:
 
 k_dcop:
@@ -89,6 +92,12 @@ k_dcop:
      * Force a big break. Does not work when RSIBreak is in suspended mode.
      */
     ASYNC doBigBreak();
+
+    /**
+     * Show a screenie of where RSIBreak is located in the tray. Used when
+     * a second instance is started.
+     */
+    ASYNC whereAmI();
 };
 
 #endif // DCOPIFACE_H

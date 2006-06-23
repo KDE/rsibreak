@@ -67,52 +67,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
-        // Process the events else the icon will not be there and the screenie will fail!
-        kapp->processEvents();
-
-        // ********************************************************************************
-        // This block is copied from Konversation - KonversationMainWindow::queryClose()
-        // The part about the border is copied from  KSystemTray::displayCloseMessage()
-        //
-        // Compute size and position of the pixmap to be grabbed:
-        QPoint g = m_tray->mapToGlobal( m_tray-> pos() );
-        int desktopWidth  = kapp->desktop()->width();
-        int desktopHeight = kapp->desktop()->height();
-        int tw = m_tray->width();
-        int th = m_tray->height();
-        int w = desktopWidth / 4;
-        int h = desktopHeight / 9;
-        int x = g.x() + tw/2 - w/2;               // Center the rectange in the systray icon
-        int y = g.y() + th/2 - h/2;
-        if ( x < 0 )                 x = 0;       // Move the rectangle to stay in the desktop limits
-        if ( y < 0 )                 y = 0;
-        if ( x + w > desktopWidth )  x = desktopWidth - w;
-        if ( y + h > desktopHeight ) y = desktopHeight - h;
-
-        // Grab the desktop and draw a circle arround the icon:
-        QPixmap shot = QPixmap::grabWindow( qt_xrootwin(),  x,  y,  w,  h );
-        QPainter painter( &shot );
-        const int MARGINS = 6;
-        const int WIDTH   = 3;
-        int ax = g.x() - x - MARGINS -1;
-        int ay = g.y() - y - MARGINS -1;
-        painter.setPen(  QPen( Qt::red,  WIDTH ) );
-        painter.drawArc( ax,  ay,  tw + 2*MARGINS,  th + 2*MARGINS,  0,  16*360 );
-        painter.end();
-
-        // Then, we add a border arround the image to make it more visible:
-        QPixmap finalShot(w + 2, h + 2);
-        finalShot.fill(KApplication::palette().active().foreground());
-        painter.begin(&finalShot);
-        painter.drawPixmap(1, 1, shot);
-        painter.end();
-
-        // Associate source to image and show the dialog:
-        QMimeSourceFactory::defaultFactory()->setPixmap( "systray_shot", finalShot );
-
-        // End copied block
-        // ********************************************************************************
-
+        takeScreenshotOfTrayIcon();
         KMessageBox::information(parent,
                              i18n("<p>Welcome to RSIBreak<p><p>"
                                   "In your tray you can now see RSIBreak: ")
@@ -166,6 +121,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
              m_tooltip, SLOT( setSuspended( bool ) ) );
     connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
              m_relaxpopup, SLOT( setVisible( bool ) ) );
+    connect( m_dcopIface, SIGNAL( signalWhereAmI() ),
+             this, SLOT( slotShowWhereIAm() ) );
 
     srand ( time(NULL) );
 
@@ -214,6 +171,64 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 RSIWidget::~RSIWidget()
 {
     delete RSIGlobals::instance();
+}
+
+void RSIWidget::slotShowWhereIAm()
+{
+    takeScreenshotOfTrayIcon();
+    KMessageBox::information(this,
+           i18n("<p>RSIBreak is already running<p><p>It is located here:")
+           + "<p><center><img source=\"systray_shot\"></center></p><p>",
+           i18n("Already Running"));
+}
+
+void RSIWidget::takeScreenshotOfTrayIcon()
+{
+        // Process the events else the icon will not be there and the screenie will fail!
+        kapp->processEvents();
+
+        // ********************************************************************************
+        // This block is copied from Konversation - KonversationMainWindow::queryClose()
+        // The part about the border is copied from  KSystemTray::displayCloseMessage()
+        //
+        // Compute size and position of the pixmap to be grabbed:
+        QPoint g = m_tray->mapToGlobal( m_tray-> pos() );
+        int desktopWidth  = kapp->desktop()->width();
+        int desktopHeight = kapp->desktop()->height();
+        int tw = m_tray->width();
+        int th = m_tray->height();
+        int w = desktopWidth / 4;
+        int h = desktopHeight / 9;
+        int x = g.x() + tw/2 - w/2;               // Center the rectange in the systray icon
+        int y = g.y() + th/2 - h/2;
+        if ( x < 0 )                 x = 0;       // Move the rectangle to stay in the desktop limits
+        if ( y < 0 )                 y = 0;
+        if ( x + w > desktopWidth )  x = desktopWidth - w;
+        if ( y + h > desktopHeight ) y = desktopHeight - h;
+
+        // Grab the desktop and draw a circle arround the icon:
+        QPixmap shot = QPixmap::grabWindow( qt_xrootwin(),  x,  y,  w,  h );
+        QPainter painter( &shot );
+        const int MARGINS = 6;
+        const int WIDTH   = 3;
+        int ax = g.x() - x - MARGINS -1;
+        int ay = g.y() - y - MARGINS -1;
+        painter.setPen(  QPen( Qt::red,  WIDTH ) );
+        painter.drawArc( ax,  ay,  tw + 2*MARGINS,  th + 2*MARGINS,  0,  16*360 );
+        painter.end();
+
+        // Then, we add a border arround the image to make it more visible:
+        QPixmap finalShot(w + 2, h + 2);
+        finalShot.fill(KApplication::palette().active().foreground());
+        painter.begin(&finalShot);
+        painter.drawPixmap(1, 1, shot);
+        painter.end();
+
+        // Associate source to image and show the dialog:
+        QMimeSourceFactory::defaultFactory()->setPixmap( "systray_shot", finalShot );
+
+        // End copied block
+        // ********************************************************************************
 }
 
 void RSIWidget::minimize( bool newImage )

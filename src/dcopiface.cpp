@@ -51,4 +51,9 @@ void DCOPIface::doBigBreak()
     emit signalDoBigBreak();
 }
 
+void DCOPIface::whereAmI()
+{
+    emit signalWhereAmI();
+}
+
 #include "dcopiface.moc"

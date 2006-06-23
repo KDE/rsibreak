@@ -6,7 +6,6 @@ Wishes:
 
 To be fixed for next release:
 - [BS] fix buttons accel on breaks. reported by tsdgeos
-- [TA] when started a second time, show screenie where it sits in the tray.
 - [ST4N] add an option to only reset timers when being idle for the duration of a long break.
 - [LO] fix the proportion of the 'during break' icon. reported by Diego Iastrubni
 - [TA/BS] sometimes the amount of skipped/sat down breaks don't match its total. reported by toma

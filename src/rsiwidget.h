@@ -86,6 +86,7 @@ class RSIWidget : public QWidget
         ~RSIWidget();
 
     private slots:
+        void slotShowWhereIAm();
         void slotNewSlide();
         void slotLock();
         void minimize( bool newImage = true );
@@ -110,6 +111,7 @@ class RSIWidget : public QWidget
         void setIcon( int );
 
     private:
+        void takeScreenshotOfTrayIcon();
         void findImagesInFolder(const QString& folder);
         void loadImage();
         void startTimer( bool idle);

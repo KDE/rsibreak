@@ -20,6 +20,7 @@
 #include <kstartupinfo.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
+#include <dcopref.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -37,26 +38,28 @@
 class RSIApplication : public KUniqueApplication {
     public:
         /**
-         * Constructor
-         */
-        RSIApplication() {}
-        /**
-         * Destructor
-         */
-        ~RSIApplication() {}
-
-        /**
          * Similar to KUniqueApplication::newInstance, only without
          * the call to raise the widget when a second instance is started.
          */
-        int newInstance() { return 0;};
+        int newInstance()
+        {
+            static bool secondMe=false;
+            if (secondMe)
+            {
+                DCOPRef execute( "rsibreak", "actions" );
+                DCOPReply reply = execute.call( "whereAmI" );
+            } else {
+                secondMe = true;
+            }
+            return 0;
+        }
 };
 
 int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak",
                           I18N_NOOP("RSIBreak"),
-                          "0.7.1",
+                          "0.7.2",
                           I18N_NOOP("Try to prevent Repetitive Strain Injury by "
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
@@ -80,7 +83,7 @@ int main( int argc, char *argv[] )
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
-    if (!KUniqueApplication::start()) 
+    if (!KUniqueApplication::start())
     {
         KStartupInfo::handleAutoAppStartedSending();
         fprintf(stderr, "RSIBreak is already running!\n");
