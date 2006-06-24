@@ -29,10 +29,8 @@
 #include <klocale.h>
 #include <kpopupmenu.h>
 #include <kiconloader.h>
-#include <kaboutkde.h>
 #include <kaction.h>
-#include <kaboutapplication.h>
-#include <kbugreport.h>
+#include <khelpmenu.h>
 #include <kglobalaccel.h>
 #include <kkeydialog.h>
 #include <kmessagebox.h>
@@ -45,25 +43,26 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 
 {
 
-    contextMenu()->insertItem(SmallIcon("configure"),
-                            i18n("Configure RSIBreak..."), this,
-                            SLOT(slotConfigure()));
+    m_help = new KHelpMenu( this, KGlobal::instance()->aboutData() );
+
+    contextMenu()->insertItem(SmallIcon("about_kde"), i18n("About &KDE"),
+                              m_help, SLOT(aboutKDE()));
+    contextMenu()->insertItem(SmallIcon("info"),  i18n("&About RSIBreak"),
+                              m_help, SLOT(aboutApplication()));
+    contextMenu()->insertItem(SmallIcon("contents"),  i18n("RSIBreak &Handbook"),
+                              m_help, SLOT(appHelpActivated()));
+    contextMenu()->insertSeparator();
+    contextMenu()->insertItem(i18n("&Report Bug..."),
+                              m_help, SLOT(reportBug()));
+    contextMenu()->insertSeparator();
     m_suspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
-                            i18n("Suspend RSIBreak"), this,
-                            SLOT(slotSuspend()));
-    contextMenu()->insertItem(SmallIcon("gear"),
-                            i18n("Usage Statistics"), this,
-                            SLOT( slotShowStatistics() ) );
-    contextMenu()->insertSeparator();
-    contextMenu()->insertItem(i18n("Report Bug..."), this,
-                            SLOT(slotReportBug()));
-    contextMenu()->insertSeparator();
-    contextMenu()->insertItem(SmallIcon("about_kde"),
-                            i18n("About KDE"), this,
-                            SLOT(slotAboutKDE()));
-    contextMenu()->insertItem(SmallIcon("info"),
-                            i18n("About RSIBreak"), this,
-                            SLOT(slotAboutRSIBreak()));
+                              i18n("&Suspend RSIBreak"), this,
+                              SLOT(slotSuspend()));
+    contextMenu()->insertItem(i18n("&Usage Statistics"),
+                              this, SLOT( slotShowStatistics() ) );
+    contextMenu()->insertItem(SmallIcon("configure"),
+                              i18n("&Configure RSIBreak..."),
+                              this, SLOT(slotConfigure()));
 
     m_accel = new KGlobalAccel(this);
     m_accel->insert("breakRequest", i18n("This is where the user can request a "
@@ -94,24 +93,6 @@ void RSIDock::slotConfigure()
       emit dialogLeft();
 }
 
-void RSIDock::slotAboutKDE()
-{
-    KAboutKDE about;
-    about.exec();
-}
-
-void RSIDock::slotAboutRSIBreak()
-{
-    KAboutApplication a( KGlobal::instance()->aboutData(), this );
-    a.exec();
-}
-
-void RSIDock::slotReportBug()
-{
-    KBugReport bug;
-    bug.exec();
-}
-
 void RSIDock::slotBreakRequest()
 {
     emit breakRequest();
@@ -125,7 +106,7 @@ void RSIDock::slotSuspend()
 
         setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
         contextMenu()->changeItem( m_suspendItem, SmallIcon( "player_pause" ),
-                                   i18n("Suspend RSIBreak") );
+                                   i18n("&Suspend RSIBreak") );
     }
     else
     {
@@ -133,7 +114,7 @@ void RSIDock::slotSuspend()
 
         setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
         contextMenu()->changeItem( m_suspendItem, SmallIcon( "player_play" ),
-                                   i18n( "Resume RSIBreak" ) );
+                                   i18n( "&Resume RSIBreak" ) );
     }
 
     m_suspended = !m_suspended;

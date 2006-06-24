@@ -31,6 +31,7 @@
 #include <ksystemtray.h>
 
 class KGlobalAccel;
+class KHelpMenu;
 
 class RSIStatWidget;
 
@@ -136,9 +137,6 @@ class RSIDock : public KSystemTray
 
     private slots:
         void slotConfigure();
-        void slotAboutKDE();
-        void slotAboutRSIBreak();
-        void slotReportBug();
         void slotBreakRequest();
         void slotSuspend();
         void slotShowToolTip();
@@ -147,6 +145,7 @@ class RSIDock : public KSystemTray
 
     private:
         KGlobalAccel* m_accel;
+        KHelpMenu*    m_help;
 
         int m_suspendItem;
         bool m_suspended;

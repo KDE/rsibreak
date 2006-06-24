@@ -9,8 +9,8 @@
 
 name       = "rsibreak"
 egmodule   = "kdereview"
-version    = "0.7.1"
-docs       = "no"
+version    = "0.7.2"
+docs       = "yes"
 
 svnbase    = "svn+ssh://toma@svn.kde.org/home/kde"
 svnroot    = "#{svnbase}/trunk"
