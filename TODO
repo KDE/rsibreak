@@ -9,6 +9,7 @@ To be fixed for next release:
 - [ST4N] add an option to only reset timers when being idle for the duration of a long break.
 - [LO] fix the proportion of the 'during break' icon. reported by Diego Iastrubni
 - [TA/BS] sometimes the amount of skipped/sat down breaks don't match its total. reported by toma
+- Breaks can't be skipped when a full screen OpenGL game is running (keys and QPushButtons don't seem to work). reported by stanley^
 
 To be fixed for/with KDE4:
 - [TA] fix height of config screen, seems the options don't fit. Reported by Diego Iastrubni.
