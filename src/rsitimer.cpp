@@ -416,7 +416,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         emit bigBreakSkipped();
     }
     else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] &&
-              m_tiny_left < m_big_left  )
+              m_tiny_left < m_big_left && !m_ignoreIdleForTinyBreaks )
     {
         // the user was sufficiently idle for a tiny break
         if ( m_relax_left == 0 && m_pause_left == 0 )
@@ -447,7 +447,7 @@ void RSITimer::timerEvent( QTimerEvent * )
 
     // update the stats properly when breaking
     if ( m_useIdleDetection && t > m_intervals["tiny_maximized"] &&
-         m_relax_left == 0 && m_pause_left == 0 )
+         m_relax_left == 0 && m_pause_left == 0 && !m_ignoreIdleForTinyBreaks)
     {
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK, QVariant( QDateTime::currentDateTime() ) );
     }
@@ -486,6 +486,7 @@ void RSITimer::readConfig()
     config->setGroup("General Settings");
 
     m_useIdleDetection = config->readBoolEntry("UseIdleDetection", true);
+    m_ignoreIdleForTinyBreaks = config->readBoolEntry("IgnoreIdleForTinyBreaks", false);
 
     config->setGroup("General");
     QDateTime *tempDt = new QDateTime();

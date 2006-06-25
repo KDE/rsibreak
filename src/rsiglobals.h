@@ -126,6 +126,12 @@ class RSIGlobals : public QObject
     void resetUsage();
 
     /**
+    * Detects and fixes legacy settings. Static to be able to execute the
+    * change before the constructor reads the config.
+    */
+    static void updateLegacySettings();
+
+    /**
      * Executes a DCOP command.
      * @param command something like "app object func data"
      */

@@ -173,6 +173,24 @@ void RSIGlobals::resetUsage()
     m_usageArray.fill( false, 60 * 60 * 24 );
 }
 
+void RSIGlobals::updateLegacySettings()
+{
+    KConfig* config = kapp->config();
+
+    config->setGroup("General Settings");
+
+    /* This option was used in 0.7.0 and 0.7.1 and had a wrong name. This
+    renaming part was added for 0.7.2 */
+    if (config->hasKey("UseIdleDetection"))
+    {
+        config->writeEntry("ResetTimersAfterIdle",
+                           config->readBoolEntry("UseIdleDetection"));
+        config->deleteEntry("UseIdleDetection");
+    }
+
+    config->sync();
+}
+
 void RSIGlobals::executeDCOP(const QString &command)
 {
     /*
