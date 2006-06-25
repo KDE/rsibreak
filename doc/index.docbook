@@ -90,12 +90,12 @@ Bram Schoenmakers joined the project</para>
 <title>Installing &rsibreak;</title>
 
 <para>There are several ways to install &rsibreak;. If you are using a distribution 
-like Suse, Gentoo, Ubunutu, Kubuntu or Debian, then your distribution probably contains 
+like Suse, Gentoo, Ubunutu, &kubuntu; or Debian, then your distribution probably contains 
 a version of &rsibreak;. We try to gather the most recent information on the website 
 at the <ulink
 url="http://www.rsibreak.org/index.php/PackageInfo">Download page</ulink>.</para>
 
-<para>We can not provide detailled instructions for each distribution, please refer 
+<para>We cannot provide detailled instructions for each distribution, please refer 
 to the manual of your distribution. If you are not using a major distribution or the 
 version in your distribution is not completely up-to-date, then you can install the 
 newest version manually. All information about that can be found at the <ulink
@@ -110,7 +110,7 @@ page. If something is wrong, please feel free to change them. Yes, you are allow
 even encouraged to do so.</para>
 
 <para>Type <command>rsibreak</command> at a command prompt or select
-<guimenuitem>RSIBreak</guimenuitem> from the
+<guimenuitem>&rsibreak;</guimenuitem> from the
 <guisubmenu>Utilities</guisubmenu> group in the <guimenu>KDE start
 menu</guimenu>. The standard &Qt; and &kde; command options are
 available, and can be listed by entering
@@ -121,9 +121,9 @@ at the command line.</para>
 <chapter id="general-use">
 <title>Using &rsibreak;</title>
 
-<para>The idea of RSIBreak is to interrupt you in your work. We try to do that in 
+<para>The idea of &rsibreak; is to interrupt you in your work. We try to do that in 
 a friendly manner, but a fact is that it will popup when you are very busy. So it 
-is more then likely that you are going to hate RSIBreak now and then. Just remember 
+is more then likely that you are going to hate &rsibreak; now and then. Just remember 
 it is doing its job ;-)</para>
 
 <para>After starting, you can see an icon in your tray and you will see a welcome 
@@ -144,7 +144,7 @@ and choose for <guilabel>Configure</guilabel>. See next chapters for some tweaki
 </screenshot>
 
 <para>When you click left on the tray icon you will see statistics. When you have 
-setup RSIBreak to break at fixed times, some of the options in the statistics will 
+setup &rsibreak; to break at fixed times, some of the options in the statistics will 
 not be very informative, since your idleness will not be measured.</para>
 
 <para>The upper left block shows general statistics: some totals and some idle 
@@ -176,7 +176,7 @@ and choose for <guilabel>Resume</guilabel>.</para>
 </screenshot>
 
 <para>The last possibility to influence &rsibreak; is via &DCOP;. There are &DCOP; 
-commands available to force breaks and to suspend and resume RSIBreak. You can 
+commands available to force breaks and to suspend and resume &rsibreak;. You can 
 use that to suspend &rsibreak; automatically when you start a game or something.
 Execute <command>dcop rsibreak actions</command> to see the possibilities.</para>
 </chapter>
@@ -217,7 +217,7 @@ anyway.</para>
 
 <para>Speaking of which, you have two options for the full screen break. It can 
 either show a grid similar to the &kde; logout screen, which is default, or you can 
-setup a path to some folder on your harddisk which contains images. During a break, 
+setup a path to some folder on your hard disk which contains images. During a break, 
 you will see a slideshow of those images.</para>
 </chapter>
 
@@ -239,16 +239,16 @@ follow the break sequence. </para>
 </chapter>
 
 <chapter id="dcop">
-<title>DCOP</title>
+<title>&DCOP;</title>
 
 <para>There is one special page in the settings which is called 
 <guilabel>&DCOP;</guilabel>. &DCOP; stands for the Desktop Communication Protocol, 
-which basically enables you to control KDE applications from the command line.
+which basically enables you to control &kde; applications from the command line.
 Read <ulink url="http://www.volny.cz/bwian/dcop.html">this article</ulink> when you
-want to read more about DCOP.</para>
+want to read more about &DCOP;.</para>
 
 <para>With the &DCOP; section in &rsibreak;, you can setup a &DCOP; call which 
-should be made when a break occurs. One of the examples is for Kopete. You can 
+should be made when a break occurs. One of the examples is for &kopete;. You can 
 indicate that your instant messenger to enter away mode when you have a break and 
 return to normal mode when the break is over.</para>
 
@@ -280,6 +280,7 @@ info.</para>
 <para>Documentation copyright 2006 Tom Albers, Bram Schoenmakers</para>
 
 &underGPL;
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 &underFDL;
 </chapter>
 
