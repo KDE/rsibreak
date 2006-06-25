@@ -52,7 +52,7 @@ you to take a break now and then. </para></abstract>
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>rsibreak</keyword>
-<keyword>rsi</keyword>
+<keyword>RSI</keyword>
 <keyword>project</keyword>
 </keywordset>
 
@@ -90,12 +90,12 @@ Bram Schoenmakers joined the project</para>
 <title>Installing &rsibreak;</title>
 
 <para>There are several ways to install &rsibreak;. If you are using a distribution 
-like Suse, Gentoo, Ubunutu, &kubuntu; or Debian, then your distribution probably contains 
+like SUSE, Gentoo, Ubuntu, &kubuntu; or Debian, then your distribution probably contains 
 a version of &rsibreak;. We try to gather the most recent information on the website 
 at the <ulink
 url="http://www.rsibreak.org/index.php/PackageInfo">Download page</ulink>.</para>
 
-<para>We cannot provide detailled instructions for each distribution, please refer 
+<para>We cannot provide detailed instructions for each distribution, please refer 
 to the manual of your distribution. If you are not using a major distribution or the 
 version in your distribution is not completely up-to-date, then you can install the 
 newest version manually. All information about that can be found at the <ulink
@@ -122,12 +122,12 @@ at the command line.</para>
 <title>Using &rsibreak;</title>
 
 <para>The idea of &rsibreak; is to interrupt you in your work. We try to do that in 
-a friendly manner, but a fact is that it will popup when you are very busy. So it 
+a friendly manner, but a fact is that it will pop up when you are very busy. So it 
 is more then likely that you are going to hate &rsibreak; now and then. Just remember 
 it is doing its job ;-)</para>
 
 <para>After starting, you can see an icon in your tray and you will see a welcome 
-popup. Although most applications should run fine with default settings, it is wise 
+pop up. Although most applications should run fine with default settings, it is wise 
 to go into the settings and discover what's available. Right click on the tray icon, 
 and choose for <guilabel>Configure</guilabel>. See next chapters for some tweaking.</para>
 
@@ -185,9 +185,9 @@ Execute <command>dcop rsibreak actions</command> to see the possibilities.</para
 <title>Break types</title>
 
 <para>Most of the settings are pretty straightforward. We just want to explain some 
-settings. On the general page. There is the option to startup automatically. 
+settings. On the general page. There is the option to start-up automatically. 
 You might wonder why that is because the sessionmanager should take care of 
-that. Well the answer is that some users requested to start &rsibreak; at startup, 
+that. Well the answer is that some users requested to start &rsibreak; at start-up, 
 while they are not using the sessionmanager. Please note that Gnome will ignore 
 this setting.</para>
 
@@ -266,7 +266,7 @@ break</phrase>
 </screenshot>
 
 <para>A convenient method is to use <application>KDCOP</application> for the setup. 
-Open it and drag the command that you wish to execute to the appropiate line.</para>
+Open it and drag the command that you wish to execute to the appropriate line.</para>
 
 <para>Besides &DCOP; calls when a break occurs, you can also use &DCOP; to control 
 &rsibreak;. See the chapter <link linkend="general-use">Using</link> for more 
