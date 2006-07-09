@@ -12,6 +12,7 @@ X-KDE-autostart-after=panel
 Name=RSIBreak
 Name[sv]=RSIbreak
 Comment=Makes sure you rest now and then
+Comment[et]=Programm, mis kontrollib, et sa aeg-ajalt puhkaksid
 Comment[gl]=Programa descansos de cando en vez
 Comment[it]=Assicura che tu faccia qualche pausa ogni tanto
 Comment[ja]=あなたが時々きちんと休憩を取るように
