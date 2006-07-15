@@ -90,7 +90,7 @@ Bram Schoenmakers joined the project</para>
 <title>Installing &rsibreak;</title>
 
 <para>There are several ways to install &rsibreak;. If you are using a distribution 
-like SUSE, Gentoo, Ubuntu, &kubuntu; or Debian, then your distribution probably contains 
+like SUSE, Gentoo, &ubuntu;, &kubuntu; or Debian, then your distribution probably contains 
 a version of &rsibreak;. We try to gather the most recent information on the website 
 at the <ulink
 url="http://www.rsibreak.org/index.php/PackageInfo">Download page</ulink>.</para>

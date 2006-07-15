@@ -372,7 +372,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
       case IDLENESS_CAUSED_SKIP_BIG: return i18n("This is the total number of long breaks "
                           "which were skipped because you were idle." );
       case PAUSE_SCORE: return i18n("This is an indication of how well you behaved "
-                          "with the breaks. It decreases everytime you skip a break.");
+                          "with the breaks. It decreases every time you skip a break.");
       case CURRENT_IDLE_TIME: return i18n("This is the current idle time.");
       case ACTIVITY_PERC_MINUTE: return i18n("This is a percentage of activity during the last minute."
                           "The color indicates the level of your activity. When the color is "

@@ -133,7 +133,7 @@ class RSIStatBitArrayItem : public RSIStatItem
     void reset();
 
     /**
-     * Updates the value of this item when activity has occured.
+     * Updates the value of this item when activity has occurred.
      */
     void setActivity();
 

@@ -83,7 +83,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                              i18n("Welcome"),
                              "dont_show_welcome_again_for_001");
 
-        // we dont need to show the blurp about the changes in 0.5 for new users.
+        // we don't need to show the blurp about the changes in 0.5 for new users.
         KMessageBox::saveDontShowAgainContinue("dont_show_welcome_again_for_050");
     }
     else
@@ -209,7 +209,7 @@ void RSIWidget::takeScreenshotOfTrayIcon()
         if ( x + w > desktopWidth )  x = desktopWidth - w;
         if ( y + h > desktopHeight ) y = desktopHeight - h;
 
-        // Grab the desktop and draw a circle arround the icon:
+        // Grab the desktop and draw a circle around the icon:
         QPixmap shot = QPixmap::grabWindow( qt_xrootwin(),  x,  y,  w,  h );
         QPainter painter( &shot );
         const int MARGINS = 6;
@@ -220,7 +220,7 @@ void RSIWidget::takeScreenshotOfTrayIcon()
         painter.drawArc( ax,  ay,  tw + 2*MARGINS,  th + 2*MARGINS,  0,  16*360 );
         painter.end();
 
-        // Then, we add a border arround the image to make it more visible:
+        // Then, we add a border around the image to make it more visible:
         QPixmap finalShot(w + 2, h + 2);
         finalShot.fill(KApplication::palette().active().foreground());
         painter.begin(&finalShot);

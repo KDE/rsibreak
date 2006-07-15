@@ -107,7 +107,7 @@ class RSIWidget : public QWidget
         virtual void mouseReleaseEvent( QMouseEvent * e );
         virtual void keyPressEvent( QKeyEvent * e);
 
-        /** Sets appropiate icon in tooltip and docker. */
+        /** Sets appropriate icon in tooltip and docker. */
         void setIcon( int );
 
     private:
@@ -146,4 +146,4 @@ class RSIWidget : public QWidget
         bool            m_useIdleDetection;
 };
 
-#endif
+#   endif

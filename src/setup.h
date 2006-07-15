@@ -34,7 +34,7 @@ class SetupMaximized;
  * @class Setup
  * This class manages the dialog chown in which the user
  * can make all the necessary settings. Each part of the config
- * is located in seperate files, See SetupGeneral and SetupTimings
+ * is located in separate files, See SetupGeneral and SetupTimings
  * for example
  * This file is originally copied from showfoto
  * @author Gilles Caulier <caulier.gilles@free.fr>

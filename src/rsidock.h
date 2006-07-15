@@ -37,10 +37,10 @@ class RSIStatWidget;
 
 /**
  * @class RSIDock
- * This class is resonsible for putting rsibreak in the system tray
+ * This class is responsible for putting rsibreak in the system tray
  * and provide a proper menu when right clicked on the icon.
  *
- * Originaly this file was copied from KSynaptics
+ * Originally this file was copied from KSynaptics
  * @author Nadeem Hasan <nhasan@kde.org>
  * @author Tom Albers <tomalbers@kde.nl>
  */
