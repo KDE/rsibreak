@@ -132,18 +132,13 @@ class RSIGlobals : public QObject
     static void updateLegacySettings();
 
     /**
-     * Executes a DCOP command.
-     * @param command something like "app object func data"
-     */
-    void executeDCOP(const QString &command);
-
-    /**
-     * Executes the commands which are defined as commands which should
-     * be executed at a break.
+     *
+     * Hook to KDE's Notifying system at start/end of a break.
      * @param start when true the start commands are executed, false executes
      *              the ones at the end of a break.
+     * @param big   true for big breaks, false for short ones.
      */
-    void DCOPBreak(bool start, bool big);
+    void NotifyBreak(bool start, bool big);
 
   public slots:
     /**

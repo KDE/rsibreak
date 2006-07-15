@@ -34,7 +34,6 @@
 #include "setupgeneral.h"
 #include "setuptiming.h"
 #include "setupmaximized.h"
-#include "setupdcop.h"
 #include "setup.h"
 
 class SetupPriv
@@ -42,9 +41,7 @@ class SetupPriv
 public:
     SetupGeneral     *generalPage;
     SetupTiming      *timingPage;
-    SetupPopup       *popupPage;
     SetupMaximized   *maximizedPage;
-    SetupDCOP        *DCOPPage;
 };
 
 Setup::Setup(QWidget* parent, const char* name)
@@ -66,10 +63,6 @@ Setup::Setup(QWidget* parent, const char* name)
                               BarIcon("duringbreaks", KIcon::SizeMedium));
     d->maximizedPage = new SetupMaximized(page_maximized);
 
-    QFrame *page_dcop = addPage(i18n("DCOP"), i18n("DCOP"),
-                              BarIcon("dcop", KIcon::SizeMedium));
-    d->DCOPPage = new SetupDCOP(page_dcop);
-
     connect(this, SIGNAL(okClicked()),
             this, SLOT(slotOkClicked()) );
 
@@ -89,7 +82,6 @@ void Setup::slotOkClicked()
     d->generalPage->applySettings();
     d->timingPage->applySettings();
     d->maximizedPage->applySettings();
-    d->DCOPPage->applySettings();
     close();
 }
 

@@ -2,7 +2,7 @@
 INCLUDES =  -I$(top_srcdir) $(all_includes)
 
 # these are the headers for your project
-noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h setupdcop.h \
+noinst_HEADERS = rsidock.h rsiwidget.h setup.h setupgeneral.h \
 	setuptiming.h setupmaximized.h rsitimer.h rsirelaxpopup.h \
 	rsitooltip.h rsistatwidget.h rsistats.h rsiglobals.h rsistatitem.h \
 	rsitimer_dpms.h
@@ -28,7 +28,7 @@ bin_PROGRAMS = rsibreak
 rsibreak_SOURCES = rsidock.cpp setup.cpp setupgeneral.cpp setuptiming.cpp \
 	main.cpp rsiwidget.cpp rsitimer.cpp rsirelaxpopup.cpp \
 	setupmaximized.cpp rsitooltip.cpp dcopiface.cpp dcopiface.skel \
-	rsistatwidget.cpp rsistats.cpp rsiglobals.cpp rsistatitem.cpp setupdcop.cpp
+	rsistatwidget.cpp rsistats.cpp rsiglobals.cpp rsistatitem.cpp 
 rsibreak_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS) \
 				 librsibreak.la
@@ -37,5 +37,8 @@ rsibreak_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBXSS) \
 xdg_apps_DATA = rsibreak.desktop
 autostart_DATA = rsibreak.desktop
 autostartdir = $(datadir)/autostart
+
+rcdir = $(kde_datadir)/rsibreak
+rc_DATA = eventsrc
 
 include ../../admin/Doxyfile.am

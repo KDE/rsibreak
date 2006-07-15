@@ -137,6 +137,7 @@ class RSIDock : public KSystemTray
 
     private slots:
         void slotConfigure();
+        void slotConfigureNotifications();
         void slotBreakRequest();
         void slotSuspend();
         void slotShowToolTip();

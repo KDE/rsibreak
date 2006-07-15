@@ -22,6 +22,7 @@
 #include <kglobalsettings.h>
 #include <klocale.h>
 #include <dcopclient.h>
+#include <knotifyclient.h>
 
 #include <math.h>
 
@@ -120,30 +121,6 @@ void RSIGlobals::slotReadConfig()
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
     }
-
-    //--------------- read the DCOP settings
-    m_dcopstartbig.clear();
-    m_dcopstarttiny.clear();
-    m_dcopendbig.clear();
-    m_dcopendtiny.clear();
-
-    QMap<QString,QString> map;
-    map=config->entryMap("DCOP");
-
-    QMap<QString, QString>::const_iterator i;
-    for (i = map.constBegin(); i != map.constEnd(); ++i)
-    {
-        QStringList list = QStringList::split(",",i.data());
-
-        if (list[2] == "On")    // only active ones
-            if (list[3] != "true") // tiny breaks as well?
-            {
-                m_dcopstarttiny.append(list[0]);
-                m_dcopendtiny.append(list[1]);
-            }
-            m_dcopstartbig.append(list[0]);
-            m_dcopendbig.append(list[1]);
-    }
 }
 
 QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
@@ -191,47 +168,19 @@ void RSIGlobals::updateLegacySettings()
     config->sync();
 }
 
-void RSIGlobals::executeDCOP(const QString &command)
-{
-    /*
-            Syntax without data: "kopete" "KopeteIface" "setAway()"
-            Syntax with data: "kopete" "KopeteIface" "setAway(QString)" "someStringContainingData"
-    */
-
-    QString _command = command;
-
-    if ( command.startsWith( "dcop " ) )
-        _command = _command.remove( 0, 5 );
-
-    kdDebug() << "Execute " << _command << endl;
-    QCString app =  _command.section(' ',0,0).utf8();
-    QCString obj =  _command.section(' ',1,1).utf8();
-    QCString fun =  _command.section(' ',2,2).utf8();
-    QCString data = _command.section(' ',3,3).utf8();
-
-    if ( app != "rsibreak" )
-    {
-        if ( data.isEmpty() && fun.right(2) != "()" )
-            fun += "()";
-
-        if (!kapp->dcopClient()->send(app,obj,fun, data))
-            kdDebug() << "Command exectution failed" << endl;
-    }
-}
-
-void RSIGlobals::DCOPBreak(bool start, bool big)
+void RSIGlobals::NotifyBreak(bool start, bool big)
 {
     QStringList commands;
     if (start)
-        big ? commands=m_dcopstartbig : commands=m_dcopstarttiny;
+        big ? KNotifyClient::event("start long break",
+                                   i18n("Start of a long break"))
+            : KNotifyClient::event("start short break",
+                                   i18n("Start of a short break"));
     else
-        big ? commands=m_dcopendbig : commands=m_dcopendtiny;
-
-    for( QStringList::Iterator it = commands.begin(); it != commands.end() ;
-         ++it)
-    {
-        executeDCOP(*it);
-    }
+        big ? KNotifyClient::event("end long break",
+                                   i18n("End of a long break"))
+            : KNotifyClient::event("end short break",
+                                   i18n("End of a short break"));
 }
 
 #include "rsiglobals.moc"

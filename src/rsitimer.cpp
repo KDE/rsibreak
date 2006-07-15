@@ -138,7 +138,7 @@ void RSITimer::resetAfterTinyBreak()
     m_tiny_left = m_intervals["tiny_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
-    RSIGlobals::instance()->DCOPBreak( false, false );
+    RSIGlobals::instance()->NotifyBreak( false, false );
 
     if ( m_big_left < m_tiny_left )
     {
@@ -153,7 +153,7 @@ void RSITimer::resetAfterBigBreak()
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
-    RSIGlobals::instance()->DCOPBreak( false, true );
+    RSIGlobals::instance()->NotifyBreak( false, true );
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -289,14 +289,14 @@ void RSITimer::timerEvent( QTimerEvent * )
           breakNow( m_intervals["tiny_maximized"] );
           m_pause_left = m_intervals["tiny_maximized"];
           m_nextBreak = TINY_BREAK;
-          RSIGlobals::instance()->DCOPBreak( true, false );
+          RSIGlobals::instance()->NotifyBreak( true, false );
         }
         else if ( m_bigBreakRequested )
         {
           breakNow( m_intervals["big_maximized"] );
           m_pause_left = m_intervals["big_maximized"];
           m_nextBreak = BIG_BREAK;
-          RSIGlobals::instance()->DCOPBreak( true, true );
+          RSIGlobals::instance()->NotifyBreak( true, true );
         }
         else
         {
@@ -352,8 +352,8 @@ void RSITimer::timerEvent( QTimerEvent * )
 
                 breakNow( breakInterval );
                 m_nextBreak == TINY_BREAK  ?
-                        RSIGlobals::instance()->DCOPBreak( true, false ):
-                        RSIGlobals::instance()->DCOPBreak( true, true );
+                        RSIGlobals::instance()->NotifyBreak( true, false ):
+                        RSIGlobals::instance()->NotifyBreak( true, true );
                 m_pause_left = breakInterval;
             }
             else // reset relax dialog
@@ -560,14 +560,14 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
             breakNow( m_intervals["tiny_maximized"] );
             m_pause_left = m_intervals["tiny_maximized"];
             m_nextBreak = TINY_BREAK;
-            RSIGlobals::instance()->DCOPBreak( true, false );
+            RSIGlobals::instance()->NotifyBreak( true, false );
         }
         else if ( m_bigBreakRequested )
         {
             breakNow( m_intervals["big_maximized"] );
             m_pause_left = m_intervals["big_maximized"];
             m_nextBreak = BIG_BREAK;
-            RSIGlobals::instance()->DCOPBreak( true, true );
+            RSIGlobals::instance()->NotifyBreak( true, true );
         }
 
         breakNow( breakInterval );
@@ -619,7 +619,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         breakNow( breakInterval );
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK,
                                 QVariant( QDateTime::currentDateTime() ) );
-        RSIGlobals::instance()->DCOPBreak( true, false );
+        RSIGlobals::instance()->NotifyBreak( true, false );
         RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
     }
     else
@@ -634,7 +634,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         breakNow( breakInterval );
         RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK,
                                 QVariant( QDateTime::currentDateTime() ) );
-        RSIGlobals::instance()->DCOPBreak( true, true );
+        RSIGlobals::instance()->NotifyBreak( true, true );
         RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
      }
     else

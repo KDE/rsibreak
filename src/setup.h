@@ -25,10 +25,6 @@
 #include <kdialogbase.h>
 
 class SetupPriv;
-class SetupGeneral;
-class SetupTiming;
-class SetupPopup;
-class SetupMaximized;
 
 /**
  * @class Setup

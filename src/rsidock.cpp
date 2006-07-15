@@ -28,6 +28,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kpopupmenu.h>
+#include <knotifydialog.h>
 #include <kiconloader.h>
 #include <kaction.h>
 #include <khelpmenu.h>
@@ -60,6 +61,9 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
                               SLOT(slotSuspend()));
     contextMenu()->insertItem(i18n("&Usage Statistics"),
                               this, SLOT( slotShowStatistics() ) );
+    contextMenu()->insertItem(SmallIcon("knotify"),
+                              i18n("&Configure &Notifications..."),
+                              this, SLOT(slotConfigureNotifications()));
     contextMenu()->insertItem(SmallIcon("configure"),
                               i18n("&Configure RSIBreak..."),
                               this, SLOT(slotConfigure()));
@@ -80,6 +84,12 @@ RSIDock::~RSIDock()
 {
     delete m_statsWidget;
     m_statsWidget = 0;
+}
+
+
+void RSIDock::slotConfigureNotifications()
+{
+    KNotifyDialog::configure( this );
 }
 
 void RSIDock::slotConfigure()
