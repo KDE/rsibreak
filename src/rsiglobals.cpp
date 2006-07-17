@@ -121,6 +121,15 @@ void RSIGlobals::slotReadConfig()
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
     }
+
+    // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
+    // guard against that situation.
+    if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
+    {
+        kdDebug() << "max big > max tiny, not allowed & corrected" << endl;
+        m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
+    }
+
 }
 
 QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const

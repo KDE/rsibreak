@@ -46,20 +46,13 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     , m_bigBreakRequested( false )
     , m_suspended( false )
     , m_needRestart( false )
+    , m_explicitDebug (false )
     , m_pause_left( 0 ), m_relax_left( 0 )
     , dpmsOff( -10 ), dpmsStandby(-10), dpmsSuspend(-10)
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
     kdDebug() << "Starting timer constructor" << endl;
-
-    // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
-    // guard against that situation.
-    if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
-    {
-      kdDebug() << "max big > max tiny, not allowed & corrected" << endl;
-      m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
-    }
 
     startTimer( 1000 );
     slotReadConfig( /* restart */ true );
@@ -230,6 +223,11 @@ void RSITimer::slotRequestBreak()
     m_breakRequested = true;
 }
 
+void RSITimer::slotRequestDebug()
+{
+    m_explicitDebug = true;
+}
+
 void RSITimer::slotRequestTinyBreak()
 {
     slotRequestBreak();
@@ -333,12 +331,11 @@ void RSITimer::timerEvent( QTimerEvent * )
         return;
     }
 
-    /*
-    kdDebug() << " patience: " << m_patience  << " pause_left: "
+    if (m_explicitDebug)
+        kdDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
             <<  m_big_left << " idle: " << t << endl;
-    */
 
     if ( t == 0 ) // activity!
     {
@@ -578,12 +575,10 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         m_relax_left = 0;
     }
 
-    /*
-    kdDebug() << " patience: " << m_patience  << " pause_left: "
-    << m_pause_left << " relax_left: " << m_relax_left
-    <<  " tiny_left: " << m_tiny_left  << " big_left: "
-    <<  m_big_left << m_nextBreak << endl;
-    */
+    if (m_explicitDebug)
+        kdDebug() << " pause_left: " << m_pause_left
+                <<  " tiny_left: " << m_tiny_left  << " big_left: "
+                <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
 
     if ( m_pause_left > 0 )
     {

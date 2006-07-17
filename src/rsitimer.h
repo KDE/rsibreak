@@ -103,6 +103,11 @@ class RSITimer : public QObject
         */
         void slotRequestBreak();
 
+        /**
+        The user can request debugging info from the timer...
+        */
+        void slotRequestDebug();
+
         /** Forces a tiny break. */
         void slotRequestTinyBreak();
 
@@ -228,6 +233,7 @@ class RSITimer : public QObject
         bool            m_needRestart;
         bool            m_nextBreak;
         bool            m_nextnextBreak;
+        bool            m_explicitDebug;
 
         int             m_tiny_left;
         int             m_big_left;

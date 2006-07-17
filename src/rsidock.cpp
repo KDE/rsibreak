@@ -74,6 +74,11 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
                     i18n("This way you can have a break now"),
                     KKey::QtWIN+SHIFT+Key_B, KKey::QtWIN+CTRL+Key_B,
                     this, SLOT( slotBreakRequest() ));
+    m_accel->insert("debugRequest", "This is where the user can request a "
+            "continues dump of timings",
+            i18n("This way you can have a break now"),
+            KKey::QtWIN+SHIFT+Key_F12, KKey::QtWIN+CTRL+Key_F12,
+            this, SLOT( slotDebugRequest() ));
     m_accel->updateConnections();
 
     m_tooltiptimer = new QTimer( this );
@@ -106,6 +111,11 @@ void RSIDock::slotConfigure()
 void RSIDock::slotBreakRequest()
 {
     emit breakRequest();
+}
+
+void RSIDock::slotDebugRequest()
+{
+    emit debugRequest();
 }
 
 void RSIDock::slotSuspend()

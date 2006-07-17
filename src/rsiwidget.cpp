@@ -616,6 +616,7 @@ void RSIWidget::startTimer( bool idle)
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStopNoImage( ) ) );
     connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStartNoImage() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
+    connect( m_tray, SIGNAL( debugRequest() ), m_timer, SLOT( slotRequestDebug() ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
 
     connect( m_dcopIface, SIGNAL( signalDoTinyBreak() ),
