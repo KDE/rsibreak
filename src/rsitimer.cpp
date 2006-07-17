@@ -582,7 +582,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     kdDebug() << " patience: " << m_patience  << " pause_left: "
     << m_pause_left << " relax_left: " << m_relax_left
     <<  " tiny_left: " << m_tiny_left  << " big_left: "
-    <<  m_big_left << endl;
+    <<  m_big_left << m_nextBreak << endl;
     */
 
     if ( m_pause_left > 0 )
@@ -612,7 +612,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         }
     }
 
-    if ( m_pause_left == 0 && m_tiny_left == 0 )
+    if ( m_pause_left == 0 && m_tiny_left == 0 && m_big_left != 0)
     {
         m_pause_left = breakInterval;
         m_nextBreak = TINY_BREAK;
