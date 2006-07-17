@@ -1,27 +1,43 @@
 [start short break]
 Name=Start of a short break
+Name[et]=Lühipausi algus
+Name[pt]=Início de uma pausa pequena
 Comment=When a short break starts
+Comment[et]=Lühikese pausi algus
+Comment[pt]=Quando começa uma pausa pequena
 default_presentation=0
 nopresentation=0
 level=1
 
 [end short break]
 Name=End of a short break
+Name[et]=Lühipausi lõpp
+Name[pt]=Fim de uma pausa pequena
 Comment=When a short break ends
+Comment[et]=Lühikese pausi lõpp
+Comment[pt]=Quando termina uma pausa pequena
 default_presentation=0
 nopresentation=0
 level=1
 
 [start long break]
 Name=Start of a long break
+Name[et]=Pika pausi algus
+Name[pt]=Início de uma pausa grande
 Comment=When a long break starts
+Comment[et]=Pika pausi algus
+Comment[pt]=Quando começa uma pausa grande
 default_presentation=0
 nopresentation=0
 level=1
 
 [end long break]
 Name=End of a long break
+Name[et]=Pika pausi lõpp
+Name[pt]=Fim de uma pausa grande
 Comment=When a long break ends
+Comment[et]=Pika pausi lõpp
+Comment[pt]=Quando termina uma pausa grande
 default_presentation=0
 nopresentation=0
 level=1
