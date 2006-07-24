@@ -207,12 +207,19 @@ void RSIDock::slotShowStatistics()
       m_statsDialog->setMainWidget( m_statsWidget );
     }
 
-    m_statsDialog->show();
+    if ( m_statsDialog->isShown() )
+    {
+      m_statsDialog->hide();
+    }
+    else
+    {
+      m_statsDialog->show();
 
-    if (!m_statsDialog->isActiveWindow())
-	    KWin::forceActiveWindow(m_statsDialog->winId());
+      if (!m_statsDialog->isActiveWindow())
+        KWin::forceActiveWindow(m_statsDialog->winId());
 
-    m_statsDialog->raise();
+      m_statsDialog->raise();
+    }
 }
 
 void RSIDock::slotResetStats()
