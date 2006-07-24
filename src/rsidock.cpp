@@ -207,7 +207,8 @@ void RSIDock::slotShowStatistics()
       m_statsDialog->setMainWidget( m_statsWidget );
     }
 
-    if ( m_statsDialog->isShown() )
+    if ( m_statsDialog->isVisible() &&
+         KWin::windowInfo( m_statsDialog->winId() ).desktop() == KWin::currentDesktop() )
     {
       m_statsDialog->hide();
     }
