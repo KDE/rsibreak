@@ -1,11 +1,13 @@
 [start short break]
 Name=Start of a short break
+Name[cs]=Začátek krátké přestávky
 Name[et]=Lühipausi algus
 Name[ja]=短い休憩の開始
 Name[nl]=Begin van een korte pauze
 Name[pt]=Início de uma pausa pequena
 Name[pt_BR]=Início de uma pausa pequena
 Comment=When a short break starts
+Comment[cs]=začátek krátké přestávky
 Comment[et]=Lühikese pausi algus
 Comment[ja]=短い休憩が開始したとき
 Comment[nl]=Wanneer een korte pauze start
@@ -17,6 +19,7 @@ level=1
 
 [end short break]
 Name=End of a short break
+Name[cs]=Konec krátké přestávky
 Name[et]=Lühipausi lõpp
 Name[ja]=短い休憩の終了
 Name[nl]=Einde van een korte pauze
