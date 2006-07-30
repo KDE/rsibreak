@@ -626,6 +626,8 @@ void RSIWidget::startTimer( bool idle)
     connect( m_dcopIface, SIGNAL( signalSuspend( bool) ),
              m_timer, SLOT( slotSuspended( bool ) ) );
 
+    connect( m_relaxpopup, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+
     // This connects only get used when there the user locks and
     // unlocks before the break is over. The lock releases the mouse
     // and keyboard, and that way the event methods are not called.
@@ -648,6 +650,8 @@ void RSIWidget::readConfig()
     m_countDown->setPaletteForegroundColor(
             config->readColorEntry("CounterColor", Black ) );
     m_miniButton->setHidden(
+            config->readBoolEntry("HideMinimizeButton", false));
+    m_relaxpopup->setSkipButtonHidden(
             config->readBoolEntry("HideMinimizeButton", false));
     m_countDown->setHidden(
             config->readBoolEntry("HideCounter", false));

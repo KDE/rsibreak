@@ -57,9 +57,15 @@ class RSIRelaxPopup : public KPassivePopup
     /** Hides this widget only when the argument equals false. */
     void setVisible( bool );
 
+    /** Hides the skip button **/
+    void setSkipButtonHidden ( bool );
+
   signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();
+
+    /** Ask the main widget to skip the break. */
+    void skip();
 
   protected:
     /**
@@ -82,6 +88,7 @@ class RSIRelaxPopup : public KPassivePopup
     QLabel *m_message;
     KProgress *m_progress;
     QPushButton *m_lockbutton;
+    QPushButton *m_skipbutton;
 };
 
 #endif /* RSIRELAXPOPUP_H */

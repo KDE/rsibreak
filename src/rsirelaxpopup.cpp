@@ -21,6 +21,7 @@
 #include <qpushbutton.h>
 #include <qtimer.h>
 #include <qvbox.h>
+#include <qtooltip.h>
 
 #include <kdebug.h>
 #include <kiconloader.h>
@@ -48,6 +49,10 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
 
     m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
+    QToolTip::add( m_lockbutton, i18n( "Lock the session") );
+    m_skipbutton = new QPushButton( SmallIcon( "cancel" ), QString::null, hbox );
+    connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL ( skip() ) );
+    QToolTip::add( m_skipbutton, i18n( "Skip this break") );
 
     setTimeout( 0 ); // no auto close
     setView( vbox );
@@ -145,6 +150,11 @@ void RSIRelaxPopup::readSettings()
 void RSIRelaxPopup::setVisible( bool b )
 {
     if( !b ) hide();
+}
+
+void RSIRelaxPopup::setSkipButtonHidden ( bool b )
+{
+    m_skipbutton->setHidden( b );
 }
 
 #include "rsirelaxpopup.moc"
