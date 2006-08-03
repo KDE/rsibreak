@@ -1,5 +1,6 @@
 [start short break]
 Name=Start of a short break
+Name[bg]=Начало на малка почивка
 Name[cs]=Začátek krátké přestávky
 Name[et]=Lühipausi algus
 Name[ja]=短い休憩の開始
@@ -7,6 +8,7 @@ Name[nl]=Begin van een korte pauze
 Name[pt]=Início de uma pausa pequena
 Name[pt_BR]=Início de uma pausa pequena
 Comment=When a short break starts
+Comment[bg]=Кога започва малката почивка
 Comment[cs]=začátek krátké přestávky
 Comment[et]=Lühikese pausi algus
 Comment[ja]=短い休憩が開始したとき
@@ -19,6 +21,7 @@ level=1
 
 [end short break]
 Name=End of a short break
+Name[bg]=Край на малка почивка
 Name[cs]=Konec krátké přestávky
 Name[et]=Lühipausi lõpp
 Name[ja]=短い休憩の終了
@@ -26,6 +29,7 @@ Name[nl]=Einde van een korte pauze
 Name[pt]=Fim de uma pausa pequena
 Name[pt_BR]=Fim de uma pausa pequena
 Comment=When a short break ends
+Comment[bg]=Кога завършва малката почивка
 Comment[et]=Lühikese pausi lõpp
 Comment[ja]=短い休憩が終了したとき
 Comment[nl]=Wanneer een korte pauze stopt
@@ -37,12 +41,14 @@ level=1
 
 [start long break]
 Name=Start of a long break
+Name[bg]=Начало на голяма почивка
 Name[et]=Pika pausi algus
 Name[ja]=長い休憩の開始
 Name[nl]=Begin van een lange pauze
 Name[pt]=Início de uma pausa grande
 Name[pt_BR]=Início de uma pausa grande
 Comment=When a long break starts
+Comment[bg]=Кога започва голямата почивка
 Comment[et]=Pika pausi algus
 Comment[ja]=長い休憩が開始したとき
 Comment[nl]=Wanneer een lange pauze start
@@ -54,12 +60,14 @@ level=1
 
 [end long break]
 Name=End of a long break
+Name[bg]=Край на голяма почивка
 Name[et]=Pika pausi lõpp
 Name[ja]=長い休憩の終了
 Name[nl]=Einde van een lange pauze
 Name[pt]=Fim de uma pausa grande
 Name[pt_BR]=Fim de uma pausa grande
 Comment=When a long break ends
+Comment[bg]=Кога завършва голямата почивка
 Comment[et]=Pika pausi lõpp
 Comment[ja]=長い休憩が終了したとき
 Comment[nl]=Wanneer een lange pauze stopt
