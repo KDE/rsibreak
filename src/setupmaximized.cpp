@@ -193,7 +193,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
                    "break will be.") );
    label->setBuddy(d->usePopup);
 
-   d->useFlashLabel = new QLabel( "\n" + i18n("The popup can flash when it "
+   d->useFlashLabel = new QLabel( '\n' + i18n("The popup can flash when it "
            "detects that you are still active."), popupBox);
    d->useFlashLabel->setAlignment(Qt::WordBreak);
 
