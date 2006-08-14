@@ -132,7 +132,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     QBoxLayout *topLayout = new QVBoxLayout( this, 5);
 
     m_countDown = new RSILabel(this);
-    m_countDown->setAlignment( AlignCenter );
+    m_countDown->setAlignment( AlignRight );
     m_countDown->setBackgroundMode( Qt::NoBackground );
     m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
     m_countDown->hide();
@@ -271,11 +271,17 @@ void RSIWidget::maximize()
     m_countDown->hide();
     if (m_files.count() == 0 || !m_useImages)
     {
+        m_backgroundimage.resize(QApplication::desktop()->geometry().width(),
+                             QApplication::desktop()->geometry().height());
+        setGeometry( QApplication::desktop()->geometry() );
         m_currentY=0;
         QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
     }
     else
     {
+        m_backgroundimage.resize(QApplication::desktop()->width(),
+                             QApplication::desktop()->height());
+        setGeometry( QApplication::desktop()->screenGeometry( this ) );
         if (m_slideInterval>0)
             m_timer_slide->start( m_slideInterval*1000 );
 
