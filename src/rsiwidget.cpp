@@ -94,7 +94,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                       "the number of short breaks you want to "
                                       "take before taking a long break, you "
                                       "can now setup how often, in minutes, "
-                                      "you want a lomg break.\nPlease review "
+                                      "you want a long break.\nPlease review "
                                       "your current settings.\n\n"),
                                  i18n("Welcome"),
                                  "dont_show_welcome_again_for_050");
