@@ -158,7 +158,7 @@ Dir.chdir( ".." ) # name-version
 Dir.chdir( "#{name}" )
 `/bin/mv -f src/#{name}.lsm ..`
 `/bin/mv -f AUTHORS ..`
-`/bin/mv -f COPYING ..`
+`/bin/mv -f COPYING* ..`
 `/bin/mv -f INSTALL ..`
 `/bin/mv -f ChangeLog ..`
 `/bin/mv -f NEWS ..`
