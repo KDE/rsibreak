@@ -42,12 +42,11 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2006-06-24</date>
+<date>2006-08-20</date>
 <releaseinfo>0.7.1</releaseinfo>
 
 <abstract><para>Repetitive Strain Injury is an illness which can occur as a 
-result of working with a mouse and keyboard. &rsibreak; can be used to remind 
-you to take a break now and then. </para></abstract>
+result of continuous work with a mouse and keyboard. The risk of suffering injury increases the longer users work without breaks. &rsibreak; simply offers reminders to take a break now and then. </para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
@@ -61,11 +60,9 @@ you to take a break now and then. </para></abstract>
 <chapter id="introduction">
 <title>Introduction</title>
 
-<para>Repetitive Strain Injury is an illness which can occur as a result of 
-working with a mouse and keyboard. This utility can be used to remind you to 
-take a break now and then. It will show you a random picture from a collection 
-you can configure yourself for a configurable duration at a configurable interval. 
-You can use these breaks to do some stretch exercises for example, or as a 
+<para>Repetitive Strain Injury can occur as a result of working with a mouse and keyboard. This utility can be used to remind you to 
+take a break now and then. It displays a random picture from a collection at specified intervals for defined durations. You can configure the pictures to show and lengths of time to show them. 
+You might use the breaks reminders to do some stretching exercises, for example, or as a 
 reminder to walk away from the computer for a while.</para>
 
 <screenshot>
@@ -90,24 +87,18 @@ Bram Schoenmakers joined the project</para>
 <title>Installing &rsibreak;</title>
 
 <para>There are several ways to install &rsibreak;. If you are using a distribution 
-like SUSE, Gentoo, &ubuntu;, &kubuntu; or Debian, then your distribution probably contains 
-a version of &rsibreak;. We try to gather the most recent information on the website 
+like &SuSE;, Gentoo, &ubuntu;, &kubuntu; or Debian, then your distribution probably contains 
+a version of &rsibreak;. We try to keep updated information on the website 
 at the <ulink
 url="http://www.rsibreak.org/index.php/PackageInfo">Download page</ulink>.</para>
 
-<para>We cannot provide detailed instructions for each distribution, please refer 
-to the manual of your distribution. If you are not using a major distribution or the 
-version in your distribution is not completely up-to-date, then you can install the 
-newest version manually. All information about that can be found at the <ulink
-url="http://www.rsibreak.org/index.php/DownloadSource">Source Download</ulink>-page.
+<para>For detailed, distribution-specific instructions, please refer 
+to your distribution's manual. If you are not using a recently updated installation of a major distribution then the latest version of this program can be installed manually. Relevant information can be found on the <ulink
+url="http://www.rsibreak.org/index.php/DownloadSource">Source Download</ulink> page.
 </para>
 
-<para>At that page there are also instructions about how to install the Subversion 
-version. Use that version if you want the newest version possible, but be aware that 
-you can run into bugs which we know about, or that it is impossible to compile, because 
-we are working on a feature. The instructions for source download are provided at that 
-page. If something is wrong, please feel free to change them. Yes, you are allowed, 
-even encouraged to do so.</para>
+<para>On that page there are also instructions for installation from Subversion. Use that version if you want the newest version possible (the 'bleeding edge' version). However, be aware that you can run into bugs which we do not yet know about, or that the source code may be impossible to compile, due to ongoing changes and enhancements to the code. The instructions for source download are provided on that 
+page. If something is wrong, please feel free to change and improve it. You are invited and encouraged to do so.</para>
 
 <para>Type <command>rsibreak</command> at a command prompt or select
 <guimenuitem>&rsibreak;</guimenuitem> from the
@@ -121,15 +112,12 @@ at the command line.</para>
 <chapter id="general-use">
 <title>Using &rsibreak;</title>
 
-<para>The idea of &rsibreak; is to interrupt you in your work. We try to do that in 
-a friendly manner, but a fact is that it will pop up when you are very busy. So it 
-is more then likely that you are going to hate &rsibreak; now and then. Just remember 
-it is doing its job ;-)</para>
+<para>The idea of &rsibreak; is to interrupt you in your work. The intention is to do that in 
+a user-friendly manner. There will be times, though, that it will display itself when you are very busy. The configuration options in &rsibreak; are an effort to allow you to customize the interruptions. In that way we hope you will be able to improve your effectiveness at work while lessening your chances of injury.</para>
 
 <para>After starting, you can see an icon in your tray and you will see a welcome 
-pop up. Although most applications should run fine with default settings, it is wise 
-to go into the settings and discover what's available. Right click on the tray icon, 
-and choose for <guilabel>Configure</guilabel>. See next chapters for some tweaking.</para>
+pop up. Although the application should be useful with default settings, it may be wise 
+to take control by examining the settings. To discover and asses the options available, right click on the tray icon; in the context menu that appears, select <guilabel>Configure</guilabel>. The following chapters contain further configuration information.</para>
 
 <screenshot>
 <screeninfo>&rsibreak; statistics</screeninfo>
@@ -143,25 +131,15 @@ and choose for <guilabel>Configure</guilabel>. See next chapters for some tweaki
 </mediaobject>
 </screenshot>
 
-<para>When you click left on the tray icon you will see statistics. When you have 
-setup &rsibreak; to break at fixed times, some of the options in the statistics will 
-not be very informative, since your idleness will not be measured.</para>
+<para>When you left click on the tray icon you will see some statistics. If you 
+configure &rsibreak; to break at fixed times your idle time will not be measured. In that case, some of the options in the statistics may not be very informative.</para>
 
-<para>The upper left block shows general statistics: some totals and some idle 
-statistics. The bottom left block shows something about your work pace. You will 
-see the total amount of activity since you're working on your computer (of that 
-session), and also the amount of activity during some other intervals. The Pause 
-Score decreases everytime you skip a break. The blocks at the right tell something 
-about the tiny and big breaks which have already passed. The labels in the dialog 
-can be either only black or red and green. In the latter case, when a statistic 
-is shown as red, it is recommended to relax a while to make the stats closer 
-to green again.</para>
+<para>The upper left block shows general statistics: some totals and some information about idle time. The bottom left block shows something about your work pace. You will see the total amount of activity since you started the current log-in session. The amount of activity during some other intervals will also be shown. The Pause Score decreases every time you skip a break. The blocks to the right report on which short and long breaks have already passed. At present, the labels in the dialog can either be black or red and green. In the latter case a red statistic indicates a recommendation to relax and take a break, which will bring the color closer to green.</para>
 
-<para>When you click right on the tray icon, you will see an option to 
-<guilabel>Suspend</guilabel> &rsibreak;. When you don't want to be disrupted,
-like during a game or a presentation, you can use this to silence &rsibreak;
+<para>When you right-click the tray icon, the context menu will show an option to 
+<guilabel>Suspend</guilabel> &rsibreak;. When you don't want to be interrupted, such as during a game or a presentation, you can use this to silence &rsibreak;
 You can resume &rsibreak; when you click right on the icon again 
-and choose for <guilabel>Resume</guilabel>.</para>
+and select <guilabel>Resume</guilabel>.</para>
 
 <screenshot>
 <screeninfo>Suspended &rsibreak;</screeninfo>
@@ -175,25 +153,22 @@ and choose for <guilabel>Resume</guilabel>.</para>
 </mediaobject>
 </screenshot>
 
-<para>The last possibility to influence &rsibreak; is via &DCOP;. There are &DCOP; 
+<para>The last way to influence &rsibreak; is via &DCOP;. There are &DCOP; 
 commands available to force breaks and to suspend and resume &rsibreak;. You can 
-use that to suspend &rsibreak; automatically when you start a game or something.
+use these to suspend &rsibreak; automatically when you start a game or any other specified program.
 Execute <command>dcop rsibreak actions</command> to see the possibilities.</para>
 </chapter>
 
 <chapter id="break-types">
 <title>Break types</title>
 
-<para>Most of the settings are pretty straightforward. We just want to explain some 
-settings. On the general page. There is the option to start-up automatically. 
-You might wonder why that is because the sessionmanager should take care of 
-that. Well the answer is that some users requested to start &rsibreak; at start-up, 
-while they are not using the sessionmanager. Please note that Gnome will ignore 
-this setting.</para>
+<para>Most settings are straightforward. On the general page, there is an option to start up automatically at &kde; startup. 
+You might wonder why that is because the session manager should take care of 
+that. Some users may need to start &rsibreak; at startup 
+while they are not using the session manager. Note that <application>Gnome</application> will ignore the setting.</para>
 
-<para>There are two options how &rsibreak; should behave. There is a possibility 
-to break at fixed intervals for fixed periods and there is the option to reset 
-the timers when &rsibreak; detects that you are idle for the duration of a 
+<para>There are two behavior options in &rsibreak;. There is an option to break at fixed intervals for fixed periods, and there is an option to reset 
+the timers when &rsibreak; detects that you have been idle for the duration of a 
 break.</para>
 
 <screenshot>
@@ -204,52 +179,44 @@ break.</para>
 </imageobject>
 <textobject>
 <phrase>The lock button enables you to lock your screen whenever you leave your 
-computer during a break.</phrase>
+computer</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para>If you find the full screen thingie a bit annoying, on the 
-<guilabel>During Breaks</guilabel>-page you can indicate that you want to use a 
-popup. In that case a small popup near the tray will appear which tells you to 
-take a break. If you choose to ignore that, the full screen thingie will appear 
-anyway.</para>
+<para>You may find the full-screen notice to take a break inconvenient at the time it appears. In this case, on the <guilabel>During Breaks</guilabel> page you can indicate that you want to use a popup; a small popup near the tray will appear asking you to take a break. If you choose to ignore that, the full-screen activity-block will appear anyway.</para>
 
-<para>Speaking of which, you have two options for the full screen break. It can 
-either show a grid similar to the &kde; logout screen, which is default, or you can 
-setup a path to some folder on your hard disk which contains images. During a break, 
+<para>There are two options for the full screen break. It can show a grid like the &kde; logout screen (this is the default action), or a path may be set up to specify a directory on your hard disk which contains images. During a break, 
 you will see a slideshow of those images.</para>
 </chapter>
 
 <chapter id="timings">
 <title>Duration/Interval of a break</title>
 
-<para>On the <guilabel>Timings</guilabel>-page of the settings, you can easily 
-change the duration of a break and the interval which it occurs. There are settings 
-possible for two different breaks. This way you can setup a break of 20 seconds 
-every 20 minutes and a longer break of 2 minutes every hour.</para>
+<!--
+<para>On the <guilabel>Timings</guilabel>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
 
-<para>It has no use to setup intervals which are irritating. Those will get on 
-your nerves and you will be more likely to hit ESC - or any other key you have 
-setup on the 'During breaks' page - to skip the break.</para>
+<para>&rsibreak; supports two different types of break: <quote>Tiny breaks</quote> and <quote>Big breaks</quote>. The usual way to use these is to take frequent tiny breaks, and occasional big breaks. For example, a break of 20 seconds every 20 minutes (the tiny break), and a longer break of 2 minutes every hour (the big break).</para>
 
-<para>When you notice you do that often, you could decide to disable the shortcut 
-and hide the minimize button. So in fact you are the boss how strict you have to 
-follow the break sequence. </para>
+<tip><para>It is no use to set up intervals which are irritating. Those will, by definition, get on your nerves and you will be more likely to hit &Esc; &ndash; or any other key you have setup on the <guilabel>During breaks</guilabel> page &ndash; to skip the break.</para>
+
+<para>If you find that you are often skipping breaks, you could decide to disable the shortcut 
+and hide the minimize button. Remember, you choose how strictly to follow the break sequence. </para>
+    </tip>
 </chapter>
 
+<!--
+This config page no longer exists
 <chapter id="dcop">
 <title>&DCOP;</title>
 
 <para>There is one special page in the settings which is called 
-<guilabel>&DCOP;</guilabel>. &DCOP; stands for the Desktop Communication Protocol, 
-which basically enables you to control &kde; applications from the command line.
-Read <ulink url="http://www.volny.cz/bwian/dcop.html">this article</ulink> when you
-want to read more about &DCOP;.</para>
+<guilabel>&DCOP;</guilabel>. &DCOP; stands for the Desktop Communication Protocol. &DCOP; enables you to control &kde; applications from the command line.
+Read <ulink url="http://www.volny.cz/bwian/dcop.html">this article</ulink> to read more about &DCOP;.</para>
 
-<para>With the &DCOP; section in &rsibreak;, you can setup a &DCOP; call which 
-should be made when a break occurs. One of the examples is for &kopete;. You can 
-indicate that your instant messenger to enter away mode when you have a break and 
+<para>With the &DCOP; section in &rsibreak;, you can set up a &DCOP; call to be made when a break occurs. One of the examples is for &kopete;. You can 
+inform your instant messenger to enter away mode when you have a break and 
 return to normal mode when the break is over.</para>
 
 <screenshot>
@@ -259,25 +226,23 @@ return to normal mode when the break is over.</para>
 <imagedata fileref="dcop.png" format="PNG"/>
 </imageobject>
 <textobject>
-<phrase>Here you can setup &DCOP;-commands to execute at start and end of the 
-break</phrase>
+<phrase>Here you can set up different &DCOP; commands to execute at start and end of the break</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para>A convenient method is to use <application>KDCOP</application> for the setup. 
-Open it and drag the command that you wish to execute to the appropriate line.</para>
+<para><application>KDCOP</application> is a convenient method to find out which DCOP command to use. Open it, find the command you want to use, dragging and dropping it into the appropriate line in the relevant &rsibreak; dialog.</para>
 
 <para>Besides &DCOP; calls when a break occurs, you can also use &DCOP; to control 
 &rsibreak;. See the chapter <link linkend="general-use">Using</link> for more 
-info.</para>
+information.</para>
 </chapter>
-
+-->
 <chapter id="credits-and-license">
 <title>Credits and License</title>
 
 <para>&rsibreak; copyright 2005-2006 Tom Albers, Bram Schoenmakers</para>
-<para>Documentation copyright 2006 Tom Albers, Bram Schoenmakers</para>
+<para>Documentation copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
 
 &underGPL;
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
