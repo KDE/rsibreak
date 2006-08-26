@@ -62,7 +62,7 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     contextMenu()->insertItem(i18n("&Usage Statistics"),
                               this, SLOT( slotShowStatistics() ) );
     contextMenu()->insertItem(SmallIcon("knotify"),
-                              i18n("&Configure &Notifications..."),
+                              i18n("Configure &Notifications..."),
                               this, SLOT(slotConfigureNotifications()));
     contextMenu()->insertItem(SmallIcon("configure"),
                               i18n("&Configure RSIBreak..."),
