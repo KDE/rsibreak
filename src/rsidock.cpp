@@ -53,7 +53,7 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
     contextMenu()->insertItem(SmallIcon("contents"),  m_help->menu()->text(KHelpMenu::menuHelpContents),
                               m_help, SLOT(appHelpActivated()));
     contextMenu()->insertSeparator();
-    contextMenu()->insertItem(i18n("&Report Bug..."),
+    contextMenu()->insertItem(m_help->menu()->text(KHelpMenu::menuReportBug),
                               m_help, SLOT(reportBug()));
     contextMenu()->insertSeparator();
     m_suspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
