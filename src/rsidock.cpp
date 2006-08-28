@@ -46,11 +46,11 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 
     m_help = new KHelpMenu( this, KGlobal::instance()->aboutData() );
 
-    contextMenu()->insertItem(SmallIcon("about_kde"), i18n("About &KDE"),
+    contextMenu()->insertItem(SmallIcon("about_kde"), m_help->menu()->text(KHelpMenu::menuAboutKDE),
                               m_help, SLOT(aboutKDE()));
-    contextMenu()->insertItem(SmallIcon("info"),  i18n("&About RSIBreak"),
+    contextMenu()->insertItem(SmallIcon("info"),  m_help->menu()->text(KHelpMenu::menuAboutApp),
                               m_help, SLOT(aboutApplication()));
-    contextMenu()->insertItem(SmallIcon("contents"),  i18n("RSIBreak &Handbook"),
+    contextMenu()->insertItem(SmallIcon("contents"),  m_help->menu()->text(KHelpMenu::menuHelpContents),
                               m_help, SLOT(appHelpActivated()));
     contextMenu()->insertSeparator();
     contextMenu()->insertItem(i18n("&Report Bug..."),
