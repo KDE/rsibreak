@@ -386,7 +386,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
       default: ;
     }
 
-    return QString::null;
+    return QString();
 }
 
 void RSIStats::setColor( RSIStat stat, QColor color )
