@@ -43,6 +43,7 @@
 #include <kiconloader.h>
 #include <kpixmap.h>
 #include <kimageeffect.h>
+#include <kglobal.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -479,14 +480,13 @@ void RSIWidget::updateIdleAvg( double idleAvg )
 void RSIWidget::setIcon(int level)
 {
     static QString currentIcon;
-    static KIconLoader il;
     QString newIcon = "rsibreak" +
                       ( m_timer->isSuspended() ? QString("x") : QString::number(level) );
 
     if (newIcon != currentIcon)
     {
         QPixmap dockPixmap = KSystemTray::loadIcon( newIcon );
-        QPixmap toolPixmap = il.loadIcon( newIcon, KIcon::Desktop );
+        QPixmap toolPixmap = KGlobal::iconLoader()->loadIcon( newIcon, KIcon::Desktop );
         currentIcon = newIcon;
         m_tray->setPixmap( dockPixmap );
         m_tooltip->setPixmap( toolPixmap );
@@ -515,12 +515,10 @@ void RSIWidget::bigBreakSkipped()
 
 void RSIWidget::breakSkipped()
 {
-    static KIconLoader il;
-
     disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
                 m_tooltip, SLOT( setCounters( int, int ) ) );
 
-    m_tooltip->setPixmap( il.loadIcon( "rsibreak0", KIcon::Desktop ) );
+    m_tooltip->setPixmap( KGlobal::iconLoader()->loadIcon( "rsibreak0", KIcon::Desktop ) );
     m_tooltip->setTimeout(0); // autoDelete is false, but after the ->show() it still
                               // gets hidden after the timeout. Setting to 0 helps.
     m_tooltip->show();
