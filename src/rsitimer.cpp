@@ -463,7 +463,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
         }
 
-        m_patience = 15;
+        m_patience = 30;
         if (m_patience > breakInterval)
             m_patience=breakInterval;
 
