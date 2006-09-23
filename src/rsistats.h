@@ -91,6 +91,14 @@ public:
     /** Gets the value of the statistic @p stat in QLabel format. */
     QLabel *getLabel( RSIStat stat ) const;
 
+    /**
+      This function prevents RSIStats from calls to updateLabel when
+      it's not really needed, e.g. when the widget is not visible.
+      @param b If true, it will update the labels as soon as the stats
+      update.
+    */
+    void doUpdates( bool b );
+
 protected:
     /** Update the label of given @p stat to it's corresponding value. */
     void updateLabel( RSIStat stat );
@@ -116,6 +124,8 @@ protected:
 
 private:
     static RSIStats *m_instance;
+
+    bool m_doUpdates;
 
     QMap<RSIStat,RSIStatItem *> m_statistics;
     /** Contains formatted labels. */

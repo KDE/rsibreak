@@ -114,4 +114,14 @@ void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
       m->setMinimumWidth( width );
 }
 
+void RSIStatWidget::showEvent( QShowEvent * )
+{
+    RSIGlobals::instance()->stats()->doUpdates( true );
+}
+
+void RSIStatWidget::hideEvent( QHideEvent * )
+{
+    RSIGlobals::instance()->stats()->doUpdates( false );
+}
+
 #include "rsistatwidget.moc"

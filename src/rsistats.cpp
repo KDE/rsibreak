@@ -26,6 +26,7 @@
 #include "rsistatitem.h"
 
 RSIStats::RSIStats()
+: m_doUpdates( false )
 {
     m_statistics.insert( TOTAL_TIME, new RSIStatItem(i18n("Total recorded time") ) );
     m_statistics[TOTAL_TIME]->addDerivedItem( ACTIVITY_PERC );
@@ -92,7 +93,6 @@ RSIStats::RSIStats()
     }
 
     // initialise statistics
-    updateLabels();
     reset();
 }
 
@@ -157,7 +157,7 @@ void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
 
 void RSIStats::updateDependentStats( RSIStat stat )
 {
-    QValueList<RSIStat> stats = m_statistics[ stat ]->getDerivedItems();
+    const QValueList<RSIStat> &stats = m_statistics[ stat ]->getDerivedItems();
     QValueList<RSIStat>::ConstIterator it;
     for( it = stats.begin() ; it != stats.end(); ++it )
     {
@@ -249,7 +249,9 @@ void RSIStats::updateStat( RSIStat stat, bool updateDerived )
 {
     if ( updateDerived )
       updateDependentStats( stat );
-    updateLabel( stat );
+
+    if ( m_doUpdates )
+      updateLabel( stat );
 }
 
 void RSIStats::updateLabel( RSIStat stat )
@@ -320,6 +322,9 @@ void RSIStats::updateLabel( RSIStat stat )
 
 void RSIStats::updateLabels()
 {
+    if ( !m_doUpdates )
+      return;
+
     QMapConstIterator<RSIStat,RSIStatItem *> it;
     for ( it = m_statistics.begin() ; it != m_statistics.end() ; ++it )
       updateLabel( it.key() );
@@ -393,4 +398,11 @@ void RSIStats::setColor( RSIStat stat, QColor color )
 {
     m_statistics[ stat ]->getDescription()->setPaletteForegroundColor( color );
     m_labels[ stat ]->setPaletteForegroundColor( color );
+}
+
+void RSIStats::doUpdates( bool b )
+{
+  m_doUpdates = b;
+  if ( m_doUpdates )
+    updateLabels();
 }

@@ -35,6 +35,8 @@ public:
 
 protected:
   void addStat( RSIStat stat, QGrid * );
+  virtual void showEvent( QShowEvent * );
+  virtual void hideEvent( QHideEvent * );
 private:
   QGridLayout *mGrid;
 };
