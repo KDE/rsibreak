@@ -314,12 +314,12 @@ void SetupMaximized::readSettings()
 {
     KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
-    QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
+    QFont *font = new QFont(  QApplication::font().family(), 40, 75, true );
     QString dir = QDir::home().path();
 
     config->setGroup("General Settings");
     d->counterColor->setColor( config->readColorEntry("CounterColor", Black ) );
-    d->counterFont= config->readFontEntry("CounterFont", t ) ;
+    d->counterFont = config->readFontEntry("CounterFont", font ) ;
     d->imageFolderEdit->setText(config->readEntry("ImageFolder", dir ));
     d->counterFontBut->setText(d->counterFont.family());
     d->hideMinimizeButton->setChecked(
@@ -340,6 +340,7 @@ void SetupMaximized::readSettings()
             config->readBoolEntry("UseFlash", true));
 
     delete Black;
+    delete font;
 }
 
 #include "setupmaximized.moc"

@@ -57,8 +57,10 @@
 #include "rsiglobals.h"
 
 RSIWidget::RSIWidget( QWidget *parent, const char *name )
-    : QWidget( parent, name, WType_Popup),
-     m_currentY( 0 )
+    : QWidget( parent, name, WType_Popup)
+    , m_currentY( 0 )
+    , m_useImages( false )
+    , m_searchRecursive( false )
 {
 
     // Update legacy settings before reading any config.
@@ -663,7 +665,7 @@ void RSIWidget::readConfig()
     m_countDown->setFont(
             config->readFontEntry("CounterFont", t ) );
 
-    bool uImages = config->readBoolEntry("ShowImages", false);
+    bool useImages = config->readBoolEntry("ShowImages", false);
 
     bool recursive =
             config->readBoolEntry("SearchRecursiveCheck", false);
@@ -679,13 +681,13 @@ void RSIWidget::readConfig()
     m_accel->setShortcut("minimize",KShortcut(shortcut));
 
     if (m_basePath != path || m_searchRecursive != recursive ||
-        m_useImages != uImages )
+        m_useImages != useImages )
     {
         m_files.clear();
         m_files_done.clear();
         m_basePath = path;
         m_searchRecursive = recursive;
-        m_useImages = uImages;
+        m_useImages = useImages;
         if (m_useImages)
         {
             findImagesInFolder( path );
