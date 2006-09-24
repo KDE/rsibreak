@@ -297,28 +297,56 @@ void RSIWidget::loadImage()
     if (m_files.count() == 0)
         return;
 
-    // reset if all images are shown
-    if (m_files_done.count() == m_files.count())
-        m_files_done.clear();
-
-    // get a not yet used number
-    int j = (int) ((m_files.count()) * (rand() / (RAND_MAX + 1.0)));
-    while (m_files_done.findIndex( QString::number(j) ) != -1)
-        j = (int) ((m_files.count()) * (rand() / (RAND_MAX + 1.0)));
-
-    // Use that number to load the right image
-    m_files_done.append(QString::number(j));
-
-    kdDebug() << "Loading: " << m_files[j] <<
-                    "( " << j << " / "  << m_files.count() << " ) " << endl;
-
     // Base the size on the size of the screen, for xinerama.
     QRect size = QApplication::desktop()->screenGeometry(
                         QApplication::desktop()->primaryScreen() );
 
-    QImage m = QImage( m_files[ j ]).smoothScale( size.width(),
-                                                  size.height(),
-                                                  QImage::ScaleMax);
+    // Do not accept images whose surface is more than 3 times smaller than
+    // screen
+    int min_image_surface = size.width() * size.height() / 3;
+    QImage image;
+
+    while (true)
+    {
+        // reset if all images are shown
+        if (m_files_done.count() == m_files.count())
+            m_files_done.clear();
+
+        // get a not yet used image
+        int j;
+        QString name;
+        do
+        {
+            j = (int) (m_files.count() * (rand() / (RAND_MAX + 1.0)));
+            name = m_files[ j ];
+        } while (m_files_done.findIndex( name ) != -1);
+
+        // load image
+        kdDebug() << "Loading: " << name <<
+                        "( " << j << " / "  << m_files.count() << " ) " << endl;
+        image.load( name );
+
+        // Check size
+        if ( image.width() * image.height() >= min_image_surface ) {
+            // Image is big enough, leave while loop
+            m_files_done.append( name );
+            break;
+        }
+        else
+        {
+            // Too small, remove from list
+            m_files.remove( name );
+            if (m_files.count() == 0)
+            {
+                // Couldn't find any image big enough, leave function
+                return;
+            }
+        }
+    }
+
+    QImage m = image.smoothScale( size.width(),
+                                  size.height(),
+                                  QImage::ScaleMax);
 
     if (m.isNull())
         return;
