@@ -725,7 +725,11 @@ void RSIWidget::readConfig()
         }
     }
 
-    m_slideInterval = config->readNumEntry("SlideInterval", 2);
+//  Ok. So I have no idea. Without setting the group _again_ we do not get a valid 
+//  result. Again, by re-setting it I get the value from the config file, and without it not.
+    config->setGroup("General Settings");
+    
+    m_slideInterval = config->readNumEntry("SlideInterval", 10);
     m_showTimerReset = config->readBoolEntry("ShowTimerReset", false);
 
     delete Black;

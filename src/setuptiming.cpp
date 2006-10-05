@@ -184,7 +184,7 @@ void SetupTiming::readSettings()
     d->bigInterval->setValue(config->readNumEntry("BigInterval", 60));
     d->bigInterval->setMinValue( d->tinyInterval->value() );
     d->bigDuration->setValue(config->readNumEntry("BigDuration", 1));
-    d->slideInterval->setValue(config->readNumEntry("SlideInterval", 2));
+    d->slideInterval->setValue(config->readNumEntry("SlideInterval", 10));
 }
 
 void SetupTiming::slotTinyValueChanged( int i )
