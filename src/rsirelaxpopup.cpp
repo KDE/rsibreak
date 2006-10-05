@@ -24,6 +24,7 @@
 #include <qtooltip.h>
 
 #include <kdebug.h>
+#include <kglobalsettings.h>
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kprogress.h>
@@ -119,8 +120,8 @@ void RSIRelaxPopup::flash()
     if( m_useFlash )
     {
       QTimer::singleShot( 500, this, SLOT( unflash() ) );
-      setPaletteForegroundColor( QColor( 255, 255, 255 ) );
-      setPaletteBackgroundColor( QColor( 0, 0, 120 ) );
+      setPaletteForegroundColor( KGlobalSettings::highlightedTextColor() );
+      setPaletteBackgroundColor( KGlobalSettings::highlightColor() );
     }
 }
 
