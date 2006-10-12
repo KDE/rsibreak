@@ -8,7 +8,7 @@
 
 
 name       = "rsibreak"
-egmodule   = "kdereview"
+egmodule   = "utils"
 version    = "0.7.2"
 docs       = "yes"
 
@@ -37,7 +37,7 @@ puts "Fetching #{egmodule}/#{name}..."
 Dir.mkdir( folder )
 Dir.chdir( folder )
 
-`svn co -N #{svnroot}/#{egmodule}`
+`svn co -N #{svnroot}/extragear/#{egmodule}`
 Dir.chdir( egmodule )
 `svn up #{name}`
 `svn up -N doc`
@@ -78,7 +78,7 @@ for lang in i18nlangs
   for dg in addDocs
     dg.chomp!
     `rm -rf #{dg}`
-    docdirname = "l10n/#{lang}/docs/playground-utils/#{dg}"
+    docdirname = "l10n/#{lang}/docs/extragear-utils/#{dg}"
     if ( docs != "no")
         `svn co -q #{svnroot}/#{docdirname} > /dev/null 2>&1`
     end
@@ -114,7 +114,7 @@ for lang in i18nlangs
 
   for dg in addPo
     dg.chomp!
-    pofilename = "l10n/#{lang}/messages/playground-utils/#{dg}.po"
+    pofilename = "l10n/#{lang}/messages/extragear-utils/#{dg}.po"
     `svn cat #{svnroot}/#{pofilename} 2> /dev/null | tee l10n/#{dg}.po`
     next if FileTest.size( "l10n/#{dg}.po" ) == 0
 
