@@ -73,7 +73,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
     layout->addWidget(d->autoStart);
 
     d->breakTimerSettings = new QVButtonGroup(
-            i18n("Break timer settings"), parent);
+            i18n("Break Timer Settings"), parent);
     layout->addWidget(d->breakTimerSettings);
 
     d->useNoIdleTimer = new QRadioButton(
@@ -86,7 +86,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             SLOT(slotUseNoIdleTimer()));
 
     d->useIdleTimer = new QRadioButton (
-            i18n("Take into account the &idle settings"),d->breakTimerSettings);
+            i18n("Take into account the &idle Settings"),d->breakTimerSettings);
     QWhatsThis::add( d->useIdleTimer,
             i18n("With this option you indicate that you want to use idle "
                  "detection. This means that only the time you are active "

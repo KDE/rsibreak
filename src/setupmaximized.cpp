@@ -122,7 +122,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    //---------------- SKIP BOX
    QVGroupBox *skipBox = new QVGroupBox(boxes);
-   skipBox->setTitle(i18n("Skipping breaks"));
+   skipBox->setTitle(i18n("Skipping Breaks"));
 
    d->hideMinimizeButton = new QCheckBox(i18n("H&ide button"), skipBox);
    QWhatsThis::add( d->hideMinimizeButton,
