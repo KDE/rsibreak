@@ -1,10 +1,10 @@
 Begin3
 Title:          rsibreak - Utility to remind you to take a break now and then.
-Version:        0.7.1
+Version:        0.8.0
 Entered-date:   19-06-2006
-Description:    
+Description:
 Keywords:       KDE Qt
-Author:         Tom Albers <tomalbers@kde.nl>, Bram Schoenmakers <bramschoenmakers@kde.nl> 
+Author:         Tom Albers <tomalbers@kde.nl>, Bram Schoenmakers <bramschoenmakers@kde.nl>
 Maintained-by:  Tom Albers <tomalbers@kde.nl>
 Home-page:      http://www.rsibreak.org
 Platform:       Linux. Needs KDE, needs libxss for idle detection

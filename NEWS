@@ -1,4 +1,4 @@
-v0.8.0 not released
+v0.8.0 2006-10-13
 - Replaced DCOP dialog with a more flexible and standardized interface to attach events to breaks
 - Show where RSIBreak is located in the tray when started a second time.
 - RSIBreak now has a manual.
