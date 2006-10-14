@@ -86,7 +86,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
             SLOT(slotUseNoIdleTimer()));
 
     d->useIdleTimer = new QRadioButton (
-            i18n("Take into account the &idle Settings"),d->breakTimerSettings);
+            i18n("Take into account the &idle settings"),d->breakTimerSettings);
     QWhatsThis::add( d->useIdleTimer,
             i18n("With this option you indicate that you want to use idle "
                  "detection. This means that only the time you are active "
@@ -95,7 +95,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
     // ---------------- IDLE Settings ------------------------
 
-    d->idleSettings = new QVButtonGroup (i18n("Idle settings"), parent);
+    d->idleSettings = new QVButtonGroup (i18n("Idle Settings"), parent);
     layout->addWidget(d->idleSettings);
 
     d->resetTimersAfterIdle = new QCheckBox(
