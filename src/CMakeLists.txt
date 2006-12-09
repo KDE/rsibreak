@@ -1,9 +1,9 @@
 FIND_PACKAGE(KDE3 REQUIRED)
 ADD_DEFINITIONS(${QT_DEFINITIONS} ${KDE3_DEFINITIONS})
 LINK_DIRECTORIES(${KDE3_LIB_DIR})
-INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} 
-                     ${CMAKE_CURRENT_BINARY_DIR} 
-                     ${KDE3_INCLUDE_DIR} 
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}
+                     ${CMAKE_CURRENT_BINARY_DIR}
+                     ${KDE3_INCLUDE_DIR}
                      ${QT_INCLUDE_DIR}             )
 
 ############# Find LIBXSS for idle detection and write outcome to config.h ####
@@ -19,14 +19,14 @@ ELSE (NOT HAVE_LIBXSS)
 ENDIF (NOT HAVE_LIBXSS)
 
 # Write it down to the config.h
-CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/config.h.cmake 
-                ${CMAKE_BINARY_DIR}/src/config.h    ) 
+CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/config.h.cmake
+                ${CMAKE_BINARY_DIR}/src/config.h    )
 
 ############ librsibreak #####################################################
 
 ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 
-############ rsibreak ######################################################## 
+############ rsibreak ########################################################
 
 # source files needed
 SET(rsibreak_sources
@@ -38,7 +38,6 @@ main.cpp
 rsiwidget.cpp
 rsitimer.cpp
 rsirelaxpopup.cpp
-setuppopup.cpp
 setupmaximized.cpp
 rsitooltip.cpp
 dcopiface.cpp
