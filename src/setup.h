@@ -47,7 +47,7 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    Setup(QWidget* parent=0, const char* name=0);
+    explicit Setup(QWidget* parent=0, const char* name=0);
 
     /**
      * Destructor

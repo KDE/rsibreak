@@ -40,7 +40,7 @@ class RSITimer : public QObject
          * @param parent Parent Widget
          * @param name Name
          */
-        RSITimer( QObject *parent = 0, const char *name = 0 );
+        explicit RSITimer( QObject *parent = 0, const char *name = 0 );
 
         /**
           Default destructor.
@@ -272,7 +272,7 @@ class RSITimerNoIdle : public RSITimer
 {
   Q_OBJECT
   public:
-    RSITimerNoIdle( QObject *parent = 0, const char *name = 0 );
+    explicit RSITimerNoIdle( QObject *parent = 0, const char *name = 0 );
     ~RSITimerNoIdle();
   protected:
     virtual void timerEvent( QTimerEvent * );

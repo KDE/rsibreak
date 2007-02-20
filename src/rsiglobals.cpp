@@ -99,7 +99,7 @@ QString RSIGlobals::formatSeconds( const int seconds )
             return( i18n("0 seconds") );
     }
 
-    return( QString::null ); //should not get here
+    return QString(); //should not get here
 }
 
 void RSIGlobals::slotReadConfig()

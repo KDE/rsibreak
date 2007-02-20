@@ -36,7 +36,7 @@ class RSIRelaxPopup : public KPassivePopup
   Q_OBJECT
   public:
     /** Constructor */
-    RSIRelaxPopup( QWidget *parent = 0, const char *name = 0 );
+    explicit RSIRelaxPopup( QWidget *parent = 0, const char *name = 0 );
     /** Destructor */
     ~RSIRelaxPopup();
 

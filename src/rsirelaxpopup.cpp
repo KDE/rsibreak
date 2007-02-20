@@ -48,10 +48,10 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
     m_progress->setPercentageVisible( false );
     m_progress->setTotalSteps( 0 );
 
-    m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString::null, hbox );
+    m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString(), hbox );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
     QToolTip::add( m_lockbutton, i18n( "Lock the session") );
-    m_skipbutton = new QPushButton( SmallIcon( "cancel" ), QString::null, hbox );
+    m_skipbutton = new QPushButton( SmallIcon( "cancel" ), QString(), hbox );
     connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL ( skip() ) );
     QToolTip::add( m_skipbutton, i18n( "Skip this break") );
 

@@ -35,7 +35,7 @@ class RSIToolTip : public KPassivePopup
 {
   Q_OBJECT
   public:
-    RSIToolTip( QWidget *parent = 0, const char *name = 0 );
+    explicit RSIToolTip( QWidget *parent = 0, const char *name = 0 );
     ~RSIToolTip();
 
   public slots:
@@ -46,7 +46,7 @@ class RSIToolTip : public KPassivePopup
     void setSuspended( bool );
     /** Sets the tooltip to @param text */
     void setText( const QString &text);
-    
+
   private:
     QLabel *mTinyLeft;
     QLabel *mBigLeft;

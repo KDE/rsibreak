@@ -44,7 +44,7 @@ class RSIStatItem
      * @param init The initial value of this statistic. Default value is an
      * integer zero.
      */
-    RSIStatItem( const QString &description = QString::null, QVariant init = QVariant(0) );
+    explicit RSIStatItem( const QString &description = QString::null, QVariant init = QVariant(0) );
 
     /** Default destructor. */
     ~RSIStatItem();
@@ -119,7 +119,7 @@ class RSIStatBitArrayItem : public RSIStatItem
      * it keeps track of 24 hours of usage. This value should be never higher than
      * 86400 seconds.
      */
-    RSIStatBitArrayItem( const QString &description = QString::null, QVariant init = QVariant(0), int size = 86400 );
+    explicit RSIStatBitArrayItem( const QString &description = QString::null, QVariant init = QVariant(0), int size = 86400 );
 
     /**
      * Destructor.

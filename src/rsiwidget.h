@@ -48,7 +48,7 @@ class RSILabel : public QLabel
 
   public:
     /** Constructor */
-    RSILabel( QWidget * = 0, const char * = 0 );
+    explicit RSILabel( QWidget * = 0, const char * = 0 );
 
     /** Destructor */
     ~RSILabel();
@@ -78,7 +78,7 @@ class RSIWidget : public QWidget
          * @param parent Parent Widget
          * @param name Name
          */
-        RSIWidget( QWidget *parent = 0, const char *name = 0 );
+        explicit RSIWidget( QWidget *parent = 0, const char *name = 0 );
 
         /**
          * Destructor

@@ -79,17 +79,17 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
                 mTinyLeft->setText( i18n("%1 remaining until next short break").arg(formattedText));
             }
             else // minutes = 0 and seconds = 0, remove the old text.
-                mTinyLeft->setText( QString::null );
+                mTinyLeft->clear();
         }
         else // tiny_left eq. big_left, remove this line.
-            mTinyLeft->setText( QString::null );
+            mTinyLeft->clear();
 
         // do the same for the big break
         if (big_left>0)
             mBigLeft->setText( i18n("%1 remaining until next long break")
                     .arg(RSIGlobals::instance()->formatSeconds( big_left )));
         else // minutes = 0 and seconds = 0, remove the old text.
-            mBigLeft->setText( QString::null );
+            mBigLeft->clear();
     }
 }
 
@@ -97,7 +97,7 @@ void RSIToolTip::setText( const QString &text )
 {
     mTinyLeft->setPaletteForegroundColor( KGlobalSettings::textColor() );
     mTinyLeft->setText( text );
-    mBigLeft->setText( QString::null );
+    mBigLeft->clear();
 }
 
 void RSIToolTip::setPixmap( const QPixmap &pix )

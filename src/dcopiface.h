@@ -46,7 +46,7 @@ public:
      * @param parent Parent object reference, passed to QObject constructor
      * @param name Specifis the name of the object, passed to QObject constructor
      */
-    DCOPIface(QObject *parent = 0, const char *name = 0);
+    explicit DCOPIface(QObject *parent = 0, const char *name = 0);
 
     /**
      * Standard destructor
