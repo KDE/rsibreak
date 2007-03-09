@@ -11,3 +11,4 @@ X-KDE-autostart-condition=rsibreakrc:General:AutoStart:false
 X-KDE-autostart-after=panel
 Name=RSIBreak
 Comment=Makes sure you rest now and then
+Comment[el]=Ασχολείται με την ξεκούρασή σας

@@ -1,27 +1,35 @@
 [start short break]
 Name=Start of a short break
+Name[el]=Έναρξη σύντομου διαλείμματος
 Comment=When a short break starts
+Comment[el]=Πότε ξεκινά ένα σύντομο διάλειμμα
 default_presentation=0
 nopresentation=0
 level=1
 
 [end short break]
 Name=End of a short break
+Name[el]=Τέλος σύντομου διαλείμματος
 Comment=When a short break ends
+Comment[el]=Πότε τελειώνει ένα σύντομο διάλειμμα
 default_presentation=0
 nopresentation=0
 level=1
 
 [start long break]
 Name=Start of a long break
+Name[el]=Έναρξη μεγάλου διαλείμματος
 Comment=When a long break starts
+Comment[el]=Πότε ξεκινά ένα μεγάλο διάλειμμα
 default_presentation=0
 nopresentation=0
 level=1
 
 [end long break]
 Name=End of a long break
+Name[el]=Τέλος μεγάλου διαλείμματος
 Comment=When a long break ends
+Comment[el]=Πότε τελειώνει ένα μεγάλο διάλειμμα
 default_presentation=0
 nopresentation=0
 level=1
