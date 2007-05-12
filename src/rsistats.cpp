@@ -142,7 +142,7 @@ void RSIStats::increaseStat( RSIStat stat, int delta )
     updateStat( stat );
 }
 
-void RSIStats::setStat( RSIStat stat, QVariant val, bool ifmax )
+void RSIStats::setStat( RSIStat stat, const QVariant &val, bool ifmax )
 {
     QVariant v = m_statistics[stat]->getValue();
 
@@ -396,7 +396,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
     return QString();
 }
 
-void RSIStats::setColor( RSIStat stat, QColor color )
+void RSIStats::setColor( RSIStat stat, const QColor &color )
 {
     m_statistics[ stat ]->getDescription()->setPaletteForegroundColor( color );
     m_labels[ stat ]->setPaletteForegroundColor( color );

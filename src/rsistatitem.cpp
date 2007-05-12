@@ -23,7 +23,7 @@
 
 const int totalarraysize = 60 * 60 * 24;
 
-RSIStatItem::RSIStatItem( const QString &description, QVariant init )
+RSIStatItem::RSIStatItem( const QString &description, const QVariant &init )
 {
     m_description = new QLabel( description, 0 );
     m_value = init;
@@ -45,7 +45,7 @@ void RSIStatItem::reset()
 }
 
 
-RSIStatBitArrayItem::RSIStatBitArrayItem( const QString &description, QVariant init, int size )
+RSIStatBitArrayItem::RSIStatBitArrayItem( const QString &description, const QVariant &init, int size )
 : RSIStatItem( description, init ), m_size( size ), m_counter( 0 )
 {
   Q_ASSERT ( size <= totalarraysize );
