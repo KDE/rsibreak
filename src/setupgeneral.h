@@ -24,6 +24,8 @@
 #ifndef SETUPGENERAL_H
 #define SETUPGENERAL_H
 
+#include <qwidget.h>
+
 class SetupGeneralPriv;
 
 /**

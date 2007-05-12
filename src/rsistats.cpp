@@ -16,13 +16,15 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include "rsistats.h"
+
+#include <qdatetime.h>
+#include <qlabel.h>
 #include <qwhatsthis.h>
 
-#include <kdebug.h>
 #include <kglobal.h>
 #include <klocale.h>
 
-#include "rsistats.h"
 #include "rsistatitem.h"
 
 RSIStats::RSIStats()

@@ -16,6 +16,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include "rsiglobals.h"
+
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kdebug.h>
@@ -27,7 +29,6 @@
 #include <math.h>
 
 #include "rsistats.h"
-#include "rsiglobals.h"
 
 RSIGlobals *RSIGlobals::m_instance = 0;
 RSIStats *RSIGlobals::m_stats = 0;

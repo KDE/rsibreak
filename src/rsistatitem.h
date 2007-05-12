@@ -20,11 +20,12 @@
 #ifndef RSISTATITEM_H
 #define RSISTATITEM_H
 
-#include <qlabel.h>
 #include <qvaluelist.h>
 #include <qvariant.h>
 
 #include "rsiglobals.h"
+
+class QLabel;
 
 /**
  * This class represents one statistic.

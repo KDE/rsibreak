@@ -20,11 +20,12 @@
 #ifndef RSISTATS_H
 #define RSISTATS_H
 
-#include <qlabel.h>
 #include <qmap.h>
 #include <qvariant.h>
 
 #include "rsiglobals.h"
+
+class QLabel;
 
 class RSIStatItem;
 

@@ -24,6 +24,8 @@
 #ifndef SETUPMAXIMIZED_H
 #define SETUPMAXIMIZED_H
 
+#include <qwidget.h>
+
 class SetupMaximizedPriv;
 
 /**

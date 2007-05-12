@@ -24,11 +24,10 @@
 #ifndef RSIDOCK_H
 #define RSIDOCK_H
 
-#include <qpixmap.h>
-#include <qtimer.h>
-
 #include <kdialogbase.h>
 #include <ksystemtray.h>
+
+class QTimer;
 
 class KGlobalAccel;
 class KHelpMenu;

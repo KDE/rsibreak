@@ -20,9 +20,6 @@
 #ifndef RSITOOLTIP_H
 #define RSITOOLTIP_H
 
-#include <qdatetime.h>
-#include <qimage.h>
-
 #include <kpassivepopup.h>
 
 /**

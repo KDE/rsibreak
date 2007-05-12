@@ -25,6 +25,8 @@
 #include "rsistats.h"
 #include "rsiglobals.h"
 
+#include <qtimer.h>
+
 #include <kdebug.h>
 #include <klocale.h>
 #include <kpopupmenu.h>

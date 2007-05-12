@@ -21,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * ============================================================ */
 
+// Local includes.
+
+#include "setuptiming.h"
+
 // QT includes.
 
 #include <qlayout.h>
@@ -35,18 +39,11 @@
 // KDE includes.
 
 #include <klocale.h>
-#include <kdialog.h>
-#include <kdebug.h>
 #include <kcolorbutton.h>
 #include <kfontdialog.h>
 #include <knuminput.h>
-#include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
-
-// Local includes.
-
-#include "setuptiming.h"
 
 class SetupTimingPriv
 {

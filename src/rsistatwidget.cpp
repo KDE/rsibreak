@@ -16,8 +16,13 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include <qgrid.h>
+#include "rsistatwidget.h"
+
 #include <qdatetime.h>
+#include <qgrid.h>
+#include <qgroupbox.h>
+#include <qlabel.h>
+#include <qlayout.h>
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -25,7 +30,6 @@
 #include <klocale.h>
 
 #include "rsistats.h"
-#include "rsistatwidget.h"
 
 RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
 : QWidget( parent, name )

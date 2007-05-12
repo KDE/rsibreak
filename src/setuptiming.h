@@ -23,6 +23,8 @@
 #ifndef SETUPTIMING_H
 #define SETUPTIMING_H
 
+#include <qwidget.h>
+
 class SetupTimingPriv;
 
 /**

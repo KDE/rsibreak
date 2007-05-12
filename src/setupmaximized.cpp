@@ -16,25 +16,25 @@
  *
  * ============================================================ */
 
+// Local includes.
+
+#include "setupmaximized.h"
+
 // QT includes.
 
 #include <qlayout.h>
 #include <qhbox.h>
 #include <qvgroupbox.h>
-#include <qhgroupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qstring.h>
 #include <qwhatsthis.h>
 #include <qcheckbox.h>
 
 // KDE includes.
 
-#include <kdebug.h>
 #include <klocale.h>
 #include <kcolorbutton.h>
 #include <kfontdialog.h>
-#include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
 #include <kdeversion.h>
@@ -44,10 +44,6 @@
 #else
 #include <kmessagebox.h>
 #endif
-
-// Local includes.
-
-#include "setupmaximized.h"
 
 class SetupMaximizedPriv
 {

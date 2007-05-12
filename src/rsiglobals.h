@@ -20,8 +20,8 @@
 #define RSIGLOBALS_H
 
 #include <qbitarray.h>
-#include <qdatetime.h>
-#include <qimage.h>
+#include <qobject.h>
+#include <qstringlist.h>
 
 #include <kpassivepopup.h>
 

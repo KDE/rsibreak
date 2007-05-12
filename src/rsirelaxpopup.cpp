@@ -17,6 +17,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include "rsirelaxpopup.h"
+
 #include <qlabel.h>
 #include <qpushbutton.h>
 #include <qtimer.h>
@@ -30,8 +32,6 @@
 #include <kprogress.h>
 #include <kapplication.h>
 #include <kconfig.h>
-
-#include "rsirelaxpopup.h"
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
 : KPassivePopup( parent, name )

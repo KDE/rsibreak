@@ -19,11 +19,12 @@
 #ifndef RSISTATWIDGET_H
 #define RSISTATWIDGET_H
 
-#include <qgroupbox.h>
-#include <qlayout.h>
-
 #include "rsiglobals.h"
 
+#include <qwidget.h>
+
+class QGrid;
+class QGridLayout;
 class QTimer;
 
 class RSIStatWidget : public QWidget

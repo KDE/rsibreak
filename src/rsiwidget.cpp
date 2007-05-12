@@ -30,7 +30,7 @@
 #include <qpainter.h>
 #include <qbitmap.h>
 
-#include "config.h"
+#include <config.h>
 
 #include <kwin.h>
 #include <klocale.h>

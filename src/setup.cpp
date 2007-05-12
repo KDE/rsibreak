@@ -17,24 +17,23 @@
  *
  * ============================================================ */
 
+#include "setup.h"
+
 // Qt includes.
 
 #include <qtabwidget.h>
 #include <qapplication.h>
-#include <qframe.h>
 
 // KDE includes.
 
-#include <kdebug.h>
-#include <klocale.h>
 #include <kiconloader.h>
+#include <klocale.h>
 
 // Local includes.
 
 #include "setupgeneral.h"
 #include "setuptiming.h"
 #include "setupmaximized.h"
-#include "setup.h"
 
 class SetupPriv
 {

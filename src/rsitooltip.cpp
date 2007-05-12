@@ -17,6 +17,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include "rsitooltip.h"
+
 #include <qlabel.h>
 #include <qpixmap.h>
 #include <qvbox.h>
@@ -27,7 +29,6 @@
 
 #include <math.h>
 
-#include "rsitooltip.h"
 #include "rsiglobals.h"
 #include "rsistats.h"
 

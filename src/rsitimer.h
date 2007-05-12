@@ -21,8 +21,10 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
-#include <qtimer.h>
+#include <qobject.h>
 #include <qdatetime.h>
+
+class QTimerEvent;
 
 /**
  * @class RSITimer

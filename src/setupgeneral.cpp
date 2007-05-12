@@ -16,6 +16,10 @@
  *
  * ============================================================ */
 
+// Local includes.
+
+#include "setupgeneral.h"
+
 // QT includes.
 
 #include <qlayout.h>
@@ -38,10 +42,6 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
-
-// Local includes.
-
-#include "setupgeneral.h"
 
 class SetupGeneralPriv
 {
