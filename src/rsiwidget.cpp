@@ -17,6 +17,8 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
+#include "rsiwidget.h"
+
 #include <qpushbutton.h>
 #include <qlayout.h>
 #include <qtimer.h>
@@ -49,7 +51,6 @@
 #include <time.h>
 #include <math.h>
 
-#include "rsiwidget.h"
 #include "rsitimer.h"
 #include "rsidock.h"
 #include "rsirelaxpopup.h"
