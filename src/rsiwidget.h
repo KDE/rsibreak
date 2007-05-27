@@ -21,15 +21,15 @@
 #ifndef RSIWidget_H
 #define RSIWidget_H
 
+#include "dcopiface.h"
+
 #include <qdatetime.h>
 #include <qlabel.h>
-
-#include <dcopiface.h>
+#include <qpixmap.h>
 
 class QTimer;
 class QPushButton;
 class KAccel;
-class QPixmap;
 
 class RSIDock;
 class RSITimer;

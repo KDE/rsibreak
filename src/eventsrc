@@ -1,3 +1,7 @@
+[!Global!]
+IconName=rsibreak
+Comment=RSIBreak
+
 [start short break]
 Name=Start of a short break
 Name[ar]=بدء انقطاع صغير
