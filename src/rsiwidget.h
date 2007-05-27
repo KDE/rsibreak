@@ -106,6 +106,7 @@ class RSIWidget : public QWidget
         virtual void mousePressEvent( QMouseEvent * e );
         virtual void mouseReleaseEvent( QMouseEvent * e );
         virtual void keyPressEvent( QKeyEvent * e);
+        virtual void hideEvent( QHideEvent * e);
 
         /** Sets appropriate icon in tooltip and docker. */
         void setIcon( int );

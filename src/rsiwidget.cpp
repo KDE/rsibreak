@@ -103,8 +103,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                  i18n("Welcome"),
                                  "dont_show_welcome_again_for_050");
 
-    m_backgroundimage.resize(QApplication::desktop()->width(),
-                             QApplication::desktop()->height());
     setBackgroundMode( QWidget::NoBackground );
     QRect rect = QApplication::desktop()->screenGeometry(
                         QApplication::desktop()->primaryScreen() );
@@ -605,6 +603,16 @@ void RSIWidget::keyPressEvent( QKeyEvent * e)
     if (e->key() == m_accel->shortcut("minimize"))
         m_timer->skipBreak();
 }
+
+void RSIWidget::hideEvent( QHideEvent * e)
+{
+    kdDebug() << k_funcinfo << endl;
+    m_backgroundimage = QPixmap();
+    setBackgroundPixmap(m_backgroundimage);
+
+    QWidget::hideEvent(e);
+}
+
 //--------------------------- CONFIG ----------------------------//
 
 void RSIWidget::startTimer( bool idle)
