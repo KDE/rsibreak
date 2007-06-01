@@ -600,7 +600,7 @@ void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
 
 void RSIWidget::keyPressEvent( QKeyEvent * e)
 {
-    if (e->key() == m_accel->shortcut("minimize"))
+    if (e->key() == m_accel->shortcut("minimize") && m_accel->isEnabled() )
         m_timer->skipBreak();
 }
 
