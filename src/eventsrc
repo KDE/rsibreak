@@ -1,6 +1,7 @@
 [!Global!]
 IconName=rsibreak
 Comment=RSIBreak
+Comment[sv]=RSIbreak
 
 [start short break]
 Name=Start of a short break
