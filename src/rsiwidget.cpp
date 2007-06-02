@@ -713,8 +713,7 @@ void RSIWidget::readConfig()
     startTimer(!timertype);
 
     // Hook in the shortcut after the timer initialisation.
-    m_accel->setEnabled("minimize",
-                        !config->readBoolEntry("DisableAccel", false));
+    m_accel->setEnabled(!config->readBoolEntry("DisableAccel", false));
     QString shortcut = config->readEntry("MinimizeKey", "Escape");
     m_accel->setShortcut("minimize",KShortcut(shortcut));
 
