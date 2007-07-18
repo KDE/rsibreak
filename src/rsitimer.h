@@ -129,6 +129,13 @@ class RSITimer : public QObject
         */
         void skipBreak();
 
+        /**
+          Queries X how many seconds the user has been idle. A value of 0
+          means there was activity during the last second.
+          @returns The amount of seconds of idling.
+        */
+        int idleTime();
+
     protected:
         /**
           The pumping heart of the timer. This will evaluate user's activity
@@ -214,13 +221,6 @@ class RSITimer : public QObject
           started in a short amount of time.
         */
         void restoreSession();
-
-        /**
-          Queries X how many seconds the user has been idle. A value of 0
-          means there was activity during the last second.
-          @returns The amount of seconds of idling.
-        */
-        int idleTime();
 
         /**
           Some internal preparations for a fullscreen break window.

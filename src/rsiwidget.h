@@ -85,6 +85,8 @@ class RSIWidget : public QWidget
          */
         ~RSIWidget();
 
+        RSITimer* getTimer() const;
+
     private slots:
         void slotShowWhereIAm();
         void slotNewSlide();

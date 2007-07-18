@@ -21,6 +21,8 @@
 // Local includes.
 
 #include "dcopiface.h"
+#include "rsiwidget.h"
+#include "rsitimer.h"
 
 DCOPIface::DCOPIface(QObject *parent, const char *name)
     : QObject(parent, name), DCOPObject(name)
@@ -54,6 +56,11 @@ void DCOPIface::doBigBreak()
 void DCOPIface::whereAmI()
 {
     emit signalWhereAmI();
+}
+
+int DCOPIface::idleTime()
+{
+    return (static_cast<RSIWidget*>(parent()))->getTimer()->idleTime();
 }
 
 #include "dcopiface.moc"

@@ -98,6 +98,12 @@ k_dcop:
      * a second instance is started.
      */
     ASYNC whereAmI();
+
+    /**
+     * Returns how many seconds the user has been idle.
+     *
+     */
+    int idleTime();
 };
 
 #endif // DCOPIFACE_H

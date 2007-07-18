@@ -778,4 +778,9 @@ void RSILabel::updateMask()
     setMask( b );
 }
 
+RSITimer *RSIWidget::getTimer() const
+{
+    return m_timer;
+}
+
 #include "rsiwidget.moc"
