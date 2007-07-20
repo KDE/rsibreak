@@ -23,12 +23,14 @@
 // QT includes.
 
 #include <qlayout.h>
-#include <qhbox.h>
-#include <qvgroupbox.h>
+#include <q3hbox.h>
+#include <q3vgroupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qcheckbox.h>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
 
 // KDE includes.
 
@@ -43,15 +45,16 @@
 #include <kshortcutdialog.h>
 #else
 #include <kmessagebox.h>
+#include <kglobal.h>
 #endif
 
 class SetupMaximizedPriv
 {
 public:
-    QHBox*            colorBox;
-    QHBox*            fontBox;
-    QHBox*            shortcutBox;
-    QVGroupBox*       slideshowBox;
+    Q3HBox*            colorBox;
+    Q3HBox*            fontBox;
+    Q3HBox*            shortcutBox;
+    Q3VGroupBox*       slideshowBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
     QPushButton*      shortcutBut;
@@ -76,69 +79,69 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    d = new SetupMaximizedPriv;
 
    //--- Vertical to start with
-   QVBoxLayout *layout = new QVBoxLayout( parent );
+   Q3VBoxLayout *layout = new Q3VBoxLayout( parent );
    layout->setSpacing( KDialog::spacingHint() );
    layout->setAlignment( AlignTop );
 
    // Counterbox and skipbox next to eachother
-   QHBox *boxes= new QHBox(parent,"mainbox");
+   Q3HBox *boxes= new Q3HBox(parent,"mainbox");
    boxes->setSpacing( KDialog::spacingHint() );
 
    //-------------------- Counterbox
-   QVGroupBox *counterBox = new QVGroupBox(boxes);
+   Q3VGroupBox *counterBox = new Q3VGroupBox(boxes);
    counterBox->setTitle(i18n("Counter"));
 
    d->hideCounter = new QCheckBox(i18n("H&ide"), counterBox);
    connect(d->hideCounter, SIGNAL(toggled(bool)), SLOT(slotHideCounter()));
-   QWhatsThis::add( d->hideCounter, i18n("With this checkbox you can indicate "
+   Q3WhatsThis::add( d->hideCounter, i18n("With this checkbox you can indicate "
            "if you want to see a counter during the breaks. It will count "
            "down to zero, so you know how long this break will be. It will "
            "be shown on top of the image, when images are shown.") );
 
-   d->colorBox = new QHBox(counterBox,"colorbox");
+   d->colorBox = new Q3HBox(counterBox,"colorbox");
    QLabel *counterColorlabel = new QLabel( i18n("&Color:")+' ', d->colorBox );
    counterColorlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterColor = new KColorButton(d->colorBox);
    counterColorlabel->setBuddy(d->counterColor);
-   QWhatsThis::add( d->counterColor, i18n("Select here the color to use "
+   Q3WhatsThis::add( d->counterColor, i18n("Select here the color to use "
             "for the counter. As this is used on top of the images, you "
             "might want to set it to a color which is visible for most "
             "of the images.") );
 
-   d->fontBox = new QHBox(counterBox,"counterbox");
+   d->fontBox = new Q3HBox(counterBox,"counterbox");
    QLabel *counterFontlabel = new QLabel( i18n("&Font:")+' ', d->fontBox );
    counterFontlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterFontBut = new QPushButton("font",d->fontBox);
    counterFontlabel->setBuddy(d->counterFontBut);
-   QWhatsThis::add( d->counterFontBut, i18n("Select here the font to use "
+   Q3WhatsThis::add( d->counterFontBut, i18n("Select here the font to use "
            "for the counter.") );
    connect(d->counterFontBut, SIGNAL(clicked()), SLOT(slotFontPicker()));
 
    //layout->addWidget(counterBox);
 
    //---------------- SKIP BOX
-   QVGroupBox *skipBox = new QVGroupBox(boxes);
+   Q3VGroupBox *skipBox = new Q3VGroupBox(boxes);
    skipBox->setTitle(i18n("Skipping Breaks"));
 
    d->hideMinimizeButton = new QCheckBox(i18n("H&ide button"), skipBox);
-   QWhatsThis::add( d->hideMinimizeButton,
+   Q3WhatsThis::add( d->hideMinimizeButton,
                     i18n("Check this option to disable and hide the skip "
                             "button. This way you can prevent skipping the "
                             "break.") );
 
    d->disableAccel = new QCheckBox(i18n("&Disable shortcut"),
                                    skipBox);
-   QWhatsThis::add( d->disableAccel,
+   Q3WhatsThis::add( d->disableAccel,
                     i18n("Check this option to disable the skip shortcut."
                             "This way you can prevent skipping the break.") );
    connect(d->disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
 
-   d->shortcutBox = new QHBox(skipBox,"chortcutbox");
+   d->shortcutBox = new Q3HBox(skipBox,"chortcutbox");
    QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:") + ' ', d->shortcutBox );
    shortcutlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->shortcutBut = new QPushButton(i18n("&Change Shortcut..."), d->shortcutBox );
    shortcutlabel->setBuddy(d->shortcutBut);
-   QWhatsThis::add( d->shortcutBut, i18n("Select here the shortcut to use "
+   Q3WhatsThis::add( d->shortcutBut, i18n("Select here the shortcut to use "
            "for aborting the break.") );
    connect(d->shortcutBut, SIGNAL(clicked()),
            this, SLOT(slotShortcutPicker()));
@@ -147,14 +150,14 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    layout->addWidget( boxes );
 
    //------------------ PATH Setup
-   d->slideshowBox = new QVGroupBox(parent);
+   d->slideshowBox = new Q3VGroupBox(parent);
    d->slideshowBox->setTitle(i18n("Slideshow"));
    d->slideshowBox->setCheckable( true );
    connect(d->slideshowBox, SIGNAL( toggled(bool)), SLOT(slotUseImages()));
 
-   QHBox *imageFolderBox = new QHBox(d->slideshowBox,"imagefolderbox");
+   Q3HBox *imageFolderBox = new Q3HBox(d->slideshowBox,"imagefolderbox");
    d->imageFolderEdit = new QLineEdit(imageFolderBox);
-   QWhatsThis::add( d->imageFolderEdit,
+   Q3WhatsThis::add( d->imageFolderEdit,
         i18n("Select the folder from which you want to see images. "
              "These images are randomly shown during the breaks. "
              "It will be searched recursively if you want...") );
@@ -172,7 +175,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    //---------------- Popup setup
 
-   QVGroupBox *popupBox = new QVGroupBox(parent);
+   Q3VGroupBox *popupBox = new Q3VGroupBox(parent);
    popupBox->setTitle(i18n("Popup"));
 
    QLabel *label = new QLabel( i18n("RSIBreak can show a popup near the "
@@ -182,7 +185,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    d->usePopup = new QCheckBox(i18n("&Use the popup"), popupBox);
    connect(d->usePopup, SIGNAL(toggled(bool)), SLOT(slotHideFlash()));
-   QWhatsThis::add( d->usePopup, i18n("With this checkbox you can indicate "
+   Q3WhatsThis::add( d->usePopup, i18n("With this checkbox you can indicate "
            "if you want to see the popup when it "
                    "is time to break. It will count "
                    "down to zero, so you know how long this "
@@ -194,7 +197,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    d->useFlashLabel->setAlignment(Qt::WordBreak);
 
    d->useFlash = new QCheckBox(i18n("&Flash on activity"), popupBox);
-   QWhatsThis::add( d->useFlash, i18n("With this checkbox you can indicate "
+   Q3WhatsThis::add( d->useFlash, i18n("With this checkbox you can indicate "
            "if you want to see the popup flash "
                    "when there is activity.") );
    d->useFlashLabel->setBuddy( d->useFlashLabel );
@@ -262,12 +265,12 @@ void SetupMaximized::slotFolderPicker()
 void SetupMaximized::slotFolderEdited(const QString& newPath)
 {
     if (newPath.isEmpty()) {
-        d->imageFolderEdit->setText(QDir::homeDirPath());
+        d->imageFolderEdit->setText(QDir::homePath());
         return;
     }
 
     if (!newPath.startsWith("/")) {
-        d->imageFolderEdit->setText(QDir::homeDirPath()+'/'+newPath);
+        d->imageFolderEdit->setText(QDir::homePath()+'/'+newPath);
     }
 
 }
@@ -280,60 +283,57 @@ void SetupMaximized::slotHideFlash()
 
 void SetupMaximized::applySettings()
 {
-    KConfig* config = kapp->config();
-
-    config->setGroup("General Settings");
-    config->writeEntry("CounterColor", d->counterColor->color());
-    config->writeEntry("CounterFont", d->counterFont);
-    config->writeEntry("ImageFolder", d->imageFolderEdit->text());
-    config->writeEntry("HideMinimizeButton",
+    KConfigGroup config = KGlobal::config()->group("General Settings");
+    config.writeEntry("CounterColor", d->counterColor->color());
+    config.writeEntry("CounterFont", d->counterFont);
+    config.writeEntry("ImageFolder", d->imageFolderEdit->text());
+    config.writeEntry("HideMinimizeButton",
                        d->hideMinimizeButton->isChecked());
-    config->writeEntry("SearchRecursiveCheck",
+    config.writeEntry("SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked());
-    config->writeEntry("ShowImages",
+    config.writeEntry("ShowImages",
                        d->slideshowBox->isChecked());
 
-    config->writeEntry("HideCounter", d->hideCounter->isChecked());
-    config->writeEntry("DisableAccel", d->disableAccel->isChecked());
-    config->writeEntry("MinimizeKey", d->shortcut);
+    config.writeEntry("HideCounter", d->hideCounter->isChecked());
+    config.writeEntry("DisableAccel", d->disableAccel->isChecked());
+    config.writeEntry("MinimizeKey", d->shortcut);
 
-    config->setGroup("Popup Settings");
-    config->writeEntry("UsePopup",
+    config = KGlobal::config()->group("Popup Settings");
+    config.writeEntry("UsePopup",
                        d->usePopup->isChecked());
-    config->writeEntry("UseFlash",
+    config.writeEntry("UseFlash",
                        d->useFlash->isChecked());
 
-    config->sync();
+    config.sync();
 }
 
 void SetupMaximized::readSettings()
 {
-    KConfig* config = kapp->config();
     QColor *Black = new QColor(Qt::black);
     QFont *font = new QFont(  QApplication::font().family(), 40, 75, true );
     QString dir = QDir::home().path();
 
-    config->setGroup("General Settings");
-    d->counterColor->setColor( config->readColorEntry("CounterColor", Black ) );
-    d->counterFont = config->readFontEntry("CounterFont", font ) ;
-    d->imageFolderEdit->setText(config->readEntry("ImageFolder", dir ));
+    KConfigGroup config = KGlobal::config()->group("General Settings");
+    d->counterColor->setColor( config.readEntry("CounterColor", Black ) );
+    d->counterFont = config.readEntry("CounterFont", font ) ;
+    d->imageFolderEdit->setText(config.readEntry("ImageFolder", dir ));
     d->counterFontBut->setText(d->counterFont.family());
     d->hideMinimizeButton->setChecked(
-            config->readBoolEntry("HideMinimizeButton", false));
+            config.readEntry("HideMinimizeButton", false));
     d->slideshowBox->setChecked(
-            config->readBoolEntry("ShowImages", false));
+            config.readEntry("ShowImages", false));
     d->searchRecursiveCheck->setChecked(
-            config->readBoolEntry("SearchRecursiveCheck", false));
-    d->hideCounter->setChecked(config->readBoolEntry("HideCounter", false));
-    d->disableAccel->setChecked(config->readBoolEntry("DisableAccel", false));
-    d->shortcut = config->readEntry("MinimizeKey", "Escape");
+            config.readEntry("SearchRecursiveCheck", false));
+    d->hideCounter->setChecked(config.readEntry("HideCounter", false));
+    d->disableAccel->setChecked(config.readEntry("DisableAccel", false));
+    d->shortcut = config.readEntry("MinimizeKey", "Escape");
     d->shortcutBut->setText(d->shortcut);
 
-    config->setGroup("Popup Settings");
+    config = KGlobal::config()->group("Popup Settings");
     d->usePopup->setChecked(
-            config->readBoolEntry("UsePopup", true));
+            config.readEntry("UsePopup", true));
     d->useFlash->setChecked(
-            config->readBoolEntry("UseFlash", true));
+            config.readEntry("UseFlash", true));
 
     delete Black;
     delete font;

@@ -24,8 +24,12 @@
 #ifndef RSIDOCK_H
 #define RSIDOCK_H
 
-#include <kdialogbase.h>
-#include <ksystemtray.h>
+#include <kdialog.h>
+#include <ksystemtrayicon.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QShowEvent>
+#include <QEvent>
 
 class QTimer;
 
@@ -43,7 +47,7 @@ class RSIStatWidget;
  * @author Nadeem Hasan <nhasan@kde.org>
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIDock : public KSystemTray
+class RSIDock : public KSystemTrayIcon
 {
   Q_OBJECT
 
@@ -59,12 +63,6 @@ class RSIDock : public KSystemTray
      * Destructor
      */
     ~RSIDock();
-
-    /**
-     * With this function you can set the icon used in the tray.
-     * @param level Indicates the icon, you can currently choose from 0-4
-     */
-    void setIcon(int level);
 
     public slots:
       /**
@@ -164,7 +162,7 @@ class RSIDock : public KSystemTray
         bool m_hasQuit;
 
         QTimer *m_tooltiptimer;
-        KDialogBase *m_statsDialog;
+        KDialog *m_statsDialog;
         RSIStatWidget *m_statsWidget;
 };
 

@@ -21,7 +21,7 @@
 
 #include <qlabel.h>
 #include <qpixmap.h>
-#include <qvbox.h>
+#include <q3vbox.h>
 
 #include <kdebug.h>
 #include <kglobalsettings.h>
@@ -37,13 +37,13 @@ RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
 {
   setTimeout( 10 * 1000 );
 
-  QHBox *hbox = new QHBox( this );
+  Q3HBox *hbox = new Q3HBox( this );
   hbox->setSpacing( 10 );
 
   mIcon = new QLabel( hbox );
   mIcon->resize( 32, 32 );
 
-  QVBox *vbox = new QVBox( hbox );
+  Q3VBox *vbox = new Q3VBox( hbox );
   vbox->setSpacing( 5 );
   new QLabel( "<qt><strong>RSIBreak</strong></qt>", vbox );
   mTinyLeft = new QLabel( vbox );

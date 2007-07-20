@@ -19,10 +19,14 @@
 #include "rsistatwidget.h"
 
 #include <qdatetime.h>
-#include <qgrid.h>
-#include <qgroupbox.h>
+#include <q3grid.h>
+#include <q3groupbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
+//Added by qt3to4:
+#include <Q3GridLayout>
+#include <QShowEvent>
+#include <QHideEvent>
 
 #include <kdebug.h>
 #include <kglobal.h>
@@ -34,11 +38,11 @@
 RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
 : QWidget( parent, name )
 {
-    mGrid = new QGridLayout( this );
+    mGrid = new Q3GridLayout( this );
     mGrid->setSpacing( 5 );
 
-    QGroupBox *gb = new QGroupBox( 1, Qt::Vertical, i18n("Time"), this );
-    QGrid *subgrid = new QGrid( 2, Qt::Horizontal, gb );
+    Q3GroupBox *gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Time"), this );
+    Q3Grid *subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
     subgrid->setSpacing( 5 );
     addStat( TOTAL_TIME, subgrid );
     addStat( ACTIVITY, subgrid );
@@ -47,8 +51,8 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( MAX_IDLENESS, subgrid );
     mGrid->addWidget( gb, 0, 0 );
 
-    gb = new QGroupBox( 1, Qt::Vertical, i18n("Short Breaks"), this );
-    subgrid = new QGrid( 2, Qt::Horizontal, gb );
+    gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Short Breaks"), this );
+    subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
     subgrid->setSpacing( 5 );
     addStat( TINY_BREAKS, subgrid );
     addStat( LAST_TINY_BREAK, subgrid );
@@ -56,8 +60,8 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( IDLENESS_CAUSED_SKIP_TINY, subgrid );
     mGrid->addWidget( gb, 0, 1 );
 
-    gb = new QGroupBox( 1, Qt::Vertical, i18n("Pause"), this );
-    subgrid = new QGrid( 2, Qt::Horizontal, gb );
+    gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Pause"), this );
+    subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
     subgrid->setSpacing( 5 );
     addStat( ACTIVITY_PERC, subgrid );
     addStat( ACTIVITY_PERC_MINUTE, subgrid );
@@ -66,8 +70,8 @@ RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
     addStat( PAUSE_SCORE, subgrid );
     mGrid->addWidget( gb, 1, 0 );
 
-    gb = new QGroupBox( 1, Qt::Vertical, i18n("Long Breaks"), this );
-    subgrid = new QGrid( 2, Qt::Horizontal, gb );
+    gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Long Breaks"), this );
+    subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
     subgrid->setSpacing( 5 );
     addStat( BIG_BREAKS, subgrid );
     addStat( LAST_BIG_BREAK, subgrid );
@@ -80,7 +84,7 @@ RSIStatWidget::~RSIStatWidget()
 {
 }
 
-void RSIStatWidget::addStat( RSIStat stat, QGrid *grid )
+void RSIStatWidget::addStat( RSIStat stat, Q3Grid *grid )
 {
     QLabel *l = RSIGlobals::instance()->stats()->getDescription( stat );
     l->reparent( grid, 0, QPoint() );

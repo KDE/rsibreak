@@ -27,6 +27,7 @@
 #include <knotifyclient.h>
 
 #include <math.h>
+#include <kglobal.h>
 
 #include "rsistats.h"
 
@@ -105,7 +106,7 @@ QString RSIGlobals::formatSeconds( const int seconds )
 
 void RSIGlobals::slotReadConfig()
 {
-    KConfig* config = kapp->config();
+    KConfig* config = KGlobal::config();
 
     config->setGroup("General Settings");
 
@@ -117,7 +118,7 @@ void RSIGlobals::slotReadConfig()
 
     if (config->readBoolEntry("DEBUG", false))
     {
-        kdDebug() << "Debug mode activated" << endl;
+        kDebug() << "Debug mode activated" << endl;
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
@@ -127,7 +128,7 @@ void RSIGlobals::slotReadConfig()
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
     {
-        kdDebug() << "max big > max tiny, not allowed & corrected" << endl;
+        kDebug() << "max big > max tiny, not allowed & corrected" << endl;
         m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
     }
 
@@ -162,7 +163,7 @@ void RSIGlobals::resetUsage()
 
 void RSIGlobals::updateLegacySettings()
 {
-    KConfig* config = kapp->config();
+    KConfig* config = KGlobal::config();
 
     config->setGroup("General Settings");
 

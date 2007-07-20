@@ -39,7 +39,10 @@
 #include "rsiglobals.h"
 #include "rsistats.h"
 #include "rsitimer_dpms.h"
-
+//Added by qt3to4:
+#include <QTimerEvent>
+#include <kglobal.h>
+#include <QX11Info>
 
 RSITimer::RSITimer( QObject *parent, const char *name )
     : QObject( parent, name ), m_breakRequested( false )
@@ -53,7 +56,7 @@ RSITimer::RSITimer( QObject *parent, const char *name )
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
-    kdDebug() << "Starting timer constructor" << endl;
+    kDebug() << "Starting timer constructor" << endl;
 
     startTimer( 1000 );
     slotReadConfig( /* restart */ true );
@@ -76,7 +79,7 @@ int RSITimer::idleTime()
 #ifdef HAVE_LIBXSS      // Idle detection.
     XScreenSaverInfo*  _mit_info;
     _mit_info= XScreenSaverAllocInfo();
-    XScreenSaverQueryInfo(qt_xdisplay(), qt_xrootwin(), _mit_info);
+    XScreenSaverQueryInfo(QX11Info::display(), QX11Info::appRootWindow(), _mit_info);
     totalIdle = (_mit_info->idle/1000);
     XFree(_mit_info);
 
@@ -89,7 +92,7 @@ int RSITimer::idleTime()
     if (t == 3600)
     {
         QueryDPMSTimeouts(qt_xdisplay(), dpmsStandby, dpmsSuspend, dpmsOff);
-        kdDebug() << "DPMS settings: " << dpmsStandby << " - "
+        kDebug() << "DPMS settings: " << dpmsStandby << " - "
                 << dpmsSuspend << " - " << dpmsOff << endl;
     }
 
@@ -274,7 +277,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     }
 
     /*
-    kdDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
+    kDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
     */
 
     int breakInterval = m_tiny_left < m_big_left ?
@@ -333,7 +336,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     }
 
     if (m_explicitDebug)
-        kdDebug() << " patience: " << m_patience  << " pause_left: "
+        kDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
             <<  m_big_left << " idle: " << t << endl;
@@ -479,18 +482,16 @@ void RSITimer::timerEvent( QTimerEvent * )
 
 void RSITimer::readConfig()
 {
-    KConfig* config = kapp->config();
+    KConfigGroup config = KGlobal::config()->group("General Settings");
 
-    config->setGroup("General Settings");
+    m_useIdleDetection = config.readEntry("UseIdleDetection", true);
+    m_ignoreIdleForTinyBreaks = config.readEntry("IgnoreIdleForTinyBreaks", false);
 
-    m_useIdleDetection = config->readBoolEntry("UseIdleDetection", true);
-    m_ignoreIdleForTinyBreaks = config->readBoolEntry("IgnoreIdleForTinyBreaks", false);
-
-    config->setGroup("General");
+    config = KGlobal::config()->group("General");
     QDateTime *tempDt = new QDateTime();
-    m_lastrunDt = config->readDateTimeEntry( "LastRunTimeStamp", tempDt );
-    m_lastrunTiny = config->readNumEntry( "LastRunTinyLeft", 0 );
-    m_lastrunBig = config->readNumEntry( "LastRunBigLeft", 0 );
+    m_lastrunDt = config.readEntry( "LastRunTimeStamp", tempDt );
+    m_lastrunTiny = config.readEntry( "LastRunTinyLeft", 0 );
+    m_lastrunBig = config.readEntry( "LastRunBigLeft", 0 );
 
     delete tempDt;
     tempDt = 0;
@@ -498,12 +499,10 @@ void RSITimer::readConfig()
 
 void RSITimer::writeConfig()
 {
-    KConfig *config = kapp->config();
-
-    config->setGroup("General");
-    config->writeEntry( "LastRunTimeStamp", QDateTime::currentDateTime() );
-    config->writeEntry( "LastRunTinyLeft", m_tiny_left );
-    config->writeEntry( "LastRunBigLeft", m_big_left );
+    KConfigGroup config = KGlobal::config()->group("General");
+    config.writeEntry( "LastRunTimeStamp", QDateTime::currentDateTime() );
+    config.writeEntry( "LastRunTinyLeft", m_tiny_left );
+    config.writeEntry( "LastRunBigLeft", m_big_left );
 }
 
 void RSITimer::restoreSession()
@@ -531,7 +530,7 @@ void RSITimer::restoreSession()
 RSITimerNoIdle::RSITimerNoIdle( QObject *parent, const char *name )
 : RSITimer( parent, name )
 {
-    kdDebug() << "Starting noIdle timer" << endl;
+    kDebug() << "Starting noIdle timer" << endl;
 }
 
 RSITimerNoIdle::~RSITimerNoIdle()
@@ -577,7 +576,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     }
 
     if (m_explicitDebug)
-        kdDebug() << " pause_left: " << m_pause_left
+        kDebug() << " pause_left: " << m_pause_left
                 <<  " tiny_left: " << m_tiny_left  << " big_left: "
                 <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
 

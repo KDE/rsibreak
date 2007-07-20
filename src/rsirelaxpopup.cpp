@@ -22,31 +22,34 @@
 #include <qlabel.h>
 #include <qpushbutton.h>
 #include <qtimer.h>
-#include <qvbox.h>
+#include <q3vbox.h>
 #include <qtooltip.h>
+#include <QMouseEvent>
+#include <QProgressBar>
 
 #include <kdebug.h>
 #include <kglobalsettings.h>
 #include <kiconloader.h>
 #include <klocale.h>
-#include <kprogress.h>
 #include <kapplication.h>
 #include <kconfig.h>
+#include <kglobal.h>
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
-: KPassivePopup( parent, name )
+: KPassivePopup( parent )
 {
-    QVBox *vbox = new QVBox( this );
-    vbox->setSpacing( KDialog::spacingHint() );
+    Q3VBox *vbox = new Q3VBox( this );
+    // TODO: 
+    //vbox->setSpacing( KDialog::spacingHint() );
 
     m_message = new QLabel( vbox );
 
-    QHBox *hbox = new QHBox( vbox );
+    Q3HBox *hbox = new Q3HBox( vbox );
     hbox->setSpacing( 5 );
 
-    m_progress = new KProgress( hbox );
-    m_progress->setPercentageVisible( false );
-    m_progress->setTotalSteps( 0 );
+    m_progress = new QProgressBar( hbox );
+    m_progress->setFormat();
+    m_progress->setRange( 0, 0 );
 
     m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString(), hbox );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
@@ -79,11 +82,11 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
         If n increases compared to the last call,
         we want a new request for a relax moment.
     */
-    if ( n >= m_progress->progress() )
+    if ( n >= m_progress->value() )
     {
-        m_progress->setTotalSteps( n );
+        m_progress->setRange(0, n );
         resetcount += 1;
-        if( n > m_progress->progress() )
+        if( n > m_progress->value() )
           flash();
         else if ( resetcount % 4 == 0 ) // flash regulary when the user keeps working
           flash();
@@ -100,7 +103,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
         m_message->setText( text );
 
-        m_progress->setProgress( n );
+        m_progress->setValue( n );
 
         // ProcessEvents prevents jumping of the dialog and only call show()
         // once to prevent resizing when the label changes.
@@ -142,10 +145,9 @@ void RSIRelaxPopup::slotReadConfig()
 
 void RSIRelaxPopup::readSettings()
 {
-    KConfig* config = kapp->config();
-    config->setGroup("Popup Settings");
-    m_usePopup=config->readBoolEntry("UsePopup", true);
-    m_useFlash=config->readBoolEntry("UseFlash", true);
+    KConfigGroup config = KGlobal::config()->group("Popup Settings");
+    m_usePopup=config.readEntry("UsePopup", true);
+    m_useFlash=config.readEntry("UseFlash", true);
 }
 
 void RSIRelaxPopup::setVisible( bool b )

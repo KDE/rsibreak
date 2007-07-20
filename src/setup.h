@@ -21,8 +21,7 @@
 #define SETUP_H
 
 // KDE includes.
-
-#include <kdialogbase.h>
+#include <kpagedialog.h>
 
 class SetupPriv;
 
@@ -36,7 +35,7 @@ class SetupPriv;
  * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class Setup : public KDialogBase
+class Setup : public KPageDialog
 {
     Q_OBJECT
 

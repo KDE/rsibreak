@@ -21,11 +21,14 @@
 #ifndef RSIWidget_H
 #define RSIWidget_H
 
-#include "dcopiface.h"
-
 #include <qdatetime.h>
 #include <qlabel.h>
 #include <qpixmap.h>
+//Added by qt3to4:
+#include <QHideEvent>
+#include <QMouseEvent>
+#include <QKeyEvent>
+#include <QCloseEvent>
 
 class QTimer;
 class QPushButton;
@@ -145,7 +148,6 @@ class RSIWidget : public QWidget
         RSIRelaxPopup*  m_relaxpopup;
         RSIToolTip*     m_tooltip;
 
-        DCOPIface*      m_dcopIface;
         bool            m_useIdleDetection;
 };
 

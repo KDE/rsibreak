@@ -26,37 +26,43 @@
 #include "rsiglobals.h"
 
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QShowEvent>
+#include <QEvent>
+#include <QMouseEvent>
 
+#include <KAboutData>
+#include <KComponentData>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kpopupmenu.h>
-#include <knotifydialog.h>
+#include <kmenu.h>
+#include <knotifyconfigwidget.h>
 #include <kiconloader.h>
 #include <kaction.h>
 #include <khelpmenu.h>
 #include <kglobalaccel.h>
-#include <kkeydialog.h>
+#include <kshortcutsdialog.h>
 #include <kmessagebox.h>
-#include <kwin.h>
+#include <kwindowsystem.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
-    : KSystemTray( parent, name ), m_suspended( false ), m_tooltiphidden( false )
+    : KSystemTrayIcon( parent ), m_suspended( false ), m_tooltiphidden( false )
     , m_hasQuit ( false ), m_tooltiptimer( 0 ), m_statsDialog( 0 )
     , m_statsWidget( 0 )
-
 {
 
-    m_help = new KHelpMenu( this, KGlobal::instance()->aboutData() );
+   // TODO:
+    //m_help = new KHelpMenu( this, KGlobal::mainComponent().aboutData());
 
-    contextMenu()->insertItem(SmallIcon("about_kde"), m_help->menu()->text(KHelpMenu::menuAboutKDE),
-                              m_help, SLOT(aboutKDE()));
-    contextMenu()->insertItem(SmallIcon("info"),  m_help->menu()->text(KHelpMenu::menuAboutApp),
-                              m_help, SLOT(aboutApplication()));
-    contextMenu()->insertItem(SmallIcon("contents"),  m_help->menu()->text(KHelpMenu::menuHelpContents),
-                              m_help, SLOT(appHelpActivated()));
-    contextMenu()->insertSeparator();
+//     contextMenu()->insertItem(SmallIcon("about_kde"), m_help->menu()->text(KHelpMenu::menuAboutKDE),
+//                               m_help, SLOT(aboutKDE()));
+//     contextMenu()->insertItem(SmallIcon("info"),  m_help->menu()->text(KHelpMenu::menuAboutApp),
+//                               m_help, SLOT(aboutApplication()));
+//     contextMenu()->insertItem(SmallIcon("contents"),  m_help->menu()->text(KHelpMenu::menuHelpContents),
+//                               m_help, SLOT(appHelpActivated()));
+/*    contextMenu()->insertSeparator();
     contextMenu()->insertItem(m_help->menu()->text(KHelpMenu::menuReportBug),
-                              m_help, SLOT(reportBug()));
+                              m_help, SLOT(reportBug()));*/
     contextMenu()->insertSeparator();
     m_suspendItem = contextMenu()->insertItem(SmallIcon("player_pause"),
                               i18n("&Suspend RSIBreak"), this,
@@ -70,18 +76,19 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
                               i18n("&Configure RSIBreak..."),
                               this, SLOT(slotConfigure()));
 
-    m_accel = new KGlobalAccel(this);
-    m_accel->insert("breakRequest", i18n("This is where the user can request a "
-                        "break", "Take a break now"),
-                    i18n("This way you can have a break now"),
-                    KKey::QtWIN+SHIFT+Key_B, KKey::QtWIN+CTRL+Key_B,
-                    this, SLOT( slotBreakRequest() ));
-    m_accel->insert("debugRequest", "This is where the user can request a "
-            "continues dump of timings",
-            i18n("This way you can have a break now"),
-            KKey::QtWIN+SHIFT+Key_F12, KKey::QtWIN+CTRL+Key_F12,
-            this, SLOT( slotDebugRequest() ));
-    m_accel->updateConnections();
+    //TODO: we can move this or somethjing?
+    m_accel = KGlobalAccel::self();
+//     m_accel->insert("breakRequest", i18n("This is where the user can request a "
+//                         "break", "Take a break now"),
+//                     i18n("This way you can have a break now"),
+//                     KKey::QtWIN+SHIFT+Key_B, KKey::QtWIN+CTRL+Key_B,
+//                     this, SLOT( slotBreakRequest() ));
+//     m_accel->insert("debugRequest", "This is where the user can request a "
+//             "continues dump of timings",
+//             i18n("This way you can have a break now"),
+//             KKey::QtWIN+SHIFT+Key_F12, KKey::QtWIN+CTRL+Key_F12,
+//             this, SLOT( slotDebugRequest() ));
+//     m_accel->updateConnections();
 
     m_tooltiptimer = new QTimer( this );
     connect( m_tooltiptimer, SIGNAL( timeout() ), SLOT( slotShowToolTip() ) );
@@ -96,12 +103,12 @@ RSIDock::~RSIDock()
 
 void RSIDock::slotConfigureNotifications()
 {
-    KNotifyDialog::configure( this );
+    KNotifyConfigWidget::configure(/* TODO: this */ 0);
 }
 
 void RSIDock::slotConfigure()
 {
-    Setup setup(this);
+    Setup setup(/* TODO: this */ 0);
     emit dialogEntered();
     if (setup.exec() == QDialog::Accepted)
       emit configChanged( !m_suspended );
@@ -126,7 +133,7 @@ void RSIDock::slotSuspend()
     {
         emit suspend( false );
 
-        setPixmap( KSystemTray::loadIcon( "rsibreak0" ) );
+        setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
         contextMenu()->changeItem( m_suspendItem, SmallIcon( "player_pause" ),
                                    i18n("&Suspend RSIBreak") );
     }
@@ -134,7 +141,7 @@ void RSIDock::slotSuspend()
     {
         emit suspend( true );
 
-        setPixmap( KSystemTray::loadIcon( "rsibreakx" ) );
+        setIcon( KSystemTrayIcon::loadIcon( "rsibreakx" ) );
         contextMenu()->changeItem( m_suspendItem, SmallIcon( "player_play" ),
                                    i18n( "&Resume RSIBreak" ) );
     }
@@ -144,17 +151,18 @@ void RSIDock::slotSuspend()
 
 void RSIDock::showEvent( QShowEvent * )
 {
-    if (!m_hasQuit)
+// TODO: still needed?
+/*    if (!m_hasQuit)
     {
         contextMenu()->insertSeparator();
 
         KAction* action = actionCollection()->
-                action(KStdAction::name(KStdAction::Quit));
+                action(KStandardAction::name(KStandardAction::Quit));
         if (action)
             action->plug(contextMenu());
 
         m_hasQuit=true;
-    }
+    }*/
 }
 
 void RSIDock::mousePressEvent( QMouseEvent *e )
@@ -162,10 +170,10 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
     m_tooltiptimer->stop();
     emit hideToolTip();
 
-    if (e->button() == RightButton)
+    if (e->button() == Qt::RightButton)
         contextMenu()->exec( e->globalPos() );
 
-    if (e->button() == LeftButton)
+    if (e->button() == Qt::LeftButton)
             slotShowStatistics();
 }
 
@@ -195,9 +203,11 @@ void RSIDock::slotShowToolTip()
 
 void RSIDock::slotShowStatistics()
 {
+/* TODO:
     if ( !m_statsDialog )
     {
-      m_statsDialog = new KDialogBase( this, 0, false,
+      m_statsDialog = new KDialogBase( this );
+
                                        i18n("Usage Statistics"),
                                        KDialogBase::Ok|KDialogBase::User1,
                                        KDialogBase::Ok, false,
@@ -210,7 +220,7 @@ void RSIDock::slotShowStatistics()
     }
 
     if ( m_statsDialog->isVisible() &&
-         KWin::windowInfo( m_statsDialog->winId() ).desktop() == KWin::currentDesktop() )
+         KWindowSystem::windowInfo( m_statsDialog->winId() ).desktop() == KWindowSystem::currentDesktop() )
     {
       m_statsDialog->hide();
     }
@@ -219,19 +229,21 @@ void RSIDock::slotShowStatistics()
       m_statsDialog->show();
 
       if (!m_statsDialog->isActiveWindow())
-        KWin::forceActiveWindow(m_statsDialog->winId());
+        KWindowSystem::forceActiveWindow(m_statsDialog->winId());
 
       m_statsDialog->raise();
     }
+*/
 }
 
 void RSIDock::slotResetStats()
 {
-    int i = KMessageBox::warningContinueCancel( this,
+    int i = KMessageBox::warningContinueCancel( /*TODO  this */ 0,
                 i18n("This will reset all statistics to zero. "
                      "Is that what you want?"),
                 i18n("Reset the statistics"),
-                i18n("Reset"),
+                KGuiItem("Reset"),
+                KStandardGuiItem::cancel(),
                 "resetStatistics");
 
     if (i == KMessageBox::Continue)

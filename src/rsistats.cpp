@@ -20,7 +20,9 @@
 
 #include <qdatetime.h>
 #include <qlabel.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include <kglobal.h>
 #include <klocale.h>
@@ -90,8 +92,8 @@ RSIStats::RSIStats()
     for ( it = m_statistics.begin(); it != m_statistics.end(); ++it )
     {
       m_labels[it.key()] = new QLabel( 0 );
-      QWhatsThis::add( m_labels[it.key()], getWhatsThisText( it.key() ) );
-      QWhatsThis::add( m_statistics[it.key()]->getDescription(), getWhatsThisText( it.key() ) );
+      Q3WhatsThis::add( m_labels[it.key()], getWhatsThisText( it.key() ) );
+      Q3WhatsThis::add( m_statistics[it.key()]->getDescription(), getWhatsThisText( it.key() ) );
     }
 
     // initialise statistics
@@ -159,8 +161,8 @@ void RSIStats::setStat( RSIStat stat, const QVariant &val, bool ifmax )
 
 void RSIStats::updateDependentStats( RSIStat stat )
 {
-    const QValueList<RSIStat> &stats = m_statistics[ stat ]->getDerivedItems();
-    QValueList<RSIStat>::ConstIterator it;
+    const Q3ValueList<RSIStat> &stats = m_statistics[ stat ]->getDerivedItems();
+    Q3ValueList<RSIStat>::ConstIterator it;
     for( it = stats.begin() ; it != stats.end(); ++it )
     {
         switch( (*it) )

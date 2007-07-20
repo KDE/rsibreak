@@ -20,10 +20,13 @@
 #define RSIRELAXPOPUP_H
 
 #include <kpassivepopup.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QLabel>
 
 class QLabel;
 class QPushButton;
-class KProgress;
+class QProgressBar;
 
 /**
  * @class RSIRelaxPopup
@@ -86,7 +89,7 @@ class RSIRelaxPopup : public KPassivePopup
     bool    m_useFlash;
 
     QLabel *m_message;
-    KProgress *m_progress;
+    QProgressBar *m_progress;
     QPushButton *m_lockbutton;
     QPushButton *m_skipbutton;
 };

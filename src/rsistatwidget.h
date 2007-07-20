@@ -22,9 +22,13 @@
 #include "rsiglobals.h"
 
 #include <qwidget.h>
+//Added by qt3to4:
+#include <QHideEvent>
+#include <Q3GridLayout>
+#include <QShowEvent>
 
-class QGrid;
-class QGridLayout;
+class Q3Grid;
+class Q3GridLayout;
 class QTimer;
 
 class RSIStatWidget : public QWidget
@@ -35,11 +39,11 @@ public:
   ~RSIStatWidget();
 
 protected:
-  void addStat( RSIStat stat, QGrid * );
+  void addStat( RSIStat stat, Q3Grid * );
   virtual void showEvent( QShowEvent * );
   virtual void hideEvent( QHideEvent * );
 private:
-  QGridLayout *mGrid;
+  Q3GridLayout *mGrid;
 };
 
 #endif

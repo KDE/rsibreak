@@ -23,15 +23,17 @@
 // QT includes.
 
 #include <qlayout.h>
-#include <qhbox.h>
-#include <qvgroupbox.h>
-#include <qhgroupbox.h>
+#include <q3hbox.h>
+#include <q3vgroupbox.h>
+#include <q3hgroupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
-#include <qvbuttongroup.h>
+#include <Q3VButtonGroup>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
 
 // KDE includes.
 
@@ -42,15 +44,16 @@
 #include <kconfig.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
+#include <kglobal.h>
 
 class SetupGeneralPriv
 {
 public:
     QCheckBox*        autoStart;
-    QVButtonGroup*    breakTimerSettings;
+    Q3VButtonGroup*    breakTimerSettings;
     QRadioButton*     useNoIdleTimer;
     QRadioButton*     useIdleTimer;
-    QVButtonGroup*    idleSettings;
+    Q3VButtonGroup*    idleSettings;
     QCheckBox*        resetTimersAfterIdle;
     QCheckBox*        ignoreIdleForTinyBreaks;
     QCheckBox*        showTimerReset;
@@ -61,25 +64,27 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 {
     d = new SetupGeneralPriv;
 
-    QVBoxLayout *layout = new QVBoxLayout( parent );
-    layout->setSpacing( KDialog::spacingHint() );
-    layout->setAlignment( AlignTop );
+    Q3VBoxLayout *layout = new Q3VBoxLayout( parent );
+
+    //TODO:
+    // layout->setSpacing( KDialog::spacingHint() );
+    // layout->setAlignment( AlignTop );
 
     d->autoStart = new QCheckBox(
             i18n("&Automatically start RSIBreak at startup"), parent);
-    QWhatsThis::add( d->autoStart,
+    Q3WhatsThis::add( d->autoStart,
             i18n("With this option you can indicate that you want RSIBreak to "
                  "start when KDE starts.") );
     layout->addWidget(d->autoStart);
 
-    d->breakTimerSettings = new QVButtonGroup(
+    d->breakTimerSettings = new Q3VButtonGroup(
             i18n("Break Timer Settings"), parent);
     layout->addWidget(d->breakTimerSettings);
 
     d->useNoIdleTimer = new QRadioButton(
             i18n("Break at &fixed times and ignore movement during breaks"),
             d->breakTimerSettings);
-    QWhatsThis::add( d->useNoIdleTimer,
+    Q3WhatsThis::add( d->useNoIdleTimer,
             i18n("With this option you indicate that you want to ignore "
                  "movements during breaks and want to break at fixed intervals"));
     connect(d->useNoIdleTimer , SIGNAL(toggled(bool)),
@@ -87,7 +92,7 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
     d->useIdleTimer = new QRadioButton (
             i18n("Take into account the &idle settings"),d->breakTimerSettings);
-    QWhatsThis::add( d->useIdleTimer,
+    Q3WhatsThis::add( d->useIdleTimer,
             i18n("With this option you indicate that you want to use idle "
                  "detection. This means that only the time you are active "
                  "(when you use the keyboard or the mouse) will be counted "
@@ -95,12 +100,12 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
     // ---------------- IDLE Settings ------------------------
 
-    d->idleSettings = new QVButtonGroup (i18n("Idle Settings"), parent);
+    d->idleSettings = new Q3VButtonGroup (i18n("Idle Settings"), parent);
     layout->addWidget(d->idleSettings);
 
     d->resetTimersAfterIdle = new QCheckBox(
             i18n("&Reset timers after period of idleness"), d->idleSettings);
-    QWhatsThis::add( d->resetTimersAfterIdle,
+    Q3WhatsThis::add( d->resetTimersAfterIdle,
             i18n("With this checkbox you indicate that you want the timers for "
                  "the next break to be reset if you are sufficiently idle "
                  "(you are idle more that the duration of the corresponding "
@@ -110,14 +115,14 @@ SetupGeneral::SetupGeneral(QWidget* parent )
 
     d->showTimerReset = new QCheckBox(
             i18n("&Show when timers are reset"), d->idleSettings);
-    QWhatsThis::add( d->showTimerReset,
+    Q3WhatsThis::add( d->showTimerReset,
             i18n("With this checkbox you indicate that you want to see when "
                  "the timers are reset. This happens when you have been idle "
                  "for a while.") );
 
     d->ignoreIdleForTinyBreaks = new QCheckBox(
             i18n("&Ignore idle detection for tiny breaks."), d->idleSettings);
-    QWhatsThis::add( d->ignoreIdleForTinyBreaks,
+    Q3WhatsThis::add( d->ignoreIdleForTinyBreaks,
             i18n("With this option you select that the <b>short</b> breaks "
                  "shouldn't be reset when idle. This is useful, for example, "
                  "when you are reading something and you don't touch the mouse "
@@ -155,31 +160,27 @@ void SetupGeneral::slotUseNoIdleTimer()
 
 void SetupGeneral::applySettings()
 {
-    KConfig* config = kapp->config();
+    KConfigGroup config = KGlobal::config()->group("General");
+    config.writeEntry("AutoStart", d->autoStart->isChecked());
 
-    config->setGroup("General");
-    config->writeEntry("AutoStart", d->autoStart->isChecked());
-
-    config->setGroup("General Settings");
-    config->writeEntry("ResetTimersAfterIdle", d->resetTimersAfterIdle->isChecked());
-    config->writeEntry("ShowTimerReset", d->showTimerReset->isChecked());
-    config->writeEntry("IgnoreIdleForTinyBreaks", d->ignoreIdleForTinyBreaks->isChecked());
-    config->writeEntry("UseNoIdleTimer", d->useNoIdleTimer->isChecked());
-    config->sync();
+    config = KGlobal::config()->group("General Settings");
+    config.writeEntry("ResetTimersAfterIdle", d->resetTimersAfterIdle->isChecked());
+    config.writeEntry("ShowTimerReset", d->showTimerReset->isChecked());
+    config.writeEntry("IgnoreIdleForTinyBreaks", d->ignoreIdleForTinyBreaks->isChecked());
+    config.writeEntry("UseNoIdleTimer", d->useNoIdleTimer->isChecked());
+    config.sync();
 }
 
 void SetupGeneral::readSettings()
 {
-    KConfig* config = kapp->config();
+    KConfigGroup config = KGlobal::config()->group("General");
+    d->autoStart->setChecked(config.readEntry("AutoStart", false));
 
-    config->setGroup("General");
-    d->autoStart->setChecked(config->readBoolEntry("AutoStart", false));
-
-    config->setGroup("General Settings");
-    d->resetTimersAfterIdle->setChecked(config->readBoolEntry("ResetTimersAfterIdle", true));
-    d->showTimerReset->setChecked(config->readBoolEntry("ShowTimerReset", false));
-    d->ignoreIdleForTinyBreaks->setChecked(config->readBoolEntry("IgnoreIdleForTinyBreaks", false));
-    d->useNoIdleTimer->setChecked(config->readBoolEntry("UseNoIdleTimer", false));
+    config = KGlobal::config()->group("General Settings");
+    d->resetTimersAfterIdle->setChecked(config.readEntry("ResetTimersAfterIdle", true));
+    d->showTimerReset->setChecked(config.readEntry("ShowTimerReset", false));
+    d->ignoreIdleForTinyBreaks->setChecked(config.readEntry("IgnoreIdleForTinyBreaks", false));
+    d->useNoIdleTimer->setChecked(config.readEntry("UseNoIdleTimer", false));
     d->useIdleTimer->setChecked(!d->useNoIdleTimer->isChecked());
 }
 

@@ -28,13 +28,15 @@
 // QT includes.
 
 #include <qlayout.h>
-#include <qhbox.h>
-#include <qvgroupbox.h>
-#include <qhgroupbox.h>
+#include <q3hbox.h>
+#include <q3vgroupbox.h>
+#include <q3hgroupbox.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <qwhatsthis.h>
+#include <q3whatsthis.h>
 #include <qcheckbox.h>
+//Added by qt3to4:
+#include <Q3VBoxLayout>
 
 // KDE includes.
 
@@ -44,6 +46,7 @@
 #include <knuminput.h>
 #include <kapplication.h>
 #include <kfiledialog.h>
+#include <kglobal.h>
 
 class SetupTimingPriv
 {
@@ -61,17 +64,18 @@ SetupTiming::SetupTiming(QWidget* parent )
 {
     d = new SetupTimingPriv;
 
-    QVBoxLayout *layout = new QVBoxLayout( parent );
-    layout->setSpacing( KDialog::spacingHint() );
-    layout->setAlignment( AlignTop );
+    Q3VBoxLayout *layout = new Q3VBoxLayout( parent );
+    //TODO
+    //layout->setSpacing( KDialog::spacingHint() );
+    //layout->setAlignment( AlignTop );
 
-    QVGroupBox *tinyBox = new QVGroupBox(parent);
+    Q3VGroupBox *tinyBox = new Q3VGroupBox(parent);
     tinyBox->setTitle(i18n("Tiny Breaks"));
 
-    QHBox *m = new QHBox(tinyBox);
+    Q3HBox *m = new Q3HBox(tinyBox);
     QLabel *l1 = new QLabel(i18n("Short break every:") + ' ', m);
     l1->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    QWhatsThis::add( l1, i18n("Here you can set how often you want a short "
+    Q3WhatsThis::add( l1, i18n("Here you can set how often you want a short "
                               "break. One minute means 60 seconds of "
                               "movement with the mouse or typing on the keyboard.") );
     d->tinyInterval = new KIntNumInput(m);
@@ -80,10 +84,10 @@ SetupTiming::SetupTiming(QWidget* parent )
     connect(d->tinyInterval, SIGNAL(valueChanged(int)),
             SLOT(slotTinyValueChanged( int )));
 
-    QHBox *m2 = new QHBox(tinyBox);
+    Q3HBox *m2 = new Q3HBox(tinyBox);
     QLabel *l2 = new QLabel(i18n("For a duration of:") + ' ', m2);
     l2->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    QWhatsThis::add( l2, i18n("Here you can set the duration of the short break.") );
+    Q3WhatsThis::add( l2, i18n("Here you can set the duration of the short break.") );
     d->tinyDuration = new KIntNumInput(m2);
     d->tinyDuration->setRange(1,1000,1,false);
     l2->setBuddy(d->tinyDuration);
@@ -91,13 +95,13 @@ SetupTiming::SetupTiming(QWidget* parent )
     connect(d->tinyDuration, SIGNAL(valueChanged(int)),
             SLOT(slotTinyDurationValueChanged( int )));
 
-    QVGroupBox *bigBox = new QVGroupBox(parent);
+    Q3VGroupBox *bigBox = new Q3VGroupBox(parent);
     bigBox->setTitle(i18n("Big Breaks"));
 
-    QHBox *m3 = new QHBox(bigBox);
+    Q3HBox *m3 = new Q3HBox(bigBox);
     QLabel *l3 = new QLabel(i18n("Long break every:") + ' ', m3);
     l3->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    QWhatsThis::add( l3, i18n("Here you can set how often you want a long "
+    Q3WhatsThis::add( l3, i18n("Here you can set how often you want a long "
                               "break. One minute means 60 seconds of "
                               "movement with the mouse or typing on the keyboard") );
     d->bigInterval = new KIntNumInput(m3);
@@ -107,10 +111,10 @@ SetupTiming::SetupTiming(QWidget* parent )
             SLOT(slotBigValueChanged( int )));
 
 
-    QHBox *m4 = new QHBox(bigBox);
+    Q3HBox *m4 = new Q3HBox(bigBox);
     QLabel *l4 = new QLabel(i18n("For a duration of:") + ' ', m4);
     l4->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    QWhatsThis::add( l4, i18n("Here you can set the duration of the long break.") );
+    Q3WhatsThis::add( l4, i18n("Here you can set the duration of the long break.") );
     d->bigDuration = new KIntNumInput(m4);
     d->bigDuration->setRange(1,1000,1,false);
     l4->setBuddy(d->bigDuration);
@@ -119,13 +123,13 @@ SetupTiming::SetupTiming(QWidget* parent )
 
     layout->addWidget(bigBox);
 
-    QVGroupBox *slideBox = new QVGroupBox(parent);
+    Q3VGroupBox *slideBox = new Q3VGroupBox(parent);
     slideBox->setTitle(i18n("Slideshow"));
 
-    QHBox *m5 = new QHBox(slideBox);
+    Q3HBox *m5 = new Q3HBox(slideBox);
     QLabel *l5 = new QLabel(i18n("Change images every:") + ' ', m5);
     l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    QWhatsThis::add( l5, i18n("Here you can set how long one image should be "
+    Q3WhatsThis::add( l5, i18n("Here you can set how long one image should be "
                               "shown before it is replaced by the next one."));
     d->slideInterval = new KIntNumInput(m5);
     d->slideInterval->setRange(3,1000,1,false);
@@ -159,61 +163,58 @@ SetupTiming::~SetupTiming()
 
 void SetupTiming::applySettings()
 {
-    KConfig* config = kapp->config();
-    config->setGroup("General Settings");
-    config->writeEntry("TinyInterval", d->tinyInterval->value());
-    config->writeEntry("TinyDuration", d->tinyDuration->value());
-    config->writeEntry("BigInterval", d->bigInterval->value());
-    config->writeEntry("BigDuration", d->bigDuration->value());
-    config->writeEntry("SlideInterval", d->slideInterval->value());
-    config->sync();
+    KConfigGroup config = KGlobal::config()->group("General Settings");
+    config.writeEntry("TinyInterval", d->tinyInterval->value());
+    config.writeEntry("TinyDuration", d->tinyDuration->value());
+    config.writeEntry("BigInterval", d->bigInterval->value());
+    config.writeEntry("BigDuration", d->bigDuration->value());
+    config.writeEntry("SlideInterval", d->slideInterval->value());
+    config.sync();
 }
 
 void SetupTiming::readSettings()
 {
-    KConfig* config = kapp->config();
+    KConfigGroup config = KGlobal::config()->group("General Settings");
+    d->debug = config.readEntry("DEBUG", false);
 
-    config->setGroup("General Settings");
-    d->debug = config->readBoolEntry("DEBUG", false);
-
-    d->tinyInterval->setValue(config->readNumEntry("TinyInterval", 10));
-    d->tinyDuration->setValue(config->readNumEntry("TinyDuration", 20));
-    d->bigInterval->setValue(config->readNumEntry("BigInterval", 60));
-    d->bigInterval->setMinValue( d->tinyInterval->value() );
-    d->bigDuration->setValue(config->readNumEntry("BigDuration", 1));
-    d->slideInterval->setValue(config->readNumEntry("SlideInterval", 10));
+    d->tinyInterval->setValue(config.readEntry("TinyInterval", 10));
+    d->tinyDuration->setValue(config.readEntry("TinyDuration", 20));
+    d->bigInterval->setValue(config.readEntry("BigInterval", 60));
+    d->bigInterval->setMinimum( d->tinyInterval->value() );
+    d->bigDuration->setValue(config.readEntry("BigDuration", 1));
+    d->slideInterval->setValue(config.readEntry("SlideInterval", 10));
 }
 
 void SetupTiming::slotTinyValueChanged( int i )
 {
-    d->bigInterval->setMinValue( i );
+    d->bigInterval->setMinimum( i );
 
-    d->debug ? d->tinyInterval->setSuffix( ' ' + i18n("second","seconds",i) )
-             : d->tinyInterval->setSuffix( ' ' + i18n("minute","minutes",i) );
+    d->debug ? d->tinyInterval->setSuffix( ' ' + i18np("second","seconds",i) )
+             : d->tinyInterval->setSuffix( ' ' + i18np("minute","minutes",i) );
 
 }
 
 void SetupTiming::slotBigValueChanged( int i )
 {
-    d->debug ? d->bigInterval->setSuffix( ' ' + i18n("second","seconds",i) )
-             : d->bigInterval->setSuffix( ' ' + i18n("minute","minutes",i) );
+    d->debug ? d->bigInterval->setSuffix( ' ' + i18np("second","seconds",i) )
+             : d->bigInterval->setSuffix( ' ' + i18np("minute","minutes",i) );
 }
 
 void SetupTiming::slotTinyDurationValueChanged( int i )
 {
-    d->tinyDuration->setSuffix( ' ' + i18n("second","seconds",i) );
+    d->tinyDuration->setSuffix( ' ' + i18np("second","seconds",i) );
 }
 
 void SetupTiming::slotBigDurationValueChanged( int i )
 {
-    d->debug ? d->bigDuration->setSuffix( ' ' + i18n("second","seconds",i) )
-             : d->bigDuration->setSuffix( ' ' + i18n("minute","minutes",i) );
+    d->debug ? d->bigDuration->setSuffix( ' ' + i18np("second","seconds",i) )
+             : d->bigDuration->setSuffix( ' ' + i18np("minute","minutes",i) );
 
 }
 
 void SetupTiming::slotSlideIntervalValueChanged( int i )
 {
-    d->slideInterval->setSuffix( ' ' + i18n("second","seconds",i) );
+    d->slideInterval->setSuffix( ' ' + i18np("second","seconds",i) );
 }
 
 #include "setuptiming.moc"

@@ -1,10 +1,4 @@
-FIND_PACKAGE(KDE3 REQUIRED)
-ADD_DEFINITIONS(${QT_DEFINITIONS} ${KDE3_DEFINITIONS})
-LINK_DIRECTORIES(${KDE3_LIB_DIR})
-INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}
-                     ${CMAKE_CURRENT_BINARY_DIR}
-                     ${KDE3_INCLUDE_DIR}
-                     ${QT_INCLUDE_DIR}             )
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} )
 
 ############# Find LIBXSS for idle detection and write outcome to config.h ####
 
@@ -40,22 +34,14 @@ rsitimer.cpp
 rsirelaxpopup.cpp
 setupmaximized.cpp
 rsitooltip.cpp
-dcopiface.cpp
 rsistatwidget.cpp
 rsistats.cpp
 rsiglobals.cpp
 rsistatitem.cpp
 )
 
-# moc files needed
-KDE3_AUTOMOC(${rsibreak_sources})
-
-# dcop files needed
-SET( rsibreak_DCOP_SKEL_SRCS dcopiface.h)
-KDE3_ADD_DCOP_SKELS(rsibreak_sources ${rsibreak_DCOP_SKEL_SRCS})
-
 # compilation
-KDE3_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
+KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
 ########### linking #####################
 
@@ -65,5 +51,6 @@ TARGET_LINK_LIBRARIES(rsibreak kio kdeui librsibreak ${IDLE_DETECTION_LIB})
 
 INSTALL_TARGETS(/bin rsibreak )
 INSTALL_FILES( /share/applications/kde FILES  rsibreak.desktop )
-INSTALL_FILES( /share/autostart FILES  rsibreak.desktop )
+#TODO is this still in KDE4? 
+#INSTALL_FILES( /share/autostart FILES  rsibreak.desktop )
 

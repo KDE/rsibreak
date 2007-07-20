@@ -20,7 +20,6 @@
 #include <kstartupinfo.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
-#include <dcopref.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -46,8 +45,9 @@ class RSIApplication : public KUniqueApplication {
             static bool secondMe=false;
             if (secondMe)
             {
-                DCOPRef execute( "rsibreak", "actions" );
-                DCOPReply reply = execute.call( "whereAmI" );
+// TODO: PORT
+//                DCOPRef execute( "rsibreak", "actions" );
+//                DCOPReply reply = execute.call( "whereAmI" );
             } else {
                 secondMe = true;
             }
@@ -57,28 +57,30 @@ class RSIApplication : public KUniqueApplication {
 
 int main( int argc, char *argv[] )
 {
-    KAboutData aboutData( "rsibreak",
-                          I18N_NOOP("RSIBreak"),
-                          "0.8.0",
-                          I18N_NOOP("Try to prevent Repetitive Strain Injury by "
+    KAboutData aboutData( "rsibreak", 0,
+                          ki18n("RSIBreak"),
+                          "0.9.0-svn",
+                          ki18n("Try to prevent Repetitive Strain Injury by "
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
-                          "(c) 2005-2006, The RSIBreak developers" );
+                          ki18n("(c) 2005-2006, The RSIBreak developers" ),
+                          KLocalizedString(),
+                          "http://www.rsibreak.org");
 
-    aboutData.addAuthor( "Tom Albers", I18N_NOOP("Maintainer and Author"),
+    aboutData.addAuthor( ki18n("Tom Albers"), ki18n("Maintainer and Author"),
                          "tomalbers@kde.nl", "http://www.omat.nl");
 
-    aboutData.addAuthor( "Bram Schoenmakers", I18N_NOOP("Author"),
+    aboutData.addAuthor( ki18n("Bram Schoenmakers"), ki18n("Author"),
                          "bramschoenmakers@kde.nl" );
 
-    aboutData.addCredit( "Tina Trillitzsch", I18N_NOOP("Usability"),
+    aboutData.addCredit( ki18n("Tina Trillitzsch"), ki18n("Usability"),
                          "t.trillitzsch@gmx.de");
 
-    aboutData.addCredit( "Lee Olson", I18N_NOOP("Logo and Icons"),
+    aboutData.addCredit( ki18n("Lee Olson"), ki18n("Logo and Icons"),
                          "clearbeast@gmail.com");
 
-    aboutData.addCredit( "Achim Bohnet",
-                         I18N_NOOP("Packaging and help with related issues"),
+    aboutData.addCredit( ki18n("Achim Bohnet"),
+                         ki18n("Packaging and help with related issues"),
                          "ach@mpe.mpg.de");
 
     KCmdLineArgs::init( argc, argv, &aboutData );

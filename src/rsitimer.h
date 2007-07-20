@@ -23,6 +23,9 @@
 
 #include <qobject.h>
 #include <qdatetime.h>
+//Added by qt3to4:
+#include <QTimerEvent>
+#include <QMap>
 
 class QTimerEvent;
 
