@@ -103,9 +103,9 @@ void RSIStatWidget::addStat( RSIStat stat, Q3Grid *grid )
       case IDLENESS:
       case MAX_IDLENESS:
         width = fm.width( "One one and " +
-            i18n("Translate this as the longest plural form. This is used to "
+            i18nc("Translate this as the longest plural form. This is used to "
                  "calculate the width of window","minutes") +
-            i18n("Translate this as the longest plural form. This is used to "
+            i18nc("Translate this as the longest plural form. This is used to "
                  "calculate the width of window","seconds") );
         break;
       case LAST_TINY_BREAK:

@@ -32,7 +32,6 @@
 
 class QTimer;
 class QPushButton;
-class KAccel;
 
 class RSIDock;
 class RSITimer;
@@ -131,7 +130,7 @@ class RSIWidget : public QWidget
         QTimer*         m_timer_slide;
         QTimer*         m_grab;
         RSILabel*         m_countDown;
-        KAccel*         m_accel;
+//        KAccel*         m_accel;
 
         QLabel*         m_tool;
 

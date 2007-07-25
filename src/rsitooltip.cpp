@@ -33,7 +33,7 @@
 #include "rsistats.h"
 
 RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
-  : KPassivePopup( parent, name ), m_suspended( false )
+  : KPassivePopup( parent ), m_suspended( false )
 {
   setTimeout( 10 * 1000 );
 

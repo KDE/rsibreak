@@ -91,7 +91,7 @@ int RSITimer::idleTime()
     // enough to have values before it is needed.
     if (t == 3600)
     {
-        QueryDPMSTimeouts(qt_xdisplay(), dpmsStandby, dpmsSuspend, dpmsOff);
+        QueryDPMSTimeouts(QX11Info::display(), dpmsStandby, dpmsSuspend, dpmsOff);
         kDebug() << "DPMS settings: " << dpmsStandby << " - "
                 << dpmsSuspend << " - " << dpmsOff << endl;
     }
@@ -488,13 +488,9 @@ void RSITimer::readConfig()
     m_ignoreIdleForTinyBreaks = config.readEntry("IgnoreIdleForTinyBreaks", false);
 
     config = KGlobal::config()->group("General");
-    QDateTime *tempDt = new QDateTime();
-    m_lastrunDt = config.readEntry( "LastRunTimeStamp", tempDt );
+    m_lastrunDt = config.readEntry( "LastRunTimeStamp", QDateTime::QDateTime() );
     m_lastrunTiny = config.readEntry( "LastRunTinyLeft", 0 );
     m_lastrunBig = config.readEntry( "LastRunBigLeft", 0 );
-
-    delete tempDt;
-    tempDt = 0;
 }
 
 void RSITimer::writeConfig()

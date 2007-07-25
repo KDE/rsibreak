@@ -20,6 +20,8 @@
 
 #include <qdatetime.h>
 #include <qlabel.h>
+#include <QMap>
+#include <QMapIterator>
 #include <q3whatsthis.h>
 //Added by qt3to4:
 #include <Q3ValueList>
@@ -329,9 +331,12 @@ void RSIStats::updateLabels()
     if ( !m_doUpdates )
       return;
 
-    QMapConstIterator<RSIStat,RSIStatItem *> it;
-    for ( it = m_statistics.begin() ; it != m_statistics.end() ; ++it )
+    QMapIterator<RSIStat,RSIStatItem *> it(m_statistics);
+    while (it.hasNext())
+    {
+      it.next();
       updateLabel( it.key() );
+    }
 }
 
 QVariant RSIStats::getStat( RSIStat stat ) const

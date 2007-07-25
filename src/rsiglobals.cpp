@@ -23,8 +23,6 @@
 #include <kdebug.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
-#include <dcopclient.h>
-#include <knotifyclient.h>
 
 #include <math.h>
 #include <kglobal.h>
@@ -71,14 +69,14 @@ QString RSIGlobals::formatSeconds( const int seconds )
     mins = (int)floor(remaining/60);
     secs = remaining-(mins*60);
 
-    hString = i18n("One hour","%n hours", hours);
-    mString1 = i18n("One minute","%n minutes", mins);
-    mString2 = i18n("one minute","%n minutes", mins);
-    sString1 = i18n("One second","%n seconds", secs);
-    sString2 = i18n("one second","%n seconds", secs);
+    hString = i18np("One hour","%n hours", hours);
+    mString1 = i18np("One minute","%n minutes", mins);
+    mString2 = i18np("one minute","%n minutes", mins);
+    sString1 = i18np("One second","%n seconds", secs);
+    sString2 = i18np("one second","%n seconds", secs);
 
     if ( hours > 0 && mins >0 )
-        return(i18n("Arguments: hours, minutes "
+        return(i18nc("Arguments: hours, minutes "
                     "both as you defined earlier",
                     "%1 and %2").arg(hString, mString2) );
     else if ( hours > 0 && mins == 0 )
@@ -87,7 +85,7 @@ QString RSIGlobals::formatSeconds( const int seconds )
     else if ( hours == 0 )
     {
         if (mins > 0 && secs > 0)
-            return(i18n("Arguments: minutes, seconds "
+            return(i18nc("Arguments: minutes, seconds "
                         "both as you defined earlier",
                         "%1 and %2").arg(mString1, sString2) );
 
@@ -106,17 +104,15 @@ QString RSIGlobals::formatSeconds( const int seconds )
 
 void RSIGlobals::slotReadConfig()
 {
-    KConfig* config = KGlobal::config();
+    KConfigGroup config = KGlobal::config()->group("General Settings");
 
-    config->setGroup("General Settings");
+    m_intervals["tiny_minimized"] = config.readEntry("TinyInterval", 10)*60;
+    m_intervals["tiny_maximized"] = config.readEntry("TinyDuration", 20);
+    m_intervals["big_minimized"] = config.readEntry("BigInterval", 60)*60;
+    m_intervals["big_maximized"] = config.readEntry("BigDuration", 1)*60;
+    m_intervals["big_maximized"] = config.readEntry("BigDuration", 1)*60;
 
-    m_intervals["tiny_minimized"] = config->readNumEntry("TinyInterval", 10)*60;
-    m_intervals["tiny_maximized"] = config->readNumEntry("TinyDuration", 20);
-    m_intervals["big_minimized"] = config->readNumEntry("BigInterval", 60)*60;
-    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
-    m_intervals["big_maximized"] = config->readNumEntry("BigDuration", 1)*60;
-
-    if (config->readBoolEntry("DEBUG", false))
+    if (config.readEntry("DEBUG", false))
     {
         kDebug() << "Debug mode activated" << endl;
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
@@ -161,26 +157,9 @@ void RSIGlobals::resetUsage()
     m_usageArray.fill( false, 60 * 60 * 24 );
 }
 
-void RSIGlobals::updateLegacySettings()
-{
-    KConfig* config = KGlobal::config();
-
-    config->setGroup("General Settings");
-
-    /* This option was used in 0.7.0 and 0.7.1 and had a wrong name. This
-    renaming part was added for 0.7.2 */
-    if (config->hasKey("UseIdleDetection"))
-    {
-        config->writeEntry("ResetTimersAfterIdle",
-                           config->readBoolEntry("UseIdleDetection"));
-        config->deleteEntry("UseIdleDetection");
-    }
-
-    config->sync();
-}
-
 void RSIGlobals::NotifyBreak(bool start, bool big)
 {
+  /* PORT:
     QStringList commands;
     if (start)
         big ? KNotifyClient::event("start long break",
@@ -192,6 +171,7 @@ void RSIGlobals::NotifyBreak(bool start, bool big)
                                    i18n("End of a long break"))
             : KNotifyClient::event("end short break",
                                    i18n("End of a short break"));
+  */
 }
 
 #include "rsiglobals.moc"

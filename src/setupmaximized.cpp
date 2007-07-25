@@ -41,13 +41,6 @@
 #include <kfiledialog.h>
 #include <kdeversion.h>
 
-#if KDE_IS_VERSION(3,3,91)
-#include <kshortcutdialog.h>
-#else
-#include <kmessagebox.h>
-#include <kglobal.h>
-#endif
-
 class SetupMaximizedPriv
 {
 public:
@@ -81,7 +74,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    //--- Vertical to start with
    Q3VBoxLayout *layout = new Q3VBoxLayout( parent );
    layout->setSpacing( KDialog::spacingHint() );
-   layout->setAlignment( AlignTop );
+//   layout->setAlignment( AlignTop );
 
    // Counterbox and skipbox next to eachother
    Q3HBox *boxes= new Q3HBox(parent,"mainbox");
@@ -242,6 +235,7 @@ void SetupMaximized::slotFontPicker()
 
 void SetupMaximized::slotShortcutPicker()
 {
+  /* TODO
 #if KDE_IS_VERSION(3,3,91)
     KShortcutDialog key(d->shortcut,true);
     key.exec();
@@ -251,6 +245,7 @@ void SetupMaximized::slotShortcutPicker()
     KMessageBox::information(this, i18n("You are using KDE 3.3 or older, "
           "with this version of KDE, you can not change this shortcut."));
 #endif
+  */
 }
 
 void SetupMaximized::slotFolderPicker()
@@ -314,8 +309,8 @@ void SetupMaximized::readSettings()
     QString dir = QDir::home().path();
 
     KConfigGroup config = KGlobal::config()->group("General Settings");
-    d->counterColor->setColor( config.readEntry("CounterColor", Black ) );
-    d->counterFont = config.readEntry("CounterFont", font ) ;
+//    d->counterColor->setColor( config.readEntry("CounterColor", Black ) );
+//    d->counterFont = config.readEntry("CounterFont", font ) ;
     d->imageFolderEdit->setText(config.readEntry("ImageFolder", dir ));
     d->counterFontBut->setText(d->counterFont.family());
     d->hideMinimizeButton->setChecked(

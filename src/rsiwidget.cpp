@@ -73,10 +73,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     , m_useImages( false )
     , m_searchRecursive( false )
 {
-
-    // Update legacy settings before reading any config.
-    RSIGlobals::updateLegacySettings();
-
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
     m_tray = new RSIDock(this,"Tray Item");
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
@@ -123,7 +119,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
     connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
 
-    m_relaxpopup = new RSIRelaxPopup(m_tray);
+    m_relaxpopup = new RSIRelaxPopup(/*TODO: m_tray*/ 0);
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
@@ -138,7 +134,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     Q3BoxLayout *topLayout = new Q3VBoxLayout( this, 5);
 
     m_countDown = new RSILabel(this);
-    m_countDown->setAlignment( AlignRight );
+    /* m_countDown->setAlignment( AlignRight ); */
     m_countDown->setBackgroundMode( Qt::NoBackground );
     m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
     m_countDown->hide();
@@ -194,6 +190,8 @@ void RSIWidget::slotShowWhereIAm()
 
 void RSIWidget::takeScreenshotOfTrayIcon()
 {
+
+  /* TODO: PORT
         // Process the events else the icon will not be there and the screenie will fail!
         kapp->processEvents();
 
@@ -239,6 +237,7 @@ void RSIWidget::takeScreenshotOfTrayIcon()
 
         // End copied block
         // ********************************************************************************
+  */
 }
 
 void RSIWidget::minimize( bool newImage )
@@ -258,7 +257,7 @@ void RSIWidget::minimize( bool newImage )
 
 void RSIWidget::maximize()
 {
-    setBackgroundMode( QWidget::NoBackground );
+    /* TODO: setBackgroundMode( QWidget::NoBackground ); */
     show(); // Keep it above the KWindowSystem calls.
     KWindowSystem::forceActiveWindow(winId());
     KWindowSystem::setOnAllDesktops(winId(),true);
@@ -348,9 +347,8 @@ void RSIWidget::loadImage()
         }
     }
 
-    QImage m = image.smoothScale( size.width(),
-                                  size.height(),
-                                  QImage::ScaleMax);
+    QImage m = image.smoothScale( size.width(), size.height(),
+                                  Qt::KeepAspectRatioByExpanding);
 
     if (m.isNull())
         return;
@@ -381,21 +379,15 @@ void RSIWidget::findImagesInFolder(const QString& folder)
     dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks );
     dir.setMatchAllDirs ( true );
 
-    const QFileInfoList *list = dir.entryInfoList();
-    if (!list)
-        return;
-
-    QFileInfoListIterator it( *list );
-    QFileInfo *fi;
-
-    while ( (fi = it.current()) != 0 )
+    const QFileInfoList list = dir.entryInfoList();
+    for (int i=0; i<list.count(); ++i)
     {
-        if ( fi->isFile())
-            m_files.append(fi->filePath());
-        else if (fi->isDir() && m_searchRecursive &&
-                 fi->fileName() != "." &&  fi->fileName() != "..")
-            findImagesInFolder(fi->absoluteFilePath());
-        ++it;
+        QFileInfo fi = list.at(i);
+        if ( fi.isFile())
+            m_files.append(fi.filePath());
+        else if (fi.isDir() && m_searchRecursive &&
+                 fi.fileName() != "." &&  fi.fileName() != "..")
+            findImagesInFolder(fi.absoluteFilePath());
     }
 }
 
@@ -404,6 +396,7 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 // branches/KDE/3.5/kdebase/ksmserver/shutdowndlg.cpp
 void RSIWidget::slotGrayEffect()
 {
+  /* TODO PORT 
     if ( m_currentY >= height() ) {
         m_countDown->show();
         if ( backgroundMode() == QWidget::NoBackground ) {
@@ -423,6 +416,7 @@ void RSIWidget::slotGrayEffect()
     bitBlt( &m_backgroundimage, 0, m_currentY, &pixmap );
     m_currentY += 10;
     QTimer::singleShot( 1, this, SLOT( slotGrayEffect() ) );
+    */
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -442,11 +436,13 @@ void RSIWidget::slotLock()
     releaseKeyboard();
     releaseMouse();
 
+    /* TODO PORT
     Q3CString appname( "kdesktop" );
     int rsibreak_screen = qt_xscreen();
     if ( rsibreak_screen )
         appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
-    // TODO: kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
+    kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
+    */
 }
 
 void RSIWidget::slotGrab()
@@ -465,7 +461,7 @@ void RSIWidget::setCounters( int timeleft )
 
         if (minutes > 0 && seconds > 0)
         {
-            cdString = i18n("minutes:seconds","%1:%2")
+            cdString = i18nc("minutes:seconds","%1:%2")
                     .arg( QString::number( minutes ))
                     .arg( QString::number( seconds).rightJustified(2,'0'));
         }
@@ -475,7 +471,7 @@ void RSIWidget::setCounters( int timeleft )
         }
         else if ( minutes >0 && seconds == 0 )
         {
-            cdString = i18n("minutes:seconds","%1:00")
+            cdString = i18nc("minutes:seconds","%1:00")
                     .arg( minutes );
         }
 
@@ -519,10 +515,11 @@ void RSIWidget::setIcon(int level)
 
     if (newIcon != currentIcon)
     {
-        QPixmap dockPixmap = KSystemTray::loadIcon( newIcon );
-        QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, KIcon::Desktop );
+        QIcon dockIcon = KSystemTrayIcon::loadIcon( newIcon );
+        m_tray->setIcon( dockIcon );
+
+        QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, K3Icon::Desktop );
         currentIcon = newIcon;
-        m_tray->setPixmap( dockPixmap );
         m_tooltip->setPixmap( toolPixmap );
     }
 }
@@ -552,7 +549,7 @@ void RSIWidget::breakSkipped()
     disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
                 m_tooltip, SLOT( setCounters( int, int ) ) );
 
-    m_tooltip->setPixmap( KIconLoader::global()->loadIcon( "rsibreak0", KIcon::Desktop ) );
+    m_tooltip->setPixmap( KIconLoader::global()->loadIcon( "rsibreak0", K3Icon::Desktop ) );
     m_tooltip->setTimeout(0); // autoDelete is false, but after the ->show() it still
                               // gets hidden after the timeout. Setting to 0 helps.
     m_tooltip->show();
@@ -577,7 +574,7 @@ void RSIWidget::closeEvent( QCloseEvent * )
 
 void RSIWidget::mousePressEvent( QMouseEvent * e )
 {
-    if (e->button() != LeftButton)
+    if (e->button() != Qt::LeftButton)
         return;
 
     if ( m_miniButton->geometry().contains(e->pos()))
@@ -604,8 +601,10 @@ void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
 
 void RSIWidget::keyPressEvent( QKeyEvent * e)
 {
+  /* PORT: 
     if (e->key() == m_accel->shortcut("minimize") && m_accel->isEnabled() )
         m_timer->skipBreak();
+  */
 }
 
 void RSIWidget::hideEvent( QHideEvent * e)
@@ -638,7 +637,7 @@ void RSIWidget::startTimer( bool idle)
         kDebug() << "Switching timers" << endl;
 
         m_timer->deleteLater();
-        m_accel->remove("minimize");
+//        m_accel->remove("minimize");
     }
 
     if (idle)
@@ -674,9 +673,9 @@ void RSIWidget::startTimer( bool idle)
     // and keyboard, and that way the event methods are not called.
     connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
 
-    m_accel->insert("minimize", i18n("Skip"),
-                    i18n("Abort a break"),Qt::Key_Escape,
-                    m_timer, SLOT( skipBreak() ));
+//    m_accel->insert("minimize", i18n("Skip"),
+ //                   i18n("Abort a break"),Qt::Key_Escape,
+ //                   m_timer, SLOT( skipBreak() ));
 
     first = false;
 }
@@ -686,18 +685,21 @@ void RSIWidget::readConfig()
     QColor *Black = new QColor(Qt::black);
     QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
 
-    KConfig config = KGlobal::config()->group("General Settings");
-    m_countDown->setPaletteForegroundColor(
+    KConfigGroup config = KGlobal::config()->group("General Settings");
+/* todo
+        m_countDown->setPaletteForegroundColor(
             config.readEntry("CounterColor", Black ) );
+    */
     m_miniButton->setHidden(
             config.readEntry("HideMinimizeButton", false));
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
     m_countDown->setHidden(
             config.readEntry("HideCounter", false));
-
+    /* TODO:
     m_countDown->setFont(
             config.readEntry("CounterFont", t ) );
+    */
 
     bool useImages = config.readEntry("ShowImages", false);
 
@@ -705,13 +707,13 @@ void RSIWidget::readConfig()
             config.readEntry("SearchRecursiveCheck", false);
     QString path = config.readEntry("ImageFolder");
 
-    bool timertype = config.readBoolEntry("UseNoIdleTimer", false);
+    bool timertype = config.readEntry("UseNoIdleTimer", false);
     startTimer(!timertype);
 
     // Hook in the shortcut after the timer initialisation.
-    m_accel->setEnabled(!config.readEntry("DisableAccel", false));
+//    m_accel->setEnabled(!config.readEntry("DisableAccel", false));
     QString shortcut = config.readEntry("MinimizeKey", "Escape");
-    m_accel->setShortcut("minimize",KShortcut(shortcut));
+//    m_accel->setShortcut("minimize",KShortcut(shortcut));
 
     if (m_basePath != path || m_searchRecursive != recursive ||
         m_useImages != useImages )
@@ -763,6 +765,7 @@ void RSILabel::setText( const QString &str )
 
 void RSILabel::updateMask()
 {
+  /* PORT
     QBitmap b( size() );
     b.fill( color0 );
 
@@ -773,6 +776,7 @@ void RSILabel::updateMask()
     p.end();
 
     setMask( b );
+  */
 }
 
 RSITimer *RSIWidget::getTimer() const

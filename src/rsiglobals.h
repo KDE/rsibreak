@@ -20,6 +20,7 @@
 #define RSIGLOBALS_H
 
 #include <qbitarray.h>
+#include <qmap.h>
 #include <qobject.h>
 #include <qstringlist.h>
 
@@ -124,12 +125,6 @@ class RSIGlobals : public QObject
      * Resets the usage array, with all values to 0.
      */
     void resetUsage();
-
-    /**
-    * Detects and fixes legacy settings. Static to be able to execute the
-    * change before the constructor reads the config.
-    */
-    static void updateLegacySettings();
 
     /**
      *

@@ -48,7 +48,7 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
     hbox->setSpacing( 5 );
 
     m_progress = new QProgressBar( hbox );
-    m_progress->setFormat();
+//    m_progress->setFormat();
     m_progress->setRange( 0, 0 );
 
     m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString(), hbox );
@@ -94,7 +94,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
     if ( n > 0 )
     {
-        QString text = i18n("Please relax for 1 second",
+        QString text = i18np("Please relax for 1 second",
                             "Please relax for %n seconds",
                             n );
 
