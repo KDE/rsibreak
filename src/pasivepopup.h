@@ -19,7 +19,7 @@
 #ifndef RSIRELAXPOPUP_H
 #define RSIRELAXPOPUP_H
 
-#include <passivepopup.h>
+#include <kpassivepopup.h>
 #include <QMouseEvent>
 #include <QLabel>
 
@@ -27,6 +27,15 @@ class QLabel;
 class QPushButton;
 class QProgressBar;
 class KSystemTrayIcon;
+
+class PassivePopup : public KPassivePopup
+{
+  public:
+    explicit PassivePopup( QWidget *parent = 0 );
+    void show(const KSystemTrayIcon* icon);
+  protected:
+    virtual void mouseReleaseEvent( QMouseEvent * event );
+};
 
 /**
  * @class RSIRelaxPopup

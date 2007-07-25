@@ -21,35 +21,37 @@
 
 #include <qlabel.h>
 #include <qpixmap.h>
-#include <q3vbox.h>
 
-#include <kdebug.h>
+#include <KDebug>
 #include <kglobalsettings.h>
-#include <klocale.h>
+#include <KLocale>
+#include <KHBox>
+#include <KVBox>
 
 #include <math.h>
 
 #include "rsiglobals.h"
 #include "rsistats.h"
 
-RSIToolTip::RSIToolTip( QWidget *parent, const char *name )
-  : KPassivePopup( parent ), m_suspended( false )
+RSIToolTip::RSIToolTip( QWidget *parent, KSystemTrayIcon* icon)
+  : QWidget( parent ), m_suspended( false ), m_icon(icon)
 {
-  setTimeout( 10 * 1000 );
+  m_popup = new PassivePopup( parent );
+  m_popup->setTimeout( 4 * 1000 );
 
-  Q3HBox *hbox = new Q3HBox( this );
+  KHBox *hbox = new KHBox( m_popup );
   hbox->setSpacing( 10 );
 
   mIcon = new QLabel( hbox );
   mIcon->resize( 32, 32 );
 
-  Q3VBox *vbox = new Q3VBox( hbox );
+  KVBox *vbox = new KVBox( hbox );
   vbox->setSpacing( 5 );
   new QLabel( "<qt><strong>RSIBreak</strong></qt>", vbox );
   mTinyLeft = new QLabel( vbox );
   mBigLeft = new QLabel( vbox );
 
-  setView( hbox );
+  m_popup->setView( hbox );
 }
 
 RSIToolTip::~RSIToolTip()
@@ -77,7 +79,8 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
             QString formattedText = RSIGlobals::instance()->formatSeconds( tiny_left );
             if (!formattedText.isNull())
             {
-                mTinyLeft->setText( i18n("%1 remaining until next short break").arg(formattedText));
+                mTinyLeft->setText( i18n("%1 remaining until next short break",
+                                    formattedText));
             }
             else // minutes = 0 and seconds = 0, remove the old text.
                 mTinyLeft->clear();
@@ -87,8 +90,8 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
 
         // do the same for the big break
         if (big_left>0)
-            mBigLeft->setText( i18n("%1 remaining until next long break")
-                    .arg(RSIGlobals::instance()->formatSeconds( big_left )));
+            mBigLeft->setText( i18n("%1 remaining until next long break",
+                               RSIGlobals::instance()->formatSeconds( big_left )));
         else // minutes = 0 and seconds = 0, remove the old text.
             mBigLeft->clear();
     }

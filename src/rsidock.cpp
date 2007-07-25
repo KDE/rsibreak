@@ -46,9 +46,8 @@
 #include <kwindowsystem.h>
 
 RSIDock::RSIDock( QWidget *parent, const char *name )
-    : KSystemTrayIcon( parent ), m_suspended( false ), m_tooltiphidden( false )
-    , m_hasQuit ( false ), m_tooltiptimer( 0 ), m_statsDialog( 0 )
-    , m_statsWidget( 0 )
+    : KSystemTrayIcon( parent ), m_suspended( false )
+    , m_hasQuit ( false ), m_statsDialog( 0 ), m_statsWidget( 0 )
 {
 
    // TODO:
@@ -89,9 +88,6 @@ RSIDock::RSIDock( QWidget *parent, const char *name )
 //             KKey::QtWIN+SHIFT+Key_F12, KKey::QtWIN+CTRL+Key_F12,
 //             this, SLOT( slotDebugRequest() ));
 //     m_accel->updateConnections();
-
-    m_tooltiptimer = new QTimer( this );
-    connect( m_tooltiptimer, SIGNAL( timeout() ), SLOT( slotShowToolTip() ) );
 }
 
 RSIDock::~RSIDock()
@@ -167,9 +163,6 @@ void RSIDock::showEvent( QShowEvent * )
 
 void RSIDock::mousePressEvent( QMouseEvent *e )
 {
-    m_tooltiptimer->stop();
-    emit hideToolTip();
-
     if (e->button() == Qt::RightButton)
         contextMenu()->exec( e->globalPos() );
 
@@ -177,28 +170,14 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
             slotShowStatistics();
 }
 
-void RSIDock::enterEvent( QEvent * )
+bool RSIDock::event ( QEvent * event )
 {
-    m_tooltiptimer->start( 500, true );
-}
-
-void RSIDock::leaveEvent( QEvent * )
-{
-    if( m_tooltiptimer )
-        m_tooltiptimer->stop();
-
-    emit hideToolTip();
-}
-
-void RSIDock::relaxEntered( int i, bool )
-{
-    m_tooltiphidden = i > 0;
-}
-
-void RSIDock::slotShowToolTip()
-{
-    if( !m_tooltiphidden )
+    if (event->type() == QEvent::ToolTip)
+    {
       emit showToolTip();
+      return true;
+    }
+    return false;
 }
 
 void RSIDock::slotShowStatistics()

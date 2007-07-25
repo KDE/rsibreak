@@ -64,13 +64,6 @@ class RSIDock : public KSystemTrayIcon
      */
     ~RSIDock();
 
-    public slots:
-      /**
-        Notifies the docker that RSIBreak is in relax state.
-        Used to hide the tooltip while showing relax moments.
-      */
-      void relaxEntered( int i, bool );
-
     signals:
         /**
          * This signal is emitted when the user has left
@@ -116,27 +109,21 @@ class RSIDock : public KSystemTrayIcon
         */
         void showToolTip();
 
-        /**
-          Hides the tooltip.
-        */
-        void hideToolTip();
-
     protected:
         /**
          * Reimplemented because we do not want an action on left click
         */
-
         void mousePressEvent( QMouseEvent *e );
+
         /**
          * Reimplemented because we do not want a minimize action in the menu
         */
         void showEvent( QShowEvent * );
 
-        /** Triggered when the mouse enters the icon in the docker. */
-        virtual void enterEvent( QEvent * );
-
-        /** Triggered when the mouse leaves the icon in the docker. */
-        virtual void leaveEvent( QEvent * );
+        /**
+         * Reimplemented to catch the tooltip event.
+         */
+        virtual bool event ( QEvent * event );
 
     private slots:
         void slotConfigure();
@@ -144,7 +131,6 @@ class RSIDock : public KSystemTrayIcon
         void slotSuspend();
         void slotBreakRequest();
         void slotDebugRequest();
-        void slotShowToolTip();
         void slotShowStatistics();
         void slotResetStats();
 
@@ -154,14 +140,12 @@ class RSIDock : public KSystemTrayIcon
 
         int m_suspendItem;
         bool m_suspended;
-        bool m_tooltiphidden;
 
         /** This bool is needed to determine if Quit is added to the context
             menu. Although not needed for KDE, GNome will plug the Quit item
             twice in the contextmenu. */
         bool m_hasQuit;
 
-        QTimer *m_tooltiptimer;
         KDialog *m_statsDialog;
         RSIStatWidget *m_statsWidget;
 };

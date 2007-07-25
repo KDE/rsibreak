@@ -115,9 +115,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                         QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
 
-    m_tooltip = new RSIToolTip( /*TODO: m_tray */ 0, "Tooltip" );
-    connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
-    connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
+    m_tooltip = new RSIToolTip( this, m_tray  );
+    connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
 
     m_relaxpopup = new RSIRelaxPopup(this, m_tray);
     m_relaxpopup->show();
@@ -655,7 +654,6 @@ void RSIWidget::startTimer( bool idle)
     connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ) );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tray, SLOT( relaxEntered( int, bool ) ) );
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
     connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
     connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ) );

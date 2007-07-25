@@ -20,8 +20,7 @@
 #ifndef RSITOOLTIP_H
 #define RSITOOLTIP_H
 
-#include <kpassivepopup.h>
-//Added by qt3to4:
+#include "passivepopup.h"
 #include <QPixmap>
 #include <QLabel>
 
@@ -31,11 +30,11 @@
  * mouse above the docker's icon.
  * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
  */
-class RSIToolTip : public KPassivePopup
+class RSIToolTip : public QWidget
 {
   Q_OBJECT
   public:
-    explicit RSIToolTip( QWidget *parent = 0, const char *name = 0 );
+    explicit RSIToolTip( QWidget *parent, KSystemTrayIcon*  );
     ~RSIToolTip();
 
   public slots:
@@ -46,12 +45,16 @@ class RSIToolTip : public KPassivePopup
     void setSuspended( bool );
     /** Sets the tooltip to @param text */
     void setText( const QString &text);
+    void setTimeout( int i ) { m_popup->setTimeout(i); };
+    void showToolTip() {   m_popup->show( m_icon ); };
+
 
   private:
     QLabel *mTinyLeft;
     QLabel *mBigLeft;
-
     QLabel *mIcon;
+    PassivePopup *m_popup;
+    KSystemTrayIcon *m_icon;
 
     bool m_suspended;
 };

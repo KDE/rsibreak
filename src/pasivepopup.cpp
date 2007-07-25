@@ -31,6 +31,26 @@
 #include <KLocale>
 #include <KSystemTrayIcon>
 
+PassivePopup::PassivePopup( QWidget *parent )
+  : KPassivePopup(parent)
+{}
+
+void PassivePopup::show(const KSystemTrayIcon* icon)
+{
+    /* To place it properly near the icon, first show it off-screen, then
+       move it to the correct position. If you know something better, please,
+       please let me know */
+    KPassivePopup::show(icon->geometry().bottomRight());
+    moveNear(icon->geometry());
+}
+
+void PassivePopup::mouseReleaseEvent( QMouseEvent * event )
+{
+  kDebug() << k_funcinfo << endl;
+  event->accept();
+  /* eat this! */
+}
+
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, KSystemTrayIcon* icon )
   : QWidget( parent ), m_systray( icon )
 {
