@@ -20,7 +20,6 @@
 #define RSIRELAXPOPUP_H
 
 #include <kpassivepopup.h>
-//Added by qt3to4:
 #include <QMouseEvent>
 #include <QLabel>
 
@@ -39,7 +38,7 @@ class RSIRelaxPopup : public KPassivePopup
   Q_OBJECT
   public:
     /** Constructor */
-    explicit RSIRelaxPopup( QWidget *parent = 0, const char *name = 0 );
+    explicit RSIRelaxPopup( QWidget *parent = 0 );
     /** Destructor */
     ~RSIRelaxPopup();
 

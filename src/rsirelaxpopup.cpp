@@ -1,6 +1,6 @@
 /* This file is part of the KDE project
    Copyright (C) 2005 Bram Schoenmakers <bramschoenmakers@kde.nl>
-   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -19,32 +19,25 @@
 
 #include "rsirelaxpopup.h"
 
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <qtimer.h>
-#include <q3vbox.h>
-#include <qtooltip.h>
+#include <QLabel>
+#include <QPushButton>
+#include <QTimer>
 #include <QMouseEvent>
 #include <QProgressBar>
 
-#include <kdebug.h>
-#include <kglobalsettings.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kapplication.h>
-#include <kconfig.h>
-#include <kglobal.h>
+#include <KColorScheme>
+#include <KVBox>
+#include <KIconLoader>
+#include <KLocale>
 
-RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
-: KPassivePopup( parent )
+RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
+    : KPassivePopup( parent )
 {
-    Q3VBox *vbox = new Q3VBox( this );
-    // TODO: 
-    //vbox->setSpacing( KDialog::spacingHint() );
-
+    KVBox *vbox = new KVBox( this );
+    vbox->setSpacing( 5 );
     m_message = new QLabel( vbox );
 
-    Q3HBox *hbox = new Q3HBox( vbox );
+    KHBox *hbox = new KHBox( vbox );
     hbox->setSpacing( 5 );
 
     m_progress = new QProgressBar( hbox );
@@ -52,11 +45,12 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, const char *name )
     m_progress->setRange( 0, 0 );
 
     m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString(), hbox );
+    m_lockbutton->setToolTip(i18n( "Lock the session") );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
-    QToolTip::add( m_lockbutton, i18n( "Lock the session") );
+
     m_skipbutton = new QPushButton( SmallIcon( "cancel" ), QString(), hbox );
+    m_skipbutton->setToolTip( i18n( "Skip this break") );
     connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL ( skip() ) );
-    QToolTip::add( m_skipbutton, i18n( "Skip this break") );
 
     setTimeout( 0 ); // no auto close
     setView( vbox );
@@ -107,7 +101,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
         // ProcessEvents prevents jumping of the dialog and only call show()
         // once to prevent resizing when the label changes.
-        kapp->processEvents();
+        // TODO: needed?        kapp->processEvents();
         if (resetcount == 1)
             show();
     }
@@ -120,17 +114,26 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
 void RSIRelaxPopup::flash()
 {
-    if( m_useFlash )
-    {
-      QTimer::singleShot( 500, this, SLOT( unflash() ) );
-      setPaletteForegroundColor( KGlobalSettings::highlightedTextColor() );
-      setPaletteBackgroundColor( KGlobalSettings::highlightColor() );
-    }
+    if( !m_useFlash )
+      return;
+
+    QTimer::singleShot( 500, this, SLOT( unflash() ) );
+    QPalette normal;
+    normal.setColor(QPalette::Normal, QPalette::Text,
+                    KColorScheme(KColorScheme::Selection).background().color());
+    normal.setColor(QPalette::Normal, QPalette::Base,
+                    KColorScheme(KColorScheme::Selection).foreground().color());
+    setPalette(normal);
 }
 
 void RSIRelaxPopup::unflash()
 {
-    unsetPalette();
+  QPalette normal;
+  normal.setColor(QPalette::Normal, QPalette::Base,
+                  KColorScheme(KColorScheme::View).background().color());
+  normal.setColor(QPalette::Normal, QPalette::Text,
+                  KColorScheme(KColorScheme::View).foreground().color());
+  setPalette(normal);
 }
 
 void RSIRelaxPopup::mouseReleaseEvent( QMouseEvent * )
@@ -152,7 +155,8 @@ void RSIRelaxPopup::readSettings()
 
 void RSIRelaxPopup::setVisible( bool b )
 {
-    if( !b ) hide();
+    if( !b && !isHidden() )
+      hide();
 }
 
 void RSIRelaxPopup::setSkipButtonHidden ( bool b )
