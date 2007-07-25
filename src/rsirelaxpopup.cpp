@@ -29,11 +29,34 @@
 #include <KVBox>
 #include <KIconLoader>
 #include <KLocale>
+#include <KSystemTrayIcon>
 
-RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
-    : KPassivePopup( parent )
+PassivePopup::PassivePopup( QWidget *parent )
+  : KPassivePopup(parent)
+{}
+
+void PassivePopup::show(const KSystemTrayIcon* icon)
 {
-    KVBox *vbox = new KVBox( this );
+    /* To place it properly near the icon, first show it off-screen, then
+       move it to the correct position. If you know something better, please,
+       please let me know */
+    KPassivePopup::show(icon->geometry().bottomRight());
+    moveNear(icon->geometry());
+}
+
+void PassivePopup::mouseReleaseEvent( QMouseEvent * event )
+{
+  kDebug() << k_funcinfo << endl;
+  event->accept();
+  /* eat this! */
+}
+
+RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, KSystemTrayIcon* icon )
+  : QWidget( parent ), m_systray( icon )
+{
+    m_popup = new PassivePopup( parent );
+
+    KVBox *vbox = new KVBox( m_popup );
     vbox->setSpacing( 5 );
     m_message = new QLabel( vbox );
 
@@ -41,19 +64,19 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
     hbox->setSpacing( 5 );
 
     m_progress = new QProgressBar( hbox );
-//    m_progress->setFormat();
+    m_progress->setFormat("%v");
     m_progress->setRange( 0, 0 );
 
-    m_lockbutton = new QPushButton( SmallIcon( "lock" ), QString(), hbox );
+    m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), QString(), hbox );
     m_lockbutton->setToolTip(i18n( "Lock the session") );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
 
-    m_skipbutton = new QPushButton( SmallIcon( "cancel" ), QString(), hbox );
+    m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), QString(), hbox );
     m_skipbutton->setToolTip( i18n( "Skip this break") );
     connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL ( skip() ) );
 
-    setTimeout( 0 ); // no auto close
-    setView( vbox );
+    m_popup->setTimeout( 0 ); // no auto close
+    m_popup->setView( vbox );
     readSettings();
 }
 
@@ -89,56 +112,44 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
     if ( n > 0 )
     {
         QString text = i18np("Please relax for 1 second",
-                            "Please relax for %n seconds",
+                            "Please relax for %1 seconds",
                             n );
 
         if ( bigBreakNext )
           text.append('\n'+i18n("Note: next break is a big break") );
 
         m_message->setText( text );
-
         m_progress->setValue( n );
 
-        // ProcessEvents prevents jumping of the dialog and only call show()
-        // once to prevent resizing when the label changes.
-        // TODO: needed?        kapp->processEvents();
         if (resetcount == 1)
-            show();
+          m_popup->show(m_systray);
     }
     else
     {
-        setVisible( false );
+        m_popup->setVisible( false );
         resetcount = 0;
     }
 }
 
 void RSIRelaxPopup::flash()
 {
+  kDebug() << k_funcinfo << m_useFlash << endl;
     if( !m_useFlash )
       return;
 
     QTimer::singleShot( 500, this, SLOT( unflash() ) );
     QPalette normal;
-    normal.setColor(QPalette::Normal, QPalette::Text,
+    normal.setColor(QPalette::Inactive, QPalette::WindowText,
                     KColorScheme(KColorScheme::Selection).background().color());
-    normal.setColor(QPalette::Normal, QPalette::Base,
+    normal.setColor(QPalette::Inactive, QPalette::Window,
                     KColorScheme(KColorScheme::Selection).foreground().color());
-    setPalette(normal);
+    m_popup->setPalette(normal);
 }
 
 void RSIRelaxPopup::unflash()
 {
   QPalette normal;
-  normal.setColor(QPalette::Normal, QPalette::Base,
-                  KColorScheme(KColorScheme::View).background().color());
-  normal.setColor(QPalette::Normal, QPalette::Text,
-                  KColorScheme(KColorScheme::View).foreground().color());
-  setPalette(normal);
-}
-
-void RSIRelaxPopup::mouseReleaseEvent( QMouseEvent * )
-{
-    /* eat this! */
+  m_popup->setPalette(normal);
 }
 
 void RSIRelaxPopup::slotReadConfig()
@@ -151,12 +162,6 @@ void RSIRelaxPopup::readSettings()
     KConfigGroup config = KGlobal::config()->group("Popup Settings");
     m_usePopup=config.readEntry("UsePopup", true);
     m_useFlash=config.readEntry("UseFlash", true);
-}
-
-void RSIRelaxPopup::setVisible( bool b )
-{
-    if( !b && !isHidden() )
-      hide();
 }
 
 void RSIRelaxPopup::setSkipButtonHidden ( bool b )

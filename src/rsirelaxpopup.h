@@ -26,6 +26,16 @@
 class QLabel;
 class QPushButton;
 class QProgressBar;
+class KSystemTrayIcon;
+
+class PassivePopup : public KPassivePopup
+{
+  public:
+    explicit PassivePopup( QWidget *parent = 0 );
+    void show(const KSystemTrayIcon* icon);
+  protected:
+    virtual void mouseReleaseEvent( QMouseEvent * event );
+};
 
 /**
  * @class RSIRelaxPopup
@@ -33,12 +43,12 @@ class QProgressBar;
  * It's shown when the user should relax for a couple of seconds.
  * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
  */
-class RSIRelaxPopup : public KPassivePopup
+class RSIRelaxPopup : public QWidget
 {
   Q_OBJECT
   public:
     /** Constructor */
-    explicit RSIRelaxPopup( QWidget *parent = 0 );
+    explicit RSIRelaxPopup( QWidget *parent, KSystemTrayIcon*);
     /** Destructor */
     ~RSIRelaxPopup();
 
@@ -55,9 +65,6 @@ class RSIRelaxPopup : public KPassivePopup
       Reread config
     */
     void slotReadConfig();
-
-    /** Hides this widget only when the argument equals false. */
-    void setVisible( bool );
 
     /** Hides the skip button **/
     void setSkipButtonHidden ( bool );
@@ -76,8 +83,6 @@ class RSIRelaxPopup : public KPassivePopup
     */
     void flash();
 
-    virtual void mouseReleaseEvent( QMouseEvent * );
-
   protected slots:
     /** Restores background color after a flash() */
     void unflash();
@@ -86,7 +91,8 @@ class RSIRelaxPopup : public KPassivePopup
     void readSettings();
     bool    m_usePopup;
     bool    m_useFlash;
-
+    KSystemTrayIcon* m_systray;
+    PassivePopup* m_popup;
     QLabel *m_message;
     QProgressBar *m_progress;
     QPushButton *m_lockbutton;

@@ -119,7 +119,8 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( show() ) );
     connect( m_tray, SIGNAL( hideToolTip() ), m_tooltip, SLOT( hide() ) );
 
-    m_relaxpopup = new RSIRelaxPopup(/*TODO: m_tray*/ 0);
+    m_relaxpopup = new RSIRelaxPopup(this, m_tray);
+    m_relaxpopup->show();
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );

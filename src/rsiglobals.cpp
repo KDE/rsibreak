@@ -69,11 +69,11 @@ QString RSIGlobals::formatSeconds( const int seconds )
     mins = (int)floor(remaining/60);
     secs = remaining-(mins*60);
 
-    hString = i18np("One hour","%n hours", hours);
-    mString1 = i18np("One minute","%n minutes", mins);
-    mString2 = i18np("one minute","%n minutes", mins);
-    sString1 = i18np("One second","%n seconds", secs);
-    sString2 = i18np("one second","%n seconds", secs);
+    hString = i18np("One hour","%1 hours", hours);
+    mString1 = i18np("One minute","%1 minutes", mins);
+    mString2 = i18np("one minute","%1 minutes", mins);
+    sString1 = i18np("One second","%1 seconds", secs);
+    sString2 = i18np("one second","%1 seconds", secs);
 
     if ( hours > 0 && mins >0 )
         return(i18nc("Arguments: hours, minutes "

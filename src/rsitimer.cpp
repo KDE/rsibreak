@@ -335,7 +335,7 @@ void RSITimer::timerEvent( QTimerEvent * )
         return;
     }
 
-    if (m_explicitDebug)
+    //if (m_explicitDebug)
         kDebug() << " patience: " << m_patience  << " pause_left: "
             << m_pause_left << " relax_left: " << m_relax_left
             <<  " tiny_left: " << m_tiny_left  << " big_left: "
@@ -520,8 +520,6 @@ void RSITimer::restoreSession()
       }
     }
 }
-
-
 
 RSITimerNoIdle::RSITimerNoIdle( QObject *parent, const char *name )
 : RSITimer( parent, name )
