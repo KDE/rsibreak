@@ -74,7 +74,7 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
     , m_searchRecursive( false )
 {
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
-    m_tray = new RSIDock(this,"Tray Item");
+    m_tray = new RSIDock(this);
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
     m_tray->show();
 

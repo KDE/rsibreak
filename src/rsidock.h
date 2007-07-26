@@ -57,7 +57,7 @@ class RSIDock : public KSystemTrayIcon
      * @param parent Parent Widget
      * @param name Name
      */
-    RSIDock( QWidget *parent, const char *name );
+    RSIDock( QWidget *parent );
 
     /**
      * Destructor
@@ -116,11 +116,6 @@ class RSIDock : public KSystemTrayIcon
         void mousePressEvent( QMouseEvent *e );
 
         /**
-         * Reimplemented because we do not want a minimize action in the menu
-        */
-        void showEvent( QShowEvent * );
-
-        /**
          * Reimplemented to catch the tooltip event.
          */
         virtual bool event ( QEvent * event );
@@ -133,18 +128,14 @@ class RSIDock : public KSystemTrayIcon
         void slotDebugRequest();
         void slotShowStatistics();
         void slotResetStats();
+        void slotQuit();
 
     private:
         KGlobalAccel* m_accel;
         KHelpMenu*    m_help;
 
-        int m_suspendItem;
+        QAction* m_suspendItem;
         bool m_suspended;
-
-        /** This bool is needed to determine if Quit is added to the context
-            menu. Although not needed for KDE, GNome will plug the Quit item
-            twice in the contextmenu. */
-        bool m_hasQuit;
 
         KDialog *m_statsDialog;
         RSIStatWidget *m_statsWidget;
