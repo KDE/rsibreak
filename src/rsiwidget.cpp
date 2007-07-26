@@ -43,7 +43,7 @@
 #include <Q3VBoxLayout>
 #include <QCloseEvent>
 #include <QPixmap>
-
+#include <Q3MimeSourceFactory>
 #include <config.h>
 
 #include <kwindowsystem.h>
@@ -67,8 +67,8 @@
 #include "rsitooltip.h"
 #include "rsiglobals.h"
 
-RSIWidget::RSIWidget( QWidget *parent, const char *name )
-    : QWidget( parent, name, Qt::WType_Popup)
+RSIWidget::RSIWidget( QWidget *parent )
+    : QWidget( parent, Qt::WType_Popup)
     , m_currentY( 0 )
     , m_useImages( false )
     , m_searchRecursive( false )
@@ -109,8 +109,6 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
                                  i18n("Welcome"),
                                  "dont_show_welcome_again_for_050");
 
-    //TODO:
-    //setBackgroundMode( QWidget::NoBackground );
     QRect rect = QApplication::desktop()->screenGeometry(
                         QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
@@ -124,9 +122,12 @@ RSIWidget::RSIWidget( QWidget *parent, const char *name )
 
     connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), SLOT( readConfig() ) );
-    connect( m_tray, SIGNAL( configChanged( bool ) ), RSIGlobals::instance(), SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( configChanged( bool ) ), m_relaxpopup, SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip, SLOT( setSuspended( bool ) ) );
+    connect( m_tray, SIGNAL( configChanged( bool ) ), RSIGlobals::instance(),
+             SLOT( slotReadConfig() ) );
+    connect( m_tray, SIGNAL( configChanged( bool ) ), m_relaxpopup,
+             SLOT( slotReadConfig() ) );
+    connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip,
+             SLOT( setSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( hide() ) );
 
     srand ( time(NULL) );
@@ -190,8 +191,6 @@ void RSIWidget::slotShowWhereIAm()
 
 void RSIWidget::takeScreenshotOfTrayIcon()
 {
-
-  /* TODO: PORT
         // Process the events else the icon will not be there and the screenie will fail!
         kapp->processEvents();
 
@@ -200,29 +199,30 @@ void RSIWidget::takeScreenshotOfTrayIcon()
         // The part about the border is copied from  KSystemTray::displayCloseMessage()
         //
         // Compute size and position of the pixmap to be grabbed:
-        QPoint g = m_tray->mapToGlobal( m_tray-> pos() );
+
+        QPoint g = m_tray->geometry().topLeft();
         int desktopWidth  = kapp->desktop()->width();
         int desktopHeight = kapp->desktop()->height();
-        int tw = m_tray->width();
-        int th = m_tray->height();
+        int tw = m_tray->geometry().width();
+        int th = m_tray->geometry().height();
         int w = desktopWidth / 4;
         int h = desktopHeight / 9;
-        int x = g.x() + tw/2 - w/2;               // Center the rectange in the systray icon
+        int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
         int y = g.y() + th/2 - h/2;
-        if ( x < 0 )                 x = 0;       // Move the rectangle to stay in the desktop limits
-        if ( y < 0 )                 y = 0;
+        if ( x < 0 ) x = 0;  // Move the rectangle to stay in the desktop limits
+        if ( y < 0 ) y = 0;
         if ( x + w > desktopWidth )  x = desktopWidth - w;
         if ( y + h > desktopHeight ) y = desktopHeight - h;
 
         // Grab the desktop and draw a circle around the icon:
-        QPixmap shot = QPixmap::grabWindow( qt_xrootwin(),  x,  y,  w,  h );
+        QPixmap shot = QPixmap::grabWindow( QX11Info::appRootWindow(),  x,  y,  w,  h );
         QPainter painter( &shot );
         const int MARGINS = 6;
-        const int WIDTH   = 3;
-        int ax = g.x() - x - MARGINS -1;
-        int ay = g.y() - y - MARGINS -1;
+        const int WIDTH   = 5;
+        int ax = g.x() - x - 2*MARGINS -1;
+        int ay = g.y() - y - 2*MARGINS -1;
         painter.setPen(  QPen( Qt::red,  WIDTH ) );
-        painter.drawArc( ax,  ay,  tw + 2*MARGINS,  th + 2*MARGINS,  0,  16*360 );
+        painter.drawArc( ax,  ay,  tw + 4*MARGINS,  th + 4*MARGINS,  0,  16*360 );
         painter.end();
 
         // Then, we add a border around the image to make it more visible:
@@ -237,7 +237,6 @@ void RSIWidget::takeScreenshotOfTrayIcon()
 
         // End copied block
         // ********************************************************************************
-  */
 }
 
 void RSIWidget::minimize( bool newImage )
@@ -291,7 +290,10 @@ void RSIWidget::maximize()
         if (m_slideInterval>0)
             m_timer_slide->start( m_slideInterval*1000 );
 
-        bitBlt( this, 0, 0, &m_backgroundimage );
+        QPalette palette;
+        palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
+        setPalette(palette);
+        kDebug() << k_funcinfo << "SetPalette" << endl;
     }
 }
 
@@ -347,6 +349,7 @@ void RSIWidget::loadImage()
         }
     }
 
+    kDebug() << "scaling" << size << endl;
     QImage m = image.smoothScale( size.width(), size.height(),
                                   Qt::KeepAspectRatioByExpanding);
 
@@ -356,6 +359,13 @@ void RSIWidget::loadImage()
     if (!m_backgroundimage.convertFromImage(m))
         kWarning() << "Failed to set new background image" << endl;
 
+    kDebug() << "all set" << endl;
+
+    QPalette palette;
+    palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
+    setPalette(palette);
+
+    kDebug() << k_funcinfo << "SetPalette" << endl;
 }
 
 
@@ -374,10 +384,15 @@ void RSIWidget::findImagesInFolder(const QString& folder)
     }
 
     // TODO: make an automated filter, maybe with QImageIO.
-    QString ext("*.png *.jpg *.jpeg *.tif *.tiff *.gif *.bmp *.xpm *.ppm *.pnm *.xcf *.pcx");
-    dir.setNameFilter(ext + ' ' + ext.toUpper());
-    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks );
-    dir.setMatchAllDirs ( true );
+    QStringList filters;
+    filters << "*.png" << "*.jpg" << "*.jpeg" << "*.tif" << "*.tiff" <<
+        "*.gif" << "*.bmp" << "*.xpm" << "*.ppm" <<  "*.pnm"  << "*.xcf" <<
+        "*.pcx";
+    QStringList filtersUp;
+    for (int i = 0; i < filters.size(); ++i)
+        filtersUp << filters.at(i).toUpper();
+    dir.setNameFilters(filters << filtersUp);
+    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs );
 
     const QFileInfoList list = dir.entryInfoList();
     for (int i=0; i<list.count(); ++i)
@@ -427,7 +442,6 @@ void RSIWidget::slotNewSlide()
         return;
 
     loadImage();
-    bitBlt( this, 0, 0, &m_backgroundimage );
 }
 
 void RSIWidget::slotLock()
@@ -487,10 +501,7 @@ void RSIWidget::setCounters( int timeleft )
     }
 
     if( m_useImages )
-    {
-      setBackgroundPixmap( m_backgroundimage );
       m_countDown->show();
-    }
 }
 
 void RSIWidget::updateIdleAvg( double idleAvg )
@@ -611,8 +622,10 @@ void RSIWidget::hideEvent( QHideEvent * e)
 {
     kDebug() << k_funcinfo << endl;
     m_backgroundimage = QPixmap();
-    setBackgroundPixmap(m_backgroundimage);
-
+    QPalette palette;
+    palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
+    setPalette(palette);
+    kDebug() << k_funcinfo << "SetPalette" << endl;
     QWidget::hideEvent(e);
 }
 
@@ -625,13 +638,13 @@ void RSIWidget::startTimer( bool idle)
 
     if (!first)
     {
-        kDebug() << "Current Timer: " << m_timer->className()
+      kDebug() << "Current Timer: " << m_timer->metaObject()->className()
                 << " wanted: " << (idle ? "RSITimer" : "RSITimerNoIdle") << endl;
 
-        if (!idle && m_timer->isA("RSITimerNoIdle"))
+        if (!idle && m_timer->metaObject()->className() == "RSITimerNoIdle")
             return;
 
-        if (idle && m_timer->isA("RSITimer"))
+        if (idle && m_timer->metaObject()->className() == "RSITimer")
             return;
 
         kDebug() << "Switching timers" << endl;
@@ -747,8 +760,8 @@ void RSIWidget::readConfig()
 
 
 
-RSILabel::RSILabel( QWidget *parent, const char *name )
-: QLabel( parent, name )
+RSILabel::RSILabel( QWidget *parent)
+: QLabel( parent)
 {
 }
 
