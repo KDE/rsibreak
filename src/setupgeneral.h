@@ -28,9 +28,7 @@ class SetupGeneralPriv;
 /**
  * @class SetupGeneral
  * These contain the general settings of RSIBreak
- * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier.gilles@free.fr>
- * @author Tom Albers <tomalbers@kde.nl>
+* @author Tom Albers <tomalbers@kde.nl>
  */
 
 class SetupGeneral : public QWidget

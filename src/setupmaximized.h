@@ -1,8 +1,5 @@
 /* ============================================================
- * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
- *
- * Copyright 2005 by Tom Albers <tomalbers@kde.nl>
+ * Copyright 2005,2007 by Tom Albers <tomalbers@kde.nl>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -33,8 +30,6 @@ class SetupMaximizedPriv;
  * These contain the general settings of RSIBreak when maximized
  * that means settings for the Counter, Image Path and
  * minimize button
- * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 
@@ -66,7 +61,7 @@ private slots:
     void slotFontPicker();
     void slotFolderPicker();
     void slotFolderEdited(const QString& newPath);
-    void slotShortcutPicker();
+    void slotShortcutChanged(const QKeySequence &seq);
     void slotHideFlash();
     void slotUseImages();
 
