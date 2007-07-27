@@ -1,7 +1,4 @@
 /* ============================================================
- * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
- *
  * Copyright 2005-2006 by Tom Albers <tomalbers@kde.nl>
  *
  * This program is free software; you can redistribute it
