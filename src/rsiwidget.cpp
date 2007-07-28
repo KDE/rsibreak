@@ -43,7 +43,6 @@
 #include <Q3VBoxLayout>
 #include <QCloseEvent>
 #include <QPixmap>
-#include <Q3MimeSourceFactory>
 #include <config.h>
 
 #include <kwindowsystem.h>
@@ -55,6 +54,7 @@
 #include <kiconloader.h>
 #include <kimageeffect.h>
 #include <ksystemtrayicon.h>
+#include <KTemporaryFile>
 #include <kglobal.h>
 
 #include <stdlib.h>
@@ -77,37 +77,6 @@ RSIWidget::RSIWidget( QWidget *parent )
     m_tray = new RSIDock(this);
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
     m_tray->show();
-
-    if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
-    {
-        takeScreenshotOfTrayIcon();
-        KMessageBox::information(parent,
-                             i18n("<p>Welcome to RSIBreak<p><p>"
-                                  "In your tray you can now see RSIBreak: ")
-                             + "<p><center><img source=\"systray_shot\"></center></p><p>"
-                             + i18n("When you right-click on that you will see "
-                                  "a menu, from which you can go to the "
-                                  "configuration for example.<p>When you want to "
-                                  "know when the next break is, hover "
-                                  "over the icon.<p>Use RSIBreak wisely."),
-                             i18n("Welcome"),
-                             "dont_show_welcome_again_for_001");
-
-        // we don't need to show the blurp about the changes in 0.5 for new users.
-        KMessageBox::saveDontShowAgainContinue("dont_show_welcome_again_for_050");
-    }
-    else
-        KMessageBox::information(parent,
-                                 i18n("Changes in RSIBreak 0.5.0\n\n"
-                                      "In this version we have changed the way "
-                                      "the timers work. Instead of indicating "
-                                      "the number of short breaks you want to "
-                                      "take before taking a long break, you "
-                                      "can now setup how often, in minutes, "
-                                      "you want a long break.\nPlease review "
-                                      "your current settings.\n\n"),
-                                 i18n("Welcome"),
-                                 "dont_show_welcome_again_for_050");
 
     QRect rect = QApplication::desktop()->screenGeometry(
                         QApplication::desktop()->primaryScreen() );
@@ -173,6 +142,8 @@ RSIWidget::RSIWidget( QWidget *parent )
     if (m_files.count() == 0 &&
         m_countDown->paletteForegroundColor() == Qt::black)
         m_countDown->setPaletteForegroundColor( Qt::white );
+
+    QTimer::singleShot(0,this,SLOT(slotWelcome()));
 }
 
 RSIWidget::~RSIWidget()
@@ -180,16 +151,31 @@ RSIWidget::~RSIWidget()
     delete RSIGlobals::instance();
 }
 
+void RSIWidget::slotWelcome()
+{
+    if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
+    {
+      QString tempfile = takeScreenshotOfTrayIcon();
+      KMessageBox::information(this, i18n("<p>Welcome to RSIBreak<p><p>"
+        "In your tray you can now see RSIBreak: ")
+        + "<p><center><img source=\"" + tempfile + "\"></center></p><p>"
+        + i18n("When you right-click on that you will see a menu, from which "
+        "you can go to the configuration for example.<p>When you want to "
+        "know when the next break is, hover over the icon.<p>Use RSIBreak "
+        "wisely."), i18n("Welcome"), "dont_show_welcome_again_for_001");
+    }
+}
+
 void RSIWidget::slotShowWhereIAm()
 {
-    takeScreenshotOfTrayIcon();
-    KMessageBox::information(this,
+      QString tempfile = takeScreenshotOfTrayIcon();
+      KMessageBox::information(this,
            i18n("<p>RSIBreak is already running<p><p>It is located here:")
-           + "<p><center><img source=\"systray_shot\"></center></p><p>",
+           + "<p><center><img source=\"" + tempfile +"\"></center></p><p>",
            i18n("Already Running"));
 }
 
-void RSIWidget::takeScreenshotOfTrayIcon()
+QString RSIWidget::takeScreenshotOfTrayIcon()
 {
         // Process the events else the icon will not be there and the screenie will fail!
         kapp->processEvents();
@@ -232,11 +218,19 @@ void RSIWidget::takeScreenshotOfTrayIcon()
         painter.drawPixmap(1, 1, shot);
         painter.end();
 
-        // Associate source to image and show the dialog:
-        Q3MimeSourceFactory::defaultFactory()->setPixmap( "systray_shot", finalShot );
+       // End copied block
+       // *****************************************************************
 
-        // End copied block
-        // ********************************************************************************
+        QString filename;
+        KTemporaryFile* tmpfile = new KTemporaryFile;
+        tmpfile->setAutoRemove(false);
+        if (tmpfile->open())
+        {
+                filename = tmpfile->fileName();
+                finalShot.save( tmpfile, "png");
+                tmpfile->close();
+        }
+        return filename;
 }
 
 void RSIWidget::minimize( bool newImage )

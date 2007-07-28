@@ -90,6 +90,7 @@ class RSIWidget : public QWidget
         RSITimer* getTimer() const;
 
     private slots:
+        void slotWelcome();
         void slotShowWhereIAm();
         void slotNewSlide();
         void slotLock();
@@ -116,7 +117,7 @@ class RSIWidget : public QWidget
         void setIcon( int );
 
     private:
-        void takeScreenshotOfTrayIcon();
+        QString takeScreenshotOfTrayIcon();
         void findImagesInFolder(const QString& folder);
         void loadImage();
         void startTimer( bool idle);
