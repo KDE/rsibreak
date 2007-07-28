@@ -1,5 +1,6 @@
-/* This file is part of the KDE project
+/*
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+   Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -21,29 +22,21 @@
 
 #include "rsiglobals.h"
 
-#include <qwidget.h>
-//Added by qt3to4:
-#include <QHideEvent>
-#include <Q3GridLayout>
-#include <QShowEvent>
-
-class Q3Grid;
-class Q3GridLayout;
-class QTimer;
+class QGridLayout;
 
 class RSIStatWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit RSIStatWidget( QWidget *parent = 0, const char *name = 0 );
+  explicit RSIStatWidget( QWidget *parent = 0);
   ~RSIStatWidget();
 
 protected:
-  void addStat( RSIStat stat, Q3Grid * );
+  void addStat( RSIStat stat, QGridLayout *grid, int row );
   virtual void showEvent( QShowEvent * );
   virtual void hideEvent( QHideEvent * );
 private:
-  Q3GridLayout *mGrid;
+  QGridLayout *mGrid;
 };
 
 #endif

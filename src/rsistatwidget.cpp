@@ -1,5 +1,6 @@
-/* This file is part of the KDE project
+/*
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+   Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -17,66 +18,53 @@
 */
 
 #include "rsistatwidget.h"
-
-#include <qdatetime.h>
-#include <q3grid.h>
-#include <q3groupbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-//Added by qt3to4:
-#include <Q3GridLayout>
-#include <QShowEvent>
-#include <QHideEvent>
-
-#include <kdebug.h>
-#include <kglobal.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
-
 #include "rsistats.h"
 
-RSIStatWidget::RSIStatWidget( QWidget *parent, const char *name )
-: QWidget( parent, name )
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QLabel>
+
+#include <KGlobalSettings>
+#include <KLocale>
+
+RSIStatWidget::RSIStatWidget( QWidget *parent )
+: QWidget( parent )
 {
-    mGrid = new Q3GridLayout( this );
+    mGrid = new QGridLayout( this );
     mGrid->setSpacing( 5 );
 
-    Q3GroupBox *gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Time"), this );
-    Q3Grid *subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
-    subgrid->setSpacing( 5 );
-    addStat( TOTAL_TIME, subgrid );
-    addStat( ACTIVITY, subgrid );
-    addStat( IDLENESS, subgrid );
-    addStat( CURRENT_IDLE_TIME, subgrid );
-    addStat( MAX_IDLENESS, subgrid );
+    QGroupBox *gb = new QGroupBox( i18n("Time"), this );
+    QGridLayout* subgrid = new QGridLayout( gb );
+    addStat( TOTAL_TIME, subgrid, 0 );
+    addStat( ACTIVITY, subgrid, 1 );
+    addStat( IDLENESS, subgrid, 2 );
+    addStat( CURRENT_IDLE_TIME, subgrid, 3 );
+    addStat( MAX_IDLENESS, subgrid, 4 );
     mGrid->addWidget( gb, 0, 0 );
 
-    gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Short Breaks"), this );
-    subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
-    subgrid->setSpacing( 5 );
-    addStat( TINY_BREAKS, subgrid );
-    addStat( LAST_TINY_BREAK, subgrid );
-    addStat( TINY_BREAKS_SKIPPED, subgrid );
-    addStat( IDLENESS_CAUSED_SKIP_TINY, subgrid );
+    gb = new QGroupBox( i18n("Short Breaks"), this );
+    subgrid = new QGridLayout( gb );
+    addStat( TINY_BREAKS, subgrid, 0 );
+    addStat( LAST_TINY_BREAK, subgrid, 1 );
+    addStat( TINY_BREAKS_SKIPPED, subgrid, 2 );
+    addStat( IDLENESS_CAUSED_SKIP_TINY, subgrid, 3 );
     mGrid->addWidget( gb, 0, 1 );
 
-    gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Pause"), this );
-    subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
-    subgrid->setSpacing( 5 );
-    addStat( ACTIVITY_PERC, subgrid );
-    addStat( ACTIVITY_PERC_MINUTE, subgrid );
-    addStat( ACTIVITY_PERC_HOUR, subgrid );
-    addStat( ACTIVITY_PERC_6HOUR, subgrid );
-    addStat( PAUSE_SCORE, subgrid );
+    gb = new QGroupBox( i18n("Pause"), this );
+    subgrid = new QGridLayout( gb );
+    addStat( ACTIVITY_PERC, subgrid,0 );
+    addStat( ACTIVITY_PERC_MINUTE, subgrid, 1 );
+    addStat( ACTIVITY_PERC_HOUR, subgrid, 2 );
+    addStat( ACTIVITY_PERC_6HOUR, subgrid, 3 );
+    addStat( PAUSE_SCORE, subgrid, 4 );
     mGrid->addWidget( gb, 1, 0 );
 
-    gb = new Q3GroupBox( 1, Qt::Vertical, i18n("Long Breaks"), this );
-    subgrid = new Q3Grid( 2, Qt::Horizontal, gb );
-    subgrid->setSpacing( 5 );
-    addStat( BIG_BREAKS, subgrid );
-    addStat( LAST_BIG_BREAK, subgrid );
-    addStat( BIG_BREAKS_SKIPPED, subgrid );
-    addStat( IDLENESS_CAUSED_SKIP_BIG, subgrid );
+    gb = new QGroupBox( i18n("Long Breaks"), this );
+    subgrid = new QGridLayout( gb );
+    addStat( BIG_BREAKS, subgrid, 0 );
+    addStat( LAST_BIG_BREAK, subgrid, 1 );
+    addStat( BIG_BREAKS_SKIPPED, subgrid,2 );
+    addStat( IDLENESS_CAUSED_SKIP_BIG, subgrid, 3 );
     mGrid->addWidget( gb, 1, 1 );
 }
 
@@ -84,14 +72,17 @@ RSIStatWidget::~RSIStatWidget()
 {
 }
 
-void RSIStatWidget::addStat( RSIStat stat, Q3Grid *grid )
+void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
 {
     QLabel *l = RSIGlobals::instance()->stats()->getDescription( stat );
-    l->reparent( grid, 0, QPoint() );
+    l->setParent( grid->parentWidget() );
 
     QLabel *m = RSIGlobals::instance()->stats()->getLabel( stat );
-    m->reparent( grid, 0, QPoint() );
+    m->setParent( grid->parentWidget() );
     m->setAlignment( Qt::AlignRight );
+
+    grid->addWidget(l, row, 0);
+    grid->addWidget(m, row, 1);
 
     // measure minimal width with current font settings
     QFontMetrics fm( KGlobalSettings::generalFont() );
