@@ -94,6 +94,8 @@ int main( int argc, char *argv[] )
 
     RSIApplication a;
     a.disableSessionManagement();
+    // else it will exit(0) when closing any config/about/etc window.
+    a.setQuitOnLastWindowClosed( false );
 
     RSIWidget rsi;
 
