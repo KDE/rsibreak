@@ -103,6 +103,7 @@ RSIDock::RSIDock( QWidget *parent)
 RSIDock::~RSIDock()
 {
     delete m_statsWidget;
+    delete m_statsDialog;
     m_statsWidget = 0;
 }
 
@@ -177,15 +178,13 @@ bool RSIDock::event ( QEvent * event )
 
 void RSIDock::slotShowStatistics()
 {
-/* TODO:
     if ( !m_statsDialog )
     {
-      m_statsDialog = new KDialogBase( this );
+      m_statsDialog = new KDialog( 0 );
+      m_statsDialog->setCaption( i18n("Usage Statistics") );
+      m_statsDialog->setButtons( KDialog::Ok | KDialog::User1 );
+      m_statsDialog->setButtonText( KDialog::User1, i18n("Reset"));
 
-                                       i18n("Usage Statistics"),
-                                       KDialogBase::Ok|KDialogBase::User1,
-                                       KDialogBase::Ok, false,
-                                       i18n("Reset"));
       m_statsWidget = new RSIStatWidget(m_statsDialog);
       connect(m_statsDialog, SIGNAL(user1Clicked()),
               this, SLOT(slotResetStats()));
@@ -194,7 +193,9 @@ void RSIDock::slotShowStatistics()
     }
 
     if ( m_statsDialog->isVisible() &&
-         KWindowSystem::windowInfo( m_statsDialog->winId() ).desktop() == KWindowSystem::currentDesktop() )
+         KWindowSystem::windowInfo(
+                  m_statsDialog->winId(),NET::CurrentDesktop ).desktop() ==
+                  KWindowSystem::currentDesktop() )
     {
       m_statsDialog->hide();
     }
@@ -207,7 +208,6 @@ void RSIDock::slotShowStatistics()
 
       m_statsDialog->raise();
     }
-*/
 }
 
 void RSIDock::slotResetStats()
