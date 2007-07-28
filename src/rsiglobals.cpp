@@ -23,6 +23,7 @@
 #include <kdebug.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
+#include <knotification.h>
 
 #include <math.h>
 #include <kglobal.h>
@@ -32,8 +33,8 @@
 RSIGlobals *RSIGlobals::m_instance = 0;
 RSIStats *RSIGlobals::m_stats = 0;
 
-RSIGlobals::RSIGlobals( QObject *parent, const char *name )
-: QObject( parent, name )
+RSIGlobals::RSIGlobals( QObject *parent )
+: QObject( parent )
 {
     resetUsage();
     slotReadConfig();
@@ -159,19 +160,16 @@ void RSIGlobals::resetUsage()
 
 void RSIGlobals::NotifyBreak(bool start, bool big)
 {
-  /* PORT:
-    QStringList commands;
     if (start)
-        big ? KNotifyClient::event("start long break",
+        big ? KNotification::event("start long break",
                                    i18n("Start of a long break"))
-            : KNotifyClient::event("start short break",
+            : KNotification::event("start short break",
                                    i18n("Start of a short break"));
     else
-        big ? KNotifyClient::event("end long break",
+        big ? KNotification::event("end long break",
                                    i18n("End of a long break"))
-            : KNotifyClient::event("end short break",
+            : KNotification::event("end short break",
                                    i18n("End of a short break"));
-  */
 }
 
 #include "rsiglobals.moc"

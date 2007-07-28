@@ -52,6 +52,8 @@ TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KNOTIF
 
 INSTALL_TARGETS(/bin rsibreak )
 INSTALL_FILES( /share/applications/kde FILES  rsibreak.desktop )
+INSTALL( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
+
 #TODO is this still in KDE4? 
 #INSTALL_FILES( /share/autostart FILES  rsibreak.desktop )
 

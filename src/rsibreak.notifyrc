@@ -1,9 +1,14 @@
-[!Global!]
+[Global]
 IconName=rsibreak
 Comment=RSIBreak
 Comment[sv]=RSIbreak
 
-[start short break]
+[Context/breaks]
+Name=Breaks
+
+[Event/start short break]
+Contexts=breaks
+Action=None
 Name=Start of a short break
 Name[ar]=بدء انقطاع صغير
 Name[bg]=Начало на малка почивка
@@ -42,11 +47,10 @@ Comment[pt]=Quando começa uma pausa pequena
 Comment[pt_BR]=Quando começa uma pausa pequena
 Comment[sv]=När en kort rast startar
 Comment[tr]=Kısa bir molanın ne zaman başladığı
-default_presentation=0
-nopresentation=0
-level=1
 
-[end short break]
+[Event/end short break]
+Contexts=breaks
+Action=None
 Name=End of a short break
 Name[ar]=انتهاء الأنقطاع الصغير
 Name[bg]=Край на малка почивка
@@ -84,11 +88,10 @@ Comment[pt]=Quando termina uma pausa pequena
 Comment[pt_BR]=Quando termina uma pausa pequena
 Comment[sv]=När en kort rast slutar
 Comment[tr]=Kısa bir molanın ne zaman bittiği
-default_presentation=0
-nopresentation=0
-level=1
 
-[start long break]
+[Event/start long break]
+Contexts=breaks
+Action=None
 Name=Start of a long break
 Name[ar]=بدء انقطاع طويل
 Name[bg]=Начало на голяма почивка
@@ -125,11 +128,10 @@ Comment[pt]=Quando começa uma pausa grande
 Comment[pt_BR]=Quando começa uma pausa grande
 Comment[sv]=När en lång rast startar
 Comment[tr]=Uzun bir molanın ne zaman başladığı
-default_presentation=0
-nopresentation=0
-level=1
 
-[end long break]
+[Event/end long break]
+Contexts=breaks
+Action=None
 Name=End of a long break
 Name[ar]=انتهاء الأنقطاع الطويل
 Name[bg]=Край на голяма почивка
@@ -166,7 +168,3 @@ Comment[pt]=Quando termina uma pausa grande
 Comment[pt_BR]=Quando termina uma pausa grande
 Comment[sv]=När en lång rast slutar
 Comment[tr]=Uzun bir molanın ne zaman bittiği
-default_presentation=0
-nopresentation=0
-level=1
-
