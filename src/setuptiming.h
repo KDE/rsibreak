@@ -1,8 +1,5 @@
 /* ============================================================
- * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
- *
- * Copyright (C) 2006 by Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2006-2007 by Tom Albers <tomalbers@kde.nl>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -31,8 +28,6 @@ class SetupTimingPriv;
  * @class SetupTiming
  * These contain the timings settings of RSIBreak, currently
  * that means settings for tiny and big breaks
- * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 

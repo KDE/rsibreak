@@ -1,8 +1,5 @@
 /* ============================================================
- * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
- *
- * Copyright 2005 by Tom Albers <tomalbers@kde.nl>
+ * Copyright 2005,2007 by Tom Albers <tomalbers@kde.nl>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -15,6 +12,9 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * ============================================================ */
 
 #ifndef SETUP_H
@@ -31,8 +31,6 @@ class SetupPriv;
  * can make all the necessary settings. Each part of the config
  * is located in separate files, See SetupGeneral and SetupTimings
  * for example
- * This file is originally copied from showfoto
- * @author Gilles Caulier <caulier.gilles@free.fr>
  * @author Tom Albers <tomalbers@kde.nl>
  */
 class Setup : public KPageDialog
@@ -40,13 +38,12 @@ class Setup : public KPageDialog
     Q_OBJECT
 
 public:
-
     /**
      * Constructor
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit Setup(QWidget* parent=0, const char* name=0);
+    explicit Setup(QWidget* parent=0);
 
     /**
      * Destructor
@@ -54,11 +51,9 @@ public:
     ~Setup();
 
 private:
-
     SetupPriv        *d;
 
 private slots:
-
     void slotOkClicked();
 };
 

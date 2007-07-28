@@ -1,8 +1,5 @@
 /* ============================================================
- * Original copied from showfoto:
- *     Copyright 2005 by Gilles Caulier <caulier.gilles@free.fr>
- *
- * Copyright (C) 2005-2006 by Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2005-2007 by Tom Albers <tomalbers@kde.nl>
  * Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
  *
  * This program is free software; you can redistribute it
@@ -22,31 +19,17 @@
  * ============================================================ */
 
 // Local includes.
-
 #include "setuptiming.h"
 
 // QT includes.
-
-#include <qlayout.h>
-#include <q3hbox.h>
-#include <q3vgroupbox.h>
-#include <q3hgroupbox.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <q3whatsthis.h>
-#include <qcheckbox.h>
-//Added by qt3to4:
-#include <Q3VBoxLayout>
+#include <QGroupBox>
+#include <QVBoxLayout>
+#include <QLabel>
 
 // KDE includes.
-
-#include <klocale.h>
-#include <kcolorbutton.h>
-#include <kfontdialog.h>
-#include <knuminput.h>
-#include <kapplication.h>
-#include <kfiledialog.h>
-#include <kglobal.h>
+#include <KLocale>
+#include <KNumInput>
+#include <KVBox>
 
 class SetupTimingPriv
 {
@@ -64,81 +47,97 @@ SetupTiming::SetupTiming(QWidget* parent )
 {
     d = new SetupTimingPriv;
 
-    Q3VBoxLayout *layout = new Q3VBoxLayout( parent );
-    //TODO
-    //layout->setSpacing( KDialog::spacingHint() );
-    //layout->setAlignment( AlignTop );
+    QVBoxLayout *layout = new QVBoxLayout( parent );
+    KVBox *l = new KVBox( this );
 
-    Q3VGroupBox *tinyBox = new Q3VGroupBox(parent);
+    // ------------------------ Tinybox
+
+    QGroupBox *tinyBox = new QGroupBox(l);
     tinyBox->setTitle(i18n("Tiny Breaks"));
 
-    Q3HBox *m = new Q3HBox(tinyBox);
+    KHBox *m = new KHBox(this);
     QLabel *l1 = new QLabel(i18n("Short break every:") + ' ', m);
     l1->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    Q3WhatsThis::add( l1, i18n("Here you can set how often you want a short "
-                              "break. One minute means 60 seconds of "
-                              "movement with the mouse or typing on the keyboard.") );
+    l1->setWhatsThis( i18n("Here you can set how often you want a short break. "
+        "One minute means 60 seconds of movement with the mouse or typing on "
+        "the keyboard.") );
     d->tinyInterval = new KIntNumInput(m);
     d->tinyInterval->setRange(1,1000,1,false);
     l1->setBuddy(d->tinyInterval);
     connect(d->tinyInterval, SIGNAL(valueChanged(int)),
             SLOT(slotTinyValueChanged( int )));
 
-    Q3HBox *m2 = new Q3HBox(tinyBox);
+    KHBox *m2 = new KHBox(this);
     QLabel *l2 = new QLabel(i18n("For a duration of:") + ' ', m2);
     l2->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    Q3WhatsThis::add( l2, i18n("Here you can set the duration of the short break.") );
+    l2->setWhatsThis(i18n("Here you can set the duration of the short break."));
     d->tinyDuration = new KIntNumInput(m2);
     d->tinyDuration->setRange(1,1000,1,false);
     l2->setBuddy(d->tinyDuration);
-    layout->addWidget(tinyBox);
     connect(d->tinyDuration, SIGNAL(valueChanged(int)),
             SLOT(slotTinyDurationValueChanged( int )));
 
-    Q3VGroupBox *bigBox = new Q3VGroupBox(parent);
+    QVBoxLayout *vbox0 = new QVBoxLayout(tinyBox);
+    vbox0->addWidget(m);
+    vbox0->addWidget(m2);
+    vbox0->addStretch(1);
+    tinyBox->setLayout(vbox0);
+
+    // ------------------------ Bigbox
+
+    QGroupBox *bigBox = new QGroupBox(l);
     bigBox->setTitle(i18n("Big Breaks"));
 
-    Q3HBox *m3 = new Q3HBox(bigBox);
+    KHBox *m3 = new KHBox(this);
     QLabel *l3 = new QLabel(i18n("Long break every:") + ' ', m3);
     l3->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    Q3WhatsThis::add( l3, i18n("Here you can set how often you want a long "
-                              "break. One minute means 60 seconds of "
-                              "movement with the mouse or typing on the keyboard") );
+    l3->setWhatsThis( i18n("Here you can set how often you want a long break. "
+        "One minute means 60 seconds of movement with the mouse or typing on "
+        "the keyboard") );
     d->bigInterval = new KIntNumInput(m3);
     d->bigInterval->setRange(1,1000,1,false);
     l3->setBuddy(d->bigInterval);
     connect(d->bigInterval, SIGNAL(valueChanged(int)),
             SLOT(slotBigValueChanged( int )));
 
-
-    Q3HBox *m4 = new Q3HBox(bigBox);
+    KHBox *m4 = new KHBox(this);
     QLabel *l4 = new QLabel(i18n("For a duration of:") + ' ', m4);
     l4->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    Q3WhatsThis::add( l4, i18n("Here you can set the duration of the long break.") );
+    l4->setWhatsThis( i18n("Here you can set the duration of the long break.") );
     d->bigDuration = new KIntNumInput(m4);
     d->bigDuration->setRange(1,1000,1,false);
     l4->setBuddy(d->bigDuration);
     connect(d->bigDuration, SIGNAL(valueChanged(int)),
             SLOT(slotBigDurationValueChanged( int )));
 
-    layout->addWidget(bigBox);
+    QVBoxLayout *vbox1 = new QVBoxLayout(bigBox);
+    vbox1->addWidget(m3);
+    vbox1->addWidget(m4);
+    vbox1->addStretch(1);
+    bigBox->setLayout(vbox1);
 
-    Q3VGroupBox *slideBox = new Q3VGroupBox(parent);
+    // ------------------------ Slidebox
+
+    QGroupBox *slideBox = new QGroupBox(l);
     slideBox->setTitle(i18n("Slideshow"));
 
-    Q3HBox *m5 = new Q3HBox(slideBox);
+    KHBox *m5 = new KHBox(this);
     QLabel *l5 = new QLabel(i18n("Change images every:") + ' ', m5);
     l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    Q3WhatsThis::add( l5, i18n("Here you can set how long one image should be "
-                              "shown before it is replaced by the next one."));
+    l5->setWhatsThis( i18n("Here you can set how long one image should be "
+        "shown before it is replaced by the next one."));
     d->slideInterval = new KIntNumInput(m5);
     d->slideInterval->setRange(3,1000,1,false);
     l5->setBuddy(d->slideInterval);
     connect(d->slideInterval, SIGNAL(valueChanged(int)),
             SLOT(slotSlideIntervalValueChanged( int )));
 
-    layout->addWidget(slideBox);
-    layout->addStretch(10);
+    QVBoxLayout *vbox2 = new QVBoxLayout(slideBox);
+    vbox2->addWidget(m5);
+    vbox2->addStretch(1);
+    slideBox->setLayout(vbox2);
+
+    layout->addWidget( this );
     readSettings();
 
     // set the suffix
