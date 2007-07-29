@@ -53,6 +53,7 @@
 #include <kimageeffect.h>
 #include <ksystemtrayicon.h>
 #include <KTemporaryFile>
+#include <kpixmapeffect.h>
 #include <kglobal.h>
 
 #include <stdlib.h>
@@ -66,9 +67,11 @@
 #include "rsiglobals.h"
 
 RSIWidget::RSIWidget( QWidget *parent )
-    : QWidget( parent, Qt::WType_Popup), m_currentY( 0 ), m_useImages( false )
+    : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_useImages( false )
     , m_searchRecursive( false )
 {
+    setAttribute( Qt::WA_NoSystemBackground );
+
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
     m_tray = new RSIDock(this);
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
@@ -100,19 +103,17 @@ RSIWidget::RSIWidget( QWidget *parent )
     QBoxLayout *topLayout = new QVBoxLayout( this );
 
     m_countDown = new RSILabel(this);
-    m_countDown->setBackgroundMode( Qt::NoBackground );
-    m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
     m_countDown->hide();
     topLayout->addWidget(m_countDown);
-
     topLayout->addStretch(5);
 
-    QBoxLayout *buttonRow = new QHBoxLayout( topLayout );
+    QBoxLayout *buttonRow = new QHBoxLayout( this );
     m_miniButton = new QPushButton( i18n("Skip"), this );
     buttonRow->addWidget( m_miniButton );
     m_lockButton = new QPushButton( i18n("Lock desktop"), this );
     buttonRow->addWidget( m_lockButton );
     buttonRow->addStretch(10);
+    topLayout->addLayout(buttonRow);
 
     // TODO PORT
     // m_accel = new KAccel(this);
@@ -126,6 +127,7 @@ RSIWidget::RSIWidget( QWidget *parent )
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
 
     m_grab = new QTimer(this);
+    m_grab->setSingleShot( true );
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
     readConfig();
@@ -135,8 +137,12 @@ RSIWidget::RSIWidget( QWidget *parent )
     // if there are no images found, the break will appear in black.
     // if the text color is black (default) then change that.
     if (m_files.count() == 0 &&
-        m_countDown->paletteForegroundColor() == Qt::black)
-        m_countDown->setPaletteForegroundColor( Qt::white );
+        m_countDown->palette().color(QPalette::Active, QPalette::WindowText) == Qt::black)
+    {
+        QPalette normal;
+        normal.setColor(QPalette::Active, QPalette::WindowText, Qt::white);
+        m_countDown->setPalette( normal );
+    }
 
     QTimer::singleShot(0,this,SLOT(slotWelcome()));
 }
@@ -208,7 +214,8 @@ QString RSIWidget::takeScreenshotOfTrayIcon()
 
         // Then, we add a border around the image to make it more visible:
         QPixmap finalShot(w + 2, h + 2);
-        finalShot.fill(KApplication::palette().active().foreground());
+        finalShot.fill(KApplication::palette().color(QPalette::Active,
+                                                     QPalette::WindowText));
         painter.begin(&finalShot);
         painter.drawPixmap(1, 1, shot);
         painter.end();
@@ -259,22 +266,18 @@ void RSIWidget::maximize()
 
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
-    m_grab->start(1000, true);
+    m_grab->start(1000);
 
     // If there are no images found, we gray the screen and wait....
     m_countDown->hide();
     if (m_files.count() == 0 || !m_useImages)
     {
-        m_backgroundimage.resize(QApplication::desktop()->geometry().width(),
-                             QApplication::desktop()->geometry().height());
         setGeometry( QApplication::desktop()->geometry() );
         m_currentY=0;
         QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
     }
     else
     {
-        m_backgroundimage.resize(QApplication::desktop()->width(),
-                             QApplication::desktop()->height());
         setGeometry( QApplication::desktop()->screenGeometry( this ) );
         if (m_slideInterval>0)
             m_timer_slide->start( m_slideInterval*1000 );
@@ -313,7 +316,7 @@ void RSIWidget::loadImage()
         {
             j = (int) (m_files.count() * (rand() / (RAND_MAX + 1.0)));
             name = m_files[ j ];
-        } while (m_files_done.findIndex( name ) != -1);
+        } while (m_files_done.indexOf( name ) != -1);
 
         // load image
         kDebug() << "Loading: " << name <<
@@ -329,7 +332,7 @@ void RSIWidget::loadImage()
         else
         {
             // Too small, remove from list
-            m_files.remove( name );
+            m_files.removeAll( name );
             if (m_files.count() == 0)
             {
                 // Couldn't find any image big enough, leave function
@@ -339,15 +342,13 @@ void RSIWidget::loadImage()
     }
 
     kDebug() << "scaling" << size << endl;
-    QImage m = image.smoothScale( size.width(), size.height(),
-                                  Qt::KeepAspectRatioByExpanding);
+    QImage m = image.scaled( size.width(), size.height(),
+                             Qt::KeepAspectRatioByExpanding);
 
     if (m.isNull())
         return;
 
-    if (!m_backgroundimage.convertFromImage(m))
-        kWarning() << "Failed to set new background image" << endl;
-
+    m_backgroundimage = QPixmap::fromImage(m);
     kDebug() << "all set" << endl;
 
     QPalette palette;
@@ -395,32 +396,54 @@ void RSIWidget::findImagesInFolder(const QString& folder)
     }
 }
 
-// This slot is copied from KDE's logout screen.
+// This slot and the paint event is copied from KDE's logout screen.
 // from various authors found in:
-// branches/KDE/3.5/kdebase/ksmserver/shutdowndlg.cpp
+// /KDE/4/kdebase/workspace/ksmserver/shutdowndlg.cpp
 void RSIWidget::slotGrayEffect()
 {
-  /* TODO PORT 
     if ( m_currentY >= height() ) {
         m_countDown->show();
-        if ( backgroundMode() == QWidget::NoBackground ) {
-            setBackgroundMode( QWidget::NoBackground );
-            setBackgroundPixmap( m_backgroundimage );
-        }
         return;
     }
 
-    QPixmap pixmap;
-    pixmap = QPixmap::grabWindow( qt_xrootwin(), 0, m_currentY, width(), 10 );
-    QImage image = pixmap.convertToImage();
-    KImageEffect::blend( Qt::black, image, 0.4 );
-    KImageEffect::toGray( image, true );
-    pixmap.convertFromImage( image );
-    bitBlt( this, 0, m_currentY, &pixmap );
-    bitBlt( &m_backgroundimage, 0, m_currentY, &pixmap );
-    m_currentY += 10;
-    QTimer::singleShot( 1, this, SLOT( slotGrayEffect() ) );
-    */
+    m_currentY += 15;
+    repaint();
+}
+
+void RSIWidget::paintEvent( QPaintEvent* )
+{
+    kDebug() << k_funcinfo << "current" << m_currentY << " height: " << height() << endl;
+
+    if (m_useImages)
+        return;
+
+    if ( m_currentY >= height() )
+      return;
+
+    QPixmap complete;
+    complete = QPixmap::grabWindow( QX11Info::appRootWindow(), 0, 0, width(), height() );
+
+    // this part is done - this is up to m_currentY
+    QPixmap above(width(),m_currentY);
+    above = complete.copy(0,0,width(), m_currentY);
+
+    // this part we want to process...
+    QPixmap change(width(),15);
+    change = complete.copy(0,m_currentY,width(),15);
+
+    // this part we dont want to touch.
+    QPixmap below(width(),(height()-m_currentY-15));
+    below = complete.copy(0,m_currentY+15,width(),height()-m_currentY-15);
+
+    change = KPixmapEffect::fade( change, 0.4, Qt::black );
+    change = KPixmapEffect::toGray( change, true );
+
+    QPainter painter( this );
+    painter.drawPixmap( 0, 0, above );
+    painter.drawPixmap( 0, m_currentY, change );
+    painter.drawPixmap( 0, m_currentY+15, below );
+
+    QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -599,7 +622,7 @@ void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
     }
 }
 
-void RSIWidget::keyPressEvent( QKeyEvent * e)
+void RSIWidget::keyPressEvent( QKeyEvent * /* e */)
 {
   /* PORT: 
     if (e->key() == m_accel->shortcut("minimize") && m_accel->isEnabled() )
@@ -683,24 +706,20 @@ void RSIWidget::startTimer( bool idle)
 
 void RSIWidget::readConfig()
 {
-    QColor *Black = new QColor(Qt::black);
-    QFont *t = new QFont(  QApplication::font().family(), 40, 75, true );
-
     KConfigGroup config = KGlobal::config()->group("General Settings");
-/* todo
-        m_countDown->setPaletteForegroundColor(
-            config.readEntry("CounterColor", Black ) );
-    */
-    m_miniButton->setHidden(
-            config.readEntry("HideMinimizeButton", false));
+    m_slideInterval = config.readEntry("SlideInterval", 10);
+    m_showTimerReset = config.readEntry("ShowTimerReset", false);
+    QColor color = config.readEntry("CounterColor", QColor( Qt::black ) );
+    QPalette normal;
+    normal.setColor(QPalette::Active, QPalette::WindowText, color);
+    m_countDown->setPalette( normal );
+
+    m_miniButton->setHidden(config.readEntry("HideMinimizeButton", false));
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
-    m_countDown->setHidden(
-            config.readEntry("HideCounter", false));
-    /* TODO:
-    m_countDown->setFont(
-            config.readEntry("CounterFont", t ) );
-    */
+    m_countDown->setHidden( config.readEntry("HideCounter", false));
+    m_countDown->setFont( config.readEntry("CounterFont",
+                        QFont( QApplication::font().family(), 40, 75, true ) ) );
 
     bool useImages = config.readEntry("ShowImages", false);
 
@@ -732,17 +751,6 @@ void RSIWidget::readConfig()
             QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
         }
     }
-
-// TODO: see if this is still the case in KDE4
-//  Ok. So I have no idea. Without setting the group _again_ we do not get a valid
-//  result. Again, by re-setting it I get the value from the config file, and without it not.
-    config = KGlobal::config()->group("General Settings");
-
-    m_slideInterval = config.readEntry("SlideInterval", 10);
-    m_showTimerReset = config.readEntry("ShowTimerReset", false);
-
-    delete Black;
-    delete t;
 }
 
 
