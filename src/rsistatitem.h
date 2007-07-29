@@ -50,7 +50,7 @@ class RSIStatItem
     explicit RSIStatItem( const QString &description = QString(), const QVariant &init = QVariant(0) );
 
     /** Default destructor. */
-    ~RSIStatItem();
+    virtual ~RSIStatItem();
 
     /** Retrieve the item's description in QLabel format. */
     QLabel *getDescription() const { return m_description; }

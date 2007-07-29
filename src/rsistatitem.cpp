@@ -19,7 +19,7 @@
 
 #include "rsistatitem.h"
 
-#include <qlabel.h>
+#include <QLabel>
 
 const int totalarraysize = 60 * 60 * 24;
 

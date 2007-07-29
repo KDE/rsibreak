@@ -44,8 +44,8 @@
 #include <kglobal.h>
 #include <QX11Info>
 
-RSITimer::RSITimer( QObject *parent, const char *name )
-    : QObject( parent, name ), m_breakRequested( false )
+RSITimer::RSITimer( QObject *parent )
+    : QObject( parent ), m_breakRequested( false )
     , m_tinyBreakRequested( false )
     , m_bigBreakRequested( false )
     , m_suspended( false )
@@ -521,8 +521,8 @@ void RSITimer::restoreSession()
     }
 }
 
-RSITimerNoIdle::RSITimerNoIdle( QObject *parent, const char *name )
-: RSITimer( parent, name )
+RSITimerNoIdle::RSITimerNoIdle( QObject *parent )
+: RSITimer( parent )
 {
     kDebug() << "Starting noIdle timer" << endl;
 }

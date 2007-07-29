@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -99,6 +99,5 @@ int main( int argc, char *argv[] )
 
     RSIWidget rsi;
 
-    a.setMainWidget( &rsi );
     return a.exec();
 }

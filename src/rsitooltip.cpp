@@ -18,23 +18,15 @@
 */
 
 #include "rsitooltip.h"
+#include "rsiglobals.h"
+#include "rsistats.h"
 
-#include <qlabel.h>
-#include <qpixmap.h>
-
-#include <KDebug>
-#include <kglobalsettings.h>
 #include <KLocale>
 #include <KHBox>
 #include <KVBox>
 
-#include <math.h>
-
-#include "rsiglobals.h"
-#include "rsistats.h"
-
 RSIToolTip::RSIToolTip( QWidget *parent, KSystemTrayIcon* icon)
-  : QWidget( parent ), m_suspended( false ), m_icon(icon)
+  : QWidget( parent ), m_icon(icon), m_suspended( false )
 {
   m_popup = new PassivePopup( parent );
   m_popup->setTimeout( 4 * 1000 );
@@ -65,11 +57,15 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
     else
     {
         QColor c = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
-        mTinyLeft->setPaletteForegroundColor( c );
+        QPalette normal;
+        normal.setColor(QPalette::Inactive, QPalette::WindowText, c);
+        mTinyLeft->setPalette( normal );
+
         RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, c );
 
         c = RSIGlobals::instance()-> getBigBreakColor( big_left );
-        mBigLeft->setPaletteForegroundColor( c );
+        normal.setColor(QPalette::Inactive, QPalette::WindowText, c);
+        mBigLeft->setPalette( normal );
         RSIGlobals::instance()->stats()->setColor( LAST_BIG_BREAK, c );
 
         // Only add the line for the tiny break when there is not
@@ -99,7 +95,8 @@ void RSIToolTip::setCounters( int tiny_left, int big_left )
 
 void RSIToolTip::setText( const QString &text )
 {
-    mTinyLeft->setPaletteForegroundColor( KGlobalSettings::textColor() );
+    QPalette normal;
+    mTinyLeft->setPalette( normal );
     mTinyLeft->setText( text );
     mBigLeft->clear();
 }

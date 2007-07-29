@@ -33,14 +33,12 @@
 #include <qpainter.h>
 #include <qbitmap.h>
 //Added by qt3to4:
-#include <Q3HBoxLayout>
 #include <QKeyEvent>
 #include <QLabel>
 #include <Q3CString>
 #include <QPixmap>
 #include <QHideEvent>
 #include <QMouseEvent>
-#include <Q3VBoxLayout>
 #include <QCloseEvent>
 #include <QPixmap>
 #include <config.h>
@@ -68,9 +66,7 @@
 #include "rsiglobals.h"
 
 RSIWidget::RSIWidget( QWidget *parent )
-    : QWidget( parent, Qt::WType_Popup)
-    , m_currentY( 0 )
-    , m_useImages( false )
+    : QWidget( parent, Qt::WType_Popup), m_currentY( 0 ), m_useImages( false )
     , m_searchRecursive( false )
 {
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
@@ -101,10 +97,9 @@ RSIWidget::RSIWidget( QWidget *parent )
 
     srand ( time(NULL) );
 
-    Q3BoxLayout *topLayout = new Q3VBoxLayout( this, 5);
+    QBoxLayout *topLayout = new QVBoxLayout( this );
 
     m_countDown = new RSILabel(this);
-    /* m_countDown->setAlignment( AlignRight ); */
     m_countDown->setBackgroundMode( Qt::NoBackground );
     m_countDown->setBackgroundOrigin(QWidget::ParentOrigin);
     m_countDown->hide();
@@ -112,7 +107,7 @@ RSIWidget::RSIWidget( QWidget *parent )
 
     topLayout->addStretch(5);
 
-    Q3BoxLayout *buttonRow = new Q3HBoxLayout( topLayout );
+    QBoxLayout *buttonRow = new QHBoxLayout( topLayout );
     m_miniButton = new QPushButton( i18n("Skip"), this );
     buttonRow->addWidget( m_miniButton );
     m_lockButton = new QPushButton( i18n("Lock desktop"), this );
@@ -648,9 +643,9 @@ void RSIWidget::startTimer( bool idle)
     }
 
     if (idle)
-        m_timer = new RSITimer(this,"Timer");
+        m_timer = new RSITimer(this);
     else
-        m_timer = new RSITimerNoIdle(this,"Timer");
+        m_timer = new RSITimerNoIdle(this);
 
     connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
     connect( m_timer, SIGNAL( updateWidget( int ) ),

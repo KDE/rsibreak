@@ -20,11 +20,6 @@
 #ifndef RSISTATS_H
 #define RSISTATS_H
 
-#include <qmap.h>
-#include <qvariant.h>
-//Added by qt3to4:
-#include <QLabel>
-
 #include "rsiglobals.h"
 
 class QLabel;
