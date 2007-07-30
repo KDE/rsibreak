@@ -37,6 +37,7 @@ class RSIDock;
 class RSITimer;
 class RSIRelaxPopup;
 class RSIToolTip;
+class GrayWidget;
 
 /**
  * @class RSILabel
@@ -104,7 +105,6 @@ class RSIWidget : public QWidget
         void bigBreakSkipped();
         void breakSkipped();
         void skipBreakEnded();
-        void slotGrayEffect();
 
     protected:
         virtual void closeEvent ( QCloseEvent * );
@@ -112,7 +112,6 @@ class RSIWidget : public QWidget
         virtual void mouseReleaseEvent( QMouseEvent * e );
         virtual void keyPressEvent( QKeyEvent * e);
         virtual void hideEvent( QHideEvent * e);
-        virtual void paintEvent( QPaintEvent* );
 
         /** Sets appropriate icon in tooltip and docker. */
         void setIcon( int );
@@ -125,6 +124,7 @@ class RSIWidget : public QWidget
 
         RSIDock*        m_tray;
         RSITimer*       m_timer;
+        GrayWidget*     m_grayWidget;
 
         QPixmap         m_backgroundimage;
         int             m_currentY;

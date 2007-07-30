@@ -42,11 +42,9 @@ class SetupMaximizedPriv
 public:
     KHBox*            colorBox;
     KHBox*            fontBox;
-    KHBox*            shortcutBox;
     QGroupBox*        slideshowBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
-    KKeySequenceWidget*  shortcutBut;
     QLineEdit*        imageFolderEdit;
     QFont             counterFont;
     KColorButton*     counterColor;
@@ -117,28 +115,15 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    d->hideMinimizeButton->setWhatsThis( i18n("Check this option to disable and "
        "hide the skip button. This way you can prevent skipping the break.") );
 
-   d->disableAccel = new QCheckBox(i18n("&Disable shortcut"), this);
+   d->disableAccel = new QCheckBox(i18n("&Shortcut Locks"), this);
    d->disableAccel->setWhatsThis( i18n("Check this option to disable the skip "
-       "shortcut. This way you can prevent skipping the break.") );
+       "shortcut. This way you can prevent skipping the break. Instead it "
+       "will lock the screen.") );
    connect(d->disableAccel, SIGNAL(toggled(bool)), SLOT(slotHideShortcut()));
-
-   d->shortcutBox = new KHBox(this);
-   QLabel *shortcutlabel = new QLabel( i18n("&Shortcut:") + ' ', d->shortcutBox );
-   shortcutlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-
-   d->shortcutBut = new KKeySequenceWidget(d->shortcutBox);
-   d->shortcutBut->setClearButtonShown( false );
-   d->shortcutBut->setModifierlessAllowed( true );
-   shortcutlabel->setBuddy(d->shortcutBut);
-   shortcutlabel->setWhatsThis( i18n("Select here the shortcut to use for "
-        "aborting the break.") );
-   connect(d->shortcutBut, SIGNAL( keySequenceChanged(const QKeySequence&)),
-           this, SLOT(slotShortcutChanged(const QKeySequence&s)));
 
    QVBoxLayout *vbox1 = new QVBoxLayout(skipBox);
    vbox1->addWidget(d->hideMinimizeButton);
    vbox1->addWidget(d->disableAccel);
-   vbox1->addWidget(d->shortcutBox);
    vbox1->addStretch(1);
    skipBox->setLayout(vbox1);
 
@@ -205,7 +190,6 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    readSettings();
    slotHideCounter();
-   slotHideShortcut();
    slotHideFlash();
    slotUseImages();
 }
@@ -228,20 +212,10 @@ void SetupMaximized::slotHideCounter()
     d->fontBox->setEnabled(!d->hideCounter->isChecked());
 }
 
-void SetupMaximized::slotHideShortcut()
-{
-    d->shortcutBox->setEnabled(!d->disableAccel->isChecked());
-}
-
 void SetupMaximized::slotFontPicker()
 {
     KFontDialog::getFont( d->counterFont );
     d->counterFontBut->setText(d->counterFont.family());
-}
-
-void SetupMaximized::slotShortcutChanged(const QKeySequence &seq)
-{
-     d->shortcutBut->setKeySequence(seq);
 }
 
 void SetupMaximized::slotFolderPicker()
@@ -287,7 +261,6 @@ void SetupMaximized::applySettings()
 
     config.writeEntry("HideCounter", d->hideCounter->isChecked());
     config.writeEntry("DisableAccel", d->disableAccel->isChecked());
-    config.writeEntry("MinimizeKey", d->shortcutBut->keySequence().toString());
 
     config = KGlobal::config()->group("Popup Settings");
     config.writeEntry("UsePopup",
@@ -317,8 +290,6 @@ void SetupMaximized::readSettings()
             config.readEntry("SearchRecursiveCheck", false));
     d->hideCounter->setChecked(config.readEntry("HideCounter", false));
     d->disableAccel->setChecked(config.readEntry("DisableAccel", false));
-    d->shortcutBut->setKeySequence(
-            QKeySequence(config.readEntry("MinimizeKey", "Esc")));
 
     config = KGlobal::config()->group("Popup Settings");
     d->usePopup->setChecked(

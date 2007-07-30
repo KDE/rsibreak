@@ -24,6 +24,7 @@ ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 
 # source files needed
 SET(rsibreak_sources
+graywidget.cpp
 passivepopup.cpp
 rsidock.cpp
 setup.cpp
@@ -46,7 +47,7 @@ KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
 ########### linking #####################
 
-TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak ${IDLE_DETECTION_LIB} ${QT_QT3SUPPORT_LIBRARY} )
+TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak ${IDLE_DETECTION_LIB} )
 
 ########### install files ###############
 

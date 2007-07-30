@@ -56,11 +56,9 @@ public:
 
 private slots:
     void slotHideCounter();
-    void slotHideShortcut();
     void slotFontPicker();
     void slotFolderPicker();
     void slotFolderEdited(const QString& newPath);
-    void slotShortcutChanged(const QKeySequence &seq);
     void slotHideFlash();
     void slotUseImages();
 

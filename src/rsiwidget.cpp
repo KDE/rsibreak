@@ -18,6 +18,7 @@
 */
 
 #include "rsiwidget.h"
+#include "graywidget.h"
 
 #include <qpushbutton.h>
 #include <qdesktopwidget.h>
@@ -132,7 +133,13 @@ RSIWidget::RSIWidget( QWidget *parent )
     m_grab->setSingleShot( true );
     connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
 
+    m_grayWidget = new GrayWidget(this); // create before readConfig.
+
     readConfig();
+
+    // m_timer is only available after readConfig.
+    connect(m_grayWidget, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect(m_grayWidget, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     setIcon( 0 );
 
@@ -248,6 +255,8 @@ void RSIWidget::minimize( bool newImage )
     releaseKeyboard();
     releaseMouse();
     hide();
+    m_grayWidget->hide();
+    m_grayWidget->reset();
     if (newImage)
         loadImage();
 }
@@ -255,11 +264,11 @@ void RSIWidget::minimize( bool newImage )
 void RSIWidget::maximize()
 {
     /* TODO: setBackgroundMode( QWidget::NoBackground ); */
-    show(); // Keep it above the KWindowSystem calls.
-    KWindowSystem::forceActiveWindow(winId());
-    KWindowSystem::setOnAllDesktops(winId(),true);
-    KWindowSystem::setState(winId(), NET::KeepAbove);
-    KWindowSystem::setState(winId(), NET::FullScreen);
+    m_grayWidget->show(); // Keep it above the KWindowSystem calls.
+    KWindowSystem::forceActiveWindow(m_grayWidget->winId());
+    KWindowSystem::setOnAllDesktops(m_grayWidget->winId(),true);
+    KWindowSystem::setState(m_grayWidget->winId(), NET::KeepAbove);
+    KWindowSystem::setState(m_grayWidget->winId(), NET::FullScreen);
 
     // prevent that users accidently press this button while
     // they were writing text when the break appears
@@ -268,7 +277,7 @@ void RSIWidget::maximize()
 
     // Small delay for grabbing keyboard and mouse, because
     // it will not grab when widget not visible
-    m_grab->start(1000);
+    //m_grab->start(1000);
 
     // If there are no images found, we gray the screen and wait....
     m_countDown->hide();
@@ -276,7 +285,7 @@ void RSIWidget::maximize()
     {
         setGeometry( QApplication::desktop()->geometry() );
         m_currentY=0;
-        QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
+        QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
     }
     else
     {
@@ -398,49 +407,6 @@ void RSIWidget::findImagesInFolder(const QString& folder)
     }
 }
 
-// This slot and the paint event is copied from KDE's logout screen.
-// from various authors found in:
-// /KDE/4/kdebase/workspace/ksmserver/shutdowndlg.cpp
-void RSIWidget::slotGrayEffect()
-{
-    if ( m_currentY >= height() )
-    {
-        m_countDown->show();
-        return;
-    }
-    repaint();
-    m_currentY += 15;
-}
-
-void RSIWidget::paintEvent( QPaintEvent* )
-{
-    if ( m_useImages || m_currentY >= height() )
-      return;
-
-    static QPixmap complete( width(), height() );
-    QPixmap below(width(),(height()-15));
-
-    if ( m_currentY == 0 )
-    {
-      complete = QPixmap::grabWindow( QX11Info::appRootWindow(), 0, 0, width(), height() );
-      below = complete.copy(0, 15, width(), height()-15);
-    }
-
-    // this part we want to process...
-    QPixmap change(width(),15);
-    change = complete.copy(0, m_currentY, width(),15);
-    change = KPixmapEffect::fade( change, 0.4, Qt::black );
-    change = KPixmapEffect::toGray( change, true );
-
-    QPainter painter( this );
-    painter.drawPixmap( 0, m_currentY, change );
-
-    if ( m_currentY == 0 )
-      painter.drawPixmap( 0, 15, below );
-
-    QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
-}
-
 // -------------------------- SLOTS ------------------------//
 
 void RSIWidget::slotNewSlide()
@@ -497,14 +463,17 @@ void RSIWidget::setCounters( int timeleft )
         }
 
         m_countDown->setText( cdString );
+        m_grayWidget->setLabel( cdString );
     }
     else if ( m_timer->isSuspended() )
     {
         m_countDown->setText( i18n("Suspended") );
+        m_grayWidget->setLabel( i18n("Suspended") );
     }
     else
     {
         m_countDown->clear();
+        m_grayWidget->setLabel( QString() );
     }
 
     if( m_useImages )
@@ -710,6 +679,8 @@ void RSIWidget::readConfig()
     m_countDown->setPalette( normal );
 
     m_miniButton->setHidden(config.readEntry("HideMinimizeButton", false));
+    m_grayWidget->showMinimize(!config.readEntry("HideMinimizeButton", false));
+    
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
     m_countDown->setHidden( config.readEntry("HideCounter", false));
@@ -726,9 +697,7 @@ void RSIWidget::readConfig()
     startTimer(!timertype);
 
     // Hook in the shortcut after the timer initialisation.
-//    m_accel->setEnabled(!config.readEntry("DisableAccel", false));
-    QString shortcut = config.readEntry("MinimizeKey", "Escape");
-//    m_accel->setShortcut("minimize",KShortcut(shortcut));
+    m_grayWidget->disableShortcut( config.readEntry("DisableAccel", false) );
 
     if (m_basePath != path || m_searchRecursive != recursive ||
         m_useImages != useImages )
