@@ -46,7 +46,7 @@ class SlideShow;
  * It minimizes and maximized the widget
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIWidget : public QWidget
+class RSIWidget : public QObject
 {
     Q_OBJECT
 
@@ -56,7 +56,7 @@ class RSIWidget : public QWidget
          * @param parent Parent Widget
          * @param name Name
          */
-        explicit RSIWidget( QWidget *parent = 0);
+        explicit RSIWidget( QObject *parent = 0);
 
         /**
          * Destructor
@@ -91,8 +91,6 @@ class RSIWidget : public QWidget
         RSITimer*       m_timer;
         GrayWidget*     m_grayWidget;
         SlideShow*      m_slideShow;
-
-        int             m_currentY;
 
         QLabel*         m_tool;
 

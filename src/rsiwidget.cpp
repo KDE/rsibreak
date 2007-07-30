@@ -68,24 +68,18 @@
 #include "rsitooltip.h"
 #include "rsiglobals.h"
 
-RSIWidget::RSIWidget( QWidget *parent )
-    : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_useImages( false )
+RSIWidget::RSIWidget( QObject *parent )
+    : QObject( parent ), m_useImages( false )
 {
-    setAttribute( Qt::WA_NoSystemBackground );
-
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
-    m_tray = new RSIDock(this);
+    m_tray = new RSIDock(0);
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
     m_tray->show();
 
-    QRect rect = QApplication::desktop()->screenGeometry(
-                        QApplication::desktop()->primaryScreen() );
-    setGeometry( rect );
-
-    m_tooltip = new RSIToolTip( this, m_tray  );
+    m_tooltip = new RSIToolTip( 0, m_tray  );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
 
-    m_relaxpopup = new RSIRelaxPopup(this, m_tray);
+    m_relaxpopup = new RSIRelaxPopup(0, m_tray);
     m_relaxpopup->show();
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
@@ -101,8 +95,8 @@ RSIWidget::RSIWidget( QWidget *parent )
 
     srand ( time(NULL) );
 
-    m_grayWidget = new GrayWidget(this); // create before readConfig.
-    m_slideShow = new SlideShow(this); // create before readConfig.
+    m_grayWidget = new GrayWidget(0); // create before readConfig.
+    m_slideShow = new SlideShow(0); // create before readConfig.
 
     readConfig();
 
@@ -125,7 +119,7 @@ void RSIWidget::slotWelcome()
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
       QString tempfile = takeScreenshotOfTrayIcon();
-      KMessageBox::information(this, i18n("<p>Welcome to RSIBreak<p><p>"
+      KMessageBox::information(0, i18n("<p>Welcome to RSIBreak<p><p>"
         "In your tray you can now see RSIBreak: ")
         + "<p><center><img source=\"" + tempfile + "\"></center></p><p>"
         + i18n("When you right-click on that you will see a menu, from which "
@@ -138,7 +132,7 @@ void RSIWidget::slotWelcome()
 void RSIWidget::slotShowWhereIAm()
 {
       QString tempfile = takeScreenshotOfTrayIcon();
-      KMessageBox::information(this,
+      KMessageBox::information(0,
            i18n("<p>RSIBreak is already running<p><p>It is located here:")
            + "<p><center><img source=\"" + tempfile +"\"></center></p><p>",
            i18n("Already Running"));
@@ -222,7 +216,6 @@ void RSIWidget::maximize()
       KWindowSystem::setOnAllDesktops(m_grayWidget->winId(),true);
       KWindowSystem::setState(m_grayWidget->winId(), NET::KeepAbove);
       KWindowSystem::setState(m_grayWidget->winId(), NET::FullScreen);
-      m_currentY=0;
       QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
     }
     else
