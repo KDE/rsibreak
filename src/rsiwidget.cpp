@@ -104,6 +104,8 @@ RSIWidget::RSIWidget( QWidget *parent )
 
     m_countDown = new RSILabel(this);
     m_countDown->hide();
+    m_countDown->setAttribute( Qt::WA_NoSystemBackground );
+
     topLayout->addWidget(m_countDown);
     topLayout->addStretch(5);
 
@@ -401,47 +403,40 @@ void RSIWidget::findImagesInFolder(const QString& folder)
 // /KDE/4/kdebase/workspace/ksmserver/shutdowndlg.cpp
 void RSIWidget::slotGrayEffect()
 {
-    if ( m_currentY >= height() ) {
+    if ( m_currentY >= height() )
+    {
         m_countDown->show();
         return;
     }
-
-    m_currentY += 15;
     repaint();
+    m_currentY += 15;
 }
 
 void RSIWidget::paintEvent( QPaintEvent* )
 {
-    kDebug() << k_funcinfo << "current" << m_currentY << " height: " << height() << endl;
-
-    if (m_useImages)
-        return;
-
-    if ( m_currentY >= height() )
+    if ( m_useImages || m_currentY >= height() )
       return;
 
-    QPixmap complete;
-    complete = QPixmap::grabWindow( QX11Info::appRootWindow(), 0, 0, width(), height() );
+    static QPixmap complete( width(), height() );
+    QPixmap below(width(),(height()-15));
 
-    // this part is done - this is up to m_currentY
-    QPixmap above(width(),m_currentY);
-    above = complete.copy(0,0,width(), m_currentY);
+    if ( m_currentY == 0 )
+    {
+      complete = QPixmap::grabWindow( QX11Info::appRootWindow(), 0, 0, width(), height() );
+      below = complete.copy(0, 15, width(), height()-15);
+    }
 
     // this part we want to process...
     QPixmap change(width(),15);
-    change = complete.copy(0,m_currentY,width(),15);
-
-    // this part we dont want to touch.
-    QPixmap below(width(),(height()-m_currentY-15));
-    below = complete.copy(0,m_currentY+15,width(),height()-m_currentY-15);
-
+    change = complete.copy(0, m_currentY, width(),15);
     change = KPixmapEffect::fade( change, 0.4, Qt::black );
     change = KPixmapEffect::toGray( change, true );
 
     QPainter painter( this );
-    painter.drawPixmap( 0, 0, above );
     painter.drawPixmap( 0, m_currentY, change );
-    painter.drawPixmap( 0, m_currentY+15, below );
+
+    if ( m_currentY == 0 )
+      painter.drawPixmap( 0, 15, below );
 
     QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
 }
