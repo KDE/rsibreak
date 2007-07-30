@@ -19,6 +19,7 @@
 
 #include "rsiwidget.h"
 #include "graywidget.h"
+#include "slideshow.h"
 
 #include <qpushbutton.h>
 #include <qdesktopwidget.h>
@@ -69,7 +70,6 @@
 
 RSIWidget::RSIWidget( QWidget *parent )
     : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_useImages( false )
-    , m_searchRecursive( false )
 {
     setAttribute( Qt::WA_NoSystemBackground );
 
@@ -101,39 +101,8 @@ RSIWidget::RSIWidget( QWidget *parent )
 
     srand ( time(NULL) );
 
-    QBoxLayout *topLayout = new QVBoxLayout( this );
-
-    m_countDown = new RSILabel(this);
-    m_countDown->hide();
-    m_countDown->setAttribute( Qt::WA_NoSystemBackground );
-
-    topLayout->addWidget(m_countDown);
-    topLayout->addStretch(5);
-
-    QBoxLayout *buttonRow = new QHBoxLayout( this );
-    m_miniButton = new QPushButton( i18n("Skip"), this );
-    buttonRow->addWidget( m_miniButton );
-    m_lockButton = new QPushButton( i18n("Lock desktop"), this );
-    buttonRow->addWidget( m_lockButton );
-    buttonRow->addStretch(10);
-    topLayout->addLayout(buttonRow);
-
-    // TODO PORT
-    // m_accel = new KAccel(this);
-
-    // This connects only get used when there the user locks and
-    // unlocks before the break is over. The lock releases the mouse
-    // and keyboard, and that way the event methods are not called.
-    connect(m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
-
-    m_timer_slide = new QTimer(this);
-    connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
-
-    m_grab = new QTimer(this);
-    m_grab->setSingleShot( true );
-    connect(m_grab, SIGNAL(timeout()),  SLOT(slotGrab()));
-
     m_grayWidget = new GrayWidget(this); // create before readConfig.
+    m_slideShow = new SlideShow(this); // create before readConfig.
 
     readConfig();
 
@@ -142,16 +111,6 @@ RSIWidget::RSIWidget( QWidget *parent )
     connect(m_grayWidget, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     setIcon( 0 );
-
-    // if there are no images found, the break will appear in black.
-    // if the text color is black (default) then change that.
-    if (m_files.count() == 0 &&
-        m_countDown->palette().color(QPalette::Active, QPalette::WindowText) == Qt::black)
-    {
-        QPalette normal;
-        normal.setColor(QPalette::Active, QPalette::WindowText, Qt::white);
-        m_countDown->setPalette( normal );
-    }
 
     QTimer::singleShot(0,this,SLOT(slotWelcome()));
 }
@@ -246,182 +205,40 @@ QString RSIWidget::takeScreenshotOfTrayIcon()
 
 void RSIWidget::minimize( bool newImage )
 {
-    // stop the m_grab, if the break is ESCaped during the
-    // first second, slotGrab is called after the widget
-    // is minimized again.
-    m_grab->stop();
-
-    m_timer_slide->stop();
-    releaseKeyboard();
-    releaseMouse();
-    hide();
     m_grayWidget->hide();
     m_grayWidget->reset();
+    m_slideShow->stop();
     if (newImage)
-        loadImage();
+       m_slideShow->loadImage();
 }
 
 void RSIWidget::maximize()
 {
-    /* TODO: setBackgroundMode( QWidget::NoBackground ); */
-    m_grayWidget->show(); // Keep it above the KWindowSystem calls.
-    KWindowSystem::forceActiveWindow(m_grayWidget->winId());
-    KWindowSystem::setOnAllDesktops(m_grayWidget->winId(),true);
-    KWindowSystem::setState(m_grayWidget->winId(), NET::KeepAbove);
-    KWindowSystem::setState(m_grayWidget->winId(), NET::FullScreen);
-
-    // prevent that users accidently press this button while
-    // they were writing text when the break appears
-    m_miniButton->clearFocus();
-    m_lockButton->clearFocus();
-
-    // Small delay for grabbing keyboard and mouse, because
-    // it will not grab when widget not visible
-    //m_grab->start(1000);
-
     // If there are no images found, we gray the screen and wait....
-    m_countDown->hide();
-    if (m_files.count() == 0 || !m_useImages)
+    if (!m_slideShow->hasImages() || !m_useImages)
     {
-        setGeometry( QApplication::desktop()->geometry() );
-        m_currentY=0;
-        QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
+      m_grayWidget->show(); // Keep it above the KWindowSystem calls.
+      KWindowSystem::forceActiveWindow(m_grayWidget->winId());
+      KWindowSystem::setOnAllDesktops(m_grayWidget->winId(),true);
+      KWindowSystem::setState(m_grayWidget->winId(), NET::KeepAbove);
+      KWindowSystem::setState(m_grayWidget->winId(), NET::FullScreen);
+      m_currentY=0;
+      QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
     }
     else
     {
-        setGeometry( QApplication::desktop()->screenGeometry( this ) );
-        if (m_slideInterval>0)
-            m_timer_slide->start( m_slideInterval*1000 );
-
-        QPalette palette;
-        palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
-        setPalette(palette);
-        kDebug() << k_funcinfo << "SetPalette" << endl;
+      m_slideShow->show(); // Keep it above the KWindowSystem calls.
+      KWindowSystem::forceActiveWindow(m_slideShow->winId());
+      KWindowSystem::setOnAllDesktops(m_slideShow->winId(),true);
+      KWindowSystem::setState(m_slideShow->winId(), NET::KeepAbove);
+      KWindowSystem::setState(m_slideShow->winId(), NET::FullScreen);
+      m_slideShow->start();
     }
-}
-
-void RSIWidget::loadImage()
-{
-    if (m_files.count() == 0)
-        return;
-
-    // Base the size on the size of the screen, for xinerama.
-    QRect size = QApplication::desktop()->screenGeometry(
-                        QApplication::desktop()->primaryScreen() );
-
-    // Do not accept images whose surface is more than 3 times smaller than
-    // screen
-    int min_image_surface = size.width() * size.height() / 3;
-    QImage image;
-
-    while (true)
-    {
-        // reset if all images are shown
-        if (m_files_done.count() == m_files.count())
-            m_files_done.clear();
-
-        // get a not yet used image
-        int j;
-        QString name;
-        do
-        {
-            j = (int) (m_files.count() * (rand() / (RAND_MAX + 1.0)));
-            name = m_files[ j ];
-        } while (m_files_done.indexOf( name ) != -1);
-
-        // load image
-        kDebug() << "Loading: " << name <<
-                        "( " << j << " / "  << m_files.count() << " ) " << endl;
-        image.load( name );
-
-        // Check size
-        if ( image.width() * image.height() >= min_image_surface ) {
-            // Image is big enough, leave while loop
-            m_files_done.append( name );
-            break;
-        }
-        else
-        {
-            // Too small, remove from list
-            m_files.removeAll( name );
-            if (m_files.count() == 0)
-            {
-                // Couldn't find any image big enough, leave function
-                return;
-            }
-        }
-    }
-
-    kDebug() << "scaling" << size << endl;
-    QImage m = image.scaled( size.width(), size.height(),
-                             Qt::KeepAspectRatioByExpanding);
-
-    if (m.isNull())
-        return;
-
-    m_backgroundimage = QPixmap::fromImage(m);
-    kDebug() << "all set" << endl;
-
-    QPalette palette;
-    palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
-    setPalette(palette);
-
-    kDebug() << k_funcinfo << "SetPalette" << endl;
-}
-
-
-void RSIWidget::findImagesInFolder(const QString& folder)
-{
-    if ( folder.isNull() )
-        return;
-
-    QDir dir( folder);
-
-    if ( !dir.exists() || !dir.isReadable() )
-    {
-        kWarning() << "Folder does not exist or is not readable: "
-                << folder << endl;
-        return;
-    }
-
-    // TODO: make an automated filter, maybe with QImageIO.
-    QStringList filters;
-    filters << "*.png" << "*.jpg" << "*.jpeg" << "*.tif" << "*.tiff" <<
-        "*.gif" << "*.bmp" << "*.xpm" << "*.ppm" <<  "*.pnm"  << "*.xcf" <<
-        "*.pcx";
-    QStringList filtersUp;
-    for (int i = 0; i < filters.size(); ++i)
-        filtersUp << filters.at(i).toUpper();
-    dir.setNameFilters(filters << filtersUp);
-    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs );
-
-    const QFileInfoList list = dir.entryInfoList();
-    for (int i=0; i<list.count(); ++i)
-    {
-        QFileInfo fi = list.at(i);
-        if ( fi.isFile())
-            m_files.append(fi.filePath());
-        else if (fi.isDir() && m_searchRecursive &&
-                 fi.fileName() != "." &&  fi.fileName() != "..")
-            findImagesInFolder(fi.absoluteFilePath());
-    }
-}
-
-// -------------------------- SLOTS ------------------------//
-
-void RSIWidget::slotNewSlide()
-{
-    if (m_files.count() == 1 || !m_useImages)
-        return;
-
-    loadImage();
 }
 
 void RSIWidget::slotLock()
 {
-    m_timer_slide->stop();
-    releaseKeyboard();
-    releaseMouse();
+    m_slideShow->stop();
 
     /* TODO PORT
     Q3CString appname( "kdesktop" );
@@ -430,12 +247,6 @@ void RSIWidget::slotLock()
         appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
     kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
     */
-}
-
-void RSIWidget::slotGrab()
-{
-    grabMouse( QCursor( Qt::ArrowCursor ) );
-    grabKeyboard();
 }
 
 void RSIWidget::setCounters( int timeleft )
@@ -462,22 +273,16 @@ void RSIWidget::setCounters( int timeleft )
                     .arg( minutes );
         }
 
-        m_countDown->setText( cdString );
         m_grayWidget->setLabel( cdString );
     }
     else if ( m_timer->isSuspended() )
     {
-        m_countDown->setText( i18n("Suspended") );
         m_grayWidget->setLabel( i18n("Suspended") );
     }
     else
     {
-        m_countDown->clear();
         m_grayWidget->setLabel( QString() );
     }
-
-    if( m_useImages )
-      m_countDown->show();
 }
 
 void RSIWidget::updateIdleAvg( double idleAvg )
@@ -552,59 +357,6 @@ void RSIWidget::skipBreakEnded()
     m_tooltip->hide();
 }
 
-// ----------------------------- EVENTS -----------------------//
-
-void RSIWidget::closeEvent( QCloseEvent * )
-{
-    hide();
-}
-
-void RSIWidget::mousePressEvent( QMouseEvent * e )
-{
-    if (e->button() != Qt::LeftButton)
-        return;
-
-    if ( m_miniButton->geometry().contains(e->pos()))
-        m_miniButton->setDown( true );
-
-    else if (m_lockButton->geometry().contains(e->pos()))
-        m_lockButton->setDown( true );
-}
-
-void RSIWidget::mouseReleaseEvent( QMouseEvent * e )
-{
-    if ( m_miniButton->geometry().contains(e->pos()))
-    {
-        m_miniButton->setDown( false );
-        m_timer->skipBreak();
-    }
-
-    else if (m_lockButton->geometry().contains(e->pos()))
-    {
-        m_lockButton->setDown( false );
-        slotLock();
-    }
-}
-
-void RSIWidget::keyPressEvent( QKeyEvent * /* e */)
-{
-  /* PORT: 
-    if (e->key() == m_accel->shortcut("minimize") && m_accel->isEnabled() )
-        m_timer->skipBreak();
-  */
-}
-
-void RSIWidget::hideEvent( QHideEvent * e)
-{
-    kDebug() << k_funcinfo << endl;
-    m_backgroundimage = QPixmap();
-    QPalette palette;
-    palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
-    setPalette(palette);
-    kDebug() << k_funcinfo << "SetPalette" << endl;
-    QWidget::hideEvent(e);
-}
-
 //--------------------------- CONFIG ----------------------------//
 
 void RSIWidget::startTimer( bool idle)
@@ -656,39 +408,28 @@ void RSIWidget::startTimer( bool idle)
 
     connect( m_relaxpopup, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
 
-    // This connects only get used when there the user locks and
-    // unlocks before the break is over. The lock releases the mouse
-    // and keyboard, and that way the event methods are not called.
-    connect(m_miniButton, SIGNAL( clicked() ), m_timer, SLOT( skipBreak() ) );
-
-//    m_accel->insert("minimize", i18n("Skip"),
- //                   i18n("Abort a break"),Qt::Key_Escape,
- //                   m_timer, SLOT( skipBreak() ));
-
     first = false;
 }
 
 void RSIWidget::readConfig()
 {
-    KConfigGroup config = KGlobal::config()->group("General Settings");
-    m_slideInterval = config.readEntry("SlideInterval", 10);
-    m_showTimerReset = config.readEntry("ShowTimerReset", false);
-    QColor color = config.readEntry("CounterColor", QColor( Qt::black ) );
-    QPalette normal;
-    normal.setColor(QPalette::Active, QPalette::WindowText, color);
-    m_countDown->setPalette( normal );
+  static QString oldPath;
+  static bool oldRecursive;
 
-    m_miniButton->setHidden(config.readEntry("HideMinimizeButton", false));
+    KConfigGroup config = KGlobal::config()->group("General Settings");
+    m_showTimerReset = config.readEntry("ShowTimerReset", false);
+    // TODO:  QColor color = config.readEntry("CounterColor", QColor( Qt::black ) );
+
     m_grayWidget->showMinimize(!config.readEntry("HideMinimizeButton", false));
-    
+
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
-    m_countDown->setHidden( config.readEntry("HideCounter", false));
-    m_countDown->setFont( config.readEntry("CounterFont",
-                        QFont( QApplication::font().family(), 40, 75, true ) ) );
+    // TODO: m_countDown->setHidden( config.readEntry("HideCounter", false));
+    // m_countDown->setFont( config.readEntry("CounterFont",
+    //                    QFont( QApplication::font().family(), 40, 75, true ) ) );
 
-    bool useImages = config.readEntry("ShowImages", false);
-
+    m_useImages = config.readEntry("ShowImages", false);
+    int slideInterval = config.readEntry("SlideInterval", 10);
     bool recursive =
             config.readEntry("SearchRecursiveCheck", false);
     QString path = config.readEntry("ImageFolder");
@@ -699,62 +440,11 @@ void RSIWidget::readConfig()
     // Hook in the shortcut after the timer initialisation.
     m_grayWidget->disableShortcut( config.readEntry("DisableAccel", false) );
 
-    if (m_basePath != path || m_searchRecursive != recursive ||
-        m_useImages != useImages )
-    {
-        m_files.clear();
-        m_files_done.clear();
-        m_basePath = path;
-        m_searchRecursive = recursive;
-        m_useImages = useImages;
-        if (m_useImages)
-        {
-            findImagesInFolder( path );
-            // LoadImage (smoothscale) takes some time, so when booting this seriously
-            // drains startup speed. So, deleay this a few seconds...
-            QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
-        }
-    }
-}
+    if ((oldPath != path || oldRecursive != recursive) && m_useImages)
+          m_slideShow->reset( path, recursive, slideInterval);
 
-
-
-
-
-RSILabel::RSILabel( QWidget *parent)
-: QLabel( parent)
-{
-}
-
-RSILabel::~RSILabel()
-{
-}
-
-void RSILabel::setText( const QString &str )
-{
-    QLabel::setText( str );
-    updateMask();
-}
-
-void RSILabel::updateMask()
-{
-  /* PORT
-    QBitmap b( size() );
-    b.fill( color0 );
-
-    QPainter p;
-    p.begin( &b, this );
-    p.setPen( color1 );
-    drawContents( &p );
-    p.end();
-
-    setMask( b );
-  */
-}
-
-RSITimer *RSIWidget::getTimer() const
-{
-    return m_timer;
+    oldPath = path;
+    oldRecursive = recursive;
 }
 
 #include "rsiwidget.moc"

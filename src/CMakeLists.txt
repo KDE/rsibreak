@@ -24,6 +24,7 @@ ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 
 # source files needed
 SET(rsibreak_sources
+slideshow.cpp
 graywidget.cpp
 passivepopup.cpp
 rsidock.cpp

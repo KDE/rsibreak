@@ -18,8 +18,8 @@
 
 */
 
-#ifndef RSIWidget_H
-#define RSIWidget_H
+#ifndef SLIDESHOW_H
+#define SLIDESHOW_H
 
 #include <qdatetime.h>
 #include <qlabel.h>
@@ -38,15 +38,14 @@ class RSITimer;
 class RSIRelaxPopup;
 class RSIToolTip;
 class GrayWidget;
-class SlideShow;
 
 /**
- * @class RSIWidget
+ * @class SlideShow
  * This widget is the main widget for RSIBreak.
  * It minimizes and maximized the widget
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIWidget : public QWidget
+class SlideShow : public QWidget
 {
     Q_OBJECT
 
@@ -56,53 +55,34 @@ class RSIWidget : public QWidget
          * @param parent Parent Widget
          * @param name Name
          */
-        explicit RSIWidget( QWidget *parent = 0);
+        explicit SlideShow( QWidget *parent = 0);
 
         /**
          * Destructor
          */
-        ~RSIWidget();
+        ~SlideShow();
+
+        void reset( const QString& path, bool recursive, int interval);
+        void start();
+        void stop();
+        bool hasImages();
+        void loadImage();
 
     private slots:
-        void slotWelcome();
-        void slotShowWhereIAm();
-        void slotLock();
-        void minimize( bool newImage = true );
-        void maximize();
-        void setCounters( int );
-        void updateIdleAvg( double );
-        void readConfig();
-        void tinyBreakSkipped();
-        void bigBreakSkipped();
-        void breakSkipped();
-        void skipBreakEnded();
-
-    protected:
-        /** Sets appropriate icon in tooltip and docker. */
-        void setIcon( int );
+        void slotNewSlide();
 
     private:
-        QString takeScreenshotOfTrayIcon();
         void findImagesInFolder(const QString& folder);
-        void loadImage();
-        void startTimer( bool idle);
 
-        RSIDock*        m_tray;
-        RSITimer*       m_timer;
-        GrayWidget*     m_grayWidget;
-        SlideShow*      m_slideShow;
+        QPixmap         m_backgroundimage;
+        QString         m_basePath;
+        QTimer*         m_timer_slide;
 
-        int             m_currentY;
+        bool            m_searchRecursive;
+        int             m_slideInterval;
 
-        QLabel*         m_tool;
-
-        bool            m_useImages;
-        bool            m_showTimerReset;
-
-        RSIRelaxPopup*  m_relaxpopup;
-        RSIToolTip*     m_tooltip;
-
-        bool            m_useIdleDetection;
+        QStringList     m_files;
+        QStringList     m_files_done;
 };
 
 #   endif
