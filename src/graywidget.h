@@ -72,8 +72,10 @@ class GrayWidget : public QWidget
         int             m_currentY;
         KDialog*        m_dialog;
         QLabel*         m_label;
+        QPixmap        m_complete;
         bool            m_showMinimize;
         bool            m_disableShort;
+        bool            m_first;
         void showDialog();
         void loadDialog();
 };

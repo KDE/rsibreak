@@ -18,6 +18,7 @@
 */
 
 #include "graywidget.h"
+#include "rsitimer_dpms.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -27,13 +28,14 @@
 #include <QLabel>
 
 #include <kpixmapeffect.h>
+#include <kwindowsystem.h>
 #include <KDialog>
 #include <KLocale>
 #include <KAction>
 
 GrayWidget::GrayWidget( QWidget *parent )
   : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_showMinimize( true ),
-        m_disableShort( false )
+        m_disableShort( false ), m_first( true )
 {
     // full screen
     setAttribute( Qt::WA_NoSystemBackground );
@@ -58,6 +60,7 @@ GrayWidget::~GrayWidget()
 void GrayWidget::reset()
 {
   m_currentY = 0;
+  m_first = true;
   m_dialog->hide();
 }
 
@@ -91,35 +94,41 @@ void GrayWidget::slotGrayEffect()
         showDialog();
         return;
     }
+    if (m_first)
+    {
+      m_first = false;
+      m_complete = takeScreenshot( QX11Info::appScreen() );
+
+      show();
+
+      KWindowSystem::forceActiveWindow(winId());
+      KWindowSystem::setOnAllDesktops(winId(),true);
+      KWindowSystem::setState(winId(), NET::KeepAbove);
+      KWindowSystem::setState(winId(), NET::FullScreen);
+
+    }
     repaint();
     m_currentY += 15;
 }
 
 void GrayWidget::paintEvent( QPaintEvent* )
 {
+    kDebug() << k_funcinfo << m_currentY << m_first << endl;
+
     if ( m_currentY >= height() )
       return;
 
-    static QPixmap complete( width(), height() );
-    QPixmap below(width(),(height()-15));
-
-    if ( m_currentY == 0 )
-    {
-      complete = QPixmap::grabWindow( QX11Info::appRootWindow(), 0, 0, width(), height() );
-      below = complete.copy(0, 15, width(), height()-15);
-    }
-
     // this part we want to process...
     QPixmap change(width(),15);
-    change = complete.copy(0, m_currentY, width(),15);
+    change = m_complete.copy(0, m_currentY, width(),15);
     change = KPixmapEffect::fade( change, 0.4, Qt::black );
     change = KPixmapEffect::toGray( change, true );
 
     QPainter painter( this );
     painter.drawPixmap( 0, m_currentY, change );
 
-    if ( m_currentY == 0 )
-      painter.drawPixmap( 0, 15, below );
+    if ( m_currentY == 15 )
+      painter.drawPixmap( 0, 15, m_complete.copy(0, 15, width(), height()-15) );
 
     QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
 }

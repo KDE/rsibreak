@@ -221,11 +221,6 @@ void RSIWidget::maximize()
     // If there are no images found, we gray the screen and wait....
     if (!m_slideShow->hasImages() || !m_useImages)
     {
-      m_grayWidget->show(); // Keep it above the KWindowSystem calls.
-      KWindowSystem::forceActiveWindow(m_grayWidget->winId());
-      KWindowSystem::setOnAllDesktops(m_grayWidget->winId(),true);
-      KWindowSystem::setState(m_grayWidget->winId(), NET::KeepAbove);
-      KWindowSystem::setState(m_grayWidget->winId(), NET::FullScreen);
       QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
     }
     else
