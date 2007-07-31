@@ -49,6 +49,9 @@ class RSIApplication : public KUniqueApplication {
 // TODO: PORT
 //                DCOPRef execute( "rsibreak", "actions" );
 //                DCOPReply reply = execute.call( "whereAmI" );
+                  QDBusInterface dbus("org.rsibreak.rsibreak", "/rsibreak",
+                        "org.rsibreak.rsiwidget");
+                  dbus.call("slotShowWhereIAm");
             } else {
                 secondMe = true;
             }
