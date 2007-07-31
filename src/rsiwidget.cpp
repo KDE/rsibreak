@@ -243,14 +243,9 @@ void RSIWidget::slotLock()
 {
     m_slideShow->stop();
 
-    /* TODO PORT
-    Q3CString appname( "kdesktop" );
-    int rsibreak_screen = qt_xscreen();
-    if ( rsibreak_screen )
-        appname.sprintf("kdesktop-screen-%d", rsibreak_screen );
-    kapp->dcopClient()->send(appname, "KScreensaverIface", "lock()", "");
-    */
-}
+    QDBusInterface lock("org.freedesktop.ScreenSaver", "/ScreenSaver",
+                "org.freedesktop.ScreenSaver");
+    lock.call("Lock");}
 
 void RSIWidget::setCounters( int timeleft )
 {
