@@ -49,6 +49,7 @@ class SlideShow;
 class RSIWidget : public QObject
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.rsibreak.rsiwidget")
 
     public:
         /**
@@ -63,9 +64,12 @@ class RSIWidget : public QObject
          */
         ~RSIWidget();
 
+    /* Available through D-Bus */
+    public Q_SLOTS:
+        void slotShowWhereIAm();
+
     private slots:
         void slotWelcome();
-        void slotShowWhereIAm();
         void slotLock();
         void minimize( bool newImage = true );
         void maximize();

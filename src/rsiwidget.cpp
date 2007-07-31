@@ -18,6 +18,7 @@
 */
 
 #include "rsiwidget.h"
+#include "rsiwidgetadaptor.h"
 #include "graywidget.h"
 #include "slideshow.h"
 
@@ -71,6 +72,11 @@
 RSIWidget::RSIWidget( QObject *parent )
     : QObject( parent ), m_useImages( false )
 {
+    // D-Bus
+    new RsiwidgetAdaptor(this);
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.registerObject("/rsibreak", this);
+
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
     m_tray = new RSIDock(0);
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );

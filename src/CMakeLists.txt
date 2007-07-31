@@ -43,6 +43,11 @@ rsiglobals.cpp
 rsistatitem.cpp
 )
 
+QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
+org.rsibreak.rsiwidget.xml
+rsiwidget.h RSIWidget::RSIWidget
+)
+
 # compilation
 KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
@@ -55,6 +60,7 @@ TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librs
 INSTALL_TARGETS(/bin rsibreak )
 INSTALL_FILES( /share/applications/kde FILES  rsibreak.desktop )
 INSTALL( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
+INSTALL( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 
 #TODO is this still in KDE4? 
 #INSTALL_FILES( /share/autostart FILES  rsibreak.desktop )
