@@ -21,6 +21,8 @@
 #include "rsiwidgetadaptor.h"
 #include "graywidget.h"
 #include "slideshow.h"
+#include "rsitimer_dpms.h"
+
 
 #include <qpushbutton.h>
 #include <qdesktopwidget.h>
@@ -149,7 +151,9 @@ QString RSIWidget::takeScreenshotOfTrayIcon()
         // Process the events else the icon will not be there and the screenie will fail!
         kapp->processEvents();
 
-        // ********************************************************************************
+        //TODO: find the tray window.
+        QPixmap screenshot = takeScreenshot( QX11Info::appScreen() ); 
+
         // This block is copied from Konversation - KonversationMainWindow::queryClose()
         // The part about the border is copied from  KSystemTray::displayCloseMessage()
         //
@@ -170,7 +174,7 @@ QString RSIWidget::takeScreenshotOfTrayIcon()
         if ( y + h > desktopHeight ) y = desktopHeight - h;
 
         // Grab the desktop and draw a circle around the icon:
-        QPixmap shot = QPixmap::grabWindow( QX11Info::appRootWindow(),  x,  y,  w,  h );
+        QPixmap shot = screenshot.copy( x,  y,  w,  h );
         QPainter painter( &shot );
         const int MARGINS = 6;
         const int WIDTH   = 5;
