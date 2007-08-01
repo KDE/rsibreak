@@ -23,28 +23,18 @@
 #include "setup.h"
 #include "rsistatwidget.h"
 #include "rsistats.h"
-#include "rsiglobals.h"
 
-#include <qtimer.h>
-//Added by qt3to4:
-#include <QShowEvent>
-#include <QEvent>
-#include <QMouseEvent>
+#include <QMenu>
 
-#include <KAboutData>
 #include <KComponentData>
-#include <kdebug.h>
-#include <klocale.h>
-#include <kmenu.h>
-#include <knotifyconfigwidget.h>
-#include <kiconloader.h>
-#include <kaction.h>
-#include <khelpmenu.h>
-#include <kglobalaccel.h>
-#include <kshortcutsdialog.h>
+#include <KLocale>
+#include <KNotifyConfigWidget>
+#include <KIconLoader>
+#include <KHelpMenu>
+#include <KGlobalAccel>
 #include <KStandardShortcut>
-#include <kmessagebox.h>
-#include <kwindowsystem.h>
+#include <KMessageBox>
+#include <KWindowSystem>
 
 RSIDock::RSIDock( QWidget *parent)
     : KSystemTrayIcon( parent ), m_suspended( false )
@@ -66,7 +56,6 @@ RSIDock::RSIDock( QWidget *parent)
     menu->addAction( i18n( "Switch application &language..." ), m_help,
                 SLOT(switchApplicationLanguage()) );
 
-
     menu->addSeparator();
     m_suspendItem = menu->addAction(SmallIcon("media-playback-pause"),
                               i18n("&Suspend RSIBreak"), this,
@@ -84,6 +73,9 @@ RSIDock::RSIDock( QWidget *parent)
 
 
     setContextMenu(menu);
+
+    connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
 
     //TODO: we can move this or somethjing?
     m_accel = KGlobalAccel::self();
@@ -107,6 +99,11 @@ RSIDock::~RSIDock()
     m_statsWidget = 0;
 }
 
+void RSIDock::slotActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger)
+      slotShowStatistics();
+}
 
 void RSIDock::slotConfigureNotifications()
 {
@@ -212,7 +209,7 @@ void RSIDock::slotShowStatistics()
 
 void RSIDock::slotResetStats()
 {
-    int i = KMessageBox::warningContinueCancel( /*TODO  this */ 0,
+    int i = KMessageBox::warningContinueCancel( 0,
                 i18n("This will reset all statistics to zero. "
                      "Is that what you want?"),
                 i18n("Reset the statistics"),
@@ -224,11 +221,9 @@ void RSIDock::slotResetStats()
         RSIGlobals::instance()->stats()->reset();
 }
 
-
 void RSIDock::slotQuit()
 {
   exit(0);
 }
-
 
 #include "rsidock.moc"

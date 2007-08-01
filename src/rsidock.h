@@ -121,6 +121,7 @@ class RSIDock : public KSystemTrayIcon
         virtual bool event ( QEvent * event );
 
     private slots:
+        void slotActivated(QSystemTrayIcon::ActivationReason);
         void slotConfigure();
         void slotConfigureNotifications();
         void slotSuspend();
