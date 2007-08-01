@@ -76,20 +76,6 @@ RSIDock::RSIDock( QWidget *parent)
 
     connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
             SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
-
-    //TODO: we can move this or somethjing?
-    m_accel = KGlobalAccel::self();
-//     m_accel->insert("breakRequest", i18n("This is where the user can request a "
-//                         "break", "Take a break now"),
-//                     i18n("This way you can have a break now"),
-//                     KKey::QtWIN+SHIFT+Key_B, KKey::QtWIN+CTRL+Key_B,
-//                     this, SLOT( slotBreakRequest() ));
-//     m_accel->insert("debugRequest", "This is where the user can request a "
-//             "continues dump of timings",
-//             i18n("This way you can have a break now"),
-//             KKey::QtWIN+SHIFT+Key_F12, KKey::QtWIN+CTRL+Key_F12,
-//             this, SLOT( slotDebugRequest() ));
-//     m_accel->updateConnections();
 }
 
 RSIDock::~RSIDock()
@@ -102,7 +88,7 @@ RSIDock::~RSIDock()
 void RSIDock::slotActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger)
-      slotShowStatistics();
+    slotShowStatistics();
 }
 
 void RSIDock::slotConfigureNotifications()

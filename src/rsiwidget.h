@@ -40,6 +40,8 @@ class RSIToolTip;
 class GrayWidget;
 class SlideShow;
 
+class KAction;
+
 /**
  * @class RSIWidget
  * This widget is the main widget for RSIBreak.

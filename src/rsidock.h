@@ -132,7 +132,6 @@ class RSIDock : public KSystemTrayIcon
         void slotQuit();
 
     private:
-        KGlobalAccel* m_accel;
         KHelpMenu*    m_help;
 
         QAction* m_suspendItem;
