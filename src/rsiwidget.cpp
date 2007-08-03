@@ -45,7 +45,6 @@
 #include <QHideEvent>
 #include <QMouseEvent>
 #include <QCloseEvent>
-#include <QPixmap>
 #include <config.h>
 
 #include <kwindowsystem.h>
@@ -127,7 +126,7 @@ void RSIWidget::slotWelcome()
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
       QString tempfile = takeScreenshotOfTrayIcon();
-      KMessageBox::information(0, i18n("<p>Welcome to RSIBreak<p><p>"
+      KMessageBox::information(0, i18n("<p>Welcome to RSIBreak</p><p>"
         "In your tray you can now see RSIBreak: ")
         + "<p><center><img source=\"" + tempfile + "\"></center></p><p>"
         + i18n("When you right-click on that you will see a menu, from which "
@@ -252,9 +251,9 @@ void RSIWidget::setCounters( int timeleft )
 
         if (minutes > 0 && seconds > 0)
         {
-            cdString = i18nc("minutes:seconds","%1:%2")
-                    .arg( QString::number( minutes ))
-                    .arg( QString::number( seconds).rightJustified(2,'0'));
+            cdString = i18nc("minutes:seconds","%1:%2",
+                  QString::number( minutes ), 
+                  QString::number( seconds).rightJustified(2,'0'));
         }
         else if ( minutes == 0 && seconds > 0 )
         {
@@ -262,8 +261,7 @@ void RSIWidget::setCounters( int timeleft )
         }
         else if ( minutes >0 && seconds == 0 )
         {
-            cdString = i18nc("minutes:seconds","%1:00")
-                    .arg( minutes );
+            cdString = i18nc("minutes:seconds","%1:00", minutes );
         }
 
         m_grayWidget->setLabel( cdString );

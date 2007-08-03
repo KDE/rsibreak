@@ -22,7 +22,6 @@
 
 // QT includes.
 #include <QPushButton>
-#include <QLineEdit>
 #include <QCheckBox>
 #include <QLabel>
 #include <QVBoxLayout>
@@ -34,6 +33,7 @@
 #include <KFontDialog>
 #include <KApplication>
 #include <KFileDialog>
+#include <KLineEdit>
 #include <KVBox>
 #include <kkeysequencewidget.h>
 
@@ -45,7 +45,7 @@ public:
     QGroupBox*        slideshowBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
-    QLineEdit*        imageFolderEdit;
+    KLineEdit*        imageFolderEdit;
     QFont             counterFont;
     KColorButton*     counterColor;
     QCheckBox*        searchRecursiveCheck;
@@ -73,7 +73,8 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    //-------------------- Counterbox
    QGroupBox *counterBox = new QGroupBox(boxes);
-   counterBox->setTitle(i18n("Counter"));
+   counterBox->setTitle(i18nc("This is the title of a box with settings ",
+        "for the counter used during breaks","Counter"));
 
    d->hideCounter = new QCheckBox(i18n("H&ide"), this);
    connect(d->hideCounter, SIGNAL(toggled(bool)), SLOT(slotHideCounter()));
@@ -83,7 +84,9 @@ SetupMaximized::SetupMaximized(QWidget* parent )
        "of the image, when images are shown.") );
 
    d->colorBox = new KHBox(this);
-   QLabel *counterColorlabel = new QLabel( i18n("&Color:")+' ', d->colorBox );
+   QLabel *counterColorlabel = new QLabel( i18nc("This is a label, behind "
+       "it is a a block filled with the choosed color", "&Color:")+' ', 
+       d->colorBox );
    counterColorlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
    d->counterColor = new KColorButton(d->colorBox);
    counterColorlabel->setBuddy(d->counterColor);
@@ -134,7 +137,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    connect(d->slideshowBox, SIGNAL( toggled(bool)), SLOT(slotUseImages()));
 
    KHBox *imageFolderBox = new KHBox(this);
-   d->imageFolderEdit = new QLineEdit(imageFolderBox);
+   d->imageFolderEdit = new KLineEdit(imageFolderBox);
    d->imageFolderEdit->setWhatsThis( i18n("Select the folder from which you "
        "want to see images. These images are randomly shown during the breaks. "
        "It will be searched recursively if you want...") );
@@ -234,7 +237,7 @@ void SetupMaximized::slotFolderEdited(const QString& newPath)
         return;
     }
 
-    if (!newPath.startsWith("/")) {
+    if (!newPath.startsWith('/')) {
         d->imageFolderEdit->setText(QDir::homePath()+'/'+newPath);
     }
 

@@ -40,7 +40,6 @@
 #include <QHideEvent>
 #include <QMouseEvent>
 #include <QCloseEvent>
-#include <QPixmap>
 #include <config.h>
 
 #include <kwindowsystem.h>

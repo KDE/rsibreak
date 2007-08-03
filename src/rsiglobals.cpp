@@ -79,7 +79,7 @@ QString RSIGlobals::formatSeconds( const int seconds )
     if ( hours > 0 && mins >0 )
         return(i18nc("Arguments: hours, minutes "
                     "both as you defined earlier",
-                    "%1 and %2").arg(hString, mString2) );
+                    "%1 and %2", hString, mString2) );
     else if ( hours > 0 && mins == 0 )
         return( hString );
 
@@ -88,7 +88,7 @@ QString RSIGlobals::formatSeconds( const int seconds )
         if (mins > 0 && secs > 0)
             return(i18nc("Arguments: minutes, seconds "
                         "both as you defined earlier",
-                        "%1 and %2").arg(mString1, sString2) );
+                        "%1 and %2", mString1, sString2) );
 
         else if ( mins == 0 && secs > 0 )
             return( sString1 );
