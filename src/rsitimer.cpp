@@ -56,7 +56,7 @@ RSITimer::RSITimer( QObject *parent )
     , m_lastActivity( QDateTime::currentDateTime() )
     , m_intervals( RSIGlobals::instance()->intervals() )
 {
-    kDebug() << "Starting timer constructor" << endl;
+    kDebug() << "Starting timer constructor";
 
     startTimer( 1000 );
     slotReadConfig( /* restart */ true );
@@ -277,7 +277,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     }
 
     /*
-    kDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t << endl;
+    kDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t;
     */
 
     int breakInterval = m_tiny_left < m_big_left ?
@@ -524,7 +524,7 @@ void RSITimer::restoreSession()
 RSITimerNoIdle::RSITimerNoIdle( QObject *parent )
 : RSITimer( parent )
 {
-    kDebug() << "Starting noIdle timer" << endl;
+    kDebug() << "Starting noIdle timer";
 }
 
 RSITimerNoIdle::~RSITimerNoIdle()

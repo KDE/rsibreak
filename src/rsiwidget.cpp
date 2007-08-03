@@ -368,7 +368,7 @@ void RSIWidget::startTimer( bool idle)
         if (idle && m_timer->metaObject()->className() == "RSITimer")
             return;
 
-        kDebug() << "Switching timers" << endl;
+        kDebug() << "Switching timers";
 
         m_timer->deleteLater();
 //        m_accel->remove("minimize");

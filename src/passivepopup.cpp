@@ -39,7 +39,7 @@ void PassivePopup::show(const KSystemTrayIcon* icon)
 
 void PassivePopup::mouseReleaseEvent( QMouseEvent * event )
 {
-  kDebug() << k_funcinfo << endl;
+  kDebug() << k_funcinfo;
   event->accept();
   /* eat this! */
 }

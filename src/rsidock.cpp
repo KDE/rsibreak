@@ -150,7 +150,7 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 
 bool RSIDock::event ( QEvent * event )
 {
-    kDebug() << event->type() << endl;
+    kDebug() << event->type();
     if (event->type() == QEvent::ToolTip)
     {
       emit showToolTip();

@@ -66,14 +66,14 @@ void GrayWidget::reset()
 
 void GrayWidget::showMinimize( bool ok )
 {
-  kDebug() << k_funcinfo << ok << endl;
+  kDebug() << k_funcinfo << ok;
   m_showMinimize = ok;
   loadDialog();
 }
 
 void GrayWidget::disableShortcut( bool ok )
 {
-  kDebug() << k_funcinfo << ok <<endl;
+  kDebug() << k_funcinfo << ok;
   m_disableShort = ok;
   loadDialog();
 }
@@ -113,7 +113,7 @@ void GrayWidget::slotGrayEffect()
 
 void GrayWidget::paintEvent( QPaintEvent* )
 {
-    kDebug() << k_funcinfo << m_currentY << m_first << endl;
+    kDebug() << k_funcinfo << m_currentY << m_first;
 
     if ( m_currentY >= height() )
       return;

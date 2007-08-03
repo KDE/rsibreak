@@ -115,7 +115,7 @@ void RSIGlobals::slotReadConfig()
 
     if (config.readEntry("DEBUG", false))
     {
-        kDebug() << "Debug mode activated" << endl;
+        kDebug() << "Debug mode activated";
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"]/60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"]/60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"]/60;
@@ -125,7 +125,7 @@ void RSIGlobals::slotReadConfig()
     // guard against that situation.
     if (m_intervals["big_maximized"] < m_intervals["tiny_maximized"])
     {
-        kDebug() << "max big > max tiny, not allowed & corrected" << endl;
+        kDebug() << "max big > max tiny, not allowed & corrected";
         m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
     }
 

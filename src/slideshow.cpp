@@ -148,7 +148,7 @@ void SlideShow::loadImage()
         }
     }
 
-    kDebug() << "scaling" << size << endl;
+    kDebug() << "scaling" << size;
     QImage m = image.scaled( size.width(), size.height(),
                              Qt::KeepAspectRatioByExpanding);
 
@@ -156,13 +156,13 @@ void SlideShow::loadImage()
         return;
 
     m_backgroundimage = QPixmap::fromImage(m);
-    kDebug() << "all set" << endl;
+    kDebug() << "all set";
 
     QPalette palette;
     palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
     setPalette(palette);
 
-    kDebug() << k_funcinfo << "SetPalette" << endl;
+    kDebug() << k_funcinfo << "SetPalette";
 }
 
 void SlideShow::findImagesInFolder(const QString& folder)
@@ -219,7 +219,7 @@ void SlideShow::reset( const QString& path, bool recursive, int slideInterval)
    m_slideInterval = slideInterval;
 
    findImagesInFolder( path );
-   kDebug() << m_files.count() << endl;
+   kDebug() << m_files.count();
    QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
 }
 
