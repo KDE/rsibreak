@@ -23,9 +23,7 @@
 
 #include <QWidget>
 class QLabel;
-
 class BoxDialog;
-class KAction;
 
 /**
  * @class GrayWidget

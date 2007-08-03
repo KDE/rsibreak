@@ -22,9 +22,7 @@
 
 #include <QWidget>
 class QLabel;
-
 class KDialog;
-class KAction;
 
 /**
  * @class BoxDialog

@@ -21,24 +21,9 @@
 #ifndef SLIDESHOW_H
 #define SLIDESHOW_H
 
-#include <qdatetime.h>
-#include <qlabel.h>
-#include <qpixmap.h>
-//Added by qt3to4:
-#include <QHideEvent>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QCloseEvent>
-
-class QTimer;
-class QPushButton;
+#include <QWidget>
 
 class BoxDialog;
-class RSIDock;
-class RSITimer;
-class RSIRelaxPopup;
-class RSIToolTip;
-class GrayWidget;
 
 /**
  * @class SlideShow

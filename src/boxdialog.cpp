@@ -21,16 +21,10 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QX11Info>
-#include <QPainter>
-#include <QTimer>
 #include <QLabel>
 
-#include <kpixmapeffect.h>
-#include <kwindowsystem.h>
 #include <KDialog>
 #include <KLocale>
-#include <KAction>
 
     // Yes, this is where you want to hack something cool ;-) Toma
 

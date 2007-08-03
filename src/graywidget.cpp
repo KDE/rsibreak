@@ -26,13 +26,10 @@
 #include <QX11Info>
 #include <QPainter>
 #include <QTimer>
-#include <QLabel>
 
-#include <kpixmapeffect.h>
-#include <kwindowsystem.h>
-#include <KDialog>
-#include <KLocale>
-#include <KAction>
+#include <KPixmapEffect>
+#include <KWindowSystem>
+#include <KDebug>
 
 GrayWidget::GrayWidget( QWidget *parent )
   : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_first( true )

@@ -21,17 +21,7 @@
 #ifndef RSIWidget_H
 #define RSIWidget_H
 
-#include <qdatetime.h>
-#include <qlabel.h>
-#include <qpixmap.h>
-//Added by qt3to4:
-#include <QHideEvent>
-#include <QMouseEvent>
-#include <QKeyEvent>
-#include <QCloseEvent>
-
-class QTimer;
-class QPushButton;
+#include <QLabel>
 
 class RSIDock;
 class RSITimer;
@@ -40,7 +30,6 @@ class RSIToolTip;
 class GrayWidget;
 class SlideShow;
 
-class KAction;
 
 /**
  * @class RSIWidget

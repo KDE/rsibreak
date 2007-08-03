@@ -23,53 +23,28 @@
 #include "slideshow.h"
 #include "rsitimer_dpms.h"
 #include "boxdialog.h"
-
-
-#include <qpushbutton.h>
-#include <qdesktopwidget.h>
-#include <qlayout.h>
-#include <qtimer.h>
-#include <qdatetime.h>
-#include <qlineedit.h>
-#include <qimage.h>
-#include <qdir.h>
-#include <qstringlist.h>
-#include <qfileinfo.h>
-#include <qcursor.h>
-#include <qpainter.h>
-#include <qbitmap.h>
-//Added by qt3to4:
-#include <QKeyEvent>
-#include <QLabel>
-#include <Q3CString>
-#include <QPixmap>
-#include <QHideEvent>
-#include <QMouseEvent>
-#include <QCloseEvent>
-#include <config.h>
-
-#include <kwindowsystem.h>
-#include <klocale.h>
-#include <kapplication.h>
-#include <kdebug.h>
-#include <kconfig.h>
-#include <kmessagebox.h>
-#include <kiconloader.h>
-#include <kimageeffect.h>
-#include <ksystemtrayicon.h>
-#include <KTemporaryFile>
-#include <kpixmapeffect.h>
-#include <kglobal.h>
-
-#include <stdlib.h>
-#include <time.h>
-#include <math.h>
-
 #include "rsitimer.h"
 #include "rsidock.h"
 #include "rsirelaxpopup.h"
 #include "rsitooltip.h"
 #include "rsiglobals.h"
+
+#include <config.h>
+
+#include <QDesktopWidget>
+#include <QPainter>
+#include <QTimer>
+
+#include <KWindowSystem>
+#include <KLocale>
+#include <KApplication>
+
+#include <KMessageBox>
+#include <KIconLoader>
+#include <KTemporaryFile>
+
+#include <time.h>
+#include <math.h>
 
 RSIWidget::RSIWidget( QObject *parent )
     : QObject( parent ), m_useImages( false )
