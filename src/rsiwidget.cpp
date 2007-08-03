@@ -22,6 +22,7 @@
 #include "graywidget.h"
 #include "slideshow.h"
 #include "rsitimer_dpms.h"
+#include "boxdialog.h"
 
 
 #include <qpushbutton.h>
@@ -108,8 +109,11 @@ RSIWidget::RSIWidget( QObject *parent )
     readConfig();
 
     // m_timer is only available after readConfig.
-    connect(m_grayWidget, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect(m_grayWidget, SIGNAL( lock() ), this, SLOT( slotLock() ) );
+    connect(m_grayWidget->dialog(), SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect(m_grayWidget->dialog(), SIGNAL( lock() ), this, SLOT( slotLock() ) );
+
+    connect(m_slideShow->dialog(), SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect(m_slideShow->dialog(), SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     setIcon( 0 );
 
@@ -264,15 +268,18 @@ void RSIWidget::setCounters( int timeleft )
             cdString = i18nc("minutes:seconds","%1:00", minutes );
         }
 
-        m_grayWidget->setLabel( cdString );
+        m_grayWidget->dialog()->setLabel( cdString );
+        m_slideShow->dialog()->setLabel( cdString );
     }
     else if ( m_timer->isSuspended() )
     {
-        m_grayWidget->setLabel( i18n("Suspended") );
+      m_grayWidget->dialog()->setLabel( i18n("Suspended") );
+      m_slideShow->dialog()->setLabel( i18n("Suspended") );
     }
     else
     {
-        m_grayWidget->setLabel( QString() );
+      m_grayWidget->dialog()->setLabel( QString() );
+      m_slideShow->dialog()->setLabel( QString() );
     }
 }
 
@@ -411,7 +418,10 @@ void RSIWidget::readConfig()
     m_showTimerReset = config.readEntry("ShowTimerReset", false);
     // TODO:  QColor color = config.readEntry("CounterColor", QColor( Qt::black ) );
 
-    m_grayWidget->showMinimize(!config.readEntry("HideMinimizeButton", false));
+    m_grayWidget->dialog()->showMinimize(!config.readEntry("HideMinimizeButton",
+                         false));
+    m_slideShow->dialog()->showMinimize(!config.readEntry("HideMinimizeButton",
+                         false));
 
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
@@ -429,7 +439,8 @@ void RSIWidget::readConfig()
     startTimer(!timertype);
 
     // Hook in the shortcut after the timer initialisation.
-    m_grayWidget->disableShortcut( config.readEntry("DisableAccel", false) );
+    m_grayWidget->dialog()->disableShortcut( config.readEntry("DisableAccel", false) );
+    m_slideShow->dialog()->disableShortcut( config.readEntry("DisableAccel", false) );
 
     if ((oldPath != path || oldRecursive != recursive) && m_useImages)
           m_slideShow->reset( path, recursive, slideInterval);

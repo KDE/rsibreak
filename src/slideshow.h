@@ -33,6 +33,7 @@
 class QTimer;
 class QPushButton;
 
+class BoxDialog;
 class RSIDock;
 class RSITimer;
 class RSIRelaxPopup;
@@ -68,12 +69,15 @@ class SlideShow : public QWidget
         bool hasImages();
         void loadImage();
 
+        BoxDialog* dialog() { return m_dialog; };
+
     private slots:
         void slotNewSlide();
 
     private:
         void findImagesInFolder(const QString& folder);
 
+        BoxDialog*      m_dialog;
         QPixmap         m_backgroundimage;
         QString         m_basePath;
         QTimer*         m_timer_slide;

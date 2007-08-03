@@ -24,6 +24,7 @@ KDE4_ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 
 # source files needed
 SET(rsibreak_sources
+boxdialog.cpp
 slideshow.cpp
 graywidget.cpp
 passivepopup.cpp

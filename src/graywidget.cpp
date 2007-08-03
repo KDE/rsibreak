@@ -19,6 +19,7 @@
 
 #include "graywidget.h"
 #include "rsitimer_dpms.h"
+#include "boxdialog.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -34,8 +35,7 @@
 #include <KAction>
 
 GrayWidget::GrayWidget( QWidget *parent )
-  : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_showMinimize( true ),
-        m_disableShort( false ), m_first( true )
+  : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_first( true )
 {
     // full screen
     setAttribute( Qt::WA_NoSystemBackground );
@@ -43,14 +43,7 @@ GrayWidget::GrayWidget( QWidget *parent )
                         QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
 
-    // for the counter
-    m_label = new QLabel(this);
-    m_label->setAlignment( Qt::AlignHCenter );
-
-    // prepare the dialog in the middle.
-    // Yes, this is where you want to hack something cool ;-) Toma
-    m_dialog = new KDialog( this, Qt::Popup );
-    loadDialog();
+    m_dialog = new BoxDialog( this, Qt::Popup );
 }
 
 GrayWidget::~GrayWidget()
@@ -64,26 +57,6 @@ void GrayWidget::reset()
   m_dialog->hide();
 }
 
-void GrayWidget::showMinimize( bool ok )
-{
-  kDebug() << k_funcinfo << ok;
-  m_showMinimize = ok;
-  loadDialog();
-}
-
-void GrayWidget::disableShortcut( bool ok )
-{
-  kDebug() << k_funcinfo << ok;
-  m_disableShort = ok;
-  loadDialog();
-}
-
-
-void GrayWidget::setLabel( const QString& time )
-{
-  m_label->setText( i18n("Remaining time:\n%1", time) );
-}
-
 // This slot and the paint event is partly copied from KDE's logout screen.
 // from various authors found in:
 // /KDE/4/kdebase/workspace/ksmserver/shutdowndlg.cpp
@@ -91,7 +64,7 @@ void GrayWidget::slotGrayEffect()
 {
     if ( m_currentY >= height() )
     {
-        showDialog();
+        m_dialog->showDialog();
         return;
     }
     if (m_first)
@@ -131,39 +104,6 @@ void GrayWidget::paintEvent( QPaintEvent* )
       painter.drawPixmap( 0, 15, m_complete.copy(0, 15, width(), height()-15) );
 
     QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
-}
-
-void GrayWidget::showDialog()
-{
-  if ( m_dialog && !m_dialog->isHidden() )
-    return;
-
-  m_dialog->exec();
-  hide();
-}
-
-void GrayWidget::loadDialog()
-{
-  if ( m_showMinimize )
-  {
-    m_dialog->setButtons( KDialog::User1 | KDialog::User2 );
-    m_dialog->setButtonText( KDialog::User2, i18n("Skip"));
-    m_dialog->setEscapeButton( KDialog::User2 );
-  }
-  else
-    m_dialog->setButtons( KDialog::User1 );
-  m_dialog->setButtonText( KDialog::User1, i18n("Lock"));
-  if ( m_disableShort || !m_showMinimize )
-    m_dialog->setEscapeButton( KDialog::User1 );
-  m_dialog->setMainWidget( m_label );
-
-  QRect rect = QApplication::desktop()->availableGeometry(
-                    QApplication::desktop()->screenNumber( m_dialog ) );
-  m_dialog->move( rect.center().x() - m_dialog->width() / 2,
-                  rect.center().y() - m_dialog->height() / 2 );
-
-  connect( m_dialog, SIGNAL( user1Clicked() ), this, SIGNAL( lock() ) );
-  connect( m_dialog, SIGNAL( user2Clicked() ), this, SIGNAL( skip() ) );
 }
 
 #include "graywidget.moc"

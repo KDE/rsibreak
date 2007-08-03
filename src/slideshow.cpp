@@ -18,6 +18,7 @@
 */
 
 #include "slideshow.h"
+#include "boxdialog.h"
 
 #include <qpushbutton.h>
 #include <qdesktopwidget.h>
@@ -74,6 +75,8 @@ SlideShow::SlideShow( QWidget *parent )
 
     m_timer_slide = new QTimer(this);
     connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
+
+    m_dialog = new BoxDialog( this, Qt::Popup );
 }
 
 SlideShow::~SlideShow()
@@ -88,11 +91,13 @@ bool SlideShow::hasImages()
 void SlideShow::start()
 {
    m_timer_slide->start( m_slideInterval*1000 );
+   m_dialog->showDialog();
 }
 
 void SlideShow::stop()
 {
   m_timer_slide->stop();
+  m_dialog->hide();
 }
 
 void SlideShow::loadImage()

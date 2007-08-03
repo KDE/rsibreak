@@ -1,6 +1,5 @@
-/* This file is part of the KDE project
-   Copyright (C) 2005-2007 Tom Albers <tomalbers@kde.nl>
-   Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+/* 
+   Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -18,21 +17,21 @@
 
 */
 
-#ifndef GRAYWIDGET_H
-#define GRAYWIDGET_H
+#ifndef BOXDIALOG_H
+#define BOXDIALOG_H
 
 #include <QWidget>
 class QLabel;
 
-class BoxDialog;
+class KDialog;
 class KAction;
 
 /**
- * @class GrayWidget
- * This widget is one of the widget shown when there is a break
+ * @class BoxDialog
+ * This widget is shown on top of the widgets used during the breaks.
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class GrayWidget : public QWidget
+class BoxDialog : public QWidget
 {
     Q_OBJECT
 
@@ -41,35 +40,31 @@ class GrayWidget : public QWidget
          * Constructor
          * @param parent Parent Widget
          */
-        explicit GrayWidget( QWidget *parent = 0);
+        explicit BoxDialog( QWidget *parent = 0,Qt::WFlags flags=0);
 
         /**
          * Destructor
          */
-        ~GrayWidget();
+        ~BoxDialog();
 
-        /**
-         * reset
-         */
-        void reset();
-
-        BoxDialog* dialog() { return m_dialog; };
-
-    public slots:
-        void slotGrayEffect();
-
-    protected:
-        virtual void paintEvent( QPaintEvent* );
+        void showMinimize( bool ok );
+        void disableShortcut( bool ok );
+        void showDialog();
+        void setLabel( const QString& );
 
     signals:
         void skip();
         void lock();
 
     private:
-        int             m_currentY;
-        BoxDialog*      m_dialog;
-        QPixmap         m_complete;
-        bool            m_first;
+        void loadDialog();
+
+        KDialog*        m_dialog;
+        QLabel*         m_label;
+        bool            m_showMinimize;
+        bool            m_disableShort;
+
+
 };
 
 #   endif
