@@ -18,7 +18,7 @@ CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/config.h.cmake
 
 ############ librsibreak #####################################################
 
-ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
+KDE4_ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 
 ############ rsibreak ########################################################
 
@@ -57,8 +57,8 @@ TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librs
 
 ########### install files ###############
 
-INSTALL_TARGETS(/bin rsibreak )
-INSTALL_FILES( /share/applications/kde FILES  rsibreak.desktop )
+INSTALL(TARGETS rsibreak DESTINATION ${BIN_INSTALL_DIR})
+INSTALL(FILES  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 INSTALL( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
 INSTALL( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 
