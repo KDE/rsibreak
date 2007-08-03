@@ -1,4 +1,4 @@
-INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} )
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/src ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} )
 
 ############# Find LIBXSS for idle detection and write outcome to config.h ####
 
@@ -13,8 +13,8 @@ ELSE (NOT HAVE_LIBXSS)
 ENDIF (NOT HAVE_LIBXSS)
 
 # Write it down to the config.h
-CONFIGURE_FILE( ${CMAKE_SOURCE_DIR}/config.h.cmake
-                ${CMAKE_BINARY_DIR}/src/config.h    )
+CONFIGURE_FILE( ../config.h.cmake
+                ${CMAKE_CURRENT_BINARY_DIR}/src/config.h    )
 
 ############ librsibreak #####################################################
 
