@@ -18,8 +18,8 @@
 
 */
 
-#ifndef RSIWidget_H
-#define RSIWidget_H
+#ifndef RSIObject_H
+#define RSIObject_H
 
 #include <QLabel>
 
@@ -30,17 +30,14 @@ class RSIToolTip;
 class GrayWidget;
 class SlideShow;
 
-
 /**
- * @class RSIWidget
- * This widget is the main widget for RSIBreak.
- * It minimizes and maximized the widget
+ * @class RSIObject
+ * This controls all RSIBreak components
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIWidget : public QObject
+class RSIObject : public QObject
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.rsibreak.rsiwidget")
 
     public:
         /**
@@ -48,12 +45,12 @@ class RSIWidget : public QObject
          * @param parent Parent Widget
          * @param name Name
          */
-        explicit RSIWidget( QObject *parent = 0);
+        explicit RSIObject( QWidget *parent = 0);
 
         /**
          * Destructor
          */
-        ~RSIWidget();
+        ~RSIObject();
 
     /* Available through D-Bus */
     public Q_SLOTS:
@@ -96,6 +93,21 @@ class RSIWidget : public QObject
         RSIToolTip*     m_tooltip;
 
         bool            m_useIdleDetection;
+};
+
+class RSIWidget: public QLabel
+{
+  Q_OBJECT
+  Q_CLASSINFO("D-Bus Interface", "org.rsibreak.rsiwidget")
+  public:
+    explicit RSIWidget();
+
+    /* Available through D-Bus */
+  public Q_SLOTS:
+    void slotShowWhereIAm() {m_rsiobject->slotShowWhereIAm();};
+
+  private:
+    RSIObject*  m_rsiobject;
 };
 
 #   endif

@@ -28,7 +28,7 @@ class PassivePopup : public KPassivePopup
 {
   public:
     explicit PassivePopup( QWidget *parent = 0 );
-    void show(const KSystemTrayIcon* icon);
+    void show(const QSystemTrayIcon* icon);
   protected:
     virtual void mouseReleaseEvent( QMouseEvent * event );
 };

@@ -38,35 +38,45 @@
 #include <KWindowSystem>
 #include <KLocale>
 #include <KApplication>
-
 #include <KMessageBox>
 #include <KIconLoader>
+#include <KSystemTrayIcon>
 #include <KTemporaryFile>
 
 #include <time.h>
 #include <math.h>
 
-RSIWidget::RSIWidget( QObject *parent )
+RSIWidget::RSIWidget()
+  : QLabel()
+{
+  hide();
+  // D-Bus
+  new RsiwidgetAdaptor(this);
+  QDBusConnection dbus = QDBusConnection::sessionBus();
+  dbus.registerObject("/rsibreak", this);
+
+  setText("Nothing here");
+  m_rsiobject = new RSIObject(this);
+}
+
+RSIObject::RSIObject( QWidget *parent )
     : QObject( parent ), m_useImages( false )
 {
-    // D-Bus
-    new RsiwidgetAdaptor(this);
-    QDBusConnection dbus = QDBusConnection::sessionBus();
-    dbus.registerObject("/rsibreak", this);
 
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
-    m_tray = new RSIDock(0);
+    m_tray = new RSIDock(parent);
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
     m_tray->show();
 
-    m_tooltip = new RSIToolTip( 0, m_tray  );
+
+    m_tooltip = new RSIToolTip( parent, m_tray  );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
 
-    m_relaxpopup = new RSIRelaxPopup(0, m_tray);
+
+    m_relaxpopup = new RSIRelaxPopup(parent, m_tray);
     m_relaxpopup->show();
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
-    connect( m_tray, SIGNAL( quitSelected() ), kapp, SLOT( quit() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), SLOT( readConfig() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), RSIGlobals::instance(),
              SLOT( slotReadConfig() ) );
@@ -78,8 +88,10 @@ RSIWidget::RSIWidget( QObject *parent )
 
     srand ( time(NULL) );
 
-    m_grayWidget = new GrayWidget(0); // create before readConfig.
-    m_slideShow = new SlideShow(0); // create before readConfig.
+    m_slideShow = new SlideShow(parent); // create before readConfig.
+    m_slideShow->hide();
+    m_grayWidget = new GrayWidget(parent); // create before readConfig.
+    m_grayWidget->hide();
 
     readConfig();
 
@@ -95,12 +107,12 @@ RSIWidget::RSIWidget( QObject *parent )
     QTimer::singleShot(0,this,SLOT(slotWelcome()));
 }
 
-RSIWidget::~RSIWidget()
+RSIObject::~RSIObject()
 {
     delete RSIGlobals::instance();
 }
 
-void RSIWidget::slotWelcome()
+void RSIObject::slotWelcome()
 {
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001"))
     {
@@ -115,7 +127,7 @@ void RSIWidget::slotWelcome()
     }
 }
 
-void RSIWidget::slotShowWhereIAm()
+void RSIObject::slotShowWhereIAm()
 {
       QString tempfile = takeScreenshotOfTrayIcon();
       KMessageBox::information(0,
@@ -124,7 +136,7 @@ void RSIWidget::slotShowWhereIAm()
            i18n("Already Running"));
 }
 
-QString RSIWidget::takeScreenshotOfTrayIcon()
+QString RSIObject::takeScreenshotOfTrayIcon()
 {
         // Process the events else the icon will not be there and the screenie will fail!
         kapp->processEvents();
@@ -185,16 +197,15 @@ QString RSIWidget::takeScreenshotOfTrayIcon()
         return filename;
 }
 
-void RSIWidget::minimize( bool newImage )
+void RSIObject::minimize( bool newImage )
 {
-    m_grayWidget->hide();
     m_grayWidget->reset();
     m_slideShow->stop();
     if (newImage)
        m_slideShow->loadImage();
 }
 
-void RSIWidget::maximize()
+void RSIObject::maximize()
 {
     // If there are no images found, we gray the screen and wait....
     if (!m_slideShow->hasImages() || !m_useImages)
@@ -212,7 +223,7 @@ void RSIWidget::maximize()
     }
 }
 
-void RSIWidget::slotLock()
+void RSIObject::slotLock()
 {
     m_slideShow->stop();
 
@@ -220,7 +231,7 @@ void RSIWidget::slotLock()
                 "org.freedesktop.ScreenSaver");
     lock.call("Lock");}
 
-void RSIWidget::setCounters( int timeleft )
+void RSIObject::setCounters( int timeleft )
 {
     if (timeleft > 0)
     {
@@ -258,7 +269,7 @@ void RSIWidget::setCounters( int timeleft )
     }
 }
 
-void RSIWidget::updateIdleAvg( double idleAvg )
+void RSIObject::updateIdleAvg( double idleAvg )
 {
     if ( idleAvg == 0.0 )
         setIcon( 0 );
@@ -272,7 +283,7 @@ void RSIWidget::updateIdleAvg( double idleAvg )
         setIcon( 4 );
 }
 
-void RSIWidget::setIcon(int level)
+void RSIObject::setIcon(int level)
 {
     static QString currentIcon;
     QString newIcon = "rsibreak" +
@@ -291,7 +302,7 @@ void RSIWidget::setIcon(int level)
 
 // ------------------- Popup for skipping break ------------- //
 
-void RSIWidget::tinyBreakSkipped()
+void RSIObject::tinyBreakSkipped()
 {
     if (!m_showTimerReset)
         return;
@@ -300,7 +311,7 @@ void RSIWidget::tinyBreakSkipped()
     breakSkipped();
 }
 
-void RSIWidget::bigBreakSkipped()
+void RSIObject::bigBreakSkipped()
 {
     if (!m_showTimerReset)
         return;
@@ -309,7 +320,7 @@ void RSIWidget::bigBreakSkipped()
     breakSkipped();
 }
 
-void RSIWidget::breakSkipped()
+void RSIObject::breakSkipped()
 {
     disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
                 m_tooltip, SLOT( setCounters( int, int ) ) );
@@ -320,7 +331,7 @@ void RSIWidget::breakSkipped()
     m_tooltip->show();
 }
 
-void RSIWidget::skipBreakEnded()
+void RSIObject::skipBreakEnded()
 {
     if (!m_showTimerReset)
         return;
@@ -332,7 +343,7 @@ void RSIWidget::skipBreakEnded()
 
 //--------------------------- CONFIG ----------------------------//
 
-void RSIWidget::startTimer( bool idle)
+void RSIObject::startTimer( bool idle)
 {
 
     static bool first = true;
@@ -384,19 +395,18 @@ void RSIWidget::startTimer( bool idle)
     first = false;
 }
 
-void RSIWidget::readConfig()
+void RSIObject::readConfig()
 {
-  static QString oldPath;
-  static bool oldRecursive;
+    kDebug() << k_funcinfo;
+
+    static QString oldPath;
+    static bool oldRecursive;
+    static bool oldUseImages;
 
     KConfigGroup config = KGlobal::config()->group("General Settings");
     m_showTimerReset = config.readEntry("ShowTimerReset", false);
     // TODO:  QColor color = config.readEntry("CounterColor", QColor( Qt::black ) );
 
-    m_grayWidget->dialog()->showMinimize(!config.readEntry("HideMinimizeButton",
-                         false));
-    m_slideShow->dialog()->showMinimize(!config.readEntry("HideMinimizeButton",
-                         false));
 
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
@@ -414,14 +424,22 @@ void RSIWidget::readConfig()
     startTimer(!timertype);
 
     // Hook in the shortcut after the timer initialisation.
-    m_grayWidget->dialog()->disableShortcut( config.readEntry("DisableAccel", false) );
-    m_slideShow->dialog()->disableShortcut( config.readEntry("DisableAccel", false) );
+    m_grayWidget->dialog()->showMinimize(!config.readEntry("HideMinimizeButton",
+                         false));
+    m_slideShow->dialog()->showMinimize(!config.readEntry("HideMinimizeButton",
+                         false));
+    m_grayWidget->dialog()->disableShortcut( config.readEntry("DisableAccel",
+                         false) );
+    m_slideShow->dialog()->disableShortcut( config.readEntry("DisableAccel",
+                         false) );
 
-    if ((oldPath != path || oldRecursive != recursive) && m_useImages)
+    if ((oldPath != path || oldRecursive != recursive
+         || oldUseImages != m_useImages) && m_useImages)
           m_slideShow->reset( path, recursive, slideInterval);
 
     oldPath = path;
     oldRecursive = recursive;
+    oldUseImages = m_useImages;
 }
 
 #include "rsiwidget.moc"

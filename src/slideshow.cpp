@@ -57,6 +57,7 @@ void SlideShow::start()
 
 void SlideShow::stop()
 {
+  hide();
   m_timer_slide->stop();
   m_dialog->reject();
 }
@@ -91,8 +92,8 @@ void SlideShow::loadImage()
         } while (m_files_done.indexOf( name ) != -1);
 
         // load image
-        kDebug() << "Loading: " << name <<
-                        "( " << j << " / "  << m_files.count() << " ) " << endl;
+        kDebug() << "Loading:" << name
+            << "(" << j << "/"  << m_files.count() << ") ";
         image.load( name );
 
         // Check size
@@ -113,7 +114,6 @@ void SlideShow::loadImage()
         }
     }
 
-    kDebug() << "scaling" << size;
     QImage m = image.scaled( size.width(), size.height(),
                              Qt::KeepAspectRatioByExpanding);
 
@@ -121,13 +121,10 @@ void SlideShow::loadImage()
         return;
 
     m_backgroundimage = QPixmap::fromImage(m);
-    kDebug() << "all set";
 
     QPalette palette;
     palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
     setPalette(palette);
-
-    kDebug() << k_funcinfo << "SetPalette";
 }
 
 void SlideShow::findImagesInFolder(const QString& folder)
@@ -184,7 +181,7 @@ void SlideShow::reset( const QString& path, bool recursive, int slideInterval)
    m_slideInterval = slideInterval;
 
    findImagesInFolder( path );
-   kDebug() << m_files.count();
+   kDebug() << "Amount of Files:" << m_files.count();
    QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
 }
 

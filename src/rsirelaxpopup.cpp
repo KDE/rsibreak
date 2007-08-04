@@ -29,9 +29,9 @@
 #include <KVBox>
 #include <KIconLoader>
 #include <KLocale>
-#include <KSystemTrayIcon>
+#include <QSystemTrayIcon>
 
-RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, KSystemTrayIcon* icon )
+RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )
   : QWidget( parent ), m_systray( icon )
 {
     m_popup = new PassivePopup( parent );

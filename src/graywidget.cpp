@@ -49,6 +49,7 @@ GrayWidget::~GrayWidget()
 
 void GrayWidget::reset()
 {
+  hide();
   m_currentY = 0;
   m_first = true;
   m_dialog->reject();

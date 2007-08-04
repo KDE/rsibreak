@@ -28,7 +28,7 @@ PassivePopup::PassivePopup( QWidget *parent )
   : KPassivePopup(parent)
 {}
 
-void PassivePopup::show(const KSystemTrayIcon* icon)
+void PassivePopup::show(const QSystemTrayIcon* icon)
 {
     /* To place it properly near the icon, first show it off-screen, then
        move it to the correct position. If you know something better, please,

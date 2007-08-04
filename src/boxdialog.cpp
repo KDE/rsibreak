@@ -79,14 +79,12 @@ void BoxDialog::loadDialog()
 
 void BoxDialog::showMinimize( bool ok )
 {
-  kDebug() << k_funcinfo << ok;
   m_showMinimize = ok;
   loadDialog();
 }
 
 void BoxDialog::disableShortcut( bool ok )
 {
-  kDebug() << k_funcinfo << ok;
   m_disableShort = ok;
   loadDialog();
 }

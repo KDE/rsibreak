@@ -25,7 +25,7 @@
 #include <KHBox>
 #include <KVBox>
 
-RSIToolTip::RSIToolTip( QWidget *parent, KSystemTrayIcon* icon)
+RSIToolTip::RSIToolTip( QWidget *parent, QSystemTrayIcon* icon)
   : QWidget( parent ), m_icon(icon), m_suspended( false )
 {
   m_popup = new PassivePopup( parent );

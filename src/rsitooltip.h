@@ -34,7 +34,7 @@ class RSIToolTip : public QWidget
 {
   Q_OBJECT
   public:
-    explicit RSIToolTip( QWidget *parent, KSystemTrayIcon*  );
+    explicit RSIToolTip( QWidget *parent, QSystemTrayIcon*  );
     ~RSIToolTip();
 
   public slots:
@@ -54,7 +54,7 @@ class RSIToolTip : public QWidget
     QLabel *mBigLeft;
     QLabel *mIcon;
     PassivePopup *m_popup;
-    KSystemTrayIcon *m_icon;
+    QSystemTrayIcon *m_icon;
 
     bool m_suspended;
 };

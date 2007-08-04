@@ -25,6 +25,7 @@
 #include "rsistats.h"
 
 #include <QMenu>
+#include <QSystemTrayIcon>
 
 #include <KComponentData>
 #include <KLocale>
@@ -33,11 +34,12 @@
 #include <KHelpMenu>
 #include <KGlobalAccel>
 #include <KStandardShortcut>
+#include <KSystemTrayIcon>
 #include <KMessageBox>
 #include <KWindowSystem>
 
 RSIDock::RSIDock( QWidget *parent)
-    : KSystemTrayIcon( parent ), m_suspended( false )
+    : QSystemTrayIcon( parent ), m_suspended( false )
     , m_statsDialog( 0 ), m_statsWidget( 0 )
 {
     m_help = new KHelpMenu( parent, KGlobal::mainComponent().aboutData());
@@ -150,7 +152,6 @@ void RSIDock::mousePressEvent( QMouseEvent *e )
 
 bool RSIDock::event ( QEvent * event )
 {
-    kDebug() << event->type();
     if (event->type() == QEvent::ToolTip)
     {
       emit showToolTip();

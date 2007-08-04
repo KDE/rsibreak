@@ -25,7 +25,7 @@
 #define RSIDOCK_H
 
 #include <kdialog.h>
-#include <ksystemtrayicon.h>
+#include <qsystemtrayicon.h>
 //Added by qt3to4:
 #include <QMouseEvent>
 #include <QShowEvent>
@@ -47,7 +47,7 @@ class RSIStatWidget;
  * @author Nadeem Hasan <nhasan@kde.org>
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSIDock : public KSystemTrayIcon
+class RSIDock : public QSystemTrayIcon
 {
   Q_OBJECT
 
