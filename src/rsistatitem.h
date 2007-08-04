@@ -20,9 +20,8 @@
 #ifndef RSISTATITEM_H
 #define RSISTATITEM_H
 
-#include <q3valuelist.h>
-#include <qvariant.h>
-//Added by qt3to4:
+#include <QList>
+#include <QVariant>
 #include <QLabel>
 
 #include "rsiglobals.h"
@@ -76,7 +75,7 @@ class RSIStatItem
     /**
      * Returns the list of derived statistics.
      */
-    Q3ValueList<RSIStat> getDerivedItems() const { return m_derived; }
+    QList<RSIStat> getDerivedItems() const { return m_derived; }
 
     /**
      * Resets current value to initial value, passed along with the
@@ -95,7 +94,7 @@ class RSIStatItem
     QLabel *m_description;
 
     /** Contains a list of RSIStats which depend on *this* item. */
-    Q3ValueList< RSIStat > m_derived;
+    QList< RSIStat > m_derived;
 };
 
 

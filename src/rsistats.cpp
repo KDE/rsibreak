@@ -170,11 +170,11 @@ void RSIStats::setStat( RSIStat stat, const QVariant &val, bool ifmax )
 
 void RSIStats::updateDependentStats( RSIStat stat )
 {
-    const Q3ValueList<RSIStat> &stats = m_statistics[ stat ]->getDerivedItems();
-    Q3ValueList<RSIStat>::ConstIterator it;
-    for( it = stats.begin() ; it != stats.end(); ++it )
+    const QList<RSIStat> &stats = m_statistics[ stat ]->getDerivedItems();
+    for( int i = 0 ; i < stats.count(); ++i )
     {
-        switch( (*it) )
+        RSIStat it = stats.at(i);
+        switch( (it) )
         {
         case PAUSE_SCORE:
         {
@@ -194,11 +194,11 @@ void RSIStats::updateDependentStats( RSIStat stat )
             total += ratio * m_statistics[ BIG_BREAKS ]->getValue().toDouble();
 
             if ( total > 0 )
-              m_statistics[ *it ]->setValue( 100 - ( ( skipped / total ) * 100 ) );
+              m_statistics[ it ]->setValue( 100 - ( ( skipped / total ) * 100 ) );
             else
-              m_statistics[ *it ]->setValue( 0 );
+              m_statistics[ it ]->setValue( 0 );
 
-            updateStat( *it );
+            updateStat( it );
             break;
         }
 
@@ -220,11 +220,11 @@ void RSIStats::updateDependentStats( RSIStat stat )
             double total = m_statistics[TOTAL_TIME]->getValue().toDouble();
 
             if ( total > 0 )
-              m_statistics[ *it ]->setValue( (activity / total) * 100 );
+              m_statistics[ it ]->setValue( (activity / total) * 100 );
             else
-              m_statistics[ *it ]->setValue( 0 );
+              m_statistics[ it ]->setValue( 0 );
 
-            updateStat( *it );
+            updateStat( it );
             break;
         }
 
@@ -233,11 +233,11 @@ void RSIStats::updateDependentStats( RSIStat stat )
         case ACTIVITY_PERC_6HOUR:
         {
             if ( stat == ACTIVITY )
-              static_cast<RSIStatBitArrayItem *>(m_statistics[*it])->setActivity();
+              static_cast<RSIStatBitArrayItem *>(m_statistics[it])->setActivity();
             else
-              static_cast<RSIStatBitArrayItem *>(m_statistics[*it])->setIdle();
+              static_cast<RSIStatBitArrayItem *>(m_statistics[it])->setIdle();
 
-            updateStat( *it );
+            updateStat( it );
             break;
         }
 
