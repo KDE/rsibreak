@@ -55,8 +55,6 @@ public:
     void applySettings();
 
 private slots:
-    void slotHideCounter();
-    void slotFontPicker();
     void slotFolderPicker();
     void slotFolderEdited(const QString& newPath);
     void slotHideFlash();

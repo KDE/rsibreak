@@ -29,8 +29,6 @@
 
 // KDE includes.
 #include <KLocale>
-#include <KColorButton>
-#include <KFontDialog>
 #include <KApplication>
 #include <KFileDialog>
 #include <KLineEdit>
@@ -46,11 +44,8 @@ public:
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
     KLineEdit*        imageFolderEdit;
-    QFont             counterFont;
-    KColorButton*     counterColor;
     QCheckBox*        searchRecursiveCheck;
     QCheckBox*        hideMinimizeButton;
-    QCheckBox*        hideCounter;
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
     QCheckBox*        usePopup;
@@ -70,45 +65,6 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    // Counterbox and skipbox next to eachother
    KHBox *boxes= new KHBox(l);
    boxes->setSpacing( KDialog::spacingHint() );
-
-   //-------------------- Counterbox
-   QGroupBox *counterBox = new QGroupBox(boxes);
-   counterBox->setTitle(i18nc("This is the title of a box with settings "
-        "for the counter used during breaks","Counter"));
-
-   d->hideCounter = new QCheckBox(i18n("H&ide"), this);
-   connect(d->hideCounter, SIGNAL(toggled(bool)), SLOT(slotHideCounter()));
-   d->hideCounter->setWhatsThis( i18n("With this checkbox you can indicate "
-       "if you want to see a counter during the breaks. It will count down to "
-       "zero, so you know how long this break will be. It will be shown on top "
-       "of the image, when images are shown.") );
-
-   d->colorBox = new KHBox(this);
-   QLabel *counterColorlabel = new QLabel( i18nc("This is a label, behind "
-       "it is a a block filled with the choosed color", "&Color:")+' ', 
-       d->colorBox );
-   counterColorlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-   d->counterColor = new KColorButton(d->colorBox);
-   counterColorlabel->setBuddy(d->counterColor);
-   d->counterColor->setWhatsThis( i18n("Select here the color to use for the "
-       "counter. As this is used on top of the images, you might want to set "
-       "it to a color which is visible for most of the images.") );
-
-   d->fontBox = new KHBox(this);
-   QLabel *counterFontlabel = new QLabel( i18n("&Font:")+' ', d->fontBox );
-   counterFontlabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-   d->counterFontBut = new QPushButton("font",d->fontBox);
-   counterFontlabel->setBuddy(d->counterFontBut);
-   d->counterFontBut->setWhatsThis( i18n("Select here the font to use for the "
-       "counter.") );
-   connect(d->counterFontBut, SIGNAL(clicked()), SLOT(slotFontPicker()));
-
-   QVBoxLayout *vbox0 = new QVBoxLayout(counterBox);
-   vbox0->addWidget(d->hideCounter);
-   vbox0->addWidget(d->colorBox);
-   vbox0->addWidget(d->fontBox);
-   vbox0->addStretch(1);
-   counterBox->setLayout(vbox0);
 
    //---------------- SKIP BOX
    QGroupBox *skipBox = new QGroupBox(boxes);
@@ -192,7 +148,6 @@ SetupMaximized::SetupMaximized(QWidget* parent )
    layout->addWidget(this);
 
    readSettings();
-   slotHideCounter();
    slotHideFlash();
    slotUseImages();
 }
@@ -207,18 +162,6 @@ void SetupMaximized::slotUseImages()
     d->searchRecursiveCheck->setEnabled(d->slideshowBox->isChecked());
     d->imageFolderEdit->setEnabled(d->slideshowBox->isChecked());
     d->changePathButton->setEnabled(d->slideshowBox->isChecked());
-}
-
-void SetupMaximized::slotHideCounter()
-{
-    d->colorBox->setEnabled(!d->hideCounter->isChecked());
-    d->fontBox->setEnabled(!d->hideCounter->isChecked());
-}
-
-void SetupMaximized::slotFontPicker()
-{
-    KFontDialog::getFont( d->counterFont );
-    d->counterFontBut->setText(d->counterFont.family());
 }
 
 void SetupMaximized::slotFolderPicker()
@@ -240,7 +183,6 @@ void SetupMaximized::slotFolderEdited(const QString& newPath)
     if (!newPath.startsWith('/')) {
         d->imageFolderEdit->setText(QDir::homePath()+'/'+newPath);
     }
-
 }
 
 void SetupMaximized::slotHideFlash()
@@ -252,8 +194,6 @@ void SetupMaximized::slotHideFlash()
 void SetupMaximized::applySettings()
 {
     KConfigGroup config = KGlobal::config()->group("General Settings");
-    config.writeEntry("CounterColor", d->counterColor->color());
-    config.writeEntry("CounterFont", d->counterFont);
     config.writeEntry("ImageFolder", d->imageFolderEdit->text());
     config.writeEntry("HideMinimizeButton",
                        d->hideMinimizeButton->isChecked());
@@ -262,7 +202,6 @@ void SetupMaximized::applySettings()
     config.writeEntry("ShowImages",
                        d->slideshowBox->isChecked());
 
-    config.writeEntry("HideCounter", d->hideCounter->isChecked());
     config.writeEntry("DisableAccel", d->disableAccel->isChecked());
 
     config = KGlobal::config()->group("Popup Settings");
@@ -281,17 +220,13 @@ void SetupMaximized::readSettings()
     QString dir = QDir::home().path();
 
     KConfigGroup config = KGlobal::config()->group("General Settings");
-    d->counterColor->setColor( config.readEntry("CounterColor", Black ) );
-    d->counterFont = config.readEntry("CounterFont", font ) ;
     d->imageFolderEdit->setText(config.readEntry("ImageFolder", dir ));
-    d->counterFontBut->setText(d->counterFont.family());
     d->hideMinimizeButton->setChecked(
             config.readEntry("HideMinimizeButton", false));
     d->slideshowBox->setChecked(
             config.readEntry("ShowImages", false));
     d->searchRecursiveCheck->setChecked(
             config.readEntry("SearchRecursiveCheck", false));
-    d->hideCounter->setChecked(config.readEntry("HideCounter", false));
     d->disableAccel->setChecked(config.readEntry("DisableAccel", false));
 
     config = KGlobal::config()->group("Popup Settings");

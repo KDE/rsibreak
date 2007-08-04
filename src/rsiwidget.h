@@ -22,9 +22,9 @@
 #define RSIObject_H
 
 #include <QLabel>
+#include "rsitimer.h"
 
 class RSIDock;
-class RSITimer;
 class RSIRelaxPopup;
 class RSIToolTip;
 class GrayWidget;
@@ -52,9 +52,12 @@ class RSIObject : public QObject
          */
         ~RSIObject();
 
-    /* Available through D-Bus */
-    public Q_SLOTS:
-        void slotShowWhereIAm();
+        /**
+         * Access to the timer
+         */
+        RSITimer* timer() { return m_timer; };
+
+        void showWhereIAm();
 
     private slots:
         void slotWelcome();
@@ -99,12 +102,17 @@ class RSIWidget: public QLabel
 {
   Q_OBJECT
   Q_CLASSINFO("D-Bus Interface", "org.rsibreak.rsiwidget")
+
   public:
     explicit RSIWidget();
 
-    /* Available through D-Bus */
+  /* Available through D-Bus */
   public Q_SLOTS:
-    void slotShowWhereIAm() {m_rsiobject->slotShowWhereIAm();};
+    void showWhereIAm() {m_rsiobject->showWhereIAm();};
+    void doBigBreak() {m_rsiobject->timer()->slotRequestBigBreak();};
+    void doTinyBreak() {m_rsiobject->timer()->slotRequestTinyBreak();};
+    void resume() {m_rsiobject->timer()->slotSuspended( false ); };
+    void suspend() {m_rsiobject->timer()->slotSuspended( true ); };
 
   private:
     RSIObject*  m_rsiobject;

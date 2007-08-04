@@ -127,7 +127,7 @@ void RSIObject::slotWelcome()
     }
 }
 
-void RSIObject::slotShowWhereIAm()
+void RSIObject::showWhereIAm()
 {
       QString tempfile = takeScreenshotOfTrayIcon();
       KMessageBox::information(0,
@@ -405,14 +405,9 @@ void RSIObject::readConfig()
 
     KConfigGroup config = KGlobal::config()->group("General Settings");
     m_showTimerReset = config.readEntry("ShowTimerReset", false);
-    // TODO:  QColor color = config.readEntry("CounterColor", QColor( Qt::black ) );
-
 
     m_relaxpopup->setSkipButtonHidden(
             config.readEntry("HideMinimizeButton", false));
-    // TODO: m_countDown->setHidden( config.readEntry("HideCounter", false));
-    // m_countDown->setFont( config.readEntry("CounterFont",
-    //                    QFont( QApplication::font().family(), 40, 75, true ) ) );
 
     m_useImages = config.readEntry("ShowImages", false);
     int slideInterval = config.readEntry("SlideInterval", 10);
