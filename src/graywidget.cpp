@@ -51,7 +51,7 @@ void GrayWidget::reset()
 {
   m_currentY = 0;
   m_first = true;
-  m_dialog->hide();
+  m_dialog->reject();
 }
 
 // This slot and the paint event is partly copied from KDE's logout screen.

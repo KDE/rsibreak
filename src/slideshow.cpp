@@ -58,7 +58,7 @@ void SlideShow::start()
 void SlideShow::stop()
 {
   m_timer_slide->stop();
-  m_dialog->hide();
+  m_dialog->reject();
 }
 
 void SlideShow::loadImage()

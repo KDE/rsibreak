@@ -31,6 +31,7 @@
 BoxDialog::BoxDialog( QWidget *parent, Qt::WFlags flags)
   : QWidget( parent, flags), m_showMinimize( true ), m_disableShort( false )
 {
+    hide();
     m_dialog = new KDialog( this, Qt::Popup );
 
     // for the counter
@@ -50,7 +51,6 @@ void BoxDialog::showDialog()
     return;
 
   m_dialog->exec();
-  hide();
 }
 
 void BoxDialog::loadDialog()

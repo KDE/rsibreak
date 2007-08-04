@@ -73,7 +73,7 @@ SetupMaximized::SetupMaximized(QWidget* parent )
 
    //-------------------- Counterbox
    QGroupBox *counterBox = new QGroupBox(boxes);
-   counterBox->setTitle(i18nc("This is the title of a box with settings ",
+   counterBox->setTitle(i18nc("This is the title of a box with settings "
         "for the counter used during breaks","Counter"));
 
    d->hideCounter = new QCheckBox(i18n("H&ide"), this);

@@ -22,7 +22,7 @@
 
 #include <QWidget>
 class QLabel;
-class KDialog;
+#include <KDialog>
 
 /**
  * @class BoxDialog
@@ -47,8 +47,11 @@ class BoxDialog : public QWidget
 
         void showMinimize( bool ok );
         void disableShortcut( bool ok );
-        void showDialog();
         void setLabel( const QString& );
+        void reject() { m_dialog->reject();};
+
+    public slots:
+        void showDialog();
 
     signals:
         void skip();
