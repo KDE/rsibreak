@@ -1,5 +1,9 @@
-Port remarks:
-- started, not finished, does not compile.
+Port TODO's:
+- test on xinerama
+- auto startup, find out if this still works the same.
+- slideshow, the box does not seem to maintain focus, so esc does not work.
+
+Remarks:
 - D-Bus notes:
   * Exported functions must be under public Q_SLOTS: in src/rsiwidget.h
     i've added slotShowWhereIAm as an example.
@@ -25,20 +29,17 @@ Wishes:
 - Save statistics (sqlite?)
 - Visualize stats with libraries behind mrtg or ganglia
 
-To be fixed for next release:
-- [BS] fix buttons accel on breaks. reported by tsdgeos
-- [TA/BS] sometimes the amount of skipped/sat down breaks don't match its total. reported by toma
-- Breaks can't be skipped when a full screen OpenGL game is running (keys and QPushButtons don't seem to work). reported by stanley^
-
-To be fixed for/with KDE4:
-- [TA] fix height of config screen, seems the options don't fit. Reported by Diego Iastrubni.
-  Even when a setMinimumHeight is set, this seems to be ignored by KDialogBase.
+Bugs:
 - [TA] hook into KNotificationRestrictions - so you will not be bothered during presentations
   or games when they hook into that system as well. Reported by Achim.
-
-Bugs:
+  - as far as i can see there is only a client side - you can say that you are starting a presentation
+    and that there should be no screensaver, but not the other way round, query if there is a presentation
+    going on so you should not interfere with a popup at this moment.
 - image extension are hardcoded
 - only reset timers after closing configure dialog if the timer settings were changed
+- [TA/BS] sometimes the amount of skipped/sat down breaks don't match its total. reported by toma
+- screenshot is sometimes taken without a visible icon in the tray.
+  - TA can't find a way to prevent that.
 
 Gnome specific bugs:
 - It is started at login, regardless of the setting.

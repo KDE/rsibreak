@@ -7,5 +7,6 @@ include(KDE4Defaults)
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories ( ${KDE4_INCLUDES} )
-ADD_SUBDIRECTORY( src ) 
 ADD_SUBDIRECTORY( icons ) 
+ADD_SUBDIRECTORY( src ) 
+ADD_SUBDIRECTORY( plasma ) 

@@ -14,5 +14,11 @@
     <method name="idleTime">
       <arg type="i" direction="out"/>
     </method>
+    <method name="tinyLeft">
+      <arg type="i" direction="out"/>
+    </method>
+    <method name="bigLeft">
+      <arg type="i" direction="out"/>
+    </method>
   </interface>
 </node>

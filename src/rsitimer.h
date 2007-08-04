@@ -139,6 +139,9 @@ class RSITimer : public QObject
         */
         int idleTime();
 
+	int tinyLeft() { return m_tiny_left; };
+	int bigLeft() { return m_big_left; };
+
     protected:
         /**
           The pumping heart of the timer. This will evaluate user's activity

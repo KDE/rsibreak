@@ -114,6 +114,8 @@ class RSIWidget: public QLabel
     void resume() {m_rsiobject->timer()->slotSuspended( false ); };
     void suspend() {m_rsiobject->timer()->slotSuspended( true ); };
     int idleTime() {return m_rsiobject->timer()->idleTime(); };
+    int tinyLeft() {return m_rsiobject->timer()->tinyLeft(); };
+    int bigLeft() {return m_rsiobject->timer()->bigLeft(); };
 
   private:
     RSIObject*  m_rsiobject;
