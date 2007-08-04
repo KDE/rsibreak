@@ -113,6 +113,7 @@ class RSIWidget: public QLabel
     void doTinyBreak() {m_rsiobject->timer()->slotRequestTinyBreak();};
     void resume() {m_rsiobject->timer()->slotSuspended( false ); };
     void suspend() {m_rsiobject->timer()->slotSuspended( true ); };
+    int idleTime() {return m_rsiobject->timer()->idleTime(); };
 
   private:
     RSIObject*  m_rsiobject;

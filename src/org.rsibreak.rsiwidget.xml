@@ -11,5 +11,8 @@
     </method>
     <method name="suspend">
     </method>
+    <method name="idleTime">
+      <arg type="i" direction="out"/>
+    </method>
   </interface>
 </node>

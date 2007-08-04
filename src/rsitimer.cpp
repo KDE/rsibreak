@@ -256,14 +256,17 @@ void RSITimer::slotRequestBigBreak()
 
 void RSITimer::timerEvent( QTimerEvent * )
 {
+    // although we might be suspended, we still want to return a valid value
+    // when restarted, so m_lastActivity shouls still be updated. This way
+    // the dbus call to idleTime() does not return false info.
+    int t = idleTime();
+
     // Dont change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
         return;
 
     RSIGlobals::instance()->stats()->increaseStat( TOTAL_TIME );
-
-    int t = idleTime();
 
     if ( t == 0 )
     {
