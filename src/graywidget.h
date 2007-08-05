@@ -22,7 +22,6 @@
 #define GRAYWIDGET_H
 
 #include <QWidget>
-class QLabel;
 class BoxDialog;
 
 /**

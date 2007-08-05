@@ -22,7 +22,6 @@
 #include <kpassivepopup.h>
 #include <QMouseEvent>
 
-class KSystemTrayIcon;
 
 class PassivePopup : public KPassivePopup
 {

@@ -31,9 +31,7 @@
 #include <QShowEvent>
 #include <QEvent>
 
-class QTimer;
 
-class KGlobalAccel;
 class KHelpMenu;
 
 class RSIStatWidget;
