@@ -3,31 +3,27 @@
 # Ruby script for generating amaroK tarball releases from KDE SVN
 #
 # (c) 2005 Mark Kretschmann <markey@web.de>
+# (c) 2006-2007 Tom Albers <tomalbers@kde.nl>
 # Some parts of this code taken from cvs2dist
 # License: GNU General Public License V2
 
 
 name       = "rsibreak"
 egmodule   = "utils"
-version    = "0.7.2"
-docs       = "yes"
+version    = "0.9.0-beta1"
+docs       = "no"
 
 svnbase    = "svn+ssh://toma@svn.kde.org/home/kde"
 svnroot    = "#{svnbase}/trunk"
-adminroot  = "#{svnbase}/branches/KDE/3.5"
 
 addDocs    = []
-addPo      = []
+addPo      = [ plasma_applet_rsibreak.po ]
 
 #----------------------------------------------------------------
 
 folder     = name + "-" + version
 addPo      = [name] + addPo
 addDocs    = [name] + addDocs
-
-# Prevent using unsermake
-oldmake = ENV["UNSERMAKE"]
-ENV["UNSERMAKE"] = "no"
 
 puts "Fetching #{egmodule}/#{name}..."
 # Remove old folder, if exists
@@ -37,28 +33,24 @@ puts "Fetching #{egmodule}/#{name}..."
 Dir.mkdir( folder )
 Dir.chdir( folder )
 
-`svn co -N #{svnroot}/extragear/#{egmodule}`
-Dir.chdir( egmodule )
-`svn up #{name}`
-`svn up -N doc`
+# Do the main checkouts.
+`svn co #{svnroot}/extragear/#{egmodule}/#{name}`
+Dir.chdir( name )
+`svn co #{svnroot}/extragear/#{egmodule}/doc/#{name} doc`
 
-if ( docs != "no")
-    for dg in addDocs
-        dg.chomp!
-        `svn up doc/#{dg}`
-    end
-else
-    `echo 'DO_NOT_COMPILE="$DO_NOT_COMPILE doc"' >> doc/configure.in.in`
-end
+# Move them to the toplevel
+`/bin/mv * ..`
+Dir.chdir( ".." )
+`find -name ".svn" | xargs rm -rf`
+`rmdir #{name}`
 
-`svn co #{adminroot}/kde-common/admin`
 puts "done\n"
 
 puts "\n"
 puts "Fetching l10n docs for #{egmodule}/#{name}...\n"
 puts "\n"
 
-i18nlangs = `svn cat #{svnroot}/l10n/subdirs`
+i18nlangs = `svn cat #{svnroot}/l10n-kde4/subdirs`
 i18nlangsCleaned = []
 for lang in i18nlangs
   l = lang.chomp
@@ -78,8 +70,9 @@ for lang in i18nlangs
   for dg in addDocs
     dg.chomp!
     `rm -rf #{dg}`
-    docdirname = "l10n/#{lang}/docs/extragear-utils/#{dg}"
+    docdirname = "l10n-kde4/#{lang}/docs/extragear-utils/#{dg}"
     if ( docs != "no")
+        puts "Checking if #{dg} has translated documentation...\n"
         `svn co -q #{svnroot}/#{docdirname} > /dev/null 2>&1`
     end
     next unless FileTest.exists?( dg )
@@ -108,13 +101,14 @@ Dir.chdir( ".." ) # in egmodule now
 $subdirs = false
 Dir.mkdir( "po" )
 
+topmakefile = File.new( "po/CMakeLists.txt", File::CREAT | File::RDWR | File::TRUNC )
 for lang in i18nlangs
   lang.chomp!
   dest = "po/#{lang}"
 
   for dg in addPo
     dg.chomp!
-    pofilename = "l10n/#{lang}/messages/extragear-utils/#{dg}.po"
+    pofilename = "l10n-kde4/#{lang}/messages/extragear-utils/#{dg}.po"
     `svn cat #{svnroot}/#{pofilename} 2> /dev/null | tee l10n/#{dg}.po`
     next if FileTest.size( "l10n/#{dg}.po" ) == 0
 
@@ -126,79 +120,33 @@ for lang in i18nlangs
     `mv l10n/#{dg}.po #{dest}`
     puts( "done.\n" )
 
-    makefile = File.new( "#{dest}/Makefile.am", File::CREAT | File::RDWR | File::TRUNC )
-    makefile << "KDE_LANG = #{lang}\n"
-    makefile << "SUBDIRS  = $(AUTODIRS)\n"
-    makefile << "POFILES  = AUTO\n"
+    makefile = File.new( "#{dest}/CMakeLists.txt", File::CREAT | File::RDWR | File::TRUNC )
+    makefile << "kde4_create_po_files()\n"
+    makefile << "kde4_install_po_files(#{lang})\n"
     makefile.close()
 
-    $subdirs = true
+    topmakefile << "add_subdirectory(#{lang})\n"
   end
 end
-
-if $subdirs
-  makefile = File.new( "po/Makefile.am", File::CREAT | File::RDWR | File::TRUNC )
-  makefile << "SUBDIRS = $(AUTODIRS)\n"
-  makefile.close()
-else
-  `rm -Rf po`
-end
+topmakefile.close()
 
 `rm -rf l10n`
 puts "\n"
 
-# Remove SVN data folder
+# add l10n to compilation.
+`echo "find_package(Msgfmt REQUIRED)" >> CMakeLists.txt`
+`echo "add_subdirectory( po )" >> CMakeLists.txt`
+`echo "add_subdirectory( doc )" >> CMakeLists.txt`
+
+# Remove cruft 
 `find -name ".svn" | xargs rm -rf`
-
-`/bin/mv * ..`
-Dir.chdir( ".." ) # name-version
-`rmdir #{egmodule}`
-
-# Move some important files to the root folder
-Dir.chdir( "#{name}" )
-`/bin/mv -f src/#{name}.lsm ..`
-`/bin/mv -f AUTHORS ..`
-`/bin/mv -f COPYING* ..`
-`/bin/mv -f INSTALL ..`
-`/bin/mv -f ChangeLog ..`
-`/bin/mv -f NEWS ..`
-#`/bin/mv -f README ..`
-`/bin/mv -f TODO ..`
-#`/bin/mv -f HACKING ..`
-`/bin/rm release_rsibreak.rb makechangelog ../INDEX ../README icons/artwork-v?.tar.gz`
-`/bin/rm icons/artwork-v3.tar.gz`
-Dir.chdir( ".." )
-
-
-# Generate makefiles
-`find | xargs touch`
-
-puts "\n"
-puts "Generating Makefiles..  "
-
-# Remove that ugly warning which is added just because we sit in playground
-`echo "AUTOMAKE_OPTIONS = foreign" > Makefile.am.in`
-`echo "DISTCLEANFILES = inst-apps" >> Makefile.am.in`
-`echo "include admin/deps.am" >> Makefile.am.in`
-`echo "include admin/Doxyfile.am" >> Makefile.am.in`
-
-ENV["ACLOCAL"]="aclocal"
-ENV["AUTOCONF"]="autoconf"
-
-`make -f Makefile.cvs`
-puts "done.\n"
-
-`rm -rf autom4te.cache`
-`rm stamp-h.in`
-
-
+`find -name "Messages.sh" | xargs rm -rf`
+`/bin/rm release_rsibreak.rb makechangelog icons/artwork-v?.tar.gz`
 
 puts "\n"
 puts "Compressing..  "
 Dir.chdir( ".." ) # root folder
 `tar -jcf #{folder}.tar.bz2 #{folder}`
-`rm -rf #{folder}`
+#`rm -rf #{folder}`
 puts "done.\n"
 
-
-ENV["UNSERMAKE"] = oldmake
