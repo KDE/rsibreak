@@ -60,7 +60,7 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak", 0,
                           ki18n("RSIBreak"),
-                          "0.9.0-svn",
+                          "0.9.0-beta2",
                           ki18n("Try to prevent Repetitive Strain Injury by "
                                   "reminding a user to rest."),
                           KAboutData::License_GPL,
@@ -98,7 +98,7 @@ int main( int argc, char *argv[] )
     // else it will exit(0) when closing any config/about/etc window.
     a.setQuitOnLastWindowClosed( false );
 
-    RSIWidget* rsi = new RSIWidget();
+    new RSIWidget();
 
     return a.exec();
 }

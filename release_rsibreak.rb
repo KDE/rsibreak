@@ -17,7 +17,7 @@ svnbase    = "svn+ssh://toma@svn.kde.org/home/kde"
 svnroot    = "#{svnbase}/trunk"
 
 addDocs    = []
-addPo      = [ plasma_applet_rsibreak.po ]
+addPo      = [ "plasma_applet_rsibreak.po" ]
 
 #----------------------------------------------------------------
 
