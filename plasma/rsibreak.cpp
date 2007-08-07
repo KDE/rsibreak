@@ -75,7 +75,7 @@ void RSIBreak::paintInterface( QPainter *painter,
                       "Currently Idle:\n%1 seconds\n", idle.value()));
     text.append(i18np("Next short break:\none second\n",
                       "Next short break:\n%1 seconds\n", active1.value()));
-    text.append(i18np("Next big break:\n%1 seconds\n",
+    text.append(i18np("Next big break:\none second\n",
                       "Next big break:\n%1 seconds\n", active2.value()));
   }
 
