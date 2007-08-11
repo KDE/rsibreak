@@ -1,0 +1,12 @@
+We follow kdelibs coding style:
+http://techbase.kde.org/Policies/Kdelibs_Coding_Style
+
+except that we prefer spaces in the () for readability, so "void bla( arg )"
+
+if you are not sure run:
+
+astyle --indent=spaces=4 --brackets=linux \
+       --indent-labels --pad=paren-in --unpad=paren \
+       --one-line=keep-statements --convert-tabs \
+       --indent-preprocessor \
+       `find -type f -name '*.cpp'` `find -type f -name '*.h'`

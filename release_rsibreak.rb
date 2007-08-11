@@ -141,7 +141,7 @@ puts "\n"
 # Remove cruft 
 `find -name ".svn" | xargs rm -rf`
 `find -name "Messages.sh" | xargs rm -rf`
-`/bin/rm release_rsibreak.rb makechangelog icons/artwork-v?.tar.gz`
+`/bin/rm release_rsibreak.rb makechangelog icons/artwork-v?.tar.gz rsibreak.kdevelop`
 
 puts "\n"
 puts "Compressing..  "
