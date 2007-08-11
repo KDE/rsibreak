@@ -65,7 +65,7 @@ class GrayWidget : public QWidget
     private:
         int             m_currentY;
         BoxDialog*      m_dialog;
-        QPixmap         m_complete;
+        QImage          m_complete;
         bool            m_first;
 };
 

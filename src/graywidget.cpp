@@ -27,9 +27,10 @@
 #include <QPainter>
 #include <QTimer>
 
-#include <KPixmapEffect>
 #include <KWindowSystem>
 #include <KDebug>
+
+#include <blitz.h>
 
 GrayWidget::GrayWidget( QWidget *parent )
   : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_first( true )
@@ -68,7 +69,7 @@ void GrayWidget::slotGrayEffect()
     if (m_first)
     {
       m_first = false;
-      m_complete = takeScreenshot( QX11Info::appScreen() );
+      m_complete = takeScreenshot( QX11Info::appScreen() ).toImage();
 
       show();
 
@@ -79,7 +80,6 @@ void GrayWidget::slotGrayEffect()
 
     }
     repaint();
-    m_currentY += 15;
 }
 
 void GrayWidget::paintEvent( QPaintEvent* )
@@ -90,17 +90,18 @@ void GrayWidget::paintEvent( QPaintEvent* )
       return;
 
     // this part we want to process...
-    QPixmap change(width(),15);
+    QImage change(width(), 15, QImage::Format_RGB32);
     change = m_complete.copy(0, m_currentY, width(),15);
-    change = KPixmapEffect::fade( change, 0.4, Qt::black );
-    change = KPixmapEffect::toGray( change, true );
+    change = Blitz::fade( change, 0.4, Qt::black );
+    Blitz::grayscale( change, true );
 
     QPainter painter( this );
-    painter.drawPixmap( 0, m_currentY, change );
+    painter.drawImage( 0, m_currentY, change );
 
-    if ( m_currentY == 15 )
-      painter.drawPixmap( 0, 15, m_complete.copy(0, 15, width(), height()-15) );
+    if ( m_currentY == 0 )
+      painter.drawImage( 0, 15, m_complete.copy(0, 15, width(), height()-15) );
 
+    m_currentY += 15;
     QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
 }
 

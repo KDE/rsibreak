@@ -54,7 +54,7 @@ KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
 ########### linking #####################
 
-TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak ${IDLE_DETECTION_LIB} )
+TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak blitz ${IDLE_DETECTION_LIB} )
 
 ########### install files ###############
 
