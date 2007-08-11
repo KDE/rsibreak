@@ -28,12 +28,12 @@
 #include <KLocale>
 
 RSIStatWidget::RSIStatWidget( QWidget *parent )
-: QWidget( parent )
+        : QWidget( parent )
 {
     mGrid = new QGridLayout( this );
     mGrid->setSpacing( 5 );
 
-    QGroupBox *gb = new QGroupBox( i18n("Time"), this );
+    QGroupBox *gb = new QGroupBox( i18n( "Time" ), this );
     QGridLayout* subgrid = new QGridLayout( gb );
     addStat( TOTAL_TIME, subgrid, 0 );
     addStat( ACTIVITY, subgrid, 1 );
@@ -42,7 +42,7 @@ RSIStatWidget::RSIStatWidget( QWidget *parent )
     addStat( MAX_IDLENESS, subgrid, 4 );
     mGrid->addWidget( gb, 0, 0 );
 
-    gb = new QGroupBox( i18n("Short Breaks"), this );
+    gb = new QGroupBox( i18n( "Short Breaks" ), this );
     subgrid = new QGridLayout( gb );
     addStat( TINY_BREAKS, subgrid, 0 );
     addStat( LAST_TINY_BREAK, subgrid, 1 );
@@ -50,27 +50,25 @@ RSIStatWidget::RSIStatWidget( QWidget *parent )
     addStat( IDLENESS_CAUSED_SKIP_TINY, subgrid, 3 );
     mGrid->addWidget( gb, 0, 1 );
 
-    gb = new QGroupBox( i18n("Pause"), this );
+    gb = new QGroupBox( i18n( "Pause" ), this );
     subgrid = new QGridLayout( gb );
-    addStat( ACTIVITY_PERC, subgrid,0 );
+    addStat( ACTIVITY_PERC, subgrid, 0 );
     addStat( ACTIVITY_PERC_MINUTE, subgrid, 1 );
     addStat( ACTIVITY_PERC_HOUR, subgrid, 2 );
     addStat( ACTIVITY_PERC_6HOUR, subgrid, 3 );
     addStat( PAUSE_SCORE, subgrid, 4 );
     mGrid->addWidget( gb, 1, 0 );
 
-    gb = new QGroupBox( i18n("Long Breaks"), this );
+    gb = new QGroupBox( i18n( "Long Breaks" ), this );
     subgrid = new QGridLayout( gb );
     addStat( BIG_BREAKS, subgrid, 0 );
     addStat( LAST_BIG_BREAK, subgrid, 1 );
-    addStat( BIG_BREAKS_SKIPPED, subgrid,2 );
+    addStat( BIG_BREAKS_SKIPPED, subgrid, 2 );
     addStat( IDLENESS_CAUSED_SKIP_BIG, subgrid, 3 );
     mGrid->addWidget( gb, 1, 1 );
 }
 
-RSIStatWidget::~RSIStatWidget()
-{
-}
+RSIStatWidget::~RSIStatWidget() {}
 
 void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
 {
@@ -81,36 +79,35 @@ void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
     m->setParent( grid->parentWidget() );
     m->setAlignment( Qt::AlignRight );
 
-    grid->addWidget(l, row, 0);
-    grid->addWidget(m, row, 1);
+    grid->addWidget( l, row, 0 );
+    grid->addWidget( m, row, 1 );
 
     // measure minimal width with current font settings
     QFontMetrics fm( KGlobalSettings::generalFont() );
     int width = 0;
-    switch ( stat )
-    {
-      case TOTAL_TIME:
-      case ACTIVITY:
-      case IDLENESS:
-      case MAX_IDLENESS:
+    switch ( stat ) {
+    case TOTAL_TIME:
+    case ACTIVITY:
+    case IDLENESS:
+    case MAX_IDLENESS:
         width = fm.width( "One one and " +
-            i18nc("Translate this as the longest plural form. This is used to "
-                 "calculate the width of window","minutes") +
-            i18nc("Translate this as the longest plural form. This is used to "
-                 "calculate the width of window","seconds") );
+                          i18nc( "Translate this as the longest plural form. This is used to "
+                                 "calculate the width of window", "minutes" ) +
+                          i18nc( "Translate this as the longest plural form. This is used to "
+                                 "calculate the width of window", "seconds" ) );
         break;
-      case LAST_TINY_BREAK:
-      case LAST_BIG_BREAK:
-      {
+    case LAST_TINY_BREAK:
+    case LAST_BIG_BREAK: {
         QTime dt( QTime::currentTime() );
-        width = (int)(fm.width( KGlobal::locale()->formatTime( dt, true, false ) ) * 1.25);
+        width = ( int )( fm.width( KGlobal::locale()->formatTime( dt, true, false ) ) * 1.25 );
         break;
-      }
-      default: ;
+    }
+    default:
+        ;
     }
 
     if ( width > 0 )
-      m->setMinimumWidth( width );
+        m->setMinimumWidth( width );
 }
 
 void RSIStatWidget::showEvent( QShowEvent * )

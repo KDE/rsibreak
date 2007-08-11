@@ -20,8 +20,8 @@
 #ifndef RSITimer_DPMS_H
 #define RSITimer_DPMS_H
 
-bool QueryDPMSTimeouts(Display* display, int& standby, int& suspend, int& off);
+bool QueryDPMSTimeouts( Display* display, int& standby, int& suspend, int& off );
 
-QPixmap takeScreenshot(int);
+QPixmap takeScreenshot( int );
 
 #endif

@@ -29,25 +29,25 @@
 class RSIStats;
 
 enum RSIStat {
-               TOTAL_TIME,
-               ACTIVITY,
-               IDLENESS,
-               ACTIVITY_PERC,
-               ACTIVITY_PERC_MINUTE,
-               ACTIVITY_PERC_HOUR,
-               ACTIVITY_PERC_6HOUR,
-               MAX_IDLENESS,
-               CURRENT_IDLE_TIME,
-               IDLENESS_CAUSED_SKIP_TINY,
-               IDLENESS_CAUSED_SKIP_BIG,
-               TINY_BREAKS,
-               TINY_BREAKS_SKIPPED,
-               LAST_TINY_BREAK,
-               BIG_BREAKS,
-               BIG_BREAKS_SKIPPED,
-               LAST_BIG_BREAK,
-               PAUSE_SCORE
-             };
+    TOTAL_TIME,
+    ACTIVITY,
+    IDLENESS,
+    ACTIVITY_PERC,
+    ACTIVITY_PERC_MINUTE,
+    ACTIVITY_PERC_HOUR,
+    ACTIVITY_PERC_6HOUR,
+    MAX_IDLENESS,
+    CURRENT_IDLE_TIME,
+    IDLENESS_CAUSED_SKIP_TINY,
+    IDLENESS_CAUSED_SKIP_BIG,
+    TINY_BREAKS,
+    TINY_BREAKS_SKIPPED,
+    LAST_TINY_BREAK,
+    BIG_BREAKS,
+    BIG_BREAKS_SKIPPED,
+    LAST_BIG_BREAK,
+    PAUSE_SCORE
+};
 
 /**
  * @class RSIGlobals
@@ -56,8 +56,8 @@ enum RSIStat {
  */
 class RSIGlobals : public QObject
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     /** Default constructor. */
     explicit RSIGlobals( QObject *parent = 0 );
 
@@ -76,7 +76,9 @@ class RSIGlobals : public QObject
      *
      * @see RSIStats
      */
-    RSIStats *stats() { return m_stats; }
+    RSIStats *stats() {
+        return m_stats;
+    }
 
     /**
      * Converts @p seconds to a reasonable string.
@@ -90,26 +92,28 @@ class RSIGlobals : public QObject
      * - 2: "2 seconds"
      * - 0: "0 seconds"
      */
-    QString formatSeconds(const int seconds);
+    QString formatSeconds( const int seconds );
 
     /**
      * Returns a reference to the mapping containing all intervals.
      * These intervals define when a tiny or big break should occur and for how
      * long.
      */
-    QMap<QString,int> &intervals() { return m_intervals; }
+    QMap<QString, int> &intervals() {
+        return m_intervals;
+    }
 
     /**
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */
-    QColor getTinyBreakColor(int secsToBreak ) const;
+    QColor getTinyBreakColor( int secsToBreak ) const;
 
     /**
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */
-    QColor getBigBreakColor(int secsToBreak ) const;
+    QColor getBigBreakColor( int secsToBreak ) const;
 
     /**
      * Returns the array which keeps track per second for 24 hours when the
@@ -119,7 +123,9 @@ class RSIGlobals : public QObject
      *
      * @see RSIStatBitArrayItem
      */
-    QBitArray *usageArray() { return &m_usageArray; }
+    QBitArray *usageArray() {
+        return &m_usageArray;
+    }
 
     /**
      * Resets the usage array, with all values to 0.
@@ -133,17 +139,17 @@ class RSIGlobals : public QObject
      *              the ones at the end of a break.
      * @param big   true for big breaks, false for short ones.
      */
-    void NotifyBreak(bool start, bool big);
+    void NotifyBreak( bool start, bool big );
 
-  public slots:
+public slots:
     /**
      * Reads the configuration.
      */
     void slotReadConfig();
 
-  private:
+private:
     static RSIGlobals *m_instance;
-    QMap<QString,int> m_intervals;
+    QMap<QString, int> m_intervals;
     static RSIStats *m_stats;
     QBitArray m_usageArray;
     QStringList m_dcopstartbig;

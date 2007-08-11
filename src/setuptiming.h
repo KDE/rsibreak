@@ -41,7 +41,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    SetupTiming(QWidget* parent = 0);
+    SetupTiming( QWidget* parent = 0 );
 
     /**
      * Destructor
@@ -54,7 +54,7 @@ public:
     void applySettings();
 
 private slots:
-    void slotTinyValueChanged(int i);
+    void slotTinyValueChanged( int i );
     void slotBigValueChanged( int i );
     void slotTinyDurationValueChanged( int i );
     void slotBigDurationValueChanged( int i );

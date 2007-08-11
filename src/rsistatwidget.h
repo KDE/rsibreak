@@ -26,17 +26,17 @@ class QGridLayout;
 
 class RSIStatWidget : public QWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  explicit RSIStatWidget( QWidget *parent = 0);
-  ~RSIStatWidget();
+    explicit RSIStatWidget( QWidget *parent = 0 );
+    ~RSIStatWidget();
 
 protected:
-  void addStat( RSIStat stat, QGridLayout *grid, int row );
-  virtual void showEvent( QShowEvent * );
-  virtual void hideEvent( QHideEvent * );
+    void addStat( RSIStat stat, QGridLayout *grid, int row );
+    virtual void showEvent( QShowEvent * );
+    virtual void hideEvent( QHideEvent * );
 private:
-  QGridLayout *mGrid;
+    QGridLayout *mGrid;
 };
 
 #endif

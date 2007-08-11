@@ -47,9 +47,9 @@ class RSIStatWidget;
  */
 class RSIDock : public QSystemTrayIcon
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
+public:
     /**
      * Contructor
      * @param parent Parent Widget
@@ -62,81 +62,81 @@ class RSIDock : public QSystemTrayIcon
      */
     ~RSIDock();
 
-    signals:
-        /**
-         * This signal is emitted when the user has left
-         * the settings.
-         * @param restart Defines whether the timer should
-         * immediately restarted. This should not happen
-         * when RSIBreak is suspended.
-         */
-        void configChanged( bool restart );
+signals:
+    /**
+     * This signal is emitted when the user has left
+     * the settings.
+     * @param restart Defines whether the timer should
+     * immediately restarted. This should not happen
+     * when RSIBreak is suspended.
+     */
+    void configChanged( bool restart );
 
-        /**
-         * This signal is emitted when the user enters a dialog
-         * this can be an about X screen or the settings.
-         */
-        void dialogEntered();
+    /**
+     * This signal is emitted when the user enters a dialog
+     * this can be an about X screen or the settings.
+     */
+    void dialogEntered();
 
-        /**
-         * This signal is emitted when the user leaves one of the
-         * about X dialogs, it will not beemitted when the settings
-         * dialog is left, the configChanged() is emitted.
-         */
-        void dialogLeft();
+    /**
+     * This signal is emitted when the user leaves one of the
+     * about X dialogs, it will not beemitted when the settings
+     * dialog is left, the configChanged() is emitted.
+     */
+    void dialogLeft();
 
-        /**
-         * This signal is emitted when the user wishes to take the break
-         * at this moment, either via the shortcut or the menu (lmb)
-         */
-        void breakRequest();
+    /**
+     * This signal is emitted when the user wishes to take the break
+     * at this moment, either via the shortcut or the menu (lmb)
+     */
+    void breakRequest();
 
-        /**
-         * This signal is emitted when the user wishes to see all
-         * debug timing info. Needs a --enable-debug comiled RSIBreak
-         */
-        void debugRequest();
+    /**
+     * This signal is emitted when the user wishes to see all
+     * debug timing info. Needs a --enable-debug comiled RSIBreak
+     */
+    void debugRequest();
 
-        /**
-         * Suspend RSIBreak on user's request.
-        */
-        void suspend( bool );
+    /**
+     * Suspend RSIBreak on user's request.
+    */
+    void suspend( bool );
 
-        /**
-          Shows the tooltip.
-        */
-        void showToolTip();
+    /**
+      Shows the tooltip.
+    */
+    void showToolTip();
 
-    protected:
-        /**
-         * Reimplemented because we do not want an action on left click
-        */
-        void mousePressEvent( QMouseEvent *e );
+protected:
+    /**
+     * Reimplemented because we do not want an action on left click
+    */
+    void mousePressEvent( QMouseEvent *e );
 
-        /**
-         * Reimplemented to catch the tooltip event.
-         */
-        virtual bool event ( QEvent * event );
+    /**
+     * Reimplemented to catch the tooltip event.
+     */
+    virtual bool event( QEvent * event );
 
-    private slots:
-        void slotActivated(QSystemTrayIcon::ActivationReason);
-        void slotConfigure();
-        void slotConfigureNotifications();
-        void slotSuspend();
-        void slotBreakRequest();
-        void slotDebugRequest();
-        void slotShowStatistics();
-        void slotResetStats();
-        void slotQuit();
+private slots:
+    void slotActivated( QSystemTrayIcon::ActivationReason );
+    void slotConfigure();
+    void slotConfigureNotifications();
+    void slotSuspend();
+    void slotBreakRequest();
+    void slotDebugRequest();
+    void slotShowStatistics();
+    void slotResetStats();
+    void slotQuit();
 
-    private:
-        KHelpMenu*    m_help;
+private:
+    KHelpMenu*    m_help;
 
-        QAction* m_suspendItem;
-        bool m_suspended;
+    QAction* m_suspendItem;
+    bool m_suspended;
 
-        KDialog *m_statsDialog;
-        RSIStatWidget *m_statsWidget;
+    KDialog *m_statsDialog;
+    RSIStatWidget *m_statsWidget;
 };
 
 #endif // RSIDOCK_H

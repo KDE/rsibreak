@@ -36,14 +36,14 @@ class QSystemTrayIcon;
  */
 class RSIRelaxPopup : public QWidget
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     /** Constructor */
-    explicit RSIRelaxPopup( QWidget *parent, QSystemTrayIcon*);
+    explicit RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* );
     /** Destructor */
     ~RSIRelaxPopup();
 
-  public slots:
+public slots:
     /**
       Shows this popup with the message that the user should rest @p n seconds.
       @param n Amount of seconds to relax
@@ -58,27 +58,27 @@ class RSIRelaxPopup : public QWidget
     void slotReadConfig();
 
     /** Hides the skip button **/
-    void setSkipButtonHidden ( bool );
+    void setSkipButtonHidden( bool );
 
-  signals:
+signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();
 
     /** Ask the main widget to skip the break. */
     void skip();
 
-  protected:
+protected:
     /**
       Changes the background color for 0.5 second. The background is restored
       with unflash()
     */
     void flash();
 
-  protected slots:
+protected slots:
     /** Restores background color after a flash() */
     void unflash();
 
-  private:
+private:
     void readSettings();
     bool    m_usePopup;
     bool    m_useFlash;

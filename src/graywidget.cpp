@@ -33,27 +33,25 @@
 #include <blitz.h>
 
 GrayWidget::GrayWidget( QWidget *parent )
-  : QWidget( parent, Qt::Popup), m_currentY( 0 ), m_first( true )
+        : QWidget( parent, Qt::Popup ), m_currentY( 0 ), m_first( true )
 {
     // full screen
     setAttribute( Qt::WA_NoSystemBackground );
     QRect rect = QApplication::desktop()->screenGeometry(
-                        QApplication::desktop()->primaryScreen() );
+                     QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
 
     m_dialog = new BoxDialog( this, Qt::Popup );
 }
 
-GrayWidget::~GrayWidget()
-{
-}
+GrayWidget::~GrayWidget() {}
 
 void GrayWidget::reset()
 {
-  hide();
-  m_currentY = 0;
-  m_first = true;
-  m_dialog->reject();
+    hide();
+    m_currentY = 0;
+    m_first = true;
+    m_dialog->reject();
 }
 
 // This slot and the paint event is partly copied from KDE's logout screen.
@@ -61,22 +59,20 @@ void GrayWidget::reset()
 // /KDE/4/kdebase/workspace/ksmserver/shutdowndlg.cpp
 void GrayWidget::slotGrayEffect()
 {
-    if ( m_currentY >= height() )
-    {
+    if ( m_currentY >= height() ) {
         m_dialog->showDialog();
         return;
     }
-    if (m_first)
-    {
-      m_first = false;
-      m_complete = takeScreenshot( QX11Info::appScreen() ).toImage();
+    if ( m_first ) {
+        m_first = false;
+        m_complete = takeScreenshot( QX11Info::appScreen() ).toImage();
 
-      show();
+        show();
 
-      KWindowSystem::forceActiveWindow(winId());
-      KWindowSystem::setOnAllDesktops(winId(),true);
-      KWindowSystem::setState(winId(), NET::KeepAbove);
-      KWindowSystem::setState(winId(), NET::FullScreen);
+        KWindowSystem::forceActiveWindow( winId() );
+        KWindowSystem::setOnAllDesktops( winId(), true );
+        KWindowSystem::setState( winId(), NET::KeepAbove );
+        KWindowSystem::setState( winId(), NET::FullScreen );
 
     }
     repaint();
@@ -87,11 +83,11 @@ void GrayWidget::paintEvent( QPaintEvent* )
     kDebug() << k_funcinfo << m_currentY << m_first;
 
     if ( m_currentY >= height() )
-      return;
+        return;
 
     // this part we want to process...
-    QImage change(width(), 15, QImage::Format_RGB32);
-    change = m_complete.copy(0, m_currentY, width(),15);
+    QImage change( width(), 15, QImage::Format_RGB32 );
+    change = m_complete.copy( 0, m_currentY, width(), 15 );
     change = Blitz::fade( change, 0.4, Qt::black );
     Blitz::grayscale( change, true );
 
@@ -99,10 +95,10 @@ void GrayWidget::paintEvent( QPaintEvent* )
     painter.drawImage( 0, m_currentY, change );
 
     if ( m_currentY == 0 )
-      painter.drawImage( 0, 15, m_complete.copy(0, 15, width(), height()-15) );
+        painter.drawImage( 0, 15, m_complete.copy( 0, 15, width(), height() - 15 ) );
 
     m_currentY += 15;
-    QTimer::singleShot(10,this,SLOT(slotGrayEffect()));
+    QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
 }
 
 #include "graywidget.moc"

@@ -38,46 +38,46 @@
 #include <KMessageBox>
 #include <KWindowSystem>
 
-RSIDock::RSIDock( QWidget *parent)
-    : QSystemTrayIcon( parent ), m_suspended( false )
-    , m_statsDialog( 0 ), m_statsWidget( 0 )
+RSIDock::RSIDock( QWidget *parent )
+        : QSystemTrayIcon( parent ), m_suspended( false )
+        , m_statsDialog( 0 ), m_statsWidget( 0 )
 {
-    m_help = new KHelpMenu( parent, KGlobal::mainComponent().aboutData());
+    m_help = new KHelpMenu( parent, KGlobal::mainComponent().aboutData() );
 
-    QMenu* menu = new QMenu(parent);
-    menu->addAction( KIcon("about-kde"), i18n( "About &KDE" ), m_help,
-                SLOT( aboutKDE() ) );
-    menu->addAction( i18n( "&About RSIBreak"), m_help,
-                SLOT( aboutApplication() ) );
-    menu->addAction( KIcon("help-contents"),
-                i18n("RSIBreak &Handbook"), m_help, SLOT(appHelpActivated()),
-                KStandardShortcut::shortcut(KStandardShortcut::Help).primary());
+    QMenu* menu = new QMenu( parent );
+    menu->addAction( KIcon( "about-kde" ), i18n( "About &KDE" ), m_help,
+                     SLOT( aboutKDE() ) );
+    menu->addAction( i18n( "&About RSIBreak" ), m_help,
+                     SLOT( aboutApplication() ) );
+    menu->addAction( KIcon( "help-contents" ),
+                     i18n( "RSIBreak &Handbook" ), m_help, SLOT( appHelpActivated() ),
+                     KStandardShortcut::shortcut( KStandardShortcut::Help ).primary() );
 
     menu->addSeparator();
-    menu->addAction( i18n( "&Report Bug..." ), m_help, SLOT(reportBug()) );
+    menu->addAction( i18n( "&Report Bug..." ), m_help, SLOT( reportBug() ) );
     menu->addAction( i18n( "Switch application &language..." ), m_help,
-                SLOT(switchApplicationLanguage()) );
+                     SLOT( switchApplicationLanguage() ) );
 
     menu->addSeparator();
-    m_suspendItem = menu->addAction(SmallIcon("media-playback-pause"),
-                              i18n("&Suspend RSIBreak"), this,
-                              SLOT(slotSuspend()));
-    menu->addAction(i18n("&Usage Statistics"),
-                    this, SLOT( slotShowStatistics() ) );
-    menu->addAction(SmallIcon("knotify"), i18n("Configure &Notifications..."),
-                    this, SLOT(slotConfigureNotifications()));
-    menu->addAction(KIcon("configure"), i18n("&Configure RSIBreak..."),
-                    this, SLOT(slotConfigure()));
+    m_suspendItem = menu->addAction( SmallIcon( "media-playback-pause" ),
+                                     i18n( "&Suspend RSIBreak" ), this,
+                                     SLOT( slotSuspend() ) );
+    menu->addAction( i18n( "&Usage Statistics" ),
+                     this, SLOT( slotShowStatistics() ) );
+    menu->addAction( SmallIcon( "knotify" ), i18n( "Configure &Notifications..." ),
+                     this, SLOT( slotConfigureNotifications() ) );
+    menu->addAction( KIcon( "configure" ), i18n( "&Configure RSIBreak..." ),
+                     this, SLOT( slotConfigure() ) );
 
     menu->addSeparator();
-    menu->addAction(KIcon("application-exit"),i18n("Quit"), this, SLOT(slotQuit()),
-                    KStandardShortcut::shortcut(KStandardShortcut::Quit).primary());
+    menu->addAction( KIcon( "application-exit" ), i18n( "Quit" ), this, SLOT( slotQuit() ),
+                     KStandardShortcut::shortcut( KStandardShortcut::Quit ).primary() );
 
 
-    setContextMenu(menu);
+    setContextMenu( menu );
 
-    connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            SLOT(slotActivated(QSystemTrayIcon::ActivationReason)));
+    connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
+             SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
 }
 
 RSIDock::~RSIDock()
@@ -87,26 +87,26 @@ RSIDock::~RSIDock()
     m_statsWidget = 0;
 }
 
-void RSIDock::slotActivated(QSystemTrayIcon::ActivationReason reason)
+void RSIDock::slotActivated( QSystemTrayIcon::ActivationReason reason )
 {
-    if (reason == QSystemTrayIcon::Trigger)
-    slotShowStatistics();
+    if ( reason == QSystemTrayIcon::Trigger )
+        slotShowStatistics();
 }
 
 void RSIDock::slotConfigureNotifications()
 {
-    KNotifyConfigWidget::configure(0);
+    KNotifyConfigWidget::configure( 0 );
 }
 
 void RSIDock::slotConfigure()
 {
-    Setup setup(0);
+    Setup setup( 0 );
     emit dialogEntered();
-    if (setup.exec() == QDialog::Accepted)
-      emit configChanged( !m_suspended );
+    if ( setup.exec() == QDialog::Accepted )
+        emit configChanged( !m_suspended );
 
     if ( !m_suspended )
-      emit dialogLeft();
+        emit dialogLeft();
 }
 
 void RSIDock::slotBreakRequest()
@@ -121,21 +121,18 @@ void RSIDock::slotDebugRequest()
 
 void RSIDock::slotSuspend()
 {
-    if( m_suspended )
-    {
+    if ( m_suspended ) {
         emit suspend( false );
 
         setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
-        m_suspendItem->setIcon(SmallIcon( "media-playback-pause" ) );
-        m_suspendItem->setText(i18n("&Suspend RSIBreak") );
-    }
-    else
-    {
+        m_suspendItem->setIcon( SmallIcon( "media-playback-pause" ) );
+        m_suspendItem->setText( i18n( "&Suspend RSIBreak" ) );
+    } else {
         emit suspend( true );
 
         setIcon( KSystemTrayIcon::loadIcon( "rsibreakx" ) );
-        m_suspendItem->setIcon(SmallIcon( "media-playback-start" ) );
-        m_suspendItem->setText(i18n( "&Resume RSIBreak" ) );
+        m_suspendItem->setIcon( SmallIcon( "media-playback-start" ) );
+        m_suspendItem->setText( i18n( "&Resume RSIBreak" ) );
     }
 
     m_suspended = !m_suspended;
@@ -143,74 +140,69 @@ void RSIDock::slotSuspend()
 
 void RSIDock::mousePressEvent( QMouseEvent *e )
 {
-    if (e->button() == Qt::RightButton)
+    if ( e->button() == Qt::RightButton )
         contextMenu()->exec( e->globalPos() );
 
-    if (e->button() == Qt::LeftButton)
-            slotShowStatistics();
+    if ( e->button() == Qt::LeftButton )
+        slotShowStatistics();
 }
 
-bool RSIDock::event ( QEvent * event )
+bool RSIDock::event( QEvent * event )
 {
-    if (event->type() == QEvent::ToolTip)
-    {
-      emit showToolTip();
-      return true;
+    if ( event->type() == QEvent::ToolTip ) {
+        emit showToolTip();
+        return true;
     }
     return false;
 }
 
 void RSIDock::slotShowStatistics()
 {
-    if ( !m_statsDialog )
-    {
-      m_statsDialog = new KDialog( 0 );
-      m_statsDialog->setCaption( i18n("Usage Statistics") );
-      m_statsDialog->setButtons( KDialog::Ok | KDialog::User1 );
-      m_statsDialog->setButtonText( KDialog::User1, i18n("Reset"));
+    if ( !m_statsDialog ) {
+        m_statsDialog = new KDialog( 0 );
+        m_statsDialog->setCaption( i18n( "Usage Statistics" ) );
+        m_statsDialog->setButtons( KDialog::Ok | KDialog::User1 );
+        m_statsDialog->setButtonText( KDialog::User1, i18n( "Reset" ) );
 
-      m_statsWidget = new RSIStatWidget(m_statsDialog);
-      connect(m_statsDialog, SIGNAL(user1Clicked()),
-              this, SLOT(slotResetStats()));
+        m_statsWidget = new RSIStatWidget( m_statsDialog );
+        connect( m_statsDialog, SIGNAL( user1Clicked() ),
+                 this, SLOT( slotResetStats() ) );
 
-      m_statsDialog->setMainWidget( m_statsWidget );
+        m_statsDialog->setMainWidget( m_statsWidget );
     }
 
     if ( m_statsDialog->isVisible() &&
-         KWindowSystem::windowInfo(
-                  m_statsDialog->winId(),NET::CurrentDesktop ).desktop() ==
-                  KWindowSystem::currentDesktop() )
-    {
-      m_statsDialog->hide();
-    }
-    else
-    {
-      m_statsDialog->show();
+            KWindowSystem::windowInfo(
+                m_statsDialog->winId(), NET::CurrentDesktop ).desktop() ==
+            KWindowSystem::currentDesktop() ) {
+        m_statsDialog->hide();
+    } else {
+        m_statsDialog->show();
 
-      if (!m_statsDialog->isActiveWindow())
-        KWindowSystem::forceActiveWindow(m_statsDialog->winId());
+        if ( !m_statsDialog->isActiveWindow() )
+            KWindowSystem::forceActiveWindow( m_statsDialog->winId() );
 
-      m_statsDialog->raise();
+        m_statsDialog->raise();
     }
 }
 
 void RSIDock::slotResetStats()
 {
     int i = KMessageBox::warningContinueCancel( 0,
-                i18n("This will reset all statistics to zero. "
-                     "Is that what you want?"),
-                i18n("Reset the statistics"),
-                KGuiItem("Reset"),
-                KStandardGuiItem::cancel(),
-                "resetStatistics");
+            i18n( "This will reset all statistics to zero. "
+                  "Is that what you want?" ),
+            i18n( "Reset the statistics" ),
+            KGuiItem( "Reset" ),
+            KStandardGuiItem::cancel(),
+            "resetStatistics" );
 
-    if (i == KMessageBox::Continue)
+    if ( i == KMessageBox::Continue )
         RSIGlobals::instance()->stats()->reset();
 }
 
 void RSIDock::slotQuit()
 {
-  exit(0);
+    exit( 0 );
 }
 
 #include "rsidock.moc"

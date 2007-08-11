@@ -32,7 +32,7 @@
 #include <QSystemTrayIcon>
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )
-  : QWidget( parent ), m_systray( icon )
+        : QWidget( parent ), m_systray( icon )
 {
     m_popup = new PassivePopup( parent );
 
@@ -44,29 +44,27 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )
     hbox->setSpacing( 5 );
 
     m_progress = new QProgressBar( hbox );
-    m_progress->setFormat("%v");
+    m_progress->setFormat( "%v" );
     m_progress->setRange( 0, 0 );
 
     m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), QString(), hbox );
-    m_lockbutton->setToolTip(i18n( "Lock the session") );
+    m_lockbutton->setToolTip( i18n( "Lock the session" ) );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
 
     m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), QString(), hbox );
-    m_skipbutton->setToolTip( i18n( "Skip this break") );
-    connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL ( skip() ) );
+    m_skipbutton->setToolTip( i18n( "Skip this break" ) );
+    connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
     m_popup->setTimeout( 0 ); // no auto close
     m_popup->setView( vbox );
     readSettings();
 }
 
-RSIRelaxPopup::~RSIRelaxPopup()
-{
-}
+RSIRelaxPopup::~RSIRelaxPopup() {}
 
 void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 {
-    if (!m_usePopup)
+    if ( !m_usePopup )
         return;
 
     /*
@@ -79,33 +77,29 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
         If n increases compared to the last call,
         we want a new request for a relax moment.
     */
-    if ( n >= m_progress->value() )
-    {
-        m_progress->setRange(0, n );
+    if ( n >= m_progress->value() ) {
+        m_progress->setRange( 0, n );
         resetcount += 1;
-        if( n > m_progress->value() )
-          flash();
+        if ( n > m_progress->value() )
+            flash();
         else if ( resetcount % 4 == 0 ) // flash regulary when the user keeps working
-          flash();
+            flash();
     }
 
-    if ( n > 0 )
-    {
-        QString text = i18np("Please relax for 1 second",
-                            "Please relax for %1 seconds",
-                            n );
+    if ( n > 0 ) {
+        QString text = i18np( "Please relax for 1 second",
+                              "Please relax for %1 seconds",
+                              n );
 
         if ( bigBreakNext )
-          text.append('\n'+i18n("Note: next break is a big break") );
+            text.append( '\n' + i18n( "Note: next break is a big break" ) );
 
         m_message->setText( text );
         m_progress->setValue( n );
 
-        if (resetcount == 1)
-          m_popup->show(m_systray);
-    }
-    else
-    {
+        if ( resetcount == 1 )
+            m_popup->show( m_systray );
+    } else {
         m_popup->setVisible( false );
         resetcount = 0;
     }
@@ -113,23 +107,23 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
 void RSIRelaxPopup::flash()
 {
-  kDebug() << k_funcinfo << m_useFlash;
-    if( !m_useFlash )
-      return;
+    kDebug() << k_funcinfo << m_useFlash;
+    if ( !m_useFlash )
+        return;
 
     QTimer::singleShot( 500, this, SLOT( unflash() ) );
     QPalette normal;
-    normal.setColor(QPalette::Inactive, QPalette::WindowText,
-                    KColorScheme(KColorScheme::Selection).background().color());
-    normal.setColor(QPalette::Inactive, QPalette::Window,
-                    KColorScheme(KColorScheme::Selection).foreground().color());
-    m_popup->setPalette(normal);
+    normal.setColor( QPalette::Inactive, QPalette::WindowText,
+                     KColorScheme( KColorScheme::Selection ).background().color() );
+    normal.setColor( QPalette::Inactive, QPalette::Window,
+                     KColorScheme( KColorScheme::Selection ).foreground().color() );
+    m_popup->setPalette( normal );
 }
 
 void RSIRelaxPopup::unflash()
 {
-  QPalette normal;
-  m_popup->setPalette(normal);
+    QPalette normal;
+    m_popup->setPalette( normal );
 }
 
 void RSIRelaxPopup::slotReadConfig()
@@ -139,12 +133,12 @@ void RSIRelaxPopup::slotReadConfig()
 
 void RSIRelaxPopup::readSettings()
 {
-    KConfigGroup config = KGlobal::config()->group("Popup Settings");
-    m_usePopup=config.readEntry("UsePopup", true);
-    m_useFlash=config.readEntry("UseFlash", true);
+    KConfigGroup config = KGlobal::config()->group( "Popup Settings" );
+    m_usePopup = config.readEntry( "UsePopup", true );
+    m_useFlash = config.readEntry( "UseFlash", true );
 }
 
-void RSIRelaxPopup::setSkipButtonHidden ( bool b )
+void RSIRelaxPopup::setSkipButtonHidden( bool b )
 {
     m_skipbutton->setHidden( b );
 }

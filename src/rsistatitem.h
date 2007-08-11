@@ -37,7 +37,7 @@ class QLabel;
  */
 class RSIStatItem
 {
-  public:
+public:
     /**
      * Constructor. Pass a @p description along to give the
      * statistic a useful description. It will be visible in the
@@ -46,16 +46,20 @@ class RSIStatItem
      * @param init The initial value of this statistic. Default value is an
      * integer zero.
      */
-    explicit RSIStatItem( const QString &description = QString(), const QVariant &init = QVariant(0) );
+    explicit RSIStatItem( const QString &description = QString(), const QVariant &init = QVariant( 0 ) );
 
     /** Default destructor. */
     virtual ~RSIStatItem();
 
     /** Retrieve the item's description in QLabel format. */
-    QLabel *getDescription() const { return m_description; }
+    QLabel *getDescription() const {
+        return m_description;
+    }
 
     /** Retrieve the item's value in QVariant format. */
-    QVariant getValue()      const { return m_value; }
+    QVariant getValue()      const {
+        return m_value;
+    }
 
     /**
      * Sets the value of this item.
@@ -63,7 +67,9 @@ class RSIStatItem
      *
      * @see QVariant documentation for supported types of values.
      */
-    void setValue( QVariant v ) { m_value = v; }
+    void setValue( QVariant v ) {
+        m_value = v;
+    }
 
     /**
      * When other statistics depend on this statistic item, it should
@@ -75,7 +81,9 @@ class RSIStatItem
     /**
      * Returns the list of derived statistics.
      */
-    QList<RSIStat> getDerivedItems() const { return m_derived; }
+    QList<RSIStat> getDerivedItems() const {
+        return m_derived;
+    }
 
     /**
      * Resets current value to initial value, passed along with the
@@ -86,11 +94,11 @@ class RSIStatItem
     //virtual void setActivity() {};
     //virtual void setIdle() {};
 
-  protected:
+protected:
     QVariant m_value;
     QVariant m_init;
 
-  private:
+private:
     QLabel *m_description;
 
     /** Contains a list of RSIStats which depend on *this* item. */
@@ -111,7 +119,7 @@ class RSIStatItem
  */
 class RSIStatBitArrayItem : public RSIStatItem
 {
-  public:
+public:
     /**
      * Constructor of a bit array item.
      * @param description A i18n()'d text representing this statistic's meaning.
@@ -121,7 +129,7 @@ class RSIStatBitArrayItem : public RSIStatItem
      * it keeps track of 24 hours of usage. This value should be never higher than
      * 86400 seconds.
      */
-    explicit RSIStatBitArrayItem( const QString &description = QString(), const QVariant &init = QVariant(0), int size = 86400 );
+    explicit RSIStatBitArrayItem( const QString &description = QString(), const QVariant &init = QVariant( 0 ), int size = 86400 );
 
     /**
      * Destructor.
@@ -144,7 +152,7 @@ class RSIStatBitArrayItem : public RSIStatItem
      */
     void setIdle();
 
-  private:
+private:
     int m_size;
     int m_counter;
     int m_begin;

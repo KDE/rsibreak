@@ -35,62 +35,60 @@
  * make the RSIWidget->show(). which we do not want. This
  * class misses that call.
  */
-class RSIApplication : public KUniqueApplication {
-    public:
-        /**
-         * Similar to KUniqueApplication::newInstance, only without
-         * the call to raise the widget when a second instance is started.
-         */
-        int newInstance()
-        {
-            static bool secondMe=false;
-            if (secondMe)
-            {
-                  QDBusInterface dbus("org.rsibreak.rsibreak", "/rsibreak",
-                        "org.rsibreak.rsiwidget");
-                  dbus.call("showWhereIAm");
-            } else {
-                secondMe = true;
-            }
-            return 0;
+class RSIApplication : public KUniqueApplication
+{
+public:
+    /**
+     * Similar to KUniqueApplication::newInstance, only without
+     * the call to raise the widget when a second instance is started.
+     */
+    int newInstance() {
+        static bool secondMe = false;
+        if ( secondMe ) {
+            QDBusInterface dbus( "org.rsibreak.rsibreak", "/rsibreak",
+                                 "org.rsibreak.rsiwidget" );
+            dbus.call( "showWhereIAm" );
+        } else {
+            secondMe = true;
         }
+        return 0;
+    }
 };
 
 int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak", 0,
-                          ki18n("RSIBreak"),
+                          ki18n( "RSIBreak" ),
                           "0.9.0-beta2",
-                          ki18n("Try to prevent Repetitive Strain Injury by "
-                                  "reminding a user to rest."),
+                          ki18n( "Try to prevent Repetitive Strain Injury by "
+                                 "reminding a user to rest." ),
                           KAboutData::License_GPL,
-                          ki18n("(c) 2005-2006, The RSIBreak developers" ),
+                          ki18n( "(c) 2005-2006, The RSIBreak developers" ),
                           KLocalizedString(),
-                          "http://www.rsibreak.org");
+                          "http://www.rsibreak.org" );
 
-    aboutData.addAuthor( ki18n("Tom Albers"), ki18n("Maintainer and Author"),
-                         "tomalbers@kde.nl", "http://www.omat.nl");
+    aboutData.addAuthor( ki18n( "Tom Albers" ), ki18n( "Maintainer and Author" ),
+                         "tomalbers@kde.nl", "http://www.omat.nl" );
 
-    aboutData.addAuthor( ki18n("Bram Schoenmakers"), ki18n("Author"),
+    aboutData.addAuthor( ki18n( "Bram Schoenmakers" ), ki18n( "Author" ),
                          "bramschoenmakers@kde.nl" );
 
-    aboutData.addCredit( ki18n("Tina Trillitzsch"), ki18n("Usability"),
-                         "t.trillitzsch@gmx.de");
+    aboutData.addCredit( ki18n( "Tina Trillitzsch" ), ki18n( "Usability" ),
+                         "t.trillitzsch@gmx.de" );
 
-    aboutData.addCredit( ki18n("Lee Olson"), ki18n("Logo and Icons"),
-                         "clearbeast@gmail.com");
+    aboutData.addCredit( ki18n( "Lee Olson" ), ki18n( "Logo and Icons" ),
+                         "clearbeast@gmail.com" );
 
-    aboutData.addCredit( ki18n("Achim Bohnet"),
-                         ki18n("Packaging and help with related issues"),
-                         "ach@mpe.mpg.de");
+    aboutData.addCredit( ki18n( "Achim Bohnet" ),
+                         ki18n( "Packaging and help with related issues" ),
+                         "ach@mpe.mpg.de" );
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
-    if (!KUniqueApplication::start())
-    {
+    if ( !KUniqueApplication::start() ) {
         KStartupInfo::handleAutoAppStartedSending();
-        fprintf(stderr, "RSIBreak is already running!\n");
-        exit(0);
+        fprintf( stderr, "RSIBreak is already running!\n" );
+        exit( 0 );
     }
 
     RSIApplication a;

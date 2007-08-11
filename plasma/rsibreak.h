@@ -1,4 +1,4 @@
-/* 
+/*
    Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -24,22 +24,22 @@
 
 class RSIBreak : public Plasma::Applet
 {
-  Q_OBJECT
-  public:
-    RSIBreak(QObject *parent, const QStringList &args);
+    Q_OBJECT
+public:
+    RSIBreak( QObject *parent, const QStringList &args );
     ~RSIBreak();
 
-    QSizeF contentSize () const;
+    QSizeF contentSize() const;
     void paintInterface( QPainter *painter,
                          const QStyleOptionGraphicsItem *option,
-                         const QRect &contentsRect);
-  private slots:
+                         const QRect &contentsRect );
+private slots:
     void slotUpdate();
 
-  private:
+private:
     QTimer*   m_timer;
 };
- 
-K_EXPORT_PLASMA_APPLET(rsibreak, RSIBreak)
+
+K_EXPORT_PLASMA_APPLET( rsibreak, RSIBreak )
 
 #endif

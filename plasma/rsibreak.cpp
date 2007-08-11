@@ -1,4 +1,4 @@
-/* 
+/*
    Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -23,71 +23,65 @@
 #include <QDBusInterface>
 #include <QDBusReply>
 
-RSIBreak::RSIBreak(QObject *parent, const QStringList &args)
-  : Plasma::Applet(parent, args)
+RSIBreak::RSIBreak( QObject *parent, const QStringList &args )
+        : Plasma::Applet( parent, args )
 {
-    setDrawStandardBackground(true);
+    setDrawStandardBackground( true );
 
-    QDBusInterface rsibreak("org.rsibreak.rsibreak","/rsibreak",
-               "org.rsibreak.rsiwidget");
+    QDBusInterface rsibreak( "org.rsibreak.rsibreak", "/rsibreak",
+                             "org.rsibreak.rsiwidget" );
 
-   QTimer* m_timer = new QTimer(this);
-   connect( m_timer, SIGNAL(timeout()), this, SLOT(slotUpdate()));
-   m_timer->start(1000);
+    QTimer* m_timer = new QTimer( this );
+    connect( m_timer, SIGNAL( timeout() ), this, SLOT( slotUpdate() ) );
+    m_timer->start( 1000 );
 }
 
 RSIBreak::~RSIBreak()
 {
-  if (failedToLaunch()) {
-        // Do some cleanup here
-  } else {
-        // Save settings
-  }
 }
 
 void RSIBreak::slotUpdate()
 {
-  update();
+    update();
 }
 
 QSizeF RSIBreak::contentSize() const
 {
-  return QSizeF( 140, 140 );
+    return QSizeF( 140, 140 );
 }
 
 void RSIBreak::paintInterface( QPainter *painter,
-                          const QStyleOptionGraphicsItem *option,
-                          const QRect &contentsRect)
+                               const QStyleOptionGraphicsItem *option,
+                               const QRect &contentsRect )
 {
-  QString text;
-  QDBusInterface rsibreak("org.rsibreak.rsibreak","/rsibreak",
-               "org.rsibreak.rsiwidget");
-  
-  if (!rsibreak.isValid())
-  {
-    text.append(i18n("Please\nlaunch\nRSIBreak"));
-  }  else {
-    QDBusReply<int> idle = rsibreak.call("idleTime");
-    QDBusReply<int> active1 = rsibreak.call("tinyLeft");
-    QDBusReply<int> active2 = rsibreak.call("bigLeft");
+    QString text;
+    QDBusInterface rsibreak( "org.rsibreak.rsibreak", "/rsibreak",
+                             "org.rsibreak.rsiwidget" );
 
-    text.append(i18np("Currently Idle:\none second\n", 
-                      "Currently Idle:\n%1 seconds\n", idle.value()));
-    text.append(i18np("Next short break:\none second\n",
-                      "Next short break:\n%1 seconds\n", active1.value()));
-    text.append(i18np("Next big break:\none second\n",
-                      "Next big break:\n%1 seconds\n", active2.value()));
-  }
+    if ( !rsibreak.isValid() ) {
+        text.append( i18n( "Please\nlaunch\nRSIBreak" ) );
+    }  else {
+        QDBusReply<int> idle = rsibreak.call( "idleTime" );
+        QDBusReply<int> active1 = rsibreak.call( "tinyLeft" );
+        QDBusReply<int> active2 = rsibreak.call( "bigLeft" );
 
-  painter->save();
-  painter->setPen(Qt::white);
-  painter->drawText(QRect(10,10,130,130),
-              Qt::AlignBottom+Qt::AlignHCenter,
-              text);
-  painter->drawText(boundingRect(),
-              Qt::AlignBottom+Qt::AlignHCenter,
-              "RSIBreak Info");
-  painter->restore();
+        text.append( i18np( "Currently Idle:\none second\n",
+                            "Currently Idle:\n%1 seconds\n", idle.value() ) );
+        text.append( i18np( "Next short break:\none second\n",
+                            "Next short break:\n%1 seconds\n", active1.value() ) );
+        text.append( i18np( "Next big break:\none second\n",
+                            "Next big break:\n%1 seconds\n", active2.value() ) );
+    }
+
+    painter->save();
+    painter->setPen( Qt::white );
+    painter->drawText( QRect( 10, 10, 130, 130 ),
+                       Qt::AlignBottom + Qt::AlignHCenter,
+                       text );
+    painter->drawText( boundingRect(),
+                       Qt::AlignBottom + Qt::AlignHCenter,
+                       "RSIBreak Info" );
+    painter->restore();
 }
 
 #include "rsibreak.moc"

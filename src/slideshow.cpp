@@ -28,72 +28,68 @@
 #include <KDebug>
 
 SlideShow::SlideShow( QWidget *parent )
-    : QWidget( parent, Qt::Popup),m_searchRecursive( false )
+        : QWidget( parent, Qt::Popup ), m_searchRecursive( false )
 {
     QRect rect = QApplication::desktop()->screenGeometry(
-                        QApplication::desktop()->primaryScreen() );
+                     QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
 
-    m_timer_slide = new QTimer(this);
-    connect(m_timer_slide, SIGNAL(timeout()),  SLOT(slotNewSlide()));
+    m_timer_slide = new QTimer( this );
+    connect( m_timer_slide, SIGNAL( timeout() ),  SLOT( slotNewSlide() ) );
 
     m_dialog = new BoxDialog( this, Qt::Popup );
 }
 
-SlideShow::~SlideShow()
-{
-}
+SlideShow::~SlideShow() {}
 
 bool SlideShow::hasImages()
 {
-  return m_files.count() > 0;
+    return m_files.count() > 0;
 }
 
 void SlideShow::start()
 {
-   m_timer_slide->start( m_slideInterval*1000 );
-   m_dialog->showDialog();
+    m_timer_slide->start( m_slideInterval*1000 );
+    m_dialog->showDialog();
 }
 
 void SlideShow::stop()
 {
-  hide();
-  m_timer_slide->stop();
-  m_dialog->reject();
+    hide();
+    m_timer_slide->stop();
+    m_dialog->reject();
 }
 
 void SlideShow::loadImage()
 {
-    if (m_files.count() == 0)
+    if ( m_files.count() == 0 )
         return;
 
     // Base the size on the size of the screen, for xinerama.
     QRect size = QApplication::desktop()->screenGeometry(
-                        QApplication::desktop()->primaryScreen() );
+                     QApplication::desktop()->primaryScreen() );
 
     // Do not accept images whose surface is more than 3 times smaller than
     // screen
     int min_image_surface = size.width() * size.height() / 3;
     QImage image;
 
-    while (true)
-    {
+    while ( true ) {
         // reset if all images are shown
-        if (m_files_done.count() == m_files.count())
+        if ( m_files_done.count() == m_files.count() )
             m_files_done.clear();
 
         // get a not yet used image
         int j;
         QString name;
-        do
-        {
-            j = (int) (m_files.count() * (rand() / (RAND_MAX + 1.0)));
+        do {
+            j = ( int )( m_files.count() * ( rand() / ( RAND_MAX + 1.0 ) ) );
             name = m_files[ j ];
-        } while (m_files_done.indexOf( name ) != -1);
+        } while ( m_files_done.indexOf( name ) != -1 );
 
         // load image
         kDebug() << "Loading:" << name
-            << "(" << j << "/"  << m_files.count() << ") ";
+        << "(" << j << "/"  << m_files.count() << ") ";
         image.load( name );
 
         // Check size
@@ -101,13 +97,10 @@ void SlideShow::loadImage()
             // Image is big enough, leave while loop
             m_files_done.append( name );
             break;
-        }
-        else
-        {
+        } else {
             // Too small, remove from list
             m_files.removeAll( name );
-            if (m_files.count() == 0)
-            {
+            if ( m_files.count() == 0 ) {
                 // Couldn't find any image big enough, leave function
                 return;
             }
@@ -115,74 +108,72 @@ void SlideShow::loadImage()
     }
 
     QImage m = image.scaled( size.width(), size.height(),
-                             Qt::KeepAspectRatioByExpanding);
+                             Qt::KeepAspectRatioByExpanding );
 
-    if (m.isNull())
+    if ( m.isNull() )
         return;
 
-    m_backgroundimage = QPixmap::fromImage(m);
+    m_backgroundimage = QPixmap::fromImage( m );
 
     QPalette palette;
-    palette.setBrush(backgroundRole(), QBrush(m_backgroundimage));
-    setPalette(palette);
+    palette.setBrush( backgroundRole(), QBrush( m_backgroundimage ) );
+    setPalette( palette );
 }
 
-void SlideShow::findImagesInFolder(const QString& folder)
+void SlideShow::findImagesInFolder( const QString& folder )
 {
     if ( folder.isNull() )
         return;
 
-    QDir dir( folder);
+    QDir dir( folder );
 
-    if ( !dir.exists() || !dir.isReadable() )
-    {
+    if ( !dir.exists() || !dir.isReadable() ) {
         kWarning() << "Folder does not exist or is not readable: "
-                << folder << endl;
+        << folder << endl;
         return;
     }
 
     // TODO: make an automated filter, maybe with QImageIO.
     QStringList filters;
     filters << "*.png" << "*.jpg" << "*.jpeg" << "*.tif" << "*.tiff" <<
-        "*.gif" << "*.bmp" << "*.xpm" << "*.ppm" <<  "*.pnm"  << "*.xcf" <<
-        "*.pcx";
+    "*.gif" << "*.bmp" << "*.xpm" << "*.ppm" <<  "*.pnm"  << "*.xcf" <<
+    "*.pcx";
     QStringList filtersUp;
-    for (int i = 0; i < filters.size(); ++i)
-        filtersUp << filters.at(i).toUpper();
-    dir.setNameFilters(filters << filtersUp);
-    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs );
+    for ( int i = 0; i < filters.size(); ++i )
+        filtersUp << filters.at( i ).toUpper();
+    dir.setNameFilters( filters << filtersUp );
+    dir.setFilter( QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs );
 
     const QFileInfoList list = dir.entryInfoList();
-    for (int i=0; i<list.count(); ++i)
-    {
-        QFileInfo fi = list.at(i);
-        if ( fi.isFile())
-            m_files.append(fi.filePath());
-        else if (fi.isDir() && m_searchRecursive &&
-                 fi.fileName() != "." &&  fi.fileName() != "..")
-            findImagesInFolder(fi.absoluteFilePath());
+    for ( int i = 0; i < list.count(); ++i ) {
+        QFileInfo fi = list.at( i );
+        if ( fi.isFile() )
+            m_files.append( fi.filePath() );
+        else if ( fi.isDir() && m_searchRecursive &&
+                  fi.fileName() != "." &&  fi.fileName() != ".." )
+            findImagesInFolder( fi.absoluteFilePath() );
     }
 }
 
 void SlideShow::slotNewSlide()
 {
-    if (m_files.count() == 1)
+    if ( m_files.count() == 1 )
         return;
 
     loadImage();
 }
 
-void SlideShow::reset( const QString& path, bool recursive, int slideInterval)
+void SlideShow::reset( const QString& path, bool recursive, int slideInterval )
 {
-   m_files.clear();
-   m_files_done.clear();
-   m_basePath = path;
-   m_searchRecursive = recursive;
-   m_slideInterval = slideInterval;
+    m_files.clear();
+    m_files_done.clear();
+    m_basePath = path;
+    m_searchRecursive = recursive;
+    m_slideInterval = slideInterval;
 
-   findImagesInFolder( path );
-   kDebug() << "Amount of Files:" << m_files.count();
-   QTimer::singleShot(2000, this, SLOT(slotNewSlide()));
+    findImagesInFolder( path );
+    kDebug() << "Amount of Files:" << m_files.count();
+    QTimer::singleShot( 2000, this, SLOT( slotNewSlide() ) );
 }
 
 #include "slideshow.moc"

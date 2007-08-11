@@ -32,24 +32,28 @@
  */
 class RSIToolTip : public QWidget
 {
-  Q_OBJECT
-  public:
-    explicit RSIToolTip( QWidget *parent, QSystemTrayIcon*  );
+    Q_OBJECT
+public:
+    explicit RSIToolTip( QWidget *parent, QSystemTrayIcon* );
     ~RSIToolTip();
 
-  public slots:
+public slots:
     void setCounters( int, int );
     /** Sets the pixmap for the tooltip. */
     void setPixmap( const QPixmap & );
     /** Sets the tooltip to suspended or unsuspended depending on the parameter. */
     void setSuspended( bool );
     /** Sets the tooltip to @param text */
-    void setText( const QString &text);
-    void setTimeout( int i ) { m_popup->setTimeout(i); };
-    void showToolTip() {   m_popup->show( m_icon ); };
+    void setText( const QString &text );
+    void setTimeout( int i ) {
+        m_popup->setTimeout( i );
+    };
+    void showToolTip() {
+        m_popup->show( m_icon );
+    };
 
 
-  private:
+private:
     QLabel *mTinyLeft;
     QLabel *mBigLeft;
     QLabel *mIcon;

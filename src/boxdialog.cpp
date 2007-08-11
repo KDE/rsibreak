@@ -1,4 +1,4 @@
-/* 
+/*
    Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -26,72 +26,68 @@
 #include <KDialog>
 #include <KLocale>
 
-    // Yes, this is where you want to hack something cool ;-) Toma
+// Yes, this is where you want to hack something cool ;-) Toma
 
-BoxDialog::BoxDialog( QWidget *parent, Qt::WFlags flags)
-  : QWidget( parent, flags), m_showMinimize( true ), m_disableShort( false )
+BoxDialog::BoxDialog( QWidget *parent, Qt::WFlags flags )
+        : QWidget( parent, flags ), m_showMinimize( true ), m_disableShort( false )
 {
     hide();
     m_dialog = new KDialog( this, Qt::Popup );
 
     // for the counter
-    m_label = new QLabel(this);
+    m_label = new QLabel( this );
     m_label->setAlignment( Qt::AlignHCenter );
 
     loadDialog();
 }
 
-BoxDialog::~BoxDialog()
-{
-}
+BoxDialog::~BoxDialog() {}
 
 void BoxDialog::showDialog()
 {
-  if ( m_dialog && !m_dialog->isHidden() )
-    return;
+    if ( m_dialog && !m_dialog->isHidden() )
+        return;
 
-  m_dialog->exec();
+    m_dialog->exec();
 }
 
 void BoxDialog::loadDialog()
 {
-  if ( m_showMinimize )
-  {
-    m_dialog->setButtons( KDialog::User1 | KDialog::User2 );
-    m_dialog->setButtonText( KDialog::User2, i18n("Skip"));
-    m_dialog->setEscapeButton( KDialog::User2 );
-  }
-  else
-    m_dialog->setButtons( KDialog::User1 );
-  m_dialog->setButtonText( KDialog::User1, i18n("Lock"));
-  if ( m_disableShort || !m_showMinimize )
-    m_dialog->setEscapeButton( KDialog::User1 );
-  m_dialog->setMainWidget( m_label );
+    if ( m_showMinimize ) {
+        m_dialog->setButtons( KDialog::User1 | KDialog::User2 );
+        m_dialog->setButtonText( KDialog::User2, i18n( "Skip" ) );
+        m_dialog->setEscapeButton( KDialog::User2 );
+    } else
+        m_dialog->setButtons( KDialog::User1 );
+    m_dialog->setButtonText( KDialog::User1, i18n( "Lock" ) );
+    if ( m_disableShort || !m_showMinimize )
+        m_dialog->setEscapeButton( KDialog::User1 );
+    m_dialog->setMainWidget( m_label );
 
-  QRect rect = QApplication::desktop()->availableGeometry(
-                    QApplication::desktop()->screenNumber( m_dialog ) );
-  m_dialog->move( rect.center().x() - m_dialog->width() / 2,
-                  rect.center().y() - m_dialog->height() / 2 );
+    QRect rect = QApplication::desktop()->availableGeometry(
+                     QApplication::desktop()->screenNumber( m_dialog ) );
+    m_dialog->move( rect.center().x() - m_dialog->width() / 2,
+                    rect.center().y() - m_dialog->height() / 2 );
 
-  connect( m_dialog, SIGNAL( user1Clicked() ), this, SIGNAL( lock() ) );
-  connect( m_dialog, SIGNAL( user2Clicked() ), this, SIGNAL( skip() ) );
+    connect( m_dialog, SIGNAL( user1Clicked() ), this, SIGNAL( lock() ) );
+    connect( m_dialog, SIGNAL( user2Clicked() ), this, SIGNAL( skip() ) );
 }
 
 void BoxDialog::showMinimize( bool ok )
 {
-  m_showMinimize = ok;
-  loadDialog();
+    m_showMinimize = ok;
+    loadDialog();
 }
 
 void BoxDialog::disableShortcut( bool ok )
 {
-  m_disableShort = ok;
-  loadDialog();
+    m_disableShort = ok;
+    loadDialog();
 }
 
 void BoxDialog::setLabel( const QString& time )
 {
-  m_label->setText( i18n("Remaining time:\n%1", time) );
+    m_label->setText( i18n( "Remaining time:\n%1", time ) );
 }
 
 

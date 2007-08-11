@@ -1,4 +1,4 @@
-/* 
+/*
    Copyright (C) 2007 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -33,37 +33,39 @@ class BoxDialog : public QWidget
 {
     Q_OBJECT
 
-    public:
-        /**
-         * Constructor
-         * @param parent Parent Widget
-         */
-        explicit BoxDialog( QWidget *parent = 0,Qt::WFlags flags=0);
+public:
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     */
+    explicit BoxDialog( QWidget *parent = 0, Qt::WFlags flags = 0 );
 
-        /**
-         * Destructor
-         */
-        ~BoxDialog();
+    /**
+     * Destructor
+     */
+    ~BoxDialog();
 
-        void showMinimize( bool ok );
-        void disableShortcut( bool ok );
-        void setLabel( const QString& );
-        void reject() { m_dialog->reject();};
+    void showMinimize( bool ok );
+    void disableShortcut( bool ok );
+    void setLabel( const QString& );
+    void reject() {
+        m_dialog->reject();
+    };
 
-    public slots:
-        void showDialog();
+public slots:
+    void showDialog();
 
-    signals:
-        void skip();
-        void lock();
+signals:
+    void skip();
+    void lock();
 
-    private:
-        void loadDialog();
+private:
+    void loadDialog();
 
-        KDialog*        m_dialog;
-        QLabel*         m_label;
-        bool            m_showMinimize;
-        bool            m_disableShort;
+    KDialog*        m_dialog;
+    QLabel*         m_label;
+    bool            m_showMinimize;
+    bool            m_disableShort;
 
 
 };

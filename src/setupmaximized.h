@@ -42,7 +42,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    SetupMaximized(QWidget* parent = 0);
+    SetupMaximized( QWidget* parent = 0 );
 
     /**
      * Destructor
@@ -56,7 +56,7 @@ public:
 
 private slots:
     void slotFolderPicker();
-    void slotFolderEdited(const QString& newPath);
+    void slotFolderEdited( const QString& newPath );
     void slotHideFlash();
     void slotUseImages();
 

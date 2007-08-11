@@ -42,35 +42,35 @@ public:
     SetupMaximized  *maximizedPage;
 };
 
-Setup::Setup(QWidget* parent)
-     : KPageDialog( parent )
+Setup::Setup( QWidget* parent )
+        : KPageDialog( parent )
 {
     setFaceType( List );
     d = new SetupPriv;
 
     d->generalPage = new SetupGeneral( this );
-    KPageWidgetItem* page1 = addPage(d->generalPage, i18n("General Settings"));
+    KPageWidgetItem* page1 = addPage( d->generalPage, i18n( "General Settings" ) );
     page1->setIcon( KIcon( "configure" ) );
 
     d->timingPage = new SetupTiming( this );
-    KPageWidgetItem* page2 = addPage(d->timingPage, i18n("Timings"));
+    KPageWidgetItem* page2 = addPage( d->timingPage, i18n( "Timings" ) );
     page2->setIcon( KIcon( "timings" ) );
 
     d->maximizedPage = new SetupMaximized( this );
-    KPageWidgetItem* page3 = addPage(d->maximizedPage, i18n("During Breaks"));
+    KPageWidgetItem* page3 = addPage( d->maximizedPage, i18n( "During Breaks" ) );
     page3->setIcon( KIcon( "duringbreaks" ) );
 
-    connect(this, SIGNAL(okClicked()), this, SLOT(slotOkClicked()) );
+    connect( this, SIGNAL( okClicked() ), this, SLOT( slotOkClicked() ) );
 
-    setInitialSize(QSize(625,575));
-    KConfigGroup config = KGlobal::config()->group("SetupDimensions");
+    setInitialSize( QSize( 625, 575 ) );
+    KConfigGroup config = KGlobal::config()->group( "SetupDimensions" );
     restoreDialogSize( config );
     show();
 }
 
 Setup::~Setup()
 {
-    KConfigGroup config = KGlobal::config()->group("SetupDimensions");
+    KConfigGroup config = KGlobal::config()->group( "SetupDimensions" );
     saveDialogSize( config );
     delete d;
 }

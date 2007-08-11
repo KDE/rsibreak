@@ -39,85 +39,103 @@ class RSIObject : public QObject
 {
     Q_OBJECT
 
-    public:
-        /**
-         * Constructor
-         * @param parent Parent Widget
-         * @param name Name
-         */
-        explicit RSIObject( QWidget *parent = 0);
+public:
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     * @param name Name
+     */
+    explicit RSIObject( QWidget *parent = 0 );
 
-        /**
-         * Destructor
-         */
-        ~RSIObject();
+    /**
+     * Destructor
+     */
+    ~RSIObject();
 
-        /**
-         * Access to the timer
-         */
-        RSITimer* timer() { return m_timer; };
+    /**
+     * Access to the timer
+     */
+    RSITimer* timer() {
+        return m_timer;
+    };
 
-        void showWhereIAm();
+    void showWhereIAm();
 
-    private slots:
-        void slotWelcome();
-        void slotLock();
-        void minimize( bool newImage = true );
-        void maximize();
-        void setCounters( int );
-        void updateIdleAvg( double );
-        void readConfig();
-        void tinyBreakSkipped();
-        void bigBreakSkipped();
-        void breakSkipped();
-        void skipBreakEnded();
+private slots:
+    void slotWelcome();
+    void slotLock();
+    void minimize( bool newImage = true );
+    void maximize();
+    void setCounters( int );
+    void updateIdleAvg( double );
+    void readConfig();
+    void tinyBreakSkipped();
+    void bigBreakSkipped();
+    void breakSkipped();
+    void skipBreakEnded();
 
-    protected:
-        /** Sets appropriate icon in tooltip and docker. */
-        void setIcon( int );
+protected:
+    /** Sets appropriate icon in tooltip and docker. */
+    void setIcon( int );
 
-    private:
-        QString takeScreenshotOfTrayIcon();
-        void findImagesInFolder(const QString& folder);
-        void loadImage();
-        void startTimer( bool idle);
+private:
+    QString takeScreenshotOfTrayIcon();
+    void findImagesInFolder( const QString& folder );
+    void loadImage();
+    void startTimer( bool idle );
 
-        RSIDock*        m_tray;
-        RSITimer*       m_timer;
-        GrayWidget*     m_grayWidget;
-        SlideShow*      m_slideShow;
+    RSIDock*        m_tray;
+    RSITimer*       m_timer;
+    GrayWidget*     m_grayWidget;
+    SlideShow*      m_slideShow;
 
-        QLabel*         m_tool;
+    QLabel*         m_tool;
 
-        bool            m_useImages;
-        bool            m_showTimerReset;
+    bool            m_useImages;
+    bool            m_showTimerReset;
 
-        RSIRelaxPopup*  m_relaxpopup;
-        RSIToolTip*     m_tooltip;
+    RSIRelaxPopup*  m_relaxpopup;
+    RSIToolTip*     m_tooltip;
 
-        bool            m_useIdleDetection;
+    bool            m_useIdleDetection;
 };
 
 class RSIWidget: public QLabel
 {
-  Q_OBJECT
-  Q_CLASSINFO("D-Bus Interface", "org.rsibreak.rsiwidget")
+    Q_OBJECT
+    Q_CLASSINFO( "D-Bus Interface", "org.rsibreak.rsiwidget" )
 
-  public:
+public:
     explicit RSIWidget();
 
-  /* Available through D-Bus */
-  public Q_SLOTS:
-    void showWhereIAm() {m_rsiobject->showWhereIAm();};
-    void doBigBreak() {m_rsiobject->timer()->slotRequestBigBreak();};
-    void doTinyBreak() {m_rsiobject->timer()->slotRequestTinyBreak();};
-    void resume() {m_rsiobject->timer()->slotSuspended( false ); };
-    void suspend() {m_rsiobject->timer()->slotSuspended( true ); };
-    int idleTime() {return m_rsiobject->timer()->idleTime(); };
-    int tinyLeft() {return m_rsiobject->timer()->tinyLeft(); };
-    int bigLeft() {return m_rsiobject->timer()->bigLeft(); };
+    /* Available through D-Bus */
+public Q_SLOTS:
+    void showWhereIAm() {
+        m_rsiobject->showWhereIAm();
+    };
+    void doBigBreak() {
+        m_rsiobject->timer()->slotRequestBigBreak();
+    };
+    void doTinyBreak() {
+        m_rsiobject->timer()->slotRequestTinyBreak();
+    };
+    void resume() {
+        m_rsiobject->timer()->slotSuspended( false );
+    };
+    void suspend() {
+        m_rsiobject->timer()->slotSuspended( true );
+    };
+    int idleTime() {
+        return m_rsiobject->timer()->idleTime();
+    };
+    int tinyLeft() {
+        return m_rsiobject->timer()->tinyLeft();
+    };
+    int bigLeft() {
+        return m_rsiobject->timer()->bigLeft();
+    };
 
-  private:
+private:
     RSIObject*  m_rsiobject;
 };
 

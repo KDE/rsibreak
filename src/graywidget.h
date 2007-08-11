@@ -33,40 +33,42 @@ class GrayWidget : public QWidget
 {
     Q_OBJECT
 
-    public:
-        /**
-         * Constructor
-         * @param parent Parent Widget
-         */
-        explicit GrayWidget( QWidget *parent = 0);
+public:
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     */
+    explicit GrayWidget( QWidget *parent = 0 );
 
-        /**
-         * Destructor
-         */
-        ~GrayWidget();
+    /**
+     * Destructor
+     */
+    ~GrayWidget();
 
-        /**
-         * reset
-         */
-        void reset();
+    /**
+     * reset
+     */
+    void reset();
 
-        BoxDialog* dialog() { return m_dialog; };
+    BoxDialog* dialog() {
+        return m_dialog;
+    };
 
-    public slots:
-        void slotGrayEffect();
+public slots:
+    void slotGrayEffect();
 
-    protected:
-        virtual void paintEvent( QPaintEvent* );
+protected:
+    virtual void paintEvent( QPaintEvent* );
 
-    signals:
-        void skip();
-        void lock();
+signals:
+    void skip();
+    void lock();
 
-    private:
-        int             m_currentY;
-        BoxDialog*      m_dialog;
-        QImage          m_complete;
-        bool            m_first;
+private:
+    int             m_currentY;
+    BoxDialog*      m_dialog;
+    QImage          m_complete;
+    bool            m_first;
 };
 
 #   endif

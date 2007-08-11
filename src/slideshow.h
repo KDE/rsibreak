@@ -35,43 +35,45 @@ class SlideShow : public QWidget
 {
     Q_OBJECT
 
-    public:
-        /**
-         * Constructor
-         * @param parent Parent Widget
-         * @param name Name
-         */
-        explicit SlideShow( QWidget *parent = 0);
+public:
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     * @param name Name
+     */
+    explicit SlideShow( QWidget *parent = 0 );
 
-        /**
-         * Destructor
-         */
-        ~SlideShow();
+    /**
+     * Destructor
+     */
+    ~SlideShow();
 
-        void reset( const QString& path, bool recursive, int interval);
-        void start();
-        void stop();
-        bool hasImages();
-        void loadImage();
+    void reset( const QString& path, bool recursive, int interval );
+    void start();
+    void stop();
+    bool hasImages();
+    void loadImage();
 
-        BoxDialog* dialog() { return m_dialog; };
+    BoxDialog* dialog() {
+        return m_dialog;
+    };
 
-    private slots:
-        void slotNewSlide();
+private slots:
+    void slotNewSlide();
 
-    private:
-        void findImagesInFolder(const QString& folder);
+private:
+    void findImagesInFolder( const QString& folder );
 
-        BoxDialog*      m_dialog;
-        QPixmap         m_backgroundimage;
-        QString         m_basePath;
-        QTimer*         m_timer_slide;
+    BoxDialog*      m_dialog;
+    QPixmap         m_backgroundimage;
+    QString         m_basePath;
+    QTimer*         m_timer_slide;
 
-        bool            m_searchRecursive;
-        int             m_slideInterval;
+    bool            m_searchRecursive;
+    int             m_slideInterval;
 
-        QStringList     m_files;
-        QStringList     m_files_done;
+    QStringList     m_files;
+    QStringList     m_files_done;
 };
 
 #   endif

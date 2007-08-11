@@ -125,9 +125,9 @@ private:
 
     bool m_doUpdates;
 
-    QMap<RSIStat,RSIStatItem *> m_statistics;
+    QMap<RSIStat, RSIStatItem *> m_statistics;
     /** Contains formatted labels. */
-    QMap<RSIStat,QLabel *> m_labels;
+    QMap<RSIStat, QLabel *> m_labels;
 };
 
 #endif // RSISTATS_H
