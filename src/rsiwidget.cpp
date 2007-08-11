@@ -270,16 +270,15 @@ void RSIObject::updateIdleAvg( double idleAvg )
 
 void RSIObject::setIcon( int level )
 {
-    static QString currentIcon;
     QString newIcon = "rsibreak" +
                       ( m_timer->isSuspended() ? QString( "x" ) : QString::number( level ) );
 
-    if ( newIcon != currentIcon ) {
+    if ( newIcon != m_currentIcon ) {
         QIcon dockIcon = KSystemTrayIcon::loadIcon( newIcon );
         m_tray->setIcon( dockIcon );
 
         QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, K3Icon::Desktop );
-        currentIcon = newIcon;
+        m_currentIcon = newIcon;
         m_tooltip->setPixmap( toolPixmap );
     }
 }

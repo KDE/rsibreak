@@ -60,6 +60,9 @@ public:
     };
 
     void showWhereIAm();
+    QString currentIcon() {
+       return m_currentIcon;
+    };
 
 private slots:
     void slotWelcome();
@@ -98,6 +101,7 @@ private:
     RSIToolTip*     m_tooltip;
 
     bool            m_useIdleDetection;
+    QString         m_currentIcon;
 };
 
 class RSIWidget: public QLabel
@@ -133,6 +137,9 @@ public Q_SLOTS:
     };
     int bigLeft() {
         return m_rsiobject->timer()->bigLeft();
+    };
+    QString currentIcon() {
+        return m_rsiobject->currentIcon();
     };
 
 private:

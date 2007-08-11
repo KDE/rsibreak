@@ -20,5 +20,8 @@
     <method name="bigLeft">
       <arg type="i" direction="out"/>
     </method>
+    <method name="currentIcon">
+      <arg type="s" direction="out"/>
+    </method>
   </interface>
 </node>

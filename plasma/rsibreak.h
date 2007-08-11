@@ -38,6 +38,9 @@ private slots:
 
 private:
     QTimer*   m_timer;
+    QString   m_text;
+    QString   m_icon;
+    QSize     m_size;
 };
 
 K_EXPORT_PLASMA_APPLET( rsibreak, RSIBreak )
