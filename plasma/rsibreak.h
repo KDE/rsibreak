@@ -22,6 +22,8 @@
 #include <plasma/applet.h>
 #include <QTimer>
 
+namespace Plasma { class Svg; class Label; }
+
 class RSIBreak : public Plasma::Applet
 {
     Q_OBJECT
@@ -41,6 +43,14 @@ private:
     QString   m_text;
     QString   m_icon;
     QSize     m_size;
+    Plasma::Svg* m_theme;
+    Plasma::Label* m_h1;
+    Plasma::Label* m_h2;
+    Plasma::Label* m_h3;
+    Plasma::Label* m_t1;
+    Plasma::Label* m_t2;
+    Plasma::Label* m_t3;
+    int	      m_heightPerLine;
 };
 
 K_EXPORT_PLASMA_APPLET( rsibreak, RSIBreak )
