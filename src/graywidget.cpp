@@ -80,7 +80,7 @@ void GrayWidget::slotGrayEffect()
 
 void GrayWidget::paintEvent( QPaintEvent* )
 {
-    kDebug() << k_funcinfo << m_currentY << m_first;
+    kDebug() << m_currentY << m_first;
 
     if ( m_currentY >= height() )
         return;

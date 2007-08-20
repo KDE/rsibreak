@@ -379,7 +379,7 @@ void RSIObject::startTimer( bool idle )
 
 void RSIObject::readConfig()
 {
-    kDebug() << k_funcinfo;
+    kDebug() ;
 
     static QString oldPath;
     static bool oldRecursive;
