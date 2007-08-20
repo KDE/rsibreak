@@ -1,9 +1,10 @@
-INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/src ${CMAKE_CURRENT_BINARY_DIR} ${QT_INCLUDE_DIR} )
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/src ${CMAKE_CURRENT_BINARY_DIR} ${QT_INCLUDE_DIR} ${BLITZ_INCLUDES} )
 
 ############# Find LIBXSS for idle detection and write outcome to config.h ####
 
 include (CheckLibraryExists)
 check_library_exists(Xss XScreenSaverQueryInfo "" HAVE_LIBXSS)
+find_package(Blitz)
 
 # Not having libxss is fatal at the moment.
 IF (NOT HAVE_LIBXSS)
@@ -54,7 +55,7 @@ KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
 ########### linking #####################
 
-TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak blitz ${IDLE_DETECTION_LIB} )
+TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak ${BLITZ_LIBRARIES} ${IDLE_DETECTION_LIB} )
 
 ########### install files ###############
 
