@@ -30,7 +30,7 @@
 #include <plasma/theme.h>
 #include <plasma/widgets/label.h>
 
-RSIBreak::RSIBreak( QObject *parent, const QStringList &args )
+RSIBreak::RSIBreak( QObject *parent, const QVariantList &args )
         : Plasma::Applet( parent, args ), m_text( i18n("Initialising") ),
           m_icon( "rsibreak" ), m_size( QSize( 140, 140 ) )
 {

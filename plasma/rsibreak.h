@@ -28,7 +28,7 @@ class RSIBreak : public Plasma::Applet
 {
     Q_OBJECT
 public:
-    RSIBreak( QObject *parent, const QStringList &args );
+    RSIBreak( QObject *parent, const QVariantList &args );
     ~RSIBreak();
 
     QSizeF contentSize() const;
