@@ -114,9 +114,9 @@ void RSIRelaxPopup::flash()
     QTimer::singleShot( 500, this, SLOT( unflash() ) );
     QPalette normal;
     normal.setColor( QPalette::Inactive, QPalette::WindowText,
-                     KColorScheme( KColorScheme::Selection ).background().color() );
+                     KColorScheme( QPalette::Active, KColorScheme::Selection ).background().color() );
     normal.setColor( QPalette::Inactive, QPalette::Window,
-                     KColorScheme( KColorScheme::Selection ).foreground().color() );
+                     KColorScheme( QPalette::Active, KColorScheme::Selection ).foreground().color() );
     m_popup->setPalette( normal );
 }
 
