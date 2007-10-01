@@ -277,7 +277,7 @@ void RSIObject::setIcon( int level )
         QIcon dockIcon = KSystemTrayIcon::loadIcon( newIcon );
         m_tray->setIcon( dockIcon );
 
-        QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, K3Icon::Desktop );
+        QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, KIconLoader::Desktop );
         m_currentIcon = newIcon;
         m_tooltip->setPixmap( toolPixmap );
     }
@@ -308,7 +308,7 @@ void RSIObject::breakSkipped()
     disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
                 m_tooltip, SLOT( setCounters( int, int ) ) );
 
-    m_tooltip->setPixmap( KIconLoader::global()->loadIcon( "rsibreak0", K3Icon::Desktop ) );
+    m_tooltip->setPixmap( KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
     m_tooltip->setTimeout( 0 ); // autoDelete is false, but after the ->show() it still
     // gets hidden after the timeout. Setting to 0 helps.
     m_tooltip->show();

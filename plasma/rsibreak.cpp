@@ -121,7 +121,7 @@ void RSIBreak::paintInterface( QPainter *painter,
 
     painter->drawPixmap( boundingRect().topLeft(),
                          KIconLoader::global()->loadIcon( m_icon,
-                                                          K3Icon::Desktop ) );
+                                                          KIconLoader::Desktop ) );
 
     // resize the theme.
     m_theme->resize( contentsRect.width(), contentsRect.height() );
