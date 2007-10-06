@@ -30,6 +30,8 @@
 #include <KLocale>
 #include <KNumInput>
 #include <KVBox>
+#include <KConfigGroup>
+#include <KGlobal>
 
 class SetupTimingPriv
 {

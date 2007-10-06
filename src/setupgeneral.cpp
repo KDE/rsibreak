@@ -31,6 +31,7 @@
 #include <KConfig>
 #include <KVBox>
 #include <KGlobal>
+#include <KConfigGroup>
 
 class SetupGeneralPriv
 {

@@ -24,6 +24,7 @@
 #include <kglobalsettings.h>
 #include <klocale.h>
 #include <knotification.h>
+#include <kconfiggroup.h>
 
 #include <math.h>
 #include <kglobal.h>

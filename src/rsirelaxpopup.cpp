@@ -29,6 +29,8 @@
 #include <KVBox>
 #include <KIconLoader>
 #include <KLocale>
+#include <KDebug>
+#include <KConfigGroup>
 #include <QSystemTrayIcon>
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )

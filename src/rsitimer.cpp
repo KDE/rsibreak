@@ -25,6 +25,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
+#include <kconfiggroup.h>
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 

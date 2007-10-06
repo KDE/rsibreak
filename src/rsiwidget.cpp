@@ -42,6 +42,8 @@
 #include <KIconLoader>
 #include <KSystemTrayIcon>
 #include <KTemporaryFile>
+#include <KConfigGroup>
+#include <KDebug>
 
 #include <time.h>
 #include <math.h>

@@ -19,7 +19,10 @@
 #include "rsistats.h"
 #include "rsistatitem.h"
 
+#include <QDateTime>
+
 #include <KLocale>
+#include <KGlobal>
 
 
 RSIStats::RSIStats()

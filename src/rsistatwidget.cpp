@@ -23,9 +23,11 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
+#include <QTime>
 
 #include <KGlobalSettings>
 #include <KLocale>
+#include <KGlobal>
 
 RSIStatWidget::RSIStatWidget( QWidget *parent )
         : QWidget( parent )
