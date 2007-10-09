@@ -4,7 +4,6 @@ INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/src
 
 include (CheckLibraryExists)
 check_library_exists(Xss XScreenSaverQueryInfo "" HAVE_LIBXSS)
-find_package(Blitz)
 
 # Not having libxss is fatal at the moment.
 IF (NOT HAVE_LIBXSS)
@@ -56,7 +55,7 @@ KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources})
 
 ########### linking #####################
 
-TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak ${BLITZ_LIBRARIES} ${IDLE_DETECTION_LIB} )
+TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} librsibreak ${IDLE_DETECTION_LIB} )
 
 ########### install files ###############
 

@@ -31,8 +31,6 @@
 #include <KWindowSystem>
 #include <KDebug>
 
-#include <qimageblitz.h>
-
 GrayWidget::GrayWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup ), m_currentY( 0 ), m_first( true )
 {
