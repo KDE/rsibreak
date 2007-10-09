@@ -8,6 +8,7 @@ macro_optional_find_package(Plasma)
 
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+add_definitions (-mmmx)
 include_directories ( ${KDE4_INCLUDES} ${BLITZ_INCLUDES} )
 ADD_SUBDIRECTORY( icons ) 
 ADD_SUBDIRECTORY( src ) 

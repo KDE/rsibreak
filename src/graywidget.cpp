@@ -18,6 +18,7 @@
 */
 
 #include "graywidget.h"
+#include "grayouteffect.h"
 #include "rsitimer_dpms.h"
 #include "boxdialog.h"
 
@@ -37,9 +38,12 @@ GrayWidget::GrayWidget( QWidget *parent )
 {
     // full screen
     setAttribute( Qt::WA_NoSystemBackground );
+    setAttribute( Qt::WA_PaintOnScreen );
     QRect rect = QApplication::desktop()->screenGeometry(
                      QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
+
+    m_gray = 0;
 
     m_dialog = new BoxDialog( this, Qt::Popup );
 }
@@ -54,51 +58,29 @@ void GrayWidget::reset()
     m_dialog->reject();
 }
 
-// This slot and the paint event is partly copied from KDE's logout screen.
-// from various authors found in:
-// /KDE/4/kdebase/workspace/ksmserver/shutdowndlg.cpp
 void GrayWidget::slotGrayEffect()
 {
-    if ( m_currentY >= height() ) {
-        m_dialog->showDialog();
-        return;
-    }
-    if ( m_first ) {
-        m_first = false;
-        m_complete = takeScreenshot( QX11Info::appScreen() ).toImage();
+    m_complete = takeScreenshot( QX11Info::appScreen() );
 
-        show();
+    repaint(); //before show
 
-        KWindowSystem::forceActiveWindow( winId() );
-        KWindowSystem::setOnAllDesktops( winId(), true );
-        KWindowSystem::setState( winId(), NET::KeepAbove );
-        KWindowSystem::setState( winId(), NET::FullScreen );
+    show();
 
-    }
-    repaint();
+    KWindowSystem::forceActiveWindow( winId() );
+    KWindowSystem::setOnAllDesktops( winId(), true );
+    KWindowSystem::setState( winId(), NET::KeepAbove );
+    KWindowSystem::setState( winId(), NET::FullScreen );
+
+    m_gray = new GrayOutEffect(this, &m_complete);
+    connect(m_gray, SIGNAL(ready()), m_dialog, SLOT(showDialog()));
+    m_gray->start();
 }
 
 void GrayWidget::paintEvent( QPaintEvent* )
 {
-    kDebug() << m_currentY << m_first;
-
-    if ( m_currentY >= height() )
-        return;
-
-    // this part we want to process...
-    QImage change( width(), 15, QImage::Format_RGB32 );
-    change = m_complete.copy( 0, m_currentY, width(), 15 );
-    change = Blitz::fade( change, 0.4, Qt::black );
-    Blitz::grayscale( change, true );
-
     QPainter painter( this );
-    painter.drawImage( 0, m_currentY, change );
-
-    if ( m_currentY == 0 )
-        painter.drawImage( 0, 15, m_complete.copy( 0, 15, width(), height() - 15 ) );
-
-    m_currentY += 15;
-    QTimer::singleShot( 10, this, SLOT( slotGrayEffect() ) );
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.drawPixmap( 0, 0, m_complete );
 }
 
 #include "graywidget.moc"
