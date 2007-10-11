@@ -22,7 +22,9 @@
 #define GRAYWIDGET_H
 
 #include <QWidget>
+
 class BoxDialog;
+class GrayOutEffect;
 
 /**
  * @class GrayWidget
@@ -67,8 +69,10 @@ signals:
 private:
     int             m_currentY;
     BoxDialog*      m_dialog;
-    QImage          m_complete;
+    GrayOutEffect*  m_gray;
+    QPixmap         m_complete;
     bool            m_first;
+
 };
 
 #   endif

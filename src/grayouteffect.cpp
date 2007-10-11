@@ -30,6 +30,7 @@
 #include <X11/Xutil.h>
 
 #include <string>
+#include <cstring>
 
 #if 1
 #include <mmintrin.h>
