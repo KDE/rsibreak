@@ -337,10 +337,10 @@ void RSIObject::startTimer( bool idle )
         kDebug() << "Current Timer: " << m_timer->metaObject()->className()
         << " wanted: " << ( idle ? "RSITimer" : "RSITimerNoIdle" ) << endl;
 
-        if ( !idle && m_timer->metaObject()->className() == "RSITimerNoIdle" )
+        if ( !idle && !strcmp(m_timer->metaObject()->className(), "RSITimerNoIdle") )
             return;
 
-        if ( idle && m_timer->metaObject()->className() == "RSITimer" )
+        if ( idle && !strcmp(m_timer->metaObject()->className(), "RSITimer") )
             return;
 
         kDebug() << "Switching timers";
