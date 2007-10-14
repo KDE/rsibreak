@@ -60,7 +60,7 @@ RSIGlobals *RSIGlobals::instance()
 QString RSIGlobals::formatSeconds( const int seconds )
 {
     int mins, secs, hours, remaining;
-    QString hString, mString1, mString2, sString1, sString2;
+    QString hString, mString, sString;
 
     remaining = seconds;
 
@@ -70,16 +70,14 @@ QString RSIGlobals::formatSeconds( const int seconds )
     mins = ( int )floor( remaining / 60 );
     secs = remaining - ( mins * 60 );
 
-    hString = i18np( "One hour", "%1 hours", hours );
-    mString1 = i18np( "One minute", "%1 minutes", mins );
-    mString2 = i18np( "one minute", "%1 minutes", mins );
-    sString1 = i18np( "One second", "%1 seconds", secs );
-    sString2 = i18np( "one second", "%1 seconds", secs );
+    hString = i18np( "1 hour", "%1 hours", hours );
+    mString = i18np( "1 minute", "%1 minutes", mins );
+    sString = i18np( "1 second", "%1 seconds", secs );
 
     if ( hours > 0 && mins > 0 )
         return( i18nc( "Arguments: hours, minutes "
                        "both as you defined earlier",
-                       "%1 and %2", hString, mString2 ) );
+                       "%1 and %2", hString, mString ) );
     else if ( hours > 0 && mins == 0 )
         return( hString );
 
@@ -87,13 +85,13 @@ QString RSIGlobals::formatSeconds( const int seconds )
         if ( mins > 0 && secs > 0 )
             return( i18nc( "Arguments: minutes, seconds "
                            "both as you defined earlier",
-                           "%1 and %2", mString1, sString2 ) );
+                           "%1 and %2", mString, sString ) );
 
         else if ( mins == 0 && secs > 0 )
-            return( sString1 );
+            return( sString );
 
         else if ( mins > 0 && secs == 0 )
-            return( mString1 );
+            return( mString );
 
         else
             return( i18n( "0 seconds" ) );
