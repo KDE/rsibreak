@@ -96,7 +96,7 @@ SetupGeneral::SetupGeneral( QWidget* parent )
                                            "have been idle for a while." ) );
 
     d->ignoreIdleForTinyBreaks = new QCheckBox( i18n( "&Ignore idle detection "
-            "for tiny breaks." ), this );
+            "for tiny breaks" ), this );
     d->ignoreIdleForTinyBreaks->setWhatsThis(
         i18n( "With this option you select that the <b>short</b> breaks "
               "shouldn't be reset when idle. This is useful, for example, "

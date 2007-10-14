@@ -63,7 +63,7 @@ int main( int argc, char *argv[] )
                           ki18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
                           KAboutData::License_GPL,
-                          ki18n( "(c) 2005-2006, The RSIBreak developers" ),
+                          ki18n( "(c) 2005-2007, The RSIBreak developers" ),
                           KLocalizedString(),
                           "http://www.rsibreak.org" );
 

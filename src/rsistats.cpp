@@ -90,13 +90,13 @@ RSIStats::RSIStats()
     m_statistics.insert( PAUSE_SCORE, new RSIStatItem( i18n( "Pause score" ), 100 ) );
 
     m_statistics.insert( ACTIVITY_PERC_MINUTE,
-                         new RSIStatBitArrayItem( i18n( "Percentage of activity last minute:" ),
+                         new RSIStatBitArrayItem( i18n( "Percentage of activity last minute" ),
                                                   QVariant( 0 ), 60 ) );
     m_statistics.insert( ACTIVITY_PERC_HOUR,
-                         new RSIStatBitArrayItem( i18n( "Percentage of activity last hour:" ),
+                         new RSIStatBitArrayItem( i18n( "Percentage of activity last hour" ),
                                                   QVariant( 0 ), 3600 ) );
     m_statistics.insert( ACTIVITY_PERC_6HOUR,
-                         new RSIStatBitArrayItem( i18n( "Percentage of activity last 6 hours:" ),
+                         new RSIStatBitArrayItem( i18n( "Percentage of activity last 6 hours" ),
                                                   QVariant( 0 ), 6 * 3600 ) );
 
     // initialise labels

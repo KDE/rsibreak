@@ -122,7 +122,7 @@ void RSIObject::slotWelcome()
                                            "In your tray you can now see RSIBreak:</p>" )
                                   + "<p><center><img source=\"" + tempfile + "\"></center></p>"
                                   + i18n( "<p>When you right-click on that you will see a menu, from which "
-                                          "you can go to the configuration for example.<p>When you want to "
+                                          "you can go to the configuration for example.</p><p>When you want to "
                                           "know when the next break is, hover over the icon.</p><p>Use RSIBreak "
                                           "wisely.</p>" ), i18n( "Welcome" ), "dont_show_welcome_again_for_001" );
     }
@@ -132,7 +132,7 @@ void RSIObject::showWhereIAm()
 {
     QString tempfile = takeScreenshotOfTrayIcon();
     KMessageBox::information( 0,
-                              i18n( "<p>RSIBreak is already running</p><p>It is located here:" )
+                              i18n( "<p>RSIBreak is already running</p><p>It is located here:</p>" )
                               + "<p><center><img source=\"" + tempfile + "\"></center></p><p>",
                               i18n( "Already Running" ) );
 }
