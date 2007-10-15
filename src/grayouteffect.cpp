@@ -34,7 +34,6 @@
 
 #if 1
 #include <mmintrin.h>
-#include <emmintrin.h>
 #endif
 
 #include "grayouteffect.h"
