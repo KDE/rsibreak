@@ -73,7 +73,7 @@ static quint16 inline store16 (const int r, const int g, const int b)
     return (((r << 8) | (b >> 3)) & 0xf81f) | ((g << 3) & 0x07e0);
 }
 
-
+#ifndef __MMX__
 static void scanline_blend(const quint32 *over, const quint8 alpha, const quint32 *under,
                            quint32 *result, uint length)
 {
@@ -91,7 +91,7 @@ static void scanline_blend(const quint32 *over, const quint8 alpha, const quint3
         result[i] = store (dr, dg, db);
     }
 }
-
+#endif
 
 static void scanline_blend_16(const quint16 *over, const quint8 alpha, const quint16 *under,
                               quint16 *result, uint length)
@@ -117,7 +117,7 @@ static void scanline_blend_16(const quint16 *over, const quint8 alpha, const qui
 // ----------------------------------------------------------------------------
 
 
-#if 1
+#ifdef __MMX__
 
 static __m64 inline multiply(const __m64 m1, const __m64 m2)
 {
@@ -289,8 +289,11 @@ void BlendingThread::blend32()
         quint32 *under  = (quint32*)(m_final + start);
         quint32 *result = (quint32*)(m_image->data + start);
 
+#ifdef __MMX__
         scanline_blend_mmx(over, m_alpha, under, result, m_image->width);
-        //scanline_blend(over, m_alpha, under, result, m_image->width);
+#else
+        scanline_blend(over, m_alpha, under, result, m_image->width);
+#endif
     }
 }
 
@@ -410,7 +413,7 @@ void GrayOutEffect::nextFrame()
             //usleep(250000);
         }
 
-        QTimer::singleShot(1, this, SLOT(nextFrame()));
+        QTimer::singleShot(1000/framesPerSecond, this, SLOT(nextFrame()));
     }
 
     if (alpha == 0)

@@ -64,7 +64,8 @@ SetupTiming::SetupTiming( QWidget* parent )
                             "One minute means 60 seconds of movement with the mouse or typing on "
                             "the keyboard." ) );
     d->tinyInterval = new KIntNumInput( m );
-    d->tinyInterval->setRange( 1, 1000, 1, false );
+    d->tinyInterval->setRange( 1, 1000, 1 );
+    d->tinyInterval->setSliderEnabled( false );
     l1->setBuddy( d->tinyInterval );
     connect( d->tinyInterval, SIGNAL( valueChanged( int ) ),
              SLOT( slotTinyValueChanged( int ) ) );
@@ -74,7 +75,8 @@ SetupTiming::SetupTiming( QWidget* parent )
     l2->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l2->setWhatsThis( i18n( "Here you can set the duration of the short break." ) );
     d->tinyDuration = new KIntNumInput( m2 );
-    d->tinyDuration->setRange( 1, 1000, 1, false );
+    d->tinyDuration->setRange( 1, 1000, 1 );
+    d->tinyDuration->setSliderEnabled( false );
     l2->setBuddy( d->tinyDuration );
     connect( d->tinyDuration, SIGNAL( valueChanged( int ) ),
              SLOT( slotTinyDurationValueChanged( int ) ) );
@@ -97,7 +99,8 @@ SetupTiming::SetupTiming( QWidget* parent )
                             "One minute means 60 seconds of movement with the mouse or typing on "
                             "the keyboard" ) );
     d->bigInterval = new KIntNumInput( m3 );
-    d->bigInterval->setRange( 1, 1000, 1, false );
+    d->bigInterval->setRange( 1, 1000, 1 );
+    d->bigInterval->setSliderEnabled( false );
     l3->setBuddy( d->bigInterval );
     connect( d->bigInterval, SIGNAL( valueChanged( int ) ),
              SLOT( slotBigValueChanged( int ) ) );
@@ -107,7 +110,8 @@ SetupTiming::SetupTiming( QWidget* parent )
     l4->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l4->setWhatsThis( i18n( "Here you can set the duration of the long break." ) );
     d->bigDuration = new KIntNumInput( m4 );
-    d->bigDuration->setRange( 1, 1000, 1, false );
+    d->bigDuration->setRange( 1, 1000, 1 );
+    d->bigDuration->setSliderEnabled( false );
     l4->setBuddy( d->bigDuration );
     connect( d->bigDuration, SIGNAL( valueChanged( int ) ),
              SLOT( slotBigDurationValueChanged( int ) ) );
@@ -129,7 +133,8 @@ SetupTiming::SetupTiming( QWidget* parent )
     l5->setWhatsThis( i18n( "Here you can set how long one image should be "
                             "shown before it is replaced by the next one." ) );
     d->slideInterval = new KIntNumInput( m5 );
-    d->slideInterval->setRange( 3, 1000, 1, false );
+    d->slideInterval->setRange( 3, 1000, 1 );
+    d->slideInterval->setSliderEnabled( false );
     l5->setBuddy( d->slideInterval );
     connect( d->slideInterval, SIGNAL( valueChanged( int ) ),
              SLOT( slotSlideIntervalValueChanged( int ) ) );
