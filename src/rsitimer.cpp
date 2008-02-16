@@ -29,7 +29,7 @@
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
-#include <config.h>     // HAVE_LIBXSS
+#include <config-rsibreak.h>     // HAVE_LIBXSS
 #ifdef HAVE_LIBXSS      // Idle detection.
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>

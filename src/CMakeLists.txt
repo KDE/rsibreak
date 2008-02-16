@@ -12,9 +12,9 @@ ELSE (NOT HAVE_LIBXSS)
     SET (IDLE_DETECTION_LIB "Xss")
 ENDIF (NOT HAVE_LIBXSS)
 
-# Write it down to the config.h
-CONFIGURE_FILE( ../config.h.cmake
-                ${CMAKE_CURRENT_BINARY_DIR}/src/config.h    )
+# Write it down to the config-rsibreak.h
+CONFIGURE_FILE( ../config-rsibreak.h.cmake
+                ${CMAKE_CURRENT_BINARY_DIR}/src/config-rsibreak.h    )
 
 ############ librsibreak #####################################################
 

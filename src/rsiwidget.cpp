@@ -29,7 +29,7 @@
 #include "rsitooltip.h"
 #include "rsiglobals.h"
 
-#include <config.h>
+#include <config-rsibreak.h>
 
 #include <QDesktopWidget>
 #include <QPainter>
