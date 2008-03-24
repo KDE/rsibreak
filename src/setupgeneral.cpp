@@ -99,8 +99,8 @@ SetupGeneral::SetupGeneral( QWidget* parent )
             "for tiny breaks" ), this );
     d->ignoreIdleForTinyBreaks->setWhatsThis(
         i18n( "With this option you select that the <b>short</b> breaks "
-              "shouldn't be reset when idle. This is useful, for example, "
-              "when you are reading something and you don't touch the mouse "
+              "should not be reset when idle. This is useful, for example, "
+              "when you are reading something and you do not touch the mouse "
               "or keyboard for the duration of a short break, but you still "
               "want to have a short break every once in a while." ) );
     QVBoxLayout *vbox2 = new QVBoxLayout( d->idleSettings );

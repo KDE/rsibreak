@@ -255,7 +255,7 @@ void RSITimer::timerEvent( QTimerEvent * )
     // the dbus call to idleTime() does not return false info.
     int t = idleTime();
 
-    // Dont change the tray icon when suspended, or evaluate
+    // Don't change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
         return;
@@ -487,7 +487,7 @@ RSITimerNoIdle::~RSITimerNoIdle() {}
 
 void RSITimerNoIdle::timerEvent( QTimerEvent * )
 {
-    // Dont change the tray icon when suspended, or evaluate
+    // Don't change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
         return;
