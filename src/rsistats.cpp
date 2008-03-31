@@ -364,7 +364,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
                      "the keyboard or mouse." );
     case ACTIVITY_PERC:
         return i18n( "This is a percentage of activity, based on the "
-                     "periods of activity vs. the total time RSIBreak has been running."
+                     "periods of activity vs. the total time RSIBreak has been running. "
                      "The color indicates the level of your activity. When the color is "
                      "close to full red it is recommended to lower your work pace." );
     case MAX_IDLENESS:
