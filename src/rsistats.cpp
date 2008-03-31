@@ -400,15 +400,15 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
     case CURRENT_IDLE_TIME:
         return i18n( "This is the current idle time." );
     case ACTIVITY_PERC_MINUTE:
-        return i18n( "This is a percentage of activity during the last minute."
+        return i18n( "This is a percentage of activity during the last minute. "
                      "The color indicates the level of your activity. When the color is "
                      "close to full red it is recommended to lower your work pace." );
     case ACTIVITY_PERC_HOUR:
-        return i18n( "This is a percentage of activity during the last hour."
+        return i18n( "This is a percentage of activity during the last hour. "
                      "The color indicates the level of your activity. When the color is "
                      "close to full red it is recommended to lower your work pace." );
     case ACTIVITY_PERC_6HOUR:
-        return i18n( "This is a percentage of activity during the last 6 hours."
+        return i18n( "This is a percentage of activity during the last 6 hours. "
                      "The color indicates the level of your activity. When the color is "
                      "close to full red it is recommended to lower your work pace." );
     default:
