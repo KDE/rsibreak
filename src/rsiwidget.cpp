@@ -71,11 +71,11 @@ RSIObject::RSIObject( QWidget *parent )
     m_tray->show();
 
 
-    m_tooltip = new RSIToolTip( parent, m_tray );
+    m_tooltip = new RSIToolTip( 0, m_tray );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
 
 
-    m_relaxpopup = new RSIRelaxPopup( parent, m_tray );
+    m_relaxpopup = new RSIRelaxPopup( 0, m_tray );
     m_relaxpopup->show();
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 

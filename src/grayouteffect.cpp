@@ -19,6 +19,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#include "grayouteffect.h"
+
 #include <QThread>
 #include <QWidget>
 #include <QPixmap>
@@ -36,7 +38,6 @@
 #include <mmintrin.h>
 #endif
 
-#include "grayouteffect.h"
 #include "grayouteffect.moc"
 
 static int inline multiply(int a, int b)

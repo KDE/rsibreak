@@ -21,7 +21,7 @@
 #ifndef RSIObject_H
 #define RSIObject_H
 
-#include <QLabel>
+#include <QtGui/QLabel>
 #include "rsitimer.h"
 
 class RSIDock;

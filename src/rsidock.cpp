@@ -45,7 +45,7 @@ RSIDock::RSIDock( QWidget *parent )
     m_help = new KHelpMenu( parent, KGlobal::mainComponent().aboutData() );
 
     QMenu* menu = new QMenu( parent );
-    menu->addAction( KIcon( "about-kde" ), i18n( "About &KDE" ), m_help,
+    menu->addAction( KIcon( "help-about" ), i18n( "About &KDE" ), m_help,
                      SLOT( aboutKDE() ) );
     menu->addAction( i18n( "&About RSIBreak" ), m_help,
                      SLOT( aboutApplication() ) );
@@ -54,7 +54,7 @@ RSIDock::RSIDock( QWidget *parent )
                      KStandardShortcut::shortcut( KStandardShortcut::Help ).primary() );
 
     menu->addSeparator();
-    menu->addAction( i18n( "&Report Bug..." ), m_help, SLOT( reportBug() ) );
+    menu->addAction( KIcon( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, SLOT( reportBug() ) );
     menu->addAction( i18n( "Switch application &language..." ), m_help,
                      SLOT( switchApplicationLanguage() ) );
 
