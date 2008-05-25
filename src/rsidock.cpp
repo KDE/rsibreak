@@ -45,7 +45,7 @@ RSIDock::RSIDock( QWidget *parent )
     m_help = new KHelpMenu( parent, KGlobal::mainComponent().aboutData() );
 
     QMenu* menu = new QMenu( parent );
-    menu->addAction( KIcon( "help-about" ), i18n( "About &KDE" ), m_help,
+    menu->addAction( KIcon( "kde" ), i18n( "About &KDE" ), m_help,
                      SLOT( aboutKDE() ) );
     menu->addAction( i18n( "&About RSIBreak" ), m_help,
                      SLOT( aboutApplication() ) );
@@ -62,10 +62,12 @@ RSIDock::RSIDock( QWidget *parent )
     m_suspendItem = menu->addAction( SmallIcon( "media-playback-pause" ),
                                      i18n( "&Suspend RSIBreak" ), this,
                                      SLOT( slotSuspend() ) );
-    menu->addAction( i18n( "&Usage Statistics" ),
-                     this, SLOT( slotShowStatistics() ) );
-    menu->addAction( SmallIcon( "knotify" ), i18n( "Configure &Notifications..." ),
-                     this, SLOT( slotConfigureNotifications() ) );
+    menu->addAction( SmallIcon( "view-statistics" ),
+                     i18n( "&Usage Statistics" ), this,
+                     SLOT( slotShowStatistics() ) );
+    menu->addAction( SmallIcon( "preferences-desktop-notification" ),
+                     i18n( "Configure &Notifications..." ), this,
+                     SLOT( slotConfigureNotifications() ) );
     menu->addAction( KIcon( "configure" ), i18n( "&Configure RSIBreak..." ),
                      this, SLOT( slotConfigure() ) );
 
