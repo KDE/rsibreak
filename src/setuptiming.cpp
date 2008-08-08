@@ -49,7 +49,6 @@ SetupTiming::SetupTiming( QWidget* parent )
 {
     d = new SetupTimingPriv;
 
-    QVBoxLayout *layout = new QVBoxLayout( parent );
     KVBox *l = new KVBox( this );
 
     // ------------------------ Tinybox
@@ -144,7 +143,6 @@ SetupTiming::SetupTiming( QWidget* parent )
     vbox2->addStretch( 1 );
     slideBox->setLayout( vbox2 );
 
-    layout->addWidget( this );
     readSettings();
 
     // set the suffix

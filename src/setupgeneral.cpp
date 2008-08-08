@@ -51,7 +51,6 @@ SetupGeneral::SetupGeneral( QWidget* parent )
 {
     d = new SetupGeneralPriv;
 
-    QVBoxLayout *layout = new QVBoxLayout( parent );
     KVBox *l = new KVBox( this );
 
     d->autoStart = new QCheckBox(
@@ -108,11 +107,10 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     vbox2->addWidget( d->showTimerReset );
     vbox2->addWidget( d->ignoreIdleForTinyBreaks );
     vbox2->addStretch( 1 );
-    d->breakTimerSettings->setLayout( vbox2 );
+    d->idleSettings->setLayout( vbox2 );
     connect( d->resetTimersAfterIdle , SIGNAL( toggled( bool ) ),
              SLOT( slotShowTimer() ) );
 
-    layout->addWidget( this );
     readSettings();
     slotUseNoIdleTimer();
 }

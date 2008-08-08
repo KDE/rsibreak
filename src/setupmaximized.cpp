@@ -59,7 +59,6 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 {
     d = new SetupMaximizedPriv;
 
-    QVBoxLayout *layout = new QVBoxLayout( parent );
     KVBox *l = new KVBox( this );
 
     // Counterbox and skipbox next to eachother
@@ -144,8 +143,6 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vbox3->addWidget( d->useFlash );
     vbox3->addStretch( 1 );
     popupBox->setLayout( vbox3 );
-
-    layout->addWidget( this );
 
     readSettings();
     slotHideFlash();
