@@ -76,7 +76,6 @@ RSIObject::RSIObject( QWidget *parent )
 
 
     m_relaxpopup = new RSIRelaxPopup( 0, m_tray );
-    m_relaxpopup->show();
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     connect( m_tray, SIGNAL( configChanged( bool ) ), SLOT( readConfig() ) );
