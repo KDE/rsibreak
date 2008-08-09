@@ -34,8 +34,6 @@ RSIBreak::RSIBreak( QObject *parent, const QVariantList &args )
         : Plasma::Applet( parent, args ), m_text( i18n("Initialising") ),
           m_icon( "rsibreak" ), m_size( QSize( 140, 140 ) )
 {
-    setDrawStandardBackground( true );
-
     QDBusInterface rsibreak( "org.rsibreak.rsibreak", "/rsibreak",
                              "org.rsibreak.rsiwidget" );
 
@@ -43,29 +41,24 @@ RSIBreak::RSIBreak( QObject *parent, const QVariantList &args )
     connect( m_timer, SIGNAL( timeout() ), this, SLOT( slotUpdate() ) );
     m_timer->start( 1000 );
 
-    m_theme = new Plasma::Svg( "widgets/rsibreak", this );
-    m_theme->setContentType( Plasma::Svg::SingleImage );
+    m_theme = new Plasma::Svg( this );
+    m_theme->setImagePath( "widgets/rsibreak" );
+    m_theme->setContainsMultipleImages( false );
 
     m_h1 = new Plasma::Label( this );
-    m_h1->setPen(QPen(Qt::white));
     m_h1->setText( i18n( "Currently Idle:" ) );
 
     m_h2 = new Plasma::Label( this );
-    m_h2->setPen(QPen(Qt::white));
     m_h2->setText( i18n( "Next Short Break:" ) );
 
     m_h3 = new Plasma::Label( this );
-    m_h3->setPen(QPen(Qt::white));
     m_h3->setText( i18n( "Next Big Break:" ) );
 
     m_t1 = new Plasma::Label( this );
-    m_t1->setPen(QPen(Qt::white));
 
     m_t2 = new Plasma::Label( this );
-    m_t2->setPen(QPen(Qt::white));
 
     m_t3 = new Plasma::Label( this );
-    m_t3->setPen(QPen(Qt::white)); 
 }
 
 RSIBreak::~RSIBreak()

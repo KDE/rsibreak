@@ -11,7 +11,6 @@ add_definitions (-mmmx)
 include_directories ( ${KDE4_INCLUDES} ${BLITZ_INCLUDES} )
 ADD_SUBDIRECTORY( icons ) 
 ADD_SUBDIRECTORY( src ) 
-#Laurent: needs to adapt to new plasma api
 if (PLASMA_FOUND)
-  #ADD_SUBDIRECTORY( plasma ) 
+  ADD_SUBDIRECTORY( plasma ) 
 endif (PLASMA_FOUND)
