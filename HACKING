@@ -10,3 +10,18 @@ astyle --indent=spaces=4 --brackets=linux \
        --one-line=keep-statements --convert-tabs \
        --indent-preprocessor \
        `find -type f -name '*.cpp'` `find -type f -name '*.h'`
+
+There is a git repo at http://repo.or.cz/w/rsibreak.git with full commit 
+history. If you want to use that repo with git-svn to be able to commit 
+directly to svn, do:
+
+git clone git://repo.or.cz/rsibreak.git
+cd rsibreak
+git config --add remote.origin.fetch=+refs/remotes/*:refs/remotes/*
+git fetch
+git svn init svn+ssh://svn.kde.org/home/kde/trunk/extragear/utils/rsibreak
+git svn rebase
+git svn show-ignore >> .git/info/exclude
+
+That should do. 
+Repo is currently managed by Rafał Rzepecki <divided.mind@gmail.com>.
