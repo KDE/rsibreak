@@ -27,10 +27,10 @@
  */
 class RSIBreakEngine : public Plasma::DataEngine
 {
-    Q_OBJECT
- 
-    public:
-        RSIBreakEngine(QObject* parent, const QVariantList& args);
+  Q_OBJECT
+
+  public:
+    RSIBreakEngine(QObject* parent, const QVariantList& args);
 };
  
 #endif // RSIBREAK_ENGINE_H
