@@ -18,9 +18,16 @@
 
 #include "rsibreak.h"
 
+#include <Plasma/Label>
+#include <QtGui/QGraphicsLinearLayout>
+
 RSIBreak::RSIBreak( QObject *parent, const QVariantList &args )
         : Plasma::Applet( parent, args )
 {
+  QGraphicsLinearLayout *layout = new QGraphicsLinearLayout(this);
+  Plasma::Label *label = new Plasma::Label(this);
+  label->setText("just testing");
+  layout->addItem(label);
 }
 
 RSIBreak::~RSIBreak()
