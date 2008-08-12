@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=RSIBreak engine
+Comment=Provides current times left to breaks and rsibreak status
+Type=Service
+ServiceTypes=Plasma/DataEngine
+ 
+X-KDE-Library=plasma_engine_rsibreak
+X-Plasma-EngineName=rsibreak
+X-KDE-PluginInfo-Author=Rafał Rzepecki
+X-KDE-PluginInfo-Email=divided.mind@gmail.com
+X-KDE-PluginInfo-Name=rsibreak
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=http://www.rsibreak.org/
+X-KDE-PluginInfo-Category=Utility
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=LGPL
+X-KDE-PluginInfo-EnabledByDefault=true

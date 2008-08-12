@@ -21,14 +21,13 @@
 
 #include <plasma/applet.h>
 
-namespace Plasma { class Svg; class Label; }
-
 class RSIBreak : public Plasma::Applet
 {
     Q_OBJECT
 public:
     RSIBreak( QObject *parent, const QVariantList &args );
     ~RSIBreak();
+
 };
 
 K_EXPORT_PLASMA_APPLET( rsibreak, RSIBreak )
