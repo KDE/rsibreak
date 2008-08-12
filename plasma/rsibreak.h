@@ -21,13 +21,20 @@
 
 #include <plasma/applet.h>
 
+namespace Plasma {
+  class Label;
+}
+
 class RSIBreak : public Plasma::Applet
 {
     Q_OBJECT
-public:
+  public:
     RSIBreak( QObject *parent, const QVariantList &args );
     ~RSIBreak();
 
+
+  public slots:
+    dataUpdated(const QString &sourceName, const Plasma::DataEngine::Data &data);
 };
 
 K_EXPORT_PLASMA_APPLET( rsibreak, RSIBreak )

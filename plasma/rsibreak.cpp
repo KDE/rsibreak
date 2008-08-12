@@ -18,16 +18,46 @@
 
 #include "rsibreak.h"
 
+#include <Plasma/DataEngine>
 #include <Plasma/Label>
-#include <QtGui/QGraphicsLinearLayout>
+
+#include <QtGui/QGraphicsGridLayout>
 
 RSIBreak::RSIBreak( QObject *parent, const QVariantList &args )
         : Plasma::Applet( parent, args )
 {
-  QGraphicsLinearLayout *layout = new QGraphicsLinearLayout(this);
-  Plasma::Label *label = new Plasma::Label(this);
-  label->setText("just testing");
-  layout->addItem(label);
+  QGraphicsGridLayout *layout = new QGraphicsGridLayout(this);
+
+  Plasma::Label *label;
+  Plasma::Label *idle, *tiny, *big;
+  int row = 0;
+
+  label = new Plasma::Label(this);
+  label->setText(i18nc("@label", "Idle time:"));
+  layout->addItem(label, row, 0);
+  idle = new Plasma::Label(this);
+  layout->addItem(idle, row, 1);
+  row++;
+
+  label = new Plasma::Label(this);
+  label->setText(i18nc("@label", "Left to tiny:"));
+  layout->addItem(label, row, 0);
+  tiny = new Plasma::Label(this);
+  layout->addItem(tiny, row, 1);
+  row++;
+
+  label = new Plasma::Label(this);
+  label->setText(i18nc("@label", "Left to big:"));
+  layout->addItem(label, row, 0);
+  big = new Plasma::Label(this);
+  layout->addItem(big, row, 1);
+  row++;
+
+  Plasma::DataEngine *engine = dataEngine("rsibreak");
+
+  engine->connectSource("idleTime", idle, 1000);
+  engine->connectSource("tinyLeft", tiny, 1000);
+  engine->connectSource("bigLeft", big, 1000);
 }
 
 RSIBreak::~RSIBreak()
