@@ -16,11 +16,11 @@
  *   Free Software Foundation, Inc.,
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
- 
+
 #include "engine.h"
 
 #include "rsibreak_interface.h"
- 
+
 RSIBreakEngine::RSIBreakEngine(QObject* parent, const QVariantList& args)
               : Plasma::DataEngine(parent, args),
                 m_rsibreakInterface(0)
@@ -33,6 +33,21 @@ void RSIBreakEngine::init()
                                                            "/rsibreak", 
                                                            QDBusConnection::sessionBus(),
                                                            this);
+  updateSourceEvent("idleTime");
+  updateSourceEvent("tinyLeft");
+  updateSourceEvent("bigLeft");
+  setMinimumPollingInterval(333);
+}
+
+bool RSIBreakEngine::updateSourceEvent(const QString &name)
+{
+  QDBusReply<int> reply = m_rsibreakInterface->call(name);
+  if (reply.isValid()) {
+    setData(name, reply.value());
+    return true;
+  }
+
+  return false;
 }
 
 K_EXPORT_PLASMA_DATAENGINE(rsibreak, RSIBreakEngine)

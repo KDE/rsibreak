@@ -34,6 +34,9 @@ class RSIBreakEngine : public Plasma::DataEngine
   public:
     RSIBreakEngine(QObject* parent, const QVariantList& args);
     void init();
+  
+  protected:
+    bool updateSourceEvent(const QString &name);
     
   private:
     OrgRsibreakRsiwidgetInterface *m_rsibreakInterface;
