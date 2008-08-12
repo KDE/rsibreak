@@ -18,8 +18,23 @@
  */
  
 #include "engine.h"
+
+#include "rsibreak_interface.h"
  
 RSIBreakEngine::RSIBreakEngine(QObject* parent, const QVariantList& args)
-              : Plasma::DataEngine(parent, args)
+              : Plasma::DataEngine(parent, args),
+                m_rsibreakInterface(0)
 {
 }
+
+void RSIBreakEngine::init()
+{
+  m_rsibreakInterface = new OrgRsibreakRsiwidgetInterface("org.rsibreak.rsibreak", 
+                                                           "/rsibreak", 
+                                                           QDBusConnection::sessionBus(),
+                                                           this);
+}
+
+K_EXPORT_PLASMA_DATAENGINE(rsibreak, RSIBreakEngine)
+ 
+#include "engine.moc"

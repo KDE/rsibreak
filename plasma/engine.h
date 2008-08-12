@@ -22,6 +22,8 @@
  
 #include <Plasma/DataEngine>
 
+class OrgRsibreakRsiwidgetInterface;
+
 /**
  * This engine provides the current status of the RSIBreak application.
  */
@@ -31,6 +33,10 @@ class RSIBreakEngine : public Plasma::DataEngine
 
   public:
     RSIBreakEngine(QObject* parent, const QVariantList& args);
+    void init();
+    
+  private:
+    OrgRsibreakRsiwidgetInterface *m_rsibreakInterface;
 };
  
 #endif // RSIBREAK_ENGINE_H
