@@ -5,6 +5,9 @@ find_package (KDE4 REQUIRED)
 include(KDE4Defaults)
 macro_optional_find_package(Plasma)
 
+macro_log_feature(PLASMA_FOUND "Plasma" "Plasma libraries and header files" "http://plasma.kde.org/" FALSE "" "Plasma is needed for Plasma applet of rsibreak. Install kdebase-workspace.")
+
+
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 add_definitions (-mmmx)
