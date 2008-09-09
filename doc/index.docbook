@@ -116,7 +116,7 @@ a user-friendly manner. There will be times, though, that it will display itself
 
 <para>After starting, you can see an icon in your tray and you will see a welcome
 pop up. Although the application should be useful with default settings, it may be wise
-to take control by examining the settings. To discover and asses the options available, right click on the tray icon; in the context menu that appears, select <guilabel>Configure</guilabel>. The following chapters contain further configuration information.</para>
+to take control by examining the settings. To discover and to obtain an access to the options available, right click on the tray icon; in the context menu that appears, select <guilabel>Configure</guilabel>. The following chapters contain further configuration information.</para>
 
 <screenshot>
 <screeninfo>&rsibreak; statistics</screeninfo>
