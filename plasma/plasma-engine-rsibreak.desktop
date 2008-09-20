@@ -1,9 +1,31 @@
 [Desktop Entry]
 Name=RSIBreak engine
+Name[el]=Μηχανή RSIBreak
+Name[et]=RSIBreaki mootor
+Name[ga]=Inneall RSIBreak
+Name[gl]=Motor de RSIBreak
+Name[km]=ម៉ាស៊ីន RSIBreak
+Name[nds]=RSIBreak-Karn
+Name[pt]=Motor do RSIBreak
+Name[pt_BR]=Motor do RSIBreak
+Name[sv]=RSIbreak-gränssnitt
+Name[uk]=Рушій RSIBreak
+Name[zh_TW]=RSIBreak 引擎
 Comment=Provides current times left to breaks and rsibreak status
+Comment[el]=Προσφέρει χρόνους διαλειμμάτων και κατάσταση του rsibreak
+Comment[et]=Annab teada pausini jäänud aega ja RSIBreaki oleku
+Comment[ga]=Soláthraíonn sé seo an tréimhse fágtha roimh an chéad scíth eile, agus an stádas rsibreak
+Comment[gl]=Fornece os tempos a faltar para as paradas e o estado de rsibreak
+Comment[km]=ផ្ដល់​នូវ​ពេលវេលា​បច្ចុប្បន្ន​ដែល​នៅ​សល់​ដើម្បី​សម្រាក និង​ស្ថានភាព​របស់ rsibreak
+Comment[nds]=Stellt de Resttieden bet to de Pausen un den RSIBreak-Status praat
+Comment[pt]=Apresenta os tempos restantes para as pausas e o estado do RSIBreak
+Comment[pt_BR]=Apresenta os tempos restantes para as pausas e o estado do RSIBreak
+Comment[sv]=Tillhandahåller aktuella tider kvar till raster, och status för RSIbreak
+Comment[uk]=Показує поточний час до наступної перерви і стан rsibreak
+Comment[zh_TW]=提供目前還剩多少時間就可以休息，以及 rsibreak 狀態
 Type=Service
 ServiceTypes=Plasma/DataEngine
- 
+
 X-KDE-Library=plasma_engine_rsibreak
 X-Plasma-EngineName=rsibreak
 X-KDE-PluginInfo-Author=Rafał Rzepecki

@@ -1,10 +1,37 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=RSIBreak
+Name[hi]=आरएसआईब्रेक
+Name[ro]=PauzăRSI
+Name[sv]=RSIbreak
+Name[x-test]=xxRSIBreakxx
 Comment=Plasma RSIBreak applet
+Comment[bg]=Аплет на RSIBreak за Plasma
+Comment[de]=RSIBreak-Miniprogramm für Plasma
+Comment[el]=Μικροεφαρμογή Plasma RSIBreak
+Comment[es]=Complemento RSIBreak para Plasma
+Comment[et]=Plasma RSIBreaki aplett
+Comment[fr]=Applet Plasma RSIBreak
+Comment[ga]=Feidhmchláirín RSIBreak Plasma
+Comment[gl]=Applet RSIBreak para Plasma
+Comment[hi]=प्लाज़्मा आरएसआईब्रेक ऐप्लेट
+Comment[ja]=Plasma RSIBreak アプレット
+Comment[km]=អាប់ភ្លេត RSIBreak ប្លាស្មា
+Comment[ko]=Plasma RSIBreak 애플릿
+Comment[nds]=RSIBreak-Lüttprogramm för Plasma
+Comment[nl]=Plasma-applet voor RSIBreak
+Comment[pt]='Applet' do RSIBreak para o Plasma
+Comment[pt_BR]=Mini-aplicativo Plasma RSIBreak
+Comment[ro]=Miniaplicație Plasma PauzăRSI
+Comment[sv]=RSIbreak-miniprogram för Plasma
+Comment[tr]=Plasma RSIBreak programcığı
+Comment[uk]=Аплет Плазми RSIBreak
+Comment[x-test]=xxPlasma RSIBreak appletxx
+Comment[zh_CN]=Plasma RSIBreak 小程序
+Comment[zh_TW]=Plasma RSIBreak 小程式
 Type=Service
 ServiceTypes=Plasma/Applet
- 
+
 X-KDE-Library=plasma_applet_rsibreak
 X-KDE-PluginInfo-Author=Rafał Rzepecki
 X-KDE-PluginInfo-Email=divided.mind@gmail.com
