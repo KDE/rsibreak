@@ -1,3 +1,22 @@
+2008-10-09 17:21 +0000 [r869665]  Will Stephenson wstephenson@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: Fix layouts
+	  in config
+
+2008-10-09 17:11 +0000 [r869663]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/release_rsibreak.rb (removed):
+	  Delete this, createtarballs is way better.
+
+2008-10-09 17:06 +0000 [r869661]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/release_rsibreak.rb,
+	  trunk/extragear/utils/rsibreak/makechangelog,
+	  trunk/extragear/utils/rsibreak/ChangeLog: Prep beta 4
+
 2008-09-01 11:37 +0000 [r855753]  Laurent Montel montel@kde.org
 
 	* trunk/extragear/utils/CMakeLists.txt,
