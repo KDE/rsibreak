@@ -1,4 +1,6 @@
+rm -f /tmp/svn2log.py /tmp/accounts
+svn cat svn+ssh://toma@svn.kde.org/home/kde/branches/KDE/3.5/kde-common/release/svn2log.py > /tmp/svn2log.py
+svn cat svn+ssh://toma@svn.kde.org/home/kde/trunk/kde-common/accounts > /tmp/accounts
 svn log -v --xml \
     svn+ssh://toma@svn.kde.org/home/kde/trunk/extragear/utils/rsibreak \
- | python /usr/src/kde/branches/KDE/3.5/kde-common/release/svn2log.py  \
-          -u /usr/src/kde/trunk/KDE/kde-common/accounts
+ | python /tmp/svn2log.py --users=/tmp/accounts --users-charset=UTF8

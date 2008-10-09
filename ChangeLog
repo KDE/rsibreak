@@ -1,3 +1,402 @@
+2008-09-01 11:37 +0000 [r855753]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/CMakeLists.txt: Add
+	  macro_log_feature
+
+2008-08-12 04:38 +0000 [r845586]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/plasma/rsibreak.h: Oopps... we
+	  don't need that, really.
+
+2008-08-12 04:21 +0000 [r845576-845582]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h: Crude interface
+	  fully functional.
+
+	* trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp: Created
+	  layout for the plasmoid, added a test label.
+
+	* trunk/extragear/utils/rsibreak/plasma/engine.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/engine.h: All right, the
+	  times exposed by the engine.
+
+	* trunk/extragear/utils/rsibreak/plasma/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/plasma/engine.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/engine.h: Initialize the
+	  DBus interface. Properly export the plugin.
+
+	* trunk/extragear/utils/rsibreak/plasma/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/plasma/engine.cpp (added),
+	  trunk/extragear/utils/rsibreak/plasma/plasma-applet-rsibreak.desktop,
+	  trunk/extragear/utils/rsibreak/plasma/plasma-engine-rsibreak.desktop
+	  (added), trunk/extragear/utils/rsibreak/plasma/rsibreak.h,
+	  trunk/extragear/utils/rsibreak/plasma/engine.h (added): Skeleton
+	  for what will become the rsibreak engine.
+
+	* trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/plasma-applet-rsibreak.desktop,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h: Wipe all code
+	  for the applet rewrite.
+
+2008-08-11 23:56 +0000 [r845546]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/HACKING: Added info about the git
+	  repository.
+
+2008-08-09 01:18 +0000 [r844166]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp: Adapt the
+	  plasma applet to the new API.
+
+2008-08-08 04:41 +0000 [r843836]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: Fix
+	  configuration dialog.
+
+2008-08-08 04:18 +0000 [r843832]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Don't show the
+	  dummy widget (what is it even for?!).
+
+2008-07-01 06:45 +0000 [r826702]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/Messages.sh: Remove temporary file
+
+2008-05-25 14:54 +0000 [r812477]  Jakob Petsovits jpetso@gmx.at
+
+	* trunk/extragear/utils/rsibreak/src/rsidock.cpp: Icon fixes.
+
+2008-04-26 23:35 +0000 [r801597]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsibreak.desktop,
+	  trunk/extragear/utils/rsibreak/src/rsidock.cpp: Krazy fixes, fix
+	  icons.
+	  Signed-off-because-somehow-people-want-to-show-off-they're-using-l33t-Git:
+	  Bram Schoenmakers <bramschoenmakers@kde.nl>
+
+2008-04-14 07:23 +0000 [r796717]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt: Comment for the
+	  moment plasma applet
+
+2008-03-31 21:59 +0000 [r792367-792368]  Albert Astals Cid tsdgeos@terra.es
+
+	* trunk/extragear/utils/rsibreak/src/rsistats.cpp: more whitespace
+
+	* trunk/extragear/utils/rsibreak/src/rsistats.cpp: add whitespace
+	  after the "."
+
+2008-03-24 09:25 +0000 [r789425]  Bram Schoenmakers bramschoenmakers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsistats.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: Fix trivial
+	  Krazy issues.
+
+2008-02-16 20:39 +0000 [r775865]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/config-rsibreak.h.cmake (added),
+	  trunk/extragear/utils/rsibreak/config.h.cmake (removed),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: config.h.cmake->
+	  config-rsibreak.h.cmake
+
+2008-02-13 06:27 +0000 [r774375]  Rafał Rzepecki divided.mind@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/grayouteffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp: Fixed some
+	  compiler warnings.
+
+2008-01-12 16:57 +0000 [r760433]  Jonathan Riddell jr@jriddell.org
+
+	* trunk/extragear/multimedia/kmplayer/COPYING-DOCS (removed),
+	  trunk/extragear/office/kile/COPYING-DOCS (removed),
+	  trunk/extragear/multimedia/kplayer/COPYING.DOC (added),
+	  trunk/extragear/utils/rsibreak/COPYING.DOC (added),
+	  trunk/extragear/sdk/kaider/COPYING-DOCS (removed),
+	  trunk/extragear/network/kftpgrabber/COPYING-DOCS (removed),
+	  trunk/extragear/multimedia/amarok/COPYING.DOC (added),
+	  trunk/extragear/multimedia/amarok/COPYING.LIB,
+	  trunk/extragear/graphics/digikam/COPYING.DOC (added),
+	  trunk/extragear/graphics/kphotoalbum/COPYING-DOCS (removed),
+	  trunk/extragear/graphics/kiconedit/COPYING.DOC (added),
+	  trunk/extragear/multimedia/k3b/COPYING.DOC (added),
+	  trunk/extragear/network/kopete-cryptography/COPYING.LIB,
+	  trunk/extragear/security/pwmanager/COPYING-DOCS (removed),
+	  trunk/extragear/utils/yakuake/COPYING-DOCS (removed),
+	  trunk/extragear/multimedia/kmplayer/COPYING.DOC (added),
+	  trunk/extragear/office/kile/COPYING.DOC (added),
+	  trunk/extragear/multimedia/kmplayer/COPYING.LIB,
+	  trunk/extragear/graphics/kgraphviewer/COPYING-DOCS (removed),
+	  trunk/extragear/sdk/kaider/COPYING.DOC (added),
+	  trunk/extragear/network/kftpgrabber/COPYING.DOC (added),
+	  trunk/extragear/multimedia/kplayer/COPYING-DOCS (removed),
+	  trunk/extragear/utils/rsibreak/COPYING-DOCS (removed),
+	  trunk/extragear/graphics/kphotoalbum/COPYING.DOC (added),
+	  trunk/extragear/multimedia/amarok/COPYING-DOCS (removed),
+	  trunk/extragear/graphics/digikam/COPYING-DOCS (removed),
+	  trunk/extragear/security/pwmanager/COPYING.DOC (added),
+	  trunk/extragear/utils/yakuake/COPYING.DOC (added),
+	  trunk/extragear/multimedia/k3b/COPYING-DOCS (removed),
+	  trunk/extragear/graphics/kiconedit/COPYING-DOCS (removed),
+	  trunk/extragear/graphics/kgraphviewer/COPYING.DOC (added): update
+	  for new licence policy
+
+2007-10-15 17:19 +0000 [r725556]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/grayouteffect.cpp: remove
+	  include, make bot happy maybe
+
+2007-10-14 14:45 +0000 [r725097]  Frederik Schwarzer schwarzerf@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp: display "one"
+	  as "1"
+
+2007-10-14 12:24 +0000 [r725059]  Frederik Schwarzer schwarzerf@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: some markup,
+	  typos and oopsies
+
+2007-10-11 10:09 +0000 [r724085-724086]  Dirk Mueller mueller@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/grayouteffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.h: the usual "daily
+	  unbreak compilation"
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: you don't
+	  really want to compare points to string literals
+
+2007-10-09 21:23 +0000 [r723522]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Remove
+	  imagebliz dependency. Yay.
+
+2007-10-09 21:13 +0000 [r723520]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.cpp (added),
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.h (added),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Use the
+	  grayouteffect as developed by fredrikh. Still todo: - first frame
+	  is a black frame - remove imagebliz as that's not needed anymore
+	  - move XImage to d-pointer, so the xlib include is not needed in
+	  the header (waiting for a final version of grayouteffect from
+	  fredrikh).
+
+2007-10-06 22:58 +0000 [r722219]  Pino Toscano pino@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistatwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: needed
+	  includes
+
+2007-10-01 15:08 +0000 [r719640]  Rafael Fernández López ereslibre@kde.org
+
+	* trunk/extragear/graphics/digikam/digikam/albumselectdialog.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/network/kmldonkey/kmldonkey/tools/imageloader.cpp,
+	  trunk/extragear/base/konq-plugins/sidebar/metabar/src/configdialog.cpp,
+	  trunk/extragear/graphics/digikam/themedesigner/mainwindow.cpp,
+	  trunk/extragear/multimedia/amarok/src/statusbar/statusBarBase.cpp,
+	  trunk/extragear/graphics/ligature/plugins/pdf/pdfRenderer.cpp,
+	  trunk/extragear/network/kopete-plugins/cryptography/exportkeys.cpp,
+	  trunk/extragear/graphics/digikam/libs/imageproperties/imagedescedittab.cpp,
+	  trunk/extragear/graphics/kphotoalbum/Settings/SettingsData.cpp,
+	  trunk/extragear/multimedia/amarok/src/Statistics.cpp,
+	  trunk/extragear/graphics/ligature/shell/ligaturepart.cpp,
+	  trunk/extragear/graphics/ligature/shell/searchWidget.cpp,
+	  trunk/extragear/graphics/kcoloredit/kcoloredit.cpp,
+	  trunk/extragear/graphics/ligature/shell/presentationwidget.cpp,
+	  trunk/extragear/base/konq-plugins/fsview/inode.cpp,
+	  trunk/extragear/graphics/digikam/digikam/pixmapmanager.cpp,
+	  trunk/extragear/graphics/digikam/imageplugins/adjustlevels/adjustlevels.cpp,
+	  trunk/extragear/graphics/digikam/digikam/albumthumbnailloader.cpp,
+	  trunk/extragear/graphics/kuickshow/src/kuickshow.cpp,
+	  trunk/extragear/graphics/digikam/libs/thumbbar/thumbbar.cpp,
+	  trunk/extragear/graphics/digikam/utilities/cameragui/cameraiconview.cpp,
+	  trunk/extragear/graphics/digikam/libs/threadimageio/thumbnailloadthread.cpp,
+	  trunk/extragear/graphics/digikam/digikam/digikamfirstrun.cpp,
+	  trunk/extragear/graphics/kiconedit/knew.cpp,
+	  trunk/extragear/multimedia/amarok/src/osd.cpp,
+	  trunk/extragear/graphics/digikam/utilities/cameragui/camerafolderdialog.cpp,
+	  trunk/extragear/graphics/digikam/utilities/batch/batchalbumssyncmetadata.cpp,
+	  trunk/extragear/graphics/ligature/shell/bookmarkList.cpp,
+	  trunk/extragear/multimedia/amarok/src/actionclasses.cpp,
+	  trunk/extragear/libs/kipi-plugins/rawconverter/batchdialog.cpp,
+	  trunk/extragear/multimedia/amarok/src/statusbar/queueLabel.cpp,
+	  trunk/extragear/multimedia/amarok/src/history/MediaItem.cpp,
+	  trunk/extragear/multimedia/amarok/src/directorylist.cpp,
+	  trunk/extragear/graphics/digikam/imageplugins/superimpose/imageeffect_superimpose.cpp,
+	  trunk/extragear/multimedia/amarok/src/collectionbrowser/CollectionTreeItemModelBase.cpp,
+	  trunk/extragear/graphics/digikam/libs/dialogs/deletedialog.cpp,
+	  trunk/extragear/multimedia/amarok/src/mediadevice/daap/daapclient.cpp,
+	  trunk/extragear/network/kopete-plugins/cryptography/cryptographyplugin.cpp,
+	  trunk/extragear/multimedia/noatun-plugins/alarm/wakeup.cpp,
+	  trunk/extragear/graphics/digikam/libs/widgets/metadata/metadatawidget.cpp,
+	  trunk/extragear/graphics/ligature/shell/marklist.cpp,
+	  trunk/extragear/multimedia/amarok/src/app.cpp,
+	  trunk/extragear/graphics/ligature/shell/tableOfContents.cpp,
+	  trunk/extragear/multimedia/amarok/src/deletedialog.cpp,
+	  trunk/extragear/graphics/digikam/utilities/setup/cameraselection.cpp,
+	  trunk/extragear/graphics/digikam/libs/dialogs/dprogressdlg.cpp,
+	  trunk/extragear/multimedia/kplayer/kplayer/kplayernodeview.cpp,
+	  trunk/extragear/graphics/digikam/digikam/tagspopupmenu.cpp,
+	  trunk/extragear/graphics/digikam/utilities/imageeditor/canvas/colorcorrectiondlg.cpp,
+	  trunk/extragear/graphics/digikam/utilities/slideshow/slideshow.cpp,
+	  trunk/extragear/graphics/digikam/themedesigner/themediconitem.cpp,
+	  trunk/extragear/graphics/ligature/plugins/ps/psRenderer.cpp,
+	  trunk/extragear/graphics/digikam/imageplugins/adjustcurves/adjustcurves.cpp,
+	  trunk/extragear/graphics/digikam/digikam/tagcreatedlg.cpp,
+	  trunk/extragear/graphics/kiconedit/kiconconfig.cpp,
+	  trunk/extragear/graphics/kphotoalbum/ImageManager/VideoManager.cpp,
+	  trunk/extragear/multimedia/noatun-plugins/oblique/cmodule.cpp,
+	  trunk/extragear/graphics/ligature/shell/documentWidget.cpp,
+	  trunk/extragear/graphics/digikam/digikam/syncjob.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/graphics/digikam/utilities/slideshow/toolbar.cpp,
+	  trunk/extragear/graphics/digikam/imageplugins/channelmixer/channelmixer.cpp,
+	  trunk/extragear/graphics/digikam/imageplugins/whitebalance/imageeffect_whitebalance.cpp,
+	  trunk/extragear/base/konq-plugins/akregator/konqfeedicon.cpp,
+	  trunk/extragear/base/konq-plugins/kimgalleryplugin/imgallerydialog.cpp,
+	  trunk/extragear/graphics/digikam/digikam/scanlib.cpp,
+	  trunk/extragear/network/kwlan/src/kwlantraywin.cpp,
+	  trunk/extragear/base/konq-plugins/microformat/konqmficon.cpp:
+	  Code adaptation because of changes on libraries related to
+	  revision 719630
+
+2007-09-06 22:50 +0000 [r709238]  Arto Hytönen amthpublic@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp: fix for old
+	  KColorScheme ctor, to enable it's remove from kdelibs
+
+2007-08-30 17:08 +0000 [r706532]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt: Typo
+
+2007-08-30 16:46 +0000 [r706523]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Make happy
+	  dashboard
+
+2007-08-30 04:45 +0000 [r706361]  Aaron J. Seigo aseigo@kde.org
+
+	* trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h: build
+
+2007-08-29 23:56 +0000 [r706335]  Dirk Mueller mueller@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/graywidget.cpp: its
+	  qimageblitz.h now
+
+2007-08-20 21:44 +0000 [r702603-702604]  Thiago Macieira thiago@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/passivepopup.cpp,
+	  trunk/extragear/utils/kpager/ksharedpixmap.cpp: Remove use of
+	  k_funcinfo
+
+	* trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Find blitz
+	  properly
+
+2007-08-16 19:21 +0000 [r700914]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/plasma/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.svg (added),
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h: Flush work in
+	  progress. Is not yet what i want it to be. To be continued...
+
+2007-08-11 17:11 +0000 [r698975]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/org.rsibreak.rsiwidget.xml,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h: Resize the
+	  applet according to the size of the text we want to display Show
+	  the rsibreak logo on the top left, which is the same as in the
+	  tray: showing the time left to the break.
+
+2007-08-11 14:06 +0000 [r698933]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshow.h,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.h,
+	  trunk/extragear/utils/rsibreak/src/rsistats.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitooltip.h,
+	  trunk/extragear/utils/rsibreak/src/rsistatitem.h,
+	  trunk/extragear/utils/rsibreak/src/boxdialog.h,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.h,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer_dpms.h,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h,
+	  trunk/extragear/utils/rsibreak/src/slideshow.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistatwidget.h,
+	  trunk/extragear/utils/rsibreak/src/rsidock.h,
+	  trunk/extragear/utils/rsibreak/src/passivepopup.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.h,
+	  trunk/extragear/utils/rsibreak/src/setup.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiglobals.h,
+	  trunk/extragear/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/extragear/utils/rsibreak/src/boxdialog.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistatitem.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer_dpms.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.h,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistatwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/passivepopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsidock.cpp,
+	  trunk/extragear/utils/rsibreak/src/setup.cpp: adjust coding style
+	  to kdelibs policy (almost).
+
+2007-08-11 09:00 +0000 [r698839]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.h,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Someone asks
+	  to port to Blitz. I do that. Compile++ on the localizedstring for
+	  the gutsy compiler.
+
+2007-08-07 19:19 +0000 [r697432]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp: i18n fixes
+
 2007-08-05 08:18 +0000 [r696547]  Laurent Montel montel@kde.org
 
 	* trunk/extragear/utils/rsibreak/plasma/Messages.sh (added):
@@ -169,7 +568,7 @@
 	  use the new screenshot routine, so it actually works on this
 	  laptop.
 
-2007-07-31 19:43 +0000 [r694804]  Frode M. DÃ¸ving frode@lnix.net
+2007-07-31 19:43 +0000 [r694804]  Frode M. Døving frode@lnix.net
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: D-Bus call to
 	  lock the screen.
@@ -182,12 +581,12 @@
 	  screenshot that works. Thanks to the code from fredrikh! Solves
 	  the distortions.
 
-2007-07-31 18:20 +0000 [r694787]  Frode M. DÃ¸ving frode@lnix.net
+2007-07-31 18:20 +0000 [r694787]  Frode M. Døving frode@lnix.net
 
 	* trunk/extragear/utils/rsibreak/src/main.cpp: D-Bus call on second
 	  instance.
 
-2007-07-31 17:10 +0000 [r694777]  Frode M. DÃ¸ving frode@lnix.net
+2007-07-31 17:10 +0000 [r694777]  Frode M. Døving frode@lnix.net
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/main.cpp,
@@ -685,7 +1084,7 @@
 	  seconds too short to finish the stuff I'm doing before going into
 	  a break. Yes, quite an egoistic commit.
 
-2006-08-29 21:05 +0000 [r578659]  JÃ¶rn Ahrens joern.ahrens@kdemail.net
+2006-08-29 21:05 +0000 [r578659]  Jörn Ahrens joern.ahrens@kdemail.net
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: use
 	  KGlobal::iconLoader()
@@ -733,12 +1132,12 @@
 	  button to the tooltip, patch from Stanislav Nikolov. CCMAIL:
 	  valsinats@gmail.com
 
-2006-07-29 12:15 +0000 [r567567]  Danny Allen dannya40uk@yahoo.co.uk
+2006-07-29 12:15 +0000 [r567567]  Danny Allen dannya@kde.org
 
 	* trunk/extragear/utils/rsibreak/icons/hi32-action-dcop.png
 	  (removed): remove unused icon
 
-2006-07-29 11:54 +0000 [r567560]  Danny Allen dannya40uk@yahoo.co.uk
+2006-07-29 11:54 +0000 [r567560]  Danny Allen dannya@kde.org
 
 	* trunk/extragear/utils/rsibreak/icons/hi32-action-dcop.png
 	  (added): use correct dcop icon (instead of 0 byte PNG file)
