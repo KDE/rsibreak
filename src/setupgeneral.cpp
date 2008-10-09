@@ -51,14 +51,15 @@ SetupGeneral::SetupGeneral( QWidget* parent )
 {
     d = new SetupGeneralPriv;
 
-    KVBox *l = new KVBox( this );
+    QVBoxLayout *l = new QVBoxLayout( this );
 
     d->autoStart = new QCheckBox(
-        i18n( "&Automatically start RSIBreak at startup" ), l );
+        i18n( "&Automatically start RSIBreak at startup" ), this );
     d->autoStart->setWhatsThis( i18n( "With this option you can indicate that "
                                       "you want RSIBreak to start when KDE starts." ) );
 
-    d->breakTimerSettings = new QGroupBox( i18n( "Break Timer Settings" ), l );
+
+    d->breakTimerSettings = new QGroupBox( i18n( "Break Timer Settings" ), this );
     d->useNoIdleTimer = new QRadioButton( i18n( "Break at &fixed times and "
                                           "ignore movement during breaks" ), this );
     d->useNoIdleTimer->setWhatsThis( i18n( "With this option you indicate that "
@@ -80,7 +81,7 @@ SetupGeneral::SetupGeneral( QWidget* parent )
 
     // ---------------- IDLE Settings ------------------------
 
-    d->idleSettings = new QGroupBox( i18n( "Idle Settings" ), l );
+    d->idleSettings = new QGroupBox( i18n( "Idle Settings" ), this );
 
     d->resetTimersAfterIdle = new QCheckBox(
         i18n( "&Reset timers after period of idleness" ), this );
@@ -110,7 +111,11 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     d->idleSettings->setLayout( vbox2 );
     connect( d->resetTimersAfterIdle , SIGNAL( toggled( bool ) ),
              SLOT( slotShowTimer() ) );
+    l->addWidget(d->autoStart);
+    l->addWidget(d->breakTimerSettings);
+    l->addWidget(d->idleSettings);
 
+    setLayout( l );
     readSettings();
     slotUseNoIdleTimer();
 }

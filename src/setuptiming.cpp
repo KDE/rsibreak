@@ -49,11 +49,11 @@ SetupTiming::SetupTiming( QWidget* parent )
 {
     d = new SetupTimingPriv;
 
-    KVBox *l = new KVBox( this );
+    QVBoxLayout *l = new QVBoxLayout( this );
 
     // ------------------------ Tinybox
 
-    QGroupBox *tinyBox = new QGroupBox( l );
+    QGroupBox *tinyBox = new QGroupBox( this );
     tinyBox->setTitle( i18n( "Tiny Breaks" ) );
 
     KHBox *m = new KHBox( this );
@@ -88,7 +88,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     // ------------------------ Bigbox
 
-    QGroupBox *bigBox = new QGroupBox( l );
+    QGroupBox *bigBox = new QGroupBox( this );
     bigBox->setTitle( i18n( "Big Breaks" ) );
 
     KHBox *m3 = new KHBox( this );
@@ -123,7 +123,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     // ------------------------ Slidebox
 
-    QGroupBox *slideBox = new QGroupBox( l );
+    QGroupBox *slideBox = new QGroupBox( this );
     slideBox->setTitle( i18n( "Slideshow" ) );
 
     KHBox *m5 = new KHBox( this );
@@ -143,6 +143,10 @@ SetupTiming::SetupTiming( QWidget* parent )
     vbox2->addStretch( 1 );
     slideBox->setLayout( vbox2 );
 
+    l->addWidget(tinyBox);
+    l->addWidget(bigBox);
+    l->addWidget(slideBox);
+    setLayout(l);
     readSettings();
 
     // set the suffix

@@ -59,14 +59,12 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 {
     d = new SetupMaximizedPriv;
 
-    KVBox *l = new KVBox( this );
+    QVBoxLayout *l = new QVBoxLayout( this );
 
     // Counterbox and skipbox next to eachother
-    KHBox *boxes = new KHBox( l );
-    boxes->setSpacing( KDialog::spacingHint() );
 
     //---------------- SKIP BOX
-    QGroupBox *skipBox = new QGroupBox( boxes );
+    QGroupBox *skipBox = new QGroupBox( this );
     skipBox->setTitle( i18n( "Skipping Breaks" ) );
 
     d->hideMinimizeButton = new QCheckBox( i18n( "H&ide button" ), this );
@@ -86,7 +84,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     skipBox->setLayout( vbox1 );
 
     //------------------ PATH Setup
-    d->slideshowBox = new QGroupBox( l );
+    d->slideshowBox = new QGroupBox( this );
     d->slideshowBox->setTitle( i18n( "Slideshow" ) );
     d->slideshowBox->setCheckable( true );
     connect( d->slideshowBox, SIGNAL( toggled( bool ) ), SLOT( slotUseImages() ) );
@@ -113,7 +111,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     //---------------- Popup setup
 
-    QGroupBox *popupBox = new QGroupBox( l );
+    QGroupBox *popupBox = new QGroupBox( this );
     popupBox->setTitle( i18n( "Popup" ) );
 
     QLabel *label = new QLabel( i18n( "RSIBreak can show a popup near the "
@@ -144,6 +142,10 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vbox3->addStretch( 1 );
     popupBox->setLayout( vbox3 );
 
+    l->addWidget(skipBox);
+    l->addWidget(d->slideshowBox);
+    l->addWidget(popupBox);
+    setLayout(l);
     readSettings();
     slotHideFlash();
     slotUseImages();
