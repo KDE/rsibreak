@@ -10,6 +10,7 @@ X-KDE-autostart-condition=rsibreakrc:General:AutoStart:false
 X-KDE-autostart-after=panel
 Name=RSIBreak
 Name[hi]=आरएसआईब्रेक
+Name[nl]=RSI-pauze
 Name[ro]=PauzăRSI
 Name[sv]=RSIbreak
 Name[x-test]=xxRSIBreakxx
