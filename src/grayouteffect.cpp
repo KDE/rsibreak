@@ -34,7 +34,7 @@
 #include <string>
 #include <cstring>
 
-#if 1
+#ifdef __MMX__
 #include <mmintrin.h>
 #endif
 
