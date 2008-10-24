@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2006,2008 Tom Albers <tomalbers@kde.nl>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    The parts for idle detection is based on
@@ -40,13 +40,13 @@
 #include "rsiglobals.h"
 #include "rsistats.h"
 #include "rsitimer_dpms.h"
-//Added by qt3to4:
 #include <QTimerEvent>
+#include <QThread>
 #include <kglobal.h>
 #include <QX11Info>
 
 RSITimer::RSITimer( QObject *parent )
-        : QObject( parent ), m_breakRequested( false )
+        : QThread( parent ), m_breakRequested( false )
         , m_tinyBreakRequested( false )
         , m_bigBreakRequested( false )
         , m_suspended( false )
@@ -57,6 +57,15 @@ RSITimer::RSITimer( QObject *parent )
         , m_lastActivity( QDateTime::currentDateTime() )
         , m_intervals( RSIGlobals::instance()->intervals() )
 {
+}
+
+RSITimer::~RSITimer()
+{
+    writeConfig();
+}
+
+void RSITimer::run()
+{
     kDebug() << "Starting timer constructor";
 
     startTimer( 1000 );
@@ -66,11 +75,6 @@ RSITimer::RSITimer( QObject *parent )
     m_big_left = m_intervals["big_minimized"];
 
     restoreSession();
-}
-
-RSITimer::~RSITimer()
-{
-    writeConfig();
 }
 
 int RSITimer::idleTime()
@@ -519,8 +523,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         m_relax_left = 0;
     }
 
-    if ( m_explicitDebug )
-        kDebug() << " pause_left: " << m_pause_left
+    kDebug() << " pause_left: " << m_pause_left
         <<  " tiny_left: " << m_tiny_left  << " big_left: "
         <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
 

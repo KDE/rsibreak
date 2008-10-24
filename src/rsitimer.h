@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2006,2008 Tom Albers <tomalbers@kde.nl>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -21,10 +21,9 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
-#include <qobject.h>
-#include <qdatetime.h>
-//Added by qt3to4:
+#include <QDateTime>
 #include <QTimerEvent>
+#include <QThread>
 #include <QMap>
 
 class QTimerEvent;
@@ -35,7 +34,7 @@ class QTimerEvent;
  * and minimizing of the widget.
  * @author Tom Albers <tomalbers@kde.nl>
  */
-class RSITimer : public QObject
+class RSITimer : public QThread
 {
     Q_OBJECT
 
@@ -165,6 +164,9 @@ protected:
 
     /** Called when the user was idle for the duration of a big break. */
     void resetAfterBigBreak();
+
+    /** Start this thread */
+    void run();
 
 signals:
     /** Enforce a fullscreen big break. */

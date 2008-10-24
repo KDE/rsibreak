@@ -353,18 +353,20 @@ void RSIObject::startTimer( bool idle )
     else
         m_timer = new RSITimerNoIdle( this );
 
-    connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ) );
+    m_timer->start();
+
+    connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( updateWidget( int ) ),
-             SLOT( setCounters( int ) ) );
+             SLOT( setCounters( int ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
-             m_tooltip, SLOT( setCounters( int, int ) ) );
-    connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ) );
-    connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ) );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ) );
-    connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ) );
-    connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ) );
-    connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ) );
+             m_tooltip, SLOT( setCounters( int, int ) ), Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ), Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ),  Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ), Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ), Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ), Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ), Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ), Qt::QueuedConnection );
 
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStopNoImage() ) );
@@ -380,8 +382,6 @@ void RSIObject::startTimer( bool idle )
 
 void RSIObject::readConfig()
 {
-    kDebug() ;
-
     static QString oldPath;
     static bool oldRecursive;
     static bool oldUseImages;
