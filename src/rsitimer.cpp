@@ -77,9 +77,23 @@ void RSITimer::run()
     restoreSession();
 }
 
+void RSITimer::hibernationDetector()
+{
+    //poor mans hibernation detector....
+    static QDateTime last = QDateTime::currentDateTime();
+    QDateTime current = QDateTime::currentDateTime();
+    if ( last.secsTo( current ) > 60 ) {
+        kDebug() << "Not been checking idleTime for 60 seconds, assuming the computer hibernated, resetting timers";
+        resetAfterBigBreak();
+    }
+    last = current;
+}
+
 int RSITimer::idleTime()
 {
     int totalIdle = 0;
+
+    hibernationDetector();
 
 #ifdef HAVE_LIBXSS      // Idle detection.
     XScreenSaverInfo*  _mit_info;
@@ -491,6 +505,8 @@ RSITimerNoIdle::~RSITimerNoIdle() {}
 
 void RSITimerNoIdle::timerEvent( QTimerEvent * )
 {
+    hibernationDetector();
+
     // Don't change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
