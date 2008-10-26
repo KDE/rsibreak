@@ -89,10 +89,46 @@ void RSITimer::hibernationDetector()
     last = current;
 }
 
+void RSITimer::checkScreensaverMode()
+{
+    // if the presentation mode is enabled, for example in okular, than
+    // the timeout goes to 0. In that case we should suspend rsibreak
+    // untill the value is !0 again.
+    // this is the case for every app calling"
+    // qdbus org.freedesktop.ScreenSaver "/ScreenSaver" "Inhibit"  
+    // bug: when the user disables the screensaver actively, rsibreak 
+    //      will suspend for the rest of the session....
+    
+    static bool screensaverDisabled = false;
+
+    int mXTimeout, mXInterval, mXBlanking, mXExposures;
+    XGetScreenSaver(QX11Info::display(), &mXTimeout, &mXInterval, &mXBlanking, &mXExposures);
+    static int originalTimeout = mXTimeout;
+
+    kDebug() << "Screensaver timeout is set at " << mXTimeout;
+
+    // if the user has no screensaver installed, get out.
+    if ( originalTimeout == 0 )
+        return;
+
+    // if the current value is 0, presetation mode is active.
+    if ( mXTimeout == 0 && !screensaverDisabled ) {
+        kDebug() << "Screensaver is suddenly disabled, suspending rsibreak";
+        slotSuspended( true );
+        screensaverDisabled = true;
+    } else if ( mXTimeout > 0 && screensaverDisabled ) {
+        kDebug() << "Screensaver is suddenly active again, resuming rsibreak";
+        slotSuspended( false );
+        resetAfterBigBreak();
+        screensaverDisabled = false;
+    }
+}
+
 int RSITimer::idleTime()
 {
     int totalIdle = 0;
 
+    checkScreensaverMode();
     hibernationDetector();
 
 #ifdef HAVE_LIBXSS      // Idle detection.
@@ -101,6 +137,7 @@ int RSITimer::idleTime()
     XScreenSaverQueryInfo( QX11Info::display(), QX11Info::appRootWindow(), _mit_info );
     totalIdle = ( _mit_info->idle / 1000 );
     XFree( _mit_info );
+
 
     // When dpms turns off the monitor the idle gets a reset to 0
     // Eat the activity in that area. Bug 6439 bugs.freedesktop.org
