@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2008 Rafał Rzepecki <divided.mind@gmail.com>
+   Copyright (C) 2008 Omat Holding B.V. <info@omat.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -26,38 +27,43 @@
 RSIBreak::RSIBreak( QObject *parent, const QVariantList &args )
         : Plasma::Applet( parent, args )
 {
-  QGraphicsGridLayout *layout = new QGraphicsGridLayout(this);
+    setAspectRatioMode(Plasma::IgnoreAspectRatio);
+}
 
-  Plasma::Label *label;
-  Plasma::Label *idle, *tiny, *big;
-  int row = 0;
+void RSIBreak::init()
+{
+    QGraphicsGridLayout *layout = new QGraphicsGridLayout();
 
-  label = new Plasma::Label(this);
-  label->setText(i18nc("@label", "Idle time:"));
-  layout->addItem(label, row, 0);
-  idle = new Plasma::Label(this);
-  layout->addItem(idle, row, 1);
-  row++;
+    Plasma::Label *label;
+    Plasma::Label *idle, *tiny, *big;
 
-  label = new Plasma::Label(this);
-  label->setText(i18nc("@label", "Left to tiny:"));
-  layout->addItem(label, row, 0);
-  tiny = new Plasma::Label(this);
-  layout->addItem(tiny, row, 1);
-  row++;
+    label = new Plasma::Label( this );
+    label->setText( i18nc( "@label", "Idle time:" ) );
+    layout->addItem( label, 0, 0 );
+    idle = new Plasma::Label( this );
+    layout->addItem( idle, 0, 1 );
 
-  label = new Plasma::Label(this);
-  label->setText(i18nc("@label", "Left to big:"));
-  layout->addItem(label, row, 0);
-  big = new Plasma::Label(this);
-  layout->addItem(big, row, 1);
-  row++;
+    label = new Plasma::Label( this );
+    label->setText( i18nc( "@label", "Left to tiny:" ) );
+    layout->addItem( label, 1, 0 );
+    tiny = new Plasma::Label( this );
+    layout->addItem( tiny, 1, 1 );
 
-  Plasma::DataEngine *engine = dataEngine("rsibreak");
+    label = new Plasma::Label( this );
+    label->setText( i18nc( "@label", "Left to big:" ) );
+    layout->addItem( label, 2, 0 );
+    big = new Plasma::Label( this );
+    layout->addItem( big, 2, 1 );
 
-  engine->connectSource("idleTime", idle, 1000);
-  engine->connectSource("tinyLeft", tiny, 1000);
-  engine->connectSource("bigLeft", big, 1000);
+    setLayout( layout );
+
+    resize(300,100);
+    updateGeometry();
+
+    Plasma::DataEngine *engine = dataEngine( "rsibreak" );
+    engine->connectSource( "idleTime", idle, 1000 );
+    engine->connectSource( "tinyLeft", tiny, 1000 );
+    engine->connectSource( "bigLeft", big, 1000 );
 }
 
 RSIBreak::~RSIBreak()

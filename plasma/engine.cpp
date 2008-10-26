@@ -1,5 +1,6 @@
 /*
  *   Copyright (c) 2008 Rafał Rzepecki <divided.mind@gmail.com>
+ *   Copyright (C) 2008 Omat Holding B.V. <info@omat.nl>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU Library General Public License as
@@ -21,35 +22,41 @@
 
 #include "rsibreak_interface.h"
 
-RSIBreakEngine::RSIBreakEngine(QObject* parent, const QVariantList& args)
-              : Plasma::DataEngine(parent, args),
-                m_rsibreakInterface(0)
+RSIBreakEngine::RSIBreakEngine( QObject* parent, const QVariantList& args )
+        : Plasma::DataEngine( parent, args ),
+        m_rsibreakInterface( 0 )
 {
 }
 
 void RSIBreakEngine::init()
 {
-  m_rsibreakInterface = new OrgRsibreakRsiwidgetInterface("org.rsibreak.rsibreak", 
-                                                           "/rsibreak", 
-                                                           QDBusConnection::sessionBus(),
-                                                           this);
-  updateSourceEvent("idleTime");
-  updateSourceEvent("tinyLeft");
-  updateSourceEvent("bigLeft");
-  setMinimumPollingInterval(333);
+    m_rsibreakInterface = new OrgRsibreakRsiwidgetInterface( "org.rsibreak.rsibreak",
+            "/rsibreak",
+            QDBusConnection::sessionBus(),
+            this );
+    updateSourceEvent( "idleTime" );
+    updateSourceEvent( "tinyLeft" );
+    updateSourceEvent( "bigLeft" );
+    setMinimumPollingInterval( 333 );
 }
 
-bool RSIBreakEngine::updateSourceEvent(const QString &name)
+bool RSIBreakEngine::updateSourceEvent( const QString &name )
 {
-  QDBusReply<int> reply = m_rsibreakInterface->call(name);
-  if (reply.isValid()) {
-    setData(name, reply.value());
-    return true;
-  }
+    QDBusReply<int> reply = m_rsibreakInterface->call( name );
+    if ( reply.isValid() ) {
+        int result = reply.value();
+        QString print;
+        if ( result > 120 )
+            print = i18np( "1 minute", "%1 minutes", result/60 );
+        else
+            print = i18np( "1 second", "%1 seconds", result );
 
-  return false;
+        setData( name, print );
+        return true;
+    }
+    return false;
 }
 
-K_EXPORT_PLASMA_DATAENGINE(rsibreak, RSIBreakEngine)
- 
+K_EXPORT_PLASMA_DATAENGINE( rsibreak, RSIBreakEngine )
+
 #include "engine.moc"

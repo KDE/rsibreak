@@ -1,5 +1,6 @@
 /*
  *   Copyright (c) 2008 Rafał Rzepecki <divided.mind@gmail.com>
+ *   Copyright (C) 2008 Omat Holding B.V. <info@omat.nl>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU Library General Public License as
@@ -16,10 +17,10 @@
  *   Free Software Foundation, Inc.,
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
- 
+
 #ifndef RSIBREAK_ENGINE_H
 #define RSIBREAK_ENGINE_H
- 
+
 #include <Plasma/DataEngine>
 
 class OrgRsibreakRsiwidgetInterface;
@@ -29,17 +30,17 @@ class OrgRsibreakRsiwidgetInterface;
  */
 class RSIBreakEngine : public Plasma::DataEngine
 {
-  Q_OBJECT
+    Q_OBJECT
 
-  public:
-    RSIBreakEngine(QObject* parent, const QVariantList& args);
+public:
+    RSIBreakEngine( QObject* parent, const QVariantList& args );
     void init();
-  
-  protected:
-    bool updateSourceEvent(const QString &name);
-    
-  private:
+
+protected:
+    bool updateSourceEvent( const QString &name );
+
+private:
     OrgRsibreakRsiwidgetInterface *m_rsibreakInterface;
 };
- 
+
 #endif // RSIBREAK_ENGINE_H

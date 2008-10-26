@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2008 Rafał Rzepecki <divided.mind@gmail.com>
+   Copyright (C) 2008 Omat Holding B.V. <info@omat.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -21,16 +22,22 @@
 
 #include <plasma/applet.h>
 
-namespace Plasma {
-  class Label;
+namespace Plasma
+{
+class Label;
 }
 
 class RSIBreak : public Plasma::Applet
 {
     Q_OBJECT
-  public:
+public:
     RSIBreak( QObject *parent, const QVariantList &args );
     ~RSIBreak();
+    void init();
+
+private:
+    QGraphicsWidget *m_widget;
+
 };
 
 K_EXPORT_PLASMA_APPLET( rsibreak, RSIBreak )
