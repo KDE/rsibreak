@@ -31,17 +31,25 @@ RSIBreakEngine::RSIBreakEngine( QObject* parent, const QVariantList& args )
 void RSIBreakEngine::init()
 {
     m_rsibreakInterface = new OrgRsibreakRsiwidgetInterface( "org.rsibreak.rsibreak",
-            "/rsibreak",
-            QDBusConnection::sessionBus(),
-            this );
+            "/rsibreak", QDBusConnection::sessionBus(), this );
     updateSourceEvent( "idleTime" );
     updateSourceEvent( "tinyLeft" );
     updateSourceEvent( "bigLeft" );
+    
     setMinimumPollingInterval( 333 );
 }
 
 bool RSIBreakEngine::updateSourceEvent( const QString &name )
 {
+    if ( !m_rsibreakInterface->isValid() ) {
+        m_rsibreakInterface = new OrgRsibreakRsiwidgetInterface( "org.rsibreak.rsibreak",
+                "/rsibreak", QDBusConnection::sessionBus(), this );
+        if ( !m_rsibreakInterface->isValid() ) {
+            setData( name, i18n("Start RSIBreak") );
+            return true;
+        }
+    }
+
     QDBusReply<int> reply = m_rsibreakInterface->call( name );
     if ( reply.isValid() ) {
         int result = reply.value();
