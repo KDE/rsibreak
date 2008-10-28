@@ -64,6 +64,4 @@ INSTALL(FILES  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 INSTALL( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
 INSTALL( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 
-#TODO is this still in KDE4? 
-#INSTALL_FILES( /share/autostart FILES  rsibreak.desktop )
-
+install( FILES rsibreak.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
