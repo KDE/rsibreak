@@ -69,15 +69,15 @@ void GrayWidget::slotGrayEffect()
     KWindowSystem::setState( winId(), NET::KeepAbove );
     KWindowSystem::setState( winId(), NET::FullScreen );
 
-    m_gray = new GrayOutEffect(this, &m_complete);
-    connect(m_gray, SIGNAL(ready()), m_dialog, SLOT(showDialog()));
+    m_gray = new GrayOutEffect( this, &m_complete );
+    connect( m_gray, SIGNAL( ready() ), m_dialog, SLOT( showDialog() ) );
     m_gray->start();
 }
 
 void GrayWidget::paintEvent( QPaintEvent* )
 {
     QPainter painter( this );
-    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.setCompositionMode( QPainter::CompositionMode_Source );
     painter.drawPixmap( 0, 0, m_complete );
 }
 

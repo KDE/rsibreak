@@ -111,9 +111,9 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     d->idleSettings->setLayout( vbox2 );
     connect( d->resetTimersAfterIdle , SIGNAL( toggled( bool ) ),
              SLOT( slotShowTimer() ) );
-    l->addWidget(d->autoStart);
-    l->addWidget(d->breakTimerSettings);
-    l->addWidget(d->idleSettings);
+    l->addWidget( d->autoStart );
+    l->addWidget( d->breakTimerSettings );
+    l->addWidget( d->idleSettings );
 
     setLayout( l );
     readSettings();

@@ -64,7 +64,7 @@ public:
      * @param parent The parent widget, which will draw the pixmap.
      * @param pixmap The pixmap with the image that will be faded to gray.
      */
-    GrayOutEffect(QWidget *parent, QPixmap *pixmap);
+    GrayOutEffect( QWidget *parent, QPixmap *pixmap );
 
     /**
      * Destroys the grayout effect.
@@ -85,7 +85,7 @@ private slots:
 
 private:
     /** @internal */
-    bool supportedFormat(const QPixmap *pixmap) const;
+    bool supportedFormat( const QPixmap *pixmap ) const;
 
 private:
     QWidget *widget;

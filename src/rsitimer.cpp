@@ -95,14 +95,14 @@ void RSITimer::checkScreensaverMode()
     // the timeout goes to 0. In that case we should suspend rsibreak
     // untill the value is !0 again.
     // this is the case for every app calling"
-    // qdbus org.freedesktop.ScreenSaver "/ScreenSaver" "Inhibit"  
-    // bug: when the user disables the screensaver actively, rsibreak 
+    // qdbus org.freedesktop.ScreenSaver "/ScreenSaver" "Inhibit"
+    // bug: when the user disables the screensaver actively, rsibreak
     //      will suspend for the rest of the session....
-    
+
     static bool screensaverDisabled = false;
 
     int mXTimeout, mXInterval, mXBlanking, mXExposures;
-    XGetScreenSaver(QX11Info::display(), &mXTimeout, &mXInterval, &mXBlanking, &mXExposures);
+    XGetScreenSaver( QX11Info::display(), &mXTimeout, &mXInterval, &mXBlanking, &mXExposures );
     static int originalTimeout = mXTimeout;
 
     kDebug() << "Screensaver timeout is set at " << mXTimeout;
@@ -577,8 +577,8 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
     }
 
     kDebug() << " pause_left: " << m_pause_left
-        <<  " tiny_left: " << m_tiny_left  << " big_left: "
-        <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
+    <<  " tiny_left: " << m_tiny_left  << " big_left: "
+    <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
 
     if ( m_pause_left > 0 ) {
         --m_pause_left;

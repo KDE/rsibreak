@@ -1,7 +1,5 @@
 Port TODO's:
 - test on xinerama
-- auto startup, find out if this still works the same.
-- slideshow, the box does not seem to maintain focus, so esc does not work.
 
 Remarks:
 - D-Bus notes:
@@ -30,16 +28,9 @@ Wishes:
 - Visualize stats with libraries behind mrtg or ganglia
 
 Bugs:
-- [TA] hook into KNotificationRestrictions - so you will not be bothered during presentations
-  or games when they hook into that system as well. Reported by Achim.
-  - as far as i can see there is only a client side - you can say that you are starting a presentation
-    and that there should be no screensaver, but not the other way round, query if there is a presentation
-    going on so you should not interfere with a popup at this moment.
 - image extension are hardcoded
 - only reset timers after closing configure dialog if the timer settings were changed
 - [TA/BS] sometimes the amount of skipped/sat down breaks don't match its total. reported by toma
-- screenshot is sometimes taken without a visible icon in the tray.
-  - TA can't find a way to prevent that.
 
 Gnome specific bugs:
 - It is started at login, regardless of the setting.

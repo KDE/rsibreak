@@ -143,10 +143,10 @@ SetupTiming::SetupTiming( QWidget* parent )
     vbox2->addStretch( 1 );
     slideBox->setLayout( vbox2 );
 
-    l->addWidget(tinyBox);
-    l->addWidget(bigBox);
-    l->addWidget(slideBox);
-    setLayout(l);
+    l->addWidget( tinyBox );
+    l->addWidget( bigBox );
+    l->addWidget( slideBox );
+    setLayout( l );
     readSettings();
 
     // set the suffix

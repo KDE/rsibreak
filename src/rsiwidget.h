@@ -61,7 +61,7 @@ public:
 
     void showWhereIAm();
     QString currentIcon() {
-       return m_currentIcon;
+        return m_currentIcon;
     };
 
 private slots:

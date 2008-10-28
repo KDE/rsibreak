@@ -142,10 +142,10 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vbox3->addStretch( 1 );
     popupBox->setLayout( vbox3 );
 
-    l->addWidget(skipBox);
-    l->addWidget(d->slideshowBox);
-    l->addWidget(popupBox);
-    setLayout(l);
+    l->addWidget( skipBox );
+    l->addWidget( d->slideshowBox );
+    l->addWidget( popupBox );
+    setLayout( l );
     readSettings();
     slotHideFlash();
     slotUseImages();
