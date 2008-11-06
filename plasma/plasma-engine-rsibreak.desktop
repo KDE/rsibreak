@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=RSIBreak engine
+Name[da]=RSIBreak-motor
 Name[el]=Μηχανή RSIBreak
 Name[et]=RSIBreaki mootor
 Name[ga]=Inneall RSIBreak
@@ -15,6 +16,7 @@ Name[uk]=Рушій RSIBreak
 Name[x-test]=xxRSIBreak enginexx
 Name[zh_TW]=RSIBreak 引擎
 Comment=Provides current times left to breaks and rsibreak status
+Comment[da]=Giver aktuel tid tilbage til pauser og risbreak-status
 Comment[el]=Προσφέρει χρόνους διαλειμμάτων και κατάσταση του rsibreak
 Comment[et]=Annab teada pausini jäänud aega ja RSIBreaki oleku
 Comment[ga]=Soláthraíonn sé seo an tréimhse fágtha roimh an chéad scíth eile, agus an stádas rsibreak
