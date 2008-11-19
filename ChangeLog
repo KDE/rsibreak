@@ -1,3 +1,27 @@
+2008-10-29 21:01 +0000 [r877573]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/kerry/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: cmakelint
+
+2008-10-28 21:13 +0000 [r877183]  Tom Albers tomalbers@kde.nl
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/rsibreak.kdevelop (removed),
+	  trunk/extragear/utils/rsibreak/NEWS,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.h,
+	  trunk/extragear/utils/rsibreak/TODO,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp,
+	  trunk/extragear/utils/rsibreak/ChangeLog: - reindent - bump
+	  version - update changelog - update todo - update news - delete
+	  rsibreak.devel
+
 2008-10-28 21:00 +0000 [r877181]  Tom Albers tomalbers@kde.nl
 
 	* trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Fix Autostart.

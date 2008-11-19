@@ -1,11 +1,5 @@
-v0.9.0-beta5 2008-10-28 vs beta4
-- Fix autostart
-- Fix plasma applet
-- Respect 'presentation mode' by monitoring the freedesktops screensaver setting
-- Try to detect waking up from hibernation so timers can be reset
-- Fix welcome screen
-- Fix bug where timer did not count down in a slideshow
-- Fix build on non-x86 platforms
+v0.9.0 2008-11-19
+- Port to KDE4 and Qt4
 
 v0.8.0 2006-10-13
 - Replaced DCOP dialog with a more flexible and standardized interface to attach events to breaks
