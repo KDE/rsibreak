@@ -131,7 +131,7 @@ RSIStats::~RSIStats()
 void RSIStats::reset()
 {
     QMap<RSIStat, RSIStatItem *>::ConstIterator it;
-    for ( it = m_statistics.begin(); it != m_statistics.end(); ++it ) {
+    for ( it = m_statistics.constBegin(); it != m_statistics.constEnd(); ++it ) {
         m_statistics[ it.key()]->reset();
         updateStat( it.key(), /* update derived stats */ false );
     }
