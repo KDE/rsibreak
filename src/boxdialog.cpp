@@ -64,6 +64,7 @@ void BoxDialog::loadDialog()
         m_dialog->setEscapeButton( KDialog::User1 );
     m_dialog->setMainWidget( m_label );
 
+    m_dialog->adjustSize();
     QRect rect = QApplication::desktop()->availableGeometry(
                      QApplication::desktop()->screenNumber( m_dialog ) );
     m_dialog->move( rect.center().x() - m_dialog->width() / 2,

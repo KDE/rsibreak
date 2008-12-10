@@ -88,8 +88,7 @@ void SlideShow::loadImage()
         } while ( m_files_done.indexOf( name ) != -1 );
 
         // load image
-        kDebug() << "Loading:" << name
-        << "(" << j << "/"  << m_files.count() << ") ";
+        kDebug() << "Loading:" << name << "(" << j << "/"  << m_files.count() << ") ";
         image.load( name );
 
         // Check size
