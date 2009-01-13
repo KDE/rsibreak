@@ -35,6 +35,7 @@ Comment[ja]=次の休憩までの時間と RSIBreak の状態を提供します
 Comment[km]=ផ្ដល់​នូវ​ពេលវេលា​បច្ចុប្បន្ន​ដែល​នៅ​សល់​ដើម្បី​សម្រាក និង​ស្ថានភាព​របស់ rsibreak
 Comment[nds]=Stellt de Resttieden bet to de Pausen un den RSIBreak-Status praat
 Comment[nl]=Levert overblijvende tijd tot een pauze en status RSI-pauze
+Comment[nn]=Viser kor lang tid det er att til pausar og RSI-pausar
 Comment[pl]=Podaje aktualne czasy pozostałe do przerw i status RSIBreak
 Comment[pt]=Apresenta os tempos restantes para as pausas e o estado do RSIBreak
 Comment[pt_BR]=Fornece o tempo restante para a pausa e o status do rsibreak
