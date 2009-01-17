@@ -3,9 +3,16 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
 find_package (KDE4 REQUIRED)
 include(KDE4Defaults)
-macro_optional_find_package(Plasma)
 
-macro_log_feature(PLASMA_FOUND "Plasma" "Plasma libraries and header files" "http://plasma.kde.org/" FALSE "" "Plasma is needed for Plasma applet of rsibreak. Install kdebase-workspace.")
+MACRO_ENSURE_VERSION( "4.1.83" ${KDE_VERSION} KDE_VERSION_OK)
+if(NOT KDE_VERSION_OK)
+  macro_optional_find_package(Plasma)
+  macro_log_feature(PLASMA_FOUND "Plasma" "Plasma libraries and header files" "http://plasma.kde.org/" FALSE "" "Plasma is needed for rsibreak Plasmoid")
+else(NOT KDE_VERSION_OK)
+  set(PLASMA_FOUND true)
+  set(PLASMA_LIBS ${KDE4_PLASMA_LIBS})
+endif(NOT KDE_VERSION_OK)
+
 
 
 
