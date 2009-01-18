@@ -4,8 +4,7 @@ set(dbus_iface_xml ../src/org.rsibreak.rsiwidget.xml)
 QT4_ADD_DBUS_INTERFACE(plasma_engine_rsibreak_SRCS ${dbus_iface_xml} rsibreak_interface )
 
 set(rsibreak_engine_SRCS
-    engine.cpp
-    rsibreak_interface)
+    engine.cpp ${plasma_engine_rsibreak_SRCS})
 
 kde4_add_plugin(plasma_engine_rsibreak ${rsibreak_engine_SRCS})
 target_link_libraries(plasma_engine_rsibreak ${PLASMA_LIBS} ${KDE4_KIO_LIBS})
