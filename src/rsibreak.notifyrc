@@ -2,6 +2,7 @@
 IconName=rsibreak
 Comment=RSIBreak
 Comment[hi]=आरएसआईब्रेक
+Comment[ml]=RSI ഇടവേള
 Comment[nl]=RSI-pauze
 Comment[ro]=PauzăRSI
 Comment[sv]=RSIbreak
@@ -21,6 +22,7 @@ Name[hi]=ब्रेक
 Name[ja]=休憩
 Name[km]=សម្រាក
 Name[ko]=휴식
+Name[ml]=ഇടവേളകള്‍
 Name[nds]=Verpusten
 Name[nl]=Pauze
 Name[nn]=Pausar
@@ -54,6 +56,7 @@ Name[hi]=छोटे ब्रेक का प्रारंभ
 Name[ja]=短い休憩の開始
 Name[km]=ការ​ចាប់ផ្ដើម​នៃ​ការ​សម្រាក​ខ្លី
 Name[ko]=짧은 휴식 시작
+Name[ml]=ഒരു ചെറിയ ഇടവേളയുടെ തുടക്കം
 Name[nds]=Anfang vun en korte Poos
 Name[nl]=Begin van een korte pauze
 Name[nn]=Start på kort pause
@@ -82,6 +85,7 @@ Comment[hi]=कब छोटा ब्रेक प्रारंभ होग�
 Comment[ja]=短い休憩が開始したとき
 Comment[km]=ពេល​ការ​សម្រាក​ខ្លី​ចាប់ផ្ដើម
 Comment[ko]=짧은 휴식이 시작할 때
+Comment[ml]=ഒരു ചെറിയ ഇടവേള തുടങ്ങുമ്പോള്‍
 Comment[nds]=Wenn en korte Poos anfangt
 Comment[nl]=Moment waarop een korte pauze begint
 Comment[nn]=Når ein kort pause startar
@@ -114,6 +118,7 @@ Name[hi]=छोटे ब्रेक की समाप्ति
 Name[ja]=短い休憩の終了
 Name[km]=ចុង​បញ្ចប់​នៃ​ការ​សម្រាក​ខ្លី
 Name[ko]=짧은 휴식 끝
+Name[ml]=ഒരു ചെറിയ ഇടവേളയുടെ ഒടുക്കം
 Name[nds]=Enn vun en korte Poos
 Name[nl]=Einde van een korte pauze
 Name[nn]=Slutt på kort pause
@@ -142,6 +147,7 @@ Comment[hi]=कब छोटा ब्रेक समाप्त होगा
 Comment[ja]=短い休憩が終了したとき
 Comment[km]=ពេល​​ការ​សម្រាក​ខ្លី​បញ្ចប់
 Comment[ko]=짧은 휴식이 끝날 때
+Comment[ml]=ഒരു ചെറിയ ഇടവേള കഴിയുമ്പോള്‍
 Comment[nds]=Wenn en korte Poos üm is
 Comment[nl]=Moment waarop een korte pauze eindigt
 Comment[nn]=Når ein kort pause sluttar
@@ -174,6 +180,7 @@ Name[hi]=लंबे ब्रेक का प्रारंभ
 Name[ja]=長い休憩の開始
 Name[km]=ការ​ចាប់ផ្ដើម​ការ​សម្រាក​វែង
 Name[ko]=긴 휴식 시작
+Name[ml]=നീണ്ട ഇടവേളയുടെ തുടക്കം
 Name[nds]=Anfang vun en lange Poos
 Name[nl]=Begin van een lange pauze
 Name[nn]=Start på lang pause
@@ -202,6 +209,7 @@ Comment[hi]=कब लंबा ब्रेक प्रारंभ होग�
 Comment[ja]=長い休憩が開始したとき
 Comment[km]=ពេល​ការ​សម្រាក​វែង​ចាប់ផ្ដើម
 Comment[ko]=긴 휴식이 시작할 때
+Comment[ml]=നീണ്ട ഇടവേള തുടങ്ങുമ്പോള്‍
 Comment[nds]=Wenn en lange Poos anfangt
 Comment[nl]=Moment waarop een lange pauze begint
 Comment[nn]=Når ein lang pause startar
@@ -234,6 +242,7 @@ Name[hi]=लंबे ब्रेक की समाप्ति
 Name[ja]=長い休憩の終了
 Name[km]=ចុង​បញ្ចប់​នៃ​ការ​សម្រាក​វែង
 Name[ko]=긴 휴식 끝
+Name[ml]=നീണ്ട ഇടവേളയുടെ ഒടുക്കം
 Name[nds]=Enn vun en lange Poos
 Name[nl]=Einde van een lange pauze
 Name[nn]=Slutt på lang pause
@@ -262,6 +271,7 @@ Comment[hi]=कब लंबा ब्रेक समाप्त होगा
 Comment[ja]=長い休憩が終了したとき
 Comment[km]=ពេល​ការ​សម្រាក​វែង​បញ្ចប់
 Comment[ko]=긴 휴식이 끝날 때
+Comment[ml]=നീണ്ട ഇടവേള അവസാനിക്കുമ്പോള്‍
 Comment[nds]=Wenn en lange Poos üm is
 Comment[nl]=Moment waarop een lange pauze eindigt
 Comment[nn]=Når ein lang pause sluttar
