@@ -54,6 +54,8 @@ void GrayWidget::reset()
     m_currentY = 0;
     m_first = true;
     m_dialog->reject();
+    delete m_gray;
+    m_gray = 0;
 }
 
 void GrayWidget::slotGrayEffect()

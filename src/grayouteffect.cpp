@@ -331,6 +331,7 @@ GrayOutEffect::~GrayOutEffect()
         blender->wait();
         XDestroyImage( image );
         XFreeGC( QX11Info::display(), gc );
+        delete blender;
     }
 }
 
