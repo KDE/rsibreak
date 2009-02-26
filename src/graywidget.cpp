@@ -71,6 +71,7 @@ void GrayWidget::slotGrayEffect()
     KWindowSystem::setState( winId(), NET::KeepAbove );
     KWindowSystem::setState( winId(), NET::FullScreen );
 
+    delete m_gray;
     m_gray = new GrayOutEffect( this, &m_complete );
     connect( m_gray, SIGNAL( ready() ), m_dialog, SLOT( showDialog() ) );
     m_gray->start();
