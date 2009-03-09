@@ -366,15 +366,15 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
         return i18n( "This is a percentage of activity, based on the "
                      "periods of activity vs. the total time RSIBreak has been running. "
                      "The color indicates the level of your activity. When the color is "
-                     "close to full red it is recommended to lower your work pace." );
+                     "close to full red it is recommended you lower your work pace." );
     case MAX_IDLENESS:
         return i18n( "This is the longest period of inactivity measured "
                      "while RSIBreak has been running." );
     case TINY_BREAKS:
         return i18n( "This is the total number of short breaks" );
     case LAST_TINY_BREAK:
-        return i18n( "This is the time of the last finished short break."
-                     "The color of this texts gradually turns from green to red,"
+        return i18n( "This is the time of the last finished short break. "
+                     "The color of this text gradually turns from green to red, "
                      "indicating when you can expect the next tiny break." );
     case TINY_BREAKS_SKIPPED:
         return i18n( "This is the total number of short breaks "
@@ -386,7 +386,7 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
         return i18n( "This is the total number of long breaks." );
     case LAST_BIG_BREAK:
         return i18n( "This is the time of the last finished long break."
-                     "The color of this texts gradually turns from green to red,"
+                     "The color of this text gradually turns from green to red,"
                      "indicating when you can expect the next big break." );
     case BIG_BREAKS_SKIPPED:
         return i18n( "This is the total number of long breaks "
@@ -402,15 +402,15 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
     case ACTIVITY_PERC_MINUTE:
         return i18n( "This is a percentage of activity during the last minute. "
                      "The color indicates the level of your activity. When the color is "
-                     "close to full red it is recommended to lower your work pace." );
+                     "close to full red it is recommended you lower your work pace." );
     case ACTIVITY_PERC_HOUR:
         return i18n( "This is a percentage of activity during the last hour. "
                      "The color indicates the level of your activity. When the color is "
-                     "close to full red it is recommended to lower your work pace." );
+                     "close to full red it is recommended you lower your work pace." );
     case ACTIVITY_PERC_6HOUR:
         return i18n( "This is a percentage of activity during the last 6 hours. "
                      "The color indicates the level of your activity. When the color is "
-                     "close to full red it is recommended to lower your work pace." );
+                     "close to full red it is recommended you lower your work pace." );
     default:
         ;
     }
