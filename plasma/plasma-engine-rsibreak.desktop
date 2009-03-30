@@ -28,6 +28,7 @@ Name[zh_CN]=RSIBreak 引擎
 Name[zh_TW]=RSIBreak 引擎
 Comment=Provides current times left to breaks and rsibreak status
 Comment[da]=Giver aktuel tid tilbage til pauser og risbreak-status
+Comment[de]=Gibt die verbleibende Zeit bis zur Pause und den RSIBreak-Status an
 Comment[el]=Προσφέρει χρόνους διαλειμμάτων και κατάσταση του rsibreak
 Comment[es]=Proporciona el tiempo que queda para los descansos y el estado de rsibreak
 Comment[et]=Annab teada pausini jäänud aega ja RSIBreaki oleku
