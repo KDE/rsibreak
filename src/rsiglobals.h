@@ -19,10 +19,10 @@
 #ifndef RSIGLOBALS_H
 #define RSIGLOBALS_H
 
-#include <qbitarray.h>
+#include <QBitArray>
 #include <qmap.h>
-#include <qobject.h>
-#include <qstringlist.h>
+#include <QObject>
+#include <QStringList>
 
 #include <kpassivepopup.h>
 
