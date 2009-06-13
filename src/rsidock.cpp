@@ -163,7 +163,7 @@ void RSIDock::slotShowStatistics()
     if ( !m_statsDialog ) {
         m_statsDialog = new KDialog( 0 );
         m_statsDialog->setCaption( i18n( "Usage Statistics" ) );
-        m_statsDialog->setButtons( KDialog::Ok | KDialog::User1 );
+        m_statsDialog->setButtons( KDialog::Close | KDialog::User1 );
         m_statsDialog->setButtonText( KDialog::User1, i18n( "Reset" ) );
 
         m_statsWidget = new RSIStatWidget( m_statsDialog );
