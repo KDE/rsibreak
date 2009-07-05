@@ -52,24 +52,3 @@ bool QueryDPMSTimeouts( Display* display, int& standby, int& suspend, int& off )
     return result;
 }
 
-QPixmap takeScreenshot( int screen )
-{
-    Display *dpy = QX11Info::display();
-    Window root = QX11Info::appRootWindow();
-    int width = DisplayWidth( dpy, screen );
-    int height = DisplayHeight( dpy, screen );
-    QPixmap pix( width, height );
-
-    XRenderPictureAttributes attr;
-    attr.subwindow_mode = IncludeInferiors;
-
-    XRenderPictFormat *format = XRenderFindVisualFormat( dpy, DefaultVisual( dpy, screen ) );
-    Picture rootPict = XRenderCreatePicture( dpy, root, format, CPSubwindowMode, &attr );
-
-    XRenderComposite( dpy, PictOpSrc, rootPict, None, pix.x11PictureHandle(),
-                      0, 0, 0, 0, 0, 0, width, height );
-
-    XRenderFreePicture( dpy, rootPict );
-    return pix;
-}
-

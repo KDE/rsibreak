@@ -70,10 +70,8 @@ RSIObject::RSIObject( QWidget *parent )
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
     m_tray->show();
 
-
     m_tooltip = new RSIToolTip( 0, m_tray );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
-
 
     m_relaxpopup = new RSIRelaxPopup( 0, m_tray );
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
@@ -113,6 +111,53 @@ RSIObject::~RSIObject()
     delete RSIGlobals::instance();
 }
 
+QPixmap RSIObject::takeScreenshot( RSIDock* tray )
+{
+    // taken from Akregator http://lxr.kde.org/source/KDE/kdepim/akregator/src/trayicon.cpp#70
+    //     Copyright (C) 2004 Stanislav Karchebny <Stanislav.Karchebny@kdemail.net>
+
+    const QRect rect = tray->geometry();
+    const QPoint g = rect.topLeft();
+    int desktopWidth  = kapp->desktop()->width();
+    int desktopHeight = kapp->desktop()->height();
+    int tw = rect.width();
+    int th = rect.height();
+    int w = desktopWidth / 4;
+    int h = desktopHeight / 9;
+    int x = g.x() + tw/2 - w/2; // Center the rectange in the systray icon
+    int y = g.y() + th/2 - h/2;
+    if ( x < 0 )
+        x = 0; // Move the rectangle to stay in the desktop limits
+    if ( y < 0 )
+        y = 0;
+    if ( x + w > desktopWidth )
+        x = desktopWidth - w;
+    if ( y + h > desktopHeight )
+        y = desktopHeight - h;
+
+    // Grab the desktop and draw a circle around the icon:
+    QPixmap shot = QPixmap::grabWindow( QApplication::desktop()->winId(), x, y, w, h );
+    QPainter painter( &shot );
+    painter.setRenderHint( QPainter::Antialiasing );
+    const int MARGINS = 6;
+    const int WIDTH   = 3;
+    int ax = g.x() - x - MARGINS -1;
+    int ay = g.y() - y - MARGINS -1;
+    painter.setPen( QPen( Qt::red/*KApplication::palette().active().highlight()*/, WIDTH ) );
+    painter.drawArc( ax, ay, tw + 2*MARGINS, th + 2*MARGINS, 0, 16*360 );
+    painter.end();
+
+    // Paint the border
+    const int BORDER = 1;
+    QPixmap finalShot( w + 2*BORDER, h + 2*BORDER );
+    finalShot.fill( KApplication::palette().color( QPalette::Foreground ) );
+    painter.begin( &finalShot );
+    painter.drawPixmap( BORDER, BORDER, shot );
+    painter.end();
+    return finalShot;
+    // end taken....
+}
+
 void RSIObject::slotWelcome()
 {
     if ( KMessageBox::shouldBeShownContinue( "dont_show_welcome_again_for_001" ) ) {
@@ -142,55 +187,14 @@ QString RSIObject::takeScreenshotOfTrayIcon()
     kapp->processEvents();
 
     //TODO: find the tray window.
-    QPixmap screenshot = takeScreenshot( QX11Info::appScreen() );
-
-    // This block is copied from Konversation - KonversationMainWindow::queryClose()
-    // The part about the border is copied from  KSystemTray::displayCloseMessage()
-    //
-    // Compute size and position of the pixmap to be grabbed:
-
-    QPoint g = m_tray->geometry().topLeft();
-    int desktopWidth  = kapp->desktop()->width();
-    int desktopHeight = kapp->desktop()->height();
-    int tw = m_tray->geometry().width();
-    int th = m_tray->geometry().height();
-    int w = desktopWidth / 4;
-    int h = desktopHeight / 9;
-    int x = g.x() + tw / 2 - w / 2; // Center the rectange in the systray icon
-    int y = g.y() + th / 2 - h / 2;
-    if ( x < 0 ) x = 0;  // Move the rectangle to stay in the desktop limits
-    if ( y < 0 ) y = 0;
-    if ( x + w > desktopWidth )  x = desktopWidth - w;
-    if ( y + h > desktopHeight ) y = desktopHeight - h;
-
-    // Grab the desktop and draw a circle around the icon:
-    QPixmap shot = screenshot.copy( x,  y,  w,  h );
-    QPainter painter( &shot );
-    const int MARGINS = 6;
-    const int WIDTH   = 5;
-    int ax = g.x() - x - 2 * MARGINS - 1;
-    int ay = g.y() - y - 2 * MARGINS - 1;
-    painter.setPen( QPen( Qt::red,  WIDTH ) );
-    painter.drawArc( ax,  ay,  tw + 4*MARGINS,  th + 4*MARGINS,  0,  16*360 );
-    painter.end();
-
-    // Then, we add a border around the image to make it more visible:
-    QPixmap finalShot( w + 2, h + 2 );
-    finalShot.fill( KApplication::palette().color( QPalette::Active,
-                    QPalette::WindowText ) );
-    painter.begin( &finalShot );
-    painter.drawPixmap( 1, 1, shot );
-    painter.end();
-
-    // End copied block
-    // *****************************************************************
+    QPixmap screenshot = takeScreenshot( m_tray );
 
     QString filename;
     KTemporaryFile* tmpfile = new KTemporaryFile;
     tmpfile->setAutoRemove( false );
     if ( tmpfile->open() ) {
         filename = tmpfile->fileName();
-        finalShot.save( tmpfile, "png" );
+        screenshot.save( tmpfile, "png" );
         tmpfile->close();
     }
     return filename;

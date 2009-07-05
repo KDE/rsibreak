@@ -19,7 +19,6 @@
 
 #include "graywidget.h"
 #include "grayouteffect.h"
-#include "rsitimer_dpms.h"
 #include "boxdialog.h"
 
 #include <QApplication>
@@ -28,6 +27,7 @@
 #include <QPainter>
 #include <QTimer>
 
+#include <KApplication>
 #include <KWindowSystem>
 #include <KDebug>
 
@@ -60,7 +60,8 @@ void GrayWidget::reset()
 
 void GrayWidget::slotGrayEffect()
 {
-    m_complete = takeScreenshot( QX11Info::appScreen() );
+    m_complete = QPixmap::grabWindow( QApplication::desktop()->winId(), 0, 0,
+                                      kapp->desktop()->width(), kapp->desktop()->height() );
 
     repaint(); //before show
 

@@ -22,6 +22,4 @@
 
 bool QueryDPMSTimeouts( Display* display, int& standby, int& suspend, int& off );
 
-QPixmap takeScreenshot( int );
-
 #endif

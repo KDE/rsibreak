@@ -63,6 +63,8 @@ public:
     QString currentIcon() {
         return m_currentIcon;
     };
+    static QPixmap takeScreenshot( RSIDock* );
+
 
 private slots:
     void slotWelcome();
