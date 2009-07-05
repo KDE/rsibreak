@@ -103,8 +103,8 @@ void RSITimer::checkScreensaverMode()
     XGetScreenSaver( QX11Info::display(), &mXTimeout, &mXInterval, &mXBlanking, &mXExposures );
     static int originalTimeout = mXTimeout;
 
-    if (m_explicitDebug) {
-      kDebug() << "Screensaver timeout is set at " << mXTimeout;
+    if ( m_explicitDebug ) {
+        kDebug() << "Screensaver timeout is set at " << mXTimeout;
     }
 
     // if the user has no screensaver installed, get out.
@@ -374,11 +374,11 @@ void RSITimer::timerEvent( QTimerEvent * )
         return;
     }
 
-    if (m_explicitDebug) {
-      kDebug() << " patience: " << m_patience  << " pause_left: "
-      << m_pause_left << " relax_left: " << m_relax_left
-      <<  " tiny_left: " << m_tiny_left  << " big_left: "
-      <<  m_big_left << " idle: " << t << endl;
+    if ( m_explicitDebug ) {
+        kDebug() << " patience: " << m_patience  << " pause_left: "
+        << m_pause_left << " relax_left: " << m_relax_left
+        <<  " tiny_left: " << m_tiny_left  << " big_left: "
+        <<  m_big_left << " idle: " << t << endl;
     }
 
     if ( t == 0 ) { // activity!
@@ -577,11 +577,11 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         m_relax_left = 0;
     }
 
-    
-    if (m_explicitDebug) {
-      kDebug() << " pause_left: " << m_pause_left
-      <<  " tiny_left: " << m_tiny_left  << " big_left: "
-      <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
+
+    if ( m_explicitDebug ) {
+        kDebug() << " pause_left: " << m_pause_left
+        <<  " tiny_left: " << m_tiny_left  << " big_left: "
+        <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
     }
 
     if ( m_pause_left > 0 ) {

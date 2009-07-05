@@ -55,10 +55,6 @@ public:
 
 private slots:
     void slotTinyValueChanged( int i );
-    void slotBigValueChanged( int i );
-    void slotTinyDurationValueChanged( int i );
-    void slotBigDurationValueChanged( int i );
-    void slotSlideIntervalValueChanged( int i );
 
 private:
     void readSettings();
