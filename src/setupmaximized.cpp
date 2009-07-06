@@ -41,6 +41,7 @@ public:
     KHBox*            colorBox;
     KHBox*            fontBox;
     QGroupBox*        slideshowBox;
+    QGroupBox*        plasmaBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
     KLineEdit*        imageFolderEdit;
@@ -51,6 +52,9 @@ public:
     QCheckBox*        usePopup;
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
+    QCheckBox*        readOnlyPlasma;
+
+
 
 };
 
@@ -82,6 +86,18 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vbox1->addWidget( d->disableAccel );
     vbox1->addStretch( 1 );
     skipBox->setLayout( vbox1 );
+
+    //------------------ Plasma Setup
+    d->plasmaBox = new QGroupBox( this );
+    d->plasmaBox->setTitle( i18n( "Plasma Dashboard" ) );
+    d->plasmaBox->setCheckable( true );
+    connect( d->plasmaBox, SIGNAL( toggled( bool ) ), SLOT( slotUsePlasma() ) );
+
+    d->readOnlyPlasma = new QCheckBox( i18n( "Read Only" ), this );
+
+    QVBoxLayout *vbox5 = new QVBoxLayout( d->plasmaBox );
+    vbox5->addWidget( d->readOnlyPlasma );
+    d->plasmaBox->setLayout( vbox5 );
 
     //------------------ PATH Setup
     d->slideshowBox = new QGroupBox( this );
@@ -143,11 +159,13 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     popupBox->setLayout( vbox3 );
 
     l->addWidget( skipBox );
+    l->addWidget( d->plasmaBox );
     l->addWidget( d->slideshowBox );
     l->addWidget( popupBox );
     setLayout( l );
     readSettings();
     slotHideFlash();
+    slotUsePlasma();
     slotUseImages();
 }
 
@@ -156,11 +174,18 @@ SetupMaximized::~SetupMaximized()
     delete d;
 }
 
+void SetupMaximized::slotUsePlasma()
+{
+    d->slideshowBox->setEnabled( !d->plasmaBox->isChecked() );
+    d->readOnlyPlasma->setEnabled( d->plasmaBox->isChecked() );
+}
+
 void SetupMaximized::slotUseImages()
 {
     d->searchRecursiveCheck->setEnabled( d->slideshowBox->isChecked() );
     d->imageFolderEdit->setEnabled( d->slideshowBox->isChecked() );
     d->changePathButton->setEnabled( d->slideshowBox->isChecked() );
+    d->plasmaBox->setEnabled( !d->slideshowBox->isChecked() );
 }
 
 void SetupMaximized::slotFolderPicker()
@@ -202,6 +227,10 @@ void SetupMaximized::applySettings()
                        d->slideshowBox->isChecked() );
 
     config.writeEntry( "DisableAccel", d->disableAccel->isChecked() );
+    config.writeEntry( "UsePlasma",
+                       d->plasmaBox->isChecked() );
+    config.writeEntry( "UsePlasmaReadOnly",
+                       d->readOnlyPlasma->isChecked() );
 
     config = KGlobal::config()->group( "Popup Settings" );
     config.writeEntry( "UsePopup",
@@ -227,6 +256,10 @@ void SetupMaximized::readSettings()
     d->searchRecursiveCheck->setChecked(
         config.readEntry( "SearchRecursiveCheck", false ) );
     d->disableAccel->setChecked( config.readEntry( "DisableAccel", false ) );
+    d->plasmaBox->setChecked(
+        config.readEntry( "UsePlasma", false ) );
+    d->readOnlyPlasma->setChecked(
+        config.readEntry( "UsePlasmaReadOnly", true ) );
 
     config = KGlobal::config()->group( "Popup Settings" );
     d->usePopup->setChecked(

@@ -58,6 +58,7 @@ private slots:
     void slotFolderPicker();
     void slotFolderEdited( const QString& newPath );
     void slotHideFlash();
+    void slotUsePlasma();
     void slotUseImages();
 
 private:

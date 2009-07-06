@@ -43,6 +43,7 @@ rsistats.cpp
 rsiglobals.cpp
 rsistatitem.cpp
 grayouteffect.cpp
+plasmaeffect.cpp
 )
 
 QT4_ADD_DBUS_ADAPTOR( rsibreak_sources

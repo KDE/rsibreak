@@ -28,6 +28,7 @@ class RSIDock;
 class RSIRelaxPopup;
 class RSIToolTip;
 class GrayWidget;
+class PlasmaEffect;
 class SlideShow;
 
 /**
@@ -92,12 +93,16 @@ private:
     RSIDock*        m_tray;
     RSITimer*       m_timer;
     GrayWidget*     m_grayWidget;
+    PlasmaEffect*   m_plasmaEffect;
     SlideShow*      m_slideShow;
 
     QLabel*         m_tool;
 
     bool            m_useImages;
     bool            m_showTimerReset;
+
+    bool            m_usePlasma;
+    bool            m_usePlasmaRO;
 
     RSIRelaxPopup*  m_relaxpopup;
     RSIToolTip*     m_tooltip;

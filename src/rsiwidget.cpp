@@ -20,6 +20,7 @@
 #include "rsiwidget.h"
 #include "rsiwidgetadaptor.h"
 #include "graywidget.h"
+#include "plasmaeffect.h"
 #include "slideshow.h"
 #include "rsitimer_dpms.h"
 #include "boxdialog.h"
@@ -62,7 +63,8 @@ RSIWidget::RSIWidget()
 }
 
 RSIObject::RSIObject( QWidget *parent )
-        : QObject( parent ), m_useImages( false )
+        : QObject( parent ), m_useImages( false ), m_usePlasma( false ),
+        m_usePlasmaRO( false )
 {
 
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
@@ -91,6 +93,8 @@ RSIObject::RSIObject( QWidget *parent )
     m_slideShow->hide();
     m_grayWidget = new GrayWidget( parent ); // create before readConfig.
     m_grayWidget->hide();
+
+    m_plasmaEffect = new PlasmaEffect( parent ); // create before readConfig.
 
     readConfig();
 
@@ -204,6 +208,9 @@ void RSIObject::minimize( bool newImage )
 {
     m_grayWidget->reset();
     m_slideShow->stop();
+    if ( m_usePlasma ) {
+        m_plasmaEffect->Deactivate();
+    }
     if ( newImage )
         m_slideShow->loadImage();
 }
@@ -211,8 +218,13 @@ void RSIObject::minimize( bool newImage )
 void RSIObject::maximize()
 {
     // If there are no images found, we gray the screen and wait....
+    kDebug() << "Images: " << m_useImages << "Plasma: " << m_usePlasma;
     if ( !m_slideShow->hasImages() || !m_useImages ) {
-        QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
+        if ( m_usePlasma ) {
+            m_plasmaEffect->setReadOnly( m_usePlasmaRO );
+            m_plasmaEffect->Activate();
+        } else
+            QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
     } else {
         m_slideShow->show(); // Keep it above the KWindowSystem calls.
         KWindowSystem::forceActiveWindow( m_slideShow->winId() );
@@ -395,6 +407,9 @@ void RSIObject::readConfig()
 
     m_relaxpopup->setSkipButtonHidden(
         config.readEntry( "HideMinimizeButton", false ) );
+
+    m_usePlasma = config.readEntry( "UsePlasma", false );
+    m_usePlasmaRO = config.readEntry( "UsePlasmaReadOnly", false );
 
     m_useImages = config.readEntry( "ShowImages", false );
     int slideInterval = config.readEntry( "SlideInterval", 10 );
