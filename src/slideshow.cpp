@@ -19,6 +19,7 @@
 
 #include "slideshow.h"
 #include "boxdialog.h"
+#include "breakbase.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -26,41 +27,45 @@
 #include <QTimer>
 
 #include <KDebug>
+#include <KWindowSystem>
 
-SlideShow::SlideShow( QWidget *parent )
-        : QWidget( parent, Qt::Popup ), m_searchRecursive( false )
+
+SlideEffect::SlideEffect( QWidget *parent )
+        : BreakBase( parent ), m_searchRecursive( false )
 {
-    QRect rect = QApplication::desktop()->screenGeometry(
-                     QApplication::desktop()->primaryScreen() );
-    setGeometry( rect );
+    m_slideShow = new SlideShow( parent );
+    KWindowSystem::forceActiveWindow( m_slideShow->winId() );
+    KWindowSystem::setOnAllDesktops( m_slideShow->winId(), true );
+    KWindowSystem::setState( m_slideShow->winId(), NET::KeepAbove );
+    KWindowSystem::setState( m_slideShow->winId(), NET::FullScreen );
+
+    setReadOnly( true );
 
     m_timer_slide = new QTimer( this );
     connect( m_timer_slide, SIGNAL( timeout() ),  SLOT( slotNewSlide() ) );
 
-    m_dialog = new BoxDialog( this, Qt::Popup );
 }
 
-SlideShow::~SlideShow() {}
-
-bool SlideShow::hasImages()
+bool SlideEffect::hasImages()
 {
     return m_files.count() > 0;
 }
 
-void SlideShow::start()
+void SlideEffect::activate()
 {
+    m_slideShow->show();
     m_timer_slide->start( m_slideInterval*1000 );
-    m_dialog->showDialog();
+    BreakBase::activate();
 }
 
-void SlideShow::stop()
+void SlideEffect::deactivate()
 {
-    hide();
     m_timer_slide->stop();
-    m_dialog->reject();
+    m_slideShow->hide();
+    BreakBase::deactivate();
 }
 
-void SlideShow::loadImage()
+void SlideEffect::loadImage()
 {
     if ( m_files.count() == 0 )
         return;
@@ -106,20 +111,16 @@ void SlideShow::loadImage()
         }
     }
 
-    QImage m = image.scaled( size.width(), size.height(),
-                             Qt::KeepAspectRatioByExpanding );
+    QImage* m = new QImage( image.scaled( size.width(), size.height(),
+                                          Qt::KeepAspectRatioByExpanding ) );
 
-    if ( m.isNull() )
+    if ( m->isNull() )
         return;
 
-    m_backgroundimage = QPixmap::fromImage( m );
-
-    QPalette palette;
-    palette.setBrush( backgroundRole(), QBrush( m_backgroundimage ) );
-    setPalette( palette );
+    m_slideShow->setImage( m );
 }
 
-void SlideShow::findImagesInFolder( const QString& folder )
+void SlideEffect::findImagesInFolder( const QString& folder )
 {
     if ( folder.isNull() )
         return;
@@ -154,7 +155,7 @@ void SlideShow::findImagesInFolder( const QString& folder )
     }
 }
 
-void SlideShow::slotNewSlide()
+void SlideEffect::slotNewSlide()
 {
     if ( m_files.count() == 1 )
         return;
@@ -162,7 +163,7 @@ void SlideShow::slotNewSlide()
     loadImage();
 }
 
-void SlideShow::reset( const QString& path, bool recursive, int slideInterval )
+void SlideEffect::reset( const QString& path, bool recursive, int slideInterval )
 {
     m_files.clear();
     m_files_done.clear();
@@ -173,6 +174,26 @@ void SlideShow::reset( const QString& path, bool recursive, int slideInterval )
     findImagesInFolder( path );
     kDebug() << "Amount of Files:" << m_files.count();
     QTimer::singleShot( 2000, this, SLOT( slotNewSlide() ) );
+}
+
+// ------------------ Show widget
+
+
+SlideShow::SlideShow( QWidget *parent )
+        : QWidget( parent, Qt::Popup )
+{
+    QRect rect = QApplication::desktop()->screenGeometry(
+                     QApplication::desktop()->primaryScreen() );
+    setGeometry( rect );
+}
+
+SlideShow::~SlideShow() {}
+
+void SlideShow::setImage( QImage* image )
+{
+    QPalette palette;
+    palette.setBrush( backgroundRole(), QBrush( QPixmap::fromImage( *image ) ) );
+    setPalette( palette );
 }
 
 #include "slideshow.moc"

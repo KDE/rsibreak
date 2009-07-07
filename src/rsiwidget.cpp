@@ -36,7 +36,6 @@
 #include <QPainter>
 #include <QTimer>
 
-#include <KWindowSystem>
 #include <KLocale>
 #include <KApplication>
 #include <KMessageBox>
@@ -89,12 +88,11 @@ RSIObject::RSIObject( QWidget *parent )
 
     srand( time( NULL ) );
 
-    m_slideShow = new SlideShow( parent ); // create before readConfig.
-    m_slideShow->hide();
+    m_slideEffect = new SlideEffect( parent ); // create before readConfig.
     m_grayWidget = new GrayWidget( parent ); // create before readConfig.
     m_grayWidget->hide();
 
-    m_plasmaEffect = new PlasmaEffect( parent ); // create before readConfig.
+    m_plasmaEffect = new PlasmaEffect( parent );
 
     readConfig();
 
@@ -102,8 +100,8 @@ RSIObject::RSIObject( QWidget *parent )
     connect( m_grayWidget->dialog(), SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
     connect( m_grayWidget->dialog(), SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
-    connect( m_slideShow->dialog(), SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect( m_slideShow->dialog(), SIGNAL( lock() ), this, SLOT( slotLock() ) );
+    connect( m_slideEffect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect( m_slideEffect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     setIcon( 0 );
 
@@ -207,37 +205,32 @@ QString RSIObject::takeScreenshotOfTrayIcon()
 void RSIObject::minimize( bool newImage )
 {
     m_grayWidget->reset();
-    m_slideShow->stop();
+    m_slideEffect->deactivate();
     if ( m_usePlasma ) {
-        m_plasmaEffect->Deactivate();
+        m_plasmaEffect->deactivate();
     }
     if ( newImage )
-        m_slideShow->loadImage();
+        m_slideEffect->loadImage();
 }
 
 void RSIObject::maximize()
 {
     // If there are no images found, we gray the screen and wait....
     kDebug() << "Images: " << m_useImages << "Plasma: " << m_usePlasma;
-    if ( !m_slideShow->hasImages() || !m_useImages ) {
+    if ( !m_slideEffect->hasImages() || !m_useImages ) {
         if ( m_usePlasma ) {
             m_plasmaEffect->setReadOnly( m_usePlasmaRO );
-            m_plasmaEffect->Activate();
+            m_plasmaEffect->activate();
         } else
             QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
     } else {
-        m_slideShow->show(); // Keep it above the KWindowSystem calls.
-        KWindowSystem::forceActiveWindow( m_slideShow->winId() );
-        KWindowSystem::setOnAllDesktops( m_slideShow->winId(), true );
-        KWindowSystem::setState( m_slideShow->winId(), NET::KeepAbove );
-        KWindowSystem::setState( m_slideShow->winId(), NET::FullScreen );
-        m_slideShow->start();
+        m_slideEffect->activate(); // Keep it above the KWindowSystem calls.
     }
 }
 
 void RSIObject::slotLock()
 {
-    m_slideShow->stop();
+    m_slideEffect->deactivate();
 
     QDBusInterface lock( "org.freedesktop.ScreenSaver", "/ScreenSaver",
                          "org.freedesktop.ScreenSaver" );
@@ -261,13 +254,14 @@ void RSIObject::setCounters( int timeleft )
         }
 
         m_grayWidget->dialog()->setLabel( cdString );
-        m_slideShow->dialog()->setLabel( cdString );
+        m_slideEffect->setLabel( cdString );
+        m_plasmaEffect->setLabel( cdString );
     } else if ( m_timer->isSuspended() ) {
         m_grayWidget->dialog()->setLabel( i18n( "Suspended" ) );
-        m_slideShow->dialog()->setLabel( i18n( "Suspended" ) );
+        m_slideEffect->setLabel( i18n( "Suspended" ) );
     } else {
         m_grayWidget->dialog()->setLabel( QString() );
-        m_slideShow->dialog()->setLabel( QString() );
+        m_slideEffect->setLabel( QString() );
     }
 }
 
@@ -423,16 +417,16 @@ void RSIObject::readConfig()
     // Hook in the shortcut after the timer initialisation.
     m_grayWidget->dialog()->showMinimize( !config.readEntry( "HideMinimizeButton",
                                           false ) );
-    m_slideShow->dialog()->showMinimize( !config.readEntry( "HideMinimizeButton",
-                                         false ) );
+    //m_slideEffect->showMinimize( !config.readEntry( "HideMinimizeButton",
+    //                                     false ) );
     m_grayWidget->dialog()->disableShortcut( config.readEntry( "DisableAccel",
             false ) );
-    m_slideShow->dialog()->disableShortcut( config.readEntry( "DisableAccel",
-                                            false ) );
+    //m_slideEffect->disableShortcut( config.readEntry( "DisableAccel",
+    //                                        false ) );
 
     if (( oldPath != path || oldRecursive != recursive
             || oldUseImages != m_useImages ) && m_useImages )
-        m_slideShow->reset( path, recursive, slideInterval );
+        m_slideEffect->reset( path, recursive, slideInterval );
 
     oldPath = path;
     oldRecursive = recursive;

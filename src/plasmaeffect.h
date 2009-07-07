@@ -19,26 +19,20 @@
 #ifndef PLASMAEFFECT_H
 #define PLASMAEFFECT_H
 
-#include <QWidget>
+#include <breakbase.h>
 
-class PlasmaEffect : public QObject
+#include <QObject>
+
+class PlasmaEffect : public BreakBase
 {
     Q_OBJECT
-public:
-    PlasmaEffect( QWidget* parent );
-    void setReadOnly( bool );
-    bool readOnly();
 
-protected:
-    virtual bool eventFilter( QObject *obj, QEvent *event );
+public:
+    PlasmaEffect( QWidget* );
 
 public slots:
-    void Activate();
-    void Deactivate();
-
-private:
-    bool m_readOnly;
-    QWidget* m_parent;
+    void activate();
+    void deactivate();
 };
 
 #endif // PLASMAEFFECT_H

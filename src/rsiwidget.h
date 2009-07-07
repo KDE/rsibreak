@@ -29,7 +29,7 @@ class RSIRelaxPopup;
 class RSIToolTip;
 class GrayWidget;
 class PlasmaEffect;
-class SlideShow;
+class SlideEffect;
 
 /**
  * @class RSIObject
@@ -94,7 +94,7 @@ private:
     RSITimer*       m_timer;
     GrayWidget*     m_grayWidget;
     PlasmaEffect*   m_plasmaEffect;
-    SlideShow*      m_slideShow;
+    SlideEffect*    m_slideEffect;
 
     QLabel*         m_tool;
 

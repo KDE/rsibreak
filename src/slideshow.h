@@ -22,19 +22,43 @@
 #define SLIDESHOW_H
 
 #include <QWidget>
+#include "breakbase.h"
 
-class BoxDialog;
+class SlideShow;
 
-/**
- * @class SlideShow
- * This widget is the main widget for RSIBreak.
- * It minimizes and maximized the widget
- * @author Tom Albers <tomalbers@kde.nl>
- */
-class SlideShow : public QWidget
+class SlideEffect : public BreakBase
 {
     Q_OBJECT
 
+public:
+    SlideEffect( QWidget *parent );
+    void reset( const QString& path, bool recursive, int interval );
+    void activate();
+    void deactivate();
+    bool hasImages();
+    void loadImage();
+
+
+private slots:
+    void slotNewSlide();
+
+private:
+    void findImagesInFolder( const QString& folder );
+
+    SlideShow*      m_slideShow;
+    QString         m_basePath;
+    QTimer*         m_timer_slide;
+
+    bool            m_searchRecursive;
+    int             m_slideInterval;
+
+    QStringList     m_files;
+    QStringList     m_files_done;
+};
+
+class SlideShow : public QWidget
+{
+    Q_OBJECT
 public:
     /**
      * Constructor
@@ -48,32 +72,7 @@ public:
      */
     ~SlideShow();
 
-    void reset( const QString& path, bool recursive, int interval );
-    void start();
-    void stop();
-    bool hasImages();
-    void loadImage();
-
-    BoxDialog* dialog() {
-        return m_dialog;
-    };
-
-private slots:
-    void slotNewSlide();
-
-private:
-    void findImagesInFolder( const QString& folder );
-
-    BoxDialog*      m_dialog;
-    QPixmap         m_backgroundimage;
-    QString         m_basePath;
-    QTimer*         m_timer_slide;
-
-    bool            m_searchRecursive;
-    int             m_slideInterval;
-
-    QStringList     m_files;
-    QStringList     m_files_done;
+    void setImage( QImage* image );
 };
 
 #   endif

@@ -16,31 +16,36 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include "plasmaeffect.h"
+#ifndef BREAKBASE_H
+#define BREAKBASE_H
 
-#include <KDebug>
-#include <QWidget>
-#include <QDBusInterface>
+#include <QObject>
 
-PlasmaEffect::PlasmaEffect( QWidget* parent )
-        : BreakBase( parent )
+class QLabel;
+
+class BreakBase : public QObject
 {
-}
+    Q_OBJECT
 
-void PlasmaEffect::activate()
-{
-    kDebug();
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    dbus.call( QLatin1String( "showDashboard" ), true );
-    BreakBase::activate();
-}
+public:
+    BreakBase( QWidget* parent );
+    virtual void setReadOnly( bool );
+    virtual bool readOnly() const;
+    virtual void activate();
+    virtual void deactivate();
+    virtual void setLabel( const QString& );
 
-void PlasmaEffect::deactivate()
-{
-    kDebug();
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    dbus.call( QLatin1String( "showDashboard" ), false );
-    BreakBase::deactivate();
-}
+protected:
+    virtual bool eventFilter( QObject *obj, QEvent *event );
 
-#include "plasmaeffect.moc"
+signals:
+    void skip();
+    void lock();
+
+private:
+    QLabel* m_label;
+    QWidget* m_parent;
+    bool m_readOnly;
+};
+
+#endif // BREAKBASE_H

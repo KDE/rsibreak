@@ -43,6 +43,7 @@ rsistats.cpp
 rsiglobals.cpp
 rsistatitem.cpp
 grayouteffect.cpp
+breakbase.cpp
 plasmaeffect.cpp
 )
 
