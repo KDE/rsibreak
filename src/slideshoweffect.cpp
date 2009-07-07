@@ -17,7 +17,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include "slideshow.h"
+#include "slideshoweffect.h"
 #include "boxdialog.h"
 #include "breakbase.h"
 
@@ -196,4 +196,4 @@ void SlideShow::setImage( QImage* image )
     setPalette( palette );
 }
 
-#include "slideshow.moc"
+#include "slideshoweffect.moc"

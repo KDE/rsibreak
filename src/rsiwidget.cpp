@@ -21,7 +21,7 @@
 #include "rsiwidgetadaptor.h"
 #include "graywidget.h"
 #include "plasmaeffect.h"
-#include "slideshow.h"
+#include "slideshoweffect.h"
 #include "rsitimer_dpms.h"
 #include "boxdialog.h"
 #include "rsitimer.h"
