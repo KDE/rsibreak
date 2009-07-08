@@ -19,7 +19,7 @@
 
 #include "rsiwidget.h"
 #include "rsiwidgetadaptor.h"
-#include "graywidget.h"
+#include "grayeffect.h"
 #include "plasmaeffect.h"
 #include "slideshoweffect.h"
 #include "rsitimer_dpms.h"

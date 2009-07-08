@@ -16,7 +16,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include "graywidget.h"
+#include "grayeffect.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
@@ -72,4 +72,4 @@ bool GrayWidget::event(QEvent *event)
 
     return QWidget::event(event);
 }
-#include "graywidget.moc"
+#include "grayeffect.moc"

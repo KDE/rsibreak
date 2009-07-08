@@ -26,7 +26,7 @@ KDE4_ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 SET(rsibreak_sources
 boxdialog.cpp
 slideshoweffect.cpp
-graywidget.cpp
+grayeffect.cpp
 passivepopup.cpp
 rsidock.cpp
 setup.cpp
