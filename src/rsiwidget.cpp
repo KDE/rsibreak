@@ -89,16 +89,14 @@ RSIObject::RSIObject( QWidget *parent )
     srand( time( NULL ) );
 
     m_slideEffect = new SlideEffect( parent ); // create before readConfig.
-    m_grayWidget = new GrayWidget( parent ); // create before readConfig.
-    m_grayWidget->hide();
-
+    m_grayEffect = new GrayEffect( parent );
     m_plasmaEffect = new PlasmaEffect( parent );
 
     readConfig();
 
     // m_timer is only available after readConfig.
-    connect( m_grayWidget->dialog(), SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect( m_grayWidget->dialog(), SIGNAL( lock() ), this, SLOT( slotLock() ) );
+    connect( m_grayEffect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect( m_grayEffect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     connect( m_slideEffect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
     connect( m_slideEffect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
@@ -204,7 +202,7 @@ QString RSIObject::takeScreenshotOfTrayIcon()
 
 void RSIObject::minimize( bool newImage )
 {
-    m_grayWidget->reset();
+    m_grayEffect->deactivate();
     m_slideEffect->deactivate();
     if ( m_usePlasma ) {
         m_plasmaEffect->deactivate();
@@ -222,7 +220,7 @@ void RSIObject::maximize()
             m_plasmaEffect->setReadOnly( m_usePlasmaRO );
             m_plasmaEffect->activate();
         } else
-            QTimer::singleShot( 10, m_grayWidget, SLOT( slotGrayEffect() ) );
+            m_grayEffect->activate();
     } else {
         m_slideEffect->activate(); // Keep it above the KWindowSystem calls.
     }
@@ -253,15 +251,17 @@ void RSIObject::setCounters( int timeleft )
             cdString = i18nc( "minutes:seconds", "%1:00", minutes );
         }
 
-        m_grayWidget->dialog()->setLabel( cdString );
+        m_grayEffect->setLabel( cdString );
         m_slideEffect->setLabel( cdString );
         m_plasmaEffect->setLabel( cdString );
     } else if ( m_timer->isSuspended() ) {
-        m_grayWidget->dialog()->setLabel( i18n( "Suspended" ) );
+        m_grayEffect->setLabel( i18n( "Suspended" ) );
         m_slideEffect->setLabel( i18n( "Suspended" ) );
+        m_plasmaEffect->setLabel( i18n( "Suspended" ) );
     } else {
-        m_grayWidget->dialog()->setLabel( QString() );
+        m_grayEffect->setLabel( QString() );
         m_slideEffect->setLabel( QString() );
+        m_plasmaEffect->setLabel( QString() );
     }
 }
 
@@ -415,12 +415,12 @@ void RSIObject::readConfig()
     startTimer( !timertype );
 
     // Hook in the shortcut after the timer initialisation.
-    m_grayWidget->dialog()->showMinimize( !config.readEntry( "HideMinimizeButton",
-                                          false ) );
+    // m_grayEffect->showMinimize( !config.readEntry( "HideMinimizeButton",
+    //                                      false ) );
     //m_slideEffect->showMinimize( !config.readEntry( "HideMinimizeButton",
     //                                     false ) );
-    m_grayWidget->dialog()->disableShortcut( config.readEntry( "DisableAccel",
-            false ) );
+    // m_grayEffect->disableShortcut( config.readEntry( "DisableAccel",
+    //        false ) );
     //m_slideEffect->disableShortcut( config.readEntry( "DisableAccel",
     //                                        false ) );
 

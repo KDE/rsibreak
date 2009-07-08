@@ -1,6 +1,5 @@
-/* This file is part of the KDE project
-   Copyright (C) 2005-2007 Tom Albers <tomalbers@kde.nl>
-   Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+/*
+   Copyright (C) 2009 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -22,15 +21,24 @@
 #define GRAYWIDGET_H
 
 #include <QWidget>
+#include <breakbase.h>
 
-class BoxDialog;
-class GrayOutEffect;
+class GrayWidget;
 
-/**
- * @class GrayWidget
- * This widget is one of the widget shown when there is a break
- * @author Tom Albers <tomalbers@kde.nl>
- */
+class GrayEffect : public BreakBase
+{
+    Q_OBJECT
+
+public:
+    GrayEffect( QWidget *parent );
+    void activate();
+    void deactivate();
+
+private:
+    GrayWidget* m_grayWidget;
+};
+
+
 class GrayWidget : public QWidget
 {
     Q_OBJECT
@@ -42,37 +50,8 @@ public:
      */
     explicit GrayWidget( QWidget *parent = 0 );
 
-    /**
-     * Destructor
-     */
-    ~GrayWidget();
-
-    /**
-     * reset
-     */
-    void reset();
-
-    BoxDialog* dialog() {
-        return m_dialog;
-    };
-
-public slots:
-    void slotGrayEffect();
-
-protected:
-    virtual void paintEvent( QPaintEvent* );
-
-signals:
-    void skip();
-    void lock();
-
-private:
-    int             m_currentY;
-    BoxDialog*      m_dialog;
-    GrayOutEffect*  m_gray;
-    QPixmap         m_complete;
-    bool            m_first;
-
+ protected:
+    virtual bool event(QEvent *event);
 };
 
 #   endif

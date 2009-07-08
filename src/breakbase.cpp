@@ -43,14 +43,12 @@ void BreakBase::activate()
 
 void BreakBase::deactivate()
 {
-    kDebug();
     m_label->releaseKeyboard();
     m_label->hide();
 }
 
 bool BreakBase::eventFilter( QObject *obj, QEvent *event )
 {
-    kDebug();
     if ( event->type() == QEvent::KeyPress ) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>( event );
         kDebug() << "Ate key press" << keyEvent->key();

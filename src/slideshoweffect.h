@@ -28,32 +28,32 @@ class SlideShow;
 
 class SlideEffect : public BreakBase
 {
-    Q_OBJECT
+Q_OBJECT
 
 public:
-    SlideEffect( QWidget *parent );
-    void reset( const QString& path, bool recursive, int interval );
-    void activate();
-    void deactivate();
-    bool hasImages();
-    void loadImage();
+SlideEffect( QWidget *parent );
+void reset( const QString& path, bool recursive, int interval );
+void activate();
+void deactivate();
+bool hasImages();
+void loadImage();
 
 
 private slots:
-    void slotNewSlide();
+void slotNewSlide();
 
 private:
-    void findImagesInFolder( const QString& folder );
+void findImagesInFolder( const QString& folder );
 
-    SlideShow*      m_slideShow;
-    QString         m_basePath;
-    QTimer*         m_timer_slide;
+SlideShow*      m_slideShow;
+QString         m_basePath;
+QTimer*         m_timer_slide;
 
-    bool            m_searchRecursive;
-    int             m_slideInterval;
+bool            m_searchRecursive;
+int             m_slideInterval;
 
-    QStringList     m_files;
-    QStringList     m_files_done;
+QStringList     m_files;
+QStringList     m_files_done;
 };
 
 class SlideShow : public QWidget

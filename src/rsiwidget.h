@@ -27,7 +27,7 @@
 class RSIDock;
 class RSIRelaxPopup;
 class RSIToolTip;
-class GrayWidget;
+class GrayEffect;
 class PlasmaEffect;
 class SlideEffect;
 
@@ -92,7 +92,7 @@ private:
 
     RSIDock*        m_tray;
     RSITimer*       m_timer;
-    GrayWidget*     m_grayWidget;
+    GrayEffect*     m_grayEffect;
     PlasmaEffect*   m_plasmaEffect;
     SlideEffect*    m_slideEffect;
 

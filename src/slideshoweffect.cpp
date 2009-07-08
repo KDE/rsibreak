@@ -43,7 +43,6 @@ SlideEffect::SlideEffect( QWidget *parent )
 
     m_timer_slide = new QTimer( this );
     connect( m_timer_slide, SIGNAL( timeout() ),  SLOT( slotNewSlide() ) );
-
 }
 
 bool SlideEffect::hasImages()

@@ -1,6 +1,5 @@
-/* This file is part of the KDE project
-   Copyright (C) 2005-2007 Tom Albers <tomalbers@kde.nl>
-   Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+/*
+   Copyright (C) 2009 Tom Albers <tomalbers@kde.nl>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -18,71 +17,59 @@
 */
 
 #include "graywidget.h"
-#include "grayouteffect.h"
-#include "boxdialog.h"
 
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QX11Info>
 #include <QPainter>
-#include <QTimer>
 
-#include <KApplication>
 #include <KWindowSystem>
 #include <KDebug>
 
-GrayWidget::GrayWidget( QWidget *parent )
-        : QWidget( parent, Qt::Popup ), m_currentY( 0 ), m_first( true )
+
+GrayEffect::GrayEffect( QWidget *parent )
+        : BreakBase( parent )
 {
-    // full screen
-    setAttribute( Qt::WA_NoSystemBackground );
-    setAttribute( Qt::WA_PaintOnScreen );
+    m_grayWidget = new GrayWidget( 0 );
+    KWindowSystem::forceActiveWindow( m_grayWidget->winId() );
+    KWindowSystem::setOnAllDesktops( m_grayWidget->winId(), true );
+    KWindowSystem::setState( m_grayWidget->winId(), NET::KeepAbove );
+    KWindowSystem::setState( m_grayWidget->winId(), NET::FullScreen );
+
+    setReadOnly( true );
+}
+
+void GrayEffect::activate()
+{
+    m_grayWidget->show();
+    m_grayWidget->update();
+    BreakBase::activate();
+}
+
+void GrayEffect::deactivate()
+{
+    m_grayWidget->hide();
+    BreakBase::deactivate();
+}
+
+GrayWidget::GrayWidget( QWidget *parent )
+        : QWidget( parent, Qt::Popup )
+{
     QRect rect = QApplication::desktop()->screenGeometry(
                      QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
-
-    m_gray = 0;
-
-    m_dialog = new BoxDialog( this, Qt::Popup );
+    setAutoFillBackground( false );
+    setWindowOpacity(0.8);
 }
 
-GrayWidget::~GrayWidget() {}
-
-void GrayWidget::reset()
+bool GrayWidget::event(QEvent *event)
 {
-    hide();
-    m_currentY = 0;
-    m_first = true;
-    m_dialog->reject();
-    delete m_gray;
-    m_gray = 0;
+    if (event->type() == QEvent::Paint) {
+        kDebug();
+        QPainter p(this);
+        p.setCompositionMode(QPainter::CompositionMode_Source);
+        p.fillRect(rect(), QColor(0,0,0,180));
+    }
+
+    return QWidget::event(event);
 }
-
-void GrayWidget::slotGrayEffect()
-{
-    m_complete = QPixmap::grabWindow( QApplication::desktop()->winId(), 0, 0,
-                                      kapp->desktop()->width(), kapp->desktop()->height() );
-
-    repaint(); //before show
-
-    show();
-
-    KWindowSystem::forceActiveWindow( winId() );
-    KWindowSystem::setOnAllDesktops( winId(), true );
-    KWindowSystem::setState( winId(), NET::KeepAbove );
-    KWindowSystem::setState( winId(), NET::FullScreen );
-
-    delete m_gray;
-    m_gray = new GrayOutEffect( this, &m_complete );
-    connect( m_gray, SIGNAL( ready() ), m_dialog, SLOT( showDialog() ) );
-    m_gray->start();
-}
-
-void GrayWidget::paintEvent( QPaintEvent* )
-{
-    QPainter painter( this );
-    painter.setCompositionMode( QPainter::CompositionMode_Source );
-    painter.drawPixmap( 0, 0, m_complete );
-}
-
 #include "graywidget.moc"
