@@ -18,7 +18,6 @@
 */
 
 #include "slideshoweffect.h"
-#include "boxdialog.h"
 #include "breakbase.h"
 
 #include <QApplication>

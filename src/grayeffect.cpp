@@ -58,18 +58,18 @@ GrayWidget::GrayWidget( QWidget *parent )
                      QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
     setAutoFillBackground( false );
-    setWindowOpacity(0.8);
+    setWindowOpacity( 0.8 );
 }
 
-bool GrayWidget::event(QEvent *event)
+bool GrayWidget::event( QEvent *event )
 {
-    if (event->type() == QEvent::Paint) {
+    if ( event->type() == QEvent::Paint ) {
         kDebug();
-        QPainter p(this);
-        p.setCompositionMode(QPainter::CompositionMode_Source);
-        p.fillRect(rect(), QColor(0,0,0,180));
+        QPainter p( this );
+        p.setCompositionMode( QPainter::CompositionMode_Source );
+        p.fillRect( rect(), QColor( 0,0,0,180 ) );
     }
 
-    return QWidget::event(event);
+    return QWidget::event( event );
 }
 #include "grayeffect.moc"

@@ -27,9 +27,7 @@
 class RSIDock;
 class RSIRelaxPopup;
 class RSIToolTip;
-class GrayEffect;
-class PlasmaEffect;
-class SlideEffect;
+class BreakBase;
 
 /**
  * @class RSIObject
@@ -70,7 +68,7 @@ public:
 private slots:
     void slotWelcome();
     void slotLock();
-    void minimize( bool newImage = true );
+    void minimize();
     void maximize();
     void setCounters( int );
     void updateIdleAvg( double );
@@ -92,9 +90,8 @@ private:
 
     RSIDock*        m_tray;
     RSITimer*       m_timer;
-    GrayEffect*     m_grayEffect;
-    PlasmaEffect*   m_plasmaEffect;
-    SlideEffect*    m_slideEffect;
+    BreakBase*      m_effect;
+    QWidget*        m_parent;
 
     QLabel*         m_tool;
 

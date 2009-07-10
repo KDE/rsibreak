@@ -72,16 +72,10 @@ public slots:
 
     /**
       Stops the timer activity. This does not imply
-      resetting counters. Will not load an image
-    */
-    void slotStopNoImage();
-
-    /**
-      Stops the timer activity. This does not imply
       resetting counters.
       @param newImage Load a new image
      */
-    void slotStop( bool newImage = true );
+    void slotStop();
 
     /**
       Called when the user suspends RSIBreak from the docker.
@@ -91,17 +85,9 @@ public slots:
     void slotSuspended( bool suspend );
 
     /**
-      Prepares the timer so that it can start/continue. This
-      does not imply resetting counters.
-    */
-    void slotStartNoImage();
-
-    /**
-      Prepares the timer so that it can start/continue. This
-      does not imply resetting counters.
-      @param newImage Load a new image
+      Prepares the timer so that it can start/continue.
      */
-    void slotStart( bool newImage = true );
+    void slotStart();
 
     /**
       The user can request a break from the docker. This function
@@ -199,7 +185,7 @@ signals:
       break is over.
       @param newImage Load a new image
     */
-    void minimize( bool newImage );
+    void minimize();
 
     /**
       Pop up a relax notification to the user for @p sec seconds.

@@ -50,8 +50,8 @@ public:
      */
     explicit GrayWidget( QWidget *parent = 0 );
 
- protected:
-    virtual bool event(QEvent *event);
+protected:
+    virtual bool event( QEvent *event );
 };
 
 #   endif

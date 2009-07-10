@@ -30,7 +30,7 @@
 #include <KHBox>
 #include <KLocale>
 
-BreakControl::BreakControl( QWidget* parent, Qt::WindowType type)
+BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
         : QWidget( parent, type )
 {
     m_vbox = new QVBoxLayout;
@@ -42,7 +42,7 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type)
     connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
     m_lockButton = new QPushButton( i18n( "Lock" ), hbox );
-    connect( m_lockButton, SIGNAL( clicked() ), SIGNAL( lock() ) );
+    connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
 
     m_vbox->addWidget( m_textLabel );
     m_vbox->addWidget( hbox );
@@ -51,38 +51,48 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type)
 
     //center it!
     const QRect r( QApplication::desktop()->screenGeometry(
-                   QApplication::desktop()->primaryScreen() ) );
+                       QApplication::desktop()->primaryScreen() ) );
 
-    const QPoint center(r.width() / 2 - sizeHint().width() / 2, r.y());
+    const QPoint center( r.width() / 2 - sizeHint().width() / 2, r.y() );
     move( center );
 }
 
-void BreakControl::setText(const QString& text)
+void BreakControl::slotLock()
 {
-    m_textLabel->setText( text );
-    repaint();
+    kDebug();
+    emit lock();
 }
 
-void BreakControl::paintEvent(QPaintEvent *event)
+void BreakControl::setText( const QString& text )
 {
-    if (event->type() == QEvent::Paint) {
+    m_textLabel->setText( text );
+}
+
+void BreakControl::showMinimize( bool show )
+{
+    m_skipButton->setVisible( show );
+}
+
+void BreakControl::paintEvent( QPaintEvent *event )
+{
+    if ( event->type() == QEvent::Paint ) {
         int margin = 3;
         QPainterPath box;
-        box.moveTo(rect().topLeft());
-        box.lineTo(rect().bottomLeft());
-        box.lineTo(rect().bottomRight());
-        box.lineTo(rect().topRight());
+        box.moveTo( rect().topLeft() );
+        box.lineTo( rect().bottomLeft() );
+        box.lineTo( rect().bottomRight() );
+        box.lineTo( rect().topRight() );
         box.closeSubpath();
 
         QColor highlight = palette().highlight().color();
-        highlight.setAlphaF(0.7);
+        highlight.setAlphaF( 0.7 );
 
         QPen pen( highlight );
         pen.setWidth( margin );
 
-        QPainter painter(this);
-        painter.setPen(pen);
-        painter.drawPath(box);
+        QPainter painter( this );
+        painter.setPen( pen );
+        painter.drawPath( box );
     }
 }
 

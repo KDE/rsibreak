@@ -209,29 +209,18 @@ void RSITimer::resetAfterBigBreak()
 
 // -------------------------- SLOTS ------------------------//
 
-void RSITimer::slotStartNoImage()
+void RSITimer::slotStart()
 {
-    slotStart( false );
-}
-
-
-void RSITimer::slotStart( bool newImage )
-{
-    emit minimize( newImage );
+    emit minimize();
     emit updateIdleAvg( 0.0 );
     m_suspended = false;
 }
 
-void RSITimer::slotStopNoImage()
-{
-    slotStop( false );
-}
-
-void RSITimer::slotStop( bool newImage )
+void RSITimer::slotStop()
 {
     m_suspended = true;
 
-    emit minimize( newImage );
+    emit minimize();
     emit updateIdleAvg( 0.0 );
     emit updateToolTip( 0, 0 );
 }
@@ -246,7 +235,7 @@ void RSITimer::slotRestart()
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
-    slotStart( false );
+    slotStart();
     m_needRestart = false;
 }
 
@@ -360,7 +349,7 @@ void RSITimer::timerEvent( QTimerEvent * )
             --m_pause_left;
             updateWidget( m_pause_left );
         } else { // user survived the break, set him/her free
-            emit minimize( true );
+            emit minimize();
 
             // make sure we clean up stuff in the code ahead
             if ( m_nextBreak == TINY_BREAK )
@@ -588,7 +577,7 @@ void RSITimerNoIdle::timerEvent( QTimerEvent * )
         --m_pause_left;
         if ( m_pause_left == 0 ) {
             // break is over
-            emit minimize( true );
+            emit minimize();
             emit relax( -1, false );
             if ( m_nextBreak == TINY_BREAK ) {
                 resetAfterTinyBreak();

@@ -25,7 +25,7 @@
 #include <QKeyEvent>
 
 BreakBase::BreakBase( QWidget* parent )
-        : QObject( parent )
+        : QObject( parent ), m_disableShortcut( false )
 {
     m_parent = parent;
     m_parent->installEventFilter( this );
@@ -61,7 +61,7 @@ bool BreakBase::eventFilter( QObject *obj, QEvent *event )
     if ( event->type() == QEvent::KeyPress ) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>( event );
         kDebug() << "Ate key press" << keyEvent->key();
-        if ( keyEvent->key() == Qt::Key_Escape ) {
+        if ( keyEvent->key() == Qt::Key_Escape && !m_disableShortcut ) {
             kDebug() << "Escape";
             emit skip();
         }
@@ -84,6 +84,16 @@ bool BreakBase::readOnly() const
 void BreakBase::setLabel( const QString& text )
 {
     m_breakControl->setText( text );
+}
+
+void BreakBase::showMinimize( bool show )
+{
+    m_breakControl->showMinimize( show );
+}
+
+void BreakBase::disableShortcut( bool disable )
+{
+    m_disableShortcut = disable;
 }
 
 #include "breakbase.moc"

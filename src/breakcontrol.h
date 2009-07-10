@@ -32,9 +32,13 @@ class BreakControl : public QWidget
 public:
     BreakControl( QWidget*, Qt::WindowType );
     void setText( const QString& );
+    void showMinimize( bool show );
 
 protected:
-    void paintEvent(QPaintEvent *event);
+    void paintEvent( QPaintEvent *event );
+
+private slots:
+    void slotLock();
 
 signals:
     void skip();

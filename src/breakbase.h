@@ -34,6 +34,8 @@ public:
     virtual void activate();
     virtual void deactivate();
     virtual void setLabel( const QString& );
+    void showMinimize( bool );
+    void disableShortcut( bool disable );
 
 protected:
     virtual bool eventFilter( QObject *obj, QEvent *event );
@@ -46,6 +48,7 @@ private:
     BreakControl* m_breakControl;
     QWidget* m_parent;
     bool m_readOnly;
+    bool m_disableShortcut;
 };
 
 #endif // BREAKBASE_H

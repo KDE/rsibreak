@@ -23,7 +23,6 @@
 #include "plasmaeffect.h"
 #include "slideshoweffect.h"
 #include "rsitimer_dpms.h"
-#include "boxdialog.h"
 #include "rsitimer.h"
 #include "rsidock.h"
 #include "rsirelaxpopup.h"
@@ -62,8 +61,8 @@ RSIWidget::RSIWidget()
 }
 
 RSIObject::RSIObject( QWidget *parent )
-        : QObject( parent ), m_useImages( false ), m_usePlasma( false ),
-        m_usePlasmaRO( false )
+        : QObject( parent ), m_effect( 0 ), m_parent( parent ),
+        m_useImages( false ), m_usePlasma( false ), m_usePlasmaRO( false )
 {
 
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
@@ -88,18 +87,7 @@ RSIObject::RSIObject( QWidget *parent )
 
     srand( time( NULL ) );
 
-    m_slideEffect = new SlideEffect( parent ); // create before readConfig.
-    m_grayEffect = new GrayEffect( parent );
-    m_plasmaEffect = new PlasmaEffect( parent );
-
     readConfig();
-
-    // m_timer is only available after readConfig.
-    connect( m_grayEffect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect( m_grayEffect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
-
-    connect( m_slideEffect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect( m_slideEffect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     setIcon( 0 );
 
@@ -200,38 +188,20 @@ QString RSIObject::takeScreenshotOfTrayIcon()
     return filename;
 }
 
-void RSIObject::minimize( bool newImage )
+void RSIObject::minimize()
 {
-    m_grayEffect->deactivate();
-    m_slideEffect->deactivate();
-    if ( m_usePlasma ) {
-        m_plasmaEffect->deactivate();
-    }
-    if ( newImage )
-        m_slideEffect->loadImage();
+    m_effect->deactivate();
 }
 
 void RSIObject::maximize()
 {
-    // If there are no images found, we gray the screen and wait....
-    kDebug() << "Images: " << m_useImages << "Plasma: " << m_usePlasma;
-    if ( !m_slideEffect->hasImages() || !m_useImages ) {
-        if ( m_usePlasma ) {
-            m_plasmaEffect->setReadOnly( m_usePlasmaRO );
-            m_plasmaEffect->activate();
-        } else
-            m_grayEffect->activate();
-    } else {
-        m_slideEffect->activate(); // Keep it above the KWindowSystem calls.
-    }
+    m_effect->activate();
 }
 
 void RSIObject::slotLock()
 {
     kDebug();
-    m_slideEffect->deactivate();
-    m_plasmaEffect->deactivate();
-    m_grayEffect->deactivate();
+    m_effect->deactivate();
 
     QDBusInterface lock( "org.freedesktop.ScreenSaver", "/ScreenSaver",
                          "org.freedesktop.ScreenSaver" );
@@ -254,17 +224,11 @@ void RSIObject::setCounters( int timeleft )
             cdString = i18nc( "minutes:seconds", "%1:00", minutes );
         }
 
-        m_grayEffect->setLabel( cdString );
-        m_slideEffect->setLabel( cdString );
-        m_plasmaEffect->setLabel( cdString );
+        m_effect->setLabel( cdString );
     } else if ( m_timer->isSuspended() ) {
-        m_grayEffect->setLabel( i18n( "Suspended" ) );
-        m_slideEffect->setLabel( i18n( "Suspended" ) );
-        m_plasmaEffect->setLabel( i18n( "Suspended" ) );
+        m_effect->setLabel( i18n( "Suspended" ) );
     } else {
-        m_grayEffect->setLabel( QString() );
-        m_slideEffect->setLabel( QString() );
-        m_plasmaEffect->setLabel( QString() );
+        m_effect->setLabel( QString() );
     }
 }
 
@@ -374,7 +338,7 @@ void RSIObject::startTimer( bool idle )
     connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
              m_tooltip, SLOT( setCounters( int, int ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( minimize( bool ) ), SLOT( minimize( bool ) ),  Qt::QueuedConnection );
+    connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ),  Qt::QueuedConnection );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ), Qt::QueuedConnection );
@@ -382,8 +346,8 @@ void RSIObject::startTimer( bool idle )
     connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ), Qt::QueuedConnection );
 
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
-    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStopNoImage() ) );
-    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStartNoImage() ) );
+    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
+    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStart() ) );
     connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
     connect( m_tray, SIGNAL( debugRequest() ), m_timer, SLOT( slotRequestDebug() ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
@@ -417,19 +381,28 @@ void RSIObject::readConfig()
     bool timertype = config.readEntry( "UseNoIdleTimer", false );
     startTimer( !timertype );
 
-    // Hook in the shortcut after the timer initialisation.
-    // m_grayEffect->showMinimize( !config.readEntry( "HideMinimizeButton",
-    //                                      false ) );
-    //m_slideEffect->showMinimize( !config.readEntry( "HideMinimizeButton",
-    //                                     false ) );
-    // m_grayEffect->disableShortcut( config.readEntry( "DisableAccel",
-    //        false ) );
-    //m_slideEffect->disableShortcut( config.readEntry( "DisableAccel",
-    //                                        false ) );
+    delete m_effect;
+    if ( m_usePlasma ) {
+        m_effect = new PlasmaEffect( m_parent );
+        m_effect ->setReadOnly( m_usePlasmaRO );
+    } else if ( m_useImages ) {
+        SlideEffect* slide = new SlideEffect( m_parent );
+        if ( oldPath != path || oldRecursive != recursive
+                || oldUseImages != m_useImages )
+            slide->reset( path, recursive, slideInterval );
 
-    if (( oldPath != path || oldRecursive != recursive
-            || oldUseImages != m_useImages ) && m_useImages )
-        m_slideEffect->reset( path, recursive, slideInterval );
+        if ( slide->hasImages() )
+            m_effect = slide;
+        else
+            m_effect = new GrayEffect( m_parent );
+    } else
+        m_effect = new GrayEffect( m_parent );
+
+    connect( m_effect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect( m_effect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
+
+    m_effect->showMinimize( !config.readEntry( "HideMinimizeButton", false ) );
+    m_effect->disableShortcut( config.readEntry( "DisableAccel", false ) );
 
     oldPath = path;
     oldRecursive = recursive;
