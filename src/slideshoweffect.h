@@ -24,7 +24,7 @@
 #include <QWidget>
 #include "breakbase.h"
 
-class SlideShow;
+class SlideWidget;
 
 class SlideEffect : public BreakBase
 {
@@ -45,7 +45,7 @@ private slots:
 private:
     void findImagesInFolder( const QString& folder );
 
-    SlideShow*      m_slideShow;
+    SlideWidget*    m_slidewidget;
     QString         m_basePath;
     QTimer*         m_timer_slide;
 
@@ -56,7 +56,7 @@ private:
     QStringList     m_files_done;
 };
 
-class SlideShow : public QWidget
+class SlideWidget : public QWidget
 {
     Q_OBJECT
 public:
@@ -65,12 +65,12 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit SlideShow( QWidget *parent = 0 );
+    explicit SlideWidget( QWidget *parent = 0 );
 
     /**
      * Destructor
      */
-    ~SlideShow();
+    ~SlideWidget();
 
     void setImage( QImage* image );
 };

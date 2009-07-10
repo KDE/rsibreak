@@ -359,10 +359,6 @@ void RSIObject::startTimer( bool idle )
 
 void RSIObject::readConfig()
 {
-    static QString oldPath;
-    static bool oldRecursive;
-    static bool oldUseImages;
-
     KConfigGroup config = KGlobal::config()->group( "General Settings" );
     m_showTimerReset = config.readEntry( "ShowTimerReset", false );
 
@@ -381,32 +377,36 @@ void RSIObject::readConfig()
     bool timertype = config.readEntry( "UseNoIdleTimer", false );
     startTimer( !timertype );
 
+    int effect =  config.readEntry( "Effect", 0 );
+
     delete m_effect;
-    if ( m_usePlasma ) {
+    switch ( effect ) {
+    case Plasma: {
         m_effect = new PlasmaEffect( m_parent );
         m_effect ->setReadOnly( m_usePlasmaRO );
-    } else if ( m_useImages ) {
+        break;
+    }
+    case SlideShow: {
         SlideEffect* slide = new SlideEffect( m_parent );
-        if ( oldPath != path || oldRecursive != recursive
-                || oldUseImages != m_useImages )
-            slide->reset( path, recursive, slideInterval );
-
+        slide->reset( path, recursive, slideInterval );
         if ( slide->hasImages() )
             m_effect = slide;
         else
             m_effect = new GrayEffect( m_parent );
-    } else
+        break;
+    }
+    case SimpleGray:
+    default: {
         m_effect = new GrayEffect( m_parent );
+        break;
+    }
+    }
 
     connect( m_effect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
     connect( m_effect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
     m_effect->showMinimize( !config.readEntry( "HideMinimizeButton", false ) );
     m_effect->disableShortcut( config.readEntry( "DisableAccel", false ) );
-
-    oldPath = path;
-    oldRecursive = recursive;
-    oldUseImages = m_useImages;
 }
 
 #include "rsiwidget.moc"

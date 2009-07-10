@@ -34,24 +34,27 @@ BreakBase::BreakBase( QWidget* parent )
     m_breakControl->installEventFilter( this );
     connect( m_breakControl, SIGNAL( skip() ), SIGNAL( skip() ) );
     connect( m_breakControl, SIGNAL( lock() ), SIGNAL( lock() ) );
-
-    KWindowSystem::forceActiveWindow( m_breakControl->winId() );
-    KWindowSystem::setOnAllDesktops( m_breakControl->winId(), true );
-    KWindowSystem::setState( m_breakControl->winId(), NET::KeepAbove );
-    KWindowSystem::setState( m_breakControl->winId(), NET::FullScreen );
-
 }
 
 void BreakBase::activate()
 {
     m_breakControl->show();
     m_breakControl->setFocus();
-    if ( m_readOnly )
+
+    KWindowSystem::forceActiveWindow( m_breakControl->winId() );
+    KWindowSystem::setOnAllDesktops( m_breakControl->winId(), true );
+    KWindowSystem::setState( m_breakControl->winId(), NET::KeepAbove );
+    KWindowSystem::setState( m_breakControl->winId(), NET::FullScreen );
+
+    if ( m_readOnly ) {
         m_breakControl->grabKeyboard();
+        m_breakControl->grabMouse();
+    }
 }
 
 void BreakBase::deactivate()
 {
+    m_breakControl->releaseMouse();
     m_breakControl->releaseKeyboard();
     m_breakControl->hide();
 }
@@ -61,10 +64,16 @@ bool BreakBase::eventFilter( QObject *obj, QEvent *event )
     if ( event->type() == QEvent::KeyPress ) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>( event );
         kDebug() << "Ate key press" << keyEvent->key();
-        if ( keyEvent->key() == Qt::Key_Escape && !m_disableShortcut ) {
+        if ( !m_disableShortcut && keyEvent->key() == Qt::Key_Escape ) {
             kDebug() << "Escape";
             emit skip();
         }
+        return true;
+    } else if ( m_readOnly &&
+                ( event->type() == QEvent::MouseButtonPress ||
+                  event->type() == QEvent::MouseButtonDblClick )
+              ) {
+        kDebug() << "Ate mouse click event";
         return true;
     } else {
         return QObject::eventFilter( obj, event );

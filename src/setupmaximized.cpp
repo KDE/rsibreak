@@ -19,6 +19,7 @@
 
 // Local includes.
 #include "setupmaximized.h"
+#include "rsiwidget.h" // effects enum
 
 // QT includes.
 #include <QPushButton>
@@ -28,6 +29,7 @@
 #include <QGroupBox>
 
 // KDE includes.
+#include <KComboBox>
 #include <KLocale>
 #include <KApplication>
 #include <KFileDialog>
@@ -53,9 +55,7 @@ public:
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
     QCheckBox*        readOnlyPlasma;
-
-
-
+    KComboBox*        effectBox;
 };
 
 SetupMaximized::SetupMaximized( QWidget* parent )
@@ -67,19 +67,25 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     // Counterbox and skipbox next to eachother
 
+    QLabel* effectLabel = new QLabel( i18n( "Chose the effect you want to during breaks" ) );
+    d->effectBox = new KComboBox( this );
+    d->effectBox->addItem( "Simple Gray Effect", QVariant( RSIObject::SimpleGray ) );
+    d->effectBox->addItem( "Show Plasma Dashboard", QVariant( RSIObject::Plasma ) );
+    d->effectBox->addItem( "Show Slide show of images", QVariant( RSIObject::SlideShow ) );
+    connect( d->effectBox, SIGNAL( currentIndexChanged( int ) ),
+             SLOT( slotEffectChanged( int ) ) );
+
     //---------------- SKIP BOX
     QGroupBox *skipBox = new QGroupBox( this );
     skipBox->setTitle( i18n( "Skipping Breaks" ) );
 
-    d->hideMinimizeButton = new QCheckBox( i18n( "H&ide button" ), this );
+    d->hideMinimizeButton = new QCheckBox( i18n( "&Hide skip button" ), this );
     d->hideMinimizeButton->setWhatsThis( i18n( "Check this option to disable and "
                                          "hide the skip button. This way you can prevent skipping the break." ) );
 
-    d->disableAccel = new QCheckBox( i18n( "&Shortcut Locks" ), this );
+    d->disableAccel = new QCheckBox( i18n( "&Disable shortcut" ), this );
     d->disableAccel->setWhatsThis( i18n( "Check this option to disable the skip "
-                                         "shortcut. This way you can prevent skipping the break. Instead it "
-                                         "will lock the screen." ) );
-    connect( d->disableAccel, SIGNAL( toggled( bool ) ), SLOT( slotHideShortcut() ) );
+                                         "shortcut. This way you can prevent skipping the break." ) );
 
     QVBoxLayout *vbox1 = new QVBoxLayout( skipBox );
     vbox1->addWidget( d->hideMinimizeButton );
@@ -90,8 +96,6 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     //------------------ Plasma Setup
     d->plasmaBox = new QGroupBox( this );
     d->plasmaBox->setTitle( i18n( "Plasma Dashboard" ) );
-    d->plasmaBox->setCheckable( true );
-    connect( d->plasmaBox, SIGNAL( toggled( bool ) ), SLOT( slotUsePlasma() ) );
 
     d->readOnlyPlasma = new QCheckBox( i18n( "Read Only" ), this );
 
@@ -102,8 +106,6 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     //------------------ PATH Setup
     d->slideshowBox = new QGroupBox( this );
     d->slideshowBox->setTitle( i18n( "Slideshow" ) );
-    d->slideshowBox->setCheckable( true );
-    connect( d->slideshowBox, SIGNAL( toggled( bool ) ), SLOT( slotUseImages() ) );
 
     KHBox *imageFolderBox = new KHBox( this );
     d->imageFolderEdit = new KLineEdit( imageFolderBox );
@@ -158,15 +160,15 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vbox3->addStretch( 1 );
     popupBox->setLayout( vbox3 );
 
-    l->addWidget( skipBox );
+    l->addWidget( effectLabel );
+    l->addWidget( d->effectBox );
     l->addWidget( d->plasmaBox );
     l->addWidget( d->slideshowBox );
+    l->addWidget( skipBox );
     l->addWidget( popupBox );
     setLayout( l );
     readSettings();
     slotHideFlash();
-    slotUsePlasma();
-    slotUseImages();
 }
 
 SetupMaximized::~SetupMaximized()
@@ -174,18 +176,24 @@ SetupMaximized::~SetupMaximized()
     delete d;
 }
 
-void SetupMaximized::slotUsePlasma()
+void SetupMaximized::slotEffectChanged( int current )
 {
-    d->slideshowBox->setEnabled( !d->plasmaBox->isChecked() );
-    d->readOnlyPlasma->setEnabled( d->plasmaBox->isChecked() );
-}
-
-void SetupMaximized::slotUseImages()
-{
-    d->searchRecursiveCheck->setEnabled( d->slideshowBox->isChecked() );
-    d->imageFolderEdit->setEnabled( d->slideshowBox->isChecked() );
-    d->changePathButton->setEnabled( d->slideshowBox->isChecked() );
-    d->plasmaBox->setEnabled( !d->slideshowBox->isChecked() );
+    int effect = d->effectBox->itemData( current ).toInt();
+    switch ( effect ) {
+    case RSIObject::SlideShow:
+        d->slideshowBox->setVisible( true );
+        d->plasmaBox->setVisible( false );
+        break;
+    case RSIObject::Plasma:
+        d->slideshowBox->setVisible( false );
+        d->plasmaBox->setVisible( true );
+        break;
+    case RSIObject::SimpleGray:
+    default:
+        d->slideshowBox->setVisible( false );
+        d->plasmaBox->setVisible( false );
+        break;
+    }
 }
 
 void SetupMaximized::slotFolderPicker()
@@ -223,12 +231,10 @@ void SetupMaximized::applySettings()
                        d->hideMinimizeButton->isChecked() );
     config.writeEntry( "SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked() );
-    config.writeEntry( "ShowImages",
-                       d->slideshowBox->isChecked() );
+    config.writeEntry( "Effect",
+                       d->effectBox->itemData( d->effectBox->currentIndex() ) );
 
     config.writeEntry( "DisableAccel", d->disableAccel->isChecked() );
-    config.writeEntry( "UsePlasma",
-                       d->plasmaBox->isChecked() );
     config.writeEntry( "UsePlasmaReadOnly",
                        d->readOnlyPlasma->isChecked() );
 
@@ -251,13 +257,15 @@ void SetupMaximized::readSettings()
     d->imageFolderEdit->setText( config.readEntry( "ImageFolder", dir ) );
     d->hideMinimizeButton->setChecked(
         config.readEntry( "HideMinimizeButton", false ) );
-    d->slideshowBox->setChecked(
-        config.readEntry( "ShowImages", false ) );
+
+    const int effect = d->effectBox->findData( QVariant(
+                           config.readEntry( "Effect", 0 ) ) );
+    d->effectBox->setCurrentIndex( effect );
+    slotEffectChanged( effect );
+
     d->searchRecursiveCheck->setChecked(
         config.readEntry( "SearchRecursiveCheck", false ) );
     d->disableAccel->setChecked( config.readEntry( "DisableAccel", false ) );
-    d->plasmaBox->setChecked(
-        config.readEntry( "UsePlasma", false ) );
     d->readOnlyPlasma->setChecked(
         config.readEntry( "UsePlasmaReadOnly", true ) );
 

@@ -109,7 +109,6 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
 void RSIRelaxPopup::flash()
 {
-    kDebug() << m_useFlash;
     if ( !m_useFlash )
         return;
 

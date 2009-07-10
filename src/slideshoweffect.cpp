@@ -32,11 +32,11 @@
 SlideEffect::SlideEffect( QWidget *parent )
         : BreakBase( parent ), m_searchRecursive( false )
 {
-    m_slideShow = new SlideShow( parent );
-    KWindowSystem::forceActiveWindow( m_slideShow->winId() );
-    KWindowSystem::setOnAllDesktops( m_slideShow->winId(), true );
-    KWindowSystem::setState( m_slideShow->winId(), NET::KeepAbove );
-    KWindowSystem::setState( m_slideShow->winId(), NET::FullScreen );
+    m_slidewidget = new SlideWidget( parent );
+    KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
+    KWindowSystem::setOnAllDesktops( m_slidewidget->winId(), true );
+    KWindowSystem::setState( m_slidewidget->winId(), NET::KeepAbove );
+    KWindowSystem::setState( m_slidewidget->winId(), NET::FullScreen );
 
     setReadOnly( true );
 
@@ -51,7 +51,7 @@ bool SlideEffect::hasImages()
 
 void SlideEffect::activate()
 {
-    m_slideShow->show();
+    m_slidewidget->show();
     m_timer_slide->start( m_slideInterval*1000 );
     BreakBase::activate();
 }
@@ -59,7 +59,7 @@ void SlideEffect::activate()
 void SlideEffect::deactivate()
 {
     m_timer_slide->stop();
-    m_slideShow->hide();
+    m_slidewidget->hide();
     BreakBase::deactivate();
 }
 
@@ -115,7 +115,7 @@ void SlideEffect::loadImage()
     if ( m->isNull() )
         return;
 
-    m_slideShow->setImage( m );
+    m_slidewidget->setImage( m );
 }
 
 void SlideEffect::findImagesInFolder( const QString& folder )
@@ -177,7 +177,7 @@ void SlideEffect::reset( const QString& path, bool recursive, int slideInterval 
 // ------------------ Show widget
 
 
-SlideShow::SlideShow( QWidget *parent )
+SlideWidget::SlideWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup )
 {
     QRect rect = QApplication::desktop()->screenGeometry(
@@ -185,9 +185,9 @@ SlideShow::SlideShow( QWidget *parent )
     setGeometry( rect );
 }
 
-SlideShow::~SlideShow() {}
+SlideWidget::~SlideWidget() {}
 
-void SlideShow::setImage( QImage* image )
+void SlideWidget::setImage( QImage* image )
 {
     QPalette palette;
     palette.setBrush( backgroundRole(), QBrush( QPixmap::fromImage( *image ) ) );

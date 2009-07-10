@@ -39,6 +39,9 @@ class RSIObject : public QObject
     Q_OBJECT
 
 public:
+
+    enum Effects {  SimpleGray = 0, Plasma, SlideShow };
+
     /**
      * Constructor
      * @param parent Parent Widget

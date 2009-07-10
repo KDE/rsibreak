@@ -55,11 +55,10 @@ public:
     void applySettings();
 
 private slots:
+    void slotEffectChanged( int current );
     void slotFolderPicker();
     void slotFolderEdited( const QString& newPath );
     void slotHideFlash();
-    void slotUsePlasma();
-    void slotUseImages();
 
 private:
     void readSettings();
