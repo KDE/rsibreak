@@ -25,7 +25,7 @@
 #include <QKeyEvent>
 
 BreakBase::BreakBase( QWidget* parent )
-        : QObject( parent ), m_disableShortcut( false )
+        : QObject( parent ), m_readOnly( false ), m_disableShortcut( false )
 {
     m_parent = parent;
     m_parent->installEventFilter( this );
@@ -46,10 +46,8 @@ void BreakBase::activate()
     KWindowSystem::setState( m_breakControl->winId(), NET::KeepAbove );
     KWindowSystem::setState( m_breakControl->winId(), NET::FullScreen );
 
-    if ( m_readOnly ) {
-        m_breakControl->grabKeyboard();
-        m_breakControl->grabMouse();
-    }
+    m_breakControl->grabKeyboard();
+    m_breakControl->grabMouse();
 }
 
 void BreakBase::deactivate()

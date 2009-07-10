@@ -211,7 +211,6 @@ void RSITimer::resetAfterBigBreak()
 
 void RSITimer::slotStart()
 {
-    emit minimize();
     emit updateIdleAvg( 0.0 );
     m_suspended = false;
 }
@@ -219,8 +218,6 @@ void RSITimer::slotStart()
 void RSITimer::slotStop()
 {
     m_suspended = true;
-
-    emit minimize();
     emit updateIdleAvg( 0.0 );
     emit updateToolTip( 0, 0 );
 }
@@ -241,6 +238,7 @@ void RSITimer::slotRestart()
 
 void RSITimer::skipBreak()
 {
+    emit minimize();
     if ( m_big_left <= m_tiny_left ) {
         resetAfterBigBreak();
         RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS_SKIPPED );

@@ -17,6 +17,7 @@
 */
 
 #include "plasmaeffect.h"
+#include "kdeversion.h"
 
 #include <KDebug>
 #include <QWidget>
@@ -29,17 +30,29 @@ PlasmaEffect::PlasmaEffect( QWidget* parent )
 
 void PlasmaEffect::activate()
 {
-    kDebug();
+#if KDE_IS_VERSION(4,3,60)
+    kDebug() << "New style";
     QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
     dbus.call( QLatin1String( "showDashboard" ), true );
+#else
+    kDebug() << "Old style";
+    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
+    dbus.call( QLatin1String( "toggleDashboard" ) );
+#endif
     BreakBase::activate();
 }
 
 void PlasmaEffect::deactivate()
 {
-    kDebug();
+#if KDE_IS_VERSION(4,3,60)
+    kDebug() << "New style";
     QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
     dbus.call( QLatin1String( "showDashboard" ), false );
+#else
+    kDebug() << "Old style";
+    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
+    dbus.call( QLatin1String( "toggleDashboard" ) );
+#endif
     BreakBase::deactivate();
 }
 
