@@ -228,7 +228,10 @@ void RSIObject::maximize()
 
 void RSIObject::slotLock()
 {
+    kDebug();
     m_slideEffect->deactivate();
+    m_plasmaEffect->deactivate();
+    m_grayEffect->deactivate();
 
     QDBusInterface lock( "org.freedesktop.ScreenSaver", "/ScreenSaver",
                          "org.freedesktop.ScreenSaver" );

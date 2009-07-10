@@ -24,7 +24,6 @@ KDE4_ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
 
 # source files needed
 SET(rsibreak_sources
-boxdialog.cpp
 slideshoweffect.cpp
 grayeffect.cpp
 passivepopup.cpp
@@ -44,6 +43,7 @@ rsiglobals.cpp
 rsistatitem.cpp
 breakbase.cpp
 plasmaeffect.cpp
+breakcontrol.cpp
 )
 
 QT4_ADD_DBUS_ADAPTOR( rsibreak_sources

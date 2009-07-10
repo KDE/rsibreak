@@ -17,34 +17,43 @@
 */
 
 #include "breakbase.h"
+#include "breakcontrol.h"
 
 #include <KDebug>
+#include <KWindowSystem>
 
 #include <QKeyEvent>
-#include <QLabel>
 
 BreakBase::BreakBase( QWidget* parent )
         : QObject( parent )
 {
     m_parent = parent;
     m_parent->installEventFilter( this );
-    m_label = new QLabel( parent, Qt::Popup );
-    m_label->hide();
-    m_label->installEventFilter( this );
+    m_breakControl = new BreakControl( parent, Qt::Popup );
+    m_breakControl->hide();
+    m_breakControl->installEventFilter( this );
+    connect( m_breakControl, SIGNAL( skip() ), SIGNAL( skip() ) );
+    connect( m_breakControl, SIGNAL( lock() ), SIGNAL( lock() ) );
+
+    KWindowSystem::forceActiveWindow( m_breakControl->winId() );
+    KWindowSystem::setOnAllDesktops( m_breakControl->winId(), true );
+    KWindowSystem::setState( m_breakControl->winId(), NET::KeepAbove );
+    KWindowSystem::setState( m_breakControl->winId(), NET::FullScreen );
+
 }
 
 void BreakBase::activate()
 {
-    m_label->show();
-    m_label->setFocus();
+    m_breakControl->show();
+    m_breakControl->setFocus();
     if ( m_readOnly )
-        m_label->grabKeyboard();
+        m_breakControl->grabKeyboard();
 }
 
 void BreakBase::deactivate()
 {
-    m_label->releaseKeyboard();
-    m_label->hide();
+    m_breakControl->releaseKeyboard();
+    m_breakControl->hide();
 }
 
 bool BreakBase::eventFilter( QObject *obj, QEvent *event )
@@ -54,7 +63,7 @@ bool BreakBase::eventFilter( QObject *obj, QEvent *event )
         kDebug() << "Ate key press" << keyEvent->key();
         if ( keyEvent->key() == Qt::Key_Escape ) {
             kDebug() << "Escape";
-            deactivate();
+            emit skip();
         }
         return true;
     } else {
@@ -74,7 +83,7 @@ bool BreakBase::readOnly() const
 
 void BreakBase::setLabel( const QString& text )
 {
-    m_label->setText( text );
+    m_breakControl->setText( text );
 }
 
 #include "breakbase.moc"

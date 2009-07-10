@@ -16,36 +16,35 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#ifndef BREAKBASE_H
-#define BREAKBASE_H
+#ifndef BREAKCONTROL_H
+#define BREAKCONTROL_H
 
-#include <QObject>
+#include <QWidget>
 
-class BreakControl;
+class QLabel;
+class QPushButton;
+class QVBoxLayout;
 
-class BreakBase : public QObject
+class BreakControl : public QWidget
 {
     Q_OBJECT
 
 public:
-    BreakBase( QWidget* parent );
-    virtual void setReadOnly( bool );
-    virtual bool readOnly() const;
-    virtual void activate();
-    virtual void deactivate();
-    virtual void setLabel( const QString& );
+    BreakControl( QWidget*, Qt::WindowType );
+    void setText( const QString& );
 
 protected:
-    virtual bool eventFilter( QObject *obj, QEvent *event );
+    void paintEvent(QPaintEvent *event);
 
 signals:
     void skip();
     void lock();
 
 private:
-    BreakControl* m_breakControl;
-    QWidget* m_parent;
-    bool m_readOnly;
+    QLabel* m_textLabel;
+    QPushButton* m_skipButton;
+    QPushButton* m_lockButton;
+    QVBoxLayout* m_vbox;
 };
 
-#endif // BREAKBASE_H
+#endif // BREAKCONTROL_H
