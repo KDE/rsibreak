@@ -51,6 +51,11 @@ void GrayEffect::deactivate()
     BreakBase::deactivate();
 }
 
+void GrayEffect::setLevel( int val )
+{
+    m_grayWidget->setLevel( val );
+}
+
 GrayWidget::GrayWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup )
 {
@@ -58,7 +63,6 @@ GrayWidget::GrayWidget( QWidget *parent )
                      QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
     setAutoFillBackground( false );
-    setWindowOpacity( 0.8 );
 }
 
 bool GrayWidget::event( QEvent *event )
@@ -69,7 +73,18 @@ bool GrayWidget::event( QEvent *event )
         p.setCompositionMode( QPainter::CompositionMode_Source );
         p.fillRect( rect(), QColor( 0,0,0,180 ) );
     }
-
     return QWidget::event( event );
 }
+
+void GrayWidget::setLevel( int val )
+{
+    double level = 0;
+    if ( val > 0 )
+        level = ( double )val / 100;
+
+    kDebug() << "New Value" << level;
+    setWindowOpacity( level );
+    update();
+}
+
 #include "grayeffect.moc"

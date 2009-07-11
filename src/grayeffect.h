@@ -33,6 +33,7 @@ public:
     GrayEffect( QWidget *parent );
     void activate();
     void deactivate();
+    void setLevel( int val );
 
 private:
     GrayWidget* m_grayWidget;
@@ -49,6 +50,7 @@ public:
      * @param parent Parent Widget
      */
     explicit GrayWidget( QWidget *parent = 0 );
+    void setLevel( int );
 
 protected:
     virtual bool event( QEvent *event );

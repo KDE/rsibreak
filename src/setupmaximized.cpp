@@ -44,6 +44,7 @@ public:
     KHBox*            fontBox;
     QGroupBox*        slideshowBox;
     QGroupBox*        plasmaBox;
+    QGroupBox*        grayBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
     KLineEdit*        imageFolderEdit;
@@ -56,6 +57,7 @@ public:
     QLabel*           useFlashLabel;
     QCheckBox*        readOnlyPlasma;
     KComboBox*        effectBox;
+    QSlider*          graySlider;
 };
 
 SetupMaximized::SetupMaximized( QWidget* parent )
@@ -103,6 +105,26 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QVBoxLayout *vbox5 = new QVBoxLayout( d->plasmaBox );
     vbox5->addWidget( d->readOnlyPlasma );
     d->plasmaBox->setLayout( vbox5 );
+
+    //------------------ Gray Setup
+    d->grayBox = new QGroupBox( this );
+    d->grayBox->setTitle( i18n( "Transparancy level" ) );
+
+    KHBox* hboxslider = new KHBox( this );
+    hboxslider->setSpacing( 30 );
+    new QLabel( i18n( "Transparant" ), hboxslider );
+    d->graySlider = new QSlider( hboxslider );
+    d->graySlider->setOrientation( Qt::Horizontal );
+    d->graySlider->setMinimum( 0 );
+    d->graySlider->setPageStep( 10 );
+    d->graySlider->setSingleStep( 5 );
+    d->graySlider->setTickPosition( QSlider::TicksBelow );
+    d->graySlider->setMaximum( 100 );
+    new QLabel( i18n( "Solid" ), hboxslider );
+
+    QVBoxLayout *vbox8 = new QVBoxLayout( d->grayBox );
+    vbox8->addWidget( hboxslider );
+    d->plasmaBox->setLayout( vbox8 );
 
     //------------------ PATH Setup
     d->slideshowBox = new QGroupBox( this );
@@ -163,6 +185,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     l->addWidget( effectLabel );
     l->addWidget( d->effectBox );
+    l->addWidget( d->grayBox );
     l->addWidget( d->plasmaBox );
     l->addWidget( d->slideshowBox );
     l->addWidget( skipBox );
@@ -184,13 +207,19 @@ void SetupMaximized::slotEffectChanged( int current )
     case RSIObject::SlideShow:
         d->slideshowBox->setVisible( true );
         d->plasmaBox->setVisible( false );
+        d->grayBox->setVisible( false );
         break;
     case RSIObject::Plasma:
         d->slideshowBox->setVisible( false );
         d->plasmaBox->setVisible( true );
+        d->grayBox->setVisible( false );
+        break;
+    case RSIObject::SimpleGray:
+        d->slideshowBox->setVisible( false );
+        d->plasmaBox->setVisible( false );
+        d->grayBox->setVisible( true );
         break;
     case RSIObject::Popup:
-    case RSIObject::SimpleGray:
     default:
         d->slideshowBox->setVisible( false );
         d->plasmaBox->setVisible( false );
@@ -239,7 +268,7 @@ void SetupMaximized::applySettings()
     config.writeEntry( "DisableAccel", d->disableAccel->isChecked() );
     config.writeEntry( "UsePlasmaReadOnly",
                        d->readOnlyPlasma->isChecked() );
-
+    config.writeEntry( "Graylevel", d->graySlider->value() );
     config = KGlobal::config()->group( "Popup Settings" );
     config.writeEntry( "UsePopup",
                        d->usePopup->isChecked() );
@@ -270,7 +299,7 @@ void SetupMaximized::readSettings()
     d->disableAccel->setChecked( config.readEntry( "DisableAccel", false ) );
     d->readOnlyPlasma->setChecked(
         config.readEntry( "UsePlasmaReadOnly", true ) );
-
+    d->graySlider->setValue( config.readEntry( "Graylevel", 80 ) );
     config = KGlobal::config()->group( "Popup Settings" );
     d->usePopup->setChecked(
         config.readEntry( "UsePopup", true ) );

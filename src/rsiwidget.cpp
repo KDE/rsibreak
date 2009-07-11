@@ -404,7 +404,9 @@ void RSIObject::readConfig()
     }
     case SimpleGray:
     default: {
-        m_effect = new GrayEffect( m_parent );
+        GrayEffect* effect = new GrayEffect( m_parent );
+        effect->setLevel( config.readEntry( "Graylevel", 80 ) );
+        m_effect = effect;
         break;
     }
     }
