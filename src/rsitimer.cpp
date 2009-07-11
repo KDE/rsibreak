@@ -1,5 +1,5 @@
 /* This file is part of the KDE project
-   Copyright (C) 2005-2006,2008 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2006,2008-2009 Tom Albers <tomalbers@kde.nl>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    The parts for idle detection is based on

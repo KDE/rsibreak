@@ -32,6 +32,7 @@
 #include <KVBox>
 #include <KConfigGroup>
 #include <KGlobal>
+#include <kdeversion.h>
 
 class SetupTimingPriv
 {
@@ -65,8 +66,13 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->tinyInterval = new KIntNumInput( m );
     d->tinyInterval->setRange( 1, 1000, 1 );
     d->tinyInterval->setSliderEnabled( false );
-    d->debug ? d->tinyInterval->setSuffix( ki18np( " second", " seconds" ).toString() )
-    : d->tinyInterval->setSuffix( ki18np( " minute", " minutes" ).toString() );
+#if KDE_IS_VERSION(4, 2, 80)
+    d->debug ? d->tinyInterval->setSuffix( ki18np( " second", " seconds" ) )
+    : d->tinyInterval->setSuffix( ki18np( " minute", " minutes" ) );
+#else
+    d->debug ? d->tinyInterval->setSuffix( i18n( " seconds" ) )
+    : d->tinyInterval->setSuffix( i18n( " minutes" ) );
+#endif
     l1->setBuddy( d->tinyInterval );
     connect( d->tinyInterval, SIGNAL( valueChanged( int ) ),
              SLOT( slotTinyValueChanged( int ) ) );
@@ -78,7 +84,11 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->tinyDuration = new KIntNumInput( m2 );
     d->tinyDuration->setRange( 1, 1000, 1 );
     d->tinyDuration->setSliderEnabled( false );
-    d->tinyDuration->setSuffix( ki18np( " second", " seconds" ).toString() );
+#if KDE_IS_VERSION(4, 2, 80)
+    d->tinyDuration->setSuffix( ki18np( " second", " seconds" ) );
+#else
+    d->tinyDuration->setSuffix( i18n( " seconds" ) );
+#endif
     l2->setBuddy( d->tinyDuration );
 
     QVBoxLayout *vbox0 = new QVBoxLayout( tinyBox );
@@ -101,8 +111,13 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->bigInterval = new KIntNumInput( m3 );
     d->bigInterval->setRange( 1, 1000, 1 );
     d->bigInterval->setSliderEnabled( false );
-    d->debug ? d->bigInterval->setSuffix( ki18np( " second", " seconds" ).toString() )
-    : d->bigInterval->setSuffix( ki18np( " minute", " minutes" ).toString() );
+#if KDE_IS_VERSION(4, 2, 80)
+    d->debug ? d->bigInterval->setSuffix( ki18np( " second", " seconds" ) )
+    : d->bigInterval->setSuffix( ki18np( " minute", " minutes" ) );
+#else
+    d->debug ? d->bigInterval->setSuffix( i18n( " seconds" ) )
+    : d->bigInterval->setSuffix( i18n( " minutes" ) );
+#endif
     l3->setBuddy( d->bigInterval );
 
     KHBox *m4 = new KHBox( this );
@@ -112,8 +127,13 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->bigDuration = new KIntNumInput( m4 );
     d->bigDuration->setRange( 1, 1000, 1 );
     d->bigDuration->setSliderEnabled( false );
-    d->debug ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ).toString() )
-    : d->bigDuration->setSuffix( ki18np( " minute", " minutes" ).toString() );
+#if KDE_IS_VERSION(4, 2, 80)
+    d->debug ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ) )
+    : d->bigDuration->setSuffix( ki18np( " minute", " minutes" ) );
+#else
+    d->debug ? d->bigDuration->setSuffix( i18n( " seconds" ) )
+    : d->bigDuration->setSuffix( i18n( " minutes" ) );
+#endif
     l4->setBuddy( d->bigDuration );
 
     QVBoxLayout *vbox1 = new QVBoxLayout( bigBox );
@@ -135,7 +155,11 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->slideInterval = new KIntNumInput( m5 );
     d->slideInterval->setRange( 3, 1000, 1 );
     d->slideInterval->setSliderEnabled( false );
-    d->slideInterval->setSuffix( ki18np( " second", " seconds" ).toString() );
+#if KDE_IS_VERSION(4, 2, 80)
+    d->slideInterval->setSuffix( ki18np( " second", " seconds" ) );
+#else
+    d->slideInterval->setSuffix( i18n( " seconds" ) );
+#endif
     l5->setBuddy( d->slideInterval );
 
     QVBoxLayout *vbox2 = new QVBoxLayout( slideBox );
