@@ -24,16 +24,20 @@
 
 #include <QKeyEvent>
 
-BreakBase::BreakBase( QWidget* parent )
+BreakBase::BreakBase( QObject* parent )
         : QObject( parent ), m_readOnly( false ), m_disableShortcut( false )
 {
     m_parent = parent;
-    m_parent->installEventFilter( this );
-    m_breakControl = new BreakControl( parent, Qt::Popup );
+    m_breakControl = new BreakControl( 0, Qt::Popup );
     m_breakControl->hide();
     m_breakControl->installEventFilter( this );
     connect( m_breakControl, SIGNAL( skip() ), SIGNAL( skip() ) );
     connect( m_breakControl, SIGNAL( lock() ), SIGNAL( lock() ) );
+}
+
+BreakBase::~BreakBase()
+{
+    delete m_breakControl;
 }
 
 void BreakBase::activate()

@@ -32,7 +32,8 @@ class PopupEffect : public BreakBase
     Q_OBJECT
 
 public:
-    PopupEffect( QWidget* );
+    PopupEffect( QObject* );
+    ~PopupEffect();
     void setTray( QSystemTrayIcon* );
     void setLabel( const QString& );
 

@@ -305,3 +305,17 @@ Comment[uk]=Час, коли завершиться довга перерва
 Comment[x-test]=xxWhen a long break endsxx
 Comment[zh_CN]=什么时候结束大课间休息
 Comment[zh_TW]=休息結束時間
+
+[Context/timers]
+Name=Regarding timers
+
+[Event/short timer reset]
+Contexts=timers
+Action=Popup
+Name=When the short timer has been reset
+
+[Event/timers reset]
+Contexts=timers
+Action=Popup
+Name=When the timers have been reset
+

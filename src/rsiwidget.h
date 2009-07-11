@@ -37,6 +37,7 @@ class BreakBase;
 class RSIObject : public QObject
 {
     Q_OBJECT
+    Q_CLASSINFO( "D-Bus Interface", "org.rsibreak.rsiwidget" )
 
 public:
 
@@ -61,12 +62,7 @@ public:
         return m_timer;
     };
 
-    void showWhereIAm();
-    QString currentIcon() {
-        return m_currentIcon;
-    };
     static QPixmap takeScreenshot( RSIDock* );
-
 
 private slots:
     void slotWelcome();
@@ -109,48 +105,36 @@ private:
 
     bool            m_useIdleDetection;
     QString         m_currentIcon;
-};
 
-class RSIWidget: public QLabel
-{
-    Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.rsibreak.rsiwidget" )
-
-public:
-    explicit RSIWidget();
 
     /* Available through D-Bus */
 public Q_SLOTS:
-    void showWhereIAm() {
-        m_rsiobject->showWhereIAm();
-    };
+    void showWhereIAm();
+
     void doBigBreak() {
-        m_rsiobject->timer()->slotRequestBigBreak();
+        timer()->slotRequestBigBreak();
     };
     void doTinyBreak() {
-        m_rsiobject->timer()->slotRequestTinyBreak();
+        timer()->slotRequestTinyBreak();
     };
     void resume() {
-        m_rsiobject->timer()->slotSuspended( false );
+        timer()->slotSuspended( false );
     };
     void suspend() {
-        m_rsiobject->timer()->slotSuspended( true );
+        timer()->slotSuspended( true );
     };
     int idleTime() {
-        return m_rsiobject->timer()->idleTime();
+        return timer()->idleTime();
     };
     int tinyLeft() {
-        return m_rsiobject->timer()->tinyLeft();
+        return timer()->tinyLeft();
     };
     int bigLeft() {
-        return m_rsiobject->timer()->bigLeft();
+        return timer()->bigLeft();
     };
     QString currentIcon() {
-        return m_rsiobject->currentIcon();
+        return m_currentIcon;
     };
-
-private:
-    RSIObject*  m_rsiobject;
 };
 
 #   endif

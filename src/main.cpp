@@ -96,7 +96,7 @@ int main( int argc, char *argv[] )
     // else it will exit(0) when closing any config/about/etc window.
     a.setQuitOnLastWindowClosed( false );
 
-    new RSIWidget();
+    new RSIObject();
 
     return a.exec();
 }

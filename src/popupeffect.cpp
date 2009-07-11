@@ -24,16 +24,21 @@
 
 #include <QLabel>
 
-PopupEffect::PopupEffect( QWidget* parent )
+PopupEffect::PopupEffect( QObject* parent )
         : BreakBase( parent )
 {
-    m_popup = new PassivePopup( parent );
+    m_popup = new PassivePopup( 0 );
 
     KHBox* box = new KHBox( m_popup );
     m_label = new QLabel( i18n( "Take a break...." ), box );
 
     m_popup->setView( box );
     m_popup->setTimeout( 0 );
+}
+
+PopupEffect::~PopupEffect()
+{
+    delete m_popup;
 }
 
 void PopupEffect::activate()

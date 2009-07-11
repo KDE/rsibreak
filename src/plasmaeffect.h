@@ -28,7 +28,7 @@ class PlasmaEffect : public BreakBase
     Q_OBJECT
 
 public:
-    PlasmaEffect( QWidget* );
+    PlasmaEffect( QObject* );
 
 public slots:
     void activate();

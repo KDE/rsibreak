@@ -49,7 +49,7 @@ breakcontrol.cpp
 
 QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
 org.rsibreak.rsiwidget.xml
-rsiwidget.h RSIWidget::RSIWidget
+rsiwidget.h RSIObject::RSIObject
 )
 
 # compilation

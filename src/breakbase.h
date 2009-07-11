@@ -28,7 +28,8 @@ class BreakBase : public QObject
     Q_OBJECT
 
 public:
-    BreakBase( QWidget* parent );
+    BreakBase( QObject* parent );
+    ~BreakBase();
     virtual void setReadOnly( bool );
     virtual bool readOnly() const;
     virtual void activate();
@@ -46,7 +47,7 @@ signals:
 
 private:
     BreakControl* m_breakControl;
-    QWidget* m_parent;
+    QObject* m_parent;
     bool m_readOnly;
     bool m_disableShortcut;
 };

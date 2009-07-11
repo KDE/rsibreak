@@ -31,7 +31,8 @@ class SlideEffect : public BreakBase
     Q_OBJECT
 
 public:
-    SlideEffect( QWidget *parent );
+    SlideEffect( QObject *parent );
+    ~SlideEffect();
     void reset( const QString& path, bool recursive, int interval );
     void activate();
     void deactivate();

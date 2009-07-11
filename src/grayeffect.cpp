@@ -26,7 +26,7 @@
 #include <KDebug>
 
 
-GrayEffect::GrayEffect( QWidget *parent )
+GrayEffect::GrayEffect( QObject *parent )
         : BreakBase( parent )
 {
     m_grayWidget = new GrayWidget( 0 );
@@ -36,6 +36,11 @@ GrayEffect::GrayEffect( QWidget *parent )
     KWindowSystem::setState( m_grayWidget->winId(), NET::FullScreen );
 
     setReadOnly( true );
+}
+
+GrayEffect::~GrayEffect()
+{
+    delete m_grayWidget;
 }
 
 void GrayEffect::activate()

@@ -29,10 +29,10 @@
 #include <KWindowSystem>
 
 
-SlideEffect::SlideEffect( QWidget *parent )
+SlideEffect::SlideEffect( QObject *parent )
         : BreakBase( parent ), m_searchRecursive( false )
 {
-    m_slidewidget = new SlideWidget( parent );
+    m_slidewidget = new SlideWidget( 0 );
     KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
     KWindowSystem::setOnAllDesktops( m_slidewidget->winId(), true );
     KWindowSystem::setState( m_slidewidget->winId(), NET::KeepAbove );
@@ -42,6 +42,11 @@ SlideEffect::SlideEffect( QWidget *parent )
 
     m_timer_slide = new QTimer( this );
     connect( m_timer_slide, SIGNAL( timeout() ),  SLOT( slotNewSlide() ) );
+}
+
+SlideEffect::~SlideEffect()
+{
+    delete m_slidewidget;
 }
 
 bool SlideEffect::hasImages()

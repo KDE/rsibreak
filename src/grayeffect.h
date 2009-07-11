@@ -20,6 +20,7 @@
 #ifndef GRAYWIDGET_H
 #define GRAYWIDGET_H
 
+#include <QObject>
 #include <QWidget>
 #include <breakbase.h>
 
@@ -30,7 +31,8 @@ class GrayEffect : public BreakBase
     Q_OBJECT
 
 public:
-    GrayEffect( QWidget *parent );
+    GrayEffect( QObject *parent );
+    ~GrayEffect();
     void activate();
     void deactivate();
     void setLevel( int val );

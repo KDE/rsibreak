@@ -40,6 +40,7 @@
 #include <KApplication>
 #include <KMessageBox>
 #include <KIconLoader>
+#include <KNotification>
 #include <KSystemTrayIcon>
 #include <KTemporaryFile>
 #include <KConfigGroup>
@@ -48,24 +49,10 @@
 #include <time.h>
 #include <math.h>
 
-RSIWidget::RSIWidget()
-        : QLabel()
-{
-    hide();
-    // D-Bus
-    new RsiwidgetAdaptor( this );
-    QDBusConnection dbus = QDBusConnection::sessionBus();
-    dbus.registerObject( "/rsibreak", this );
-
-    setText( "Nothing here" );
-    m_rsiobject = new RSIObject( this );
-}
-
 RSIObject::RSIObject( QWidget *parent )
-        : QObject( parent ), m_effect( 0 ), m_parent( parent ),
+        : QObject( parent ), m_effect( 0 ),
         m_useImages( false ), m_usePlasma( false ), m_usePlasmaRO( false )
 {
-
     // Keep these 3 lines _above_ the messagebox, so the text actually is right.
     m_tray = new RSIDock( parent );
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
@@ -97,6 +84,8 @@ RSIObject::RSIObject( QWidget *parent )
 
 RSIObject::~RSIObject()
 {
+    delete m_tray;
+    delete m_effect;
     delete RSIGlobals::instance();
 }
 
@@ -269,7 +258,9 @@ void RSIObject::tinyBreakSkipped()
     if ( !m_showTimerReset )
         return;
 
-    m_tooltip->setText( i18n( "Timer for the short break has now been reset" ) );
+    KNotification::event( "short timer reset",
+                          i18n( "Timer for the short break has now been reset" ),
+                          KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
     breakSkipped();
 }
 
@@ -278,7 +269,9 @@ void RSIObject::bigBreakSkipped()
     if ( !m_showTimerReset )
         return;
 
-    m_tooltip->setText( i18n( "The timers have now been reset" ) );
+    KNotification::event( "timers reset",
+                          i18n( "The timers have now been reset" ),
+                          KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
     breakSkipped();
 }
 
@@ -383,28 +376,29 @@ void RSIObject::readConfig()
     delete m_effect;
     switch ( effect ) {
     case Plasma: {
-        m_effect = new PlasmaEffect( m_parent );
+        m_effect = new PlasmaEffect( 0 );
         m_effect ->setReadOnly( m_usePlasmaRO );
         break;
     }
     case SlideShow: {
-        SlideEffect* slide = new SlideEffect( m_parent );
+        SlideEffect* slide = new SlideEffect( 0 );
         slide->reset( path, recursive, slideInterval );
         if ( slide->hasImages() )
             m_effect = slide;
         else
-            m_effect = new GrayEffect( m_parent );
+            delete slide;
+        m_effect = new GrayEffect( 0 );
         break;
     }
     case Popup: {
-        PopupEffect* effect = new PopupEffect( m_parent );
+        PopupEffect* effect = new PopupEffect( 0 );
         effect->setTray( m_tray );
         m_effect = effect;
         break;
     }
     case SimpleGray:
     default: {
-        GrayEffect* effect = new GrayEffect( m_parent );
+        GrayEffect* effect = new GrayEffect( 0 );
         effect->setLevel( config.readEntry( "Graylevel", 80 ) );
         m_effect = effect;
         break;

@@ -23,7 +23,7 @@
 #include <QWidget>
 #include <QDBusInterface>
 
-PlasmaEffect::PlasmaEffect( QWidget* parent )
+PlasmaEffect::PlasmaEffect( QObject* parent )
         : BreakBase( parent )
 {
 }
