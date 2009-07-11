@@ -40,7 +40,7 @@ class RSIObject : public QObject
 
 public:
 
-    enum Effects {  SimpleGray = 0, Plasma, SlideShow };
+    enum Effects {  SimpleGray = 0, Plasma, SlideShow, Popup };
 
     /**
      * Constructor

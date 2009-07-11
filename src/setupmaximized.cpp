@@ -71,7 +71,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->effectBox = new KComboBox( this );
     d->effectBox->addItem( "Simple Gray Effect", QVariant( RSIObject::SimpleGray ) );
     d->effectBox->addItem( "Show Plasma Dashboard", QVariant( RSIObject::Plasma ) );
-    d->effectBox->addItem( "Show Slide show of images", QVariant( RSIObject::SlideShow ) );
+    d->effectBox->addItem( "Show Slide Show of Images", QVariant( RSIObject::SlideShow ) );
+    d->effectBox->addItem( "No Full Screen Effect", QVariant( RSIObject::Popup ) );
     connect( d->effectBox, SIGNAL( currentIndexChanged( int ) ),
              SLOT( slotEffectChanged( int ) ) );
 
@@ -188,6 +189,7 @@ void SetupMaximized::slotEffectChanged( int current )
         d->slideshowBox->setVisible( false );
         d->plasmaBox->setVisible( true );
         break;
+    case RSIObject::Popup:
     case RSIObject::SimpleGray:
     default:
         d->slideshowBox->setVisible( false );

@@ -20,6 +20,7 @@
 #include "rsiwidget.h"
 #include "rsiwidgetadaptor.h"
 #include "grayeffect.h"
+#include "popupeffect.h"
 #include "plasmaeffect.h"
 #include "slideshoweffect.h"
 #include "rsitimer_dpms.h"
@@ -395,13 +396,18 @@ void RSIObject::readConfig()
             m_effect = new GrayEffect( m_parent );
         break;
     }
+    case Popup: {
+        PopupEffect* effect = new PopupEffect( m_parent );
+        effect->setTray( m_tray );
+        m_effect = effect;
+        break;
+    }
     case SimpleGray:
     default: {
         m_effect = new GrayEffect( m_parent );
         break;
     }
     }
-
     connect( m_effect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
     connect( m_effect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
 
