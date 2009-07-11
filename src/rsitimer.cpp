@@ -530,7 +530,12 @@ RSITimerNoIdle::~RSITimerNoIdle() {}
 
 void RSITimerNoIdle::timerEvent( QTimerEvent * )
 {
-    hibernationDetector();
+    // Just spot some long time inactivity...
+    int idle = idleTime();
+    if ( idle == 600 ) {
+        resetAfterBigBreak();
+    } else if ( idle > 600 )
+        return;
 
     // Don't change the tray icon when suspended, or evaluate
     // a possible break.
