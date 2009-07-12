@@ -71,10 +71,10 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QLabel* effectLabel = new QLabel( i18n( "Chose the effect you want to during breaks" ) );
     d->effectBox = new KComboBox( this );
-    d->effectBox->addItem( "Simple Gray Effect", QVariant( RSIObject::SimpleGray ) );
-    d->effectBox->addItem( "Show Plasma Dashboard", QVariant( RSIObject::Plasma ) );
-    d->effectBox->addItem( "Show Slide Show of Images", QVariant( RSIObject::SlideShow ) );
-    d->effectBox->addItem( "No Full Screen Effect", QVariant( RSIObject::Popup ) );
+    d->effectBox->addItem( i18n("Simple Gray Effect"), QVariant( RSIObject::SimpleGray ) );
+    d->effectBox->addItem( i18n("Show Plasma Dashboard"), QVariant( RSIObject::Plasma ) );
+    d->effectBox->addItem( i18n("Show Slide Show of Images"), QVariant( RSIObject::SlideShow ) );
+    d->effectBox->addItem( i18n("No Full Screen Effect"), QVariant( RSIObject::Popup ) );
     connect( d->effectBox, SIGNAL( currentIndexChanged( int ) ),
              SLOT( slotEffectChanged( int ) ) );
 
@@ -108,11 +108,11 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     //------------------ Gray Setup
     d->grayBox = new QGroupBox( this );
-    d->grayBox->setTitle( i18n( "Transparancy level" ) );
+    d->grayBox->setTitle( i18n( "Transparency level" ) );
 
     KHBox* hboxslider = new KHBox( this );
     hboxslider->setSpacing( 30 );
-    new QLabel( i18n( "Transparant" ), hboxslider );
+    new QLabel( i18n( "Transparent" ), hboxslider );
     d->graySlider = new QSlider( hboxslider );
     d->graySlider->setOrientation( Qt::Horizontal );
     d->graySlider->setMinimum( 0 );

@@ -17,8 +17,8 @@
 
 */
 
-#ifndef GRAYWIDGET_H
-#define GRAYWIDGET_H
+#ifndef GRAYEFFECT_H
+#define GRAYEFFECT_H
 
 #include <QObject>
 #include <QWidget>

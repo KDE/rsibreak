@@ -18,8 +18,8 @@
 
 */
 
-#ifndef RSIObject_H
-#define RSIObject_H
+#ifndef RSIWIDGET_H
+#define RSIWIDGET_H
 
 #include <QtGui/QLabel>
 #include "rsitimer.h"
