@@ -261,7 +261,6 @@ void RSIObject::tinyBreakSkipped()
     KNotification::event( "short timer reset",
                           i18n( "Timer for the short break has now been reset" ),
                           KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
-    breakSkipped();
 }
 
 void RSIObject::bigBreakSkipped()
@@ -272,28 +271,6 @@ void RSIObject::bigBreakSkipped()
     KNotification::event( "timers reset",
                           i18n( "The timers have now been reset" ),
                           KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
-    breakSkipped();
-}
-
-void RSIObject::breakSkipped()
-{
-    disconnect( m_timer, SIGNAL( updateToolTip( int, int ) ),
-                m_tooltip, SLOT( setCounters( int, int ) ) );
-
-    m_tooltip->setPixmap( KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
-    m_tooltip->setTimeout( 0 ); // autoDelete is false, but after the ->show() it still
-    // gets hidden after the timeout. Setting to 0 helps.
-    m_tooltip->show();
-}
-
-void RSIObject::skipBreakEnded()
-{
-    if ( !m_showTimerReset )
-        return;
-
-    connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
-             m_tooltip, SLOT( setCounters( int, int ) ) );
-    m_tooltip->hide();
 }
 
 //--------------------------- CONFIG ----------------------------//
@@ -337,7 +314,6 @@ void RSIObject::startTimer( bool idle )
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( skipBreakEnded() ), SLOT( skipBreakEnded() ), Qt::QueuedConnection );
 
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
     connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );

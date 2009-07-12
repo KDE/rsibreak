@@ -74,8 +74,6 @@ private slots:
     void readConfig();
     void tinyBreakSkipped();
     void bigBreakSkipped();
-    void breakSkipped();
-    void skipBreakEnded();
 
 protected:
     /** Sets appropriate icon in tooltip and docker. */

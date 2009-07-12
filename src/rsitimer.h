@@ -206,12 +206,6 @@ signals:
      */
     void bigBreakSkipped();
 
-    /**
-     Emitted after bigBreakSkipped() and tinyBreakSkipped() on first
-     activity;
-     */
-    void skipBreakEnded();
-
 protected: // TODO: What should be private and what not?
     void readConfig();
     void writeConfig();
