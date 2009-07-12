@@ -1,5 +1,5 @@
 /* ============================================================
- * Copyright 2005,2007 by Tom Albers <tomalbers@kde.nl>
+ * Copyright 2005,2007 by Tom Albers <toma.org>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -29,7 +29,7 @@ class SetupMaximizedPriv;
  * These contain the general settings of RSIBreak when maximized
  * that means settings for the Counter, Image Path and
  * minimize button
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma.org>
  */
 
 class SetupMaximized : public QWidget

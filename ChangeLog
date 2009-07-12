@@ -1,9 +1,480 @@
+2009-07-12 14:17 +0000 [r995363]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: We used to show
+	  a notification that the times were reset until the user produced
+	  activity again. We now use a KNotification with an auto timeout
+	  after a few seconds. Remove the old style path which simplifies
+	  the code and fixes the bug I was trying to fix at the same time.
+	  BUG: 181002
+
+2009-07-12 00:07 +0000 [r995101]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/setuptiming.cpp: d->debug is
+	  only initialised after reading the config. So only set the suffix
+	  after that. Found by valgrind!
+
+2009-07-11 16:03 +0000 [r994900]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.h,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/src/popupeffect.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/rsibreak.notifyrc,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.h,
+	  trunk/extragear/utils/rsibreak/src/popupeffect.cpp: Move away
+	  from creating a widget first to have a proper parent elsewhere.
+	  We can do without it. Also use KNotification for the messages
+	  about the timer being reset.
+
+2009-07-11 14:16 +0000 [r994828]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Revert change by
+	  fabo and ifdef depending on kde version as suggested by pino.
+
+2009-07-11 12:54 +0000 [r994804]  Fathi Boudra fboudra@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/setuptiming.cpp: fix build
+	  CCMAIL: toma@kde.org
+
+2009-07-11 01:35 +0000 [r994668]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Spot inactivity
+	  for more than 10 minutes and don't do any breaks in that case.
+	  This is for the timer which normally ignores all user
+	  activity/inactivity and breaks at fixed time intervals.
+	  BUG:188285
+
+2009-07-11 01:19 +0000 [r994662]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp: Add an option
+	  for the user to determine the transparancy level, from fully
+	  transparant to solid black. BUG: 187390
+
+2009-07-11 00:14 +0000 [r994649]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/popupeffect.h (added),
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/popupeffect.cpp (added): Add a
+	  new effect: popup. After you ignore the intrusive popup for 20s
+	  it will turn to a simple non-intrusive popup for as long as you
+	  don't take a break for that period of time. BUG: 175290
+
+2009-07-10 21:51 +0000 [r994621]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp: Make the plasma
+	  effect working for 4.3.x serie too. As it is a toggle it is much
+	  more vulnerable for errors, i tried to catch them all, but there
+	  might be corner cases around...
+
+2009-07-10 21:06 +0000 [r994614]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.h,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp: Move the
+	  effects into an enum. Use a KCombobox for selecting an effect in
+	  the settings.
+
+2009-07-10 18:59 +0000 [r994577]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.h,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp: Restore
+	  functionality to disable the skip button and disable the
+	  shortcut. Use a EffectBase pointer in the rsiwidget class, which
+	  simplifies code. Remove a path where the timer decide to load a
+	  new image or not, it is not of his business.
+
+2009-07-10 17:51 +0000 [r994540]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.cpp (added),
+	  trunk/extragear/utils/rsibreak/src/boxdialog.cpp (removed),
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.h (added),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/boxdialog.h (removed),
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp: Add a break
+	  control class which draws the counter and the two buttons for
+	  locking and skipping.
+
+2009-07-08 21:47 +0000 [r993567]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.h (added),
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp (removed),
+	  trunk/extragear/utils/rsibreak/src/graywidget.h (removed),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp (added): Move
+	  for consistent naming.
+
+2009-07-08 21:43 +0000 [r993564]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.h,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.cpp (removed),
+	  trunk/extragear/utils/rsibreak/src/graywidget.h,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.h (removed),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp: Remove the old
+	  gray effect with fake transparancy, use the real stuff now. Port
+	  it to the breakbase system and massive cleanup in that class.
+	  BUG:187921
+
+2009-07-07 19:55 +0000 [r992846]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/slideshow.cpp (removed),
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.h (added),
+	  trunk/extragear/utils/rsibreak/src/slideshow.h (removed),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp (added):
+	  Rename file to reflect that it is an effect.
+
+2009-07-07 19:51 +0000 [r992845]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/slideshow.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h (added),
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/slideshow.h,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp (added),
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.h: Make a base
+	  class for the breaks, which deals with counters, grabs the
+	  keyboard, etc, for all effects. Ported plasmaeffect and slideshow
+	  to it, which makes the code much much much more readable and
+	  understandable.
+
+2009-07-06 21:57 +0000 [r992451]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp (added),
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.h,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.h (added): Add
+	  the possibility to show the plasma dashboard during breaks. The
+	  readonly mode does not work, as I don't get how grabKeyboard()
+	  and the eventfilter work (at least not the way I use it right
+	  now).
+
+2009-07-05 21:27 +0000 [r991883]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsitimer_dpms.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer_dpms.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h: Move to another
+	  implementation of the screen shot of the trayicon stuff after
+	  getting black squares again. Guess Qt fixed taking screenies.
+
+2009-07-05 20:48 +0000 [r991874]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Don't use slots
+	  to adjust the suffix plural, this is in kdelibs now...
+
+2009-07-05 18:41 +0000 [r991837]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/kidle.diff (added): port to use
+	  kidle, whenever it reaches kdelibs.
+
+2009-06-13 12:16 +0000 [r981364]  Pino Toscano pino@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsidock.cpp: change the close
+	  button of the stats dialog to be Close instead of Ok approved by
+	  Tom
+
+2009-06-11 23:31 +0000 [r980539]  Nicolas Lécureuil neoclust@mandriva.org
+
+	* trunk/extragear/utils/kdiff3/src/optiondialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeinputdialog.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/ingredient.cpp,
+	  trunk/extragear/utils/krecipes/src/datablocks/elementlist.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/createcategorydialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/editpropertiesdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/similarcategoriesdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeviewdialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/createunitconversiondialog.h,
+	  trunk/extragear/utils/krecipes/src/klomanager.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/createingredientweightdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/pref.cpp,
+	  trunk/extragear/utils/krecipes/src/importers/nycgenericimporter.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/recipedb.h,
+	  trunk/extragear/utils/kdiff3/src/common.h,
+	  trunk/extragear/utils/krecipes/src/setupassistant.h,
+	  trunk/extragear/utils/krecipes/src/importers/kredbimporter.h,
+	  trunk/extragear/utils/krecipes/src/backends/SQLite/literecipedb.cpp,
+	  trunk/extragear/utils/krecipes/src/tests/checks.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/dietwizarddialog.cpp,
+	  trunk/extragear/utils/krecipes/src/exporters/cookmlexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/conversiontable.h,
+	  trunk/extragear/utils/krecipes/src/backends/searchparameters.h,
+	  trunk/extragear/utils/krecipes/src/importers/rezkonvimporter.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/createunitconversiondialog.cpp,
+	  trunk/extragear/utils/kdiff3/src/gnudiff_diff.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/shoppinglistviewdialog.h,
+	  trunk/extragear/utils/krecipes/src/backends/recipedb.cpp,
+	  trunk/extragear/utils/kdiff3/src/pdiff.cpp,
+	  trunk/extragear/utils/krecipes/src/importers/mmfimporter.h,
+	  trunk/extragear/utils/krecipes/src/tests/nyctest.cpp,
+	  trunk/extragear/utils/krecipes/src/datablocks/unit.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/resizerecipedialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectauthorsdialog.h,
+	  trunk/extragear/utils/rsibreak/src/setup.cpp,
+	  trunk/extragear/utils/krecipes/src/krecipesview.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/kreruler.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/conversiontable.cpp,
+	  trunk/extragear/utils/krecipes/src/datablocks/weight.h,
+	  trunk/extragear/utils/krecipes/src/backends/usda_property_data.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/progressinterface.h,
+	  trunk/extragear/utils/krecipes/src/widgets/paneldeco.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/setupdisplay.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/SQLite/literecipedb.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/borderdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/kremenu.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/recipe.h,
+	  trunk/extragear/utils/krecipes/src/importers/baseimporter.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectauthorsdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/ingredientcombobox.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/shoppinglistdialog.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/constraintlist.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectcategoriesdialog.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/elementlist.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/qsqlrecipedb.h,
+	  trunk/extragear/utils/krecipes/src/widgets/ratingwidget.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/progressinterface.cpp,
+	  trunk/extragear/utils/krecipes/src/exporters/htmlbookexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/unitsdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeviewdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/recipelistview.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/createunitdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/usda_ingredient_data.cpp,
+	  trunk/extragear/utils/krecipes/src/tests/importertest.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/ingredientproperty.h,
+	  trunk/extragear/utils/krecipes/src/widgets/thumbbar.cpp,
+	  trunk/extragear/utils/kdiff3/src/guiutils.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/ingredientsdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/tests/exportertest.h,
+	  trunk/extragear/utils/krecipes/src/tests/mmftest.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/dblistviewbase.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/dbimportdialog.cpp,
+	  trunk/extragear/utils/kdiff3/src/main.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/conversiondialog.cpp,
+	  trunk/extragear/utils/krecipes/src/convert_sqlite3.h,
+	  trunk/extragear/utils/krecipes/src/exporters/baseexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/ingredientmatcherdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/pagesetupdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/propertiesdialog.h,
+	  trunk/extragear/utils/krecipes/src/widgets/ratingwidget.h,
+	  trunk/extragear/utils/krecipes/src/importers/rezkonvimporter.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/ingredientparserdialog.cpp,
+	  trunk/extragear/utils/kdiff3/src/kdiff3.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/unitlistview.cpp,
+	  trunk/extragear/utils/krecipes/src/importers/mx2importer.cpp,
+	  trunk/extragear/utils/krecipes/src/exporters/xsltexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/thumbbar.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/shoppinglistviewdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/krepagelayout.h,
+	  trunk/extragear/utils/krecipes/src/tests/kretest.cpp,
+	  trunk/extragear/utils/krecipes/src/datablocks/mixednumber.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/SQLite/libqsqlite/krecqsqlitedb.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/dependanciesdialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeinputdialog.cpp,
+	  trunk/extragear/utils/kdiff3/src/kreplacements/kreplacements.cpp,
+	  trunk/extragear/utils/kdiff3/src/kdiff3_part.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/usda_unit_data.cpp,
+	  trunk/extragear/utils/krecipes/src/tests/rezkonvtest.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/paneldeco.cpp,
+	  trunk/extragear/utils/krecipes/src/tests/recipemltest.cpp,
+	  trunk/extragear/utils/krecipes/src/exporters/baseexporter.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/ingredientmatcherdialog.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/element.h,
+	  trunk/extragear/utils/krecipes/src/widgets/kreruler.h,
+	  trunk/extragear/utils/krecipes/src/tests/mx2test.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/editpropertiesdialog.h,
+	  trunk/extragear/utils/krecipes/src/widgets/kremenu.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/SQLite/qsql_sqlite.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/similarcategoriesdialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/refineshoppinglistdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectrecipedialog.h,
+	  trunk/extragear/utils/krecipes/src/recipefilter.h,
+	  trunk/extragear/utils/krecipes/src/klomanager.h,
+	  trunk/extragear/utils/krecipes/src/backends/qsqlrecipedb.cpp,
+	  trunk/extragear/utils/kdiff3/src/common.cpp,
+	  trunk/extragear/utils/krecipes/src/datablocks/mixednumber.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/kreborder.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/authorsdialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/advancedsearchdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/profiling.h,
+	  trunk/extragear/utils/kdiff3/src/kreplacements/ShellContextMenu.cpp,
+	  trunk/extragear/utils/krecipes/src/datablocks/rating.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/ingredientlist.h,
+	  trunk/extragear/utils/krecipes/src/importers/nycgenericimporter.h,
+	  trunk/extragear/utils/kdiff3/src/fileaccess.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/usda_unit_data.h,
+	  trunk/extragear/utils/krecipes/src/exporters/mmfexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/categorieseditordialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeimportdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/importers/recipemlimporter.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/createunitdialog.h,
+	  trunk/extragear/utils/krecipes/src/importers/mxpimporter.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/dietwizarddialog.h,
+	  trunk/extragear/utils/krecipes/src/widgets/krelistview.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/categorylistview.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/createpropertydialog.h,
+	  trunk/extragear/utils/krecipes/src/backends/SQLite/libqsqlite/krecqsqliteresult.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/ingredientsdialog.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/refineshoppinglistdialog.h,
+	  trunk/extragear/utils/krecipes/src/convert_sqlite3.cpp,
+	  trunk/extragear/utils/krecipes/src/importers/mmfimporter.cpp,
+	  trunk/extragear/utils/krecipes/src/recipeactionshandler.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectunitdialog.h,
+	  trunk/extragear/utils/krecipes/src/exporters/htmlexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/backends/PostgreSQL/psqlrecipedb.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectpropertydialog.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/rating.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/editratingdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/importers/kreimporter.h,
+	  trunk/extragear/utils/krecipes/src/kstartuplogo.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/prepmethodsdialog.h,
+	  trunk/extragear/utils/rsibreak/src/rsiglobals.h,
+	  trunk/extragear/utils/krecipes/src/datablocks/ingredient.h,
+	  trunk/extragear/utils/krecipes/src/krecipes.cpp,
+	  trunk/extragear/utils/krecipes/src/krecipesview.h,
+	  trunk/extragear/utils/krecipes/src/exporters/kreexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/tests/mxptest.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeprintpreview.h,
+	  trunk/extragear/utils/krecipes/src/importers/mxpimporter.h,
+	  trunk/extragear/utils/krecipes/src/exporters/rezkonvexporter.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/ingredientinputwidget.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/krelistview.h,
+	  trunk/extragear/utils/krecipes/src/dialogs/dietviewdialog.h,
+	  trunk/extragear/utils/krecipes/src/importers/kreimporter.cpp,
+	  trunk/extragear/utils/krecipes/src/setupassistant.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/ingredientgroupsdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/recipeactionshandler.h,
+	  trunk/extragear/utils/krecipes/src/widgets/fractioninput.cpp: Use
+	  Qt4 headers
+
+2009-05-16 21:19 +0000 [r968897]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsitimer.cpp: debug output--;
+	  BUG: 191804
+
+2009-03-09 22:21 +0000 [r937553]  Andrew Coles andrew_coles@yahoo.co.uk
+
+	* trunk/extragear/utils/krecipes/src/widgets/authorlistview.cpp,
+	  trunk/extragear/utils/guidance-power-manager/guidance-power-manager.ui,
+	  trunk/extragear/utils/krecipes/src/widgets/prepmethodlistview.cpp,
+	  trunk/extragear/utils/krecipes/src/krecipes.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/dietwizarddialog.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/categorylistview.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/unitlistview.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/propertylistview.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/ingredientinputwidget.cpp,
+	  trunk/extragear/utils/kerry/src/searchdlg.cpp,
+	  trunk/extragear/utils/kdiff3/kdiff3plugin/kdiff3plugin.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/ingredientlistview.cpp,
+	  trunk/extragear/utils/krecipes/src/widgets/headerlistview.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectcategoriesdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/selectauthorsdialog.cpp,
+	  trunk/extragear/utils/krecipes/src/dialogs/recipeinputdialog.cpp:
+	  Proof-reading and plural-usage correction. Note that i18np call
+	  is still necessary even if we know n != 1, as languages other
+	  than English have multiple plural forms.
+
+2009-02-26 13:52 +0000 [r932376]  David Faure faure@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/graywidget.cpp: Fix memory
+	  leak found by ultrav1olet on irc (which he investigated using
+	  valgrind massif).
+
+2009-01-31 14:55 +0000 [r919136]  Albert Astals Cid tsdgeos@terra.es
+
+	* trunk/extragear/utils/rsibreak/src/graywidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayouteffect.cpp: Some a
+	  rather big memory leak BUG: 181637
+
+2009-01-18 10:25 +0000 [r912769]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/plasma/CMakeLists.txt: Fix compile
+
+2009-01-17 16:22 +0000 [r912517]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/rsibreak/CMakeLists.txt: fix plasma search
+
+2008-12-28 22:51 +0000 [r902678]  Nicolas Lécureuil neoclust@mandriva.org
+
+	* trunk/extragear/utils/rsibreak/src/rsibreak.desktop: Fix DocPath
+	  DesktopEntry
+
+2008-12-10 21:49 +0000 [r895516]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/slideshow.cpp,
+	  trunk/extragear/utils/rsibreak/src/boxdialog.cpp: Call
+	  adjustSize() before positioning the box in the middle, else the
+	  values are wrong.
+
+2008-11-28 08:38 +0000 [r889989]  Laurent Montel montel@kde.org
+
+	* trunk/extragear/utils/kpager/desktop.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.cpp: Fix iterator
+
+2008-11-19 19:54 +0000 [r886659]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/NEWS,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/ChangeLog: Prep for release.
+
 2008-10-29 21:01 +0000 [r877573]  Laurent Montel montel@kde.org
 
 	* trunk/extragear/utils/kerry/src/CMakeLists.txt,
 	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: cmakelint
 
-2008-10-28 21:13 +0000 [r877183]  Tom Albers tomalbers@kde.nl
+2008-10-28 21:13 +0000 [r877183]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/rsibreak.kdevelop (removed),
@@ -22,7 +493,7 @@
 	  version - update changelog - update todo - update news - delete
 	  rsibreak.devel
 
-2008-10-28 21:00 +0000 [r877181]  Tom Albers tomalbers@kde.nl
+2008-10-28 21:00 +0000 [r877181]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Fix Autostart.
 	  The desktop file was not properly installed. BUG: 173739
@@ -3056,12 +3527,12 @@
 	  "optipng -o5" and "advdef -z -4". Reduced disk space: 2468KB
 	  (2MB)
 
-2008-10-26 18:44 +0000 [r876200]  Tom Albers tomalbers@kde.nl
+2008-10-26 18:44 +0000 [r876200]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/plasma/engine.cpp: Give proper
 	  warning when RSIBreak is not running.
 
-2008-10-26 18:25 +0000 [r876191]  Tom Albers tomalbers@kde.nl
+2008-10-26 18:25 +0000 [r876191]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp,
 	  trunk/extragear/utils/rsibreak/plasma/engine.cpp,
@@ -3069,7 +3540,7 @@
 	  trunk/extragear/utils/rsibreak/plasma/engine.h: Make the plasma
 	  applet work again.
 
-2008-10-26 01:09 +0000 [r875937]  Tom Albers tomalbers@kde.nl
+2008-10-26 01:09 +0000 [r875937]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsitimer.h,
 	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Hook into the
@@ -3080,7 +3551,7 @@
 	  over. Applications can use KNotificationRestrictions for this,
 	  after pino adjusts the code for it. BUG: 143346
 
-2008-10-25 00:00 +0000 [r875635]  Tom Albers tomalbers@kde.nl
+2008-10-25 00:00 +0000 [r875635]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsitimer.h,
 	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Add detection of
@@ -3088,14 +3559,14 @@
 	  replaced if HAL decides to emit a signal.. I would appreciate
 	  feedback if this actually works for you. BUG: 136625
 
-2008-10-24 23:09 +0000 [r875627]  Tom Albers tomalbers@kde.nl
+2008-10-24 23:09 +0000 [r875627]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Delay the
 	  welcome screen for a second. This makes it work for me. We need
 	  to change it back as soon as there is a fast implementation of
 	  the systray where icons appear instantly. BUG: 172159
 
-2008-10-24 22:57 +0000 [r875624]  Tom Albers tomalbers@kde.nl
+2008-10-24 22:57 +0000 [r875624]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
@@ -3113,7 +3584,7 @@
 	  trunk/extragear/utils/rsibreak/src/grayouteffect.cpp: fix build
 	  for non-x86 platforms
 
-2008-10-09 17:27 +0000 [r869667]  Tom Albers tomalbers@kde.nl
+2008-10-09 17:27 +0000 [r869667]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/ChangeLog: Update changelog
 
@@ -3124,12 +3595,12 @@
 	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: Fix layouts
 	  in config
 
-2008-10-09 17:11 +0000 [r869663]  Tom Albers tomalbers@kde.nl
+2008-10-09 17:11 +0000 [r869663]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/release_rsibreak.rb (removed):
 	  Delete this, createtarballs is way better.
 
-2008-10-09 17:06 +0000 [r869661]  Tom Albers tomalbers@kde.nl
+2008-10-09 17:06 +0000 [r869661]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/main.cpp,
 	  trunk/extragear/utils/rsibreak/release_rsibreak.rb,
@@ -3289,7 +3760,7 @@
 	  trunk/extragear/graphics/kgraphviewer/COPYING.DOC (added): update
 	  for new licence policy
 
-2007-10-15 17:19 +0000 [r725556]  Tom Albers tomalbers@kde.nl
+2007-10-15 17:19 +0000 [r725556]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/grayouteffect.cpp: remove
 	  include, make bot happy maybe
@@ -3316,14 +3787,14 @@
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: you don't
 	  really want to compare points to string literals
 
-2007-10-09 21:23 +0000 [r723522]  Tom Albers tomalbers@kde.nl
+2007-10-09 21:23 +0000 [r723522]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/CMakeLists.txt,
 	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Remove
 	  imagebliz dependency. Yay.
 
-2007-10-09 21:13 +0000 [r723520]  Tom Albers tomalbers@kde.nl
+2007-10-09 21:13 +0000 [r723520]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/CMakeLists.txt,
 	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
@@ -3459,7 +3930,7 @@
 	* trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Find blitz
 	  properly
 
-2007-08-16 19:21 +0000 [r700914]  Tom Albers tomalbers@kde.nl
+2007-08-16 19:21 +0000 [r700914]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/plasma/CMakeLists.txt,
 	  trunk/extragear/utils/rsibreak/plasma/rsibreak.svg (added),
@@ -3467,7 +3938,7 @@
 	  trunk/extragear/utils/rsibreak/plasma/rsibreak.h: Flush work in
 	  progress. Is not yet what i want it to be. To be continued...
 
-2007-08-11 17:11 +0000 [r698975]  Tom Albers tomalbers@kde.nl
+2007-08-11 17:11 +0000 [r698975]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/org.rsibreak.rsiwidget.xml,
@@ -3478,7 +3949,7 @@
 	  the rsibreak logo on the top left, which is the same as in the
 	  tray: showing the time left to the break.
 
-2007-08-11 14:06 +0000 [r698933]  Tom Albers tomalbers@kde.nl
+2007-08-11 14:06 +0000 [r698933]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
@@ -3521,7 +3992,7 @@
 	  trunk/extragear/utils/rsibreak/src/setup.cpp: adjust coding style
 	  to kdelibs policy (almost).
 
-2007-08-11 09:00 +0000 [r698839]  Tom Albers tomalbers@kde.nl
+2007-08-11 09:00 +0000 [r698839]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
@@ -3530,7 +4001,7 @@
 	  to port to Blitz. I do that. Compile++ on the localizedstring for
 	  the gutsy compiler.
 
-2007-08-07 19:19 +0000 [r697432]  Tom Albers tomalbers@kde.nl
+2007-08-07 19:19 +0000 [r697432]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/plasma/rsibreak.cpp: i18n fixes
@@ -3558,7 +4029,7 @@
 	  trunk/extragear/utils/rsibreak/CMakeLists.txt: Search plasma
 	  module Don't add so name to plasma plugins
 
-2007-08-04 17:09 +0000 [r696400]  Tom Albers tomalbers@kde.nl
+2007-08-04 17:09 +0000 [r696400]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/plasma/CMakeLists.txt (added),
 	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
@@ -3573,13 +4044,13 @@
 	  Plasma. Basic Plasmoid showing the current idleTime, and when the
 	  next breaks are due.
 
-2007-08-04 11:19 +0000 [r696262]  Tom Albers tomalbers@kde.nl
+2007-08-04 11:19 +0000 [r696262]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsistats.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsistatitem.h: Remove last q3
 	  call.
 
-2007-08-04 11:07 +0000 [r696259]  Tom Albers tomalbers@kde.nl
+2007-08-04 11:07 +0000 [r696259]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/org.rsibreak.rsiwidget.xml,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
@@ -3588,7 +4059,7 @@
 	  reporting false info when rsibreak was suspended. Should be
 	  backported.
 
-2007-08-04 10:45 +0000 [r696254]  Tom Albers tomalbers@kde.nl
+2007-08-04 10:45 +0000 [r696254]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/main.cpp,
@@ -3600,7 +4071,7 @@
 	  show/hide the counter. - add all dcop methods we had in the 3
 	  series as dbus methods.
 
-2007-08-04 01:39 +0000 [r696167]  Tom Albers tomalbers@kde.nl
+2007-08-04 01:39 +0000 [r696167]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/slideshow.cpp,
@@ -3623,7 +4094,7 @@
 	  QSystemTrayIcon instead. The K version does not add anything
 	  usefull for us.
 
-2007-08-04 00:24 +0000 [r696155]  Tom Albers tomalbers@kde.nl
+2007-08-04 00:24 +0000 [r696155]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/slideshow.cpp,
 	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
@@ -3632,7 +4103,7 @@
 	  trunk/extragear/utils/rsibreak/src/boxdialog.h: Hide the dialog
 	  properly after a break or when user aborts the break.
 
-2007-08-03 22:12 +0000 [r696133]  Tom Albers tomalbers@kde.nl
+2007-08-03 22:12 +0000 [r696133]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/slideshow.cpp,
@@ -3644,7 +4115,7 @@
 	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
 	  trunk/extragear/utils/rsibreak/src/boxdialog.h: Headers--
 
-2007-08-03 21:53 +0000 [r696119]  Tom Albers tomalbers@kde.nl
+2007-08-03 21:53 +0000 [r696119]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/slideshow.cpp,
@@ -3657,7 +4128,7 @@
 	  kdialog box out of the graywidget into its own class and use that
 	  class also in the slideshow class.
 
-2007-08-03 21:11 +0000 [r696109]  Tom Albers tomalbers@kde.nl
+2007-08-03 21:11 +0000 [r696109]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -3683,20 +4154,20 @@
 
 	* trunk/extragear/utils/rsibreak/src/CMakeLists.txt: Fix typo
 
-2007-08-01 21:04 +0000 [r695333]  Tom Albers tomalbers@kde.nl
+2007-08-01 21:04 +0000 [r695333]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsidock.h,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
 	  trunk/extragear/utils/rsibreak/src/rsidock.cpp: remove, nobody
 	  uses that. ;-)
 
-2007-08-01 20:31 +0000 [r695317]  Tom Albers tomalbers@kde.nl
+2007-08-01 20:31 +0000 [r695317]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsidock.h,
 	  trunk/extragear/utils/rsibreak/src/rsidock.cpp: On left click
 	  open the stats dialog.
 
-2007-07-31 21:14 +0000 [r694832]  Tom Albers tomalbers@kde.nl
+2007-07-31 21:14 +0000 [r694832]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/graywidget.cpp,
@@ -3711,7 +4182,7 @@
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: D-Bus call to
 	  lock the screen.
 
-2007-07-31 19:19 +0000 [r694797]  Tom Albers tomalbers@kde.nl
+2007-07-31 19:19 +0000 [r694797]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsitimer_dpms.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -3733,7 +4204,7 @@
 	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
 	  trunk/extragear/utils/rsibreak/TODO: D-Bus things.
 
-2007-07-31 10:56 +0000 [r694680]  Tom Albers tomalbers@kde.nl
+2007-07-31 10:56 +0000 [r694680]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/CMakeLists.txt (added),
 	  trunk/extragear/utils/rsibreak/Messages.sh (added),
@@ -3743,19 +4214,19 @@
 	  compile correctly, as it can't find the config.h.cmake. Need to
 	  check why.
 
-2007-07-31 10:38 +0000 [r694673]  Tom Albers tomalbers@kde.nl
+2007-07-31 10:38 +0000 [r694673]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/icons/CMakeLists.txt: Port that
 	  file.
 
-2007-07-30 22:18 +0000 [r694511]  Tom Albers tomalbers@kde.nl
+2007-07-30 22:18 +0000 [r694511]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h: Make rsiwidget a
 	  object. ;-) Now we see an empty widget at the start. Need to
 	  remove that soon.
 
-2007-07-30 22:09 +0000 [r694508]  Tom Albers tomalbers@kde.nl
+2007-07-30 22:09 +0000 [r694508]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/slideshow.cpp (added),
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -3765,7 +4236,7 @@
 	  slideshow out of the rsiwidget as well. Now we have a good split
 	  in functionality. RSIBreak is getting into shape...
 
-2007-07-30 21:09 +0000 [r694486]  Tom Albers tomalbers@kde.nl
+2007-07-30 21:09 +0000 [r694486]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/CMakeLists.txt,
@@ -3782,13 +4253,13 @@
 	  does not need it anymore - Remove the configurable shortcut.
 	  Escape it is.
 
-2007-07-30 16:47 +0000 [r694417]  Tom Albers tomalbers@kde.nl
+2007-07-30 16:47 +0000 [r694417]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: The gray down
 	  effect is back and up to speed now. Commit before I start moving
 	  it to it's own file.
 
-2007-07-29 23:27 +0000 [r694068]  Tom Albers tomalbers@kde.nl
+2007-07-29 23:27 +0000 [r694068]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h: More porting
@@ -3797,7 +4268,7 @@
 	  to come up with something else. The implementation in this commit
 	  is pretty slow, so we need something cooler.
 
-2007-07-29 20:28 +0000 [r694025]  Tom Albers tomalbers@kde.nl
+2007-07-29 20:28 +0000 [r694025]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsistats.h,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -3816,21 +4287,21 @@
 	  trunk/extragear/multimedia/amarok/src/collection/daap/CMakeLists.txt:
 	  fix link
 
-2007-07-28 22:32 +0000 [r693753]  Tom Albers tomalbers@kde.nl
+2007-07-28 22:32 +0000 [r693753]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h: Remove the
 	  q3mimesourcefactory, instead store the screenie in a file and
 	  point to that from the messageboxes.
 
-2007-07-28 17:56 +0000 [r693694]  Tom Albers tomalbers@kde.nl
+2007-07-28 17:56 +0000 [r693694]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/main.cpp: You see, blogging
 	  helps solving mysteries. Add a setQuitOnLastWindowClosed to
 	  prevent exit(0) when closing the configuration or any about
 	  window.
 
-2007-07-28 15:38 +0000 [r693646]  Tom Albers tomalbers@kde.nl
+2007-07-28 15:38 +0000 [r693646]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiglobals.h,
@@ -3839,19 +4310,19 @@
 	  trunk/extragear/utils/rsibreak/src/rsibreak.notifyrc (added):
 	  Port to the kde4 event system
 
-2007-07-28 14:41 +0000 [r693616]  Tom Albers tomalbers@kde.nl
+2007-07-28 14:41 +0000 [r693616]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsistatwidget.h,
 	  trunk/extragear/utils/rsibreak/src/rsistatwidget.cpp: Port
 	  rsistatwidget, too bad qgrid is gone, makes the ported code a bit
 	  ugly.
 
-2007-07-28 13:30 +0000 [r693597]  Tom Albers tomalbers@kde.nl
+2007-07-28 13:30 +0000 [r693597]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsidock.cpp: The stats are
 	  back.
 
-2007-07-28 10:40 +0000 [r693553]  Tom Albers tomalbers@kde.nl
+2007-07-28 10:40 +0000 [r693553]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/setup.h,
 	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
@@ -3861,20 +4332,20 @@
 	  trunk/extragear/utils/rsibreak/src/setup.cpp: Port setuptiming.
 	  And fix setup to save dialog sizes. This part is finished now.
 
-2007-07-27 20:33 +0000 [r693379]  Tom Albers tomalbers@kde.nl
+2007-07-27 20:33 +0000 [r693379]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/setupgeneral.h,
 	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
 	  trunk/extragear/utils/rsibreak/src/setupmaximized.h: Port
 	  setupmaximized.
 
-2007-07-27 17:48 +0000 [r693319]  Tom Albers tomalbers@kde.nl
+2007-07-27 17:48 +0000 [r693319]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/setupgeneral.h,
 	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp: Port
 	  setupgeneral
 
-2007-07-26 21:56 +0000 [r693043]  Tom Albers tomalbers@kde.nl
+2007-07-26 21:56 +0000 [r693043]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h: Start working on
@@ -3883,7 +4354,7 @@
 	  QDir calls and ported the screenshot routine so we can show where
 	  rsibreak sits in the tray.
 
-2007-07-26 19:39 +0000 [r693002]  Tom Albers tomalbers@kde.nl
+2007-07-26 19:39 +0000 [r693002]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsidock.h,
@@ -3893,7 +4364,7 @@
 	  action is used from the KHelpMenu: after the dialog close
 	  RSIBreak exits with 0 errorcode. No clue why.
 
-2007-07-25 22:09 +0000 [r692574]  Tom Albers tomalbers@kde.nl
+2007-07-25 22:09 +0000 [r692574]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/passivepopup.h (added),
 	  trunk/extragear/utils/rsibreak/src/pasivepopup.cpp (removed),
@@ -3901,7 +4372,7 @@
 	  trunk/extragear/utils/rsibreak/src/pasivepopup.h (removed):
 	  double s. yes, i know about history.
 
-2007-07-25 22:04 +0000 [r692572]  Tom Albers tomalbers@kde.nl
+2007-07-25 22:04 +0000 [r692572]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
@@ -3916,7 +4387,7 @@
 	  the rsitooltip. Adjust the rsidock to emit a signal on hover. A
 	  bit hackish, but hey, i did not make ksystemtrayicon a !widget
 
-2007-07-25 19:52 +0000 [r692536]  Tom Albers tomalbers@kde.nl
+2007-07-25 19:52 +0000 [r692536]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -3925,18 +4396,18 @@
 	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: More work on the
 	  popup.
 
-2007-07-25 17:00 +0000 [r692469]  Tom Albers tomalbers@kde.nl
+2007-07-25 17:00 +0000 [r692469]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
 	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp: Port
 	  relaxpopup.
 
-2007-07-25 14:34 +0000 [r692426]  Tom Albers tomalbers@kde.nl
+2007-07-25 14:34 +0000 [r692426]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/CMakeLists.txt: It links. ship
 	  it.
 
-2007-07-25 13:48 +0000 [r692412]  Tom Albers tomalbers@kde.nl
+2007-07-25 13:48 +0000 [r692412]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -3950,7 +4421,7 @@
 	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp: RSIBreak now
 	  compiles, just don't ship it untill it links as well.
 
-2007-07-20 18:58 +0000 [r690343]  Tom Albers tomalbers@kde.nl
+2007-07-20 18:58 +0000 [r690343]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
@@ -3996,7 +4467,7 @@
 	  call: request the amount of seconds since the last activity with
 	  your mouse/keyboard. dcop rsibreak actions idleTime
 
-2007-06-02 22:28 +0000 [r670903]  Tom Albers tomalbers@kde.nl
+2007-06-02 22:28 +0000 [r670903]  Tom Albers toma@kde.org
 
 	* branches/extragear/kde3/utils/rsibreak/src/rsiwidget.cpp: Fix
 	  this.
@@ -4006,19 +4477,19 @@
 	* trunk/extragear/utils (removed), branches/extragear/kde3/utils
 	  (added): Moving for branches ...
 
-2007-06-01 22:05 +0000 [r670532]  Tom Albers tomalbers@kde.nl
+2007-06-01 22:05 +0000 [r670532]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Fix ""disable
 	  shortcut" setting does not work" launchpad bug 118315
 
-2007-05-27 10:51 +0000 [r668714]  Tom Albers tomalbers@kde.nl
+2007-05-27 10:51 +0000 [r668714]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.h: Keep memory
 	  footprint low when idle. Patch by Richard Larkang. Thanks a lot!
 	  Feel free to optimise more if you can. BUG: 143784
 
-2007-05-27 10:38 +0000 [r668708]  Tom Albers tomalbers@kde.nl
+2007-05-27 10:38 +0000 [r668708]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.h,
 	  trunk/extragear/utils/rsibreak/src/eventsrc: Fix compilation and
@@ -4136,7 +4607,7 @@
 
 	* trunk/extragear/utils/rsibreak/NEWS: News flash
 
-2006-10-05 10:30 +0000 [r592672]  Tom Albers tomalbers@kde.nl
+2006-10-05 10:30 +0000 [r592672]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/icons/hi32-action-duringbreaks.png,
 	  trunk/extragear/utils/rsibreak/TODO: New icon in config, to get
@@ -4144,13 +4615,13 @@
 	  and Diego for reporting! CCMAIL: elcuco@kde.org,
 	  clearbeast@gmail.com
 
-2006-10-05 10:24 +0000 [r592671]  Tom Albers tomalbers@kde.nl
+2006-10-05 10:24 +0000 [r592671]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Small patch
 	  from Aurélien Gâteau, will test it on my xinerama setup to look
 	  for regressions. Thanks for now! CCMAIL: aurelien.gateau@free.fr
 
-2006-10-05 10:19 +0000 [r592669]  Tom Albers tomalbers@kde.nl
+2006-10-05 10:19 +0000 [r592669]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/icons/hi22-action-rsibreak0.png
 	  (added),
@@ -4171,7 +4642,7 @@
 	  (removed): Add hi22 icons, thanks to Lee Olson. CCMAIL:
 	  clearbeast@gmail.com BUG: 135111
 
-2006-10-05 10:12 +0000 [r592668]  Tom Albers tomalbers@kde.nl
+2006-10-05 10:12 +0000 [r592668]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp: - Allright,
@@ -4241,7 +4712,7 @@
 
 	* trunk/extragear/utils/rsibreak/src/rsistats.cpp: QString()
 
-2006-08-26 13:23 +0000 [r577371]  Tom Albers tomalbers@kde.nl
+2006-08-26 13:23 +0000 [r577371]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsidock.cpp: Hmm.. fix
 	  accelarator clash ;-)
@@ -4251,7 +4722,7 @@
 	* trunk/extragear/utils/rsibreak/COPYING-DOCS (added): Add FDL
 	  licence for documentation
 
-2006-08-14 13:59 +0000 [r572990]  Tom Albers tomalbers@kde.nl
+2006-08-14 13:59 +0000 [r572990]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: When using gray
 	  effect, use all the geometry that is available. Else use only the
@@ -4262,7 +4733,7 @@
 	* trunk/extragear/utils/rsibreak/src/setupmaximized.cpp: freakin'
 	  krazy stuff
 
-2006-07-30 23:23 +0000 [r568053]  Tom Albers tomalbers@kde.nl
+2006-07-30 23:23 +0000 [r568053]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
@@ -4290,7 +4761,7 @@
 	* trunk/extragear/utils/rsibreak/src/rsidock.cpp: Be consistent:
 	  hide dialog on system tray click when dialog is already opened
 
-2006-07-17 20:11 +0000 [r563542]  Tom Albers tomalbers@kde.nl
+2006-07-17 20:11 +0000 [r563542]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -4304,14 +4775,14 @@
 	  kdDebug() call........... Moving the guard from rsitimer to
 	  rsiglobal,
 
-2006-07-17 19:33 +0000 [r563526]  Tom Albers tomalbers@kde.nl
+2006-07-17 19:33 +0000 [r563526]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/icons/hi32-action-dcop.png
 	  (removed), trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Do
 	  not enter the loop of the ending of a small break when we are
 	  having a big break. 1% of bugs take 99% of your time, right?
 
-2006-07-15 15:37 +0000 [r562729]  Tom Albers tomalbers@kde.nl
+2006-07-15 15:37 +0000 [r562729]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsidock.h,
@@ -4334,7 +4805,7 @@
 	  to prevent to much angry users who have to convert. BUG: 130023,
 	  130759
 
-2006-07-15 13:53 +0000 [r562632]  Tom Albers tomalbers@kde.nl
+2006-07-15 13:53 +0000 [r562632]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/extragear/utils/doc/rsibreak/index.docbook,
@@ -4344,7 +4815,7 @@
 	  trunk/extragear/utils/rsibreak/src/rsistats.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsistatitem.h: Typo's & co.
 
-2006-06-25 13:17 +0000 [r554826]  Tom Albers tomalbers@kde.nl
+2006-06-25 13:17 +0000 [r554826]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
@@ -4359,7 +4830,7 @@
 	  trunk/kdereview/doc/rsibreak (removed): bye bye review, hi
 	  extragear
 
-2006-06-24 22:20 +0000 [r554711]  Tom Albers tomalbers@kde.nl
+2006-06-24 22:20 +0000 [r554711]  Tom Albers toma@kde.org
 
 	* trunk/kdereview/rsibreak/src/rsidock.cpp,
 	  trunk/kdereview/doc/rsibreak/logo.png (added),
@@ -4376,7 +4847,7 @@
 	  menu, changed the order and added a docbook entry. - Now based on
 	  khelpmenu, hence a couple of slots were obsolete. - Manual added
 
-2006-06-23 22:07 +0000 [r554382]  Tom Albers tomalbers@kde.nl
+2006-06-23 22:07 +0000 [r554382]  Tom Albers toma@kde.org
 
 	* trunk/kdereview/rsibreak/src/rsiwidget.cpp,
 	  trunk/kdereview/rsibreak/src/dcopiface.h,
@@ -4387,7 +4858,7 @@
 	  started a second time, execute a DCOP command which shows where
 	  RSIBreak sits in the tray. Request by Achim Bohnet.
 
-2006-06-22 21:53 +0000 [r554019]  Tom Albers tomalbers@kde.nl
+2006-06-22 21:53 +0000 [r554019]  Tom Albers toma@kde.org
 
 	* trunk/kdereview/rsibreak/src/main.cpp,
 	  trunk/kdereview/rsibreak/TODO: Tried to fix the minimum size of
@@ -4396,7 +4867,7 @@
 	  autostart construction and fix the bouncing when started for the
 	  second time. Request by Allee!
 
-2006-06-19 20:16 +0000 [r553046]  Tom Albers tomalbers@kde.nl
+2006-06-19 20:16 +0000 [r553046]  Tom Albers toma@kde.org
 
 	* trunk/kdereview/rsibreak/ChangeLog,
 	  trunk/kdereview/rsibreak/NEWS,
@@ -4409,30 +4880,30 @@
 	  bump version - fix scripts to kdereview - revert brams post
 	  release fix
 
-2006-06-19 20:07 +0000 [r553043]  Tom Albers tomalbers@kde.nl
+2006-06-19 20:07 +0000 [r553043]  Tom Albers toma@kde.org
 
 	* trunk/kdereview/rsibreak/src/rsiwidget.cpp,
 	  trunk/kdereview/rsibreak/icons/hi32-app-rsibreak.png: Fix crash
 	  on startup and fix one of the icons.
 
-2006-06-19 19:06 +0000 [r553034]  Tom Albers tomalbers@kde.nl
+2006-06-19 19:06 +0000 [r553034]  Tom Albers toma@kde.org
 
 	* trunk/kdereview/rsibreak/src/main.cpp: Fix compilation in
 	  kdereview.
 
-2006-06-19 19:02 +0000 [r553033]  Tom Albers tomalbers@kde.nl
+2006-06-19 19:02 +0000 [r553033]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak (removed),
 	  trunk/kdereview/rsibreak (added): Move to kdereview
 
-2006-06-19 17:42 +0000 [r553015]  Tom Albers tomalbers@kde.nl
+2006-06-19 17:42 +0000 [r553015]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/NEWS,
 	  trunk/playground/utils/rsibreak/src/rsibreak.lsm: Closing 0.7.0.
 	  tarball in a minute.
 
-2006-06-18 18:48 +0000 [r552669]  Tom Albers tomalbers@kde.nl
+2006-06-18 18:48 +0000 [r552669]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/icons/hi16-action-rsibreakx.png,
 	  trunk/playground/utils/rsibreak/icons/artwork-v3.tar.gz,
@@ -4449,12 +4920,12 @@
 	  trunk/playground/utils/rsibreak/icons/hi32-action-rsibreakx.png:
 	  New versions. Made by Lee Olson.
 
-2006-06-18 14:11 +0000 [r552610]  Tom Albers tomalbers@kde.nl
+2006-06-18 14:11 +0000 [r552610]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Fix enable
 	  state of the items.
 
-2006-06-18 12:19 +0000 [r552587]  Tom Albers tomalbers@kde.nl
+2006-06-18 12:19 +0000 [r552587]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/icons/hi128-app-rsibreak.png
 	  (added), trunk/playground/utils/rsibreak/src/setup.cpp,
@@ -4526,7 +4997,7 @@
 	  upwards. The other options are affected by it (disabled/enabled),
 	  so it makes more sense to show them after the idle less option.
 
-2006-06-13 17:02 +0000 [r551093]  Tom Albers tomalbers@kde.nl
+2006-06-13 17:02 +0000 [r551093]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsistats.cpp,
 	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp: Two little
@@ -4535,13 +5006,13 @@
 	  the width in the stats was done without taking the seconds into
 	  account, thereby off by three characters.
 
-2006-06-13 16:41 +0000 [r551089]  Tom Albers tomalbers@kde.nl
+2006-06-13 16:41 +0000 [r551089]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Little bug in
 	  the new timer, did not increase stats for breaks which the user
 	  did not skip. Does that happen?
 
-2006-06-13 09:37 +0000 [r550959]  Tom Albers tomalbers@kde.nl
+2006-06-13 09:37 +0000 [r550959]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Move the
 	  clearing of the background of the widget from minimize() to
@@ -4549,14 +5020,14 @@
 	  break reuses the previous screenshot, so it will eventually
 	  become totally black after a few escaped breaks.
 
-2006-06-13 08:24 +0000 [r550938]  Tom Albers tomalbers@kde.nl
+2006-06-13 08:24 +0000 [r550938]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/setupdcop.cpp: Xinerama fix,
 	  only show countdown / gray out the active screen, otherwise the
 	  counter will end up in the middle.
 
-2006-06-12 19:09 +0000 [r550788]  Tom Albers tomalbers@kde.nl
+2006-06-12 19:09 +0000 [r550788]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: More work on
 	  the noIdleTimer: - Set docker icon properly - implement
@@ -4565,24 +5036,24 @@
 	  commands (hang in m_nextrbreak instead of the static
 	  currentbreak) Thats it for now.
 
-2006-06-12 16:54 +0000 [r550759]  Tom Albers tomalbers@kde.nl
+2006-06-12 16:54 +0000 [r550759]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Fixes a crash
 	  in the shortcut to minimize a break and setup the right timer
 	  properly.
 
-2006-06-11 22:20 +0000 [r550480]  Tom Albers tomalbers@kde.nl
+2006-06-11 22:20 +0000 [r550480]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp:
 	  svn_silent:stats
 
-2006-06-11 22:02 +0000 [r550476]  Tom Albers tomalbers@kde.nl
+2006-06-11 22:02 +0000 [r550476]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Make the noIdle
 	  timer work, add some stats and add execution of dcop commands.
 	  Seems to work quite well. BUG: 122954
 
-2006-06-11 21:05 +0000 [r550468]  Tom Albers tomalbers@kde.nl
+2006-06-11 21:05 +0000 [r550468]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
@@ -4591,7 +5062,7 @@
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Add the
 	  config option for the noIdleTimer.
 
-2006-06-11 00:08 +0000 [r550092]  Tom Albers tomalbers@kde.nl
+2006-06-11 00:08 +0000 [r550092]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
@@ -4600,7 +5071,7 @@
 	  trunk/playground/utils/rsibreak/TODO: add Tina as contributor,
 	  bump version, fix warning, update TODO
 
-2006-06-10 23:51 +0000 [r550088]  Tom Albers tomalbers@kde.nl
+2006-06-10 23:51 +0000 [r550088]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
@@ -4640,17 +5111,17 @@
 	  in the full screen widget. Works only with the grey out effect,
 	  not with image mode.
 
-2006-06-10 20:54 +0000 [r550057]  Tom Albers tomalbers@kde.nl
+2006-06-10 20:54 +0000 [r550057]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setupdcop.cpp: Only enable
 	  what's needed
 
-2006-06-10 14:30 +0000 [r549976]  Tom Albers tomalbers@kde.nl
+2006-06-10 14:30 +0000 [r549976]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.cpp: svn_silent:
 	  Clean up the dock
 
-2006-06-10 14:22 +0000 [r549973]  Tom Albers tomalbers@kde.nl
+2006-06-10 14:22 +0000 [r549973]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
@@ -4665,7 +5136,7 @@
 	  kddebug, it is time to remove all of them where possible Dont
 	  suspend rsibreak when about dialog is shown
 
-2006-06-09 22:37 +0000 [r549814]  Tom Albers tomalbers@kde.nl
+2006-06-09 22:37 +0000 [r549814]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
@@ -4682,26 +5153,26 @@
 	  statistics: percentage of activity during the last hour and the
 	  last 6 hours.
 
-2006-06-09 22:01 +0000 [r549801]  Tom Albers tomalbers@kde.nl
+2006-06-09 22:01 +0000 [r549801]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: reorganise the
 	  resizing.
 
-2006-06-09 12:11 +0000 [r549642]  Tom Albers tomalbers@kde.nl
+2006-06-09 12:11 +0000 [r549642]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/setupdcop.cpp: Remove not
 	  working karm dcop calls and rearrange maximize() in rsiwidget so
 	  it steals focus again. CCBUG: 128780
 
-2006-06-08 22:26 +0000 [r549518]  Tom Albers tomalbers@kde.nl
+2006-06-08 22:26 +0000 [r549518]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Make sure that
 	  the second break has the fade effect as well, dont load another
 	  image when there is only one image and dont rename slots just
 	  before commits, thats asking for it.
 
-2006-06-08 22:10 +0000 [r549515]  Tom Albers tomalbers@kde.nl
+2006-06-08 22:10 +0000 [r549515]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Ok, this commit
@@ -4715,19 +5186,19 @@
 	  transparant images as part of your image collection, but the aim
 	  is the title of the bugreport ;-)
 
-2006-06-06 19:33 +0000 [r548887]  Tom Albers tomalbers@kde.nl
+2006-06-06 19:33 +0000 [r548887]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp: Fix
 	  jumping of the passivepopup and resizing when the label changes.
 
-2006-06-06 17:55 +0000 [r548870]  Tom Albers tomalbers@kde.nl
+2006-06-06 17:55 +0000 [r548870]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.h,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Libxss is
 	  required for compiling. I don't see a reason to check it at
 	  runtime.
 
-2006-06-06 17:43 +0000 [r548869]  Tom Albers tomalbers@kde.nl
+2006-06-06 17:43 +0000 [r548869]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer_dpms.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - Dont query
@@ -4738,7 +5209,7 @@
 	  functionality does not depend on that lib. If it is not needed it
 	  will not be queried. So this is cleaner.
 
-2006-06-06 15:27 +0000 [r548826]  Tom Albers tomalbers@kde.nl
+2006-06-06 15:27 +0000 [r548826]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer_dpms.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -4750,7 +5221,7 @@
 	  ignore the standby and suspend interval second. Why o why does X
 	  emit activity when blanking the screen....
 
-2006-06-05 15:24 +0000 [r548441]  Tom Albers tomalbers@kde.nl
+2006-06-05 15:24 +0000 [r548441]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -4764,13 +5235,13 @@
 	  loaded when needed. Hence the dialogs appear faster and when
 	  dialog is closed, rsibreak is immediatly picking up its task.
 
-2006-06-05 14:44 +0000 [r548426]  Tom Albers tomalbers@kde.nl
+2006-06-05 14:44 +0000 [r548426]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Playing with
 	  callgrind, i don't really understand it, but smoothscale seems to
 	  delay startup enormously.
 
-2006-05-31 22:14 +0000 [r547133]  Tom Albers tomalbers@kde.nl
+2006-05-31 22:14 +0000 [r547133]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/setuppopup.cpp (removed),
@@ -4784,7 +5255,7 @@
 	  usability review. CCMAIL: t.trillitzsch@gmx.de,
 	  clearbeast@gmail.com
 
-2006-05-31 21:19 +0000 [r547115]  Tom Albers tomalbers@kde.nl
+2006-05-31 21:19 +0000 [r547115]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuppopup.cpp: Usability
 	  work on the setuppopup page. - brought the checkbox closer to the
@@ -4792,7 +5263,7 @@
 	  the options Finished issue 2.1 from the report. CCMAIL:
 	  t.trillitzsch@gmx.de
 
-2006-05-29 18:47 +0000 [r546323]  Tom Albers tomalbers@kde.nl
+2006-05-29 18:47 +0000 [r546323]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuppopup.cpp,
 	  trunk/playground/utils/rsibreak/src/setupdcop.cpp,
@@ -4811,7 +5282,7 @@
 	  the DCOP commands in the timer (on the right places I hope).
 	  Executed both on tiny breaks and big breaks (for now)
 
-2006-05-21 20:15 +0000 [r543355]  Tom Albers tomalbers@kde.nl
+2006-05-21 20:15 +0000 [r543355]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
@@ -4822,7 +5293,7 @@
 	  pieces: start using it && implement add and delete. We can now
 	  start to test it.
 
-2006-05-21 13:53 +0000 [r543170]  Tom Albers tomalbers@kde.nl
+2006-05-21 13:53 +0000 [r543170]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
@@ -4838,7 +5309,7 @@
 	* trunk/playground/utils/rsibreak/src/setupdcop.cpp: Mind the "()"
 	  when you're not passing data.
 
-2006-05-20 15:14 +0000 [r542910]  Tom Albers tomalbers@kde.nl
+2006-05-20 15:14 +0000 [r542910]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setupdcop.cpp,
 	  trunk/playground/utils/rsibreak/src/setupdcop.h: Another step
@@ -4846,7 +5317,7 @@
 	  Still wip... Bram, any can you look at slotTestStart(), i've no
 	  clue what i'm doing wrong there.
 
-2006-05-19 23:22 +0000 [r542678]  Tom Albers tomalbers@kde.nl
+2006-05-19 23:22 +0000 [r542678]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/setupdcop.cpp (added),
@@ -4855,18 +5326,18 @@
 	  steps to be able to execute dcop commands on start and ending of
 	  a break. Work in progress...
 
-2006-05-19 14:18 +0000 [r542517]  Tom Albers tomalbers@kde.nl
+2006-05-19 14:18 +0000 [r542517]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Usability
 	  recomendation from Tina. Show where the icon sits in the tray.
 	  Shameless copy from various places. CCMAIL: t.trillitzsch@gmx.de
 
-2006-05-13 17:29 +0000 [r540509]  Tom Albers tomalbers@kde.nl
+2006-05-13 17:29 +0000 [r540509]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/configure.in.bot: Small typo.
 	  Patch from the FreeBSD people via Alex Dupre.
 
-2006-05-13 17:20 +0000 [r540507]  Tom Albers tomalbers@kde.nl
+2006-05-13 17:20 +0000 [r540507]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/Makefile.am: Compiling with
 	  -jN with N>1 was broken. Gentoo bug 132875. Patch from Diego
@@ -4879,18 +5350,18 @@
 	  icon. Sometimes the timer seems to be uninitialized when pressing
 	  the mouse button on it. Should fix Tom's crash report.
 
-2006-05-05 10:39 +0000 [r537617]  Tom Albers tomalbers@kde.nl
+2006-05-05 10:39 +0000 [r537617]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: At least keep
 	  20 sec popup free when starting.
 
-2006-05-05 10:30 +0000 [r537612]  Tom Albers tomalbers@kde.nl
+2006-05-05 10:30 +0000 [r537612]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: But m_tiny_left
 	  is not resetted, so is 0, so enters loop. Revert last fix and try
 	  another approach.
 
-2006-05-05 08:38 +0000 [r537586]  Tom Albers tomalbers@kde.nl
+2006-05-05 08:38 +0000 [r537586]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Finally fixed
 	  this bug ( I hope ). Right after a break of 10 seconds, it can
@@ -4921,7 +5392,7 @@
 	  code if you change the idle detection setting. Will be improved
 	  sometime. o mDcopIface -> m_dcopIface
 
-2006-04-24 17:59 +0000 [r533401]  Tom Albers tomalbers@kde.nl
+2006-04-24 17:59 +0000 [r533401]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/NEWS,
 	  trunk/playground/utils/rsibreak/CMakeLists.txt,
@@ -5049,7 +5520,7 @@
 	  trunk/playground/utils/rsibreak/src/setuptiming.cpp: Make krazy
 	  shut up a bit.
 
-2006-04-21 17:50 +0000 [r532336]  Tom Albers tomalbers@kde.nl
+2006-04-21 17:50 +0000 [r532336]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp: syntax error
 	  before "mins"
@@ -5063,17 +5534,17 @@
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Two new DCOP
 	  calls: o Force tiny break o Force big break
 
-2006-04-20 19:32 +0000 [r531995]  Tom Albers tomalbers@kde.nl
+2006-04-20 19:32 +0000 [r531995]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: ambiguous
 	  overload for `bool & ? const QString & : const char[4]'
 
-2006-04-12 18:32 +0000 [r529202]  Tom Albers tomalbers@kde.nl
+2006-04-12 18:32 +0000 [r529202]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/CMakeLists.txt: Finally found
 	  the correct way
 
-2006-04-11 19:12 +0000 [r528781]  Tom Albers tomalbers@kde.nl
+2006-04-11 19:12 +0000 [r528781]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/config.h.cmake (added),
 	  trunk/playground/utils/rsibreak/CMakeLists.txt (added),
@@ -5086,7 +5557,7 @@
 	* trunk/playground/utils/rsibreak/src/rsistats.cpp: Extended the
 	  what's this explanations a bit.
 
-2006-04-10 18:53 +0000 [r528324]  Tom Albers tomalbers@kde.nl
+2006-04-10 18:53 +0000 [r528324]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/NEWS,
@@ -5094,7 +5565,7 @@
 	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
 	  trunk/playground/utils/rsibreak/TODO: prep 0.6.0
 
-2006-04-09 21:58 +0000 [r528030]  Tom Albers tomalbers@kde.nl
+2006-04-09 21:58 +0000 [r528030]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Fix corner
 	  case. User locks and unlocks during one break, the buttons dont
@@ -5102,13 +5573,13 @@
 	  have been released because the lock() dcop call does not work in
 	  that case. *sigh*
 
-2006-04-09 21:38 +0000 [r528013]  Tom Albers tomalbers@kde.nl
+2006-04-09 21:38 +0000 [r528013]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: When no image
 	  is found, the background is black during a break. Change the font
 	  color to white in that case.
 
-2006-04-09 21:27 +0000 [r528008]  Tom Albers tomalbers@kde.nl
+2006-04-09 21:27 +0000 [r528008]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: slotLock did
@@ -5135,13 +5606,13 @@
 	  trunk/playground/utils/rsibreak/src/rsirelaxpopup.cpp: Show empty
 	  strings instead of 00:00:00 in statistics.
 
-2006-04-07 08:28 +0000 [r527187]  Tom Albers tomalbers@kde.nl
+2006-04-07 08:28 +0000 [r527187]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.cpp: Fix bug where
 	  the left mouse click on rsibreak would only show the stats the
 	  first time.
 
-2006-04-07 08:13 +0000 [r527183]  Tom Albers tomalbers@kde.nl
+2006-04-07 08:13 +0000 [r527183]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
@@ -5159,24 +5630,24 @@
 	  trunk/playground/utils/rsibreak/src/rsistatitem.h: Reset stats
 	  properly.
 
-2006-04-05 21:27 +0000 [r526897]  Tom Albers tomalbers@kde.nl
+2006-04-05 21:27 +0000 [r526897]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.cpp: switch to the
 	  right dektop
 
-2006-04-05 20:55 +0000 [r526886]  Tom Albers tomalbers@kde.nl
+2006-04-05 20:55 +0000 [r526886]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.cpp: Left click on
 	  tray item show statistics. Advice from Achim Bohnet.
 
-2006-04-05 20:00 +0000 [r526865]  Tom Albers tomalbers@kde.nl
+2006-04-05 20:00 +0000 [r526865]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Dont pester
 	  the user with the reset of the timers by the popup by default.
 	  Advice from Achim Bohnet
 
-2006-04-05 18:05 +0000 [r526831]  Tom Albers tomalbers@kde.nl
+2006-04-05 18:05 +0000 [r526831]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/NEWS,
@@ -5216,7 +5687,7 @@
 	  were not reset when a break has passed (with popup). A symptom
 	  was that the docker icon was still filled after a relax moment.
 
-2006-04-03 19:31 +0000 [r526075]  Tom Albers tomalbers@kde.nl
+2006-04-03 19:31 +0000 [r526075]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer_dpms.cpp (added),
 	  trunk/playground/utils/rsibreak/NEWS,
@@ -5246,7 +5717,7 @@
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp: Stupid
 	  copypaste mistake.
 
-2006-04-01 17:42 +0000 [r525336]  Tom Albers tomalbers@kde.nl
+2006-04-01 17:42 +0000 [r525336]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/src/rsistats.h,
@@ -5270,7 +5741,7 @@
 	  wrong yesterday with moving timer data to RSIGlobals. New timer
 	  data is properly read after configuring.
 
-2006-04-01 16:46 +0000 [r525326]  Tom Albers tomalbers@kde.nl
+2006-04-01 16:46 +0000 [r525326]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.h,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: I could not
@@ -5290,7 +5761,7 @@
 	  timer when suspended (especially the case when OK'ing configure
 	  dialog while suspended).
 
-2006-04-01 13:02 +0000 [r525253]  Tom Albers tomalbers@kde.nl
+2006-04-01 13:02 +0000 [r525253]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsistats.cpp,
 	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp: Partially
@@ -5384,7 +5855,7 @@
 	  for the 0.6.0 release. Shall we make this a start of a feature
 	  freeze?
 
-2006-03-30 21:46 +0000 [r524665]  Tom Albers tomalbers@kde.nl
+2006-03-30 21:46 +0000 [r524665]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: The last bug I
 	  found is squashed by this fix. Maybe Bram wants to fix this The
@@ -5393,7 +5864,7 @@
 	  want idle-detection durng normal operation and they receive a
 	  break...
 
-2006-03-30 21:38 +0000 [r524660-524661]  Tom Albers tomalbers@kde.nl
+2006-03-30 21:38 +0000 [r524660-524661]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Slot not
 	  found, due to c instead of C. Fixed
@@ -5407,7 +5878,7 @@
 	  idlesness in that slot are pretty slim anyways. I just hope that
 	  the 20 minute is not configurable somewhere.
 
-2006-03-30 18:03 +0000 [r524592]  Tom Albers tomalbers@kde.nl
+2006-03-30 18:03 +0000 [r524592]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.h,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Test to see if
@@ -5441,14 +5912,14 @@
 	  leak: an RSIStats instance cannot delete itself. Delete it from
 	  RSIWidget.
 
-2006-03-27 19:00 +0000 [r523275]  Tom Albers tomalbers@kde.nl
+2006-03-27 19:00 +0000 [r523275]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuptiming.cpp,
 	  trunk/playground/utils/rsibreak/src/setuptiming.h: Fix 18n calls
 	  in setuptimings. Results in the errors that %n should be in the
 	  result, but I dont want that ;-)
 
-2006-03-27 18:37 +0000 [r523267]  Tom Albers tomalbers@kde.nl
+2006-03-27 18:37 +0000 [r523267]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Fix bug where
 	  counters stopped working when tiny maximized > big maximized. We
@@ -5470,7 +5941,7 @@
 	  what's this text to a separate function. Attach whatsthis to
 	  descriptions as well.
 
-2006-03-26 17:44 +0000 [r522776]  Tom Albers tomalbers@kde.nl
+2006-03-26 17:44 +0000 [r522776]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuptiming.cpp,
 	  trunk/playground/utils/rsibreak/src/rsistats.cpp: whatsthis +
@@ -5485,14 +5956,14 @@
 	  statistics dialog (4 groupboxes) o Show only time for "Last foo
 	  break" o Hide separator line in stats dialog o Cleanup
 
-2006-03-26 13:55 +0000 [r522703]  Tom Albers tomalbers@kde.nl
+2006-03-26 13:55 +0000 [r522703]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.h,
 	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Add a button to
 	  reset the statistics.
 
-2006-03-26 02:32 +0000 [r522573]  Tom Albers tomalbers@kde.nl
+2006-03-26 02:32 +0000 [r522573]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -5512,7 +5983,7 @@
 	  Coloring certain labels ranging from red to green (a 100% pause
 	  score will color the label green )
 
-2006-03-25 23:01 +0000 [r522545]  Tom Albers tomalbers@kde.nl
+2006-03-25 23:01 +0000 [r522545]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/NEWS,
 	  trunk/playground/utils/rsibreak/src/rsistats.cpp: Qvariant
@@ -5540,7 +6011,7 @@
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: New stat:
 	  percentage of activity. Also some unnecessary includes removed.
 
-2006-03-25 20:43 +0000 [r522507]  Tom Albers tomalbers@kde.nl
+2006-03-25 20:43 +0000 [r522507]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsistats.h,
 	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
@@ -5549,7 +6020,7 @@
 	  tiny break / big break skipped due to idleness. Shuffled the
 	  order a tiny bit.
 
-2006-03-25 20:26 +0000 [r522503]  Tom Albers tomalbers@kde.nl
+2006-03-25 20:26 +0000 [r522503]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsistats.h,
 	  trunk/playground/utils/rsibreak/src/rsistats.cpp,
@@ -5564,7 +6035,7 @@
 	  trunk/playground/utils/rsibreak/src/rsistatwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.cpp: compile
 
-2006-03-25 17:54 +0000 [r522473]  Tom Albers tomalbers@kde.nl
+2006-03-25 17:54 +0000 [r522473]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
@@ -5612,7 +6083,7 @@
 	  playing with the docker. Couldn't find the cause yet. o APIDOX
 	  all over the stats code.
 
-2006-03-23 18:38 +0000 [r521870]  Tom Albers tomalbers@kde.nl
+2006-03-23 18:38 +0000 [r521870]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
@@ -5631,7 +6102,7 @@
 	* trunk/playground/utils/rsibreak/src/rsiglobals.h: A namespace
 	  suffices
 
-2006-03-22 23:47 +0000 [r521607]  Tom Albers tomalbers@kde.nl
+2006-03-22 23:47 +0000 [r521607]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
@@ -5643,7 +6114,7 @@
 	  seconds" instead of null(), adjusted rsitooltip for that. Means
 	  prettier stats if 0 occurs there.
 
-2006-03-22 23:21 +0000 [r521601]  Tom Albers tomalbers@kde.nl
+2006-03-22 23:21 +0000 [r521601]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiglobals.h,
@@ -5652,12 +6123,12 @@
 	  as well... TODO: - add stats - for skipped breaks due to
 	  idleness. - max time idle - update stats every second
 
-2006-03-21 15:44 +0000 [r521117]  Tom Albers tomalbers@kde.nl
+2006-03-21 15:44 +0000 [r521117]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Compile for
 	  2.9x (FreeBSD 4.X)
 
-2006-03-20 22:41 +0000 [r520830]  Tom Albers tomalbers@kde.nl
+2006-03-20 22:41 +0000 [r520830]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiglobals.cpp (added),
 	  trunk/playground/utils/rsibreak/src/rsilib.cpp (removed),
@@ -5668,13 +6139,13 @@
 	  trunk/playground/utils/rsibreak/src/rsistats.cpp: Rename to
 	  rsiblobals
 
-2006-03-20 20:03 +0000 [r520778]  Tom Albers tomalbers@kde.nl
+2006-03-20 20:03 +0000 [r520778]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Fix memory
 	  leak, reported and the patch by Lev Iserovich Thanks a lot! BUG:
 	  124000
 
-2006-03-20 19:30 +0000 [r520772]  Tom Albers tomalbers@kde.nl
+2006-03-20 19:30 +0000 [r520772]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsilib.cpp (added),
 	  trunk/playground/utils/rsibreak/src/Makefile.am,
@@ -5685,14 +6156,14 @@
 	  the formatting of time to the lib and hooked it to the rsistats
 	  and rsitooltip. Bram will hopefully review.
 
-2006-03-20 18:18 +0000 [r520757]  Tom Albers tomalbers@kde.nl
+2006-03-20 18:18 +0000 [r520757]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuppopup.cpp,
 	  trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Make it
 	  compile under kde 3.3
 
-2006-03-16 18:46 +0000 [r519276]  Tom Albers tomalbers@kde.nl
+2006-03-16 18:46 +0000 [r519276]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/dcopiface.h,
@@ -5703,7 +6174,7 @@
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Yes, idle
 	  popups can get annoying, make them optional.
 
-2006-03-15 09:42 +0000 [r518799]  Tom Albers tomalbers@kde.nl
+2006-03-15 09:42 +0000 [r518799]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsistats.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: - Fix "Total
@@ -5740,7 +6211,7 @@
 	  in progress. But at least it gives you an indication what I'm
 	  doing at the moment.
 
-2006-03-04 02:15 +0000 [r515527]  Tom Albers tomalbers@kde.nl
+2006-03-04 02:15 +0000 [r515527]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.h,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -5752,7 +6223,7 @@
 	  errors repoted at ebn/icefox, one at ebn stays as ive no idea how
 	  to solve.
 
-2006-03-03 23:58 +0000 [r515514]  Tom Albers tomalbers@kde.nl
+2006-03-03 23:58 +0000 [r515514]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.h,
 	  trunk/playground/utils/rsibreak/TODO,
@@ -5767,12 +6238,12 @@
 	* trunk/playground/utils/rsibreak/src/rsitooltip.cpp: Don't
 	  capitalize "One" in the middle of a sentence.
 
-2006-03-03 13:33 +0000 [r515326]  Tom Albers tomalbers@kde.nl
+2006-03-03 13:33 +0000 [r515326]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: (Big brown bag
 	  commit) make it work
 
-2006-03-02 08:39 +0000 [r514978]  Tom Albers tomalbers@kde.nl
+2006-03-02 08:39 +0000 [r514978]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/setupgeneral.h,
@@ -5783,7 +6254,7 @@
 	  implement it further. - Fix regression where the messagebox would
 	  say: 'look at the tray' and the tray is not showing anything.
 
-2006-03-01 23:32 +0000 [r514933]  Tom Albers tomalbers@kde.nl
+2006-03-01 23:32 +0000 [r514933]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/configure.in.bot,
 	  trunk/playground/utils/rsibreak/configure.in.in,
@@ -5791,7 +6262,7 @@
 	  rsibreak without idle detection is worthless and we do not want
 	  to put hacks in rsitimer to make it work again.
 
-2006-03-01 23:05 +0000 [r514923]  Tom Albers tomalbers@kde.nl
+2006-03-01 23:05 +0000 [r514923]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -5805,16 +6276,16 @@
 	  skipped due to idleness, show a popup that the break is skipped
 	  and remove that popup when idle=0.
 
-2006-02-23 14:40 +0000 [r512748]  Tom Albers tomalbers@kde.nl
+2006-02-23 14:40 +0000 [r512748]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/TODO: Results of a gNome test
 
-2006-02-21 17:09 +0000 [r512043]  Tom Albers tomalbers@kde.nl
+2006-02-21 17:09 +0000 [r512043]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog: Update Changelog
 	  before release
 
-2006-02-21 15:03 +0000 [r512009]  Tom Albers tomalbers@kde.nl
+2006-02-21 15:03 +0000 [r512009]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
@@ -5831,19 +6302,19 @@
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Small cleanup.
 	  I got rid of the currentIsBigBreak() method, it's kinda hackish.
 
-2006-02-19 19:01 +0000 [r511398]  Tom Albers tomalbers@kde.nl
+2006-02-19 19:01 +0000 [r511398]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
 	  trunk/playground/utils/rsibreak/src/rsibreak.lsm: typo SVN_SILENT
 
-2006-02-18 15:37 +0000 [r511023]  Tom Albers tomalbers@kde.nl
+2006-02-18 15:37 +0000 [r511023]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/NEWS,
 	  trunk/playground/utils/rsibreak/release_rsibreak.rb: Updates,
 	  prep for rc
 
-2006-02-18 13:19 +0000 [r510910]  Tom Albers tomalbers@kde.nl
+2006-02-18 13:19 +0000 [r510910]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: New welcome
 	  messagebox for 0.5.
@@ -5868,7 +6339,7 @@
 	  behaves as desired. o Hide tooltip in relax state o Vertical
 	  spacing in tooltip increased o Renamed a member variable
 
-2006-02-18 00:47 +0000 [r510769]  Tom Albers tomalbers@kde.nl
+2006-02-18 00:47 +0000 [r510769]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.h,
 	  trunk/playground/utils/rsibreak/src/rsitooltip.cpp,
@@ -5886,7 +6357,7 @@
 	  expecting 20 seconds. Remaining bugs: - do not show the tooltip
 	  when the relaxpopup is active, dont know if that is possible...
 
-2006-02-17 22:18 +0000 [r510744]  Tom Albers tomalbers@kde.nl
+2006-02-17 22:18 +0000 [r510744]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
@@ -5898,7 +6369,7 @@
 	  trunk/playground/utils/rsibreak/src/dcopiface.cpp (added): Added
 	  dcop interface.
 
-2006-02-17 21:07 +0000 [r510721]  Tom Albers tomalbers@kde.nl
+2006-02-17 21:07 +0000 [r510721]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -5911,19 +6382,19 @@
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Administrative:
 	  o version++; o copyrights o credits
 
-2006-02-17 20:44 +0000 [r510714]  Tom Albers tomalbers@kde.nl
+2006-02-17 20:44 +0000 [r510714]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuptiming.cpp,
 	  trunk/playground/utils/rsibreak/src/setuptiming.h: Dont let the
 	  big break be smaller than the tiny one
 
-2006-02-17 20:21 +0000 [r510699]  Tom Albers tomalbers@kde.nl
+2006-02-17 20:21 +0000 [r510699]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Completed the
 	  work to better support multihead setups.
 
-2006-02-17 17:51 +0000 [r510658]  Tom Albers tomalbers@kde.nl
+2006-02-17 17:51 +0000 [r510658]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Ok, I officially
@@ -5975,13 +6446,13 @@
 	  Cleanups o Renamed the Minimize button to Skip Still to do: o
 	  APIDOX o Testing FEATURE:118701
 
-2006-02-13 20:48 +0000 [r509165]  Tom Albers tomalbers@kde.nl
+2006-02-13 20:48 +0000 [r509165]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Small first step
 	  for xinerama support.
 
-2006-02-12 21:11 +0000 [r508843]  Tom Albers tomalbers@kde.nl
+2006-02-12 21:11 +0000 [r508843]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/release_rsibreak.rb,
@@ -6055,7 +6526,7 @@
 	  work properly if the amount of time for the big break is less
 	  than for the tiny break. But that's not a common case.
 
-2005-12-16 18:57 +0000 [r489005]  Tom Albers tomalbers@kde.nl
+2005-12-16 18:57 +0000 [r489005]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog: Update
 
@@ -6087,7 +6558,7 @@
 	  Result: -1. And i18n() with plurals can't handle -1. Simple.
 	  Summarized: Is that -1 really neccessary?
 
-2005-12-12 18:11 +0000 [r487968]  Tom Albers tomalbers@kde.nl
+2005-12-12 18:11 +0000 [r487968]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setupmaximized.cpp,
 	  trunk/playground/utils/rsibreak/src/setuptiming.cpp: I honestly
@@ -6095,7 +6566,7 @@
 	  to break the freeze anymore. (yy,1000P) Changes after proofread
 	  by Malcolm.
 
-2005-12-11 23:42 +0000 [r487789]  Tom Albers tomalbers@kde.nl
+2005-12-11 23:42 +0000 [r487789]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -6117,7 +6588,7 @@
 	  requested time to a double to make the division work. The dynamic
 	  timer works now for periods > 100 seconds.
 
-2005-12-11 21:44 +0000 [r487768]  Tom Albers tomalbers@kde.nl
+2005-12-11 21:44 +0000 [r487768]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/src/setup.cpp,
@@ -6153,7 +6624,7 @@
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Show idle
 	  status in docker.
 
-2005-12-10 23:04 +0000 [r487537]  Tom Albers tomalbers@kde.nl
+2005-12-10 23:04 +0000 [r487537]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h,
@@ -6166,27 +6637,27 @@
 	  message. - Also, prevent that the avarage calculation continious
 	  in suspended state, because that will change the tray icon ;-)
 
-2005-12-10 22:19 +0000 [r487524]  Tom Albers tomalbers@kde.nl
+2005-12-10 22:19 +0000 [r487524]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsitimer.cpp: Bug fix: after
 	  entering the config (m_suspended gets set to true) and leaving,
 	  m_suspended did not got set to false. Also an extra safeguard to
 	  bail out of maximize when suspended is true.
 
-2005-12-10 22:04 +0000 [r487520]  Tom Albers tomalbers@kde.nl
+2005-12-10 22:04 +0000 [r487520]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Base the
 	  resize of the image on the screen size, not on the desktop size,
 	  which will give odd results on xinerama/multihead.
 
-2005-12-07 23:26 +0000 [r486488]  Tom Albers tomalbers@kde.nl
+2005-12-07 23:26 +0000 [r486488]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.h,
 	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Reimplemented
 	  because original implementation adds a minize item to the
 	  contextmenu, which we do not need. Sigh.
 
-2005-12-07 21:45 +0000 [r486453]  Tom Albers tomalbers@kde.nl
+2005-12-07 21:45 +0000 [r486453]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsipopup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
@@ -6205,13 +6676,13 @@
 	  and it's corresponding widget? Looks like double work for
 	  translators.
 
-2005-12-04 22:20 +0000 [r485563]  Tom Albers tomalbers@kde.nl
+2005-12-04 22:20 +0000 [r485563]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setuppopup.cpp,
 	  trunk/playground/utils/rsibreak/src/setuppopup.h: Fill the
 	  setuppopup page, need to implement the settings in the app...
 
-2005-12-04 21:44 +0000 [r485554]  Tom Albers tomalbers@kde.nl
+2005-12-04 21:44 +0000 [r485554]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/main.cpp: When RSIBreak was
 	  started a second time, the widget get shown, which is not what
@@ -6230,7 +6701,7 @@
 	* trunk/playground/utils/rsibreak/src/setuptiming.cpp: Use the same
 	  default values as in RSITimer::readConfig()
 
-2005-12-02 23:43 +0000 [r485131]  Tom Albers tomalbers@kde.nl
+2005-12-02 23:43 +0000 [r485131]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsipopup.cpp,
@@ -6250,7 +6721,7 @@
 	  flash yes/no, use the popup in general yes/no, maybe flash color
 	  - upgraded Bram to author, thanks for your work!
 
-2005-12-02 22:27 +0000 [r485115]  Tom Albers tomalbers@kde.nl
+2005-12-02 22:27 +0000 [r485115]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.h,
 	  trunk/playground/utils/rsibreak/src/rsidock.cpp: Eat everything
@@ -6332,7 +6803,7 @@
 	  that query function in RSITimer I introduced last night. Just
 	  pass the object along the signal.
 
-2005-11-12 20:28 +0000 [r480017]  Tom Albers tomalbers@kde.nl
+2005-11-12 20:28 +0000 [r480017]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/mainpage.cpp (removed),
@@ -6367,7 +6838,7 @@
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h,
 	  trunk/playground/utils/rsibreak/src/rsitimer.cpp: Cleanups
 
-2005-11-10 23:27 +0000 [r479591]  Tom Albers tomalbers@kde.nl
+2005-11-10 23:27 +0000 [r479591]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsitimer.h (added),
@@ -6397,7 +6868,7 @@
 	  which keep bothering me on my local copy. Also some code to lock
 	  the desktop, but there's no button yet.
 
-2005-11-09 20:02 +0000 [r479259]  Tom Albers tomalbers@kde.nl
+2005-11-09 20:02 +0000 [r479259]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.h,
@@ -6408,7 +6879,7 @@
 	  to think about the logic of the breaks into this. Ideas are
 	  welcome. Bram?
 
-2005-11-09 18:59 +0000 [r479241]  Tom Albers tomalbers@kde.nl
+2005-11-09 18:59 +0000 [r479241]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setupgeneral.h,
 	  trunk/playground/utils/rsibreak/NEWS,
@@ -6418,7 +6889,7 @@
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Possibility
 	  to start RSIBreak when KDE starts.
 
-2005-11-08 20:17 +0000 [r479002]  Tom Albers tomalbers@kde.nl
+2005-11-08 20:17 +0000 [r479002]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/original_artwork.tar.gz
@@ -6454,7 +6925,7 @@
 	  needs to be implemented. Added Lee as contributer and removed
 	  Thorsten who can not contribute due to lack of time.
 
-2005-10-30 02:04 +0000 [r475651]  Tom Albers tomalbers@kde.nl
+2005-10-30 02:04 +0000 [r475651]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.h,
@@ -6465,7 +6936,7 @@
 	  activates a break. Currently win+b, need to make that
 	  configurable.
 
-2005-10-29 23:25 +0000 [r475641]  Tom Albers tomalbers@kde.nl
+2005-10-29 23:25 +0000 [r475641]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/NEWS,
@@ -6476,7 +6947,7 @@
 	  less boring. Looks like a slideshow. The image loading has been
 	  rewriten by using a paintEvent with a bitBlt().
 
-2005-10-29 15:13 +0000 [r475502]  Tom Albers tomalbers@kde.nl
+2005-10-29 15:13 +0000 [r475502]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog,
 	  trunk/playground/utils/rsibreak/src/mainpage.cpp (added),
@@ -6490,14 +6961,14 @@
 	  settings as well - added apidox mainpage - install .desktop file
 	  to correct location - updated NEWS and CHANGELOG
 
-2005-10-24 19:27 +0000 [r473858]  Tom Albers tomalbers@kde.nl
+2005-10-24 19:27 +0000 [r473858]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Add a passive
 	  popup to indicate rsibreak is waiting for a break. Unexpectedly
 	  this works quite nicely.
 
-2005-10-23 18:38 +0000 [r473462]  Tom Albers tomalbers@kde.nl
+2005-10-23 18:38 +0000 [r473462]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/setuptiming.cpp,
@@ -6513,7 +6984,7 @@
 	* trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Make it
 	  compile.
 
-2005-10-21 17:43 +0000 [r472713]  Tom Albers tomalbers@kde.nl
+2005-10-21 17:43 +0000 [r472713]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.h,
@@ -6525,7 +6996,7 @@
 	  managed to make the hardcoded ESC key to minimize the window
 	  configurable.
 
-2005-10-21 14:50 +0000 [r472663]  Tom Albers tomalbers@kde.nl
+2005-10-21 14:50 +0000 [r472663]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Since some of
 	  the intelligence is also handled elsewhere, I can remove some of
@@ -6535,13 +7006,13 @@
 	  now. I'm not sure that (int)ceil() is the best way to do it
 	  though (i want the difference in time, rounded up).
 
-2005-10-21 10:30 +0000 [r472589]  Tom Albers tomalbers@kde.nl
+2005-10-21 10:30 +0000 [r472589]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Cleaned up a
 	  bit too much yesterday. After a bigBreak counter was not
 	  resetted, so the next break is again a BigBreak.
 
-2005-10-20 18:35 +0000 [r472432]  Tom Albers tomalbers@kde.nl
+2005-10-20 18:35 +0000 [r472432]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Again changes in
@@ -6552,7 +7023,7 @@
 	  break, the break is skipped. - when the user starts working
 	  again, the break will be activated.... idea from Bram.
 
-2005-10-20 16:31 +0000 [r472396]  Tom Albers tomalbers@kde.nl
+2005-10-20 16:31 +0000 [r472396]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Remove warning
@@ -6560,19 +7031,19 @@
 	  images, right after you change the path in the settings: the
 	  image was only loaded _after_ the first brake.
 
-2005-10-19 19:19 +0000 [r472072]  Tom Albers tomalbers@kde.nl
+2005-10-19 19:19 +0000 [r472072]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Not
 	  initialised variable, resulting in sometimes a break at start.
 	  Reported by Bram.
 
-2005-10-19 17:26 +0000 [r472053]  Tom Albers tomalbers@kde.nl
+2005-10-19 17:26 +0000 [r472053]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Fixed the
 	  logic a bit more and made the code more readible. Should be ok
 	  now.
 
-2005-10-18 20:02 +0000 [r471799]  Tom Albers tomalbers@kde.nl
+2005-10-18 20:02 +0000 [r471799]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Worked on the
@@ -6584,7 +7055,7 @@
 	  since the last break: delay this break and the next one.
 	  (keep-it-out-of-my-face-right-after-lunch-feature) testing needed
 
-2005-10-17 21:44 +0000 [r471523]  Tom Albers tomalbers@kde.nl
+2005-10-17 21:44 +0000 [r471523]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
@@ -6593,7 +7064,7 @@
 	  dialog size for settings dialog - expanded tooltips - use app
 	  font instead of Verdana
 
-2005-10-17 20:24 +0000 [r471491]  Tom Albers tomalbers@kde.nl
+2005-10-17 20:24 +0000 [r471491]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/hi32-app-rsi.png (removed),
 	  trunk/playground/utils/rsibreak/src/hi16-app-rsi.png (removed),
@@ -6605,14 +7076,14 @@
 	  Deleted non-binary icons and added the xclock icon as long as
 	  there is no alternative...
 
-2005-10-17 18:00 +0000 [r471428]  Tom Albers tomalbers@kde.nl
+2005-10-17 18:00 +0000 [r471428]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/main.cpp,
 	  trunk/playground/utils/rsibreak/src/rsibreak.desktop,
 	  trunk/playground/utils/rsibreak/TODO: There is no need for
 	  multiple RSIBreaks...
 
-2005-10-12 18:51 +0000 [r469972]  Tom Albers tomalbers@kde.nl
+2005-10-12 18:51 +0000 [r469972]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/ChangeLog (added),
 	  trunk/playground/utils/rsibreak/configure.in.bot (added),
@@ -6626,7 +7097,7 @@
 	  kde-common, a summary file and bumped the version so I can make a
 	  new tarball.
 
-2005-10-12 16:35 +0000 [r469944]  Tom Albers tomalbers@kde.nl
+2005-10-12 16:35 +0000 [r469944]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: This prevents a
@@ -6634,14 +7105,14 @@
 	  meeting or lunch for example. When you have been away a while,
 	  RSIBreak remembers that and will skip the next break...
 
-2005-10-11 21:46 +0000 [r469662]  Tom Albers tomalbers@kde.nl
+2005-10-11 21:46 +0000 [r469662]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/configure.in.in,
 	  trunk/playground/utils/rsibreak/TODO: administrative, should be
 	  able to generate Dox now, but it does not work. Ideas are
 	  welcome, I give up.
 
-2005-10-11 19:16 +0000 [r469634]  Tom Albers tomalbers@kde.nl
+2005-10-11 19:16 +0000 [r469634]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/configure.in.in,
@@ -6654,12 +7125,12 @@
 	  the big break gets postponed one break). This was one of the most
 	  wanted features!
 
-2005-10-09 00:53 +0000 [r468689]  Tom Albers tomalbers@kde.nl
+2005-10-09 00:53 +0000 [r468689]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: Add some
 	  additional debugging when image loading fails.
 
-2005-10-08 23:39 +0000 [r468674]  Tom Albers tomalbers@kde.nl
+2005-10-08 23:39 +0000 [r468674]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/TODO: add some debug
@@ -6669,7 +7140,7 @@
 	* trunk/playground/utils/rsibreak/TODO: having tried rsipath on a
 	  fresh installation - without image path
 
-2005-10-06 22:29 +0000 [r467961]  Tom Albers tomalbers@kde.nl
+2005-10-06 22:29 +0000 [r467961]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsiwidget.h: Make the counter
@@ -6684,7 +7155,7 @@
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: after
 	  having PMS (pimp-my-source)
 
-2005-10-06 21:33 +0000 [r467937]  Tom Albers tomalbers@kde.nl
+2005-10-06 21:33 +0000 [r467937]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/TODO: Small change but seems to
@@ -6695,7 +7166,7 @@
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: finally my
 	  first useful commit ;-)
 
-2005-10-06 21:07 +0000 [r467931]  Tom Albers tomalbers@kde.nl
+2005-10-06 21:07 +0000 [r467931]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp: With some help
 	  of thorsten, finally got the rescaling right.
@@ -6704,7 +7175,7 @@
 
 	* trunk/playground/utils/rsibreak/AUTHORS: does this work ?
 
-2005-10-06 18:17 +0000 [r467889]  Tom Albers tomalbers@kde.nl
+2005-10-06 18:17 +0000 [r467889]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.h,
@@ -6718,7 +7189,7 @@
 	  Some cleanup (identing, whatsthis and as result of the test
 	  scripts)
 
-2005-10-01 22:24 +0000 [r466207]  Tom Albers tomalbers@kde.nl
+2005-10-01 22:24 +0000 [r466207]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsiwidget.cpp,
 	  trunk/playground/utils/rsibreak/src/rsidock.h,
@@ -6729,7 +7200,7 @@
 	  system and show a welcome message when you start RSIBreak, so
 	  people actually know it has started.
 
-2005-10-01 16:38 +0000 [r466128]  Tom Albers tomalbers@kde.nl
+2005-10-01 16:38 +0000 [r466128]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/setup.h,
 	  trunk/playground/utils/doc/kro,
@@ -6738,7 +7209,7 @@
 	  trunk/playground/utils/rsibreak/src/setupgeneral.cpp: Make it
 	  compile again, sorry for the traffic, I'll stop for a while.
 
-2005-10-01 16:31 +0000 [r466125]  Tom Albers tomalbers@kde.nl
+2005-10-01 16:31 +0000 [r466125]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/Mainpage.dox (added),
 	  trunk/playground/utils/rsibreak/src/setup.cpp,
@@ -6769,12 +7240,12 @@
 	  trunk/playground/utils/rsibreak/configure.in (removed): Some
 	  redundant cruft which made configure fail.
 
-2005-09-30 21:19 +0000 [r465798]  Tom Albers tomalbers@kde.nl
+2005-09-30 21:19 +0000 [r465798]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/src/rsidock.h,
 	  trunk/playground/utils/rsibreak: fix adress and one more ignore
 
-2005-09-30 21:05 +0000 [r465791]  Tom Albers tomalbers@kde.nl
+2005-09-30 21:05 +0000 [r465791]  Tom Albers toma@kde.org
 
 	* trunk/playground/utils/rsibreak/Makefile.cvs (added),
 	  trunk/playground/utils/rsibreak/src/setup.cpp (added),

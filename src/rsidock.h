@@ -1,6 +1,6 @@
-/* This file is part of the KDE project
+/*
 
-   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+   Copyright (C) 2005-2006 Tom Albers <toma.org>
 
    The base was copied from ksynaptics:
       Copyright (C) 2004 Nadeem Hasan <nhasan@kde.org>
@@ -43,7 +43,7 @@ class RSIStatWidget;
  *
  * Originally this file was copied from KSynaptics
  * @author Nadeem Hasan <nhasan@kde.org>
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma.org>
  */
 class RSIDock : public QSystemTrayIcon
 {

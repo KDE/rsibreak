@@ -1,5 +1,5 @@
 /* ============================================================
- * Copyright (C) 2006-2007 by Tom Albers <tomalbers@kde.nl>
+ * Copyright (C) 2006-2007 by Tom Albers <toma.org>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -28,7 +28,7 @@ class SetupTimingPriv;
  * @class SetupTiming
  * These contain the timings settings of RSIBreak, currently
  * that means settings for tiny and big breaks
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma.org>
  */
 
 class SetupTiming : public QWidget

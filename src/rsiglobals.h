@@ -1,5 +1,5 @@
-/* This file is part of the KDE project
-   Copyright (C) 2006 Tom Albers <tomalbers@kde.nl>
+/*
+   Copyright (C) 2006 Tom Albers <toma.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -52,7 +52,7 @@ enum RSIStat {
 /**
  * @class RSIGlobals
  * This class consists of a few commonly used routines and values.
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma.org>
  */
 class RSIGlobals : public QObject
 {

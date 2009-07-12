@@ -1,5 +1,5 @@
 /* ============================================================
- * Copyright 2005,2007 by Tom Albers <tomalbers@kde.nl>
+ * Copyright 2005,2007 by Tom Albers <toma.org>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -31,7 +31,7 @@ class SetupPriv;
  * can make all the necessary settings. Each part of the config
  * is located in separate files, See SetupGeneral and SetupTimings
  * for example
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma.org>
  */
 class Setup : public KPageDialog
 {

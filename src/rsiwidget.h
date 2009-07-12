@@ -1,5 +1,5 @@
-/* This file is part of the KDE project
-   Copyright (C) 2005-2006 Tom Albers <tomalbers@kde.nl>
+/*
+   Copyright (C) 2005-2006 Tom Albers <toma.org>
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -32,7 +32,7 @@ class BreakBase;
 /**
  * @class RSIObject
  * This controls all RSIBreak components
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma.org>
  */
 class RSIObject : public QObject
 {

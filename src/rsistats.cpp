@@ -1,4 +1,4 @@
-/* This file is part of the KDE project
+/*
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or

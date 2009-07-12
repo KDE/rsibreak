@@ -1,5 +1,5 @@
-/* This file is part of the KDE project
-   Copyright (C) 2005-2007 Tom Albers <tomalbers@kde.nl>
+/* 
+   Copyright (C) 2005-2007,2009 Tom Albers <toma@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -28,7 +28,7 @@
 
 /**
  * @class RSIApplication
- * @author Tom Albers <tomalbers@kde.nl>
+ * @author Tom Albers <toma@kde.org>
  * This class is a simple inheritance from KUniqueApplication
  * the reason that it is reimplemented is that when RSIBreak
  * is launched a second time it would in the orinal implementation
@@ -59,7 +59,7 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak", 0,
                           ki18n( "RSIBreak" ),
-                          "0.9.0",
+                          "0.10-beta1",
                           ki18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
                           KAboutData::License_GPL,
@@ -68,9 +68,9 @@ int main( int argc, char *argv[] )
                           "http://www.rsibreak.org" );
 
     aboutData.addAuthor( ki18n( "Tom Albers" ), ki18n( "Maintainer and Author" ),
-                         "tomalbers@kde.nl", "http://www.omat.nl" );
+                         "toma@kde.org", "http://www.omat.nl" );
 
-    aboutData.addAuthor( ki18n( "Bram Schoenmakers" ), ki18n( "Author" ),
+    aboutData.addAuthor( ki18n( "Bram Schoenmakers" ), ki18n( "Former author" ),
                          "bramschoenmakers@kde.nl" );
 
     aboutData.addCredit( ki18n( "Tina Trillitzsch" ), ki18n( "Usability" ),
@@ -80,7 +80,7 @@ int main( int argc, char *argv[] )
                          "clearbeast@gmail.com" );
 
     aboutData.addCredit( ki18n( "Achim Bohnet" ),
-                         ki18n( "Packaging and help with related issues" ),
+                         ki18n( "Former packaging and tester" ),
                          "ach@mpe.mpg.de" );
 
     KCmdLineArgs::init( argc, argv, &aboutData );
