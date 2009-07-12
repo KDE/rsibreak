@@ -1,6 +1,26 @@
 Port TODO's:
 - test on xinerama
 
+Remarks:
+- D-Bus notes:
+  * Exported functions must be under public Q_SLOTS: in src/rsiwidget.h
+    i've added slotShowWhereIAm as an example.
+
+    rsiwidget.h:
+
+    /* Available through D-Bus */
+    public Q_SLOTS:
+        void slotShowWhereIAm();
+
+    After adding new functions you must regenerate org.rsibreak.rsiwidget.xml
+    to include the new functions.
+    It's done like this:
+    qdbuscpp2xml -M -s rsiwidget.h -o org.rsibreak.rsiwidget.xml
+
+    More info at: http://techbase.kde.org/Development/Tutorials/D-Bus/Creating_Interfaces
+
+    - fdoving
+
 Wishes:
 - rsi instructions <---- please contact us if you can do this....
 

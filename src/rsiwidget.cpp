@@ -58,6 +58,11 @@ RSIObject::RSIObject( QWidget *parent )
     m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
     m_tray->show();
 
+    // D-Bus
+    new RsiwidgetAdaptor( this );
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.registerObject( "/rsibreak", this );
+
     m_tooltip = new RSIToolTip( 0, m_tray );
     connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
 
