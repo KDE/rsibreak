@@ -411,7 +411,11 @@ void RSITimer::timerEvent( QTimerEvent * )
         double value = 100 - (( m_tiny_left / ( double )m_intervals["tiny_minimized"] ) * 100 );
         emit updateIdleAvg( value );
     } else if ( m_useIdleDetection && t == m_intervals["big_maximized"] &&
-                m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] ) {
+                m_intervals["tiny_maximized"] <= m_intervals["big_maximized"] &&
+                /* sigh, sometime we get 2 times in row the same idle ness
+                   so, to prevent the signal emitted, we also chech that the
+                   big_left does not equal the regular interval */
+                m_big_left != m_intervals["big_minimized"] ) {
         // the user was sufficiently idle for a big break
         if ( m_relax_left == 0 && m_pause_left == 0 ) {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
@@ -421,7 +425,11 @@ void RSITimer::timerEvent( QTimerEvent * )
         resetAfterBigBreak();
         emit bigBreakSkipped();
     } else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] &&
-                m_tiny_left < m_big_left && !m_ignoreIdleForTinyBreaks ) {
+                m_tiny_left < m_big_left && !m_ignoreIdleForTinyBreaks &&
+                /* sigh, sometime we get 2 times in row the same idle ness
+                   so, to prevent the signal emitted, we also chech that the
+                   big_left does not equal the regular interval */
+                m_tiny_left != m_intervals["tiny_minimized"] ) {
         // the user was sufficiently idle for a tiny break
         if ( m_relax_left == 0 && m_pause_left == 0 ) {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
