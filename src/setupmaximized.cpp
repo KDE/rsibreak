@@ -35,6 +35,7 @@
 #include <KFileDialog>
 #include <KLineEdit>
 #include <KVBox>
+#include <KWindowSystem>
 #include <kkeysequencewidget.h>
 
 class SetupMaximizedPriv
@@ -71,10 +72,13 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QLabel* effectLabel = new QLabel( i18n( "Chose the effect you want to during breaks" ) );
     d->effectBox = new KComboBox( this );
-    d->effectBox->addItem( i18n("Simple Gray Effect"), QVariant( RSIObject::SimpleGray ) );
+    if ( KWindowSystem::compositingActive() )
+        d->effectBox->addItem( i18n("Simple Gray Effect"), QVariant( RSIObject::SimpleGray ) );
+    else
+        d->effectBox->addItem( i18n("Complete Black Effect"), QVariant( RSIObject::SimpleGray ) );
     d->effectBox->addItem( i18n("Show Plasma Dashboard"), QVariant( RSIObject::Plasma ) );
     d->effectBox->addItem( i18n("Show Slide Show of Images"), QVariant( RSIObject::SlideShow ) );
-    d->effectBox->addItem( i18n("No Full Screen Effect"), QVariant( RSIObject::Popup ) );
+    d->effectBox->addItem( i18n("Show a Passive Popup"), QVariant( RSIObject::Popup ) );
     connect( d->effectBox, SIGNAL( currentIndexChanged( int ) ),
              SLOT( slotEffectChanged( int ) ) );
 
@@ -217,7 +221,7 @@ void SetupMaximized::slotEffectChanged( int current )
     case RSIObject::SimpleGray:
         d->slideshowBox->setVisible( false );
         d->plasmaBox->setVisible( false );
-        d->grayBox->setVisible( true );
+        d->grayBox->setVisible( KWindowSystem::compositingActive() );
         break;
     case RSIObject::Popup:
     default:
