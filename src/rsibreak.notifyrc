@@ -4,7 +4,6 @@ Comment=RSIBreak
 Comment[hi]=आरएसआईब्रेक
 Comment[hne]=आरएसआईब्रेक
 Comment[ml]=RSI ഇടവേള
-Comment[nl]=RSI-pauze
 Comment[ro]=PauzăRSI
 Comment[sv]=RSIbreak
 Comment[x-test]=xxRSIBreakxx
@@ -308,14 +307,20 @@ Comment[zh_TW]=休息結束時間
 
 [Context/timers]
 Name=Regarding timers
+Name[sv]=Rörande tidtagning
+Name[x-test]=xxRegarding timersxx
 
 [Event/short timer reset]
 Contexts=timers
 Action=Popup
 Name=When the short timer has been reset
+Name[sv]=När en kort rast har återställts
+Name[x-test]=xxWhen the short timer has been resetxx
 
 [Event/timers reset]
 Contexts=timers
 Action=Popup
 Name=When the timers have been reset
+Name[sv]=När tidtagningen har återställts
+Name[x-test]=xxWhen the timers have been resetxx
 
