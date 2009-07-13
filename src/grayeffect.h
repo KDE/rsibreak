@@ -38,7 +38,7 @@ public:
     void setLevel( int val );
 
 private:
-    GrayWidget* m_grayWidget;
+    QList<GrayWidget*> m_widgets;
 };
 
 

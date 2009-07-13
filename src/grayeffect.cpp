@@ -29,44 +29,55 @@
 GrayEffect::GrayEffect( QObject *parent )
         : BreakBase( parent )
 {
-    m_grayWidget = new GrayWidget( 0 );
-    KWindowSystem::forceActiveWindow( m_grayWidget->winId() );
-    KWindowSystem::setOnAllDesktops( m_grayWidget->winId(), true );
-    KWindowSystem::setState( m_grayWidget->winId(), NET::KeepAbove );
-    KWindowSystem::setState( m_grayWidget->winId(), NET::FullScreen );
+    for (int i = 0; i < QApplication::desktop()->numScreens(); ++i) {
+        GrayWidget* grayWidget = new GrayWidget( 0 );
+        m_widgets.append( grayWidget );
 
+        QRect rect = QApplication::desktop()->screenGeometry( i );
+        grayWidget->move( rect.topLeft() );
+        grayWidget->setGeometry( rect );
+
+        KWindowSystem::forceActiveWindow( grayWidget->winId() );
+        KWindowSystem::setState( grayWidget->winId(), NET::KeepAbove );
+        KWindowSystem::setOnAllDesktops( grayWidget->winId(), true );
+        KWindowSystem::setState( grayWidget->winId(), NET::FullScreen );
+
+        kDebug() << "Created widget for screen" << i
+                << "Position:" << rect.topLeft();
+    }
     setReadOnly( true );
 }
 
 GrayEffect::~GrayEffect()
 {
-    delete m_grayWidget;
+    qDeleteAll( m_widgets );
 }
 
 void GrayEffect::activate()
 {
-    m_grayWidget->show();
-    m_grayWidget->update();
+    foreach( GrayWidget* widget, m_widgets) {
+        widget->show();
+        widget->update();
+    }
     BreakBase::activate();
 }
 
 void GrayEffect::deactivate()
 {
-    m_grayWidget->hide();
+    foreach( GrayWidget* widget, m_widgets)
+        widget->hide();
     BreakBase::deactivate();
 }
 
 void GrayEffect::setLevel( int val )
 {
-    m_grayWidget->setLevel( val );
+    foreach( GrayWidget* widget, m_widgets)
+        widget->setLevel( val );
 }
 
 GrayWidget::GrayWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup )
 {
-    QRect rect = QApplication::desktop()->screenGeometry(
-                     QApplication::desktop()->primaryScreen() );
-    setGeometry( rect );
     setAutoFillBackground( false );
 }
 
