@@ -366,9 +366,10 @@ void RSIObject::readConfig()
         slide->reset( path, recursive, slideInterval );
         if ( slide->hasImages() )
             m_effect = slide;
-        else
+        else {
             delete slide;
-        m_effect = new GrayEffect( 0 );
+            m_effect = new GrayEffect( 0 );
+        }
         break;
     }
     case Popup: {
