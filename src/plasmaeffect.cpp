@@ -31,28 +31,35 @@ PlasmaEffect::PlasmaEffect( QObject* parent )
 void PlasmaEffect::activate()
 {
 #if KDE_IS_VERSION(4,3,60)
-    kDebug() << "New style";
     QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    dbus.call( QLatin1String( "showDashboard" ), true );
+    QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), true );
 #else
     kDebug() << "Old style";
     QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    dbus.call( QLatin1String( "toggleDashboard" ) );
+    QDBusMessage reply = dbus.call( QLatin1String( "toggleDashboard" ) );
 #endif
     BreakBase::activate();
+
+    if ( reply.type() == QDBusMessage::ErrorMessage ) {
+        kDebug() << reply.errorMessage() << reply.errorName();
+    }
 }
 
 void PlasmaEffect::deactivate()
 {
 #if KDE_IS_VERSION(4,3,60)
-    kDebug() << "New style";
     QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    dbus.call( QLatin1String( "showDashboard" ), false );
+    QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), false );
 #else
     kDebug() << "Old style";
     QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    dbus.call( QLatin1String( "toggleDashboard" ) );
+    QDBusMessage reply =dbus.call( QLatin1String( "toggleDashboard" ) );
 #endif
+
+    if ( reply.type() == QDBusMessage::ErrorMessage ) {
+        kDebug() << reply.errorMessage() << reply.errorName();
+    }
+
     BreakBase::deactivate();
 }
 
