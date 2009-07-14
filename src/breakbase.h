@@ -20,8 +20,12 @@
 #define BREAKBASE_H
 
 #include <QObject>
+#include <QHash>
+#include <QWidget>
 
 class BreakControl;
+class GrayWidget;
+class GrayEffectOnAllScreens;
 
 class BreakBase : public QObject
 {
@@ -37,6 +41,9 @@ public:
     virtual void setLabel( const QString& );
     void showMinimize( bool );
     void disableShortcut( bool disable );
+    void setGrayEffectOnAllScreens( bool on );
+    void setGrayEffectLevel( int level );
+    void excludeGrayEffectOnScreen( int screen );
 
 protected:
     virtual bool eventFilter( QObject *obj, QEvent *event );
@@ -48,8 +55,40 @@ signals:
 private:
     BreakControl* m_breakControl;
     QObject* m_parent;
+    GrayEffectOnAllScreens* m_grayEffectOnAllScreens;
     bool m_readOnly;
     bool m_disableShortcut;
+    bool m_grayEffectOnAllScreensActivated;
+};
+
+class GrayEffectOnAllScreens
+{
+public:
+    GrayEffectOnAllScreens();
+    ~GrayEffectOnAllScreens();
+    void activate();
+    void deactivate();
+    void setLevel( int val );
+    void disable( int screen );
+
+private:
+    QHash<int,GrayWidget*> m_widgets;
+};
+
+class GrayWidget : public QWidget
+{
+    Q_OBJECT
+
+public:
+    /**
+     * Constructor
+     * @param parent Parent Widget
+     */
+    explicit GrayWidget( QWidget *parent = 0 );
+    void setLevel( int );
+
+protected:
+    virtual bool event( QEvent *event );
 };
 
 #endif // BREAKBASE_H

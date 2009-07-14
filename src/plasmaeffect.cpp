@@ -20,30 +20,34 @@
 #include "kdeversion.h"
 
 #include <KDebug>
+
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QWidget>
 #include <QDBusInterface>
 
 PlasmaEffect::PlasmaEffect( QObject* parent )
         : BreakBase( parent )
 {
+    // Make all other screens gray...
+    setGrayEffectOnAllScreens( true );
+    excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
 }
 
 void PlasmaEffect::activate()
 {
     // Before 4.3 it was org.kde.plasma, after that it became org.kde.plasma-desktop
 #if KDE_IS_VERSION(4,3,0)
-    QString plasmaiface = "org.kde.plasma-desktop";
+    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
 #else
-    QString plasmaiface = "org.kde.plasma";
+    QDBusInterface dbus( "org.kde.plasma", "/App" );
 #endif
 
     // Before 4.4 there was no showDashboard( bool ), only a toggle....
 #if KDE_IS_VERSION(4,3,60)
-    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), true );
 #else
     kDebug() << "Old style";
-    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply = dbus.call( QLatin1String( "toggleDashboard" ) );
 #endif
     BreakBase::activate();
@@ -57,18 +61,16 @@ void PlasmaEffect::deactivate()
 {
     // Before 4.3 it was org.kde.plasma, after that it became org.kde.plasma-desktop
 #if KDE_IS_VERSION(4,3,0)
-    QString plasmaiface = "org.kde.plasma-desktop";
+    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
 #else
-    QString plasmaiface = "org.kde.plasma";
+    QDBusInterface dbus( "org.kde.plasma", "/App" );
 #endif
 
 #if KDE_IS_VERSION(4,3,60)
-    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), false );
 #else
     kDebug() << "Old style";
-    QDBusInterface dbus( plasmaiface, "/App" );
-    QDBusMessage reply =dbus.call( QLatin1String( "toggleDashboard" ) );
+    QDBusMessage reply = dbus.call( QLatin1String( "toggleDashboard" ) );
 #endif
 
     if ( reply.type() == QDBusMessage::ErrorMessage ) {

@@ -41,21 +41,4 @@ private:
     QList<GrayWidget*> m_widgets;
 };
 
-
-class GrayWidget : public QWidget
-{
-    Q_OBJECT
-
-public:
-    /**
-     * Constructor
-     * @param parent Parent Widget
-     */
-    explicit GrayWidget( QWidget *parent = 0 );
-    void setLevel( int );
-
-protected:
-    virtual bool event( QEvent *event );
-};
-
 #   endif
