@@ -30,12 +30,20 @@ PlasmaEffect::PlasmaEffect( QObject* parent )
 
 void PlasmaEffect::activate()
 {
+    // Before 4.3 it was org.kde.plasma, after that it became org.kde.plasma-desktop
+#if KDE_IS_VERSION(4,3,0)
+    QString plasmaiface = "org.kde.plasma-desktop";
+#else
+    QString plasmaiface = "org.kde.plasma";
+#endif
+
+    // Before 4.4 there was no showDashboard( bool ), only a toggle....
 #if KDE_IS_VERSION(4,3,60)
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
+    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), true );
 #else
     kDebug() << "Old style";
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
+    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply = dbus.call( QLatin1String( "toggleDashboard" ) );
 #endif
     BreakBase::activate();
@@ -47,12 +55,19 @@ void PlasmaEffect::activate()
 
 void PlasmaEffect::deactivate()
 {
+    // Before 4.3 it was org.kde.plasma, after that it became org.kde.plasma-desktop
+#if KDE_IS_VERSION(4,3,0)
+    QString plasmaiface = "org.kde.plasma-desktop";
+#else
+    QString plasmaiface = "org.kde.plasma";
+#endif
+
 #if KDE_IS_VERSION(4,3,60)
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
+    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), false );
 #else
     kDebug() << "Old style";
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
+    QDBusInterface dbus( plasmaiface, "/App" );
     QDBusMessage reply =dbus.call( QLatin1String( "toggleDashboard" ) );
 #endif
 
