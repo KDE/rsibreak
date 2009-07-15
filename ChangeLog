@@ -1,3 +1,128 @@
+2009-07-15 09:44 +0000 [r997056]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Adding \n to
+	  the KMessageBox makes it magically work again on KDE 4.2.4, trunk
+	  was ok already. Seemed to somehow remove part of the message in
+	  4.2.4, so the image would not show up.
+
+2009-07-15 08:19 +0000 [r996933]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp: Fix
+	  slideshow to be xinerama aware. Yay for a good base class...
+
+2009-07-14 17:57 +0000 [r996693]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp: move the gray
+	  effect to the base class, this way all effects that only operate
+	  on one screen can call setGrayEffectOnAllScreens( true ) to gray
+	  out all the other screens. Port the gray effect and the plasma
+	  effect to this system.
+
+2009-07-14 15:45 +0000 [r996644]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp: Fix the
+	  plasma effect, the dbus interface is renamed for KDE >= 4.3.0. So
+	  make this effect also work for KDE versions below that....
+	  CCMAIL: rediscover@ya.ru
+
+2009-07-13 20:59 +0000 [r996112]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp: Lets see if
+	  we can debug why this is not working on every computer..
+
+2009-07-13 20:44 +0000 [r996105]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Make the
+	  slideshow work again, error in the logic. Thanks to Artem for
+	  testing. CCMAIL: rediscover@ya.ru
+
+2009-07-13 20:37 +0000 [r996099]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Fix bug which
+	  resulted in multiple popups telling me the timers have been
+	  reset...
+
+2009-07-13 19:33 +0000 [r996069]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp: Make the gray
+	  effect be aware of multiple screens.
+
+2009-07-13 17:46 +0000 [r996014]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/setupmaximized.cpp: Rename 'No
+	  effect' to 'Show popup effect' and rename the simple gray effect
+	  to 'Complete black' effect if there is no compositing available.
+	  CCMAIL: rediscover@ya.ru
+
+2009-07-12 15:43 +0000 [r995388]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/TODO: Restore DBus interface.
+
+2009-07-12 15:22 +0000 [r995382]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp: Fix 2
+	  guards, add missing i18n, fix two typo's
+
+2009-07-12 14:59 +0000 [r995368]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistatitem.h,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/AUTHORS,
+	  trunk/extragear/utils/rsibreak/src/rsitooltip.h,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.h,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/src/popupeffect.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer_dpms.h,
+	  trunk/extragear/utils/rsibreak/kidle.diff,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.h,
+	  trunk/extragear/utils/rsibreak/src/rsistatwidget.h,
+	  trunk/extragear/utils/rsibreak/src/rsidock.h,
+	  trunk/extragear/utils/rsibreak/src/passivepopup.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.h,
+	  trunk/extragear/utils/rsibreak/NEWS,
+	  trunk/extragear/utils/rsibreak/src/setup.h,
+	  trunk/extragear/utils/rsibreak/src/rsiglobals.h,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.h,
+	  trunk/extragear/utils/rsibreak/src/rsistatitem.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitooltip.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.h,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp,
+	  trunk/extragear/utils/rsibreak/ChangeLog,
+	  trunk/extragear/utils/rsibreak/src/popupeffect.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsistats.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer_dpms.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
+	  trunk/extragear/utils/rsibreak/src/slideshoweffect.h,
+	  trunk/extragear/utils/rsibreak/src/grayeffect.h,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.cpp,
+	  trunk/extragear/utils/rsibreak/HACKING,
+	  trunk/extragear/utils/rsibreak/src/rsistatwidget.cpp,
+	  trunk/extragear/utils/rsibreak/TODO,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsidock.cpp,
+	  trunk/extragear/utils/rsibreak/src/passivepopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupgeneral.cpp,
+	  trunk/extragear/utils/rsibreak/src/plasmaeffect.h,
+	  trunk/extragear/utils/rsibreak/src/setup.cpp: Prep for release.
+
 2009-07-12 14:17 +0000 [r995363]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,

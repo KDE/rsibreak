@@ -59,11 +59,11 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak", 0,
                           ki18n( "RSIBreak" ),
-                          "0.10-beta1",
+                          "0.10-beta2",
                           ki18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
                           KAboutData::License_GPL,
-                          ki18n( "(c) 2005-2008, The RSIBreak developers" ),
+                          ki18n( "(c) 2005-2009, The RSIBreak developers" ),
                           KLocalizedString(),
                           "http://www.rsibreak.org" );
 

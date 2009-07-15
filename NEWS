@@ -1,3 +1,13 @@
+v0.10-beta2 2009-07-16
+- Fixed all effects to work on xinerama
+- Fixed Plasma effect to work for KDE < 4.3
+- Fixed Slideshow effect
+- Fixed Welcome screen for KDE < 4.4
+- Fixed bug which resulted in multiple popups
+  telling that the timer has been reset
+- Renamed No Full Screen effect to Popup effect
+- Renamed Gray effect to Black effect if no compositing is available
+
 v0.10-beta1 2009-07-12
 - Fixed several porting bugs
 - Rewrote most off the full screen break effects
