@@ -84,7 +84,7 @@ RSIObject::RSIObject( QWidget *parent )
 
     setIcon( 0 );
 
-    QTimer::singleShot( 1000, this, SLOT( slotWelcome() ) );
+    QTimer::singleShot( 2000, this, SLOT( slotWelcome() ) );
 }
 
 RSIObject::~RSIObject()
@@ -145,12 +145,12 @@ void RSIObject::slotWelcome()
 {
     if ( KMessageBox::shouldBeShownContinue( "dont_show_welcome_again_for_001" ) ) {
         QString tempfile = takeScreenshotOfTrayIcon();
-        KMessageBox::information( 0, i18n( "<p>Welcome to RSIBreak</p><p>"
-                                           "In your tray you can now see RSIBreak:</p>" )
-                                  + "<p><center><img source=\"" + tempfile + "\"></center></p>"
+        KMessageBox::information( 0, i18n( "<p>Welcome to RSIBreak</p>\n<p>"
+                                           "In your tray you can now see RSIBreak:</p>\n" )
+                                  + "<p><center><img source=\"" + tempfile + "\"></center></p>\n"
                                   + i18n( "<p>When you right-click on that you will see a menu, from which "
-                                          "you can go to the configuration for example.</p><p>When you want to "
-                                          "know when the next break is, hover over the icon.</p><p>Use RSIBreak "
+                                          "you can go to the configuration for example.</p>\n<p>When you want to "
+                                          "know when the next break is, hover over the icon.</p>\n<p>Use RSIBreak "
                                           "wisely.</p>" ), i18n( "Welcome" ), "dont_show_welcome_again_for_001" );
     }
 }
