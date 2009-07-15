@@ -32,6 +32,10 @@
 SlideEffect::SlideEffect( QObject *parent )
         : BreakBase( parent ), m_searchRecursive( false )
 {
+    // Make all other screens gray...
+    setGrayEffectOnAllScreens( true );
+    excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
+
     m_slidewidget = new SlideWidget( 0 );
     KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
     KWindowSystem::setOnAllDesktops( m_slidewidget->winId(), true );
