@@ -307,6 +307,7 @@ Comment[zh_TW]=休息結束時間
 
 [Context/timers]
 Name=Regarding timers
+Name[da]=Vedrørende tider
 Name[pt]=Relacionado com os tempos
 Name[pt_BR]=Relacionado com os tempos
 Name[sv]=Rörande tidtagning
@@ -316,6 +317,7 @@ Name[x-test]=xxRegarding timersxx
 Contexts=timers
 Action=Popup
 Name=When the short timer has been reset
+Name[da]=Når den korte timer er blevet nulstillet
 Name[pt]=Quando o relógio curto tiver sido reposto
 Name[pt_BR]=Quando o relógio curto tiver sido reposto
 Name[sv]=När en kort rast har återställts
@@ -325,6 +327,7 @@ Name[x-test]=xxWhen the short timer has been resetxx
 Contexts=timers
 Action=Popup
 Name=When the timers have been reset
+Name[da]=Når timerne er blevet nulstillet
 Name[pt]=Quando os cronómetros tiverem sido repostos
 Name[pt_BR]=Quando os cronómetros tiverem sido repostos
 Name[sv]=När tidtagningen har återställts
