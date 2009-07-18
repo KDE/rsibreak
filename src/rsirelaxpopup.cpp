@@ -92,6 +92,12 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
         QString text = i18np( "Please relax for 1 second",
                               "Please relax for %1 seconds",
                               n );
+/*
+  After string freeze lift:
+        QString text = i18n( "Please relax for %1",
+                              KGlobal::locale()->prettyFormatDuration( n * 1000 ) );
+*/
+
 
         if ( bigBreakNext )
             text.append( '\n' + i18n( "Note: next break is a big break" ) );

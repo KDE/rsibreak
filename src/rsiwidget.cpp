@@ -206,20 +206,7 @@ void RSIObject::slotLock()
 void RSIObject::setCounters( int timeleft )
 {
     if ( timeleft > 0 ) {
-        int minutes = ( int )floor( timeleft / 60 );
-        int seconds = timeleft - ( minutes * 60 );
-        QString cdString;
-
-        if ( minutes > 0 && seconds > 0 ) {
-            cdString = ki18nc( "minutes:seconds", "%1:%2" )
-                       .subs( minutes ).subs( seconds, 2, 10, QChar( '0' ) ).toString();
-        } else if ( minutes == 0 && seconds > 0 ) {
-            cdString = QString::number( seconds );
-        } else if ( minutes > 0 && seconds == 0 ) {
-            cdString = i18nc( "minutes:seconds", "%1:00", minutes );
-        }
-
-        m_effect->setLabel( cdString );
+        m_effect->setLabel( KGlobal::locale()->prettyFormatDuration( timeleft * 1000) );
     } else if ( m_timer->isSuspended() ) {
         m_effect->setLabel( i18n( "Suspended" ) );
     } else {

@@ -59,45 +59,7 @@ RSIGlobals *RSIGlobals::instance()
 
 QString RSIGlobals::formatSeconds( const int seconds )
 {
-    int mins, secs, hours, remaining;
-    QString hString, mString, sString;
-
-    remaining = seconds;
-
-    hours = ( int )floor( remaining / 3600 );
-    remaining = remaining - ( hours * 3600 );
-
-    mins = ( int )floor( remaining / 60 );
-    secs = remaining - ( mins * 60 );
-
-    hString = i18np( "1 hour", "%1 hours", hours );
-    mString = i18np( "1 minute", "%1 minutes", mins );
-    sString = i18np( "1 second", "%1 seconds", secs );
-
-    if ( hours > 0 && mins > 0 )
-        return( i18nc( "Arguments: hours, minutes "
-                       "both as you defined earlier",
-                       "%1 and %2", hString, mString ) );
-    else if ( hours > 0 && mins == 0 )
-        return( hString );
-
-    else if ( hours == 0 ) {
-        if ( mins > 0 && secs > 0 )
-            return( i18nc( "Arguments: minutes, seconds "
-                           "both as you defined earlier",
-                           "%1 and %2", mString, sString ) );
-
-        else if ( mins == 0 && secs > 0 )
-            return( sString );
-
-        else if ( mins > 0 && secs == 0 )
-            return( mString );
-
-        else
-            return( i18n( "0 seconds" ) );
-    }
-
-    return QString(); //should not get here
+    return KGlobal::locale()->prettyFormatDuration( seconds * 1000 );
 }
 
 void RSIGlobals::slotReadConfig()
