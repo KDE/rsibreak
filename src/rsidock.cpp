@@ -26,6 +26,7 @@
 
 #include <QMenu>
 #include <QSystemTrayIcon>
+#include <QPointer>
 
 #include <KComponentData>
 #include <KLocale>
@@ -102,10 +103,13 @@ void RSIDock::slotConfigureNotifications()
 
 void RSIDock::slotConfigure()
 {
-    Setup setup( 0 );
+    // don't think it is needed, because setup is not accessed after the
+    // exec call, but better safe than crash.
+    QPointer<Setup> setup = new Setup( 0 );
     emit dialogEntered();
-    if ( setup.exec() == QDialog::Accepted )
+    if ( setup->exec() == QDialog::Accepted )
         emit configChanged( !m_suspended );
+    delete setup;
 
     if ( !m_suspended )
         emit dialogLeft();

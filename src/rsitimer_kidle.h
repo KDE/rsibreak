@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2005-2006,2008-2009 Tom Albers <toma.org>
+   Copyright (C) 2005-2006,2008-2009 Tom Albers <toma@kde.org>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or

@@ -1,6 +1,6 @@
 /*
 
-   Copyright (C) 2005-2006 Tom Albers <toma.org>
+   Copyright (C) 2005-2006 Tom Albers <toma@kde.org>
 
    The base was copied from ksynaptics:
       Copyright (C) 2004 Nadeem Hasan <nhasan@kde.org>

@@ -181,7 +181,7 @@ void GrayEffectOnAllScreens::disable( int screen )
 
 void GrayEffectOnAllScreens::activate()
 {
-    foreach( GrayWidget* widget, m_widgets.values() ) {
+    foreach( GrayWidget* widget, m_widgets.values() ) { // krazy:exclude=foreach
         widget->show();
         widget->update();
     }
@@ -189,14 +189,16 @@ void GrayEffectOnAllScreens::activate()
 
 void GrayEffectOnAllScreens::deactivate()
 {
-    foreach( GrayWidget* widget, m_widgets.values() )
+    foreach( GrayWidget* widget, m_widgets.values() ) { // krazy:exclude=foreach
         widget->hide();
+    }
 }
 
 void GrayEffectOnAllScreens::setLevel( int val )
 {
-    foreach( GrayWidget* widget, m_widgets.values() )
+    foreach( GrayWidget* widget, m_widgets.values() ) { // krazy:exclude=foreach
         widget->setLevel( val );
+    }
 }
 
 

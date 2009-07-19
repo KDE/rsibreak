@@ -58,7 +58,7 @@ Setup::Setup( QWidget* parent )
 
     d->maximizedPage = new SetupMaximized( this );
     KPageWidgetItem* page3 = addPage( d->maximizedPage, i18n( "During Breaks" ) );
-    page3->setIcon( KIcon( "duringbreaks" ) );
+    page3->setIcon( KIcon( "duringbreaks" ) ); // krazy:exclude=iconnames
 
     connect( this, SIGNAL( okClicked() ), this, SLOT( slotOkClicked() ) );
 
