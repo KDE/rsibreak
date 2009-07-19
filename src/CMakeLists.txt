@@ -65,9 +65,9 @@ kde4_add_executable(rsibreak ${rsibreak_sources} ${rsibreak_sources_timer})
 target_link_libraries(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} )
 if(NOT USE_KIDLE)
   kde4_add_library(librsibreak STATIC rsitimer_dpms.cpp)
-  target_link_libraries(rsibreak librsibreak ${IDLE_DETECTION_LIB} ${X11_X11_LIB} ${X11_Xext_LIB} )
+  target_link_libraries(rsibreak librsibreak ${IDLE_DETECTION_LIB} ${X11_X11_LIB} ${X11_Xext_LIB})
 else(NOT USE_KIDLE)
-  target_link_libraries(rsibreak kidle )
+  target_link_libraries(rsibreak kidle ${X11_X11_LIB})
 endif(NOT USE_KIDLE)
 
 # install
