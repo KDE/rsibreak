@@ -1,6 +1,6 @@
-INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/src ${CMAKE_CURRENT_BINARY_DIR} ${QT_INCLUDE_DIR} )
+include_directories( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${QT_INCLUDE_DIR} )
 
-MACRO_ENSURE_VERSION( "4.3.60" ${KDE_VERSION} USE_KIDLE)
+macro_ensure_version( "4.3.60" ${KDE_VERSION} USE_KIDLE)
 if(NOT USE_KIDLE)
 
   ############# Find LIBXSS for idle detection and write outcome to config.h ####
@@ -9,11 +9,11 @@ if(NOT USE_KIDLE)
   check_library_exists(Xss XScreenSaverQueryInfo "" HAVE_LIBXSS)
 
   # Not having libxss is fatal at the moment.
-  IF (NOT HAVE_LIBXSS)
-     MESSAGE(FATAL_ERROR "Missing libxss library")
-  ELSE (NOT HAVE_LIBXSS)
-    SET (IDLE_DETECTION_LIB "Xss")
-  ENDIF (NOT HAVE_LIBXSS)
+  if (NOT HAVE_LIBXSS)
+     message(FATAL_ERROR "Missing libxss library")
+  else (NOT HAVE_LIBXSS)
+    set (IDLE_DETECTION_LIB "Xss")
+  endif (NOT HAVE_LIBXSS)
 
 endif(NOT USE_KIDLE)
 
@@ -23,7 +23,7 @@ configure_file(../config-rsibreak.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-rsi
 ############ rsibreak ########################################################
 
 # source files needed
-SET(rsibreak_sources
+set(rsibreak_sources
 slideshoweffect.cpp
 popupeffect.cpp
 grayeffect.cpp
@@ -47,9 +47,9 @@ breakcontrol.cpp
 )
 
 if(NOT USE_KIDLE)
-  SET(rsibreak_sources_timer rsitimer.cpp)
+  set(rsibreak_sources_timer rsitimer.cpp)
 else(NOT USE_KIDLE)
-  SET(rsibreak_sources_timer rsitimer_kidle.cpp)
+  set(rsibreak_sources_timer rsitimer_kidle.cpp)
 endif(NOT USE_KIDLE)
 
 QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
@@ -58,21 +58,21 @@ rsiwidget.h RSIObject::RSIObject
 )
 
 # compilation
-KDE4_ADD_EXECUTABLE(rsibreak ${rsibreak_sources} ${rsibreak_sources_timer})
+kde4_add_executable(rsibreak ${rsibreak_sources} ${rsibreak_sources_timer})
 
 
 # linking
-TARGET_LINK_LIBRARIES(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} )
+target_link_libraries(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} )
 if(NOT USE_KIDLE)
-  KDE4_ADD_LIBRARY(librsibreak STATIC rsitimer_dpms.cpp)
-  TARGET_LINK_LIBRARIES(rsibreak librsibreak ${IDLE_DETECTION_LIB} )
+  kde4_add_library(librsibreak STATIC rsitimer_dpms.cpp)
+  target_link_libraries(rsibreak librsibreak ${IDLE_DETECTION_LIB} )
 else(NOT USE_KIDLE)
-  TARGET_LINK_LIBRARIES(rsibreak kidle )
+  target_link_libraries(rsibreak kidle )
 endif(NOT USE_KIDLE)
 
 # install
-INSTALL( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})
-INSTALL( FILES  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
-INSTALL( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
-INSTALL( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
-INSTALL( FILES rsibreak.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
+install( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})
+install( FILES  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+install( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
+install( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
+install( FILES rsibreak.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
