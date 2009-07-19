@@ -1,4 +1,4 @@
-/* 
+/*
    Copyright (C) 2005-2007,2009 Tom Albers <toma@kde.org>
 
    This program is free software; you can redistribute it and/or
@@ -59,7 +59,7 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak", 0,
                           ki18n( "RSIBreak" ),
-                          "0.10",
+                          "0.11-svn",
                           ki18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
                           KAboutData::License_GPL,
