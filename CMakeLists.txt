@@ -13,13 +13,19 @@ else(NOT KDE_VERSION_OK)
   set(PLASMA_LIBS ${KDE4_PLASMA_LIBS})
 endif(NOT KDE_VERSION_OK)
 
-
-
+# Add a temporary check until kidle moves out of kdereview.
+find_path( KIDLE_INCLUDE_DIR NAMES kidletime.h HINTS ${KDE4_INCLUDE_DIR} )
+find_library( KIDLE_LIBRARY NAMES kidletime PATHS ${LIB_INSTALL_DIR})
+if ( KIDLE_INCLUDE_DIR AND KIDLE_LIBRARY )
+  set ( USE_KIDLE TRUE )
+  message( STATUS "Kidle was found." )
+endif ( KIDLE_INCLUDE_DIR AND KIDLE_LIBRARY )
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories ( ${KDE4_INCLUDES} ${BLITZ_INCLUDES} )
-ADD_SUBDIRECTORY( icons ) 
-ADD_SUBDIRECTORY( src ) 
+include_directories ( ${KDE4_INCLUDES} ${BLITZ_INCLUDES} ${KIDLE_INCLUDE_DIR} )
+
+add_subdirectory( icons )
+add_subdirectory( src )
 if (PLASMA_FOUND)
-  ADD_SUBDIRECTORY( plasma ) 
+  ADD_SUBDIRECTORY( plasma )
 endif (PLASMA_FOUND)
