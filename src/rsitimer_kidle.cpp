@@ -26,7 +26,7 @@
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <kidle.h>
+#include <kidletime.h>
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
