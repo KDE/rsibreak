@@ -1,3 +1,17 @@
+2009-07-18 00:26 +0000 [r998574]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiglobals.h,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp: Use kdelibs
+	  function for display duration of a time.
+
+2009-07-15 22:45 +0000 [r997530]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/NEWS,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/ChangeLog: Prep for release
+
 2009-07-15 09:44 +0000 [r997056]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp: Adding \n to
