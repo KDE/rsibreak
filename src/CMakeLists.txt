@@ -15,10 +15,10 @@ if(NOT USE_KIDLE)
     SET (IDLE_DETECTION_LIB "Xss")
   ENDIF (NOT HAVE_LIBXSS)
 
-  # Write it down to the config-rsibreak.h
-  CONFIGURE_FILE( ../config-rsibreak.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/config-rsibreak.h    )
 endif(NOT USE_KIDLE)
 
+# Write it down to the config-rsibreak.h
+configure_file(../config-rsibreak.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-rsibreak.h)
 
 ############ rsibreak ########################################################
 
