@@ -1,6 +1,5 @@
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${QT_INCLUDE_DIR} )
 
-# macro_ensure_version( "4.3.60" ${KDE_VERSION} USE_KIDLE)
 if(NOT USE_KIDLE)
 
   ############# Find LIBXSS for idle detection and write outcome to config.h ####
@@ -66,7 +65,7 @@ if(NOT USE_KIDLE)
   kde4_add_library(librsibreak STATIC rsitimer_dpms.cpp)
   target_link_libraries(rsibreak librsibreak ${IDLE_DETECTION_LIB} ${X11_X11_LIB} ${X11_Xext_LIB})
 else(NOT USE_KIDLE)
-  target_link_libraries(rsibreak ${KIDLE_LIBRARY} ${X11_X11_LIB})
+  target_link_libraries(rsibreak ${KDE4_KUTILS_LIBRARY} ${X11_X11_LIB})
 endif(NOT USE_KIDLE)
 
 # install

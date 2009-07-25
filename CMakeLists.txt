@@ -14,18 +14,15 @@ else(NOT KDE_VERSION_OK)
 endif(NOT KDE_VERSION_OK)
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+include_directories ( ${KDE4_INCLUDES} )
 
-# Add a temporary check until kidle moves out of kdereview.
 find_path( KIDLE_INCLUDE_DIR NAMES kidletime.h HINTS ${KDE4_INCLUDE_DIR} )
-find_library( KIDLE_LIBRARY NAMES kidletime PATHS ${LIB_INSTALL_DIR})
-if ( KIDLE_INCLUDE_DIR AND KIDLE_LIBRARY )
+if ( KIDLE_INCLUDE_DIR )
   set ( USE_KIDLE TRUE )
   message( STATUS "Kidle was found." )
-  include_directories ( ${KDE4_INCLUDES} ${KIDLE_INCLUDE_DIR} )
-else (KIDLE_INCLUDE_DIR AND KIDLE_LIBRARY )
-  include_directories ( ${KDE4_INCLUDES} )
-endif ( KIDLE_INCLUDE_DIR AND KIDLE_LIBRARY )
-
+else ( KIDLE_INCLUDE_DIR )
+  message( STATUS "Kidle was not found." )
+endif ( KIDLE_INCLUDE_DIR )
 
 add_subdirectory( icons )
 add_subdirectory( src )
