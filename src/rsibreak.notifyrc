@@ -326,6 +326,7 @@ Name[nds]=Wenn de Korttietgever torüchsett wöör
 Name[pt]=Quando o relógio curto tiver sido reposto
 Name[pt_BR]=Quando o cronômetro curto for reiniciado
 Name[sv]=När en kort rast har återställts
+Name[tr]=Kısa bir gerisayım bittiğinde
 Name[uk]=Коли короткому таймеру буде надано нульове значення
 Name[x-test]=xxWhen the short timer has been resetxx
 
@@ -339,6 +340,7 @@ Name[nds]=Wenn de Tietgevers torüchsett wöörn
 Name[pt]=Quando os cronómetros tiverem sido repostos
 Name[pt_BR]=Quando os cronômetros forem reiniciados
 Name[sv]=När tidtagningen har återställts
+Name[tr]=Zamanlayıcılar sıfırlandığında
 Name[uk]=Коли таймерам буде надано нульових значень
 Name[x-test]=xxWhen the timers have been resetxx
 
