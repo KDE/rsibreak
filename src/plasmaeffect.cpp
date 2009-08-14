@@ -23,7 +23,6 @@
 
 #include <QApplication>
 #include <QDesktopWidget>
-#include <QWidget>
 #include <QDBusInterface>
 
 PlasmaEffect::PlasmaEffect( QObject* parent )

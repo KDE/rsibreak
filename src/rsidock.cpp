@@ -31,9 +31,7 @@
 #include <KComponentData>
 #include <KLocale>
 #include <KNotifyConfigWidget>
-#include <KIconLoader>
 #include <KHelpMenu>
-#include <KGlobalAccel>
 #include <KStandardShortcut>
 #include <KSystemTrayIcon>
 #include <KMessageBox>

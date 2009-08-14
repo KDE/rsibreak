@@ -22,15 +22,14 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QTimer>
-#include <QMouseEvent>
 #include <QProgressBar>
 
 #include <KColorScheme>
 #include <KVBox>
-#include <KIconLoader>
 #include <KLocale>
 #include <KDebug>
 #include <KConfigGroup>
+#include <KIconLoader>
 #include <QSystemTrayIcon>
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )

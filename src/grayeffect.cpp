@@ -18,11 +18,7 @@
 
 #include "grayeffect.h"
 
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QPainter>
 
-#include <KWindowSystem>
 #include <KDebug>
 
 

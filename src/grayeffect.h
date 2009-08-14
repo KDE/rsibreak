@@ -21,7 +21,6 @@
 #define GRAYEFFECT_H
 
 #include <QObject>
-#include <QWidget>
 #include <breakbase.h>
 
 class GrayWidget;

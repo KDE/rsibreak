@@ -20,7 +20,6 @@
 #define RSIRELAXPOPUP_H
 
 #include <passivepopup.h>
-#include <QMouseEvent>
 #include <QLabel>
 
 class QLabel;

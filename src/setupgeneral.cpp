@@ -22,14 +22,13 @@
 
 #include "setupgeneral.h"
 
-#include <QBoxLayout>
 #include <QGroupBox>
 #include <QCheckBox>
 #include <QRadioButton>
+#include <QVBoxLayout>
 
 #include <KLocale>
 #include <KConfig>
-#include <KVBox>
 #include <KGlobal>
 #include <KConfigGroup>
 

@@ -20,9 +20,6 @@
 #include "setup.h"
 
 // Qt includes.
-#include <QTabWidget>
-#include <QLabel>
-#include <QApplication>
 //Added by qt3to4:
 
 // KDE includes.
