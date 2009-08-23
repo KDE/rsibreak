@@ -10,6 +10,7 @@ Comment[x-test]=xxRSIBreakxx
 
 [Context/breaks]
 Name=Breaks
+Name[bg]=Прекъсвания
 Name[cs]=Přestávky
 Name[da]=Pauser
 Name[de]=Pausen
