@@ -70,7 +70,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     // Counterbox and skipbox next to eachother
 
-    QLabel* effectLabel = new QLabel( i18n( "Choooe the effect you want during breaks" ) );
+    QLabel* effectLabel = new QLabel( i18n( "Choose the effect you want during breaks" ) );
     d->effectBox = new KComboBox( this );
     if ( KWindowSystem::compositingActive() )
         d->effectBox->addItem( i18n("Simple Gray Effect"), QVariant( RSIObject::SimpleGray ) );
