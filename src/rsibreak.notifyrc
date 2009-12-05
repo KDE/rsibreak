@@ -363,6 +363,7 @@ Name[sv]=Rörande tidtagning
 Name[tr]=Zamanlayıcılar hakkında
 Name[uk]=Відповідні таймери
 Name[x-test]=xxRegarding timersxx
+Name[zh_TW]=關於計時器
 
 [Event/short timer reset]
 Contexts=timers
@@ -381,6 +382,7 @@ Name[sv]=När en kort rast har återställts
 Name[tr]=Kısa bir gerisayım bittiğinde
 Name[uk]=Коли короткому таймеру буде надано нульове значення
 Name[x-test]=xxWhen the short timer has been resetxx
+Name[zh_TW]=當短計時器被重置時
 
 [Event/timers reset]
 Contexts=timers
@@ -399,4 +401,5 @@ Name[sv]=När tidtagningen har återställts
 Name[tr]=Zamanlayıcılar sıfırlandığında
 Name[uk]=Коли таймерам буде надано нульових значень
 Name[x-test]=xxWhen the timers have been resetxx
+Name[zh_TW]=當計時器被重置時
 
