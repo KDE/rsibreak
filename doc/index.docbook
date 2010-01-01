@@ -152,10 +152,10 @@ and select <guilabel>Resume</guilabel>.</para>
 </mediaobject>
 </screenshot>
 
-<para>The last way to influence &rsibreak; is via &DCOP;. There are &DCOP;
+<para>The last way to influence &rsibreak; is via &DBus;. There are &DBus;
 commands available to force breaks and to suspend and resume &rsibreak;. You can
 use these to suspend &rsibreak; automatically when you start a game or any other specified program.
-Execute <command>dcop rsibreak actions</command> to see the possibilities.</para>
+Execute <command>qdbus org.rsibreak.rsibreak /rsibreak</command> to see the possibilities.</para>
 </chapter>
 
 <chapter id="break-types">
