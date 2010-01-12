@@ -454,7 +454,7 @@ void RSITimer::readConfig()
     m_ignoreIdleForTinyBreaks = config.readEntry( "IgnoreIdleForTinyBreaks", false );
 
     config = KGlobal::config()->group( "General" );
-    m_lastrunDt = config.readEntry( "LastRunTimeStamp", QDateTime::QDateTime() );
+    m_lastrunDt = config.readEntry( "LastRunTimeStamp", QDateTime() );
     m_lastrunTiny = config.readEntry( "LastRunTinyLeft", 0 );
     m_lastrunBig = config.readEntry( "LastRunBigLeft", 0 );
 }
