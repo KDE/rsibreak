@@ -53,7 +53,7 @@ endif(NOT USE_KIDLE)
 
 QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
 org.rsibreak.rsiwidget.xml
-rsiwidget.h RSIObject::RSIObject
+rsiwidget.h RSIObject
 )
 
 # compilation
