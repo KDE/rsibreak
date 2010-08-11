@@ -42,19 +42,19 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )
     m_message = new QLabel( vbox );
 
     KHBox *hbox = new KHBox( vbox );
-    hbox->setSpacing( 5 );
+    hbox->setSpacing( 15 );
 
     m_progress = new QProgressBar( hbox );
     m_progress->setFormat( "%v" );
     m_progress->setRange( 0, 0 );
 
-    m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), QString(), hbox );
-    m_lockbutton->setToolTip( i18n( "Lock the session" ) );
-    connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
-
-    m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), QString(), hbox );
+    m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), i18n( "Skip Break" ), hbox );
     m_skipbutton->setToolTip( i18n( "Skip this break" ) );
     connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL( skip() ) );
+
+    m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), i18n( "Lock Screen" ), hbox );
+    m_lockbutton->setToolTip( i18n( "Lock the session" ) );
+    connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
 
     m_popup->setTimeout( 0 ); // no auto close
     m_popup->setView( vbox );

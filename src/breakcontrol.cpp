@@ -29,6 +29,7 @@
 #include <KDebug>
 #include <KHBox>
 #include <KLocale>
+#include <KIconLoader>
 
 BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
         : QWidget( parent, type )
@@ -38,17 +39,26 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     m_textLabel->setAlignment( Qt::AlignHCenter );
 
     KHBox* hbox = new KHBox( this );
-    m_skipButton = new QPushButton( i18n( "Skip" ), hbox );
+    hbox->setSpacing(25);
+    
+    m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );    
+    QSize sizeSkip(m_skipButton->size());
+    m_skipButton->setIcon(SmallIcon("dialog-cancel"));    
+    m_skipButton->setFixedHeight(sizeSkip.height());
     connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
-    m_lockButton = new QPushButton( i18n( "Lock" ), hbox );
+    m_lockButton = new QPushButton( i18n( "Lock Screen" ), hbox );
+    QSize sizeLock(m_skipButton->size());
+    m_lockButton->setFixedHeight(sizeLock.height());
+    m_lockButton->setIcon(SmallIcon("system-lock-screen"));
     connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
 
     m_vbox->addWidget( m_textLabel );
     m_vbox->addWidget( hbox );
 
     setLayout( m_vbox );
-
+    
+    
     //center it!
     const QRect r( QApplication::desktop()->screenGeometry(
                        QApplication::desktop()->primaryScreen() ) );
