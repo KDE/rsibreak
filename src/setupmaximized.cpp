@@ -59,6 +59,7 @@ public:
     QCheckBox*        readOnlyPlasma;
     KComboBox*        effectBox;
     QSlider*          graySlider;
+    QCheckBox* showSmallImagesCheck;
 };
 
 SetupMaximized::SetupMaximized( QWidget* parent )
@@ -143,6 +144,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
                                            imageFolderBox );
     d->searchRecursiveCheck = new QCheckBox( i18n( "Search path recursively" ),
             this );
+    d->showSmallImagesCheck = new QCheckBox( i18n( "Show small images" ),
+            this );
 
     connect( d->changePathButton, SIGNAL( clicked() ),
              this, SLOT( slotFolderPicker() ) );
@@ -152,6 +155,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QVBoxLayout *vbox2 = new QVBoxLayout( d->slideshowBox );
     vbox2->addWidget( imageFolderBox );
     vbox2->addWidget( d->searchRecursiveCheck );
+    vbox2->addWidget( d->showSmallImagesCheck );
     d->slideshowBox->setLayout( vbox2 );
 
     //---------------- Popup setup
@@ -266,6 +270,8 @@ void SetupMaximized::applySettings()
                        d->hideMinimizeButton->isChecked() );
     config.writeEntry( "SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked() );
+    config.writeEntry( "ShowSmallImagesCheck",
+                       d->showSmallImagesCheck->isChecked() );
     config.writeEntry( "Effect",
                        d->effectBox->itemData( d->effectBox->currentIndex() ) );
 
@@ -300,6 +306,8 @@ void SetupMaximized::readSettings()
 
     d->searchRecursiveCheck->setChecked(
         config.readEntry( "SearchRecursiveCheck", false ) );
+    d->showSmallImagesCheck->setChecked(
+        config.readEntry( "ShowSmallImagesCheck", true ) );
     d->disableAccel->setChecked( config.readEntry( "DisableAccel", false ) );
     d->readOnlyPlasma->setChecked(
         config.readEntry( "UsePlasmaReadOnly", true ) );

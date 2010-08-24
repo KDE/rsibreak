@@ -30,7 +30,7 @@
 
 
 SlideEffect::SlideEffect( QObject *parent )
-        : BreakBase( parent ), m_searchRecursive( false )
+        : BreakBase( parent ), m_searchRecursive( false ), m_showSmallImages(false)
 {
     // Make all other screens gray...
     setGrayEffectOnAllScreens( true );
@@ -104,7 +104,7 @@ void SlideEffect::loadImage()
         image.load( name );
 
         // Check size
-        if ( image.width() * image.height() >= min_image_surface ) {
+        if ( image.width() * image.height() >= min_image_surface || m_showSmallImages) {
             // Image is big enough, leave while loop
             m_files_done.append( name );
             break;
@@ -170,12 +170,13 @@ void SlideEffect::slotNewSlide()
     loadImage();
 }
 
-void SlideEffect::reset( const QString& path, bool recursive, int slideInterval )
+void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImages, int slideInterval )
 {
     m_files.clear();
     m_files_done.clear();
     m_basePath = path;
     m_searchRecursive = recursive;
+    m_showSmallImages = showSmallImages;
     m_slideInterval = slideInterval;
 
     findImagesInFolder( path );

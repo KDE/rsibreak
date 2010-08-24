@@ -33,7 +33,7 @@ class SlideEffect : public BreakBase
 public:
     SlideEffect( QObject *parent );
     ~SlideEffect();
-    void reset( const QString& path, bool recursive, int interval );
+    void reset( const QString& path, bool recursive, bool skipSmallImages, int interval );
     void activate();
     void deactivate();
     bool hasImages();
@@ -51,6 +51,7 @@ private:
     QTimer*         m_timer_slide;
 
     bool            m_searchRecursive;
+    bool            m_showSmallImages;
     int             m_slideInterval;
 
     QStringList     m_files;
