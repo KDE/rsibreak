@@ -22,11 +22,8 @@
 #define RSITimer_H
 
 #include <QDateTime>
-#include <QTimerEvent>
 #include <QThread>
 #include <QMap>
-
-class QTimerEvent;
 
 /**
  * @class RSITimer
@@ -133,15 +130,16 @@ public slots:
         return m_big_left;
     };
 
-protected:
+protected slots:
     /**
       The pumping heart of the timer. This will evaluate user's activity
       and decide what to do (wait, popup a relax notification or a
       fullscreen break.
       You shouldn't call this function directly.
     */
-    virtual void timerEvent( QTimerEvent* );
+    virtual void timeout();
 
+protected:
     /** This function is called when a break has passed. */
     void resetAfterBreak();
 
@@ -272,8 +270,8 @@ class RSITimerNoIdle : public RSITimer
 public:
     explicit RSITimerNoIdle( QObject *parent = 0 );
     ~RSITimerNoIdle();
-protected:
-    virtual void timerEvent( QTimerEvent * );
+protected slots:
+    virtual void timeout();
 };
 
 #endif

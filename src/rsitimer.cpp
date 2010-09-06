@@ -40,7 +40,7 @@
 #include "rsiglobals.h"
 #include "rsistats.h"
 #include "rsitimer_dpms.h"
-#include <QTimerEvent>
+#include <QTimer>
 #include <QThread>
 #include <kglobal.h>
 #include <QX11Info>
@@ -66,13 +66,16 @@ RSITimer::~RSITimer()
 
 void RSITimer::run()
 {
-    startTimer( 1000 );
+    QTimer timer;
+    connect( &timer, SIGNAL(timeout()), this, SLOT(timeout()) );
+    timer.start( 1000 );
     slotReadConfig( /* restart */ true );
 
     m_tiny_left = m_intervals["tiny_minimized"];
     m_big_left = m_intervals["big_minimized"];
 
     restoreSession();
+    exec(); //make timers work
 }
 
 void RSITimer::hibernationDetector()
@@ -290,7 +293,7 @@ void RSITimer::slotRequestBigBreak()
 
 // ----------------------------- EVENTS -----------------------//
 
-void RSITimer::timerEvent( QTimerEvent * )
+void RSITimer::timeout()
 {
     // although we might be suspended, we still want to return a valid value
     // when restarted, so m_lastActivity shouls still be updated. This way
@@ -528,7 +531,7 @@ RSITimerNoIdle::RSITimerNoIdle( QObject *parent )
 
 RSITimerNoIdle::~RSITimerNoIdle() {}
 
-void RSITimerNoIdle::timerEvent( QTimerEvent * )
+void RSITimerNoIdle::timeout()
 {
     // Just spot some long time inactivity...
     int idle = idleTime();
