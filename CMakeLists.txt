@@ -4,7 +4,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 find_package (KDE4 REQUIRED)
 include(KDE4Defaults)
 
-MACRO_ENSURE_VERSION( "4.1.83" ${KDE_VERSION} KDE_VERSION_OK)
+MACRO_ENSURE_VERSION( "4.4.0" ${KDE_VERSION} KDE_VERSION_OK)
 if(NOT KDE_VERSION_OK)
   macro_optional_find_package(Plasma)
   macro_log_feature(PLASMA_FOUND "Plasma" "Plasma libraries and header files" "http://plasma.kde.org/" FALSE "" "Plasma is needed for rsibreak Plasmoid")
@@ -15,14 +15,6 @@ endif(NOT KDE_VERSION_OK)
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories ( ${KDE4_INCLUDES} )
-
-find_path( KIDLE_INCLUDE_DIR NAMES kidletime.h HINTS ${KDE4_INCLUDE_DIR} )
-if ( KIDLE_INCLUDE_DIR )
-  set ( USE_KIDLE TRUE )
-  message( STATUS "Kidle was found." )
-else ( KIDLE_INCLUDE_DIR )
-  message( STATUS "Kidle was not found." )
-endif ( KIDLE_INCLUDE_DIR )
 
 add_subdirectory( icons )
 add_subdirectory( src )

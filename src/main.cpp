@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2005-2007,2009 Tom Albers <toma@kde.org>
+   Copyright (C) 2005-2007,2009-2010 Tom Albers <toma@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -63,7 +63,7 @@ int main( int argc, char *argv[] )
                           ki18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
                           KAboutData::License_GPL,
-                          ki18n( "(c) 2005-2009, The RSIBreak developers" ),
+                          ki18n( "(c) 2005-2010, The RSIBreak developers" ),
                           KLocalizedString(),
                           "http://www.rsibreak.org" );
 
@@ -72,16 +72,6 @@ int main( int argc, char *argv[] )
 
     aboutData.addAuthor( ki18n( "Bram Schoenmakers" ), ki18n( "Former author" ),
                          "bramschoenmakers@kde.nl" );
-
-    aboutData.addCredit( ki18n( "Tina Trillitzsch" ), ki18n( "Usability" ),
-                         "t.trillitzsch@gmx.de" );
-
-    aboutData.addCredit( ki18n( "Lee Olson" ), ki18n( "Logo and Icons" ),
-                         "clearbeast@gmail.com" );
-
-    aboutData.addCredit( ki18n( "Achim Bohnet" ),
-                         ki18n( "Former packaging and tester" ),
-                         "ach@mpe.mpg.de" );
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
@@ -93,10 +83,8 @@ int main( int argc, char *argv[] )
 
     RSIApplication a;
     a.disableSessionManagement();
-    // else it will exit(0) when closing any config/about/etc window.
     a.setQuitOnLastWindowClosed( false );
 
     new RSIObject();
-
     return a.exec();
 }

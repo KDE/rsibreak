@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2005-2006,2008-2009 Tom Albers <toma@kde.org>
+   Copyright (C) 2005-2006,2008-2010 Tom Albers <toma@kde.org>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    The parts for idle detection is based on
@@ -26,20 +26,17 @@
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
+#include <kidletime.h>
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
 #include <config-rsibreak.h>     // HAVE_LIBXSS
-#ifdef HAVE_LIBXSS      // Idle detection.
+
 #include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/extensions/scrnsaver.h>
 #include <fixx11h.h>
-#endif // HAVE_LIBXSS
 
 #include "rsiglobals.h"
 #include "rsistats.h"
-#include "rsitimer_dpms.h"
 #include <QTimer>
 #include <QThread>
 #include <kglobal.h>
@@ -53,8 +50,6 @@ RSITimer::RSITimer( QObject *parent )
         , m_needRestart( false )
         , m_explicitDebug( false )
         , m_pause_left( 0 ), m_relax_left( 0 )
-        , dpmsOff( -10 ), dpmsStandby( -10 ), dpmsSuspend( -10 )
-        , m_lastActivity( QDateTime::currentDateTime() )
         , m_intervals( RSIGlobals::instance()->intervals() )
 {
 }
@@ -134,36 +129,8 @@ int RSITimer::idleTime()
     checkScreensaverMode();
     hibernationDetector();
 
-#ifdef HAVE_LIBXSS      // Idle detection.
-    XScreenSaverInfo*  _mit_info;
-    _mit_info = XScreenSaverAllocInfo();
-    XScreenSaverQueryInfo( QX11Info::display(), QX11Info::appRootWindow(), _mit_info );
-    totalIdle = ( _mit_info->idle / 1000 );
-    XFree( _mit_info );
-
-
-    // When dpms turns off the monitor the idle gets a reset to 0
-    // Eat the activity in that area. Bug 6439 bugs.freedesktop.org
-    int t = m_lastActivity.secsTo( QDateTime::currentDateTime() );
-
-    // refresh timings when there is idleness for 6 minutes, should be
-    // enough to have values before it is needed.
-    if ( t == 3600 ) {
-        QueryDPMSTimeouts( QX11Info::display(), dpmsStandby, dpmsSuspend, dpmsOff );
-        kDebug() << "DPMS settings: " << dpmsStandby << " - "
-        << dpmsSuspend << " - " << dpmsOff << endl;
-    }
-
-    if ( totalIdle == 0 && ( t < dpmsOff - 1     || t > dpmsOff + 1 )
-            && ( t < dpmsStandby - 1 || t > dpmsStandby + 1 )
-            && ( t < dpmsSuspend - 1 || t > dpmsSuspend + 1 ) )
-        m_lastActivity = QDateTime::currentDateTime();
-    else
-        totalIdle = m_lastActivity.secsTo( QDateTime::currentDateTime() );
-
-#else
-    totalIdle = m_pause_left > 0 ? 1 : 0;
-#endif // HAVE_LIBXSS
+    int totalIdleMs = KIdleTime::instance()->idleTime();
+    totalIdle = totalIdleMs == 0 ? 0 : totalIdleMs/1000;
 
     return totalIdle;
 }
@@ -254,12 +221,17 @@ void RSITimer::skipBreak()
 
 void RSITimer::slotReadConfig( bool restart )
 {
+    QMap<QString, int> oldIntervals = m_intervals;
     readConfig();
-
     m_intervals = RSIGlobals::instance()->intervals();
-    if ( restart )
-        slotRestart();
-    else
+    if ( restart ) {
+        if ( m_intervals == oldIntervals ) {
+            kDebug() << "No change in timers, continue...";
+        } else {
+            kDebug() << "Change in timers, reset...";
+            slotRestart();
+        }
+    } else
         m_needRestart = true;
 }
 
@@ -295,9 +267,6 @@ void RSITimer::slotRequestBigBreak()
 
 void RSITimer::timeout()
 {
-    // although we might be suspended, we still want to return a valid value
-    // when restarted, so m_lastActivity shouls still be updated. This way
-    // the dbus call to idleTime() does not return false info.
     int t = idleTime();
 
     // Don't change the tray icon when suspended, or evaluate

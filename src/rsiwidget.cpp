@@ -332,10 +332,8 @@ void RSIObject::readConfig()
 
     m_useImages = config.readEntry( "ShowImages", false );
     int slideInterval = config.readEntry( "SlideInterval", 10 );
-    bool recursive =
-        config.readEntry( "SearchRecursiveCheck", false );
-    bool showSmallImages =
-        config.readEntry( "ShowSmallImagesCheck", true );	
+    bool recursive =  config.readEntry( "SearchRecursiveCheck", false );
+    bool showSmallImages = config.readEntry( "ShowSmallImagesCheck", true );
     QString path = config.readEntry( "ImageFolder" );
 
     bool timertype = config.readEntry( "UseNoIdleTimer", false );
@@ -347,7 +345,7 @@ void RSIObject::readConfig()
     switch ( effect ) {
     case Plasma: {
         m_effect = new PlasmaEffect( 0 );
-        m_effect ->setReadOnly( m_usePlasmaRO );
+        m_effect->setReadOnly( m_usePlasmaRO );
         break;
     }
     case SlideShow: {

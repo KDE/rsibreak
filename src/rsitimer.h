@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2005-2006,2008 Tom Albers <toma@kde.org>
+   Copyright (C) 2005-2006,2008-2009 Tom Albers <toma@kde.org>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -237,11 +237,7 @@ protected: // TODO: What should be private and what not?
     int             m_relax_left;
     int             m_useIdleDetection;
     int             m_ignoreIdleForTinyBreaks;
-    int             dpmsOff;
-    int             dpmsStandby;
-    int             dpmsSuspend;
 
-    QDateTime       m_lastActivity;
     /**
       When it's time for a break, we wait patiently till the user
       becomes idle. We show a relax popup during this interval.
@@ -255,7 +251,7 @@ protected: // TODO: What should be private and what not?
     int             m_lastrunTiny;
     int             m_lastrunBig;
 
-    QMap<QString, int> &m_intervals;
+    QMap<QString, int> m_intervals;
 };
 
 /**
