@@ -30,6 +30,8 @@
 #include "setupgeneral.h"
 #include "setuptiming.h"
 #include "setupmaximized.h"
+#include "setupnotifications.h"
+
 
 class SetupPriv
 {
@@ -37,6 +39,7 @@ public:
     SetupGeneral  *generalPage;
     SetupTiming  *timingPage;
     SetupMaximized  *maximizedPage;
+    SetupNotifications *notificationsPage;
 };
 
 Setup::Setup( QWidget* parent )
@@ -56,6 +59,10 @@ Setup::Setup( QWidget* parent )
     d->maximizedPage = new SetupMaximized( this );
     KPageWidgetItem* page3 = addPage( d->maximizedPage, i18n( "During Breaks" ) );
     page3->setIcon( KIcon( "duringbreaks" ) ); // krazy:exclude=iconnames
+
+    d->notificationsPage = new SetupNotifications( this );
+    KPageWidgetItem* page4 = addPage( d->notificationsPage, i18n( "Actions" ) );
+    page4->setIcon( KIcon( "configure" ) ); // krazy:exclude=iconnames
 
     connect( this, SIGNAL( okClicked() ), this, SLOT( slotOkClicked() ) );
 

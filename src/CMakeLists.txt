@@ -15,6 +15,7 @@ rsidock.cpp
 setup.cpp
 setupgeneral.cpp
 setuptiming.cpp
+setupnotifications.cpp
 main.cpp
 rsiwidget.cpp
 rsirelaxpopup.cpp
