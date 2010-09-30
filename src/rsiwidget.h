@@ -62,8 +62,6 @@ public:
         return m_timer;
     };
 
-    static QPixmap takeScreenshot( RSIDock* );
-
 private slots:
     void slotWelcome();
     void slotLock();

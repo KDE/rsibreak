@@ -49,7 +49,7 @@ RSITimer::RSITimer( QObject *parent )
         , m_suspended( false )
         , m_needRestart( false )
         , m_explicitDebug( false )
-        , m_pause_left( 0 ), m_relax_left( 0 )
+        , m_pause_left( 0 ), m_relax_left( 0 ), m_patience( 0 )
         , m_intervals( RSIGlobals::instance()->intervals() )
 {
 }
