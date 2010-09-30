@@ -16,7 +16,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-#include <QDBusInterface>
+#include <kmessagebox.h>
 #include <kuniqueapplication.h>
 #include <kstartupinfo.h>
 #include <kcmdlineargs.h>
@@ -45,9 +45,10 @@ public:
     int newInstance() {
         static bool secondMe = false;
         if ( secondMe ) {
-            QDBusInterface dbus( "org.rsibreak.rsibreak", "/rsibreak",
-                                 "org.rsibreak.rsiwidget" );
-            dbus.call( "showWhereIAm" );
+            KMessageBox::information(0, i18n("RSIBreak is already running in "
+                                             "your system tray. If you can not "
+                                             "find it, it might be behind the "
+                                             "arrow."));
         } else {
             secondMe = true;
         }

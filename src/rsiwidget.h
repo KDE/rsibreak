@@ -80,7 +80,6 @@ protected:
     void setIcon( int );
 
 private:
-    QString takeScreenshotOfTrayIcon();
     void findImagesInFolder( const QString& folder );
     void loadImage();
     void startTimer( bool idle );
@@ -107,8 +106,6 @@ private:
 
     /* Available through D-Bus */
 public Q_SLOTS:
-    void showWhereIAm();
-
     void doBigBreak() {
         timer()->slotRequestBigBreak();
     };

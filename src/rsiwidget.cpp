@@ -144,43 +144,13 @@ QPixmap RSIObject::takeScreenshot( RSIDock* tray )
 void RSIObject::slotWelcome()
 {
     if ( KMessageBox::shouldBeShownContinue( "dont_show_welcome_again_for_001" ) ) {
-        QString tempfile = takeScreenshotOfTrayIcon();
         KMessageBox::information( 0, i18n( "<p>Welcome to RSIBreak</p>\n<p>"
-                                           "In your tray you can now see RSIBreak:</p>\n" )
-                                  + "<p><center><img source=\"" + tempfile + "\"></center></p>\n"
+                                           "In your tray you can now see RSIBreak.</p>\n" )
                                   + i18n( "<p>When you right-click on that you will see a menu, from which "
                                           "you can go to the configuration for example.</p>\n<p>When you want to "
                                           "know when the next break is, hover over the icon.</p>\n<p>Use RSIBreak "
                                           "wisely.</p>" ), i18n( "Welcome" ), "dont_show_welcome_again_for_001" );
     }
-}
-
-void RSIObject::showWhereIAm()
-{
-    QString tempfile = takeScreenshotOfTrayIcon();
-    KMessageBox::information( 0,
-                              i18n( "<p>RSIBreak is already running</p><p>It is located here:</p>" )
-                              + "<p><center><img source=\"" + tempfile + "\"></center></p><p>",
-                              i18n( "Already Running" ) );
-}
-
-QString RSIObject::takeScreenshotOfTrayIcon()
-{
-    // Process the events else the icon will not be there and the screenie will fail!
-    kapp->processEvents();
-
-    //TODO: find the tray window.
-    QPixmap screenshot = takeScreenshot( m_tray );
-
-    QString filename;
-    KTemporaryFile* tmpfile = new KTemporaryFile;
-    tmpfile->setAutoRemove( false );
-    if ( tmpfile->open() ) {
-        filename = tmpfile->fileName();
-        screenshot.save( tmpfile, "png" );
-        tmpfile->close();
-    }
-    return filename;
 }
 
 void RSIObject::minimize()
