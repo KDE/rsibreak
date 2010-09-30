@@ -1,6 +1,5 @@
 /* ============================================================
- * Copyright (C) 2005-2007,2009 by Tom Albers <toma@kde.org>
- * Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+ * Copyright (C) 2010 by Tom Albers <toma@kde.org>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General

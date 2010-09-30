@@ -79,7 +79,10 @@ void RSITimer::hibernationDetector()
     static QDateTime last = QDateTime::currentDateTime();
     QDateTime current = QDateTime::currentDateTime();
     if ( last.secsTo( current ) > 60 ) {
-        kDebug() << "Not been checking idleTime for 60 seconds, assuming the computer hibernated, resetting timers";
+        kDebug() << "Not been checking idleTime for more than 60 seconds, "
+                << "assuming the computer hibernated, resetting timers"
+                << "Last: " << last
+                << "Current: " << current;
         resetAfterBigBreak();
     }
     last = current;
