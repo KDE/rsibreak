@@ -59,6 +59,9 @@ public slots:
     /** Hides the skip button **/
     void setSkipButtonHidden( bool );
 
+    /** Hides the lock button **/
+    void setLockButtonHidden( bool );
+
 signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();

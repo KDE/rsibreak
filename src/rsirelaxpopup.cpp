@@ -142,4 +142,9 @@ void RSIRelaxPopup::setSkipButtonHidden( bool b )
     m_skipbutton->setHidden( b );
 }
 
+void RSIRelaxPopup::setLockButtonHidden( bool b )
+{
+    m_lockbutton->setHidden( b );
+}
+
 #include "rsirelaxpopup.moc"

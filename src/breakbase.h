@@ -40,6 +40,7 @@ public:
     virtual void deactivate();
     virtual void setLabel( const QString& );
     void showMinimize( bool );
+    void showLock( bool );
     void disableShortcut( bool disable );
     void setGrayEffectOnAllScreens( bool on );
     void setGrayEffectLevel( int level );

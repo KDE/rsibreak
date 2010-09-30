@@ -51,6 +51,7 @@ public:
     KLineEdit*        imageFolderEdit;
     QCheckBox*        searchRecursiveCheck;
     QCheckBox*        hideMinimizeButton;
+    QCheckBox*        hideLockButton;
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
     QCheckBox*        usePopup;
@@ -91,12 +92,17 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->hideMinimizeButton->setWhatsThis( i18n( "Check this option to disable and "
                                          "hide the skip button. This way you can prevent skipping the break." ) );
 
+    d->hideLockButton = new QCheckBox( i18n( "&Hide lock button" ), this );
+    d->hideLockButton->setWhatsThis( i18n( "Check this option to disable and "
+                                         "hide the lock button. This way you can prevent pressing the wrong button." ) );
+
     d->disableAccel = new QCheckBox( i18n( "&Disable shortcut" ), this );
     d->disableAccel->setWhatsThis( i18n( "Check this option to disable the skip "
                                          "shortcut. This way you can prevent skipping the break." ) );
 
     QVBoxLayout *vbox1 = new QVBoxLayout( skipBox );
     vbox1->addWidget( d->hideMinimizeButton );
+    vbox1->addWidget( d->hideLockButton );
     vbox1->addWidget( d->disableAccel );
     vbox1->addStretch( 1 );
     skipBox->setLayout( vbox1 );
@@ -268,6 +274,8 @@ void SetupMaximized::applySettings()
     config.writeEntry( "ImageFolder", d->imageFolderEdit->text() );
     config.writeEntry( "HideMinimizeButton",
                        d->hideMinimizeButton->isChecked() );
+    config.writeEntry( "HideLockButton",
+                       d->hideLockButton->isChecked() );
     config.writeEntry( "SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked() );
     config.writeEntry( "ShowSmallImagesCheck",
@@ -298,6 +306,8 @@ void SetupMaximized::readSettings()
     d->imageFolderEdit->setText( config.readEntry( "ImageFolder", dir ) );
     d->hideMinimizeButton->setChecked(
         config.readEntry( "HideMinimizeButton", false ) );
+    d->hideLockButton->setChecked(
+        config.readEntry( "HideLockButton", false ) );
 
     const int effect = d->effectBox->findData( QVariant(
                            config.readEntry( "Effect", 0 ) ) );

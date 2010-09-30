@@ -40,10 +40,10 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
 
     KHBox* hbox = new KHBox( this );
     hbox->setSpacing(25);
-    
-    m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );    
+
+    m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );
     QSize sizeSkip(m_skipButton->size());
-    m_skipButton->setIcon(SmallIcon("dialog-cancel"));    
+    m_skipButton->setIcon(SmallIcon("dialog-cancel"));
     m_skipButton->setFixedHeight(sizeSkip.height());
     connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
@@ -57,8 +57,8 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     m_vbox->addWidget( hbox );
 
     setLayout( m_vbox );
-    
-    
+
+
     //center it!
     const QRect r( QApplication::desktop()->screenGeometry(
                        QApplication::desktop()->primaryScreen() ) );
@@ -81,6 +81,11 @@ void BreakControl::setText( const QString& text )
 void BreakControl::showMinimize( bool show )
 {
     m_skipButton->setVisible( show );
+}
+
+void BreakControl::showLock( bool show )
+{
+    m_lockButton->setVisible( show );
 }
 
 void BreakControl::paintEvent( QPaintEvent *event )

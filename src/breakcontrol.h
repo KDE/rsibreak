@@ -33,6 +33,7 @@ public:
     BreakControl( QWidget*, Qt::WindowType );
     void setText( const QString& );
     void showMinimize( bool show );
+    void showLock( bool show );
 
 protected:
     void paintEvent( QPaintEvent *event );

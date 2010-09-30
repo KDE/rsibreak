@@ -115,6 +115,11 @@ void BreakBase::showMinimize( bool show )
     m_breakControl->showMinimize( show );
 }
 
+void BreakBase::showLock( bool show )
+{
+    m_breakControl->showLock( show );
+}
+
 void BreakBase::disableShortcut( bool disable )
 {
     m_disableShortcut = disable;
