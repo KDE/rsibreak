@@ -48,10 +48,11 @@ RSITimer::RSITimer( QObject *parent )
         , m_bigBreakRequested( false )
         , m_suspended( false )
         , m_needRestart( false )
-        , m_explicitDebug( false )
         , m_pause_left( 0 ), m_relax_left( 0 ), m_patience( 0 )
         , m_intervals( RSIGlobals::instance()->intervals() )
 {
+    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    m_debug = config.readEntry( "DEBUG", 0 );
 }
 
 RSITimer::~RSITimer()
@@ -104,7 +105,7 @@ void RSITimer::checkScreensaverMode()
     XGetScreenSaver( QX11Info::display(), &mXTimeout, &mXInterval, &mXBlanking, &mXExposures );
     static int originalTimeout = mXTimeout;
 
-    if ( m_explicitDebug ) {
+    if ( m_debug > 1 ) {
         kDebug() << "Screensaver timeout is set at " << mXTimeout;
     }
 
@@ -243,11 +244,6 @@ void RSITimer::slotRequestBreak()
     m_breakRequested = true;
 }
 
-void RSITimer::slotRequestDebug()
-{
-    m_explicitDebug = true;
-}
-
 void RSITimer::slotRequestTinyBreak()
 {
     slotRequestBreak();
@@ -336,7 +332,7 @@ void RSITimer::timeout()
         return;
     }
 
-    if ( m_explicitDebug ) {
+    if ( m_debug > 1 ) {
         kDebug() << " patience: " << m_patience  << " pause_left: "
         << m_pause_left << " relax_left: " << m_relax_left
         <<  " tiny_left: " << m_tiny_left  << " big_left: "
@@ -545,7 +541,7 @@ void RSITimerNoIdle::timeout()
     }
 
 
-    if ( m_explicitDebug ) {
+    if ( m_debug > 1 ) {
         kDebug() << " pause_left: " << m_pause_left
         <<  " tiny_left: " << m_tiny_left  << " big_left: "
         <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;

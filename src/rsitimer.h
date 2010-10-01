@@ -92,11 +92,6 @@ public slots:
     */
     void slotRequestBreak();
 
-    /**
-    The user can request debugging info from the timer...
-    */
-    void slotRequestDebug();
-
     /** Forces a tiny break. */
     void slotRequestTinyBreak();
 
@@ -229,7 +224,7 @@ protected: // TODO: What should be private and what not?
     bool            m_needRestart;
     bool            m_nextBreak;
     bool            m_nextnextBreak;
-    bool            m_explicitDebug;
+    int             m_debug;
 
     int             m_tiny_left;
     int             m_big_left;

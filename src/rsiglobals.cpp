@@ -72,7 +72,7 @@ void RSIGlobals::slotReadConfig()
     m_intervals["big_maximized"] = config.readEntry( "BigDuration", 1 ) * 60;
     m_intervals["big_maximized"] = config.readEntry( "BigDuration", 1 ) * 60;
 
-    if ( config.readEntry( "DEBUG", false ) ) {
+    if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
         kDebug() << "Debug mode activated";
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"] / 60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"] / 60;

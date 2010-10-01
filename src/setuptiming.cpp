@@ -32,7 +32,6 @@
 #include <KVBox>
 #include <KConfigGroup>
 #include <KGlobal>
-#include <kdeversion.h>
 
 class SetupTimingPriv
 {
@@ -41,7 +40,7 @@ public:
     KIntNumInput*          tinyDuration;
     KIntNumInput*          bigInterval;
     KIntNumInput*          bigDuration;
-    bool                   debug;
+    int                    debug;
 };
 
 SetupTiming::SetupTiming( QWidget* parent )
@@ -120,11 +119,11 @@ SetupTiming::SetupTiming( QWidget* parent )
     setLayout( l );
     readSettings();
 
-    d->debug ? d->bigInterval->setSuffix( ki18np( " second", " seconds" ) )
+    d->debug > 0 ? d->bigInterval->setSuffix( ki18np( " second", " seconds" ) )
     : d->bigInterval->setSuffix( ki18np( " minute", " minutes" ) );
-    d->debug ? d->tinyInterval->setSuffix( ki18np( " second", " seconds" ) )
+    d->debug > 0 ? d->tinyInterval->setSuffix( ki18np( " second", " seconds" ) )
     : d->tinyInterval->setSuffix( ki18np( " minute", " minutes" ) );
-    d->debug ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ) )
+    d->debug > 0 ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ) )
     : d->bigDuration->setSuffix( ki18np( " minute", " minutes" ) );
     d->tinyDuration->setSuffix( ki18np( " second", " seconds" ) );
 
@@ -155,7 +154,7 @@ void SetupTiming::applySettings()
 void SetupTiming::readSettings()
 {
     KConfigGroup config = KGlobal::config()->group( "General Settings" );
-    d->debug = config.readEntry( "DEBUG", false );
+    d->debug = config.readEntry( "DEBUG", 0 );
 
     d->tinyInterval->setValue( config.readEntry( "TinyInterval", 10 ) );
     d->tinyDuration->setValue( config.readEntry( "TinyDuration", 20 ) );

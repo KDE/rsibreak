@@ -124,7 +124,6 @@ private slots:
     void slotConfigureNotifications();
     void slotSuspend();
     void slotBreakRequest();
-    void slotDebugRequest();
     void slotShowStatistics();
     void slotResetStats();
     void slotQuit();

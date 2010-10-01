@@ -118,11 +118,6 @@ void RSIDock::slotBreakRequest()
     emit breakRequest();
 }
 
-void RSIDock::slotDebugRequest()
-{
-    emit debugRequest();
-}
-
 void RSIDock::slotSuspend()
 {
     if ( m_suspended ) {
