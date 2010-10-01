@@ -440,9 +440,7 @@ void RSITimer::timeout()
             RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
         }
 
-        m_patience = 30;
-        if ( m_patience > breakInterval )
-            m_patience = breakInterval;
+        m_patience = m_intervals["patience"];
 
         emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
         m_relax_left = breakInterval;

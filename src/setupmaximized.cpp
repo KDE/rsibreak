@@ -56,6 +56,7 @@ public:
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
     KIntNumInput*     slideInterval;
+    KIntNumInput*     popupDuration;
     QCheckBox*        usePopup;
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
@@ -183,7 +184,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     popupBox->setTitle( i18n( "Popup" ) );
 
     QLabel *label = new QLabel( i18n( "RSIBreak can show a popup near the "
-                                      "systray instead of replacing your whole screen with a picture." ), this );
+                                      "systray before replacing your whole screen with the effect chosen." ), this );
     label->setWordWrap( true );
 
     d->usePopup = new QCheckBox( i18n( "&Use the popup" ), this );
@@ -192,6 +193,16 @@ SetupMaximized::SetupMaximized( QWidget* parent )
                                      "want to see the popup when it is time to break. It will count down to "
                                      "zero, so you know how long this break will be." ) );
     label->setBuddy( d->usePopup );
+
+    KHBox *m6 = new KHBox( this );
+    QLabel *l6 = new QLabel( i18n( "Show popup for a maximum of:" ) + ' ', m6 );
+    l6->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+    l6->setWhatsThis( i18n( "Here you can set how long the popup will be shown "
+                            "before the effect will kick in." ) );
+    d->popupDuration = new KIntNumInput( m6 );
+    d->popupDuration->setRange( 3, 1000, 1 );
+    d->popupDuration->setSliderEnabled( false );
+    d->popupDuration->setSuffix( ki18np( " second", " seconds" ) );
 
     d->useFlashLabel = new QLabel( '\n' + i18n( "The popup can flash when it "
                                    "detects that you are still active." ), this );
@@ -205,6 +216,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QVBoxLayout *vbox3 = new QVBoxLayout( popupBox );
     vbox3->addWidget( label );
     vbox3->addWidget( d->usePopup );
+    vbox3->addWidget( m6 );
     vbox3->addWidget( d->useFlashLabel );
     vbox3->addWidget( d->useFlash );
     vbox3->addStretch( 1 );
@@ -286,6 +298,8 @@ void SetupMaximized::applySettings()
     KConfigGroup config = KGlobal::config()->group( "General Settings" );
     config.writeEntry( "ImageFolder", d->imageFolderEdit->text() );
     config.writeEntry( "SlideInterval", d->slideInterval->value() );
+    config.writeEntry( "Patience", d->popupDuration->value() );
+
     config.writeEntry( "HideMinimizeButton",
                        d->hideMinimizeButton->isChecked() );
     config.writeEntry( "HideLockButton",
@@ -319,6 +333,8 @@ void SetupMaximized::readSettings()
     KConfigGroup config = KGlobal::config()->group( "General Settings" );
     d->imageFolderEdit->setText( config.readEntry( "ImageFolder", dir ) );
     d->slideInterval->setValue( config.readEntry( "SlideInterval", 10 ) );
+    d->popupDuration->setValue( config.readEntry( "Patience", 30 ) );
+
     d->hideMinimizeButton->setChecked(
         config.readEntry( "HideMinimizeButton", false ) );
     d->hideLockButton->setChecked(
