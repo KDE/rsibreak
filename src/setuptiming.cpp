@@ -1,5 +1,5 @@
 /* ============================================================
- * Copyright (C) 2005-2007,2009 by Tom Albers <toma@kde.org>
+ * Copyright (C) 2005-2007,2009-2010 by Tom Albers <toma@kde.org>
  * Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
  *
  * This program is free software; you can redistribute it
@@ -41,7 +41,6 @@ public:
     KIntNumInput*          tinyDuration;
     KIntNumInput*          bigInterval;
     KIntNumInput*          bigDuration;
-    KIntNumInput*          slideInterval;
     bool                   debug;
 };
 
@@ -116,51 +115,18 @@ SetupTiming::SetupTiming( QWidget* parent )
     vbox1->addStretch( 1 );
     bigBox->setLayout( vbox1 );
 
-    // ------------------------ Slidebox
-
-    QGroupBox *slideBox = new QGroupBox( this );
-    slideBox->setTitle( i18n( "Slideshow" ) );
-
-    KHBox *m5 = new KHBox( this );
-    QLabel *l5 = new QLabel( i18n( "Change images every:" ) + ' ', m5 );
-    l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    l5->setWhatsThis( i18n( "Here you can set how long one image should be "
-                            "shown before it is replaced by the next one." ) );
-    d->slideInterval = new KIntNumInput( m5 );
-    d->slideInterval->setRange( 3, 1000, 1 );
-    d->slideInterval->setSliderEnabled( false );
-    l5->setBuddy( d->slideInterval );
-
-    QVBoxLayout *vbox2 = new QVBoxLayout( slideBox );
-    vbox2->addWidget( m5 );
-    vbox2->addStretch( 1 );
-    slideBox->setLayout( vbox2 );
-
     l->addWidget( tinyBox );
     l->addWidget( bigBox );
-    l->addWidget( slideBox );
     setLayout( l );
     readSettings();
 
-#if KDE_IS_VERSION(4, 2, 80)
     d->debug ? d->bigInterval->setSuffix( ki18np( " second", " seconds" ) )
     : d->bigInterval->setSuffix( ki18np( " minute", " minutes" ) );
     d->debug ? d->tinyInterval->setSuffix( ki18np( " second", " seconds" ) )
     : d->tinyInterval->setSuffix( ki18np( " minute", " minutes" ) );
     d->debug ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ) )
     : d->bigDuration->setSuffix( ki18np( " minute", " minutes" ) );
-    d->slideInterval->setSuffix( ki18np( " second", " seconds" ) );
     d->tinyDuration->setSuffix( ki18np( " second", " seconds" ) );
-#else
-    d->debug ? d->bigInterval->setSuffix( i18n( " seconds" ) )
-    : d->bigInterval->setSuffix( i18n( " minutes" ) );
-    d->tinyDuration->setSuffix( i18n( " seconds" ) );
-    d->slideInterval->setSuffix( i18n( " seconds" ) );
-    d->debug ? d->bigDuration->setSuffix( i18n( " seconds" ) )
-    : d->bigDuration->setSuffix( i18n( " minutes" ) );
-    d->debug ? d->tinyInterval->setSuffix( i18n( " seconds" ) )
-    : d->tinyInterval->setSuffix( i18n( " minutes" ) );
-#endif
 
     slotTinyValueChanged( d->tinyInterval->value() );
 
@@ -169,7 +135,6 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->bigInterval->setFixedSize( d->tinyInterval->minimumSizeHint() );
     d->tinyDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
     d->bigDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
-    d->slideInterval->setFixedSize( d->tinyInterval->minimumSizeHint() );
 }
 
 SetupTiming::~SetupTiming()
@@ -184,7 +149,6 @@ void SetupTiming::applySettings()
     config.writeEntry( "TinyDuration", d->tinyDuration->value() );
     config.writeEntry( "BigInterval", d->bigInterval->value() );
     config.writeEntry( "BigDuration", d->bigDuration->value() );
-    config.writeEntry( "SlideInterval", d->slideInterval->value() );
     config.sync();
 }
 
@@ -198,7 +162,6 @@ void SetupTiming::readSettings()
     d->bigInterval->setValue( config.readEntry( "BigInterval", 60 ) );
     d->bigInterval->setMinimum( d->tinyInterval->value() );
     d->bigDuration->setValue( config.readEntry( "BigDuration", 1 ) );
-    d->slideInterval->setValue( config.readEntry( "SlideInterval", 10 ) );
 }
 
 void SetupTiming::slotTinyValueChanged( int i )

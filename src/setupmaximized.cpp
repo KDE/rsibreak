@@ -1,5 +1,5 @@
 /* ============================================================
- * Copyright 2005-2007 by Tom Albers <toma@kde.org>
+ * Copyright 2005-2007,2010 by Tom Albers <toma@kde.org>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -34,6 +34,7 @@
 #include <KApplication>
 #include <KFileDialog>
 #include <KLineEdit>
+#include <KNumInput>
 #include <KVBox>
 #include <KWindowSystem>
 #include <kkeysequencewidget.h>
@@ -54,6 +55,7 @@ public:
     QCheckBox*        hideLockButton;
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
+    KIntNumInput*     slideInterval;
     QCheckBox*        usePopup;
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
@@ -153,6 +155,16 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->showSmallImagesCheck = new QCheckBox( i18n( "Show small images" ),
             this );
 
+    KHBox *m5 = new KHBox( this );
+    QLabel *l5 = new QLabel( i18n( "Change images every:" ) + ' ', m5 );
+    l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+    l5->setWhatsThis( i18n( "Here you can set how long one image should be "
+                            "shown before it is replaced by the next one." ) );
+    d->slideInterval = new KIntNumInput( m5 );
+    d->slideInterval->setRange( 3, 1000, 1 );
+    d->slideInterval->setSliderEnabled( false );
+    d->slideInterval->setSuffix( ki18np( " second", " seconds" ) );
+
     connect( d->changePathButton, SIGNAL( clicked() ),
              this, SLOT( slotFolderPicker() ) );
     connect( d->imageFolderEdit, SIGNAL( textChanged( const QString& ) ),
@@ -162,6 +174,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vbox2->addWidget( imageFolderBox );
     vbox2->addWidget( d->searchRecursiveCheck );
     vbox2->addWidget( d->showSmallImagesCheck );
+    vbox2->addWidget( m5 );
     d->slideshowBox->setLayout( vbox2 );
 
     //---------------- Popup setup
@@ -272,6 +285,7 @@ void SetupMaximized::applySettings()
 {
     KConfigGroup config = KGlobal::config()->group( "General Settings" );
     config.writeEntry( "ImageFolder", d->imageFolderEdit->text() );
+    config.writeEntry( "SlideInterval", d->slideInterval->value() );
     config.writeEntry( "HideMinimizeButton",
                        d->hideMinimizeButton->isChecked() );
     config.writeEntry( "HideLockButton",
@@ -304,6 +318,7 @@ void SetupMaximized::readSettings()
 
     KConfigGroup config = KGlobal::config()->group( "General Settings" );
     d->imageFolderEdit->setText( config.readEntry( "ImageFolder", dir ) );
+    d->slideInterval->setValue( config.readEntry( "SlideInterval", 10 ) );
     d->hideMinimizeButton->setChecked(
         config.readEntry( "HideMinimizeButton", false ) );
     d->hideLockButton->setChecked(
