@@ -4,6 +4,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 find_package (KDE4 REQUIRED)
 include(KDE4Defaults)
 
+find_package(Qt4 4.6.0 REQUIRED)
+
 MACRO_ENSURE_VERSION( "4.4.0" ${KDE_VERSION} KDE_VERSION_OK)
 if(NOT KDE_VERSION_OK)
   macro_optional_find_package(Plasma)

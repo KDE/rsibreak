@@ -1,3 +1,23 @@
+v0.11-beta1 2010-10-03
+- Fix detection of additional screens
+- Make popup time configurable
+- Require Qt 4.6.0 and KDE 4.4.0
+- Fix timers when lock button is pressed
+- Add the possibility to remove the lock button
+- Remove buggy screenshot to show RSIBreak in the 
+  systray at startup and when launching a second time
+- Add notification settings to the config
+- Don't restart timers when leaving config and timers
+  has not been changed
+- Slideshoweffect: make the visibility of small images 
+  optional. ( Juan Luis Baptiste )
+- Make popup visibly more attractive 
+  ( Juan Luis Baptiste)
+- Make timers work for Qt=>4.4 ( Chani Armitage )
+- Fix plasma category ( Balcaen John )
+- Use KIdle library from kdelibs, instead of directly
+  asking X.
+
 v0.10 2009-07-19
 - Use kdelibs function for display duration of a time.
 

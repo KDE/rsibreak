@@ -60,7 +60,7 @@ int main( int argc, char *argv[] )
 {
     KAboutData aboutData( "rsibreak", 0,
                           ki18n( "RSIBreak" ),
-                          "0.11-svn",
+                          "0.11-beta1",
                           ki18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
                           KAboutData::License_GPL,
