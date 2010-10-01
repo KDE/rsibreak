@@ -33,6 +33,9 @@ public:
 public slots:
     void activate();
     void deactivate();
+
+private slots:
+    void slotGray();
 };
 
 #endif // PLASMAEFFECT_H

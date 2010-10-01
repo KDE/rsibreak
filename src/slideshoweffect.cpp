@@ -33,8 +33,9 @@ SlideEffect::SlideEffect( QObject *parent )
         : BreakBase( parent ), m_searchRecursive( false ), m_showSmallImages(false)
 {
     // Make all other screens gray...
-    setGrayEffectOnAllScreens( true );
-    excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
+    slotGray();
+    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
+             SLOT( slotGray() ) );
 
     m_slidewidget = new SlideWidget( 0 );
     KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
@@ -51,6 +52,13 @@ SlideEffect::SlideEffect( QObject *parent )
 SlideEffect::~SlideEffect()
 {
     delete m_slidewidget;
+}
+
+void SlideEffect::slotGray()
+{
+    // Make all other screens gray...
+    setGrayEffectOnAllScreens( true );
+    excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
 }
 
 bool SlideEffect::hasImages()
@@ -190,12 +198,19 @@ void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImag
 SlideWidget::SlideWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup )
 {
+    slotDimension();
+    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
+             SLOT( slotDimension() ) );
+}
+
+SlideWidget::~SlideWidget() {}
+
+void SlideWidget::slotDimension()
+{
     QRect rect = QApplication::desktop()->screenGeometry(
                      QApplication::desktop()->primaryScreen() );
     setGeometry( rect );
 }
-
-SlideWidget::~SlideWidget() {}
 
 void SlideWidget::setImage( QImage* image )
 {

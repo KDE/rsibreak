@@ -127,13 +127,12 @@ void BreakBase::disableShortcut( bool disable )
 
 void BreakBase::setGrayEffectOnAllScreens( bool on )
 {
-    if (m_grayEffectOnAllScreensActivated == on )
-        return;
-
     m_grayEffectOnAllScreensActivated = on;
     delete m_grayEffectOnAllScreens;
-    m_grayEffectOnAllScreens = new GrayEffectOnAllScreens();
-    m_grayEffectOnAllScreens->setLevel( 70 );
+    if ( on ) {
+        m_grayEffectOnAllScreens = new GrayEffectOnAllScreens();
+        m_grayEffectOnAllScreens->setLevel( 70 );
+    }
 }
 
 void BreakBase::setGrayEffectLevel( int level )

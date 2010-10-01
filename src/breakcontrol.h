@@ -39,6 +39,7 @@ protected:
     void paintEvent( QPaintEvent *event );
 
 private slots:
+    void slotCenterIt();
     void slotLock();
 
 signals:

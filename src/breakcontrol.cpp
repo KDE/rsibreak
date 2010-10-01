@@ -58,8 +58,14 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
 
     setLayout( m_vbox );
 
+    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
+            SLOT( slotCenterIt() ) );
 
-    //center it!
+    slotCenterIt();
+}
+
+void BreakControl::slotCenterIt()
+{
     const QRect r( QApplication::desktop()->screenGeometry(
                        QApplication::desktop()->primaryScreen() ) );
 

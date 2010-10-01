@@ -39,8 +39,8 @@ public:
     bool hasImages();
     void loadImage();
 
-
 private slots:
+    void slotGray();
     void slotNewSlide();
 
 private:
@@ -75,6 +75,9 @@ public:
     ~SlideWidget();
 
     void setImage( QImage* image );
+
+private slots:
+    void slotDimension();
 };
 
 #   endif

@@ -28,6 +28,14 @@ PlasmaEffect::PlasmaEffect( QObject* parent )
         : BreakBase( parent )
 {
     // Make all other screens gray...
+    slotGray();
+    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
+            SLOT( slotGray() ) );
+}
+
+void PlasmaEffect::slotGray()
+{
+    // Make all other screens gray...
     setGrayEffectOnAllScreens( true );
     excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
 }
