@@ -78,12 +78,12 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QLabel* effectLabel = new QLabel( i18n( "Choose the effect you want during breaks" ) );
     d->effectBox = new KComboBox( this );
     if ( KWindowSystem::compositingActive() )
-        d->effectBox->addItem( i18n("Simple Gray Effect"), QVariant( RSIObject::SimpleGray ) );
+        d->effectBox->addItem( i18n( "Simple Gray Effect" ), QVariant( RSIObject::SimpleGray ) );
     else
-        d->effectBox->addItem( i18n("Complete Black Effect"), QVariant( RSIObject::SimpleGray ) );
-    d->effectBox->addItem( i18n("Show Plasma Dashboard"), QVariant( RSIObject::Plasma ) );
-    d->effectBox->addItem( i18n("Show Slide Show of Images"), QVariant( RSIObject::SlideShow ) );
-    d->effectBox->addItem( i18n("Show a Passive Popup"), QVariant( RSIObject::Popup ) );
+        d->effectBox->addItem( i18n( "Complete Black Effect" ), QVariant( RSIObject::SimpleGray ) );
+    d->effectBox->addItem( i18n( "Show Plasma Dashboard" ), QVariant( RSIObject::Plasma ) );
+    d->effectBox->addItem( i18n( "Show Slide Show of Images" ), QVariant( RSIObject::SlideShow ) );
+    d->effectBox->addItem( i18n( "Show a Passive Popup" ), QVariant( RSIObject::Popup ) );
     connect( d->effectBox, SIGNAL( currentIndexChanged( int ) ),
              SLOT( slotEffectChanged( int ) ) );
 
@@ -97,7 +97,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     d->hideLockButton = new QCheckBox( i18n( "&Hide lock button" ), this );
     d->hideLockButton->setWhatsThis( i18n( "Check this option to disable and "
-                                         "hide the lock button. This way you can prevent pressing the wrong button." ) );
+                                           "hide the lock button. This way you can prevent pressing the wrong button." ) );
 
     d->disableAccel = new QCheckBox( i18n( "&Disable shortcut" ), this );
     d->disableAccel->setWhatsThis( i18n( "Check this option to disable the skip "

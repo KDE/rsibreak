@@ -39,18 +39,18 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     m_textLabel->setAlignment( Qt::AlignHCenter );
 
     KHBox* hbox = new KHBox( this );
-    hbox->setSpacing(25);
+    hbox->setSpacing( 25 );
 
     m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );
-    QSize sizeSkip(m_skipButton->size());
-    m_skipButton->setIcon(SmallIcon("dialog-cancel"));
-    m_skipButton->setFixedHeight(sizeSkip.height());
+    QSize sizeSkip( m_skipButton->size() );
+    m_skipButton->setIcon( SmallIcon( "dialog-cancel" ) );
+    m_skipButton->setFixedHeight( sizeSkip.height() );
     connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
     m_lockButton = new QPushButton( i18n( "Lock Screen" ), hbox );
-    QSize sizeLock(m_skipButton->size());
-    m_lockButton->setFixedHeight(sizeLock.height());
-    m_lockButton->setIcon(SmallIcon("system-lock-screen"));
+    QSize sizeLock( m_skipButton->size() );
+    m_lockButton->setFixedHeight( sizeLock.height() );
+    m_lockButton->setIcon( SmallIcon( "system-lock-screen" ) );
     connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
 
     m_vbox->addWidget( m_textLabel );
@@ -59,7 +59,7 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     setLayout( m_vbox );
 
     connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
-            SLOT( slotCenterIt() ) );
+             SLOT( slotCenterIt() ) );
 
     slotCenterIt();
 }

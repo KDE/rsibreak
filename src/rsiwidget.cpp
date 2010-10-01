@@ -130,7 +130,7 @@ void RSIObject::slotLock()
 void RSIObject::setCounters( int timeleft )
 {
     if ( timeleft > 0 ) {
-        m_effect->setLabel( KGlobal::locale()->prettyFormatDuration( timeleft * 1000) );
+        m_effect->setLabel( KGlobal::locale()->prettyFormatDuration( timeleft * 1000 ) );
     } else if ( m_timer->isSuspended() ) {
         m_effect->setLabel( i18n( "Suspended" ) );
     } else {

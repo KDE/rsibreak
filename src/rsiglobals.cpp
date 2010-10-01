@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2006 Tom Albers <toma@kde.org>
+   Copyright (C) 2006,2010 Tom Albers <toma@kde.org>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -70,7 +70,7 @@ void RSIGlobals::slotReadConfig()
     m_intervals["tiny_maximized"] = config.readEntry( "TinyDuration", 20 );
     m_intervals["big_minimized"] = config.readEntry( "BigInterval", 60 ) * 60;
     m_intervals["big_maximized"] = config.readEntry( "BigDuration", 1 ) * 60;
-    m_intervals["patience"] = config.readEntry("Patience", 30);
+    m_intervals["patience"] = config.readEntry( "Patience", 30 );
 
     if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
         kDebug() << "Debug mode activated";

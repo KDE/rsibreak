@@ -63,7 +63,7 @@ RSITimer::~RSITimer()
 void RSITimer::run()
 {
     QTimer timer;
-    connect( &timer, SIGNAL(timeout()), this, SLOT(timeout()) );
+    connect( &timer, SIGNAL( timeout() ), this, SLOT( timeout() ) );
     timer.start( 1000 );
     slotReadConfig( /* restart */ true );
 
@@ -81,9 +81,9 @@ void RSITimer::hibernationDetector()
     QDateTime current = QDateTime::currentDateTime();
     if ( last.secsTo( current ) > 60 ) {
         kDebug() << "Not been checking idleTime for more than 60 seconds, "
-                << "assuming the computer hibernated, resetting timers"
-                << "Last: " << last
-                << "Current: " << current;
+        << "assuming the computer hibernated, resetting timers"
+        << "Last: " << last
+        << "Current: " << current;
         resetAfterBigBreak();
     }
     last = current;

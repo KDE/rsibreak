@@ -45,10 +45,10 @@ public:
     int newInstance() {
         static bool secondMe = false;
         if ( secondMe ) {
-            KMessageBox::information(0, i18n("RSIBreak is already running in "
-                                             "your system tray. If you cannot "
-                                             "find it, it might be behind the "
-                                             "arrow."));
+            KMessageBox::information( 0, i18n( "RSIBreak is already running in "
+                                               "your system tray. If you cannot "
+                                               "find it, it might be behind the "
+                                               "arrow." ) );
         } else {
             secondMe = true;
         }

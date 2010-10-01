@@ -1,5 +1,5 @@
 /*
-   Copyright (C) 2005-2006 Tom Albers <toma@kde.org>
+   Copyright (C) 2005-2006,2010 Tom Albers <toma@kde.org>
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
 
    This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@
 
 
 SlideEffect::SlideEffect( QObject *parent )
-        : BreakBase( parent ), m_searchRecursive( false ), m_showSmallImages(false)
+        : BreakBase( parent ), m_searchRecursive( false ), m_showSmallImages( false )
 {
     // Make all other screens gray...
     slotGray();
@@ -112,7 +112,7 @@ void SlideEffect::loadImage()
         image.load( name );
 
         // Check size
-        if ( image.width() * image.height() >= min_image_surface || m_showSmallImages) {
+        if ( image.width() * image.height() >= min_image_surface || m_showSmallImages ) {
             // Image is big enough, leave while loop
             m_files_done.append( name );
             break;

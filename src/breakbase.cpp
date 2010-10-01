@@ -150,9 +150,9 @@ void BreakBase::excludeGrayEffectOnScreen( int screen )
 
 GrayEffectOnAllScreens::GrayEffectOnAllScreens()
 {
-    for (int i = 0; i < QApplication::desktop()->numScreens(); ++i) {
+    for ( int i = 0; i < QApplication::desktop()->numScreens(); ++i ) {
         GrayWidget* grayWidget = new GrayWidget( 0 );
-        m_widgets.insert(i, grayWidget );
+        m_widgets.insert( i, grayWidget );
 
         QRect rect = QApplication::desktop()->screenGeometry( i );
         grayWidget->move( rect.topLeft() );
@@ -164,7 +164,7 @@ GrayEffectOnAllScreens::GrayEffectOnAllScreens()
         KWindowSystem::setState( grayWidget->winId(), NET::FullScreen );
 
         kDebug() << "Created widget for screen" << i
-                << "Position:" << rect.topLeft();
+        << "Position:" << rect.topLeft();
     }
 }
 
