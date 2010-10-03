@@ -42,8 +42,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2006-08-20</date>
-<releaseinfo>0.7.1</releaseinfo>
+<date>2010-10-03</date>
+<releaseinfo>0.11 (&kde; 4.5)</releaseinfo>
 
 <abstract><para>Repetitive Strain Injury is an illness which can occur as a
 result of continuous work with a mouse and keyboard. The risk of suffering injury increases the longer users work without breaks. &rsibreak; simply offers reminders to take a break now and then. </para></abstract>
@@ -89,11 +89,11 @@ Bram Schoenmakers joined the project</para>
 like &SuSE;, Gentoo, &ubuntu;, &kubuntu; or Debian, then your distribution probably contains
 a version of &rsibreak;. We try to keep updated information on the website
 at the <ulink
-url="http://www.rsibreak.org/index.php/PackageInfo">Download page</ulink>.</para>
+url="http://www.rsibreak.org/index.php?option=com_content&amp;view=article&amp;id=46&amp;Itemid=53">Download</ulink> page.</para>
 
 <para>For detailed, distribution-specific instructions, please refer
 to your distribution's manual. If you are not using a recently updated installation of a major distribution then the latest version of this program can be installed manually. Relevant information can be found on the <ulink
-url="http://www.rsibreak.org/index.php/DownloadSource">Source Download</ulink> page.
+url="http://www.rsibreak.org/index.php?option=com_content&amp;view=article&amp;id=47&amp;Itemid=54e">Source Download</ulink> page.
 </para>
 
 <para>On that page there are also instructions for installation from Subversion. Use that version if you want the newest version possible (the 'bleeding edge' version). However, be aware that you can run into bugs which we do not yet know about, or that the source code may be impossible to compile, due to ongoing changes and enhancements to the code. The instructions for source download are provided on that
@@ -101,8 +101,8 @@ page. If something is wrong, please feel free to change and improve it. You are 
 
 <para>Type <command>rsibreak</command> at a command prompt or select
 <guimenuitem>&rsibreak;</guimenuitem> from the
-<guisubmenu>Utilities</guisubmenu> group in the <guimenu>KDE start
-menu</guimenu>. The standard &Qt; and &kde; command options are
+<guisubmenu>Utilities</guisubmenu> group in the KDE start
+menu. The standard &Qt; and &kde; command options are
 available, and can be listed by entering
 <userinput><command>rsibreak</command> <option>--help</option></userinput>
 at the command line.</para>
@@ -185,7 +185,7 @@ computer</phrase>
 
 <para>You may find the full-screen notice to take a break inconvenient at the time it appears. In this case, on the <guilabel>During Breaks</guilabel> page you can indicate that you want to use a popup; a small popup near the tray will appear asking you to take a break. If you choose to ignore that, the full-screen activity-block will appear anyway.</para>
 
-<para>There are two options for the full screen break. It can show a grid like the &kde; logout screen (this is the default action), or a path may be set up to specify a folder on your hard disk which contains images. During a break,
+<para>There are three options for the full screen break. It can show a <guilabel>Complete Black Effect</guilabel> (this is the default action), <guilabel>Show Plasma Dashboard</guilabel> or <guilabel>Show Slide Show of Images</guilabel> where a path may be set up to specify a folder on your hard disk which contains images. During a break,
 you will see a slideshow of those images.</para>
 </chapter>
 
@@ -198,7 +198,7 @@ you will see a slideshow of those images.</para>
 
 <para>&rsibreak; supports two different types of break: <quote>Tiny breaks</quote> and <quote>Big breaks</quote>. The usual way to use these is to take frequent tiny breaks, and occasional big breaks. For example, a break of 20 seconds every 20 minutes (the tiny break), and a longer break of 2 minutes every hour (the big break).</para>
 
-<tip><para>It is no use to set up intervals which are irritating. Those will, by definition, get on your nerves and you will be more likely to hit &Esc; &ndash; or any other key you have setup on the <guilabel>During breaks</guilabel> page &ndash; to skip the break.</para>
+<tip><para>It is no use to set up intervals which are irritating. Those will, by definition, get on your nerves and you will be more likely to hit &Esc; &ndash; or any other key you have setup on the <guilabel>During Breaks</guilabel> page &ndash; to skip the break.</para>
 
 <para>If you find that you are often skipping breaks, you could decide to disable the shortcut
 and hide the minimize button. Remember, you choose how strictly to follow the break sequence. </para>
