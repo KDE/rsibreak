@@ -58,8 +58,9 @@ void PopupEffect::setTray( QSystemTrayIcon* tray )
 
 void PopupEffect::setLabel( const QString& text )
 {
-    // text can be 1:33 or 33, so no plural here
-    m_label->setText( i18n( "Take a break for %1 seconds", text ) );
+    // text is a time string like '2 minutes 42 seconds'
+    // or '42 seconds', so no plural here
+    m_label->setText( i18nc( "%1 is a time string like '2 minutes 42 seconds'", "Take a break for %1", text ) );
 }
 
 #include "popupeffect.moc"
