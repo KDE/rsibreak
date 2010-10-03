@@ -191,7 +191,7 @@ void RSIDock::slotResetStats()
             i18n( "This will reset all statistics to zero. "
                   "Is that what you want?" ),
             i18n( "Reset the statistics" ),
-            KGuiItem( "Reset" ),
+            KGuiItem( i18n( "Reset" ) ),
             KStandardGuiItem::cancel(),
             "resetStatistics" );
 
