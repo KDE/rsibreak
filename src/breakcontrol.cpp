@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2009-2010 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -46,6 +47,12 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     m_skipButton->setIcon( SmallIcon( "dialog-cancel" ) );
     m_skipButton->setFixedHeight( sizeSkip.height() );
     connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
+    
+    m_postponeButton = new QPushButton( i18n( "Postpone Break" ), hbox );    
+    QSize sizePostpone(m_postponeButton->size());
+    m_postponeButton->setIcon(SmallIcon("go-next"));    
+    m_postponeButton->setFixedHeight(sizePostpone.height());
+    connect( m_postponeButton, SIGNAL( clicked() ), SIGNAL( postpone()) );    
 
     m_lockButton = new QPushButton( i18n( "Lock Screen" ), hbox );
     QSize sizeLock( m_skipButton->size() );

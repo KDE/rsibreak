@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2009 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -52,6 +53,7 @@ protected:
 signals:
     void skip();
     void lock();
+    void postpone();
 
 private:
     BreakControl* m_breakControl;

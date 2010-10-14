@@ -1,6 +1,7 @@
 /* ============================================================
  * Copyright (C) 2005-2007,2009-2010 by Tom Albers <toma@kde.org>
  * Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+ * Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
  *
  * This program is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General
@@ -40,6 +41,7 @@ public:
     KIntNumInput*          tinyDuration;
     KIntNumInput*          bigInterval;
     KIntNumInput*          bigDuration;
+    KIntNumInput*          postponeDuration;
     int                    debug;
 };
 
@@ -114,8 +116,28 @@ SetupTiming::SetupTiming( QWidget* parent )
     vbox1->addStretch( 1 );
     bigBox->setLayout( vbox1 );
 
+    // ------------------------ Postpone break
+    
+    QGroupBox *postponeBox = new QGroupBox( this );
+    postponeBox->setTitle( i18n( "Postpone Breaks" ) );
+
+    KHBox *m5 = new KHBox( this );
+    QLabel *l5 = new QLabel( i18n( "For a duration of:" ) + ' ', m5 );
+    l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+    l5->setWhatsThis( i18n( "Here you can set for how much time you want to postpone a break." ) );
+    d->postponeDuration = new KIntNumInput( m5 );
+    d->postponeDuration->setRange( 1, 1000, 1 );
+    d->postponeDuration->setSliderEnabled( false );
+    l5->setBuddy( d->postponeDuration );
+
+    QVBoxLayout *vbox2 = new QVBoxLayout( postponeBox );
+    vbox2->addWidget( m5 );
+    vbox2->addStretch( 1 );
+    postponeBox->setLayout( vbox2 );    
+    
     l->addWidget( tinyBox );
     l->addWidget( bigBox );
+    l->addWidget( postponeBox );
     setLayout( l );
     readSettings();
 
@@ -126,6 +148,8 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->debug > 0 ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ) )
     : d->bigDuration->setSuffix( ki18np( " minute", " minutes" ) );
     d->tinyDuration->setSuffix( ki18np( " second", " seconds" ) );
+    d->debug ? d->postponeDuration->setSuffix( ki18np( " second", " seconds" ) )
+    : d->postponeDuration->setSuffix( ki18np( " minute", " minutes" ) );
 
     slotTinyValueChanged( d->tinyInterval->value() );
 
@@ -134,6 +158,7 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->bigInterval->setFixedSize( d->tinyInterval->minimumSizeHint() );
     d->tinyDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
     d->bigDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
+    d->postponeDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
 }
 
 SetupTiming::~SetupTiming()
@@ -148,6 +173,7 @@ void SetupTiming::applySettings()
     config.writeEntry( "TinyDuration", d->tinyDuration->value() );
     config.writeEntry( "BigInterval", d->bigInterval->value() );
     config.writeEntry( "BigDuration", d->bigDuration->value() );
+    config.writeEntry( "PostponeBreakDuration", d->postponeDuration->value() );
     config.sync();
 }
 
@@ -161,6 +187,7 @@ void SetupTiming::readSettings()
     d->bigInterval->setValue( config.readEntry( "BigInterval", 60 ) );
     d->bigInterval->setMinimum( d->tinyInterval->value() );
     d->bigDuration->setValue( config.readEntry( "BigDuration", 1 ) );
+    d->postponeDuration->setValue( config.readEntry( "PostponeBreakDuration", 5 ) );
 }
 
 void SetupTiming::slotTinyValueChanged( int i )

@@ -1,6 +1,7 @@
 /*
    Copyright (C) 2005-2006,2008-2010 Tom Albers <toma@kde.org>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    The parts for idle detection is based on
    kdepim's karm idletimedetector.cpp/.h
@@ -41,6 +42,7 @@
 #include <QThread>
 #include <kglobal.h>
 #include <QX11Info>
+#include <KDebug>
 
 RSITimer::RSITimer( QObject *parent )
         : QThread( parent ), m_breakRequested( false )
@@ -162,6 +164,7 @@ void RSITimer::resetAfterBreak()
 void RSITimer::resetAfterTinyBreak()
 {
     m_tiny_left = m_intervals["tiny_minimized"];
+    kDebug() << "********** resetAfterTinyBreak !!";
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
     RSIGlobals::instance()->NotifyBreak( false, false );
@@ -175,6 +178,7 @@ void RSITimer::resetAfterTinyBreak()
 void RSITimer::resetAfterBigBreak()
 {
     m_tiny_left = m_intervals["tiny_minimized"];
+    kDebug() << "********** resetAfterBigBreak !!";
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
@@ -204,6 +208,7 @@ void RSITimer::slotSuspended( bool b )
 void RSITimer::slotRestart()
 {
     m_tiny_left = m_intervals["tiny_minimized"];
+    kDebug() << "********** slotRestart !!";
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     slotStart();
@@ -221,6 +226,20 @@ void RSITimer::skipBreak()
         RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS_SKIPPED );
     }
     slotStart();
+}
+
+void RSITimer::postponeBreak()
+{
+   kDebug() << "kidle: On postponeBreak !!" << m_intervals["postpone_break"];
+   m_patience = 0;
+   m_relax_left = 0;
+   m_pause_left = 0;   
+   m_big_left += m_intervals["postpone_break"];
+   m_tiny_left += m_intervals["postpone_break"];
+   
+   emit relax( -1, false );
+   emit updateToolTip( m_tiny_left, m_big_left );
+   emit minimize();
 }
 
 void RSITimer::slotReadConfig( bool restart )

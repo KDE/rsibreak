@@ -1,6 +1,7 @@
 /*
    Copyright (C) 2005 Bram Schoenmakers <bramschoenmakers@kde.nl>
    Copyright (C) 2010 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -69,6 +70,9 @@ signals:
 
     /** Ask the main widget to skip the break. */
     void skip();
+    
+    /** Ask the main widget to postpone the break. */
+    void postpone();
 
 protected:
     /**
@@ -91,6 +95,7 @@ private:
     QProgressBar *m_progress;
     QPushButton *m_lockbutton;
     QPushButton *m_skipbutton;
+    QPushButton* m_postponebutton;
 };
 
 #endif /* RSIRELAXPOPUP_H */

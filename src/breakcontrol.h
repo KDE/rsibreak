@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2009-2010 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -45,12 +46,14 @@ private slots:
 signals:
     void skip();
     void lock();
+    void postpone();
 
 private:
     QLabel* m_textLabel;
     QPushButton* m_skipButton;
     QPushButton* m_lockButton;
     QVBoxLayout* m_vbox;
+    QPushButton* m_postponeButton;
 };
 
 #endif // BREAKCONTROL_H

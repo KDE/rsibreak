@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2006,2010 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -70,6 +71,7 @@ void RSIGlobals::slotReadConfig()
     m_intervals["tiny_maximized"] = config.readEntry( "TinyDuration", 20 );
     m_intervals["big_minimized"] = config.readEntry( "BigInterval", 60 ) * 60;
     m_intervals["big_maximized"] = config.readEntry( "BigDuration", 1 ) * 60;
+    m_intervals["postpone_break"] = config.readEntry( "PostponeBreakDuration", 5 ) * 60;
     m_intervals["patience"] = config.readEntry( "Patience", 30 );
 
     if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
@@ -77,6 +79,7 @@ void RSIGlobals::slotReadConfig()
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"] / 60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"] / 60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"] / 60;
+	m_intervals["postpone_break"] = m_intervals["postpone_break"] / 60;
     }
 
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,

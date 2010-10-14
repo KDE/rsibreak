@@ -1,6 +1,7 @@
 /*
    Copyright (C) 2005-2006,2009-2010 Tom Albers <toma@kde.org>
    Copyright (C) 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -238,6 +239,7 @@ void RSIObject::startTimer( bool idle )
     connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
 
     connect( m_relaxpopup, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
+    connect( m_relaxpopup, SIGNAL( postpone() ), m_timer, SLOT( postponeBreak() ) );
 
     first = false;
 }
@@ -300,6 +302,7 @@ void RSIObject::readConfig()
     }
     connect( m_effect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
     connect( m_effect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
+    connect( m_effect, SIGNAL( postpone()),  m_timer, SLOT( postponeBreak() ) );
 
     m_effect->showMinimize( !config.readEntry( "HideMinimizeButton", false ) );
     m_effect->showLock( !config.readEntry( "HideLockButton", false ) );

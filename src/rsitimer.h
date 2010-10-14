@@ -1,6 +1,7 @@
 /*
    Copyright (C) 2005-2006,2008-2010 Tom Albers <toma@kde.org>
    Copyright (C) 2005-2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -110,7 +111,14 @@ public slots:
       just passed.
     */
     void skipBreak();
-
+   
+    /**
+      When the user presses the postpone break button during a break,
+      this function will be called. It will postpone the break  for the 
+      configured amount of seconds.
+    */
+    void postponeBreak();
+    
     /**
       Queries X how many seconds the user has been idle. A value of 0
       means there was activity during the last second.

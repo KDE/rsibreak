@@ -1,6 +1,7 @@
 /*
    Copyright (C) 2005 Bram Schoenmakers <bramschoenmakers@kde.nl>
    Copyright (C) 2005-2007,2010 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -52,6 +53,10 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )
     m_skipbutton->setToolTip( i18n( "Skip this break" ) );
     connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
+    m_postponebutton = new QPushButton( SmallIcon( "go-next" ), i18n( "Postpone Break" ), hbox );
+    m_postponebutton->setToolTip( i18n( "Postpone this break" ) );
+    connect( m_postponebutton, SIGNAL( clicked() ), SIGNAL( postpone()) );
+    
     m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), i18n( "Lock Screen" ), hbox );
     m_lockbutton->setToolTip( i18n( "Lock the session" ) );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );

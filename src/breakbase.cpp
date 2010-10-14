@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2009 Tom Albers <toma@kde.org>
+   Copyright (C) 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -39,6 +40,7 @@ BreakBase::BreakBase( QObject* parent )
     m_breakControl->installEventFilter( this );
     connect( m_breakControl, SIGNAL( skip() ), SIGNAL( skip() ) );
     connect( m_breakControl, SIGNAL( lock() ), SIGNAL( lock() ) );
+    connect( m_breakControl, SIGNAL( postpone() ), SIGNAL( postpone() ) );
 }
 
 BreakBase::~BreakBase()
