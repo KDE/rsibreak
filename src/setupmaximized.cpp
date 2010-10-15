@@ -53,6 +53,7 @@ public:
     QCheckBox*        searchRecursiveCheck;
     QCheckBox*        hideMinimizeButton;
     QCheckBox*        hideLockButton;
+    QCheckBox*        hidePostponeButton;    
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
     KIntNumInput*     slideInterval;
@@ -98,7 +99,10 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->hideLockButton = new QCheckBox( i18n( "&Hide lock button" ), this );
     d->hideLockButton->setWhatsThis( i18n( "Check this option to disable and "
                                            "hide the lock button. This way you can prevent pressing the wrong button." ) );
-
+    d->hidePostponeButton = new QCheckBox( i18n( "&Hide postpone button" ), this );
+    d->hidePostponeButton->setWhatsThis( i18n( "Check this option to disable and "
+                                           "hide the postpone break button. This way you can prevent pressing the wrong button." ) );
+    
     d->disableAccel = new QCheckBox( i18n( "&Disable shortcut" ), this );
     d->disableAccel->setWhatsThis( i18n( "Check this option to disable the skip "
                                          "shortcut. This way you can prevent skipping the break." ) );
@@ -106,6 +110,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QVBoxLayout *vbox1 = new QVBoxLayout( skipBox );
     vbox1->addWidget( d->hideMinimizeButton );
     vbox1->addWidget( d->hideLockButton );
+    vbox1->addWidget( d->hidePostponeButton );
     vbox1->addWidget( d->disableAccel );
     vbox1->addStretch( 1 );
     skipBox->setLayout( vbox1 );
@@ -304,6 +309,8 @@ void SetupMaximized::applySettings()
                        d->hideMinimizeButton->isChecked() );
     config.writeEntry( "HideLockButton",
                        d->hideLockButton->isChecked() );
+    config.writeEntry( "HidePostponeButton",
+                       d->hidePostponeButton->isChecked() );    
     config.writeEntry( "SearchRecursiveCheck",
                        d->searchRecursiveCheck->isChecked() );
     config.writeEntry( "ShowSmallImagesCheck",
@@ -339,6 +346,8 @@ void SetupMaximized::readSettings()
         config.readEntry( "HideMinimizeButton", false ) );
     d->hideLockButton->setChecked(
         config.readEntry( "HideLockButton", false ) );
+    d->hidePostponeButton->setChecked(
+        config.readEntry( "HidePostponeButton", false ) );
 
     const int effect = d->effectBox->findData( QVariant(
                            config.readEntry( "Effect", 0 ) ) );

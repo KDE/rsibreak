@@ -35,6 +35,7 @@ public:
     void setText( const QString& );
     void showMinimize( bool show );
     void showLock( bool show );
+    void showPostpone(bool arg1);
 
 protected:
     void paintEvent( QPaintEvent *event );

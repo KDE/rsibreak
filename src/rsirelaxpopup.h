@@ -63,7 +63,10 @@ public slots:
 
     /** Hides the lock button **/
     void setLockButtonHidden( bool );
-
+    
+    /** Hides the postpone break button **/
+    void setPostponeButtonHidden( bool );
+    
 signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();

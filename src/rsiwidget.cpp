@@ -253,6 +253,8 @@ void RSIObject::readConfig()
         config.readEntry( "HideMinimizeButton", false ) );
     m_relaxpopup->setLockButtonHidden(
         config.readEntry( "HideLockButton", false ) );
+    m_relaxpopup->setPostponeButtonHidden(
+        config.readEntry( "HidePostponeButton", false ) );
 
     m_usePlasma = config.readEntry( "UsePlasma", false );
     m_usePlasmaRO = config.readEntry( "UsePlasmaReadOnly", false );
@@ -306,6 +308,7 @@ void RSIObject::readConfig()
 
     m_effect->showMinimize( !config.readEntry( "HideMinimizeButton", false ) );
     m_effect->showLock( !config.readEntry( "HideLockButton", false ) );
+    m_effect->showPostpone( !config.readEntry( "HidePostponeButton", false ) );
     m_effect->disableShortcut( config.readEntry( "DisableAccel", false ) );
 }
 

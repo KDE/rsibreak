@@ -152,4 +152,8 @@ void RSIRelaxPopup::setLockButtonHidden( bool b )
     m_lockbutton->setHidden( b );
 }
 
+void RSIRelaxPopup::setPostponeButtonHidden( bool b )
+{
+    m_postponebutton->setHidden( b );
+}
 #include "rsirelaxpopup.moc"

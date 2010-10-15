@@ -101,6 +101,11 @@ void BreakControl::showLock( bool show )
     m_lockButton->setVisible( show );
 }
 
+void BreakControl::showPostpone( bool show )
+{
+    m_postponeButton->setVisible( show );
+}
+
 void BreakControl::paintEvent( QPaintEvent *event )
 {
     if ( event->type() == QEvent::Paint ) {
