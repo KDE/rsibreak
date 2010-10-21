@@ -45,7 +45,7 @@ target_link_libraries(rsibreak ${KDE4_KUTILS_LIBRARY} ${X11_X11_LIB})
 
 # install
 install( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})
-install( FILES  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+install( PROGRAMS  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 install( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
 install( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 install( FILES rsibreak.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
