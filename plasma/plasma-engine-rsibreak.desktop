@@ -38,6 +38,7 @@ Comment=Provides current times left to breaks and rsibreak status
 Comment[bg]=Предоставя оставащото време до почивките и състоянието на rsibreak
 Comment[ca]=Proporciona el temps restant actual per descansar i l'estat de rsibreak
 Comment[ca@valencia]=Proporciona el temps restant actual per descansar i l'estat de rsibreak
+Comment[cs]=Poskytuje současné časy zbývající do přestávek a stav rsibreak
 Comment[da]=Giver aktuel tid tilbage til pauser og risbreak-status
 Comment[de]=Gibt die verbleibende Zeit bis zur Pause und den RSIBreak-Status an
 Comment[el]=Προσφέρει χρόνους διαλειμμάτων και κατάσταση του rsibreak
