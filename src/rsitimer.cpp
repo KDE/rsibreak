@@ -351,6 +351,15 @@ void RSITimer::timeout()
         return;
     }
 
+    // ignore the idle time if that setting is activated.
+    // simulate no activity. 
+    if ( m_ignoreIdleForTinyBreaks && m_relax_left > 0 && 
+         m_tiny_left < m_big_left) {
+        t = breakInterval-m_relax_left+1;
+        if ( m_debug > 1 )
+            kDebug() << "idleness reset" << t;
+    }
+
     if ( m_debug > 1 ) {
         kDebug() << " patience: " << m_patience  << " pause_left: "
         << m_pause_left << " relax_left: " << m_relax_left
@@ -415,7 +424,7 @@ void RSITimer::timeout()
         resetAfterBigBreak();
         emit bigBreakSkipped();
     } else if ( m_useIdleDetection && t == m_intervals["tiny_maximized"] &&
-                m_tiny_left < m_big_left && !m_ignoreIdleForTinyBreaks &&
+                m_tiny_left < m_big_left &&
                 /* sigh, sometime we get 2 times in row the same idle ness
                    so, to prevent the signal emitted, we also chech that the
                    big_left does not equal the regular interval */
@@ -445,7 +454,7 @@ void RSITimer::timeout()
 
     // update the stats properly when breaking
     if ( m_useIdleDetection && t > m_intervals["tiny_maximized"] &&
-            m_relax_left == 0 && m_pause_left == 0 && !m_ignoreIdleForTinyBreaks ) {
+            m_relax_left == 0 && m_pause_left == 0 ) {
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK, QVariant( QDateTime::currentDateTime() ) );
     }
 
