@@ -1,3 +1,111 @@
+2010-12-02 23:12 +0000 [r1202979]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/src/rsitimer.cpp: Rewrite the
+	  ignore-idle-time-on-short-breaks-setting in a different way.
+	  Solves endless loop. BUG=253335
+
+2010-10-21 15:44 +0000 [r1188173]  David Faure faure@kde.org
+
+	* trunk/extragear/graphics/kuickshow/src/CMakeLists.txt,
+	  trunk/extragear/multimedia/k3b/src/CMakeLists.txt,
+	  trunk/extragear/sysadmin/muon/installer/CMakeLists.txt,
+	  trunk/extragear/sysadmin/kiosktool/CMakeLists.txt,
+	  trunk/extragear/base/networkmanagement/monolithic/CMakeLists.txt,
+	  trunk/extragear/multimedia/kmplayer/src/CMakeLists.txt,
+	  trunk/extragear/network/knemo/src/knemod/CMakeLists.txt,
+	  trunk/extragear/office/kile/src/CMakeLists.txt,
+	  trunk/extragear/graphics/kcoloredit/desktop/CMakeLists.txt,
+	  trunk/extragear/multimedia/kplayer/kplayer/CMakeLists.txt,
+	  trunk/extragear/utils/kpager/CMakeLists.txt,
+	  trunk/extragear/graphics/kipi-plugins/dngconverter/plugin/CMakeLists.txt,
+	  trunk/extragear/network/kftpgrabber/src/CMakeLists.txt,
+	  trunk/extragear/network/ktorrent/ktorrent/CMakeLists.txt,
+	  trunk/extragear/graphics/digikam/digikam/CMakeLists.txt,
+	  trunk/extragear/graphics/digikam/showfoto/CMakeLists.txt,
+	  trunk/extragear/utils/keurocalc/keurocalc/CMakeLists.txt,
+	  trunk/extragear/multimedia/kmid/examples/kmidtest/CMakeLists.txt,
+	  trunk/extragear/pim/ksig/CMakeLists.txt,
+	  trunk/extragear/utils/kerry/src/CMakeLists.txt,
+	  trunk/extragear/utils/katimon/other/CMakeLists.txt,
+	  trunk/extragear/sysadmin/muon/muon/CMakeLists.txt,
+	  trunk/extragear/graphics/kgrab/CMakeLists.txt,
+	  trunk/extragear/graphics/kipi-plugins/common/libkipiplugins/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/src/CMakeLists.txt,
+	  trunk/extragear/graphics/kipi-plugins/expoblending/CMakeLists.txt,
+	  trunk/extragear/graphics/kfax/CMakeLists.txt,
+	  trunk/extragear/graphics/kipi-plugins/acquireimages/CMakeLists.txt,
+	  trunk/extragear/network/kwlan/src/CMakeLists.txt,
+	  trunk/extragear/base/kappfinder/CMakeLists.txt,
+	  trunk/extragear/network/choqok/choqok/CMakeLists.txt,
+	  trunk/extragear/office/kmymoney/developer-doc/phb/CMakeLists.txt,
+	  trunk/extragear/multimedia/kmid/src/CMakeLists.txt,
+	  trunk/extragear/graphics/kiconedit/CMakeLists.txt,
+	  trunk/extragear/graphics/skanlite/CMakeLists.txt,
+	  trunk/extragear/office/skrooge/skrooge/CMakeLists.txt,
+	  trunk/extragear/sdk/kxsldbg/CMakeLists.txt,
+	  trunk/extragear/multimedia/kaffeine/src/dvb/dvbrecording.cpp,
+	  trunk/extragear/sysadmin/partitionmanager/src/CMakeLists.txt,
+	  trunk/extragear/network/kmldonkey/kmldonkey/CMakeLists.txt,
+	  trunk/extragear/office/skrooge/skgmyapplitest/CMakeLists.txt,
+	  trunk/extragear/graphics/kgraphviewer/src/CMakeLists.txt,
+	  trunk/extragear/graphics/kphotoalbum/CMakeLists.txt,
+	  trunk/extragear/multimedia/kaudiocreator/CMakeLists.txt,
+	  trunk/extragear/office/tellico/CMakeLists.txt,
+	  trunk/extragear/graphics/kpovmodeler/CMakeLists.txt,
+	  trunk/extragear/multimedia/kaffeine/src/CMakeLists.txt,
+	  trunk/extragear/utils/krecipes/src/CMakeLists.txt,
+	  trunk/extragear/utils/kdiff3/src/CMakeLists.txt: Make executable
+	  the Type=Application .desktop files we install, so that they can
+	  be used even from a KDE running in another prefix
+	  (http://markmail.org/message/4p3krovtnzwx35zd)
+
+2010-10-15 00:53 +0000 [r1186028]  Juan Luis Baptiste juan.baptiste@kdemail.net
+
+	* trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.cpp,
+	  trunk/extragear/utils/rsibreak/src/setupmaximized.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.h,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp: Added a
+	  configuration option to hide the postpone break button. GUI
+
+2010-10-14 05:12 +0000 [r1185664]  Juan Luis Baptiste juan.baptiste@kdemail.net
+
+	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsiwidget.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.h,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.h,
+	  trunk/extragear/utils/rsibreak/src/breakbase.h,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.cpp,
+	  trunk/extragear/utils/rsibreak/src/setuptiming.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakcontrol.h,
+	  trunk/extragear/utils/rsibreak/src/rsirelaxpopup.cpp,
+	  trunk/extragear/utils/rsibreak/src/rsitimer.cpp,
+	  trunk/extragear/utils/rsibreak/src/breakbase.cpp: Added postpone
+	  break feature. BU=G199793
+
+2010-10-03 14:03 +0000 [r1182154]  Frederik Schwarzer schwarzerf@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/rsidock.cpp: make the button
+	  text translatable
+
+2010-10-03 12:03 +0000 [r1182119]  Frederik Schwarzer schwarzerf@gmail.com
+
+	* trunk/extragear/utils/rsibreak/src/popupeffect.cpp: fix string:
+	  "[...] 10 seconds seconds" Since the string parameter already
+	  contains the "seconds" suffix, it does not need to be appended
+	  here. However, it looks like the parameter can also be
+	  "suspended", which makes this awkward anyway.
+
+2010-10-01 20:45 +0000 [r1181705]  Tom Albers toma@kde.org
+
+	* trunk/extragear/utils/rsibreak/NEWS,
+	  trunk/extragear/utils/rsibreak/src/main.cpp,
+	  trunk/extragear/utils/rsibreak/CMakeLists.txt,
+	  trunk/extragear/utils/rsibreak/ChangeLog: Prepare for release.
+
 2010-10-01 20:30 +0000 [r1181699]  Tom Albers toma@kde.org
 
 	* trunk/extragear/utils/rsibreak/src/rsiglobals.cpp,

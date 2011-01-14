@@ -1,3 +1,7 @@
+v0.11 2011-01-14
+- Fix endless loop when using some particular settings
+- Included an option to postpone a break
+
 v0.11-beta1 2010-10-03
 - Fix detection of additional screens
 - Make popup time configurable
