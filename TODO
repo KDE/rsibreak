@@ -1,6 +1,3 @@
-Port TODO's:
-- test on xinerama
-
 Remarks:
 - D-Bus notes:
   * Exported functions must be under public Q_SLOTS: in src/rsiwidget.h
