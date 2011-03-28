@@ -49,7 +49,8 @@ RSIStatWidget::RSIStatWidget( QWidget *parent )
     addStat( TINY_BREAKS, subgrid, 0 );
     addStat( LAST_TINY_BREAK, subgrid, 1 );
     addStat( TINY_BREAKS_SKIPPED, subgrid, 2 );
-    addStat( IDLENESS_CAUSED_SKIP_TINY, subgrid, 3 );
+    addStat( TINY_BREAKS_POSTPONED, subgrid, 3 );
+    addStat( IDLENESS_CAUSED_SKIP_TINY, subgrid, 4 );
     mGrid->addWidget( gb, 0, 1 );
 
     gb = new QGroupBox( i18n( "Pause" ), this );
@@ -66,7 +67,8 @@ RSIStatWidget::RSIStatWidget( QWidget *parent )
     addStat( BIG_BREAKS, subgrid, 0 );
     addStat( LAST_BIG_BREAK, subgrid, 1 );
     addStat( BIG_BREAKS_SKIPPED, subgrid, 2 );
-    addStat( IDLENESS_CAUSED_SKIP_BIG, subgrid, 3 );
+    addStat( BIG_BREAKS_POSTPONED, subgrid, 3 );
+    addStat( IDLENESS_CAUSED_SKIP_BIG, subgrid, 4 );
     mGrid->addWidget( gb, 1, 1 );
 }
 

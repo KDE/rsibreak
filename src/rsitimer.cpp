@@ -218,7 +218,7 @@ void RSITimer::slotRestart()
 void RSITimer::skipBreak()
 {
     emit minimize();
-    if ( m_big_left <= m_tiny_left ) {
+    if ( m_big_left <= m_tiny_left + 1 ) {
         resetAfterBigBreak();
         RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS_SKIPPED );
     } else {
@@ -236,10 +236,16 @@ void RSITimer::postponeBreak()
    m_pause_left = 0;   
    m_big_left += m_intervals["postpone_break"];
    m_tiny_left += m_intervals["postpone_break"];
-   
+
+   if ( m_big_left <= m_tiny_left + 1 ) {
+       RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS_POSTPONED );
+   } else {
+       RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS_POSTPONED );
+   }
+  
    emit relax( -1, false );
    emit updateToolTip( m_tiny_left, m_big_left );
-   emit minimize();
+   emit minimize();  
 }
 
 void RSITimer::slotReadConfig( bool restart )

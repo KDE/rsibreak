@@ -68,6 +68,8 @@ RSIStats::RSIStats()
                          new RSIStatItem( i18n( "Number of skipped short breaks (user)" ) ) );
     m_statistics[TINY_BREAKS_SKIPPED]->addDerivedItem( PAUSE_SCORE );
 
+    m_statistics.insert( TINY_BREAKS_POSTPONED,
+                         new RSIStatItem( i18n( "Number of postponed short breaks (user)" ) ) );
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
                          new RSIStatItem( i18n( "Number of skipped short breaks (idle)" ) ) );
@@ -83,6 +85,9 @@ RSIStats::RSIStats()
     m_statistics.insert( BIG_BREAKS_SKIPPED,
                          new RSIStatItem( i18n( "Number of skipped long breaks (user)" ) ) );
     m_statistics[BIG_BREAKS_SKIPPED]->addDerivedItem( PAUSE_SCORE );
+
+    m_statistics.insert( BIG_BREAKS_POSTPONED,
+                         new RSIStatItem( i18n( "Number of postponed long breaks (user)" ) ) );
 
     m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
                          new RSIStatItem( i18n( "Number of skipped long breaks (idle)" ) ) );
@@ -279,9 +284,11 @@ void RSIStats::updateLabel( RSIStat stat )
         // plain integer values
     case TINY_BREAKS:
     case TINY_BREAKS_SKIPPED:
+    case TINY_BREAKS_POSTPONED:
     case IDLENESS_CAUSED_SKIP_TINY:
     case BIG_BREAKS:
     case BIG_BREAKS_SKIPPED:
+    case BIG_BREAKS_POSTPONED:
     case IDLENESS_CAUSED_SKIP_BIG:
         l->setText( QString::number(
                         m_statistics[ stat ]->getValue().toInt() ) );
@@ -379,6 +386,9 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
     case TINY_BREAKS_SKIPPED:
         return i18n( "This is the total number of short breaks "
                      "which you skipped." );
+    case TINY_BREAKS_POSTPONED:
+        return i18n( "This is the total number of short breaks "
+                     "which you postponed." );
     case IDLENESS_CAUSED_SKIP_TINY:
         return i18n( "This is the total number of short breaks "
                      "which were skipped because you were idle." );
@@ -391,6 +401,9 @@ QString RSIStats::getWhatsThisText( RSIStat stat ) const
     case BIG_BREAKS_SKIPPED:
         return i18n( "This is the total number of long breaks "
                      "which you skipped." );
+    case BIG_BREAKS_POSTPONED:
+        return i18n( "This is the total number of long breaks "
+                     "which you postponed." );
     case IDLENESS_CAUSED_SKIP_BIG:
         return i18n( "This is the total number of long breaks "
                      "which were skipped because you were idle." );
