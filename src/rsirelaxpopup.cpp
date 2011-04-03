@@ -31,10 +31,9 @@
 #include <KDebug>
 #include <KConfigGroup>
 #include <KIconLoader>
-#include <QSystemTrayIcon>
 
-RSIRelaxPopup::RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* icon )
-        : QWidget( parent ), m_systray( icon )
+RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
+        : QWidget( parent )
 {
     m_popup = new PassivePopup( parent );
 
@@ -103,7 +102,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
         m_progress->setValue( n );
 
         if ( resetcount == 1 )
-            m_popup->show( m_systray );
+            m_popup->show();
     } else {
         m_popup->setVisible( false );
         resetcount = 0;

@@ -27,7 +27,6 @@
 class QLabel;
 class QPushButton;
 class QProgressBar;
-class QSystemTrayIcon;
 
 /**
  * @class RSIRelaxPopup
@@ -40,7 +39,7 @@ class RSIRelaxPopup : public QWidget
     Q_OBJECT
 public:
     /** Constructor */
-    explicit RSIRelaxPopup( QWidget *parent, QSystemTrayIcon* );
+    explicit RSIRelaxPopup( QWidget *parent );
     /** Destructor */
     ~RSIRelaxPopup();
 
@@ -92,7 +91,6 @@ private:
     void readSettings();
     bool    m_usePopup;
     bool    m_useFlash;
-    QSystemTrayIcon* m_systray;
     PassivePopup* m_popup;
     QLabel *m_message;
     QProgressBar *m_progress;

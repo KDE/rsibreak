@@ -49,7 +49,7 @@ public slots:
         m_popup->setTimeout( i );
     };
     void showToolTip() {
-        m_popup->show( m_icon );
+        m_popup->show();
     };
 
 

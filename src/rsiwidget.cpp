@@ -42,7 +42,6 @@
 #include <KMessageBox>
 #include <KIconLoader>
 #include <KNotification>
-#include <KSystemTrayIcon>
 #include <KTemporaryFile>
 #include <KConfigGroup>
 #include <KDebug>
@@ -54,20 +53,21 @@ RSIObject::RSIObject( QWidget *parent )
         : QObject( parent ), m_effect( 0 ),
         m_useImages( false ), m_usePlasma( false ), m_usePlasmaRO( false )
 {
-    // Keep these 3 lines _above_ the messagebox, so the text actually is right.
-    m_tray = new RSIDock( parent );
-    m_tray->setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
-    m_tray->show();
+    // Keep these 2 lines _above_ the messagebox, so the text actually is right.
+    m_tray = new RSIDock( this );
+    m_tray->setIconByName( "rsibreak0" );
 
     // D-Bus
     new RsiwidgetAdaptor( this );
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject( "/rsibreak", this );
 
-    m_tooltip = new RSIToolTip( 0, m_tray );
-    connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
+#warning FIXME
+    m_tooltip = 0;
+    //m_tooltip = new RSIToolTip( 0, m_tray );
+    //connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
 
-    m_relaxpopup = new RSIRelaxPopup( 0, m_tray );
+    m_relaxpopup = new RSIRelaxPopup( 0 );
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
     connect( m_tray, SIGNAL( configChanged( bool ) ), SLOT( readConfig() ) );
@@ -90,7 +90,6 @@ RSIObject::RSIObject( QWidget *parent )
 
 RSIObject::~RSIObject()
 {
-    delete m_tray;
     delete m_effect;
     delete RSIGlobals::instance();
 }
@@ -159,12 +158,11 @@ void RSIObject::setIcon( int level )
                       ( m_timer->isSuspended() ? QString( "x" ) : QString::number( level ) );
 
     if ( newIcon != m_currentIcon ) {
-        QIcon dockIcon = KSystemTrayIcon::loadIcon( newIcon );
-        m_tray->setIcon( dockIcon );
+        m_tray->setIconByName( newIcon );
 
         QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, KIconLoader::Desktop );
         m_currentIcon = newIcon;
-        m_tooltip->setPixmap( toolPixmap );
+        //m_tooltip->setPixmap( toolPixmap );
     }
 }
 
@@ -290,7 +288,6 @@ void RSIObject::readConfig()
     }
     case Popup: {
         PopupEffect* effect = new PopupEffect( 0 );
-        effect->setTray( m_tray );
         m_effect = effect;
         break;
     }

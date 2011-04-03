@@ -25,7 +25,6 @@
 
 class PassivePopup;
 class QLabel;
-class QSystemTrayIcon;
 
 class PopupEffect : public BreakBase
 {
@@ -34,7 +33,6 @@ class PopupEffect : public BreakBase
 public:
     PopupEffect( QObject* );
     ~PopupEffect();
-    void setTray( QSystemTrayIcon* );
     void setLabel( const QString& );
 
 public slots:
@@ -44,7 +42,6 @@ public slots:
 private:
     PassivePopup* m_popup;
     QLabel* m_label;
-    QSystemTrayIcon* m_tray;
 };
 
 #endif // POPUPEFFECT_H

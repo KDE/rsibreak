@@ -24,26 +24,31 @@
 #include "rsistatwidget.h"
 #include "rsistats.h"
 
-#include <QMenu>
-#include <QSystemTrayIcon>
 #include <QPointer>
 
+#include <KAboutData>
 #include <KComponentData>
 #include <KLocale>
+#include <KMenu>
 #include <KNotifyConfigWidget>
 #include <KHelpMenu>
 #include <KStandardShortcut>
-#include <KSystemTrayIcon>
 #include <KMessageBox>
 #include <KWindowSystem>
 
-RSIDock::RSIDock( QWidget *parent )
-        : QSystemTrayIcon( parent ), m_suspended( false )
+RSIDock::RSIDock( QObject *parent )
+        : KStatusNotifierItem( parent ), m_suspended( false )
         , m_statsDialog( 0 ), m_statsWidget( 0 )
 {
-    m_help = new KHelpMenu( parent, KGlobal::mainComponent().aboutData() );
+    setCategory(ApplicationStatus);
+    setStatus(Active);
 
-    QMenu* menu = new QMenu( parent );
+    const KAboutData* aboutData = KGlobal::mainComponent().aboutData();
+    setTitle( aboutData->appName() );
+
+    m_help = new KHelpMenu( 0, aboutData );
+
+    KMenu* menu = contextMenu();
     menu->addAction( KIcon( "kde" ), i18n( "About &KDE" ), m_help,
                      SLOT( aboutKDE() ) );
     menu->addAction( i18n( "&About RSIBreak" ), m_help,
@@ -70,28 +75,16 @@ RSIDock::RSIDock( QWidget *parent )
     menu->addAction( KIcon( "configure" ), i18n( "&Configure RSIBreak..." ),
                      this, SLOT( slotConfigure() ) );
 
-    menu->addSeparator();
-    menu->addAction( KIcon( "application-exit" ), i18n( "Quit" ), this, SLOT( slotQuit() ),
-                     KStandardShortcut::shortcut( KStandardShortcut::Quit ).primary() );
-
-
-    setContextMenu( menu );
-
-    connect( this, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
-             SLOT( slotActivated( QSystemTrayIcon::ActivationReason ) ) );
+    connect( this, SIGNAL( activateRequested(bool,QPoint) ),
+             SLOT( slotShowStatistics() ) );
 }
 
 RSIDock::~RSIDock()
 {
+    delete m_help;
     delete m_statsWidget;
     delete m_statsDialog;
     m_statsWidget = 0;
-}
-
-void RSIDock::slotActivated( QSystemTrayIcon::ActivationReason reason )
-{
-    if ( reason == QSystemTrayIcon::Trigger )
-        slotShowStatistics();
 }
 
 void RSIDock::slotConfigureNotifications()
@@ -123,36 +116,18 @@ void RSIDock::slotSuspend()
     if ( m_suspended ) {
         emit suspend( false );
 
-        setIcon( KSystemTrayIcon::loadIcon( "rsibreak0" ) );
+        setIconByName( "rsibreak0" );
         m_suspendItem->setIcon( SmallIcon( "media-playback-pause" ) );
         m_suspendItem->setText( i18n( "&Suspend RSIBreak" ) );
     } else {
         emit suspend( true );
 
-        setIcon( KSystemTrayIcon::loadIcon( "rsibreakx" ) );
+        setIconByName( "rsibreakx" );
         m_suspendItem->setIcon( SmallIcon( "media-playback-start" ) );
         m_suspendItem->setText( i18n( "&Resume RSIBreak" ) );
     }
 
     m_suspended = !m_suspended;
-}
-
-void RSIDock::mousePressEvent( QMouseEvent *e )
-{
-    if ( e->button() == Qt::RightButton )
-        contextMenu()->exec( e->globalPos() );
-
-    if ( e->button() == Qt::LeftButton )
-        slotShowStatistics();
-}
-
-bool RSIDock::event( QEvent * event )
-{
-    if ( event->type() == QEvent::ToolTip ) {
-        emit showToolTip();
-        return true;
-    }
-    return false;
 }
 
 void RSIDock::slotShowStatistics()
@@ -197,11 +172,6 @@ void RSIDock::slotResetStats()
 
     if ( i == KMessageBox::Continue )
         RSIGlobals::instance()->stats()->reset();
-}
-
-void RSIDock::slotQuit()
-{
-    exit( 0 );
 }
 
 #include "rsidock.moc"

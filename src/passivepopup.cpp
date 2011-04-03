@@ -21,19 +21,15 @@
 
 #include <QMouseEvent>
 
-#include <KSystemTrayIcon>
 #include <KDebug>
 
 PassivePopup::PassivePopup( QWidget *parent )
         : KPassivePopup( parent ) {}
 
-void PassivePopup::show( const QSystemTrayIcon* icon )
+void PassivePopup::show()
 {
-    /* To place it properly near the icon, first show it off-screen, then
-       move it to the correct position. If you know something better, please,
-       please let me know */
-    KPassivePopup::show( icon->geometry().bottomRight() );
-    moveNear( icon->geometry() );
+#warning FIXME
+    KPassivePopup::show( QPoint( 10, 10 ) );
 }
 
 void PassivePopup::mouseReleaseEvent( QMouseEvent * event )

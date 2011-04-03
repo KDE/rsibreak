@@ -25,12 +25,7 @@
 #define RSIDOCK_H
 
 #include <kdialog.h>
-#include <qsystemtrayicon.h>
-//Added by qt3to4:
-#include <QMouseEvent>
-#include <QShowEvent>
-#include <QEvent>
-
+#include <kstatusnotifieritem.h>
 
 class KHelpMenu;
 
@@ -45,17 +40,12 @@ class RSIStatWidget;
  * @author Nadeem Hasan <nhasan@kde.org>
  * @author Tom Albers <toma.org>
  */
-class RSIDock : public QSystemTrayIcon
+class RSIDock : public KStatusNotifierItem
 {
     Q_OBJECT
 
 public:
-    /**
-     * Contructor
-     * @param parent Parent Widget
-     * @param name Name
-     */
-    RSIDock( QWidget *parent );
+    RSIDock( QObject *parent );
 
     /**
      * Destructor
@@ -102,31 +92,13 @@ signals:
     */
     void suspend( bool );
 
-    /**
-      Shows the tooltip.
-    */
-    void showToolTip();
-
-protected:
-    /**
-     * Reimplemented because we do not want an action on left click
-    */
-    void mousePressEvent( QMouseEvent *e );
-
-    /**
-     * Reimplemented to catch the tooltip event.
-     */
-    virtual bool event( QEvent * event );
-
 private slots:
-    void slotActivated( QSystemTrayIcon::ActivationReason );
     void slotConfigure();
     void slotConfigureNotifications();
     void slotSuspend();
     void slotBreakRequest();
     void slotShowStatistics();
     void slotResetStats();
-    void slotQuit();
 
 private:
     KHelpMenu*    m_help;

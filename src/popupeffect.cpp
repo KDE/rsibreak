@@ -43,17 +43,12 @@ PopupEffect::~PopupEffect()
 
 void PopupEffect::activate()
 {
-    m_popup->show( m_tray );
+    m_popup->show();
 }
 
 void PopupEffect::deactivate()
 {
     m_popup->hide();
-}
-
-void PopupEffect::setTray( QSystemTrayIcon* tray )
-{
-    m_tray = tray;
 }
 
 void PopupEffect::setLabel( const QString& text )
