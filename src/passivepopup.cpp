@@ -19,17 +19,24 @@
 
 #include "passivepopup.h"
 
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QMouseEvent>
 
 #include <KDebug>
+
+static const int MARGIN = 30;
 
 PassivePopup::PassivePopup( QWidget *parent )
         : KPassivePopup( parent ) {}
 
 void PassivePopup::show()
 {
-#warning FIXME
-    KPassivePopup::show( QPoint( 10, 10 ) );
+    // Hardcoded to show at bottom-center for now
+    QRect screenRect = QApplication::desktop()->availableGeometry();
+    int posX = screenRect.left() + (screenRect.width() - sizeHint().width()) / 2;
+    int posY = screenRect.bottom() - sizeHint().height() - MARGIN;
+    KPassivePopup::show( QPoint( posX, posY ) );
 }
 
 void PassivePopup::mouseReleaseEvent( QMouseEvent * event )
