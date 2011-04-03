@@ -1,5 +1,6 @@
 /*
    Copyright (C) 2005-2006 Tom Albers <toma@kde.org>
+   Copyright (C) 2011 Aurélien Gâteau <agateau@kde.org>
 
    Orginal copied from ksynaptics:
       Copyright (C) 2004 Nadeem Hasan <nhasan@kde.org>

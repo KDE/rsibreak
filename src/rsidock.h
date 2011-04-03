@@ -1,6 +1,7 @@
 /*
 
    Copyright (C) 2005-2006 Tom Albers <toma@kde.org>
+   Copyright (C) 2011 Aurélien Gâteau <agateau@kde.org>
 
    The base was copied from ksynaptics:
       Copyright (C) 2004 Nadeem Hasan <nhasan@kde.org>
@@ -39,6 +40,7 @@ class RSIStatWidget;
  * Originally this file was copied from KSynaptics
  * @author Nadeem Hasan <nhasan@kde.org>
  * @author Tom Albers <toma.org>
+ * @author Aurélien Gâteau <agateau@kde.org>
  */
 class RSIDock : public KStatusNotifierItem
 {
