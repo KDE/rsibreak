@@ -62,10 +62,7 @@ RSIObject::RSIObject( QWidget *parent )
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject( "/rsibreak", this );
 
-#warning FIXME
-    m_tooltip = 0;
-    //m_tooltip = new RSIToolTip( 0, m_tray );
-    //connect( m_tray, SIGNAL( showToolTip() ), m_tooltip, SLOT( showToolTip() ) );
+    m_tooltip = new RSIToolTip( 0, m_tray );
 
     m_relaxpopup = new RSIRelaxPopup( 0 );
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
@@ -159,10 +156,8 @@ void RSIObject::setIcon( int level )
 
     if ( newIcon != m_currentIcon ) {
         m_tray->setIconByName( newIcon );
-
-        QPixmap toolPixmap = KIconLoader::global()->loadIcon( newIcon, KIconLoader::Desktop );
+        m_tray->setToolTipIconByName( newIcon );
         m_currentIcon = newIcon;
-        //m_tooltip->setPixmap( toolPixmap );
     }
 }
 
@@ -226,7 +221,6 @@ void RSIObject::startTimer( bool idle )
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ),  Qt::QueuedConnection );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_tooltip, SLOT( hide() ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ), Qt::QueuedConnection );
 

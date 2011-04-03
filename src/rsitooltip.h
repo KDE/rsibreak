@@ -20,9 +20,11 @@
 #ifndef RSITOOLTIP_H
 #define RSITOOLTIP_H
 
-#include "passivepopup.h"
-#include <QPixmap>
-#include <QLabel>
+#include <QObject>
+
+class KStatusNotifierItem;
+
+class QPixmap;
 
 /**
  * @class RSIToolTip
@@ -30,35 +32,22 @@
  * mouse above the docker's icon.
  * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
  */
-class RSIToolTip : public QWidget
+class RSIToolTip : public QObject
 {
     Q_OBJECT
 public:
-    explicit RSIToolTip( QWidget *parent, QSystemTrayIcon* );
+    explicit RSIToolTip( QWidget *parent, KStatusNotifierItem* icon );
     ~RSIToolTip();
 
 public slots:
     void setCounters( int, int );
-    /** Sets the pixmap for the tooltip. */
-    void setPixmap( const QPixmap & );
     /** Sets the tooltip to suspended or unsuspended depending on the parameter. */
     void setSuspended( bool );
     /** Sets the tooltip to @param text */
-    void setText( const QString &text );
-    void setTimeout( int i ) {
-        m_popup->setTimeout( i );
-    };
-    void showToolTip() {
-        m_popup->show();
-    };
-
+    //void setText( const QString &text );
 
 private:
-    QLabel *mTinyLeft;
-    QLabel *mBigLeft;
-    QLabel *mIcon;
-    PassivePopup *m_popup;
-    QSystemTrayIcon *m_icon;
+    KStatusNotifierItem *m_item;
 
     bool m_suspended;
 };

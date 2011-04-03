@@ -44,7 +44,8 @@ RSIDock::RSIDock( QObject *parent )
     setStatus(Active);
 
     const KAboutData* aboutData = KGlobal::mainComponent().aboutData();
-    setTitle( aboutData->appName() );
+    setTitle( aboutData->programName() );
+    setToolTipTitle( aboutData->programName() );
 
     m_help = new KHelpMenu( 0, aboutData );
 

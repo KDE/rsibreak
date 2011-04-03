@@ -22,81 +22,59 @@
 #include "rsistats.h"
 
 #include <KLocale>
-#include <KHBox>
-#include <KVBox>
+#include <KStatusNotifierItem>
 
-RSIToolTip::RSIToolTip( QWidget *parent, QSystemTrayIcon* icon )
-        : QWidget( parent ), m_icon( icon ), m_suspended( false )
+#include <QTextDocument>
+
+RSIToolTip::RSIToolTip( QWidget *parent, KStatusNotifierItem* item )
+        : QObject( parent ), m_item( item ), m_suspended( false )
 {
-    m_popup = new PassivePopup( parent );
-    m_popup->setTimeout( 4 * 1000 );
-
-    KHBox *hbox = new KHBox( m_popup );
-    hbox->setSpacing( 10 );
-
-    mIcon = new QLabel( hbox );
-    mIcon->resize( 32, 32 );
-
-    KVBox *vbox = new KVBox( hbox );
-    vbox->setSpacing( 5 );
-    new QLabel( "<qt><strong>RSIBreak</strong></qt>", vbox );
-    mTinyLeft = new QLabel( vbox );
-    mBigLeft = new QLabel( vbox );
-
-    m_popup->setView( hbox );
 }
 
 RSIToolTip::~RSIToolTip() {}
 
+static QString colorizedText( const QString& text, const QColor& color )
+{
+    return QString("<font color='%1'>&#9679;</font> %2")
+        .arg(color.name())
+        .arg(Qt::escape(text))
+        ;
+}
+
 void RSIToolTip::setCounters( int tiny_left, int big_left )
 {
     if ( m_suspended )
-        setText( i18n( "Suspended" ) );
+        m_item->setToolTipSubTitle( i18n( "Suspended" ) );
     else {
-        QColor c = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
-        QPalette normal;
-        normal.setColor( QPalette::Inactive, QPalette::WindowText, c );
-        mTinyLeft->setPalette( normal );
+        QColor tinyColor = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
+        RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, tinyColor );
 
-        RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, c );
-
-        c = RSIGlobals::instance()-> getBigBreakColor( big_left );
-        normal.setColor( QPalette::Inactive, QPalette::WindowText, c );
-        mBigLeft->setPalette( normal );
-        RSIGlobals::instance()->stats()->setColor( LAST_BIG_BREAK, c );
+        QColor bigColor = RSIGlobals::instance()-> getBigBreakColor( big_left );
+        RSIGlobals::instance()->stats()->setColor( LAST_BIG_BREAK, bigColor );
 
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.
+
+        QStringList lines;
         if ( tiny_left != big_left ) {
             QString formattedText = RSIGlobals::instance()->formatSeconds( tiny_left );
             if ( !formattedText.isNull() ) {
-                mTinyLeft->setText( i18n( "%1 remaining until next short break",
-                                          formattedText ) );
-            } else // minutes = 0 and seconds = 0, remove the old text.
-                mTinyLeft->clear();
-        } else // tiny_left eq. big_left, remove this line.
-            mTinyLeft->clear();
+                lines << colorizedText(
+                    i18n( "%1 remaining until next short break", formattedText ),
+                    tinyColor
+                    );
+            }
+        }
 
         // do the same for the big break
         if ( big_left > 0 )
-            mBigLeft->setText( i18n( "%1 remaining until next long break",
-                                     RSIGlobals::instance()->formatSeconds( big_left ) ) );
-        else // minutes = 0 and seconds = 0, remove the old text.
-            mBigLeft->clear();
+            lines << colorizedText(
+                i18n( "%1 remaining until next long break",
+                    RSIGlobals::instance()->formatSeconds( big_left ) ),
+                bigColor
+                );
+        m_item->setToolTipSubTitle(lines.join("<br>"));
     }
-}
-
-void RSIToolTip::setText( const QString &text )
-{
-    QPalette normal;
-    mTinyLeft->setPalette( normal );
-    mTinyLeft->setText( text );
-    mBigLeft->clear();
-}
-
-void RSIToolTip::setPixmap( const QPixmap &pix )
-{
-    mIcon->setPixmap( pix );
 }
 
 void RSIToolTip::setSuspended( bool b )
