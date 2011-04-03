@@ -25,6 +25,7 @@
 #include "rsistats.h"
 
 #include <QPointer>
+#include <QTextDocument>
 
 #include <KAboutData>
 #include <KComponentData>
@@ -173,6 +174,50 @@ void RSIDock::slotResetStats()
 
     if ( i == KMessageBox::Continue )
         RSIGlobals::instance()->stats()->reset();
+}
+
+static QString colorizedText( const QString& text, const QColor& color )
+{
+    return QString("<font color='%1'>&#9679;</font> %2")
+        .arg(color.name())
+        .arg(Qt::escape(text))
+        ;
+}
+
+void RSIDock::setCounters( int tiny_left, int big_left )
+{
+    if ( m_suspended )
+        setToolTipSubTitle( i18n( "Suspended" ) );
+    else {
+        QColor tinyColor = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
+        RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, tinyColor );
+
+        QColor bigColor = RSIGlobals::instance()-> getBigBreakColor( big_left );
+        RSIGlobals::instance()->stats()->setColor( LAST_BIG_BREAK, bigColor );
+
+        // Only add the line for the tiny break when there is not
+        // a big break planned at the same time.
+
+        QStringList lines;
+        if ( tiny_left != big_left ) {
+            QString formattedText = RSIGlobals::instance()->formatSeconds( tiny_left );
+            if ( !formattedText.isNull() ) {
+                lines << colorizedText(
+                    i18n( "%1 remaining until next short break", formattedText ),
+                    tinyColor
+                    );
+            }
+        }
+
+        // do the same for the big break
+        if ( big_left > 0 )
+            lines << colorizedText(
+                i18n( "%1 remaining until next long break",
+                    RSIGlobals::instance()->formatSeconds( big_left ) ),
+                bigColor
+                );
+        setToolTipSubTitle(lines.join("<br>"));
+    }
 }
 
 #include "rsidock.moc"

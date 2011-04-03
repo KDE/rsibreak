@@ -26,7 +26,6 @@
 
 class RSIDock;
 class RSIRelaxPopup;
-class RSIToolTip;
 class BreakBase;
 
 /**
@@ -96,7 +95,6 @@ private:
     bool            m_usePlasmaRO;
 
     RSIRelaxPopup*  m_relaxpopup;
-    RSIToolTip*     m_tooltip;
 
     bool            m_useIdleDetection;
     QString         m_currentIcon;

@@ -20,7 +20,6 @@ main.cpp
 rsiwidget.cpp
 rsirelaxpopup.cpp
 setupmaximized.cpp
-rsitooltip.cpp
 rsistatwidget.cpp
 rsistats.cpp
 rsitimer.cpp

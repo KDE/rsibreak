@@ -28,7 +28,6 @@
 #include "rsitimer.h"
 #include "rsidock.h"
 #include "rsirelaxpopup.h"
-#include "rsitooltip.h"
 #include "rsiglobals.h"
 
 #include <config-rsibreak.h>
@@ -62,8 +61,6 @@ RSIObject::RSIObject( QWidget *parent )
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject( "/rsibreak", this );
 
-    m_tooltip = new RSIToolTip( 0, m_tray );
-
     m_relaxpopup = new RSIRelaxPopup( 0 );
     connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
 
@@ -72,8 +69,6 @@ RSIObject::RSIObject( QWidget *parent )
              SLOT( slotReadConfig() ) );
     connect( m_tray, SIGNAL( configChanged( bool ) ), m_relaxpopup,
              SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_tooltip,
-             SLOT( setSuspended( bool ) ) );
     connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( hide() ) );
 
     srand( time( NULL ) );
@@ -217,7 +212,7 @@ void RSIObject::startTimer( bool idle )
     connect( m_timer, SIGNAL( updateWidget( int ) ),
              SLOT( setCounters( int ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
-             m_tooltip, SLOT( setCounters( int, int ) ), Qt::QueuedConnection );
+             m_tray, SLOT( setCounters( int, int ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ), Qt::QueuedConnection );
     connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ),  Qt::QueuedConnection );
     connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ), Qt::QueuedConnection );

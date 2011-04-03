@@ -52,6 +52,9 @@ public:
      */
     ~RSIDock();
 
+public slots:
+    void setCounters( int tiny_left, int big_left );
+
 signals:
     /**
      * This signal is emitted when the user has left
