@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Name=RSIBreak
 Name[bg]=RSIBreak
+Name[bs]=RSIBreak
 Name[ca]=RSIBreak
 Name[ca@valencia]=RSIBreak
 Name[cs]=RSIBreak
@@ -39,6 +40,7 @@ Name[zh_CN]=RSIBreak
 Name[zh_TW]=RSIBreak
 Comment=Plasma RSIBreak applet
 Comment[bg]=Аплет на RSIBreak за Plasma
+Comment[bs]=Plasma RSIBreak aplet
 Comment[ca]=Miniaplicació RSIBreak del Plasma
 Comment[ca@valencia]=Miniaplicació RSIBreak del Plasma
 Comment[cs]=Plasma RSIBreak applet
