@@ -1,8 +1,5 @@
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${QT_INCLUDE_DIR} )
 
-# Write it down to the config-rsibreak.h
-configure_file(../config-rsibreak.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-rsibreak.h)
-
 ############ rsibreak ########################################################
 
 # source files needed

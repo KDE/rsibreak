@@ -30,8 +30,6 @@
 #include "rsirelaxpopup.h"
 #include "rsiglobals.h"
 
-#include <config-rsibreak.h>
-
 #include <QDesktopWidget>
 #include <QPainter>
 #include <QTimer>

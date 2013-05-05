@@ -31,8 +31,6 @@
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
-#include <config-rsibreak.h>     // HAVE_LIBXSS
-
 #include <X11/Xlib.h>
 #include <fixx11h.h>
 
