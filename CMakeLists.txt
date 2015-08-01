@@ -11,6 +11,7 @@ find_package(KF5 REQUIRED COMPONENTS
     Config
     ConfigWidgets
     DBusAddons
+    DocTools
     IconThemes
     I18n
     IdleTime
@@ -29,6 +30,7 @@ include(ECMAddAppIcon)
 include(ECMInstallIcons)
 
 add_subdirectory( icons )
+add_subdirectory( doc )
 add_subdirectory( src )
 # TODO
 # if (PLASMA_FOUND)
