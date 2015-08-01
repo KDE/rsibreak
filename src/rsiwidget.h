@@ -21,12 +21,13 @@
 #ifndef RSIWIDGET_H
 #define RSIWIDGET_H
 
-#include <QtGui/QLabel>
 #include "rsitimer.h"
 
 class RSIDock;
 class RSIRelaxPopup;
 class BreakBase;
+
+class QLabel;
 
 /**
  * @class RSIObject

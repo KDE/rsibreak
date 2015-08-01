@@ -27,17 +27,17 @@ plasmaeffect.cpp
 breakcontrol.cpp
 )
 
-QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
-org.rsibreak.rsiwidget.xml
-rsiwidget.h RSIObject
-)
+# TODO
+# QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
+# org.rsibreak.rsiwidget.xml
+# rsiwidget.h RSIObject
+# )
 
 # compilation
-kde4_add_executable(rsibreak ${rsibreak_sources} ${rsibreak_sources_timer})
+add_executable(rsibreak ${rsibreak_sources})
 
 # linking
-target_link_libraries(rsibreak ${KDE4_KIO_LIBS} ${KDE4_KNOTIFYCONFIG_LIBS} )
-target_link_libraries(rsibreak ${KDE4_KUTILS_LIBRARY} ${X11_X11_LIB})
+target_link_libraries(rsibreak KF5::NotifyConfig KF5::WindowSystem KF5::Notifications KF5::I18n KF5::ConfigCore KF5::ConfigWidgets Qt5::DBus Qt5::X11Extras KF5::TextWidgets KF5::XmlGui KF5::IconThemes KF5::IdleTime KF5::DBusAddons X11 )
 
 # install
 install( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})

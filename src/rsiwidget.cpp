@@ -19,32 +19,34 @@
 */
 
 #include "rsiwidget.h"
-#include "rsiwidgetadaptor.h"
+// TODO
+// #include "rsiwidgetadaptor.h"
 #include "grayeffect.h"
 #include "popupeffect.h"
 #include "plasmaeffect.h"
 #include "slideshoweffect.h"
-#include "rsitimer_dpms.h"
 #include "rsitimer.h"
 #include "rsidock.h"
 #include "rsirelaxpopup.h"
 #include "rsiglobals.h"
 
+#include <QDebug>
 #include <QDesktopWidget>
 #include <QPainter>
 #include <QTimer>
 
-#include <KLocale>
-#include <KApplication>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KIconLoader>
 #include <KNotification>
-#include <KTemporaryFile>
+#include <QDBusInterface>
+#include <QTemporaryFile>
 #include <KConfigGroup>
-#include <KDebug>
+#include <KSharedConfig>
 
 #include <time.h>
 #include <math.h>
+#include <KFormat>
 
 RSIObject::RSIObject( QWidget *parent )
         : QObject( parent ), m_effect( 0 ),
@@ -55,7 +57,7 @@ RSIObject::RSIObject( QWidget *parent )
     m_tray->setIconByName( "rsibreak0" );
 
     // D-Bus
-    new RsiwidgetAdaptor( this );
+// TODO    new RsiwidgetAdaptor( this );
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject( "/rsibreak", this );
 
@@ -108,10 +110,10 @@ void RSIObject::maximize()
 
 void RSIObject::slotLock()
 {
-    kDebug();
     m_effect->deactivate();
     m_timer->slotRestart();
 
+    // TODO Test all dbus stuff
     QDBusInterface lock( "org.freedesktop.ScreenSaver", "/ScreenSaver",
                          "org.freedesktop.ScreenSaver" );
     lock.call( "Lock" );
@@ -120,7 +122,7 @@ void RSIObject::slotLock()
 void RSIObject::setCounters( int timeleft )
 {
     if ( timeleft > 0 ) {
-        m_effect->setLabel( KGlobal::locale()->prettyFormatDuration( timeleft * 1000 ) );
+        m_effect->setLabel( KFormat().formatSpelloutDuration( timeleft * 1000 ) );
     } else if ( m_timer->isSuspended() ) {
         m_effect->setLabel( i18n( "Suspended" ) );
     } else {
@@ -184,7 +186,7 @@ void RSIObject::startTimer( bool idle )
     static bool first = true;
 
     if ( !first ) {
-        kDebug() << "Current Timer: " << m_timer->metaObject()->className()
+        qDebug() << "Current Timer: " << m_timer->metaObject()->className()
         << " wanted: " << ( idle ? "RSITimer" : "RSITimerNoIdle" ) << endl;
 
         if ( !idle && !strcmp( m_timer->metaObject()->className(), "RSITimerNoIdle" ) )
@@ -193,7 +195,7 @@ void RSIObject::startTimer( bool idle )
         if ( idle && !strcmp( m_timer->metaObject()->className(), "RSITimer" ) )
             return;
 
-        kDebug() << "Switching timers";
+        qDebug() << "Switching timers";
 
         m_timer->deleteLater();
 //        m_accel->remove("minimize");
@@ -231,7 +233,7 @@ void RSIObject::startTimer( bool idle )
 
 void RSIObject::readConfig()
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     m_showTimerReset = config.readEntry( "ShowTimerReset", false );
 
     m_relaxpopup->setSkipButtonHidden(
@@ -295,5 +297,3 @@ void RSIObject::readConfig()
     m_effect->showPostpone( !config.readEntry( "HidePostponeButton", false ) );
     m_effect->disableShortcut( config.readEntry( "DisableAccel", false ) );
 }
-
-#include "rsiwidget.moc"

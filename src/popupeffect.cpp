@@ -19,8 +19,7 @@
 #include "popupeffect.h"
 #include "passivepopup.h"
 
-#include <KLocale>
-#include <KHBox>
+#include <KLocalizedString>
 
 #include <QLabel>
 
@@ -29,10 +28,9 @@ PopupEffect::PopupEffect( QObject* parent )
 {
     m_popup = new PassivePopup( 0 );
 
-    KHBox* box = new KHBox( m_popup );
-    m_label = new QLabel( i18n( "Take a break...." ), box );
+    m_label = new QLabel( i18n( "Take a break...." ), m_popup );
 
-    m_popup->setView( box );
+    m_popup->setView( m_label );
     m_popup->setTimeout( 0 );
 }
 
@@ -58,4 +56,3 @@ void PopupEffect::setLabel( const QString& text )
     m_label->setText( i18nc( "%1 is a time string like '2 minutes 42 seconds'", "Take a break for %1", text ) );
 }
 
-#include "popupeffect.moc"

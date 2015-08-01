@@ -18,9 +18,8 @@
 
 #include "plasmaeffect.h"
 
-#include <KDebug>
-
 #include <QApplication>
+#include <QDebug>
 #include <QDesktopWidget>
 #include <QDBusInterface>
 
@@ -47,7 +46,7 @@ void PlasmaEffect::activate()
     BreakBase::activate();
 
     if ( reply.type() == QDBusMessage::ErrorMessage ) {
-        kDebug() << reply.errorMessage() << reply.errorName();
+        qWarning() << reply.errorMessage() << reply.errorName();
     }
 }
 
@@ -57,10 +56,8 @@ void PlasmaEffect::deactivate()
     QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), false );
 
     if ( reply.type() == QDBusMessage::ErrorMessage ) {
-        kDebug() << reply.errorMessage() << reply.errorName();
+        qWarning() << reply.errorMessage() << reply.errorName();
     }
 
     BreakBase::deactivate();
 }
-
-#include "plasmaeffect.moc"

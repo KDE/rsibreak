@@ -27,10 +27,10 @@
 #include <QRadioButton>
 #include <QVBoxLayout>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfig>
-#include <KGlobal>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
 class SetupGeneralPriv
 {
@@ -145,10 +145,10 @@ void SetupGeneral::slotUseNoIdleTimer()
 
 void SetupGeneral::applySettings()
 {
-    KConfigGroup config = KGlobal::config()->group( "General" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General" );
     config.writeEntry( "AutoStart", d->autoStart->isChecked() );
 
-    config = KGlobal::config()->group( "General Settings" );
+    config = KSharedConfig::openConfig()->group( "General Settings" );
     config.writeEntry( "ResetTimersAfterIdle", d->resetTimersAfterIdle->isChecked() );
     config.writeEntry( "ShowTimerReset", d->showTimerReset->isChecked() );
     config.writeEntry( "IgnoreIdleForTinyBreaks", d->ignoreIdleForTinyBreaks->isChecked() );
@@ -158,15 +158,13 @@ void SetupGeneral::applySettings()
 
 void SetupGeneral::readSettings()
 {
-    KConfigGroup config = KGlobal::config()->group( "General" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General" );
     d->autoStart->setChecked( config.readEntry( "AutoStart", false ) );
 
-    config = KGlobal::config()->group( "General Settings" );
+    config = KSharedConfig::openConfig()->group( "General Settings" );
     d->resetTimersAfterIdle->setChecked( config.readEntry( "ResetTimersAfterIdle", true ) );
     d->showTimerReset->setChecked( config.readEntry( "ShowTimerReset", false ) );
     d->ignoreIdleForTinyBreaks->setChecked( config.readEntry( "IgnoreIdleForTinyBreaks", false ) );
     d->useNoIdleTimer->setChecked( config.readEntry( "UseNoIdleTimer", false ) );
     d->useIdleTimer->setChecked( !d->useNoIdleTimer->isChecked() );
 }
-
-#include "setupgeneral.moc"

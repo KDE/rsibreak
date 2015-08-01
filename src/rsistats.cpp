@@ -20,10 +20,9 @@
 #include "rsistatitem.h"
 
 #include <QDateTime>
+#include <QLocale>
 
-#include <KLocale>
-#include <KGlobal>
-
+#include <KLocalizedString>
 
 RSIStats::RSIStats()
         : m_doUpdates( false )
@@ -314,9 +313,9 @@ void RSIStats::updateLabel( RSIStat stat )
         // datetimes
     case LAST_BIG_BREAK:
     case LAST_TINY_BREAK: {
-        KLocale *localize = KGlobal::locale();
         QTime when( m_statistics[ stat ]->getValue().toTime() );
-        when.isValid() ? l->setText( localize->formatTime( when, true, false ) )
+	// TODO Check looks ok
+        when.isValid() ? l->setText( QLocale().toString(when) )
         : l->clear();
         break;
     }

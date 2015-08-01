@@ -1,25 +1,38 @@
 project( rsibreak )
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
-find_package (KDE4 REQUIRED)
-include(KDE4Defaults)
+cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
+set (QT_MIN_VERSION "5.3.0")
 
-find_package(Qt4 4.6.0 REQUIRED)
+find_package(ECM 1.7.0 REQUIRED CONFIG)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-MACRO_ENSURE_VERSION( "4.4.0" ${KDE_VERSION} KDE_VERSION_OK)
-if(NOT KDE_VERSION_OK)
-  macro_optional_find_package(Plasma)
-  macro_log_feature(PLASMA_FOUND "Plasma" "Plasma libraries and header files" "http://plasma.kde.org/" FALSE "" "Plasma is needed for rsibreak Plasmoid")
-else(NOT KDE_VERSION_OK)
-  set(PLASMA_FOUND true)
-  set(PLASMA_LIBS ${KDE4_PLASMA_LIBS})
-endif(NOT KDE_VERSION_OK)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS DBus X11Extras)
+find_package(KF5 REQUIRED COMPONENTS 
+    Config
+    ConfigWidgets
+    DBusAddons
+    IconThemes
+    I18n
+    IdleTime
+    Notifications
+    NotifyConfig
+    TextWidgets
+    XmlGui
+    WindowSystem
+    )
 
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories ( ${KDE4_INCLUDES} )
+include(KDEInstallDirs)
+include(KDECompilerSettings)
+include(KDECMakeSettings)
+include(FeatureSummary)
+include(ECMAddAppIcon)
+include(ECMInstallIcons)
 
 add_subdirectory( icons )
 add_subdirectory( src )
-if (PLASMA_FOUND)
-  ADD_SUBDIRECTORY( plasma )
-endif (PLASMA_FOUND)
+# TODO
+# if (PLASMA_FOUND)
+#   ADD_SUBDIRECTORY( plasma )
+# endif (PLASMA_FOUND)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

@@ -23,11 +23,11 @@
 
 #include "rsitimer.h"
 
-#include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kidletime.h>
+#include <ksharedconfig.h>
 
 // The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
 
@@ -38,9 +38,8 @@
 #include "rsistats.h"
 #include <QTimer>
 #include <QThread>
-#include <kglobal.h>
 #include <QX11Info>
-#include <KDebug>
+#include <QDebug>
 
 RSITimer::RSITimer( QObject *parent )
         : QThread( parent ), m_breakRequested( false )
@@ -51,7 +50,7 @@ RSITimer::RSITimer( QObject *parent )
         , m_pause_left( 0 ), m_relax_left( 0 ), m_patience( 0 )
         , m_intervals( RSIGlobals::instance()->intervals() )
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     m_debug = config.readEntry( "DEBUG", 0 );
 }
 
@@ -80,7 +79,7 @@ void RSITimer::hibernationDetector()
     static QDateTime last = QDateTime::currentDateTime();
     QDateTime current = QDateTime::currentDateTime();
     if ( last.secsTo( current ) > 60 ) {
-        kDebug() << "Not been checking idleTime for more than 60 seconds, "
+        qDebug() << "Not been checking idleTime for more than 60 seconds, "
         << "assuming the computer hibernated, resetting timers"
         << "Last: " << last
         << "Current: " << current;
@@ -106,7 +105,7 @@ void RSITimer::checkScreensaverMode()
     static int originalTimeout = mXTimeout;
 
     if ( m_debug > 1 ) {
-        kDebug() << "Screensaver timeout is set at " << mXTimeout;
+        qDebug() << "Screensaver timeout is set at " << mXTimeout;
     }
 
     // if the user has no screensaver installed, get out.
@@ -115,11 +114,11 @@ void RSITimer::checkScreensaverMode()
 
     // if the current value is 0, presetation mode is active.
     if ( mXTimeout == 0 && !screensaverDisabled ) {
-        kDebug() << "Screensaver is suddenly disabled, suspending rsibreak";
+        qDebug() << "Screensaver is suddenly disabled, suspending rsibreak";
         slotSuspended( true );
         screensaverDisabled = true;
     } else if ( mXTimeout > 0 && screensaverDisabled ) {
-        kDebug() << "Screensaver is suddenly active again, resuming rsibreak";
+        qDebug() << "Screensaver is suddenly active again, resuming rsibreak";
         slotSuspended( false );
         resetAfterBigBreak();
         screensaverDisabled = false;
@@ -162,7 +161,7 @@ void RSITimer::resetAfterBreak()
 void RSITimer::resetAfterTinyBreak()
 {
     m_tiny_left = m_intervals["tiny_minimized"];
-    kDebug() << "********** resetAfterTinyBreak !!";
+    qDebug() << "********** resetAfterTinyBreak !!";
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
     RSIGlobals::instance()->NotifyBreak( false, false );
@@ -176,7 +175,7 @@ void RSITimer::resetAfterTinyBreak()
 void RSITimer::resetAfterBigBreak()
 {
     m_tiny_left = m_intervals["tiny_minimized"];
-    kDebug() << "********** resetAfterBigBreak !!";
+    qDebug() << "********** resetAfterBigBreak !!";
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
@@ -206,7 +205,7 @@ void RSITimer::slotSuspended( bool b )
 void RSITimer::slotRestart()
 {
     m_tiny_left = m_intervals["tiny_minimized"];
-    kDebug() << "********** slotRestart !!";
+    qDebug() << "********** slotRestart !!";
     m_big_left = m_intervals["big_minimized"];
     resetAfterBreak();
     slotStart();
@@ -228,7 +227,7 @@ void RSITimer::skipBreak()
 
 void RSITimer::postponeBreak()
 {
-   kDebug() << "kidle: On postponeBreak !!" << m_intervals["postpone_break"];
+   qDebug() << "kidle: On postponeBreak !!" << m_intervals["postpone_break"];
    m_patience = 0;
    m_relax_left = 0;
    m_pause_left = 0;   
@@ -253,9 +252,9 @@ void RSITimer::slotReadConfig( bool restart )
     m_intervals = RSIGlobals::instance()->intervals();
     if ( restart ) {
         if ( m_intervals == oldIntervals ) {
-            kDebug() << "No change in timers, continue...";
+            qDebug() << "No change in timers, continue...";
         } else {
-            kDebug() << "Change in timers, reset...";
+            qDebug() << "Change in timers, reset...";
             slotRestart();
         }
     } else
@@ -307,7 +306,7 @@ void RSITimer::timeout()
     }
 
     /*
-    kDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t;
+    qDebug() << m_intervals["tiny_maximized"] << " " << m_intervals["big_maximized"] << " " << t;
     */
 
     int breakInterval = m_tiny_left < m_big_left ?
@@ -361,11 +360,11 @@ void RSITimer::timeout()
          m_tiny_left < m_big_left) {
         t = breakInterval-m_relax_left+1;
         if ( m_debug > 1 )
-            kDebug() << "idleness reset" << t;
+            qDebug() << "idleness reset" << t;
     }
 
     if ( m_debug > 1 ) {
-        kDebug() << " patience: " << m_patience  << " pause_left: "
+        qDebug() << " patience: " << m_patience  << " pause_left: "
         << m_pause_left << " relax_left: " << m_relax_left
         <<  " tiny_left: " << m_tiny_left  << " big_left: "
         <<  m_big_left << " idle: " << t << endl;
@@ -485,12 +484,12 @@ void RSITimer::timeout()
 
 void RSITimer::readConfig()
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
 
     m_useIdleDetection = config.readEntry( "UseIdleDetection", true );
     m_ignoreIdleForTinyBreaks = config.readEntry( "IgnoreIdleForTinyBreaks", false );
 
-    config = KGlobal::config()->group( "General" );
+    config = KSharedConfig::openConfig()->group( "General" );
     m_lastrunDt = config.readEntry( "LastRunTimeStamp", QDateTime() );
     m_lastrunTiny = config.readEntry( "LastRunTinyLeft", 0 );
     m_lastrunBig = config.readEntry( "LastRunBigLeft", 0 );
@@ -498,7 +497,7 @@ void RSITimer::readConfig()
 
 void RSITimer::writeConfig()
 {
-    KConfigGroup config = KGlobal::config()->group( "General" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General" );
     config.writeEntry( "LastRunTimeStamp", QDateTime::currentDateTime() );
     config.writeEntry( "LastRunTinyLeft", m_tiny_left );
     config.writeEntry( "LastRunBigLeft", m_big_left );
@@ -524,7 +523,7 @@ void RSITimer::restoreSession()
 RSITimerNoIdle::RSITimerNoIdle( QObject *parent )
         : RSITimer( parent )
 {
-    kDebug() << "Starting noIdle timer";
+    qDebug() << "Starting noIdle timer";
 }
 
 RSITimerNoIdle::~RSITimerNoIdle() {}
@@ -572,7 +571,7 @@ void RSITimerNoIdle::timeout()
 
 
     if ( m_debug > 1 ) {
-        kDebug() << " pause_left: " << m_pause_left
+        qDebug() << " pause_left: " << m_pause_left
         <<  " tiny_left: " << m_tiny_left  << " big_left: "
         <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
     }
@@ -626,5 +625,3 @@ void RSITimerNoIdle::timeout()
 
     emit updateToolTip( m_tiny_left, m_big_left );
 }
-
-#include "rsitimer.moc"

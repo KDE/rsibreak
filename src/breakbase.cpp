@@ -20,10 +20,10 @@
 #include "breakbase.h"
 #include "breakcontrol.h"
 
-#include <KDebug>
 #include <KWindowSystem>
 
 #include <QApplication>
+#include <QDebug>
 #include <QDesktopWidget>
 #include <QObject>
 #include <QPainter>
@@ -80,9 +80,9 @@ bool BreakBase::eventFilter( QObject *obj, QEvent *event )
 {
     if ( event->type() == QEvent::KeyPress ) {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>( event );
-        kDebug() << "Ate key press" << keyEvent->key();
+        qDebug() << "Ate key press" << keyEvent->key();
         if ( !m_disableShortcut && keyEvent->key() == Qt::Key_Escape ) {
-            kDebug() << "Escape";
+            qDebug() << "Escape";
             emit skip();
         }
         return true;
@@ -90,7 +90,7 @@ bool BreakBase::eventFilter( QObject *obj, QEvent *event )
                 ( event->type() == QEvent::MouseButtonPress ||
                   event->type() == QEvent::MouseButtonDblClick )
               ) {
-        kDebug() << "Ate mouse click event";
+        qDebug() << "Ate mouse click event";
         return true;
     } else {
         return QObject::eventFilter( obj, event );
@@ -170,8 +170,7 @@ GrayEffectOnAllScreens::GrayEffectOnAllScreens()
         KWindowSystem::setOnAllDesktops( grayWidget->winId(), true );
         KWindowSystem::setState( grayWidget->winId(), NET::FullScreen );
 
-        kDebug() << "Created widget for screen" << i
-        << "Position:" << rect.topLeft();
+        qDebug() << "Created widget for screen" << i << "Position:" << rect.topLeft();
     }
 }
 
@@ -182,7 +181,7 @@ GrayEffectOnAllScreens::~GrayEffectOnAllScreens()
 
 void GrayEffectOnAllScreens::disable( int screen )
 {
-    kDebug() << "Removing widget from screen" << screen;
+    qDebug() << "Removing widget from screen" << screen;
     if ( !m_widgets.contains( screen ) )
         return;
 
@@ -225,7 +224,7 @@ GrayWidget::GrayWidget( QWidget *parent )
 bool GrayWidget::event( QEvent *event )
 {
     if ( event->type() == QEvent::Paint ) {
-        kDebug();
+        qDebug() << "GrayWidget::event";
         QPainter p( this );
         p.setCompositionMode( QPainter::CompositionMode_Source );
         p.fillRect( rect(), QColor( 0,0,0,180 ) );
@@ -239,9 +238,7 @@ void GrayWidget::setLevel( int val )
     if ( val > 0 )
         level = ( double )val / 100;
 
-    kDebug() << "New Value" << level;
+    qDebug() << "New Value" << level;
     setWindowOpacity( level );
     update();
 }
-
-#include "breakbase.moc"

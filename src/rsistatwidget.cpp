@@ -23,11 +23,11 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <QLabel>
+#include <QLocale>
 #include <QTime>
 
-#include <KGlobalSettings>
-#include <KLocale>
-#include <KGlobal>
+#include <KLocalizedString>
+#include <QFontDatabase>
 
 RSIStatWidget::RSIStatWidget( QWidget *parent )
         : QWidget( parent )
@@ -87,7 +87,7 @@ void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
     grid->addWidget( m, row, 1 );
 
     // measure minimal width with current font settings
-    QFontMetrics fm( KGlobalSettings::generalFont() );
+    QFontMetrics fm( QFontDatabase::systemFont(QFontDatabase::GeneralFont) );
     int width = 0;
     switch ( stat ) {
     case TOTAL_TIME:
@@ -103,7 +103,8 @@ void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
     case LAST_TINY_BREAK:
     case LAST_BIG_BREAK: {
         QTime dt( QTime::currentTime() );
-        width = ( int )( fm.width( KGlobal::locale()->formatTime( dt, true, false ) ) * 1.25 );
+	// TODO check
+        width = ( int )( fm.width( QLocale().toString( dt ) ) * 1.25 );
         break;
     }
     default:
@@ -123,5 +124,3 @@ void RSIStatWidget::hideEvent( QHideEvent * )
 {
     RSIGlobals::instance()->stats()->doUpdates( false );
 }
-
-#include "rsistatwidget.moc"

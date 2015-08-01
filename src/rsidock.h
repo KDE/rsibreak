@@ -25,9 +25,9 @@
 #ifndef RSIDOCK_H
 #define RSIDOCK_H
 
-#include <kdialog.h>
 #include <kstatusnotifieritem.h>
 
+class QDialog;
 class KHelpMenu;
 
 class RSIStatWidget;
@@ -111,7 +111,7 @@ private:
     QAction* m_suspendItem;
     bool m_suspended;
 
-    KDialog *m_statsDialog;
+    QDialog *m_statsDialog;
     RSIStatWidget *m_statsWidget;
 };
 

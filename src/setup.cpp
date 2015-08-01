@@ -20,11 +20,14 @@
 #include "setup.h"
 
 // Qt includes.
-//Added by qt3to4:
+#include <QIcon>
 
 // KDE includes.
+#include <KConfigGroup>
+#include <KWindowConfig>
+#include <KSharedConfig>
 #include <kiconloader.h>
-#include <klocale.h>
+#include <klocalizedstring.h>
 
 // Local includes.
 #include "setupgeneral.h"
@@ -50,32 +53,31 @@ Setup::Setup( QWidget* parent )
 
     d->generalPage = new SetupGeneral( this );
     KPageWidgetItem* page1 = addPage( d->generalPage, i18n( "General Settings" ) );
-    page1->setIcon( KIcon( "configure" ) );
+    page1->setIcon( QIcon::fromTheme( "configure" ) );
 
     d->timingPage = new SetupTiming( this );
     KPageWidgetItem* page2 = addPage( d->timingPage, i18n( "Timings" ) );
-    page2->setIcon( KIcon( "timings" ) );
+    page2->setIcon( QIcon::fromTheme( "timings" ) );
 
     d->maximizedPage = new SetupMaximized( this );
     KPageWidgetItem* page3 = addPage( d->maximizedPage, i18n( "During Breaks" ) );
-    page3->setIcon( KIcon( "duringbreaks" ) ); // krazy:exclude=iconnames
+    page3->setIcon( QIcon::fromTheme( "duringbreaks" ) ); // krazy:exclude=iconnames
 
     d->notificationsPage = new SetupNotifications( this );
     KPageWidgetItem* page4 = addPage( d->notificationsPage, i18n( "Actions" ) );
-    page4->setIcon( KIcon( "configure" ) ); // krazy:exclude=iconnames
+    page4->setIcon( QIcon::fromTheme( "configure" ) ); // krazy:exclude=iconnames
 
     connect( this, SIGNAL( okClicked() ), this, SLOT( slotOkClicked() ) );
 
-    setInitialSize( QSize( 625, 575 ) );
-    KConfigGroup config = KGlobal::config()->group( "SetupDimensions" );
-    restoreDialogSize( config );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
+    KWindowConfig::restoreWindowSize( windowHandle(), config );
     show();
 }
 
 Setup::~Setup()
 {
-    KConfigGroup config = KGlobal::config()->group( "SetupDimensions" );
-    saveDialogSize( config );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
+    KWindowConfig::saveWindowSize( windowHandle(), config );
     delete d;
 }
 
@@ -86,5 +88,3 @@ void Setup::slotOkClicked()
     d->maximizedPage->applySettings();
     close();
 }
-
-#include "setup.moc"

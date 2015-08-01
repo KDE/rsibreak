@@ -23,8 +23,6 @@
 #include <QDesktopWidget>
 #include <QMouseEvent>
 
-#include <KDebug>
-
 static const int MARGIN = 30;
 
 PassivePopup::PassivePopup( QWidget *parent )
@@ -41,7 +39,6 @@ void PassivePopup::show()
 
 void PassivePopup::mouseReleaseEvent( QMouseEvent * event )
 {
-    kDebug() ;
     event->accept();
     /* eat this! */
 }

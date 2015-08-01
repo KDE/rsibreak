@@ -19,16 +19,15 @@
 
 #include "rsiglobals.h"
 
-#include <kapplication.h>
+#include <qdebug.h>
 #include <kconfig.h>
-#include <kdebug.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
 #include <knotification.h>
 #include <kconfiggroup.h>
 
 #include <math.h>
-#include <kglobal.h>
+#include <KFormat>
 
 #include "rsistats.h"
 
@@ -60,12 +59,12 @@ RSIGlobals *RSIGlobals::instance()
 
 QString RSIGlobals::formatSeconds( const int seconds )
 {
-    return KGlobal::locale()->prettyFormatDuration( seconds * 1000 );
+    return KFormat().formatSpelloutDuration( seconds * 1000 );
 }
 
 void RSIGlobals::slotReadConfig()
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
 
     m_intervals["tiny_minimized"] = config.readEntry( "TinyInterval", 10 ) * 60;
     m_intervals["tiny_maximized"] = config.readEntry( "TinyDuration", 20 );
@@ -75,7 +74,7 @@ void RSIGlobals::slotReadConfig()
     m_intervals["patience"] = config.readEntry( "Patience", 30 );
 
     if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
-        kDebug() << "Debug mode activated";
+        qDebug() << "Debug mode activated";
         m_intervals["tiny_minimized"] = m_intervals["tiny_minimized"] / 60;
         m_intervals["big_minimized"] = m_intervals["big_minimized"] / 60;
         m_intervals["big_maximized"] = m_intervals["big_maximized"] / 60;
@@ -85,7 +84,7 @@ void RSIGlobals::slotReadConfig()
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
     if ( m_intervals["big_maximized"] < m_intervals["tiny_maximized"] ) {
-        kDebug() << "max big > max tiny, not allowed & corrected";
+        qDebug() << "max big > max tiny, not allowed & corrected";
         m_intervals["big_maximized"] = m_intervals["tiny_maximized"];
     }
 
@@ -131,5 +130,3 @@ void RSIGlobals::NotifyBreak( bool start, bool big )
         : KNotification::event( "end short break",
                                 i18n( "End of a short break" ) );
 }
-
-#include "rsiglobals.moc"

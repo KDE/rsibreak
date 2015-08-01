@@ -27,10 +27,9 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KDebug>
-#include <KHBox>
-#include <KLocale>
+#include <QHBoxLayout>
 #include <KIconLoader>
+#include <KLocalizedString>
 
 BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
         : QWidget( parent, type )
@@ -39,22 +38,27 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     m_textLabel = new QLabel( this );
     m_textLabel->setAlignment( Qt::AlignHCenter );
 
-    KHBox* hbox = new KHBox( this );
-    hbox->setSpacing( 25 );
+    QWidget* hbox = new QWidget( this );
+    QHBoxLayout *hboxHBoxLayout = new QHBoxLayout(hbox);
+    hboxHBoxLayout->setMargin(0);
+    hboxHBoxLayout->setSpacing( 25 );
 
     m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );
+    hboxHBoxLayout->addWidget(m_skipButton);
     QSize sizeSkip( m_skipButton->size() );
     m_skipButton->setIcon( SmallIcon( "dialog-cancel" ) );
     m_skipButton->setFixedHeight( sizeSkip.height() );
     connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
     
     m_postponeButton = new QPushButton( i18n( "Postpone Break" ), hbox );    
+    hboxHBoxLayout->addWidget(m_postponeButton);
     QSize sizePostpone(m_postponeButton->size());
     m_postponeButton->setIcon(SmallIcon("go-next"));    
     m_postponeButton->setFixedHeight(sizePostpone.height());
     connect( m_postponeButton, SIGNAL( clicked() ), SIGNAL( postpone()) );    
 
     m_lockButton = new QPushButton( i18n( "Lock Screen" ), hbox );
+    hboxHBoxLayout->addWidget(m_lockButton);
     QSize sizeLock( m_skipButton->size() );
     m_lockButton->setFixedHeight( sizeLock.height() );
     m_lockButton->setIcon( SmallIcon( "system-lock-screen" ) );
@@ -82,7 +86,6 @@ void BreakControl::slotCenterIt()
 
 void BreakControl::slotLock()
 {
-    kDebug();
     emit lock();
 }
 
@@ -128,5 +131,3 @@ void BreakControl::paintEvent( QPaintEvent *event )
         painter.drawPath( box );
     }
 }
-
-#include "breakcontrol.moc"

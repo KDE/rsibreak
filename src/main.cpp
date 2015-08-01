@@ -17,75 +17,56 @@
 */
 
 #include <kmessagebox.h>
-#include <kuniqueapplication.h>
 #include <kstartupinfo.h>
-#include <kcmdlineargs.h>
+#include <KLocalizedString>
 #include <kaboutdata.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <QApplication>
+#include <QCommandLineParser>
+#include <KDBusService>
 
 #include "rsiwidget.h"
 
-/**
- * @class RSIApplication
- * @author Tom Albers <toma@kde.org>
- * This class is a simple inheritance from KUniqueApplication
- * the reason that it is reimplemented is that when RSIBreak
- * is launched a second time it would in the orinal implementation
- * make the RSIWidget->show(). which we do not want. This
- * class misses that call.
- */
-class RSIApplication : public KUniqueApplication
-{
-public:
-    /**
-     * Similar to KUniqueApplication::newInstance, only without
-     * the call to raise the widget when a second instance is started.
-     */
-    int newInstance() {
-        static bool secondMe = false;
-        if ( secondMe ) {
-            KMessageBox::information( 0, i18n( "RSIBreak is already running in "
-                                               "your system tray. If you cannot "
-                                               "find it, it might be behind the "
-                                               "arrow." ) );
-        } else {
-            secondMe = true;
-        }
-        return 0;
-    }
-};
-
 int main( int argc, char *argv[] )
 {
-    KAboutData aboutData( "rsibreak", 0,
-                          ki18n( "RSIBreak" ),
+    QApplication app(argc, argv);
+    
+    KAboutData aboutData( "rsibreak",
+                          i18n( "RSIBreak" ),
                           "0.11",
-                          ki18n( "Try to prevent Repetitive Strain Injury by "
+                          i18n( "Try to prevent Repetitive Strain Injury by "
                                  "reminding a user to rest." ),
-                          KAboutData::License_GPL,
-                          ki18n( "(c) 2005-2010, The RSIBreak developers" ),
-                          KLocalizedString(),
-                          "http://www.rsibreak.org" );
+                          KAboutLicense::GPL,
+                          i18n( "(c) 2005-2015, The RSIBreak developers" ) );
 
-    aboutData.addAuthor( ki18n( "Tom Albers" ), ki18n( "Maintainer and Author" ),
+    aboutData.addAuthor( i18n( "Albert Astals Cid" ), i18n( "Maintainer" ),
+                         "aacid@kde.org" );
+
+    aboutData.addAuthor( i18n( "Tom Albers" ), i18n( "Former author" ),
                          "toma@kde.org", "http://www.omat.nl" );
 
-    aboutData.addAuthor( ki18n( "Bram Schoenmakers" ), ki18n( "Former author" ),
+    aboutData.addAuthor( i18n( "Bram Schoenmakers" ), i18n( "Former author" ),
                          "bramschoenmakers@kde.nl" );
 
-    KCmdLineArgs::init( argc, argv, &aboutData );
+    QCommandLineParser parser;
+    KAboutData::setApplicationData(aboutData);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    //PORTING SCRIPT: adapt aboutdata variable if necessary
+    aboutData.setupCommandLine(&parser);
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
 
-    if ( !KUniqueApplication::start() ) {
-        KStartupInfo::handleAutoAppStartedSending();
-        fprintf( stderr, "RSIBreak is already running!\n" );
-        exit( 0 );
-    }
+    KDBusService service;
 
-    RSIApplication a;
-    a.disableSessionManagement();
-    a.setQuitOnLastWindowClosed( false );
+    // TODO unique app
+    // TODO migrate settings
+    // TODO i18n catalog
+    // TODO
+//     a.disableSessionManagement();
+    app.setQuitOnLastWindowClosed( false );
 
     new RSIObject();
-    return a.exec();
+    return app.exec();
 }

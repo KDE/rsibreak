@@ -22,47 +22,52 @@
 #include "rsiwidget.h" // effects enum
 
 // QT includes.
+#include <QApplication>
 #include <QPushButton>
 #include <QCheckBox>
+#include <QComboBox>
+#include <QDir>
+#include <QFileDialog>
 #include <QLabel>
+#include <QLineEdit>
+#include <QSlider>
 #include <QVBoxLayout>
 #include <QGroupBox>
 
 // KDE includes.
-#include <KComboBox>
-#include <KLocale>
-#include <KApplication>
-#include <KFileDialog>
-#include <KLineEdit>
-#include <KNumInput>
-#include <KVBox>
+#include <KLocalizedString>
+#include <QVBoxLayout>
+#include <KConfigGroup>
+#include <KSharedConfig>
 #include <KWindowSystem>
-#include <kkeysequencewidget.h>
+#include <QHBoxLayout>
+#include <KPluralHandlingSpinBox>
 
 class SetupMaximizedPriv
 {
 public:
-    KHBox*            colorBox;
-    KHBox*            fontBox;
+    QWidget *            colorBox;
+    QWidget *            fontBox;
     QGroupBox*        slideshowBox;
     QGroupBox*        plasmaBox;
     QGroupBox*        grayBox;
     QPushButton*      counterFontBut;
     QPushButton*      folderBut;
-    KLineEdit*        imageFolderEdit;
+    QLineEdit*        imageFolderEdit;
     QCheckBox*        searchRecursiveCheck;
     QCheckBox*        hideMinimizeButton;
     QCheckBox*        hideLockButton;
     QCheckBox*        hidePostponeButton;    
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
-    KIntNumInput*     slideInterval;
-    KIntNumInput*     popupDuration;
+    // TODO check KPluralHandlingSpinBox
+    KPluralHandlingSpinBox*     slideInterval;
+    KPluralHandlingSpinBox*     popupDuration;
     QCheckBox*        usePopup;
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
     QCheckBox*        readOnlyPlasma;
-    KComboBox*        effectBox;
+    QComboBox*        effectBox;
     QSlider*          graySlider;
     QCheckBox* showSmallImagesCheck;
 };
@@ -77,7 +82,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     // Counterbox and skipbox next to eachother
 
     QLabel* effectLabel = new QLabel( i18n( "Choose the effect you want during breaks" ) );
-    d->effectBox = new KComboBox( this );
+    d->effectBox = new QComboBox( this );
     if ( KWindowSystem::compositingActive() )
         d->effectBox->addItem( i18n( "Simple Gray Effect" ), QVariant( RSIObject::SimpleGray ) );
     else
@@ -129,10 +134,13 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->grayBox = new QGroupBox( this );
     d->grayBox->setTitle( i18n( "Transparency level" ) );
 
-    KHBox* hboxslider = new KHBox( this );
-    hboxslider->setSpacing( 30 );
+    QWidget* hboxslider = new QWidget( this );
+    QHBoxLayout *hboxsliderHBoxLayout = new QHBoxLayout(hboxslider);
+    hboxsliderHBoxLayout->setMargin(0);
+    hboxsliderHBoxLayout->setSpacing( 30 );
     new QLabel( i18n( "Transparent" ), hboxslider );
     d->graySlider = new QSlider( hboxslider );
+    hboxsliderHBoxLayout->addWidget(d->graySlider);
     d->graySlider->setOrientation( Qt::Horizontal );
     d->graySlider->setMinimum( 0 );
     d->graySlider->setPageStep( 10 );
@@ -149,8 +157,11 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->slideshowBox = new QGroupBox( this );
     d->slideshowBox->setTitle( i18n( "Slideshow" ) );
 
-    KHBox *imageFolderBox = new KHBox( this );
-    d->imageFolderEdit = new KLineEdit( imageFolderBox );
+    QWidget *imageFolderBox = new QWidget( this );
+    QHBoxLayout *imageFolderBoxHBoxLayout = new QHBoxLayout(imageFolderBox);
+    imageFolderBoxHBoxLayout->setMargin(0);
+    d->imageFolderEdit = new QLineEdit( imageFolderBox );
+    imageFolderBoxHBoxLayout->addWidget(d->imageFolderEdit);
     d->imageFolderEdit->setWhatsThis( i18n( "Select the folder from which you "
                                             "want to see images. These images are randomly shown during the breaks. "
                                             "It will be searched recursively if you want..." ) );
@@ -161,14 +172,17 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->showSmallImagesCheck = new QCheckBox( i18n( "Show small images" ),
             this );
 
-    KHBox *m5 = new KHBox( this );
+    QWidget *m5 = new QWidget( this );
+    QHBoxLayout *m5HBoxLayout = new QHBoxLayout(m5);
+    m5HBoxLayout->setMargin(0);
     QLabel *l5 = new QLabel( i18n( "Change images every:" ) + ' ', m5 );
+    m5HBoxLayout->addWidget(l5);
     l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l5->setWhatsThis( i18n( "Here you can set how long one image should be "
                             "shown before it is replaced by the next one." ) );
-    d->slideInterval = new KIntNumInput( m5 );
-    d->slideInterval->setRange( 3, 1000, 1 );
-    d->slideInterval->setSliderEnabled( false );
+    d->slideInterval = new KPluralHandlingSpinBox( m5 );
+    m5HBoxLayout->addWidget(d->slideInterval);
+    d->slideInterval->setRange( 3, 1000 );
     d->slideInterval->setSuffix( ki18np( " second", " seconds" ) );
 
     connect( d->changePathButton, SIGNAL( clicked() ),
@@ -176,12 +190,12 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     connect( d->imageFolderEdit, SIGNAL( textChanged( const QString& ) ),
              this, SLOT( slotFolderEdited( const QString& ) ) );
 
-    QVBoxLayout *vbox2 = new QVBoxLayout( d->slideshowBox );
-    vbox2->addWidget( imageFolderBox );
-    vbox2->addWidget( d->searchRecursiveCheck );
-    vbox2->addWidget( d->showSmallImagesCheck );
-    vbox2->addWidget( m5 );
-    d->slideshowBox->setLayout( vbox2 );
+    QVBoxLayout *vboxg = new QVBoxLayout( d->slideshowBox );
+    vboxg->addWidget( imageFolderBox );
+    vboxg->addWidget( d->searchRecursiveCheck );
+    vboxg->addWidget( d->showSmallImagesCheck );
+    vboxg->addWidget( m5 );
+    d->slideshowBox->setLayout( vboxg );
 
     //---------------- Popup setup
 
@@ -199,14 +213,17 @@ SetupMaximized::SetupMaximized( QWidget* parent )
                                      "zero, so you know how long this break will be." ) );
     label->setBuddy( d->usePopup );
 
-    KHBox *m6 = new KHBox( this );
+    QWidget *m6 = new QWidget( this );
+    QHBoxLayout *m6HBoxLayout = new QHBoxLayout(m6);
+    m6HBoxLayout->setMargin(0);
     QLabel *l6 = new QLabel( i18n( "Show popup for a maximum of:" ) + ' ', m6 );
+    m6HBoxLayout->addWidget(l6);
     l6->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l6->setWhatsThis( i18n( "Here you can set how long the popup will be shown "
                             "before the effect will kick in." ) );
-    d->popupDuration = new KIntNumInput( m6 );
-    d->popupDuration->setRange( 3, 1000, 1 );
-    d->popupDuration->setSliderEnabled( false );
+    d->popupDuration = new KPluralHandlingSpinBox( m6 );
+    m6HBoxLayout->addWidget(d->popupDuration);
+    d->popupDuration->setRange( 3, 1000 );
     d->popupDuration->setSuffix( ki18np( " second", " seconds" ) );
 
     d->useFlashLabel = new QLabel( '\n' + i18n( "The popup can flash when it "
@@ -274,7 +291,7 @@ void SetupMaximized::slotEffectChanged( int current )
 void SetupMaximized::slotFolderPicker()
 {
     QString  result =
-        KFileDialog::getExistingDirectory( d->imageFolderEdit->text(), this );
+        QFileDialog::getExistingDirectory( this, d->imageFolderEdit->text());
 
     if ( !result.isEmpty() )
         d->imageFolderEdit->setText( result );
@@ -300,7 +317,7 @@ void SetupMaximized::slotHideFlash()
 
 void SetupMaximized::applySettings()
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     config.writeEntry( "ImageFolder", d->imageFolderEdit->text() );
     config.writeEntry( "SlideInterval", d->slideInterval->value() );
     config.writeEntry( "Patience", d->popupDuration->value() );
@@ -322,7 +339,7 @@ void SetupMaximized::applySettings()
     config.writeEntry( "UsePlasmaReadOnly",
                        d->readOnlyPlasma->isChecked() );
     config.writeEntry( "Graylevel", d->graySlider->value() );
-    config = KGlobal::config()->group( "Popup Settings" );
+    config = KSharedConfig::openConfig()->group( "Popup Settings" );
     config.writeEntry( "UsePopup",
                        d->usePopup->isChecked() );
     config.writeEntry( "UseFlash",
@@ -337,7 +354,7 @@ void SetupMaximized::readSettings()
     QFont font( QApplication::font().family(), 40, 75, true );
     QString dir = QDir::home().path();
 
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     d->imageFolderEdit->setText( config.readEntry( "ImageFolder", dir ) );
     d->slideInterval->setValue( config.readEntry( "SlideInterval", 10 ) );
     d->popupDuration->setValue( config.readEntry( "Patience", 30 ) );
@@ -362,11 +379,9 @@ void SetupMaximized::readSettings()
     d->readOnlyPlasma->setChecked(
         config.readEntry( "UsePlasmaReadOnly", true ) );
     d->graySlider->setValue( config.readEntry( "Graylevel", 80 ) );
-    config = KGlobal::config()->group( "Popup Settings" );
+    config = KSharedConfig::openConfig()->group( "Popup Settings" );
     d->usePopup->setChecked(
         config.readEntry( "UsePopup", true ) );
     d->useFlash->setChecked(
         config.readEntry( "UseFlash", true ) );
 }
-
-#include "setupmaximized.moc"

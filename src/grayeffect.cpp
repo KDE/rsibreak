@@ -18,10 +18,6 @@
 
 #include "grayeffect.h"
 
-
-#include <KDebug>
-
-
 GrayEffect::GrayEffect( QObject *parent )
         : BreakBase( parent )
 {
@@ -47,5 +43,3 @@ void GrayEffect::setLevel( int val )
 {
     setGrayEffectLevel( val );
 }
-
-#include "grayeffect.moc"

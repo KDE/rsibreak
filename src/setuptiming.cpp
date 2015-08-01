@@ -24,24 +24,25 @@
 
 // QT includes.
 #include <QGroupBox>
+#include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 
 // KDE includes.
-#include <KLocale>
-#include <KNumInput>
-#include <KVBox>
+#include <KLocalizedString>
 #include <KConfigGroup>
-#include <KGlobal>
+#include <KSharedConfig>
+#include <KPluralHandlingSpinBox>
 
 class SetupTimingPriv
 {
 public:
-    KIntNumInput*          tinyInterval;
-    KIntNumInput*          tinyDuration;
-    KIntNumInput*          bigInterval;
-    KIntNumInput*          bigDuration;
-    KIntNumInput*          postponeDuration;
+	// TODO Check all this spinboxes are good
+    KPluralHandlingSpinBox*          tinyInterval;
+    KPluralHandlingSpinBox*          tinyDuration;
+    KPluralHandlingSpinBox*          bigInterval;
+    KPluralHandlingSpinBox*          bigDuration;
+    KPluralHandlingSpinBox*          postponeDuration;
     int                    debug;
 };
 
@@ -57,26 +58,32 @@ SetupTiming::SetupTiming( QWidget* parent )
     QGroupBox *tinyBox = new QGroupBox( this );
     tinyBox->setTitle( i18n( "Tiny Breaks" ) );
 
-    KHBox *m = new KHBox( this );
+    QWidget *m = new QWidget( this );
+    QHBoxLayout *mHBoxLayout = new QHBoxLayout(m);
+    mHBoxLayout->setMargin(0);
     QLabel *l1 = new QLabel( i18n( "Short break every:" ) + ' ', m );
+    mHBoxLayout->addWidget(l1);
     l1->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l1->setWhatsThis( i18n( "Here you can set how often you want a short break. "
                             "One minute means 60 seconds of movement with the mouse or typing on "
                             "the keyboard." ) );
-    d->tinyInterval = new KIntNumInput( m );
-    d->tinyInterval->setRange( 1, 1000, 1 );
-    d->tinyInterval->setSliderEnabled( false );
+    d->tinyInterval = new KPluralHandlingSpinBox( m );
+    mHBoxLayout->addWidget(d->tinyInterval);
+    d->tinyInterval->setRange( 1, 1000 );
     l1->setBuddy( d->tinyInterval );
     connect( d->tinyInterval, SIGNAL( valueChanged( int ) ),
              SLOT( slotTinyValueChanged( int ) ) );
 
-    KHBox *m2 = new KHBox( this );
+    QWidget *m2 = new QWidget( this );
+    QHBoxLayout *m2HBoxLayout = new QHBoxLayout(m2);
+    m2HBoxLayout->setMargin(0);
     QLabel *l2 = new QLabel( i18n( "For a duration of:" ) + ' ', m2 );
+    m2HBoxLayout->addWidget(l2);
     l2->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l2->setWhatsThis( i18n( "Here you can set the duration of the short break." ) );
-    d->tinyDuration = new KIntNumInput( m2 );
-    d->tinyDuration->setRange( 1, 1000, 1 );
-    d->tinyDuration->setSliderEnabled( false );
+    d->tinyDuration = new KPluralHandlingSpinBox( m2 );
+    m2HBoxLayout->addWidget(d->tinyDuration);
+    d->tinyDuration->setRange( 1, 1000 );
     l2->setBuddy( d->tinyDuration );
 
     QVBoxLayout *vbox0 = new QVBoxLayout( tinyBox );
@@ -90,24 +97,30 @@ SetupTiming::SetupTiming( QWidget* parent )
     QGroupBox *bigBox = new QGroupBox( this );
     bigBox->setTitle( i18n( "Big Breaks" ) );
 
-    KHBox *m3 = new KHBox( this );
+    QWidget *m3 = new QWidget( this );
+    QHBoxLayout *m3HBoxLayout = new QHBoxLayout(m3);
+    m3HBoxLayout->setMargin(0);
     QLabel *l3 = new QLabel( i18n( "Long break every:" ) + ' ', m3 );
+    m3HBoxLayout->addWidget(l3);
     l3->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l3->setWhatsThis( i18n( "Here you can set how often you want a long break. "
                             "One minute means 60 seconds of movement with the mouse or typing on "
                             "the keyboard" ) );
-    d->bigInterval = new KIntNumInput( m3 );
-    d->bigInterval->setRange( 1, 1000, 1 );
-    d->bigInterval->setSliderEnabled( false );
+    d->bigInterval = new KPluralHandlingSpinBox( m3 );
+    m3HBoxLayout->addWidget(d->bigInterval);
+    d->bigInterval->setRange( 1, 1000 );
     l3->setBuddy( d->bigInterval );
 
-    KHBox *m4 = new KHBox( this );
+    QWidget *m4 = new QWidget( this );
+    QHBoxLayout *m4HBoxLayout = new QHBoxLayout(m4);
+    m4HBoxLayout->setMargin(0);
     QLabel *l4 = new QLabel( i18n( "For a duration of:" ) + ' ', m4 );
+    m4HBoxLayout->addWidget(l4);
     l4->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l4->setWhatsThis( i18n( "Here you can set the duration of the long break." ) );
-    d->bigDuration = new KIntNumInput( m4 );
-    d->bigDuration->setRange( 1, 1000, 1 );
-    d->bigDuration->setSliderEnabled( false );
+    d->bigDuration = new KPluralHandlingSpinBox( m4 );
+    m4HBoxLayout->addWidget(d->bigDuration);
+    d->bigDuration->setRange( 1, 1000 );
     l4->setBuddy( d->bigDuration );
 
     QVBoxLayout *vbox1 = new QVBoxLayout( bigBox );
@@ -121,13 +134,16 @@ SetupTiming::SetupTiming( QWidget* parent )
     QGroupBox *postponeBox = new QGroupBox( this );
     postponeBox->setTitle( i18n( "Postpone Breaks" ) );
 
-    KHBox *m5 = new KHBox( this );
+    QWidget *m5 = new QWidget( this );
+    QHBoxLayout *m5HBoxLayout = new QHBoxLayout(m5);
+    m5HBoxLayout->setMargin(0);
     QLabel *l5 = new QLabel( i18n( "For a duration of:" ) + ' ', m5 );
+    m5HBoxLayout->addWidget(l5);
     l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
     l5->setWhatsThis( i18n( "Here you can set for how much time you want to postpone a break." ) );
-    d->postponeDuration = new KIntNumInput( m5 );
-    d->postponeDuration->setRange( 1, 1000, 1 );
-    d->postponeDuration->setSliderEnabled( false );
+    d->postponeDuration = new KPluralHandlingSpinBox( m5 );
+    m5HBoxLayout->addWidget(d->postponeDuration);
+    d->postponeDuration->setRange( 1, 1000 );
     l5->setBuddy( d->postponeDuration );
 
     QVBoxLayout *vbox2 = new QVBoxLayout( postponeBox );
@@ -168,7 +184,7 @@ SetupTiming::~SetupTiming()
 
 void SetupTiming::applySettings()
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     config.writeEntry( "TinyInterval", d->tinyInterval->value() );
     config.writeEntry( "TinyDuration", d->tinyDuration->value() );
     config.writeEntry( "BigInterval", d->bigInterval->value() );
@@ -179,7 +195,7 @@ void SetupTiming::applySettings()
 
 void SetupTiming::readSettings()
 {
-    KConfigGroup config = KGlobal::config()->group( "General Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     d->debug = config.readEntry( "DEBUG", 0 );
 
     d->tinyInterval->setValue( config.readEntry( "TinyInterval", 10 ) );
@@ -194,5 +210,3 @@ void SetupTiming::slotTinyValueChanged( int i )
 {
     d->bigInterval->setMinimum( i );
 }
-
-#include "setuptiming.moc"

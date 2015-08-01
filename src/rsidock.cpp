@@ -29,14 +29,19 @@
 #include <QTextDocument>
 
 #include <KAboutData>
-#include <KComponentData>
-#include <KLocale>
-#include <KMenu>
+#include <KLocalizedString>
+#include <KIconLoader>
+#include <QMenu>
 #include <KNotifyConfigWidget>
 #include <KHelpMenu>
 #include <KStandardShortcut>
 #include <KMessageBox>
 #include <KWindowSystem>
+#include <KConfigGroup>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QDebug>
 
 RSIDock::RSIDock( QObject *parent )
         : KStatusNotifierItem( parent ), m_suspended( false )
@@ -45,23 +50,25 @@ RSIDock::RSIDock( QObject *parent )
     setCategory(ApplicationStatus);
     setStatus(Active);
 
-    const KAboutData* aboutData = KGlobal::mainComponent().aboutData();
-    setTitle( aboutData->programName() );
-    setToolTipTitle( aboutData->programName() );
+    const KAboutData &aboutData = KAboutData::applicationData();
+    // TODO
+//     setTitle( aboutData->programName() );
+//     setToolTipTitle( aboutData->programName() );
 
     m_help = new KHelpMenu( 0, aboutData );
 
-    KMenu* menu = contextMenu();
-    menu->addAction( KIcon( "kde" ), i18n( "About &KDE" ), m_help,
+    QMenu* menu = contextMenu();
+    qDebug() << "NNNNNNNNNE" << menu;
+    menu->addAction( QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help,
                      SLOT( aboutKDE() ) );
     menu->addAction( i18n( "&About RSIBreak" ), m_help,
                      SLOT( aboutApplication() ) );
-    menu->addAction( KIcon( "help-contents" ),
+    menu->addAction( QIcon::fromTheme( "help-contents" ),
                      i18n( "RSIBreak &Handbook" ), m_help, SLOT( appHelpActivated() ),
-                     KStandardShortcut::shortcut( KStandardShortcut::Help ).primary() );
+                     KStandardShortcut::shortcut( KStandardShortcut::Help )[0] );
 
     menu->addSeparator();
-    menu->addAction( KIcon( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, SLOT( reportBug() ) );
+    menu->addAction( QIcon::fromTheme( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, SLOT( reportBug() ) );
     menu->addAction( i18n( "Switch application &language..." ), m_help,
                      SLOT( switchApplicationLanguage() ) );
 
@@ -75,7 +82,7 @@ RSIDock::RSIDock( QObject *parent )
     menu->addAction( SmallIcon( "preferences-desktop-notification" ),
                      i18n( "Configure &Notifications..." ), this,
                      SLOT( slotConfigureNotifications() ) );
-    menu->addAction( KIcon( "configure" ), i18n( "&Configure RSIBreak..." ),
+    menu->addAction( QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ),
                      this, SLOT( slotConfigure() ) );
 
     connect( this, SIGNAL( activateRequested(bool,QPoint) ),
@@ -136,16 +143,28 @@ void RSIDock::slotSuspend()
 void RSIDock::slotShowStatistics()
 {
     if ( !m_statsDialog ) {
-        m_statsDialog = new KDialog( 0 );
-        m_statsDialog->setCaption( i18n( "Usage Statistics" ) );
-        m_statsDialog->setButtons( KDialog::Close | KDialog::User1 );
-        m_statsDialog->setButtonText( KDialog::User1, i18n( "Reset" ) );
+        m_statsDialog = new QDialog( 0 );
+        m_statsDialog->setWindowTitle( i18n( "Usage Statistics" ) );
+        QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
+        QWidget *mainWidget = new QWidget(m_statsDialog);
+        QVBoxLayout *mainLayout = new QVBoxLayout;
+        m_statsDialog->setLayout(mainLayout);
+        mainLayout->addWidget(mainWidget);
+        QPushButton *user1Button = new QPushButton;
+        buttonBox->addButton(user1Button, QDialogButtonBox::ActionRole);
+        m_statsDialog->connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+        m_statsDialog->connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+        //PORTING SCRIPT: WARNING mainLayout->addWidget(buttonBox) must be last item in layout. Please move it.
+        mainLayout->addWidget(buttonBox);
+        user1Button->setText(i18n( "Reset"  ));
 
         m_statsWidget = new RSIStatWidget( m_statsDialog );
-        connect( m_statsDialog, SIGNAL( user1Clicked() ),
+        connect( m_statsDialog, SIGNAL( clicked() ),
                  this, SLOT( slotResetStats() ) );
 
-        m_statsDialog->setMainWidget( m_statsWidget );
+//PORTING: Verify that widget was added to mainLayout: //PORTING: Verify that widget was added to mainLayout:         m_statsDialog->setMainWidget( m_statsWidget );
+// Add mainLayout->addWidget(m_statsWidget); if necessary
+// Add mainLayout->addWidget(m_statsWidget); if necessary
     }
 
     if ( m_statsDialog->isVisible() &&
@@ -181,7 +200,7 @@ static QString colorizedText( const QString& text, const QColor& color )
 {
     return QString("<font color='%1'>&#9679;</font> %2")
         .arg(color.name())
-        .arg(Qt::escape(text))
+        .arg(text.toHtmlEscaped())
         ;
 }
 
@@ -220,5 +239,3 @@ void RSIDock::setCounters( int tiny_left, int big_left )
         setToolTipSubTitle(lines.join("<br>"));
     }
 }
-
-#include "rsidock.moc"

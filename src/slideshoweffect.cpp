@@ -21,11 +21,11 @@
 #include "breakbase.h"
 
 #include <QApplication>
+#include <QDebug>
 #include <QDesktopWidget>
 #include <QDir>
 #include <QTimer>
 
-#include <KDebug>
 #include <KWindowSystem>
 
 
@@ -108,7 +108,7 @@ void SlideEffect::loadImage()
         } while ( m_files_done.indexOf( name ) != -1 );
 
         // load image
-        kDebug() << "Loading:" << name << "(" << j << "/"  << m_files.count() << ") ";
+        qDebug() << "Loading:" << name << "(" << j << "/"  << m_files.count() << ") ";
         image.load( name );
 
         // Check size
@@ -143,7 +143,7 @@ void SlideEffect::findImagesInFolder( const QString& folder )
     QDir dir( folder );
 
     if ( !dir.exists() || !dir.isReadable() ) {
-        kWarning() << "Folder does not exist or is not readable: "
+        qWarning() << "Folder does not exist or is not readable: "
         << folder << endl;
         return;
     }
@@ -188,7 +188,7 @@ void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImag
     m_slideInterval = slideInterval;
 
     findImagesInFolder( path );
-    kDebug() << "Amount of Files:" << m_files.count();
+    qDebug() << "Amount of Files:" << m_files.count();
     QTimer::singleShot( 2000, this, SLOT( slotNewSlide() ) );
 }
 
@@ -218,5 +218,3 @@ void SlideWidget::setImage( QImage* image )
     palette.setBrush( backgroundRole(), QBrush( QPixmap::fromImage( *image ) ) );
     setPalette( palette );
 }
-
-#include "slideshoweffect.moc"

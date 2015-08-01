@@ -26,37 +26,48 @@
 #include <QProgressBar>
 
 #include <KColorScheme>
-#include <KVBox>
-#include <KLocale>
-#include <KDebug>
+#include <QVBoxLayout>
+#include <KLocalizedString>
 #include <KConfigGroup>
 #include <KIconLoader>
+#include <QHBoxLayout>
+#include <KFormat>
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
         : QWidget( parent )
 {
     m_popup = new PassivePopup( parent );
 
-    KVBox *vbox = new KVBox( m_popup );
-    vbox->setSpacing( 5 );
+    QWidget *vbox = new QWidget( m_popup );
+    QVBoxLayout *vboxVBoxLayout = new QVBoxLayout(vbox);
+    vboxVBoxLayout->setMargin(0);
+    vboxVBoxLayout->setSpacing( 5 );
     m_message = new QLabel( vbox );
+    vboxVBoxLayout->addWidget(m_message);
 
-    KHBox *hbox = new KHBox( vbox );
-    hbox->setSpacing( 15 );
+    QWidget *hbox = new QWidget( vbox );
+    QHBoxLayout *hboxHBoxLayout = new QHBoxLayout(hbox);
+    hboxHBoxLayout->setMargin(0);
+    vboxVBoxLayout->addWidget(hbox);
+    hboxHBoxLayout->setSpacing( 15 );
 
     m_progress = new QProgressBar( hbox );
+    hboxHBoxLayout->addWidget(m_progress);
     m_progress->setFormat( "%v" );
     m_progress->setRange( 0, 0 );
 
     m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), i18n( "Skip Break" ), hbox );
+    hboxHBoxLayout->addWidget(m_skipbutton);
     m_skipbutton->setToolTip( i18n( "Skip this break" ) );
     connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL( skip() ) );
 
     m_postponebutton = new QPushButton( SmallIcon( "go-next" ), i18n( "Postpone Break" ), hbox );
+    hboxHBoxLayout->addWidget(m_postponebutton);
     m_postponebutton->setToolTip( i18n( "Postpone this break" ) );
     connect( m_postponebutton, SIGNAL( clicked() ), SIGNAL( postpone()) );
     
     m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), i18n( "Lock Screen" ), hbox );
+    hboxHBoxLayout->addWidget(m_lockbutton);
     m_lockbutton->setToolTip( i18n( "Lock the session" ) );
     connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
 
@@ -93,7 +104,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 
     if ( n > 0 ) {
         QString text = i18n( "Please relax for %1",
-                             KGlobal::locale()->prettyFormatDuration( n * 1000 ) );
+                             KFormat().formatSpelloutDuration( n * 1000 ) );
 
         if ( bigBreakNext )
             text.append( '\n' + i18n( "Note: next break is a big break" ) );
@@ -136,7 +147,7 @@ void RSIRelaxPopup::slotReadConfig()
 
 void RSIRelaxPopup::readSettings()
 {
-    KConfigGroup config = KGlobal::config()->group( "Popup Settings" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "Popup Settings" );
     m_usePopup = config.readEntry( "UsePopup", true );
     m_useFlash = config.readEntry( "UseFlash", true );
 }
@@ -155,4 +166,3 @@ void RSIRelaxPopup::setPostponeButtonHidden( bool b )
 {
     m_postponebutton->setHidden( b );
 }
-#include "rsirelaxpopup.moc"

@@ -38,5 +38,3 @@ SetupNotifications::SetupNotifications( QWidget* parent )
 SetupNotifications::~SetupNotifications()
 {
 }
-
-#include "setupnotifications.moc"
