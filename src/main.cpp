@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <KDBusService>
+#include <Kdelibs4ConfigMigrator>
 
 #include "rsiwidget.h"
 
@@ -32,6 +33,13 @@ int main( int argc, char *argv[] )
 {
     QApplication app(argc, argv);
     
+    Kdelibs4ConfigMigrator migrate(QLatin1String("rsibreak"));
+    migrate.setConfigFiles(QStringList() << QLatin1String("rsibreakrc") << QLatin1String("rsibreak.notifyrc"));
+    migrate.setUiFiles(QStringList() << QLatin1String("rsibreakui.rc"));
+    migrate.migrate();
+
+    KLocalizedString::setApplicationDomain("rsibreak");
+
     KAboutData aboutData( "rsibreak",
                           i18n( "RSIBreak" ),
                           "0.11",
@@ -60,8 +68,6 @@ int main( int argc, char *argv[] )
     KDBusService service;
 
     // TODO unique app
-    // TODO migrate settings
-    // TODO i18n catalog
     // TODO
 //     a.disableSessionManagement();
     app.setQuitOnLastWindowClosed( false );
