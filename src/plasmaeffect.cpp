@@ -41,8 +41,8 @@ void PlasmaEffect::slotGray()
 
 void PlasmaEffect::activate()
 {
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), true );
+    QDBusInterface dbus( "org.kde.plasmashell", "/PlasmaShell", "org.kde.PlasmaShell" );
+    QDBusMessage reply = dbus.call( QLatin1String( "setDashboardShown" ), true );
     BreakBase::activate();
 
     if ( reply.type() == QDBusMessage::ErrorMessage ) {
@@ -52,8 +52,8 @@ void PlasmaEffect::activate()
 
 void PlasmaEffect::deactivate()
 {
-    QDBusInterface dbus( "org.kde.plasma-desktop", "/App" );
-    QDBusMessage reply = dbus.call( QLatin1String( "showDashboard" ), false );
+    QDBusInterface dbus( "org.kde.plasmashell", "/PlasmaShell", "org.kde.PlasmaShell" );
+    QDBusMessage reply = dbus.call( QLatin1String( "setDashboardShown" ), false );
 
     if ( reply.type() == QDBusMessage::ErrorMessage ) {
         qWarning() << reply.errorMessage() << reply.errorName();

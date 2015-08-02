@@ -109,7 +109,6 @@ void RSIObject::slotLock()
     m_effect->deactivate();
     m_timer->slotRestart();
 
-    // TODO Test all dbus stuff
     QDBusInterface lock( "org.freedesktop.ScreenSaver", "/ScreenSaver",
                          "org.freedesktop.ScreenSaver" );
     lock.call( "Lock" );
