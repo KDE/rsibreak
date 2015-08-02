@@ -60,7 +60,6 @@ public:
     QCheckBox*        hidePostponeButton;    
     QCheckBox*        disableAccel;
     QPushButton*      changePathButton;
-    // TODO check KPluralHandlingSpinBox
     KPluralHandlingSpinBox*     slideInterval;
     KPluralHandlingSpinBox*     popupDuration;
     QCheckBox*        usePopup;
