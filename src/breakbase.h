@@ -35,11 +35,11 @@ class BreakBase : public QObject
 public:
     BreakBase( QObject* parent );
     ~BreakBase();
-    virtual void setReadOnly( bool );
-    virtual bool readOnly() const;
     virtual void activate();
     virtual void deactivate();
     virtual void setLabel( const QString& );
+    void setReadOnly( bool );
+    bool readOnly() const;
     void showMinimize( bool );
     void showLock( bool );
     void showPostpone( bool );    
@@ -49,7 +49,7 @@ public:
     void excludeGrayEffectOnScreen( int screen );
 
 protected:
-    virtual bool eventFilter( QObject *obj, QEvent *event );
+    bool eventFilter( QObject *obj, QEvent *event ) override;
 
 signals:
     void skip();
@@ -91,7 +91,7 @@ public:
     void setLevel( int );
 
 protected:
-    virtual bool event( QEvent *event );
+    bool event( QEvent *event ) override;
 };
 
 #endif // BREAKBASE_H

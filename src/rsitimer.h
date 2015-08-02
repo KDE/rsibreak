@@ -270,7 +270,7 @@ public:
     explicit RSITimerNoIdle( QObject *parent = 0 );
     ~RSITimerNoIdle();
 protected slots:
-    virtual void timeout();
+    void timeout() override;
 };
 
 #endif

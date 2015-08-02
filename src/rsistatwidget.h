@@ -33,8 +33,8 @@ public:
 
 protected:
     void addStat( RSIStat stat, QGridLayout *grid, int row );
-    virtual void showEvent( QShowEvent * );
-    virtual void hideEvent( QHideEvent * );
+    void showEvent( QShowEvent * ) override;
+    void hideEvent( QHideEvent * ) override;
 private:
     QGridLayout *mGrid;
 };

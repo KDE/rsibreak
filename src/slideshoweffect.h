@@ -34,8 +34,8 @@ public:
     SlideEffect( QObject *parent );
     ~SlideEffect();
     void reset( const QString& path, bool recursive, bool showSmallImages, int interval );
-    void activate();
-    void deactivate();
+    void activate() override;
+    void deactivate() override;
     bool hasImages();
     void loadImage();
 

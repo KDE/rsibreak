@@ -38,7 +38,7 @@ public:
     void showPostpone(bool arg1);
 
 protected:
-    void paintEvent( QPaintEvent *event );
+    void paintEvent( QPaintEvent *event ) override;
 
 private slots:
     void slotCenterIt();

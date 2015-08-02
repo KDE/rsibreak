@@ -29,7 +29,7 @@ public:
     explicit PassivePopup( QWidget *parent = 0 );
     void show();
 protected:
-    virtual void mouseReleaseEvent( QMouseEvent * event );
+    void mouseReleaseEvent( QMouseEvent * event ) override;
 };
 
 #endif

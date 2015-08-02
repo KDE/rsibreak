@@ -31,8 +31,8 @@ public:
     PlasmaEffect( QObject* );
 
 public slots:
-    void activate();
-    void deactivate();
+    void activate() override;
+    void deactivate() override;
 
 private slots:
     void slotGray();

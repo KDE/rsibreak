@@ -140,7 +140,7 @@ public:
      * Resets the value of this item and the complete usage array
      * in RSIGlobals.
      */
-    void reset();
+    void reset() override;
 
     /**
      * Updates the value of this item when activity has occurred.

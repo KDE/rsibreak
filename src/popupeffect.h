@@ -33,11 +33,11 @@ class PopupEffect : public BreakBase
 public:
     PopupEffect( QObject* );
     ~PopupEffect();
-    void setLabel( const QString& );
+    void setLabel( const QString& ) override;
 
 public slots:
-    void activate();
-    void deactivate();
+    void activate() override;
+    void deactivate() override;
 
 private:
     PassivePopup* m_popup;
