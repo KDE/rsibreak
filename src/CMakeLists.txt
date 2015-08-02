@@ -36,7 +36,21 @@ rsiwidget.h RSIObject
 add_executable(rsibreak ${rsibreak_sources})
 
 # linking
-target_link_libraries(rsibreak KF5::NotifyConfig KF5::WindowSystem KF5::Notifications KF5::I18n KF5::ConfigCore KF5::ConfigWidgets Qt5::DBus Qt5::X11Extras KF5::TextWidgets KF5::XmlGui KF5::IconThemes KF5::IdleTime KF5::DBusAddons X11 )
+target_link_libraries(rsibreak
+    KF5::ConfigCore
+    KF5::ConfigWidgets
+    KF5::DBusAddons
+    KF5::IconThemes
+    KF5::I18n
+    KF5::IdleTime
+    KF5::Notifications
+    KF5::NotifyConfig
+    KF5::TextWidgets
+    KF5::XmlGui
+    KF5::WindowSystem
+    Qt5::DBus
+    Qt5::X11Extras
+    X11 )
 
 # install
 install( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})
