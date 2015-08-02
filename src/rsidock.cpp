@@ -51,9 +51,8 @@ RSIDock::RSIDock( QObject *parent )
     setStatus(Active);
 
     const KAboutData &aboutData = KAboutData::applicationData();
-    // TODO
-//     setTitle( aboutData->programName() );
-//     setToolTipTitle( aboutData->programName() );
+    setTitle( aboutData.displayName() );
+    setToolTipTitle( aboutData.displayName() );
 
     m_help = new KHelpMenu( 0, aboutData );
 
