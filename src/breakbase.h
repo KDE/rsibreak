@@ -58,7 +58,6 @@ signals:
 
 private:
     BreakControl* m_breakControl;
-    QObject* m_parent;
     GrayEffectOnAllScreens* m_grayEffectOnAllScreens;
     bool m_readOnly;
     bool m_disableShortcut;
