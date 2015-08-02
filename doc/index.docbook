@@ -82,32 +82,6 @@ Bram Schoenmakers joined the project</para>
 
 </chapter>
 
-<chapter id="install-rsibreak">
-<title>Installing &rsibreak;</title>
-
-<para>There are several ways to install &rsibreak;. If you are using a distribution
-like &SuSE;, Gentoo, &ubuntu;, &kubuntu; or Debian, then your distribution probably contains
-a version of &rsibreak;. We try to keep updated information on the website
-at the <ulink
-url="http://www.rsibreak.org/index.php?option=com_content&amp;view=article&amp;id=46&amp;Itemid=53">Download</ulink> page.</para>
-
-<para>For detailed, distribution-specific instructions, please refer
-to your distribution's manual. If you are not using a recently updated installation of a major distribution then the latest version of this program can be installed manually. Relevant information can be found on the <ulink
-url="http://www.rsibreak.org/index.php?option=com_content&amp;view=article&amp;id=47&amp;Itemid=54e">Source Download</ulink> page.
-</para>
-
-<para>On that page there are also instructions for installation from Subversion. Use that version if you want the newest version possible (the 'bleeding edge' version). However, be aware that you can run into bugs which we do not yet know about, or that the source code may be impossible to compile, due to ongoing changes and enhancements to the code. The instructions for source download are provided on that
-page. If something is wrong, please feel free to change and improve it. You are invited and encouraged to do so.</para>
-
-<para>Type <command>rsibreak</command> at a command prompt or select
-<guimenuitem>&rsibreak;</guimenuitem> from the
-<guisubmenu>Utilities</guisubmenu> group in the KDE start
-menu. The standard &Qt; and &kde; command options are
-available, and can be listed by entering
-<userinput><command>rsibreak</command> <option>--help</option></userinput>
-at the command line.</para>
-</chapter>
-
 <chapter id="general-use">
 <title>Using &rsibreak;</title>
 
