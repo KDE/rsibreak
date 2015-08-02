@@ -55,6 +55,6 @@ target_link_libraries(rsibreak
 # install
 install( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})
 install( PROGRAMS  rsibreak.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
-install( FILES rsibreak.notifyrc DESTINATION ${DATA_INSTALL_DIR}/rsibreak  )
+install( FILES rsibreak.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR}  )
 install( FILES org.rsibreak.rsiwidget.xml DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
 install( FILES rsibreak.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
