@@ -75,8 +75,7 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     vbox->addWidget( d->useIdleTimer );
     vbox->addStretch( 1 );
     d->breakTimerSettings->setLayout( vbox );
-    connect( d->useNoIdleTimer , SIGNAL( toggled( bool ) ),
-             SLOT( slotUseNoIdleTimer() ) );
+    connect(d->useNoIdleTimer, &QRadioButton::toggled, this, &SetupGeneral::slotUseNoIdleTimer);
 
     // ---------------- IDLE Settings ------------------------
 
@@ -108,8 +107,7 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     vbox2->addWidget( d->ignoreIdleForTinyBreaks );
     vbox2->addStretch( 1 );
     d->idleSettings->setLayout( vbox2 );
-    connect( d->resetTimersAfterIdle , SIGNAL( toggled( bool ) ),
-             SLOT( slotShowTimer() ) );
+    connect(d->resetTimersAfterIdle, &QCheckBox::toggled, this, &SetupGeneral::slotShowTimer);
     l->addWidget( d->autoStart );
     l->addWidget( d->breakTimerSettings );
     l->addWidget( d->idleSettings );

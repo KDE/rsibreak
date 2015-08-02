@@ -28,8 +28,8 @@ PlasmaEffect::PlasmaEffect( QObject* parent )
 {
     // Make all other screens gray...
     slotGray();
-    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
-             SLOT( slotGray() ) );
+
+    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &PlasmaEffect::slotGray );
 }
 
 void PlasmaEffect::slotGray()

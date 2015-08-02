@@ -62,7 +62,7 @@ RSITimer::~RSITimer()
 void RSITimer::run()
 {
     QTimer timer;
-    connect( &timer, SIGNAL( timeout() ), this, SLOT( timeout() ) );
+    connect(&timer, &QTimer::timeout, this, &RSITimer::timeout);
     timer.start( 1000 );
     slotReadConfig( /* restart */ true );
 
@@ -138,7 +138,7 @@ int RSITimer::idleTime()
     return totalIdle;
 }
 
-void RSITimer::breakNow( int t )
+void RSITimer::doBreakNow( int t )
 {
     emit updateWidget( t );
     emit breakNow();
@@ -315,17 +315,17 @@ void RSITimer::timeout()
 
     if ( m_breakRequested ) {
         if ( m_tinyBreakRequested ) {
-            breakNow( m_intervals["tiny_maximized"] );
+            doBreakNow( m_intervals["tiny_maximized"] );
             m_pause_left = m_intervals["tiny_maximized"];
             m_nextBreak = TINY_BREAK;
             RSIGlobals::instance()->NotifyBreak( true, false );
         } else if ( m_bigBreakRequested ) {
-            breakNow( m_intervals["big_maximized"] );
+            doBreakNow( m_intervals["big_maximized"] );
             m_pause_left = m_intervals["big_maximized"];
             m_nextBreak = BIG_BREAK;
             RSIGlobals::instance()->NotifyBreak( true, true );
         } else {
-            breakNow( breakInterval );
+            doBreakNow( breakInterval );
             m_pause_left = breakInterval;
         }
 
@@ -377,7 +377,7 @@ void RSITimer::timeout()
                 emit relax( -1, false );
                 m_relax_left = 0;
 
-                breakNow( breakInterval );
+                doBreakNow( breakInterval );
                 m_nextBreak == TINY_BREAK  ?
                 RSIGlobals::instance()->NotifyBreak( true, false ) :
                 RSIGlobals::instance()->NotifyBreak( true, true );
@@ -389,7 +389,7 @@ void RSITimer::timeout()
         } else if ( m_relax_left > 0 ) {
             // no patience left and still moving during a relax moment?
             // this will teach him
-            breakNow( m_relax_left );
+            doBreakNow( m_relax_left );
             m_pause_left = m_relax_left;
             m_relax_left = 0;
             emit relax( -1, false );
@@ -550,18 +550,18 @@ void RSITimerNoIdle::timeout()
 
     if ( m_breakRequested ) {
         if ( m_tinyBreakRequested ) {
-            breakNow( m_intervals["tiny_maximized"] );
+            doBreakNow( m_intervals["tiny_maximized"] );
             m_pause_left = m_intervals["tiny_maximized"];
             m_nextBreak = TINY_BREAK;
             RSIGlobals::instance()->NotifyBreak( true, false );
         } else if ( m_bigBreakRequested ) {
-            breakNow( m_intervals["big_maximized"] );
+            doBreakNow( m_intervals["big_maximized"] );
             m_pause_left = m_intervals["big_maximized"];
             m_nextBreak = BIG_BREAK;
             RSIGlobals::instance()->NotifyBreak( true, true );
         }
 
-        breakNow( breakInterval );
+        doBreakNow( breakInterval );
         m_pause_left = breakInterval;
         m_breakRequested = false;
         m_bigBreakRequested = false;
@@ -599,7 +599,7 @@ void RSITimerNoIdle::timeout()
     if ( m_pause_left == 0 && m_tiny_left == 0 && m_big_left != 0 ) {
         m_pause_left = breakInterval;
         m_nextBreak = TINY_BREAK;
-        breakNow( breakInterval );
+        doBreakNow( breakInterval );
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK,
                 QVariant( QDateTime::currentDateTime() ) );
         RSIGlobals::instance()->NotifyBreak( true, false );
@@ -611,7 +611,7 @@ void RSITimerNoIdle::timeout()
     if ( m_pause_left == 0 && m_big_left == 0 ) {
         m_pause_left = breakInterval;
         m_nextBreak = BIG_BREAK;
-        breakNow( breakInterval );
+        doBreakNow( breakInterval );
         RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK,
                 QVariant( QDateTime::currentDateTime() ) );
         RSIGlobals::instance()->NotifyBreak( true, true );

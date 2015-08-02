@@ -59,17 +59,17 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
     m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), i18n( "Skip Break" ), hbox );
     hboxHBoxLayout->addWidget(m_skipbutton);
     m_skipbutton->setToolTip( i18n( "Skip this break" ) );
-    connect( m_skipbutton, SIGNAL( clicked() ), SIGNAL( skip() ) );
+    connect(m_skipbutton, &QPushButton::clicked, this, &RSIRelaxPopup::skip);
 
     m_postponebutton = new QPushButton( SmallIcon( "go-next" ), i18n( "Postpone Break" ), hbox );
     hboxHBoxLayout->addWidget(m_postponebutton);
     m_postponebutton->setToolTip( i18n( "Postpone this break" ) );
-    connect( m_postponebutton, SIGNAL( clicked() ), SIGNAL( postpone()) );
+    connect(m_postponebutton, &QPushButton::clicked, this, &RSIRelaxPopup::postpone);
     
     m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), i18n( "Lock Screen" ), hbox );
     hboxHBoxLayout->addWidget(m_lockbutton);
     m_lockbutton->setToolTip( i18n( "Lock the session" ) );
-    connect( m_lockbutton, SIGNAL( clicked() ), SIGNAL( lock() ) );
+    connect(m_lockbutton, &QPushButton::clicked, this, &RSIRelaxPopup::lock);
 
     m_popup->setTimeout( 0 ); // no auto close
     m_popup->setView( vbox );

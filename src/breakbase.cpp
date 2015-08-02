@@ -38,9 +38,9 @@ BreakBase::BreakBase( QObject* parent )
     m_breakControl = new BreakControl( 0, Qt::Popup );
     m_breakControl->hide();
     m_breakControl->installEventFilter( this );
-    connect( m_breakControl, SIGNAL( skip() ), SIGNAL( skip() ) );
-    connect( m_breakControl, SIGNAL( lock() ), SIGNAL( lock() ) );
-    connect( m_breakControl, SIGNAL( postpone() ), SIGNAL( postpone() ) );
+    connect(m_breakControl, &BreakControl::skip, this, &BreakBase::skip);
+    connect(m_breakControl, &BreakControl::lock, this, &BreakBase::lock);
+    connect(m_breakControl, &BreakControl::postpone, this, &BreakBase::postpone);
 }
 
 BreakBase::~BreakBase()

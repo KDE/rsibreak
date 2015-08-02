@@ -223,7 +223,7 @@ protected: // TODO: What should be private and what not?
       Some internal preparations for a fullscreen break window.
       @param t The amount of seconds to break.
     */
-    void breakNow( int t );
+    void doBreakNow( int t );
 
     bool            m_breakRequested;
     bool            m_tinyBreakRequested;

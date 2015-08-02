@@ -62,14 +62,12 @@ RSIObject::RSIObject( QWidget *parent )
     dbus.registerObject( "/rsibreak", this );
 
     m_relaxpopup = new RSIRelaxPopup( 0 );
-    connect( m_relaxpopup, SIGNAL( lock() ), SLOT( slotLock() ) );
+    connect(m_relaxpopup, &RSIRelaxPopup::lock, this, &RSIObject::slotLock);
 
-    connect( m_tray, SIGNAL( configChanged( bool ) ), SLOT( readConfig() ) );
-    connect( m_tray, SIGNAL( configChanged( bool ) ), RSIGlobals::instance(),
-             SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( configChanged( bool ) ), m_relaxpopup,
-             SLOT( slotReadConfig() ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_relaxpopup, SLOT( hide() ) );
+    connect(m_tray, &RSIDock::configChanged, this, &RSIObject::readConfig);
+    connect(m_tray, &RSIDock::configChanged, RSIGlobals::instance(), &RSIGlobals::slotReadConfig );
+    connect(m_tray, &RSIDock::configChanged, m_relaxpopup, &RSIRelaxPopup::slotReadConfig);
+    connect(m_tray, &RSIDock::suspend, m_relaxpopup, &RSIRelaxPopup::hide);
 
     srand( time( NULL ) );
 
@@ -208,25 +206,23 @@ void RSIObject::startTimer( bool idle )
 
     m_timer->start();
 
-    connect( m_timer, SIGNAL( breakNow() ), SLOT( maximize() ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( updateWidget( int ) ),
-             SLOT( setCounters( int ) ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( updateToolTip( int, int ) ),
-             m_tray, SLOT( setCounters( int, int ) ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( updateIdleAvg( double ) ), SLOT( updateIdleAvg( double ) ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( minimize() ), SLOT( minimize() ),  Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( relax( int, bool ) ), m_relaxpopup, SLOT( relax( int, bool ) ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( tinyBreakSkipped() ), SLOT( tinyBreakSkipped() ), Qt::QueuedConnection );
-    connect( m_timer, SIGNAL( bigBreakSkipped() ), SLOT( bigBreakSkipped() ), Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::breakNow, this, &RSIObject::maximize, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::updateWidget, this, &RSIObject::setCounters, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::updateToolTip, m_tray, &RSIDock::setCounters, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::updateIdleAvg, this, &RSIObject::updateIdleAvg, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::minimize, this, &RSIObject::minimize,  Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::relax, m_relaxpopup, &RSIRelaxPopup::relax, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::tinyBreakSkipped, this, &RSIObject::tinyBreakSkipped, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::bigBreakSkipped, this, &RSIObject::bigBreakSkipped, Qt::QueuedConnection );
 
-    connect( m_tray, SIGNAL( configChanged( bool ) ), m_timer, SLOT( slotReadConfig( bool ) ) );
-    connect( m_tray, SIGNAL( dialogEntered() ), m_timer, SLOT( slotStop() ) );
-    connect( m_tray, SIGNAL( dialogLeft() ), m_timer, SLOT( slotStart() ) );
-    connect( m_tray, SIGNAL( breakRequest() ), m_timer, SLOT( slotRequestBreak() ) );
-    connect( m_tray, SIGNAL( suspend( bool ) ), m_timer, SLOT( slotSuspended( bool ) ) );
+    connect(m_tray, &RSIDock::configChanged, m_timer, &RSITimer::slotReadConfig);
+    connect(m_tray, &RSIDock::dialogEntered, m_timer, &RSITimer::slotStop);
+    connect(m_tray, &RSIDock::dialogLeft, m_timer, &RSITimer::slotStart);
+    connect(m_tray, &RSIDock::breakRequest, m_timer, &RSITimer::slotRequestBreak);
+    connect(m_tray, &RSIDock::suspend, m_timer, &RSITimer::slotSuspended);
 
-    connect( m_relaxpopup, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect( m_relaxpopup, SIGNAL( postpone() ), m_timer, SLOT( postponeBreak() ) );
+    connect(m_relaxpopup, &RSIRelaxPopup::skip, m_timer, &RSITimer::skipBreak);
+    connect(m_relaxpopup, &RSIRelaxPopup::postpone, m_timer, &RSITimer::postponeBreak);
 
     first = false;
 }
@@ -288,9 +284,9 @@ void RSIObject::readConfig()
         break;
     }
     }
-    connect( m_effect, SIGNAL( skip() ), m_timer, SLOT( skipBreak() ) );
-    connect( m_effect, SIGNAL( lock() ), this, SLOT( slotLock() ) );
-    connect( m_effect, SIGNAL( postpone()),  m_timer, SLOT( postponeBreak() ) );
+    connect(m_effect, &BreakBase::skip, m_timer, &RSITimer::skipBreak);
+    connect(m_effect, &BreakBase::lock, this, &RSIObject::slotLock);
+    connect(m_effect, &BreakBase::postpone, m_timer, &RSITimer::postponeBreak);
 
     m_effect->showMinimize( !config.readEntry( "HideMinimizeButton", false ) );
     m_effect->showLock( !config.readEntry( "HideLockButton", false ) );

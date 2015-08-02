@@ -34,8 +34,7 @@ SlideEffect::SlideEffect( QObject *parent )
 {
     // Make all other screens gray...
     slotGray();
-    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
-             SLOT( slotGray() ) );
+    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &SlideEffect::slotGray );
 
     m_slidewidget = new SlideWidget( 0 );
     KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
@@ -46,7 +45,7 @@ SlideEffect::SlideEffect( QObject *parent )
     setReadOnly( true );
 
     m_timer_slide = new QTimer( this );
-    connect( m_timer_slide, SIGNAL( timeout() ),  SLOT( slotNewSlide() ) );
+    connect(m_timer_slide, &QTimer::timeout, this, &SlideEffect::slotNewSlide);
 }
 
 SlideEffect::~SlideEffect()
@@ -199,8 +198,7 @@ SlideWidget::SlideWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup )
 {
     slotDimension();
-    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
-             SLOT( slotDimension() ) );
+    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &SlideWidget::slotDimension );
 }
 
 SlideWidget::~SlideWidget() {}

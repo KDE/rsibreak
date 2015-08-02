@@ -48,29 +48,28 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     QSize sizeSkip( m_skipButton->size() );
     m_skipButton->setIcon( SmallIcon( "dialog-cancel" ) );
     m_skipButton->setFixedHeight( sizeSkip.height() );
-    connect( m_skipButton, SIGNAL( clicked() ), SIGNAL( skip() ) );
+    connect(m_skipButton, &QPushButton::clicked, this, &BreakControl::skip);
     
     m_postponeButton = new QPushButton( i18n( "Postpone Break" ), hbox );    
     hboxHBoxLayout->addWidget(m_postponeButton);
     QSize sizePostpone(m_postponeButton->size());
     m_postponeButton->setIcon(SmallIcon("go-next"));    
     m_postponeButton->setFixedHeight(sizePostpone.height());
-    connect( m_postponeButton, SIGNAL( clicked() ), SIGNAL( postpone()) );    
+    connect(m_postponeButton, &QPushButton::clicked, this, &BreakControl::postpone);
 
     m_lockButton = new QPushButton( i18n( "Lock Screen" ), hbox );
     hboxHBoxLayout->addWidget(m_lockButton);
     QSize sizeLock( m_skipButton->size() );
     m_lockButton->setFixedHeight( sizeLock.height() );
     m_lockButton->setIcon( SmallIcon( "system-lock-screen" ) );
-    connect( m_lockButton, SIGNAL( clicked() ), SLOT( slotLock() ) );
+    connect(m_lockButton, &QPushButton::clicked, this, &BreakControl::slotLock);
 
     m_vbox->addWidget( m_textLabel );
     m_vbox->addWidget( hbox );
 
     setLayout( m_vbox );
 
-    connect( QApplication::desktop(), SIGNAL( screenCountChanged( int ) ),
-             SLOT( slotCenterIt() ) );
+    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &BreakControl::slotCenterIt );
 
     slotCenterIt();
 }

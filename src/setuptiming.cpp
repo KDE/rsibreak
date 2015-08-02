@@ -71,8 +71,7 @@ SetupTiming::SetupTiming( QWidget* parent )
     mHBoxLayout->addWidget(d->tinyInterval);
     d->tinyInterval->setRange( 1, 1000 );
     l1->setBuddy( d->tinyInterval );
-    connect( d->tinyInterval, SIGNAL( valueChanged( int ) ),
-             SLOT( slotTinyValueChanged( int ) ) );
+    connect(d->tinyInterval, static_cast<void (KPluralHandlingSpinBox::*)(int)>(&KPluralHandlingSpinBox::valueChanged), this, &SetupTiming::slotTinyValueChanged);
 
     QWidget *m2 = new QWidget( this );
     QHBoxLayout *m2HBoxLayout = new QHBoxLayout(m2);

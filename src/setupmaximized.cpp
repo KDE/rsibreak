@@ -90,8 +90,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->effectBox->addItem( i18n( "Show Plasma Dashboard" ), QVariant( RSIObject::Plasma ) );
     d->effectBox->addItem( i18n( "Show Slide Show of Images" ), QVariant( RSIObject::SlideShow ) );
     d->effectBox->addItem( i18n( "Show a Passive Popup" ), QVariant( RSIObject::Popup ) );
-    connect( d->effectBox, SIGNAL( currentIndexChanged( int ) ),
-             SLOT( slotEffectChanged( int ) ) );
+
+    connect(d->effectBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SetupMaximized::slotEffectChanged);
 
     //---------------- SKIP BOX
     QGroupBox *skipBox = new QGroupBox( this );
@@ -185,10 +185,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->slideInterval->setRange( 3, 1000 );
     d->slideInterval->setSuffix( ki18np( " second", " seconds" ) );
 
-    connect( d->changePathButton, SIGNAL( clicked() ),
-             this, SLOT( slotFolderPicker() ) );
-    connect( d->imageFolderEdit, SIGNAL( textChanged( const QString& ) ),
-             this, SLOT( slotFolderEdited( const QString& ) ) );
+    connect(d->changePathButton, &QPushButton::clicked, this, &SetupMaximized::slotFolderPicker);
+    connect(d->imageFolderEdit, &QLineEdit::textChanged, this, &SetupMaximized::slotFolderEdited);
 
     QVBoxLayout *vboxg = new QVBoxLayout( d->slideshowBox );
     vboxg->addWidget( imageFolderBox );
@@ -207,7 +205,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     label->setWordWrap( true );
 
     d->usePopup = new QCheckBox( i18n( "&Use the popup" ), this );
-    connect( d->usePopup, SIGNAL( toggled( bool ) ), SLOT( slotHideFlash() ) );
+    connect(d->usePopup, &QCheckBox::toggled, this, &SetupMaximized::slotHideFlash);
     d->usePopup->setWhatsThis( i18n( "With this checkbox you can indicate if you "
                                      "want to see the popup when it is time to break. It will count down to "
                                      "zero, so you know how long this break will be." ) );

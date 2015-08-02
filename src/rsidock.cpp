@@ -85,8 +85,7 @@ RSIDock::RSIDock( QObject *parent )
     menu->addAction( QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ),
                      this, SLOT( slotConfigure() ) );
 
-    connect( this, SIGNAL( activateRequested(bool,QPoint) ),
-             SLOT( slotShowStatistics() ) );
+    connect(this, &RSIDock::activateRequested, this, &RSIDock::slotShowStatistics);
 }
 
 RSIDock::~RSIDock()
@@ -152,15 +151,14 @@ void RSIDock::slotShowStatistics()
         mainLayout->addWidget(mainWidget);
         QPushButton *user1Button = new QPushButton;
         buttonBox->addButton(user1Button, QDialogButtonBox::ActionRole);
-        m_statsDialog->connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-        m_statsDialog->connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+        connect(buttonBox, &QDialogButtonBox::accepted, m_statsDialog, &QDialog::accept);
+        connect(buttonBox, &QDialogButtonBox::rejected, m_statsDialog, &QDialog::reject);
         //PORTING SCRIPT: WARNING mainLayout->addWidget(buttonBox) must be last item in layout. Please move it.
         mainLayout->addWidget(buttonBox);
         user1Button->setText(i18n( "Reset"  ));
 
         m_statsWidget = new RSIStatWidget( m_statsDialog );
-        connect( m_statsDialog, SIGNAL( clicked() ),
-                 this, SLOT( slotResetStats() ) );
+        connect(user1Button, &QPushButton::clicked, this, &RSIDock::slotResetStats);
 
 //PORTING: Verify that widget was added to mainLayout: //PORTING: Verify that widget was added to mainLayout:         m_statsDialog->setMainWidget( m_statsWidget );
 // Add mainLayout->addWidget(m_statsWidget); if necessary

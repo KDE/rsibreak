@@ -67,7 +67,7 @@ Setup::Setup( QWidget* parent )
     KPageWidgetItem* page4 = addPage( d->notificationsPage, i18n( "Actions" ) );
     page4->setIcon( QIcon::fromTheme( "configure" ) ); // krazy:exclude=iconnames
 
-    connect( this, SIGNAL( okClicked() ), this, SLOT( slotOkClicked() ) );
+    connect(this, &Setup::accepted, this, &Setup::slotOkClicked);
 
     KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
     KWindowConfig::restoreWindowSize( windowHandle(), config );
