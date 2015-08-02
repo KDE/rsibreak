@@ -33,9 +33,5 @@ include(ECMInstallIcons)
 add_subdirectory( icons )
 add_subdirectory( doc )
 add_subdirectory( src )
-# TODO
-# if (PLASMA_FOUND)
-#   ADD_SUBDIRECTORY( plasma )
-# endif (PLASMA_FOUND)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
