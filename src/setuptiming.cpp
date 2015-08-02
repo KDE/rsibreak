@@ -169,11 +169,11 @@ SetupTiming::SetupTiming( QWidget* parent )
     slotTinyValueChanged( d->tinyInterval->value() );
 
     // Resize to minimum possible.
-    d->tinyInterval->setFixedSize( d->tinyInterval->minimumSizeHint() );
-    d->bigInterval->setFixedSize( d->tinyInterval->minimumSizeHint() );
-    d->tinyDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
-    d->bigDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
-    d->postponeDuration->setFixedSize( d->tinyInterval->minimumSizeHint() );
+    d->tinyInterval->setFixedSize( d->tinyInterval->sizeHint() );
+    d->bigInterval->setFixedSize( d->tinyInterval->sizeHint() );
+    d->tinyDuration->setFixedSize( d->tinyInterval->sizeHint() );
+    d->bigDuration->setFixedSize( d->tinyInterval->sizeHint() );
+    d->postponeDuration->setFixedSize( d->tinyInterval->sizeHint() );
 }
 
 SetupTiming::~SetupTiming()
