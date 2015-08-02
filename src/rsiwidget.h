@@ -85,7 +85,6 @@ private:
     RSIDock*        m_tray;
     RSITimer*       m_timer;
     BreakBase*      m_effect;
-    QWidget*        m_parent;
 
     QLabel*         m_tool;
 
