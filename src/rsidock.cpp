@@ -162,10 +162,7 @@ void RSIDock::slotShowStatistics()
         mainLayout->addWidget(buttonBox);
     }
 
-    if ( m_statsDialog->isVisible() &&
-            KWindowSystem::windowInfo(
-                m_statsDialog->winId(), NET::CurrentDesktop ).desktop() ==
-            KWindowSystem::currentDesktop() ) {
+    if ( m_statsDialog->isVisible() && KWindowInfo(m_statsDialog->winId(), NET::WMDesktop ).isOnCurrentDesktop() ) {
         m_statsDialog->hide();
     } else {
         m_statsDialog->show();
