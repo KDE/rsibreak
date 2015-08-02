@@ -21,6 +21,7 @@ find_package(KF5 REQUIRED COMPONENTS
     XmlGui
     WindowSystem
     )
+find_package(X11 REQUIRED MODULE)
 
 include(KDEInstallDirs)
 include(KDECompilerSettings)
