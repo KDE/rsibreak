@@ -65,11 +65,9 @@ int main( int argc, char *argv[] )
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
-    KDBusService service;
+    KDBusService service(KDBusService::Unique);
 
-    // TODO unique app
-    // TODO
-//     a.disableSessionManagement();
+//   TODO  a.disableSessionManagement();
     app.setQuitOnLastWindowClosed( false );
 
     new RSIObject();
