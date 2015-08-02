@@ -37,7 +37,6 @@
 class SetupTimingPriv
 {
 public:
-	// TODO Check all this spinboxes are good
     KPluralHandlingSpinBox*          tinyInterval;
     KPluralHandlingSpinBox*          tinyDuration;
     KPluralHandlingSpinBox*          bigInterval;
