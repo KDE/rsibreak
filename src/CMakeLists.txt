@@ -27,11 +27,10 @@ plasmaeffect.cpp
 breakcontrol.cpp
 )
 
-# TODO
-# QT4_ADD_DBUS_ADAPTOR( rsibreak_sources
-# org.rsibreak.rsiwidget.xml
-# rsiwidget.h RSIObject
-# )
+QT5_ADD_DBUS_ADAPTOR( rsibreak_sources
+org.rsibreak.rsiwidget.xml
+rsiwidget.h RSIObject
+)
 
 # compilation
 add_executable(rsibreak ${rsibreak_sources})

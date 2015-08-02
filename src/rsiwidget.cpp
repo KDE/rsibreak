@@ -19,8 +19,7 @@
 */
 
 #include "rsiwidget.h"
-// TODO
-// #include "rsiwidgetadaptor.h"
+#include "rsiwidgetadaptor.h"
 #include "grayeffect.h"
 #include "popupeffect.h"
 #include "plasmaeffect.h"
@@ -56,8 +55,7 @@ RSIObject::RSIObject( QWidget *parent )
     m_tray = new RSIDock( this );
     m_tray->setIconByName( "rsibreak0" );
 
-    // D-Bus
-// TODO    new RsiwidgetAdaptor( this );
+    new RsiwidgetAdaptor( this );
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject( "/rsibreak", this );
 
