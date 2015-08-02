@@ -103,7 +103,6 @@ void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
     case LAST_TINY_BREAK:
     case LAST_BIG_BREAK: {
         QTime dt( QTime::currentTime() );
-	// TODO check
         width = ( int )( fm.width( QLocale().toString( dt ) ) * 1.25 );
         break;
     }
