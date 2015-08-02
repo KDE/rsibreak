@@ -314,7 +314,6 @@ void RSIStats::updateLabel( RSIStat stat )
     case LAST_BIG_BREAK:
     case LAST_TINY_BREAK: {
         QTime when( m_statistics[ stat ]->getValue().toTime() );
-	// TODO Check looks ok
         when.isValid() ? l->setText( when.toString() )
         : l->clear();
         break;
