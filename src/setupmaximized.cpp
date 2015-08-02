@@ -162,12 +162,13 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QHBoxLayout *imageFolderBoxHBoxLayout = new QHBoxLayout(imageFolderBox);
     imageFolderBoxHBoxLayout->setMargin(0);
     d->imageFolderEdit = new QLineEdit( imageFolderBox );
-    imageFolderBoxHBoxLayout->addWidget(d->imageFolderEdit);
     d->imageFolderEdit->setWhatsThis( i18n( "Select the folder from which you "
                                             "want to see images. These images are randomly shown during the breaks. "
                                             "It will be searched recursively if you want..." ) );
     d->changePathButton = new QPushButton( i18n( "&Change..." ),
                                            imageFolderBox );
+    imageFolderBoxHBoxLayout->addWidget(d->changePathButton);
+    imageFolderBoxHBoxLayout->addWidget(d->imageFolderEdit);
     d->searchRecursiveCheck = new QCheckBox( i18n( "Search path recursively" ),
             this );
     d->showSmallImagesCheck = new QCheckBox( i18n( "Show small images" ),
