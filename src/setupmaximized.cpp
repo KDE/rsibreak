@@ -138,7 +138,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     QHBoxLayout *hboxsliderHBoxLayout = new QHBoxLayout(hboxslider);
     hboxsliderHBoxLayout->setMargin(0);
     hboxsliderHBoxLayout->setSpacing( 30 );
-    new QLabel( i18n( "Transparent" ), hboxslider );
+    QLabel *lt = new QLabel( i18n( "Transparent" ), hboxslider );
+    hboxsliderHBoxLayout->addWidget(lt);
     d->graySlider = new QSlider( hboxslider );
     hboxsliderHBoxLayout->addWidget(d->graySlider);
     d->graySlider->setOrientation( Qt::Horizontal );
@@ -147,7 +148,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->graySlider->setSingleStep( 5 );
     d->graySlider->setTickPosition( QSlider::TicksBelow );
     d->graySlider->setMaximum( 100 );
-    new QLabel( i18n( "Solid" ), hboxslider );
+    QLabel *ls = new QLabel( i18n( "Solid" ), hboxslider );
+    hboxsliderHBoxLayout->addWidget(ls);
 
     QVBoxLayout *vbox8 = new QVBoxLayout( d->grayBox );
     vbox8->addWidget( hboxslider );
