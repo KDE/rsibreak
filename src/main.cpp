@@ -24,7 +24,11 @@
 #include <stdlib.h>
 #include <QApplication>
 #include <QCommandLineParser>
+#include <QSessionManager>
 #include <KDBusService>
+#include <KConfigGroup>
+#include <KSharedConfig>
+#include <QDebug>
 #include <Kdelibs4ConfigMigrator>
 
 #include "rsiwidget.h"
@@ -32,6 +36,7 @@
 int main( int argc, char *argv[] )
 {
     QApplication app(argc, argv);
+    app.setQuitOnLastWindowClosed( false );
     
     Kdelibs4ConfigMigrator migrate(QLatin1String("rsibreak"));
     migrate.setConfigFiles(QStringList() << QLatin1String("rsibreakrc") << QLatin1String("rsibreak.notifyrc"));
@@ -61,14 +66,25 @@ int main( int argc, char *argv[] )
     KAboutData::setApplicationData(aboutData);
     parser.addVersionOption();
     parser.addHelpOption();
+    parser.addOption(QCommandLineOption("autostart"));
     aboutData.setupCommandLine(&parser);
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
     KDBusService service(KDBusService::Unique);
 
-//   TODO  a.disableSessionManagement();
-    app.setQuitOnLastWindowClosed( false );
+    auto disableSessionManagement = [](QSessionManager &sm) {
+        sm.setRestartHint(QSessionManager::RestartNever);
+    };
+    QObject::connect(&app, &QGuiApplication::commitDataRequest, disableSessionManagement);
+    QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
+
+    if (parser.isSet("autostart")) {
+        KConfigGroup config = KSharedConfig::openConfig()->group( "General" );
+        const bool autostart = config.readEntry( "AutoStart", false );
+        if (!autostart)
+            return 0;
+    }
 
     new RSIObject();
     return app.exec();
