@@ -57,7 +57,6 @@ RSIDock::RSIDock( QObject *parent )
     m_help = new KHelpMenu( 0, aboutData );
 
     QMenu* menu = contextMenu();
-    qDebug() << "NNNNNNNNNE" << menu;
     menu->addAction( QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help,
                      SLOT( aboutKDE() ) );
     menu->addAction( i18n( "&About RSIBreak" ), m_help,
