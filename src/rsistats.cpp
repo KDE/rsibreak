@@ -47,52 +47,6 @@ RSIStats::RSIStats()
     m_statistics.insert( ACTIVITY_PERC,
                          new RSIStatItem( i18n( "Percentage of activity" ), 0 ) );
 
-    m_statistics.insert( MAX_IDLENESS,
-                         new RSIStatItem( i18n( "Maximum idle period" ) ) );
-    m_statistics[MAX_IDLENESS]->addDerivedItem( IDLENESS );
-
-    m_statistics.insert( CURRENT_IDLE_TIME,
-                         new RSIStatItem( i18n( "Current idle period" ) ) );
-
-    m_statistics.insert( TINY_BREAKS,
-                         new RSIStatItem( i18n( "Total number of short breaks" ) ) );
-    m_statistics[TINY_BREAKS]->addDerivedItem( PAUSE_SCORE );
-    m_statistics[TINY_BREAKS]->addDerivedItem( LAST_TINY_BREAK );
-
-    QDateTime dt( QDate( -1, -1, -1 ), QTime( -1, -1, -1 ) );
-    m_statistics.insert( LAST_TINY_BREAK,
-                         new RSIStatItem( i18n( "Last short break" ), dt ) );
-
-    m_statistics.insert( TINY_BREAKS_SKIPPED,
-                         new RSIStatItem( i18n( "Number of skipped short breaks (user)" ) ) );
-    m_statistics[TINY_BREAKS_SKIPPED]->addDerivedItem( PAUSE_SCORE );
-
-    m_statistics.insert( TINY_BREAKS_POSTPONED,
-                         new RSIStatItem( i18n( "Number of postponed short breaks (user)" ) ) );
-
-    m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
-                         new RSIStatItem( i18n( "Number of skipped short breaks (idle)" ) ) );
-
-    m_statistics.insert( BIG_BREAKS,
-                         new RSIStatItem( i18n( "Total number of long breaks" ) ) );
-    m_statistics[BIG_BREAKS]->addDerivedItem( PAUSE_SCORE );
-    m_statistics[BIG_BREAKS]->addDerivedItem( LAST_BIG_BREAK );
-
-    m_statistics.insert( LAST_BIG_BREAK,
-                         new RSIStatItem( i18n( "Last long break" ), dt ) );
-
-    m_statistics.insert( BIG_BREAKS_SKIPPED,
-                         new RSIStatItem( i18n( "Number of skipped long breaks (user)" ) ) );
-    m_statistics[BIG_BREAKS_SKIPPED]->addDerivedItem( PAUSE_SCORE );
-
-    m_statistics.insert( BIG_BREAKS_POSTPONED,
-                         new RSIStatItem( i18n( "Number of postponed long breaks (user)" ) ) );
-
-    m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
-                         new RSIStatItem( i18n( "Number of skipped long breaks (idle)" ) ) );
-
-    m_statistics.insert( PAUSE_SCORE, new RSIStatItem( i18n( "Pause score" ), 100 ) );
-
     m_statistics.insert( ACTIVITY_PERC_MINUTE,
                          new RSIStatBitArrayItem( i18n( "Percentage of activity last minute" ),
                                                   QVariant( 0 ), 60 ) );
@@ -103,12 +57,59 @@ RSIStats::RSIStats()
                          new RSIStatBitArrayItem( i18n( "Percentage of activity last 6 hours" ),
                                                   QVariant( 0 ), 6 * 3600 ) );
 
+    m_statistics.insert( MAX_IDLENESS,
+                         new RSIStatItem( i18n( "Maximum idle period" ) ) );
+    m_statistics[MAX_IDLENESS]->addDerivedItem( IDLENESS );
+
+    m_statistics.insert( CURRENT_IDLE_TIME,
+                         new RSIStatItem( i18n( "Current idle period" ) ) );
+
+    m_statistics.insert( IDLENESS_CAUSED_SKIP_TINY,
+                         new RSIStatItem( i18n( "Number of skipped short breaks (idle)" ) ) );
+
+    m_statistics.insert( IDLENESS_CAUSED_SKIP_BIG,
+                         new RSIStatItem( i18n( "Number of skipped long breaks (idle)" ) ) );
+
+    m_statistics.insert( TINY_BREAKS,
+                         new RSIStatItem( i18n( "Total number of short breaks" ) ) );
+    m_statistics[TINY_BREAKS]->addDerivedItem( PAUSE_SCORE );
+    m_statistics[TINY_BREAKS]->addDerivedItem( LAST_TINY_BREAK );
+
+    m_statistics.insert( TINY_BREAKS_SKIPPED,
+                         new RSIStatItem( i18n( "Number of skipped short breaks (user)" ) ) );
+    m_statistics[TINY_BREAKS_SKIPPED]->addDerivedItem( PAUSE_SCORE );
+
+    m_statistics.insert( TINY_BREAKS_POSTPONED,
+                         new RSIStatItem( i18n( "Number of postponed short breaks (user)" ) ) );
+
+    QDateTime dt( QDate( -1, -1, -1 ), QTime( -1, -1, -1 ) );
+    m_statistics.insert( LAST_TINY_BREAK,
+                         new RSIStatItem( i18n( "Last short break" ), dt ) );
+
+    m_statistics.insert( BIG_BREAKS,
+                         new RSIStatItem( i18n( "Total number of long breaks" ) ) );
+    m_statistics[BIG_BREAKS]->addDerivedItem( PAUSE_SCORE );
+    m_statistics[BIG_BREAKS]->addDerivedItem( LAST_BIG_BREAK );
+
+    m_statistics.insert( BIG_BREAKS_SKIPPED,
+                         new RSIStatItem( i18n( "Number of skipped long breaks (user)" ) ) );
+    m_statistics[BIG_BREAKS_SKIPPED]->addDerivedItem( PAUSE_SCORE );
+
+    m_statistics.insert( BIG_BREAKS_POSTPONED,
+                         new RSIStatItem( i18n( "Number of postponed long breaks (user)" ) ) );
+
+    m_statistics.insert( LAST_BIG_BREAK,
+                         new RSIStatItem( i18n( "Last long break" ), dt ) );
+
+    m_statistics.insert( PAUSE_SCORE, new RSIStatItem( i18n( "Pause score" ), 100 ) );
+
     // initialise labels
-    QMap<RSIStat, RSIStatItem *>::Iterator it;
-    for ( it = m_statistics.begin(); it != m_statistics.end(); ++it ) {
-        m_labels[it.key()] = new QLabel( 0 );
-        m_labels[it.key()]->setWhatsThis( getWhatsThisText( it.key() ) );
-        m_statistics[it.key()]->getDescription()->setWhatsThis( getWhatsThisText( it.key() ) );
+    for ( int i = 0; i < STAT_COUNT; ++i ) {
+        QLabel *l = new QLabel( 0 );
+        const QString whatsThis = getWhatsThisText( static_cast<RSIStat>(i) );
+        l->setWhatsThis( whatsThis );
+        m_statistics[i]->getDescription()->setWhatsThis( whatsThis );
+        m_labels << l;
     }
 
     // initialise statistics
@@ -117,27 +118,21 @@ RSIStats::RSIStats()
 
 RSIStats::~RSIStats()
 {
-    QMap<RSIStat, QLabel *>::Iterator it;
-    for ( it = m_labels.begin() ; it != m_labels.end(); ++it ) {
-        delete it.value();
-        it.value() = 0L;
-    }
+    qDeleteAll(m_labels);
 
-    QMap<RSIStat, RSIStatItem *>::Iterator it2;
-    for ( it2 = m_statistics.begin() ; it2 != m_statistics.end(); ++it2 ) {
-        QLabel *l = it2.value()->getDescription();
+    for ( int i = 0; i < STAT_COUNT; ++i ) {
+        RSIStatItem *item = m_statistics[i];
+        QLabel *l = item->getDescription();
         delete l;
-        l = 0L;
-        delete it2.value();
+        delete item;
     }
 }
 
 void RSIStats::reset()
 {
-    QMap<RSIStat, RSIStatItem *>::ConstIterator it;
-    for ( it = m_statistics.constBegin(); it != m_statistics.constEnd(); ++it ) {
-        m_statistics[ it.key()]->reset();
-        updateStat( it.key(), /* update derived stats */ false );
+    for ( int i = 0; i < STAT_COUNT; ++i ) {
+        m_statistics[ i ]->reset();
+        updateStat( static_cast<RSIStat>(i), /* update derived stats */ false );
     }
 }
 
@@ -334,10 +329,8 @@ void RSIStats::updateLabels()
     if ( !m_doUpdates )
         return;
 
-    QMapIterator<RSIStat, RSIStatItem *> it( m_statistics );
-    while ( it.hasNext() ) {
-        it.next();
-        updateLabel( it.key() );
+    for ( int i = 0; i < STAT_COUNT; ++i ) {
+        updateLabel( static_cast<RSIStat>(i) );
     }
 }
 

@@ -24,7 +24,6 @@
 
 #include <QDateTime>
 #include <QThread>
-#include <QMap>
 
 #include "rsiglobals.h"
 
@@ -255,7 +254,7 @@ protected: // TODO: What should be private and what not?
     int             m_lastrunTiny;
     int             m_lastrunBig;
 
-    QMap<RSIInterval, int> m_intervals;
+    QVector<int> m_intervals;
 };
 
 /**

@@ -212,7 +212,7 @@ void RSITimer::postponeBreak()
 
 void RSITimer::slotReadConfig( bool restart )
 {
-    const QMap<RSIInterval, int> oldIntervals = m_intervals;
+    const QVector<int> oldIntervals = m_intervals;
     readConfig();
     m_intervals = RSIGlobals::instance()->intervals();
     if ( restart ) {

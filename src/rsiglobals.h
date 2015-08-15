@@ -30,7 +30,7 @@
 class RSIStats;
 
 enum RSIStat {
-    TOTAL_TIME,
+    TOTAL_TIME = 0,
     ACTIVITY,
     IDLENESS,
     ACTIVITY_PERC,
@@ -49,16 +49,18 @@ enum RSIStat {
     BIG_BREAKS_SKIPPED,
     BIG_BREAKS_POSTPONED,
     LAST_BIG_BREAK,
-    PAUSE_SCORE
+    PAUSE_SCORE,
+    STAT_COUNT
 };
 
 enum RSIInterval {
-    TINY_MINIMIZED_INTERVAL,
+    TINY_MINIMIZED_INTERVAL = 0,
     TINY_MAXIMIZED_INTERVAL,
     BIG_MINIMIZED_INTERVAL,
     BIG_MAXIMIZED_INTERVAL,
     POSTPONE_BREAK_INTERVAL,
-    PATIENCE_INTERVAL
+    PATIENCE_INTERVAL,
+    INTERVAL_COUNT
 };
 
 /**
@@ -104,7 +106,7 @@ public:
      * These intervals define when a tiny or big break should occur and for how
      * long.
      */
-    QMap<RSIInterval, int> &intervals() {
+    const QVector<int> &intervals() const {
         return m_intervals;
     }
 
@@ -155,7 +157,7 @@ public slots:
 private:
     static RSIGlobals *m_instance;
     static RSIStats *m_stats;
-    QMap<RSIInterval, int> m_intervals;
+    QVector<int> m_intervals;
     QBitArray m_usageArray;
     KFormat m_format;
 };
