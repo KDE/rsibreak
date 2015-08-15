@@ -211,7 +211,6 @@ protected: // TODO: What should be private and what not?
     void readConfig();
     void writeConfig();
     void hibernationDetector();
-    void checkScreensaverMode();
 
     /**
       Restores the timers of RSIBreak when the application was closed and

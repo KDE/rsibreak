@@ -50,7 +50,7 @@ target_link_libraries(rsibreak
     KF5::WindowSystem
     Qt5::DBus
     Qt5::X11Extras
-    ${X11_X11_LIB} )
+    )
 
 # install
 install( TARGETS rsibreak ${INSTALL_TARGETS_DEFAULT_ARGS})
