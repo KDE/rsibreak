@@ -51,6 +51,15 @@ enum RSIStat {
     PAUSE_SCORE
 };
 
+enum RSIInterval {
+    TINY_MINIMIZED_INTERVAL,
+    TINY_MAXIMIZED_INTERVAL,
+    BIG_MINIMIZED_INTERVAL,
+    BIG_MAXIMIZED_INTERVAL,
+    POSTPONE_BREAK_INTERVAL,
+    PATIENCE_INTERVAL
+};
+
 /**
  * @class RSIGlobals
  * This class consists of a few commonly used routines and values.
@@ -94,7 +103,7 @@ public:
      * These intervals define when a tiny or big break should occur and for how
      * long.
      */
-    QMap<QString, int> &intervals() {
+    QMap<RSIInterval, int> &intervals() {
         return m_intervals;
     }
 
@@ -144,7 +153,7 @@ public slots:
 
 private:
     static RSIGlobals *m_instance;
-    QMap<QString, int> m_intervals;
+    QMap<RSIInterval, int> m_intervals;
     static RSIStats *m_stats;
     QBitArray m_usageArray;
     QStringList m_dcopstartbig;

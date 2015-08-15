@@ -26,6 +26,8 @@
 #include <QThread>
 #include <QMap>
 
+#include "rsiglobals.h"
+
 /**
  * @class RSITimer
  * This class controls the timings and arranges the maximizing
@@ -253,7 +255,7 @@ protected: // TODO: What should be private and what not?
     int             m_lastrunTiny;
     int             m_lastrunBig;
 
-    QMap<QString, int> m_intervals;
+    QMap<RSIInterval, int> m_intervals;
 };
 
 /**
