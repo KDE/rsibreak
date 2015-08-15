@@ -179,42 +179,10 @@ and hide the minimize button. Remember, you choose how strictly to follow the br
     </tip>
 </chapter>
 
-<!--
-This config page no longer exists
-<chapter id="dcop">
-<title>&DCOP;</title>
-
-<para>There is one special page in the settings which is called
-<guilabel>&DCOP;</guilabel>. &DCOP; stands for the Desktop Communication Protocol. &DCOP; enables you to control &kde; applications from the command line.
-Read <ulink url="http://www.volny.cz/bwian/dcop.html">this article</ulink> to read more about &DCOP;.</para>
-
-<para>With the &DCOP; section in &rsibreak;, you can set up a &DCOP; call to be made when a break occurs. One of the examples is for &kopete;. You can
-inform your instant messenger to enter away mode when you have a break and
-return to normal mode when the break is over.</para>
-
-<screenshot>
-<screeninfo>&rsibreak; &DCOP;-settings</screeninfo>
-<mediaobject>
-<imageobject>
-<imagedata fileref="dcop.png" format="PNG"/>
-</imageobject>
-<textobject>
-<phrase>Here you can set up different &DCOP; commands to execute at start and end of the break</phrase>
-</textobject>
-</mediaobject>
-</screenshot>
-
-<para><application>KDCOP</application> is a convenient method to find out which DCOP command to use. Open it, find the command you want to use, dragging and dropping it into the appropriate line in the relevant &rsibreak; dialog.</para>
-
-<para>Besides &DCOP; calls when a break occurs, you can also use &DCOP; to control
-&rsibreak;. See the chapter <link linkend="general-use">Using</link> for more
-information.</para>
-</chapter>
--->
 <chapter id="credits-and-license">
 <title>Credits and License</title>
 
-<para>&rsibreak; copyright 2005-2006 Tom Albers, Bram Schoenmakers</para>
+<para>&rsibreak; copyright 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
 <para>Documentation copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
