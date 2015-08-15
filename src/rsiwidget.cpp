@@ -73,7 +73,7 @@ RSIObject::RSIObject( QWidget *parent )
 
     setIcon( 0 );
 
-    QTimer::singleShot( 2000, this, SLOT( slotWelcome() ) );
+    QTimer::singleShot( 2000, this, &RSIObject::slotWelcome );
 }
 
 RSIObject::~RSIObject()

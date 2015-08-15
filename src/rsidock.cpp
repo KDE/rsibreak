@@ -43,6 +43,22 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
+template<typename Func, typename Object>
+static QAction *doAddAction(QMenu *menu, const QString &text, Object *receiver, Func func)
+{
+    QAction *action = menu->addAction(text);
+    QObject::connect(action, &QAction::triggered, receiver, func);
+    return action;
+}
+
+template<typename Func, typename Object>
+static QAction *doAddAction(QMenu *menu, const QIcon &icon, const QString &text, Object *receiver, Func func)
+{
+    QAction *action = doAddAction(menu, text, receiver, func);
+    action->setIcon(icon);
+    return action;
+}
+
 RSIDock::RSIDock( QObject *parent )
         : KStatusNotifierItem( parent ), m_suspended( false )
         , m_statsDialog( 0 ), m_statsWidget( 0 )
@@ -57,31 +73,19 @@ RSIDock::RSIDock( QObject *parent )
     m_help = new KHelpMenu( 0, aboutData );
 
     QMenu* menu = contextMenu();
-    menu->addAction( QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help,
-                     SLOT( aboutKDE() ) );
-    menu->addAction( i18n( "&About RSIBreak" ), m_help,
-                     SLOT( aboutApplication() ) );
-    menu->addAction( QIcon::fromTheme( "help-contents" ),
-                     i18n( "RSIBreak &Handbook" ), m_help, SLOT( appHelpActivated() ),
-                     KStandardShortcut::shortcut( KStandardShortcut::Help )[0] );
+    doAddAction( menu, QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help, &KHelpMenu::aboutKDE );
+    doAddAction( menu, i18n( "&About RSIBreak" ), m_help, &KHelpMenu::aboutApplication );
+    doAddAction( menu, QIcon::fromTheme( "help-contents" ), i18n( "RSIBreak &Handbook" ), m_help, &KHelpMenu::appHelpActivated );
 
     menu->addSeparator();
-    menu->addAction( QIcon::fromTheme( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, SLOT( reportBug() ) );
-    menu->addAction( i18n( "Switch application &language..." ), m_help,
-                     SLOT( switchApplicationLanguage() ) );
+    doAddAction( menu, QIcon::fromTheme( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, &KHelpMenu::reportBug );
+    doAddAction( menu, i18n( "Switch application &language..." ), m_help, &KHelpMenu::switchApplicationLanguage );
 
     menu->addSeparator();
-    m_suspendItem = menu->addAction( SmallIcon( "media-playback-pause" ),
-                                     i18n( "&Suspend RSIBreak" ), this,
-                                     SLOT( slotSuspend() ) );
-    menu->addAction( SmallIcon( "view-statistics" ),
-                     i18n( "&Usage Statistics" ), this,
-                     SLOT( slotShowStatistics() ) );
-    menu->addAction( SmallIcon( "preferences-desktop-notification" ),
-                     i18n( "Configure &Notifications..." ), this,
-                     SLOT( slotConfigureNotifications() ) );
-    menu->addAction( QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ),
-                     this, SLOT( slotConfigure() ) );
+    m_suspendItem = doAddAction(menu, SmallIcon( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotSuspend );
+    doAddAction(menu, SmallIcon( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );
+    doAddAction(menu, SmallIcon( "preferences-desktop-notification" ), i18n( "Configure &Notifications..." ), this, &RSIDock::slotConfigureNotifications );
+    doAddAction(menu, QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ), this, &RSIDock::slotConfigure );
 
     connect(this, &RSIDock::activateRequested, this, &RSIDock::slotShowStatistics);
 }

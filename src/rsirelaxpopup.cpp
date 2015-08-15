@@ -125,7 +125,7 @@ void RSIRelaxPopup::flash()
     if ( !m_useFlash )
         return;
 
-    QTimer::singleShot( 500, this, SLOT( unflash() ) );
+    QTimer::singleShot( 500, this, &RSIRelaxPopup::unflash );
     QPalette normal;
     normal.setColor( QPalette::Inactive, QPalette::WindowText,
                      KColorScheme( QPalette::Active, KColorScheme::Selection ).background().color() );

@@ -188,7 +188,7 @@ void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImag
 
     findImagesInFolder( path );
     qDebug() << "Amount of Files:" << m_files.count();
-    QTimer::singleShot( 2000, this, SLOT( slotNewSlide() ) );
+    QTimer::singleShot( 2000, this, &SlideEffect::slotNewSlide );
 }
 
 // ------------------ Show widget
