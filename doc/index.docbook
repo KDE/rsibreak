@@ -42,8 +42,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2010-10-03</date>
-<releaseinfo>0.11 (&kde; 4.5)</releaseinfo>
+<date>2015-08-15</date>
+<releaseinfo>0.12</releaseinfo>
 
 <abstract><para>Repetitive Strain Injury is an illness which can occur as a
 result of continuous work with a mouse and keyboard. The risk of suffering injury increases the longer users work without breaks. &rsibreak; simply offers reminders to take a break now and then. </para></abstract>
