@@ -24,6 +24,7 @@
 #include <QObject>
 #include <QStringList>
 
+#include <kformat.h>
 #include <kpassivepopup.h>
 
 class RSIStats;
@@ -87,7 +88,7 @@ public:
      *
      * @see RSIStats
      */
-    RSIStats *stats() {
+    static RSIStats *stats() {
         return m_stats;
     }
 
@@ -153,9 +154,10 @@ public slots:
 
 private:
     static RSIGlobals *m_instance;
-    QMap<RSIInterval, int> m_intervals;
     static RSIStats *m_stats;
+    QMap<RSIInterval, int> m_intervals;
     QBitArray m_usageArray;
+    KFormat m_format;
 };
 
 #endif // RSIGLOBALS_H

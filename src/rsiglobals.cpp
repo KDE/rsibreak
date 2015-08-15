@@ -27,7 +27,6 @@
 #include <kconfiggroup.h>
 
 #include <math.h>
-#include <KFormat>
 
 #include "rsistats.h"
 
@@ -59,7 +58,7 @@ RSIGlobals *RSIGlobals::instance()
 
 QString RSIGlobals::formatSeconds( const int seconds )
 {
-    return KFormat().formatSpelloutDuration( seconds * 1000 );
+    return m_format.formatSpelloutDuration( seconds * 1000 );
 }
 
 void RSIGlobals::slotReadConfig()
