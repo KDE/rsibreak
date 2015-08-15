@@ -156,11 +156,6 @@ private:
     QMap<RSIInterval, int> m_intervals;
     static RSIStats *m_stats;
     QBitArray m_usageArray;
-    QStringList m_dcopstartbig;
-    QStringList m_dcopendbig;
-    QStringList m_dcopstarttiny;
-    QStringList m_dcopendtiny;
-
 };
 
 #endif // RSIGLOBALS_H
