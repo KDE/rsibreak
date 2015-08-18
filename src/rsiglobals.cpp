@@ -21,10 +21,10 @@
 
 #include <qdebug.h>
 #include <kconfig.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
+#include <klocalizedstring.h>
 #include <knotification.h>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 #include <math.h>
 
