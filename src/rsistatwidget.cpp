@@ -33,7 +33,6 @@ RSIStatWidget::RSIStatWidget( QWidget *parent )
         : QWidget( parent )
 {
     mGrid = new QGridLayout( this );
-    mGrid->setSpacing( 5 );
 
     QGroupBox *gb = new QGroupBox( i18n( "Time" ), this );
     QGridLayout* subgrid = new QGridLayout( gb );
