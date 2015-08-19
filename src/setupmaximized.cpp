@@ -152,7 +152,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QVBoxLayout *vbox8 = new QVBoxLayout( d->grayBox );
     vbox8->addWidget( hboxslider );
-    d->plasmaBox->setLayout( vbox8 );
+    d->grayBox->setLayout( vbox8 );
 
     //------------------ PATH Setup
     d->slideshowBox = new QGroupBox( this );
