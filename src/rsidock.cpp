@@ -147,10 +147,8 @@ void RSIDock::slotShowStatistics()
         m_statsDialog = new QDialog( 0 );
         m_statsDialog->setWindowTitle( i18n( "Usage Statistics" ) );
         QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
-        QWidget *mainWidget = new QWidget(m_statsDialog);
         QVBoxLayout *mainLayout = new QVBoxLayout;
         m_statsDialog->setLayout(mainLayout);
-        mainLayout->addWidget(mainWidget);
         QPushButton *user1Button = new QPushButton;
         buttonBox->addButton(user1Button, QDialogButtonBox::ActionRole);
         connect(buttonBox, &QDialogButtonBox::accepted, m_statsDialog, &QDialog::accept);
