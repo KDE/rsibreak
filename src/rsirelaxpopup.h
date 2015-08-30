@@ -89,7 +89,6 @@ protected slots:
 
 private:
     void readSettings();
-    bool    m_usePopup;
     bool    m_useFlash;
     PassivePopup* m_popup;
     QLabel *m_message;

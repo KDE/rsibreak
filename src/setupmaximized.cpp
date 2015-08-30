@@ -62,10 +62,13 @@ public:
     QPushButton*      changePathButton;
     KPluralHandlingSpinBox*     slideInterval;
     KPluralHandlingSpinBox*     popupDuration;
+    QLabel*                     popupDurationLabel;
+    QGroupBox*        popupBox;
     QCheckBox*        usePopup;
     QCheckBox*        useFlash;
     QLabel*           useFlashLabel;
     QCheckBox*        readOnlyPlasma;
+    QLabel*           effectLabel;
     QComboBox*        effectBox;
     QSlider*          graySlider;
     QCheckBox* showSmallImagesCheck;
@@ -80,7 +83,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     // Counterbox and skipbox next to eachother
 
-    QLabel* effectLabel = new QLabel( i18n( "Choose the effect you want during breaks" ) );
+    d->effectLabel = new QLabel();
     d->effectBox = new QComboBox( this );
     if ( KWindowSystem::compositingActive() )
         d->effectBox->addItem( i18n( "Simple Gray Effect" ), QVariant( RSIObject::SimpleGray ) );
@@ -89,6 +92,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->effectBox->addItem( i18n( "Show Plasma Dashboard" ), QVariant( RSIObject::Plasma ) );
     d->effectBox->addItem( i18n( "Show Slide Show of Images" ), QVariant( RSIObject::SlideShow ) );
     d->effectBox->addItem( i18n( "Show a Passive Popup" ), QVariant( RSIObject::Popup ) );
+    d->effectLabel->setBuddy( d->effectBox );
 
     connect(d->effectBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &SetupMaximized::slotEffectChanged);
 
@@ -107,9 +111,9 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->hidePostponeButton->setWhatsThis( i18n( "Check this option to disable and "
                                            "hide the postpone break button. This way you can prevent pressing the wrong button." ) );
     
-    d->disableAccel = new QCheckBox( i18n( "&Disable shortcut" ), this );
-    d->disableAccel->setWhatsThis( i18n( "Check this option to disable the skip "
-                                         "shortcut. This way you can prevent skipping the break." ) );
+    d->disableAccel = new QCheckBox( i18n( "&Disable shortcut (Esc)" ), this );
+    d->disableAccel->setWhatsThis( i18n( "Check this option to disable the ESC key skipping "
+                                         "the break." ) );
 
     QVBoxLayout *vbox1 = new QVBoxLayout( skipBox );
     vbox1->addWidget( d->hideMinimizeButton );
@@ -199,58 +203,57 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     //---------------- Popup setup
 
-    QGroupBox *popupBox = new QGroupBox( this );
-    popupBox->setTitle( i18n( "Popup" ) );
+    d->popupBox = new QGroupBox( this );
+    d->popupBox->setTitle( i18n( "Popup" ) );
 
-    QLabel *label = new QLabel( i18n( "RSIBreak can show a popup near the "
-                                      "systray before replacing your whole screen with the effect chosen." ), this );
+    QLabel *label = new QLabel( i18n( "RSIBreak can show a popup before replacing your whole screen with the effect chosen above." ), this );
     label->setWordWrap( true );
 
     d->usePopup = new QCheckBox( i18n( "&Use the popup" ), this );
     connect(d->usePopup, &QCheckBox::toggled, this, &SetupMaximized::slotHideFlash);
-    d->usePopup->setWhatsThis( i18n( "With this checkbox you can indicate if you "
-                                     "want to see the popup when it is time to break. It will count down to "
-                                     "zero, so you know how long this break will be." ) );
+    d->usePopup->setWhatsThis( i18n( "Shows a countdown popup when it is time to break. The countdown resets on activity." ) );
     label->setBuddy( d->usePopup );
 
     QWidget *m6 = new QWidget( this );
     QHBoxLayout *m6HBoxLayout = new QHBoxLayout(m6);
     m6HBoxLayout->setMargin(0);
-    QLabel *l6 = new QLabel( i18n( "Show popup for a maximum of:" ) + ' ', m6 );
-    m6HBoxLayout->addWidget(l6);
-    l6->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    l6->setWhatsThis( i18n( "Here you can set how long the popup will be shown "
-                            "before the effect will kick in." ) );
+    d->popupDurationLabel = new QLabel( i18n( "Popup patience:" ) + ' ', m6 );
+    m6HBoxLayout->addWidget( d->popupDurationLabel );
+    d->popupDurationLabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+    d->popupDurationLabel->setWhatsThis( i18n( "Maximum time the patience popup will be shown before the effect kicking in." ) );
+    d->popupDurationLabel->setSizePolicy(d->popupDurationLabel->sizePolicy().horizontalPolicy(), QSizePolicy::Minimum);
     d->popupDuration = new KPluralHandlingSpinBox( m6 );
     m6HBoxLayout->addWidget(d->popupDuration);
     d->popupDuration->setRange( 3, 1000 );
     d->popupDuration->setSuffix( ki18np( " second", " seconds" ) );
+    d->popupDurationLabel->setBuddy( d->popupDuration );
 
     d->useFlashLabel = new QLabel( '\n' + i18n( "The popup can flash when it "
                                    "detects that you are still active." ), this );
     d->useFlashLabel->setWordWrap( true );
+    d->useFlashLabel->setSizePolicy(d->useFlashLabel->sizePolicy().horizontalPolicy(), QSizePolicy::Minimum);
 
     d->useFlash = new QCheckBox( i18n( "&Flash on activity" ), this );
     d->useFlash->setWhatsThis( i18n( "With this checkbox you can indicate "
                                      "if you want to see the popup flash when there is activity." ) );
     d->useFlashLabel->setBuddy( d->useFlashLabel );
 
-    QVBoxLayout *vbox3 = new QVBoxLayout( popupBox );
+    QVBoxLayout *vbox3 = new QVBoxLayout( d->popupBox );
     vbox3->addWidget( label );
     vbox3->addWidget( d->usePopup );
     vbox3->addWidget( m6 );
     vbox3->addWidget( d->useFlashLabel );
     vbox3->addWidget( d->useFlash );
-    vbox3->addStretch( 1 );
-    popupBox->setLayout( vbox3 );
+    d->popupBox->setLayout( vbox3 );
 
-    l->addWidget( effectLabel );
+    l->addWidget( d->effectLabel );
     l->addWidget( d->effectBox );
     l->addWidget( d->grayBox );
     l->addWidget( d->plasmaBox );
     l->addWidget( d->slideshowBox );
     l->addWidget( skipBox );
-    l->addWidget( popupBox );
+    l->addWidget( d->popupBox );
+    l->addStretch( 1 );
     setLayout( l );
     readSettings();
     slotHideFlash();
@@ -259,6 +262,11 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 SetupMaximized::~SetupMaximized()
 {
     delete d;
+}
+
+void SetupMaximized::slotSetUseIdleTimer( bool useIdleTimer )
+{
+    d->popupBox->setEnabled( useIdleTimer );
 }
 
 void SetupMaximized::slotEffectChanged( int current )
@@ -311,8 +319,12 @@ void SetupMaximized::slotFolderEdited( const QString& newPath )
 
 void SetupMaximized::slotHideFlash()
 {
+    d->effectLabel->setText( d->usePopup->isChecked() ? i18n( "Choose the effect you want after patience runs out" )
+                                                      : i18n( "Choose the effect you want during breaks" ));
     d->useFlash->setEnabled( d->usePopup->isChecked() );
     d->useFlashLabel->setEnabled( d->usePopup->isChecked() );
+    d->popupDuration->setEnabled( d->usePopup->isChecked() );
+    d->popupDurationLabel->setEnabled( d->usePopup->isChecked() );
 }
 
 void SetupMaximized::applySettings()

@@ -57,7 +57,10 @@ public:
         return m_suspended;
     }
 
-    enum { TINY_BREAK = 0, BIG_BREAK = 1, NO_BREAK = 2 };
+    enum BreakType {
+        TINY_BREAK = 0,
+        BIG_BREAK = 1
+    };
 
 public slots:
     /**
@@ -87,18 +90,6 @@ public slots:
       Prepares the timer so that it can start/continue.
      */
     void slotStart();
-
-    /**
-      The user can request a break from the docker. This function
-      notifies the timer event handler of this request.
-    */
-    void slotRequestBreak();
-
-    /** Forces a tiny break. */
-    void slotRequestTinyBreak();
-
-    /** Forces a big break. */
-    void slotRequestBigBreak();
 
     /**
       Reset the timer. This implies resetting the counters for a
@@ -225,29 +216,18 @@ protected: // TODO: What should be private and what not?
     */
     void doBreakNow( int t );
 
-    bool            m_breakRequested;
-    bool            m_tinyBreakRequested;
-    bool            m_bigBreakRequested;
-    bool            m_suspended;
+    bool            m_usePopup;
+    bool            m_suspended; // User has suspended either via dbus or tray
     bool            m_needRestart;
-    bool            m_nextBreak;
-    bool            m_nextnextBreak;
+    BreakType       m_nextBreak;
+    BreakType       m_nextnextBreak;
     int             m_debug;
 
     int             m_tiny_left;
     int             m_big_left;
     int             m_pause_left;
-    int             m_relax_left;
-    int             m_useIdleDetection;
-    int             m_ignoreIdleForTinyBreaks;
-
-    /**
-      When it's time for a break, we wait patiently till the user
-      becomes idle. We show a relax popup during this interval.
-      But if the user keeps active, our patience runs out and we
-      we force him a break (full screen).
-    */
-    int             m_patience;
+    int             m_relax_left; // relax popup time left
+    int             m_patience; // relax popup patience left
 
     // restore vars
     QDateTime       m_lastrunDt;

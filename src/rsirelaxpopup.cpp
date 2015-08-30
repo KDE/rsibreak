@@ -80,9 +80,6 @@ RSIRelaxPopup::~RSIRelaxPopup() {}
 
 void RSIRelaxPopup::relax( int n, bool bigBreakNext )
 {
-    if ( !m_usePopup )
-        return;
-
     /*
       Counts how many times a request for relax resets
       due to detected activity.
@@ -148,7 +145,6 @@ void RSIRelaxPopup::slotReadConfig()
 void RSIRelaxPopup::readSettings()
 {
     KConfigGroup config = KSharedConfig::openConfig()->group( "Popup Settings" );
-    m_usePopup = config.readEntry( "UsePopup", true );
     m_useFlash = config.readEntry( "UseFlash", true );
 }
 

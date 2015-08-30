@@ -192,6 +192,7 @@ void RSIObject::startTimer( bool idle )
 
         qDebug() << "Switching timers";
 
+        m_timer->exit();
         m_timer->deleteLater();
 //        m_accel->remove("minimize");
     }
@@ -215,7 +216,6 @@ void RSIObject::startTimer( bool idle )
     connect(m_tray, &RSIDock::configChanged, m_timer, &RSITimer::slotReadConfig);
     connect(m_tray, &RSIDock::dialogEntered, m_timer, &RSITimer::slotStop);
     connect(m_tray, &RSIDock::dialogLeft, m_timer, &RSITimer::slotStart);
-    connect(m_tray, &RSIDock::breakRequest, m_timer, &RSITimer::slotRequestBreak);
     connect(m_tray, &RSIDock::suspend, m_timer, &RSITimer::slotSuspended);
 
     connect(m_relaxpopup, &RSIRelaxPopup::skip, m_timer, &RSITimer::skipBreak);

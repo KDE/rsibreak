@@ -63,9 +63,7 @@ SetupTiming::SetupTiming( QWidget* parent )
     QLabel *l1 = new QLabel( i18n( "Short break every:" ) + ' ', m );
     mHBoxLayout->addWidget(l1);
     l1->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    l1->setWhatsThis( i18n( "Here you can set how often you want a short break. "
-                            "One minute means 60 seconds of movement with the mouse or typing on "
-                            "the keyboard." ) );
+    l1->setWhatsThis( i18n( "Here you can set how often you want a short break. " ) );
     d->tinyInterval = new KPluralHandlingSpinBox( m );
     mHBoxLayout->addWidget(d->tinyInterval);
     d->tinyInterval->setRange( 1, 1000 );
@@ -101,9 +99,7 @@ SetupTiming::SetupTiming( QWidget* parent )
     QLabel *l3 = new QLabel( i18n( "Long break every:" ) + ' ', m3 );
     m3HBoxLayout->addWidget(l3);
     l3->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-    l3->setWhatsThis( i18n( "Here you can set how often you want a long break. "
-                            "One minute means 60 seconds of movement with the mouse or typing on "
-                            "the keyboard" ) );
+    l3->setWhatsThis( i18n( "Here you can set how often you want a long break. " ) );
     d->bigInterval = new KPluralHandlingSpinBox( m3 );
     m3HBoxLayout->addWidget(d->bigInterval);
     d->bigInterval->setRange( 1, 1000 );

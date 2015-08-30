@@ -40,7 +40,6 @@ int main( int argc, char *argv[] )
     
     Kdelibs4ConfigMigrator migrate(QLatin1String("rsibreak"));
     migrate.setConfigFiles(QStringList() << QLatin1String("rsibreakrc") << QLatin1String("rsibreak.notifyrc"));
-    migrate.setUiFiles(QStringList() << QLatin1String("rsibreakui.rc"));
     migrate.migrate();
 
     KLocalizedString::setApplicationDomain("rsibreak");

@@ -96,18 +96,11 @@ private:
 
     RSIRelaxPopup*  m_relaxpopup;
 
-    bool            m_useIdleDetection;
     QString         m_currentIcon;
 
 
     /* Available through D-Bus */
 public Q_SLOTS:
-    void doBigBreak() {
-        timer()->slotRequestBigBreak();
-    };
-    void doTinyBreak() {
-        timer()->slotRequestTinyBreak();
-    };
     void resume() {
         timer()->slotSuspended( false );
     };

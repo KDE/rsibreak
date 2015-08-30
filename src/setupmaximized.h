@@ -54,6 +54,9 @@ public:
      */
     void applySettings();
 
+public slots:
+    void slotSetUseIdleTimer( bool useIdleTimer );
+
 private slots:
     void slotEffectChanged( int current );
     void slotFolderPicker();

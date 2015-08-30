@@ -117,11 +117,6 @@ void RSIDock::slotConfigure()
         emit dialogLeft();
 }
 
-void RSIDock::slotBreakRequest()
-{
-    emit breakRequest();
-}
-
 void RSIDock::slotSuspend()
 {
     if ( m_suspended ) {

@@ -41,9 +41,8 @@
 #include <QDebug>
 
 RSITimer::RSITimer( QObject *parent )
-        : QThread( parent ), m_breakRequested( false )
-        , m_tinyBreakRequested( false )
-        , m_bigBreakRequested( false )
+        : QThread( parent )
+        , m_usePopup( true )
         , m_suspended( false )
         , m_needRestart( false )
         , m_pause_left( 0 ), m_relax_left( 0 ), m_patience( 0 )
@@ -69,6 +68,9 @@ void RSITimer::run()
     m_big_left = m_intervals[BIG_MINIMIZED_INTERVAL];
 
     restoreSession();
+
+    resetAfterBreak();
+
     exec(); //make timers work
 }
 
@@ -104,6 +106,10 @@ int RSITimer::idleTime()
 
 void RSITimer::doBreakNow( int t )
 {
+    m_pause_left = t;
+    m_relax_left = 0;
+
+    RSIGlobals::instance()->NotifyBreak( true, m_nextBreak == TINY_BREAK ? false : true );
     emit updateWidget( t );
     emit breakNow();
 }
@@ -116,10 +122,7 @@ void RSITimer::resetAfterBreak()
     emit relax( -1, false );
     updateIdleAvg( 0.0 );
     m_nextBreak = m_tiny_left < m_big_left ? TINY_BREAK : BIG_BREAK;
-    // and what about the break after the next break? pass it along relax()
-    // so we can warn the user in advance
-    m_nextnextBreak = m_nextBreak == TINY_BREAK &&
-                      m_big_left <= 2 * m_tiny_left ? BIG_BREAK : TINY_BREAK;
+    m_nextnextBreak = m_nextBreak == TINY_BREAK && m_big_left <= 2 * m_tiny_left ? BIG_BREAK : TINY_BREAK;
 }
 
 void RSITimer::resetAfterTinyBreak()
@@ -194,7 +197,7 @@ void RSITimer::postponeBreak()
    qDebug() << "kidle: On postponeBreak !!" << m_intervals[POSTPONE_BREAK_INTERVAL];
    m_patience = 0;
    m_relax_left = 0;
-   m_pause_left = 0;   
+   m_pause_left = 0;
    m_big_left += m_intervals[POSTPONE_BREAK_INTERVAL];
    m_tiny_left += m_intervals[POSTPONE_BREAK_INTERVAL];
 
@@ -225,34 +228,12 @@ void RSITimer::slotReadConfig( bool restart )
         m_needRestart = true;
 }
 
-void RSITimer::slotRequestBreak()
-{
-    m_breakRequested = true;
-}
-
-void RSITimer::slotRequestTinyBreak()
-{
-    slotRequestBreak();
-    if ( !m_bigBreakRequested ) {
-        m_tinyBreakRequested = true;
-        RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
-    }
-}
-
-void RSITimer::slotRequestBigBreak()
-{
-    slotRequestBreak();
-    if ( !m_tinyBreakRequested ) {
-        RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
-        m_bigBreakRequested = true;
-    }
-}
-
 // ----------------------------- EVENTS -----------------------//
 
 void RSITimer::timeout()
 {
-    int t = idleTime();
+    // t == 0 means activity
+    const int t = idleTime();
 
     // Don't change the tray icon when suspended, or evaluate
     // a possible break.
@@ -269,37 +250,18 @@ void RSITimer::timeout()
         RSIGlobals::instance()->stats()->setStat( CURRENT_IDLE_TIME, t );
     }
 
-    /*
-    qDebug() << m_intervals[TINY_MAXIMIZED_INTERVAL] << " " << m_intervals[BIG_MAXIMIZED_INTERVAL] << " " << t;
-    */
-
-    int breakInterval = m_tiny_left < m_big_left ?
-                        m_intervals[TINY_MAXIMIZED_INTERVAL] : m_intervals[BIG_MAXIMIZED_INTERVAL];
-
-
-    if ( m_breakRequested ) {
-        if ( m_tinyBreakRequested ) {
-            doBreakNow( m_intervals[TINY_MAXIMIZED_INTERVAL] );
-            m_pause_left = m_intervals[TINY_MAXIMIZED_INTERVAL];
-            m_nextBreak = TINY_BREAK;
-            RSIGlobals::instance()->NotifyBreak( true, false );
-        } else if ( m_bigBreakRequested ) {
-            doBreakNow( m_intervals[BIG_MAXIMIZED_INTERVAL] );
-            m_pause_left = m_intervals[BIG_MAXIMIZED_INTERVAL];
-            m_nextBreak = BIG_BREAK;
-            RSIGlobals::instance()->NotifyBreak( true, true );
-        } else {
-            doBreakNow( breakInterval );
-            m_pause_left = breakInterval;
-        }
-
-        m_breakRequested = false;
-        m_bigBreakRequested = false;
-        m_tinyBreakRequested = false;
-        m_relax_left = 0;
+    if ( m_debug > 1 ) {
+        qDebug() << "idleTime" << t <<
+                    "m_nextBreak" << m_nextBreak <<
+                    "m_nextnextBreak" << m_nextnextBreak <<
+                    "m_tiny_left" << m_tiny_left <<
+                    "m_big_left" << m_big_left <<
+                    "m_pause_left" << m_pause_left <<
+                    "m_relax_left" << m_relax_left <<
+                    "m_patience" << m_patience;
     }
 
-    if ( t > 0 && m_pause_left > 0 ) { // means: widget is maximized
+    if ( t > 0 && m_pause_left > 0 ) { // means: effect is happening
         if ( m_pause_left - 1 > 0 ) { // break is not over yet
             --m_pause_left;
             updateWidget( m_pause_left );
@@ -318,54 +280,26 @@ void RSITimer::timeout()
         return;
     }
 
-    // ignore the idle time if that setting is activated.
-    // simulate no activity. 
-    if ( m_ignoreIdleForTinyBreaks && m_relax_left > 0 && 
-         m_tiny_left < m_big_left) {
-        t = breakInterval-m_relax_left+1;
-        if ( m_debug > 1 )
-            qDebug() << "idleness reset" << t;
-    }
-
-    if ( m_debug > 1 ) {
-        qDebug() << " patience: " << m_patience  << " pause_left: "
-        << m_pause_left << " relax_left: " << m_relax_left
-        <<  " tiny_left: " << m_tiny_left  << " big_left: "
-        <<  m_big_left << " idle: " << t << endl;
-    }
+    const int breakInterval = m_nextBreak == TINY_BREAK ? m_intervals[TINY_MAXIMIZED_INTERVAL] : m_intervals[BIG_MAXIMIZED_INTERVAL];
 
     if ( t == 0 ) { // activity!
-        if ( m_patience > 0 ) { // we're trying to break
-            --m_patience;
-            if ( m_patience == 0 ) { // that's it!
-                emit relax( -1, false );
-                m_relax_left = 0;
-
-                doBreakNow( breakInterval );
-                m_nextBreak == TINY_BREAK  ?
-                RSIGlobals::instance()->NotifyBreak( true, false ) :
-                RSIGlobals::instance()->NotifyBreak( true, true );
-                m_pause_left = breakInterval;
-            } else { // reset relax dialog
-                emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
-                m_relax_left = breakInterval;
-            }
+        m_patience = qMax(0, m_patience - 1);
+        if ( m_patience > 0 ) {
+            // If we still have patience, reset the break interval
+            emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
+            m_relax_left = breakInterval;
         } else if ( m_relax_left > 0 ) {
             // no patience left and still moving during a relax moment?
-            // this will teach him
-            doBreakNow( m_relax_left );
-            m_pause_left = m_relax_left;
-            m_relax_left = 0;
-            emit relax( -1, false );
+            // do the full break
+            doBreakNow( breakInterval );
+            emit relax( -1, m_nextnextBreak == BIG_BREAK );
         } else if ( m_pause_left == 0 ) {
             // there's no relax moment or break going on.
 
             --m_tiny_left;
             --m_big_left;
 
-            // This is an extra safeguard. When m_useIdleDetection is false
-            // timers are not reset after the user have had a break. This
-            // will make sure the timers are being reset when this happens.
+            // This is an extra safeguard.
             if ( m_tiny_left < -1 || m_big_left < -1 ) {
                 if ( m_nextBreak == TINY_BREAK )
                     resetAfterTinyBreak();
@@ -374,9 +308,9 @@ void RSITimer::timeout()
             }
         }
 
-        double value = 100 - (( m_tiny_left / ( double )m_intervals[TINY_MINIMIZED_INTERVAL] ) * 100 );
+        const double value = 100 - (( m_tiny_left / ( double )m_intervals[TINY_MINIMIZED_INTERVAL] ) * 100 );
         emit updateIdleAvg( value );
-    } else if ( m_useIdleDetection && t == m_intervals[BIG_MAXIMIZED_INTERVAL] &&
+    } else if ( t == m_intervals[BIG_MAXIMIZED_INTERVAL] &&
                 m_intervals[TINY_MAXIMIZED_INTERVAL] <= m_intervals[BIG_MAXIMIZED_INTERVAL] &&
                 /* sigh, sometime we get 2 times in row the same idle ness
                    so, to prevent the signal emitted, we also chech that the
@@ -386,11 +320,11 @@ void RSITimer::timeout()
         if ( m_relax_left == 0 && m_pause_left == 0 ) {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
             RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
+            emit bigBreakSkipped();
         }
 
         resetAfterBigBreak();
-        emit bigBreakSkipped();
-    } else if ( m_useIdleDetection && t == m_intervals[TINY_MAXIMIZED_INTERVAL] &&
+    } else if ( t == m_intervals[TINY_MAXIMIZED_INTERVAL] &&
                 m_tiny_left < m_big_left &&
                 /* sigh, sometime we get 2 times in row the same idle ness
                    so, to prevent the signal emitted, we also chech that the
@@ -400,27 +334,27 @@ void RSITimer::timeout()
         if ( m_relax_left == 0 && m_pause_left == 0 ) {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
             RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
+            emit tinyBreakSkipped();
         }
 
         resetAfterTinyBreak();
-        emit tinyBreakSkipped();
     } else if ( m_relax_left > 0 ) {
         --m_relax_left;
 
         // just in case the user dares to become active
-        --m_patience;
+        m_patience = qMax(0, m_patience - 1);
 
         emit relax( m_relax_left, m_nextnextBreak == BIG_BREAK );
     }
 
     // update the stats properly when breaking
-    if ( m_useIdleDetection && t > m_intervals[BIG_MAXIMIZED_INTERVAL] &&
+    if ( t > m_intervals[BIG_MAXIMIZED_INTERVAL] &&
             m_relax_left == 0 && m_pause_left == 0 ) {
         RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK, QVariant( QDateTime::currentDateTime() ) );
     }
 
     // update the stats properly when breaking
-    if ( m_useIdleDetection && t > m_intervals[TINY_MAXIMIZED_INTERVAL] &&
+    if ( t > m_intervals[TINY_MAXIMIZED_INTERVAL] &&
             m_relax_left == 0 && m_pause_left == 0 ) {
         RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK, QVariant( QDateTime::currentDateTime() ) );
     }
@@ -435,10 +369,15 @@ void RSITimer::timeout()
             RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
         }
 
-        m_patience = m_intervals[PATIENCE_INTERVAL];
+        if ( m_usePopup ) {
+            m_patience = m_intervals[PATIENCE_INTERVAL];
 
-        emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
-        m_relax_left = breakInterval;
+            emit relax( breakInterval, m_nextnextBreak == BIG_BREAK );
+            m_relax_left = breakInterval;
+        } else {
+            doBreakNow( breakInterval );
+            emit relax( -1, m_nextnextBreak == BIG_BREAK );
+        }
     }
 
     emit updateToolTip( m_tiny_left, m_big_left );
@@ -448,15 +387,13 @@ void RSITimer::timeout()
 
 void RSITimer::readConfig()
 {
-    KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
-
-    m_useIdleDetection = config.readEntry( "UseIdleDetection", true );
-    m_ignoreIdleForTinyBreaks = config.readEntry( "IgnoreIdleForTinyBreaks", false );
-
-    config = KSharedConfig::openConfig()->group( "General" );
+    KConfigGroup config = KSharedConfig::openConfig()->group( "General" );
     m_lastrunDt = config.readEntry( "LastRunTimeStamp", QDateTime() );
     m_lastrunTiny = config.readEntry( "LastRunTinyLeft", 0 );
     m_lastrunBig = config.readEntry( "LastRunBigLeft", 0 );
+
+    config = KSharedConfig::openConfig()->group( "Popup Settings" );
+    m_usePopup = config.readEntry( "UsePopup", true );
 }
 
 void RSITimer::writeConfig()
@@ -494,50 +431,25 @@ RSITimerNoIdle::~RSITimerNoIdle() {}
 
 void RSITimerNoIdle::timeout()
 {
-    // Just spot some long time inactivity...
-    int idle = idleTime();
-    if ( idle == 600 ) {
-        resetAfterBigBreak();
-    } else if ( idle > 600 )
-        return;
-
     // Don't change the tray icon when suspended, or evaluate
     // a possible break.
     if ( m_suspended )
         return;
 
+    // Just spot some long time inactivity...
+    const int idle = idleTime();
+    if ( idle == 600 ) {
+        resetAfterBigBreak();
+    } else if ( idle > 600 )
+        return;
+
     RSIGlobals::instance()->stats()->increaseStat( TOTAL_TIME );
     RSIGlobals::instance()->stats()->increaseStat( ACTIVITY );
-
-    int breakInterval = m_tiny_left < m_big_left ?
-                        m_intervals[TINY_MAXIMIZED_INTERVAL] : m_intervals[BIG_MAXIMIZED_INTERVAL];
-
-    if ( m_breakRequested ) {
-        if ( m_tinyBreakRequested ) {
-            doBreakNow( m_intervals[TINY_MAXIMIZED_INTERVAL] );
-            m_pause_left = m_intervals[TINY_MAXIMIZED_INTERVAL];
-            m_nextBreak = TINY_BREAK;
-            RSIGlobals::instance()->NotifyBreak( true, false );
-        } else if ( m_bigBreakRequested ) {
-            doBreakNow( m_intervals[BIG_MAXIMIZED_INTERVAL] );
-            m_pause_left = m_intervals[BIG_MAXIMIZED_INTERVAL];
-            m_nextBreak = BIG_BREAK;
-            RSIGlobals::instance()->NotifyBreak( true, true );
-        }
-
-        doBreakNow( breakInterval );
-        m_pause_left = breakInterval;
-        m_breakRequested = false;
-        m_bigBreakRequested = false;
-        m_tinyBreakRequested = false;
-        m_relax_left = 0;
-    }
-
 
     if ( m_debug > 1 ) {
         qDebug() << " pause_left: " << m_pause_left
         <<  " tiny_left: " << m_tiny_left  << " big_left: "
-        <<  m_big_left << " m_nextbeak: " << m_nextBreak << endl;
+        <<  m_big_left << " nextBreak: " << m_nextBreak;
     }
 
     if ( m_pause_left > 0 ) {
@@ -553,38 +465,30 @@ void RSITimerNoIdle::timeout()
                 resetAfterBigBreak();
                 RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
             }
-
-            m_nextBreak = NO_BREAK;
         } else {
             emit updateWidget( m_pause_left );
         }
     }
 
     if ( m_pause_left == 0 && m_tiny_left == 0 && m_big_left != 0 ) {
-        m_pause_left = breakInterval;
         m_nextBreak = TINY_BREAK;
-        doBreakNow( breakInterval );
-        RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK,
-                QVariant( QDateTime::currentDateTime() ) );
-        RSIGlobals::instance()->NotifyBreak( true, false );
+        doBreakNow( m_intervals[TINY_MAXIMIZED_INTERVAL] );
+        RSIGlobals::instance()->stats()->setStat( LAST_TINY_BREAK, QVariant( QDateTime::currentDateTime() ) );
         RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
     } else {
         --m_tiny_left;
     }
 
     if ( m_pause_left == 0 && m_big_left == 0 ) {
-        m_pause_left = breakInterval;
         m_nextBreak = BIG_BREAK;
-        doBreakNow( breakInterval );
-        RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK,
-                QVariant( QDateTime::currentDateTime() ) );
-        RSIGlobals::instance()->NotifyBreak( true, true );
+        doBreakNow( m_intervals[BIG_MAXIMIZED_INTERVAL] );
+        RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK, QVariant( QDateTime::currentDateTime() ) );
         RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
     } else {
         --m_big_left;
     }
 
-    double value = 100 - (( m_tiny_left / ( double )m_intervals[TINY_MINIMIZED_INTERVAL] ) * 100 );
+    const double value = 100 - (( m_tiny_left / ( double )m_intervals[TINY_MINIMIZED_INTERVAL] ) * 100 );
     emit updateIdleAvg( value );
 
     emit updateToolTip( m_tiny_left, m_big_left );

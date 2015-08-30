@@ -53,8 +53,12 @@ public:
      */
     void applySettings();
 
+    bool useIdleTimer() const;
+
+signals:
+    void useIdleTimerChanged( bool useIdleTimer );
+
 private slots:
-    void slotShowTimer();
     void slotUseNoIdleTimer();
 
 private:

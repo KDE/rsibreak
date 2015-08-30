@@ -81,12 +81,6 @@ signals:
     void dialogLeft();
 
     /**
-     * This signal is emitted when the user wishes to take the break
-     * at this moment, either via the shortcut or the menu (lmb)
-     */
-    void breakRequest();
-
-    /**
      * This signal is emitted when the user wishes to see all
      * debug timing info. Needs a --enable-debug comiled RSIBreak
      */
@@ -101,7 +95,6 @@ private slots:
     void slotConfigure();
     void slotConfigureNotifications();
     void slotSuspend();
-    void slotBreakRequest();
     void slotShowStatistics();
     void slotResetStats();
 
