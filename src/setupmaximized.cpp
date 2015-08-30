@@ -228,8 +228,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     d->popupDuration->setSuffix( ki18np( " second", " seconds" ) );
     d->popupDurationLabel->setBuddy( d->popupDuration );
 
-    d->useFlashLabel = new QLabel( '\n' + i18n( "The popup can flash when it "
-                                   "detects that you are still active." ), this );
+    d->useFlashLabel = new QLabel( i18n( "The popup can flash when it detects that you are still active." ), this );
     d->useFlashLabel->setWordWrap( true );
     d->useFlashLabel->setSizePolicy(d->useFlashLabel->sizePolicy().horizontalPolicy(), QSizePolicy::Minimum);
 
