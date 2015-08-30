@@ -89,7 +89,6 @@ private:
     QLabel*         m_tool;
 
     bool            m_useImages;
-    bool            m_showTimerReset;
 
     bool            m_usePlasma;
     bool            m_usePlasmaRO;

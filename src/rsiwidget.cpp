@@ -155,9 +155,6 @@ void RSIObject::setIcon( int level )
 
 void RSIObject::tinyBreakSkipped()
 {
-    if ( !m_showTimerReset )
-        return;
-
     KNotification::event( "short timer reset",
                           i18n( "Timer for the short break has now been reset" ),
                           KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
@@ -165,9 +162,6 @@ void RSIObject::tinyBreakSkipped()
 
 void RSIObject::bigBreakSkipped()
 {
-    if ( !m_showTimerReset )
-        return;
-
     KNotification::event( "timers reset",
                           i18n( "The timers have now been reset" ),
                           KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
@@ -227,7 +221,6 @@ void RSIObject::startTimer( bool idle )
 void RSIObject::readConfig()
 {
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
-    m_showTimerReset = config.readEntry( "ShowTimerReset", false );
 
     m_relaxpopup->setSkipButtonHidden(
         config.readEntry( "HideMinimizeButton", false ) );

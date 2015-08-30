@@ -58,9 +58,6 @@ public:
 signals:
     void useIdleTimerChanged( bool useIdleTimer );
 
-private slots:
-    void slotUseNoIdleTimer();
-
 private:
     void readSettings();
 

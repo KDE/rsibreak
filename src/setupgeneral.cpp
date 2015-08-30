@@ -39,8 +39,6 @@ public:
     QGroupBox*        breakTimerSettings;
     QRadioButton*     useNoIdleTimer;
     QRadioButton*     useIdleTimer;
-    QGroupBox*        idleSettings;
-    QCheckBox*        showTimerReset;
 };
 
 SetupGeneral::SetupGeneral( QWidget* parent )
@@ -70,41 +68,18 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     vbox->addWidget( d->useIdleTimer );
     vbox->addStretch( 1 );
     d->breakTimerSettings->setLayout( vbox );
-    connect(d->useNoIdleTimer, &QRadioButton::toggled, this, &SetupGeneral::slotUseNoIdleTimer);
     connect(d->useIdleTimer, &QRadioButton::toggled, this, &SetupGeneral::useIdleTimerChanged);
 
-    // ---------------- IDLE Settings ------------------------
-
-    d->idleSettings = new QGroupBox( i18n( "Idle Settings" ), this );
-
-    d->showTimerReset = new QCheckBox( i18n( "&Show when timers are reset" ),
-                                       this );
-    d->showTimerReset->setWhatsThis( i18n( "With this checkbox you indicate "
-                                           "that you want to see when the timers are reset. This happens when you "
-                                           "have been idle for a while." ) );
-
-    QVBoxLayout *vbox2 = new QVBoxLayout( d->idleSettings );
-    vbox2->addWidget( d->showTimerReset );
-    vbox2->addStretch( 1 );
-    d->idleSettings->setLayout( vbox2 );
     l->addWidget( d->autoStart );
     l->addWidget( d->breakTimerSettings );
-    l->addWidget( d->idleSettings );
 
     setLayout( l );
     readSettings();
-    slotUseNoIdleTimer();
 }
 
 SetupGeneral::~SetupGeneral()
 {
     delete d;
-}
-
-void SetupGeneral::slotUseNoIdleTimer()
-{
-    d->idleSettings->setEnabled( !d->useNoIdleTimer->isChecked() );
-    d->showTimerReset->setEnabled( !d->useNoIdleTimer->isChecked() );
 }
 
 void SetupGeneral::applySettings()
@@ -113,7 +88,6 @@ void SetupGeneral::applySettings()
     config.writeEntry( "AutoStart", d->autoStart->isChecked() );
 
     config = KSharedConfig::openConfig()->group( "General Settings" );
-    config.writeEntry( "ShowTimerReset", d->showTimerReset->isChecked() );
     config.writeEntry( "UseNoIdleTimer", d->useNoIdleTimer->isChecked() );
     config.sync();
 }
@@ -129,7 +103,6 @@ void SetupGeneral::readSettings()
     d->autoStart->setChecked( config.readEntry( "AutoStart", false ) );
 
     config = KSharedConfig::openConfig()->group( "General Settings" );
-    d->showTimerReset->setChecked( config.readEntry( "ShowTimerReset", false ) );
     d->useNoIdleTimer->setChecked( config.readEntry( "UseNoIdleTimer", false ) );
     d->useIdleTimer->setChecked( !d->useNoIdleTimer->isChecked() );
 }

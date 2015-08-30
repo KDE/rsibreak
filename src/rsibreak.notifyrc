@@ -441,7 +441,7 @@ Name[zh_TW]=關於計時器
 
 [Event/short timer reset]
 Contexts=timers
-Action=Popup
+Action=None
 Name=When the short timer has been reset
 Name[bg]=Кога краткият таймер е бил нулиран
 Name[ca]=En reiniciar el temporitzador curt
@@ -472,7 +472,7 @@ Name[zh_TW]=當短計時器被重置時
 
 [Event/timers reset]
 Contexts=timers
-Action=Popup
+Action=None
 Name=When the timers have been reset
 Name[bg]=Кога таймерите са били нулирани
 Name[ca]=En reiniciar els temporitzadors
