@@ -57,7 +57,7 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     d->breakTimerSettings = new QGroupBox( i18n( "Timer Settings" ), this );
     d->useNoIdleTimer = new QRadioButton( i18n( "Break at &fixed times" ), this );
     d->useNoIdleTimer->setWhatsThis( i18n( "With this option you indicate that "
-                                           "you want to to break at fixed intervals" ) );
+                                           "you want to break at fixed intervals" ) );
     d->useIdleTimer = new QRadioButton( i18n( "Take activity into account" ), this );
     d->useIdleTimer->setWhatsThis( i18n( "With this option you indicate that "
                                          "you want to use idle detection. This means that only the time you are "
