@@ -24,9 +24,3 @@ Wishes:
 Bugs:
 - image extension are hardcoded
 
-Gnome specific bugs:
-- It is started at login, regardless of the setting.
-  Gnome does not have a setting where you can set a condition to start / not
-  start, nor can you disable the startup for Gnome when the desktop is in the
-  $prefix/autostart. So: known bug - unresolvable untill a fd.o spec is
-  there and implemented
