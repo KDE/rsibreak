@@ -28,11 +28,6 @@
 #include <kidletime.h>
 #include <ksharedconfig.h>
 
-// The order here is important, otherwise Qt headers are preprocessed into garbage.... :-(
-
-#include <X11/Xlib.h>
-#include <fixx11h.h>
-
 #include "rsiglobals.h"
 #include "rsistats.h"
 #include <QTimer>
