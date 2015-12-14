@@ -37,7 +37,6 @@
 #include "rsistats.h"
 #include <QTimer>
 #include <QThread>
-#include <QX11Info>
 #include <QDebug>
 
 RSITimer::RSITimer( QObject *parent )

@@ -49,7 +49,6 @@ target_link_libraries(rsibreak
     KF5::XmlGui
     KF5::WindowSystem
     Qt5::DBus
-    Qt5::X11Extras
     )
 
 # install
