@@ -61,6 +61,8 @@ int main( int argc, char *argv[] )
     aboutData.addAuthor( i18n( "Bram Schoenmakers" ), i18n( "Former author" ),
                          "bramschoenmakers@kde.nl" );
 
+    aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
+
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
     parser.addVersionOption();
