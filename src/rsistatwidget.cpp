@@ -76,7 +76,7 @@ RSIStatWidget::~RSIStatWidget() {}
 void RSIStatWidget::addStat( RSIStat stat, QGridLayout *grid, int row )
 {
     QLabel *l = RSIGlobals::instance()->stats()->getDescription( stat );
-    l->setParent( grid->parentWidget() );
+    l->setParent( this );
 
     QLabel *m = RSIGlobals::instance()->stats()->getLabel( stat );
     m->setParent( grid->parentWidget() );
