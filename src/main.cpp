@@ -29,6 +29,7 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <QDebug>
+#include <KCrash>
 #include <Kdelibs4ConfigMigrator>
 
 #include "rsiwidget.h"
@@ -86,6 +87,8 @@ int main( int argc, char *argv[] )
         if (!autostart)
             return 0;
     }
+
+    KCrash::initialize();
 
     new RSIObject();
     return app.exec();

@@ -39,6 +39,7 @@ add_executable(rsibreak ${rsibreak_sources})
 target_link_libraries(rsibreak
     KF5::ConfigCore
     KF5::ConfigWidgets
+    KF5::Crash
     KF5::DBusAddons
     KF5::IconThemes
     KF5::I18n
