@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY rsibreak "RSIBreak">
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY % addindex "IGNORE">
 ]>
@@ -42,7 +41,7 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2015-08-15</date>
+<date>2016-08-24</date>
 <releaseinfo>0.12</releaseinfo>
 
 <abstract><para>Repetitive Strain Injury is an illness which can occur as a
@@ -129,7 +128,7 @@ and select <guilabel>Resume</guilabel>.</para>
 <para>The last way to influence &rsibreak; is via &DBus;. There are &DBus;
 commands available to force breaks and to suspend and resume &rsibreak;. You can
 use these to suspend &rsibreak; automatically when you start a game or any other specified program.
-Execute <command>qdbus org.rsibreak.rsibreak /rsibreak</command> to see the possibilities.</para>
+Execute <command>qdbus org.kde.rsibreak.rsibreak /rsibreak</command> to see the possibilities.</para>
 </chapter>
 
 <chapter id="break-types">
