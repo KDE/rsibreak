@@ -125,10 +125,9 @@ void SlideEffect::loadImage()
         }
     }
 
-    QImage* m = new QImage( image.scaled( size.width(), size.height(),
-                                          Qt::KeepAspectRatioByExpanding ) );
+    QImage m( image.scaled( size.width(), size.height(), Qt::KeepAspectRatioByExpanding ) );
 
-    if ( m->isNull() )
+    if ( m.isNull() )
         return;
 
     m_slidewidget->setImage( m );
@@ -210,9 +209,9 @@ void SlideWidget::slotDimension()
     setGeometry( rect );
 }
 
-void SlideWidget::setImage( QImage* image )
+void SlideWidget::setImage( const QImage &image )
 {
     QPalette palette;
-    palette.setBrush( backgroundRole(), QBrush( QPixmap::fromImage( *image ) ) );
+    palette.setBrush( backgroundRole(), QBrush( QPixmap::fromImage( image ) ) );
     setPalette( palette );
 }

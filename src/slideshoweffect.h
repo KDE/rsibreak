@@ -74,7 +74,7 @@ public:
      */
     ~SlideWidget();
 
-    void setImage( QImage* image );
+    void setImage( const QImage &image );
 
 private slots:
     void slotDimension();
