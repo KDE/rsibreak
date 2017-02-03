@@ -89,5 +89,6 @@ void Setup::slotOkClicked()
     d->generalPage->applySettings();
     d->timingPage->applySettings();
     d->maximizedPage->applySettings();
+    d->notificationsPage->save();
     close();
 }

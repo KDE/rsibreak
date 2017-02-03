@@ -30,11 +30,16 @@ SetupNotifications::SetupNotifications( QWidget* parent )
         : QWidget( parent )
 {
     QVBoxLayout *l = new QVBoxLayout( this );
-    KNotifyConfigWidget* notify = new KNotifyConfigWidget( this );
-    notify->setApplication( "rsibreak" );
-    l->addWidget( notify );
+    m_notify = new KNotifyConfigWidget( this );
+    m_notify->setApplication( "rsibreak" );
+    l->addWidget( m_notify );
 }
 
 SetupNotifications::~SetupNotifications()
 {
+}
+
+void SetupNotifications::save()
+{
+    m_notify->save();
 }

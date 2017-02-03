@@ -22,6 +22,8 @@
 
 #include <qwidget.h>
 
+class KNotifyConfigWidget;
+
 /**
  * @class SetupTiming
  * These contain the timings settings of RSIBreak, currently
@@ -45,6 +47,11 @@ public:
      * Destructor
      */
     ~SetupNotifications();
+
+    void save();
+
+private:
+    KNotifyConfigWidget *m_notify;
 };
 
 #endif /* SETUPNOTIFICATIONS_H */
