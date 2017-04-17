@@ -139,10 +139,10 @@ protected:
     void resetAfterBreak();
 
     /** Called when the user was idle for the duration of a tiny break. */
-    void resetAfterTinyBreak();
+    void resetAfterTinyBreak(bool doNotify);
 
     /** Called when the user was idle for the duration of a big break. */
-    void resetAfterBigBreak();
+    void resetAfterBigBreak(bool doNotify);
 
     /** Start this thread */
     void run();

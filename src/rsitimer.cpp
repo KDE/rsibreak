@@ -78,7 +78,7 @@ void RSITimer::hibernationDetector()
         << "assuming the computer hibernated, resetting timers"
         << "Last: " << last
         << "Current: " << current;
-        resetAfterBigBreak();
+        resetAfterBigBreak( false /*doNotify*/ );
     }
     last = current;
 }
@@ -119,13 +119,15 @@ void RSITimer::resetAfterBreak()
     m_nextnextBreak = m_nextBreak == TINY_BREAK && m_big_left <= 2 * m_tiny_left ? BIG_BREAK : TINY_BREAK;
 }
 
-void RSITimer::resetAfterTinyBreak()
+void RSITimer::resetAfterTinyBreak(bool doNotify)
 {
     m_tiny_left = m_intervals[TINY_MINIMIZED_INTERVAL];
     qDebug() << "********** resetAfterTinyBreak !!";
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
-    RSIGlobals::instance()->NotifyBreak( false, false );
+    if (doNotify) {
+        RSIGlobals::instance()->NotifyBreak( false, false );
+    }
 
     if ( m_big_left < m_tiny_left ) {
         // don't risk a big break just right after a tiny break, so delay it a bit
@@ -133,14 +135,16 @@ void RSITimer::resetAfterTinyBreak()
     }
 }
 
-void RSITimer::resetAfterBigBreak()
+void RSITimer::resetAfterBigBreak(bool doNotify)
 {
     m_tiny_left = m_intervals[TINY_MINIMIZED_INTERVAL];
     qDebug() << "********** resetAfterBigBreak !!";
     m_big_left = m_intervals[BIG_MINIMIZED_INTERVAL];
     resetAfterBreak();
     emit updateToolTip( m_tiny_left, m_big_left );
-    RSIGlobals::instance()->NotifyBreak( false, true );
+    if (doNotify) {
+        RSIGlobals::instance()->NotifyBreak( false, true );
+    }
 }
 
 // -------------------------- SLOTS ------------------------//
@@ -177,10 +181,10 @@ void RSITimer::skipBreak()
 {
     emit minimize();
     if ( m_big_left <= m_tiny_left + 1 ) {
-        resetAfterBigBreak();
+        resetAfterBigBreak( true /*doNotify*/ );
         RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS_SKIPPED );
     } else {
-        resetAfterTinyBreak();
+        resetAfterTinyBreak( true /*doNotify*/ );
         RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS_SKIPPED );
     }
     slotStart();
@@ -264,9 +268,9 @@ void RSITimer::timeout()
 
             // make sure we clean up stuff in the code ahead
             if ( m_nextBreak == TINY_BREAK )
-                resetAfterTinyBreak();
+                resetAfterTinyBreak( true /*doNotify*/ );
             else if ( m_nextBreak == BIG_BREAK )
-                resetAfterBigBreak();
+                resetAfterBigBreak( true /*doNotify*/ );
 
             emit updateToolTip( m_tiny_left, m_big_left );
         }
@@ -296,9 +300,9 @@ void RSITimer::timeout()
             // This is an extra safeguard.
             if ( m_tiny_left < -1 || m_big_left < -1 ) {
                 if ( m_nextBreak == TINY_BREAK )
-                    resetAfterTinyBreak();
+                    resetAfterTinyBreak( true /*doNotify*/ );
                 else if ( m_nextBreak == BIG_BREAK )
-                    resetAfterBigBreak();
+                    resetAfterBigBreak( true /*doNotify*/ );
             }
         }
 
@@ -311,13 +315,15 @@ void RSITimer::timeout()
                    big_left does not equal the regular interval */
                 m_big_left != m_intervals[BIG_MINIMIZED_INTERVAL] ) {
         // the user was sufficiently idle for a big break
+        bool doNotify = true;
         if ( m_relax_left == 0 && m_pause_left == 0 ) {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
             RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
             emit bigBreakSkipped();
+            doNotify = false;
         }
 
-        resetAfterBigBreak();
+        resetAfterBigBreak(doNotify);
     } else if ( t == m_intervals[TINY_MAXIMIZED_INTERVAL] &&
                 m_tiny_left < m_big_left &&
                 /* sigh, sometime we get 2 times in row the same idle ness
@@ -325,13 +331,15 @@ void RSITimer::timeout()
                    big_left does not equal the regular interval */
                 m_tiny_left != m_intervals[TINY_MINIMIZED_INTERVAL] ) {
         // the user was sufficiently idle for a tiny break
+        bool doNotify = true;
         if ( m_relax_left == 0 && m_pause_left == 0 ) {
             RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
             RSIGlobals::instance()->stats()->increaseStat( TINY_BREAKS );
             emit tinyBreakSkipped();
+            doNotify = false;
         }
 
-        resetAfterTinyBreak();
+        resetAfterTinyBreak(doNotify);
     } else if ( m_relax_left > 0 ) {
         --m_relax_left;
 
@@ -433,7 +441,7 @@ void RSITimerNoIdle::timeout()
     // Just spot some long time inactivity...
     const int idle = idleTime();
     if ( idle == 600 ) {
-        resetAfterBigBreak();
+        resetAfterBigBreak( false /*doNotify*/ );
     } else if ( idle > 600 )
         return;
 
@@ -453,10 +461,10 @@ void RSITimerNoIdle::timeout()
             emit minimize();
             emit relax( -1, false );
             if ( m_nextBreak == TINY_BREAK ) {
-                resetAfterTinyBreak();
+                resetAfterTinyBreak( false /*doNotify*/ );
                 RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_TINY );
             } else if ( m_nextBreak == BIG_BREAK ) {
-                resetAfterBigBreak();
+                resetAfterBigBreak( false /*doNotify*/ );
                 RSIGlobals::instance()->stats()->increaseStat( IDLENESS_CAUSED_SKIP_BIG );
             }
         } else {
