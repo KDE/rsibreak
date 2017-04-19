@@ -82,7 +82,7 @@ RSIDock::RSIDock( QObject *parent )
     doAddAction( menu, i18n( "Switch application &language..." ), m_help, &KHelpMenu::switchApplicationLanguage );
 
     menu->addSeparator();
-    m_suspendItem = doAddAction(menu, SmallIcon( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotSuspend );
+    m_suspendItem = doAddAction(menu, SmallIcon( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotToggleSuspend );
     doAddAction(menu, SmallIcon( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );
     doAddAction(menu, SmallIcon( "preferences-desktop-notification" ), i18n( "Configure &Notifications..." ), this, &RSIDock::slotConfigureNotifications );
     doAddAction(menu, QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ), this, &RSIDock::slotConfigure );
@@ -96,6 +96,18 @@ RSIDock::~RSIDock()
     delete m_statsWidget;
     delete m_statsDialog;
     m_statsWidget = 0;
+}
+
+void RSIDock::doResume()
+{
+    if ( m_suspended )
+        slotToggleSuspend();
+}
+
+void RSIDock::doSuspend()
+{
+    if ( !m_suspended )
+        slotToggleSuspend();
 }
 
 void RSIDock::slotConfigureNotifications()
@@ -117,7 +129,7 @@ void RSIDock::slotConfigure()
         emit dialogLeft();
 }
 
-void RSIDock::slotSuspend()
+void RSIDock::slotToggleSuspend()
 {
     if ( m_suspended ) {
         emit suspend( false );

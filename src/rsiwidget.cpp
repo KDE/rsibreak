@@ -283,3 +283,11 @@ void RSIObject::readConfig()
     m_effect->showPostpone( !config.readEntry( "HidePostponeButton", false ) );
     m_effect->disableShortcut( config.readEntry( "DisableAccel", false ) );
 }
+
+void RSIObject::resume() {
+    m_tray->doResume();
+}
+
+void RSIObject::suspend() {
+    m_tray->doSuspend();
+}

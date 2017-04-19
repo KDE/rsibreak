@@ -100,24 +100,20 @@ private:
 
     /* Available through D-Bus */
 public Q_SLOTS:
-    void resume() {
-        timer()->slotSuspended( false );
-    };
-    void suspend() {
-        timer()->slotSuspended( true );
-    };
+    void resume();
+    void suspend();
     int idleTime() {
         return timer()->idleTime();
-    };
+    }
     int tinyLeft() {
         return timer()->tinyLeft();
-    };
+    }
     int bigLeft() {
         return timer()->bigLeft();
-    };
+    }
     QString currentIcon() {
         return m_currentIcon;
-    };
+    }
 };
 
 #   endif

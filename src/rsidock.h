@@ -54,6 +54,9 @@ public:
      */
     ~RSIDock();
 
+    void doResume();
+    void doSuspend();
+
 public slots:
     void setCounters( int tiny_left, int big_left );
 
@@ -94,7 +97,7 @@ signals:
 private slots:
     void slotConfigure();
     void slotConfigureNotifications();
-    void slotSuspend();
+    void slotToggleSuspend();
     void slotShowStatistics();
     void slotResetStats();
 
