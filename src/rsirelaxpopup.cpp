@@ -34,7 +34,8 @@
 #include <KFormat>
 
 RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
-        : QWidget( parent )
+        : QObject( parent )
+        , m_wasShown( false )
 {
     m_popup = new PassivePopup( parent );
 
@@ -114,6 +115,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
     } else {
         m_popup->setVisible( false );
         resetcount = 0;
+        m_wasShown = false;
     }
 }
 
@@ -161,4 +163,14 @@ void RSIRelaxPopup::setLockButtonHidden( bool b )
 void RSIRelaxPopup::setPostponeButtonHidden( bool b )
 {
     m_postponebutton->setHidden( b );
+}
+
+void RSIRelaxPopup::setSuspended( bool suspended )
+{
+    if ( suspended ) {
+        m_wasShown = m_popup->isVisible();
+        m_popup->hide();
+    } else if (m_wasShown) {
+        m_popup->show();
+    }
 }

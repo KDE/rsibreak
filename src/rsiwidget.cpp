@@ -65,7 +65,7 @@ RSIObject::RSIObject( QWidget *parent )
     connect(m_tray, &RSIDock::configChanged, this, &RSIObject::readConfig);
     connect(m_tray, &RSIDock::configChanged, RSIGlobals::instance(), &RSIGlobals::slotReadConfig );
     connect(m_tray, &RSIDock::configChanged, m_relaxpopup, &RSIRelaxPopup::slotReadConfig);
-    connect(m_tray, &RSIDock::suspend, m_relaxpopup, &RSIRelaxPopup::hide);
+    connect(m_tray, &RSIDock::suspend, m_relaxpopup, &RSIRelaxPopup::setSuspended);
 
     srand( time( NULL ) );
 

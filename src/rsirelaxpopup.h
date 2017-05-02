@@ -34,7 +34,7 @@ class QProgressBar;
  * It's shown when the user should relax for a couple of seconds.
  * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
  */
-class RSIRelaxPopup : public QWidget
+class RSIRelaxPopup : public QObject
 {
     Q_OBJECT
 public:
@@ -65,6 +65,9 @@ public slots:
     
     /** Hides the postpone break button **/
     void setPostponeButtonHidden( bool );
+
+    /** Hides/Shows the popup */
+    void setSuspended( bool suspended );
     
 signals:
     /** Ask the main widget to lock down the desktop. */
@@ -90,6 +93,7 @@ protected slots:
 private:
     void readSettings();
     bool    m_useFlash;
+    bool    m_wasShown;
     PassivePopup* m_popup;
     QLabel *m_message;
     QProgressBar *m_progress;
