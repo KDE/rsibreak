@@ -78,6 +78,7 @@ void RSITimer::hibernationDetector()
         << "assuming the computer hibernated, resetting timers"
         << "Last: " << last
         << "Current: " << current;
+        emit minimize();
         resetAfterBigBreak( false /*doNotify*/ );
     }
     last = current;
