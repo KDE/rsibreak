@@ -179,8 +179,8 @@ void RSIStats::updateDependentStats( RSIStat stat )
             double d = m_statistics[ IDLENESS_CAUSED_SKIP_BIG ]->getValue().toDouble();
 
             RSIGlobals *glbl = RSIGlobals::instance();
-            double ratio = ( double )( glbl->intervals()[BIG_MAXIMIZED_INTERVAL] ) /
-                           ( double )( glbl->intervals()[TINY_MAXIMIZED_INTERVAL] );
+            double ratio = ( double )( glbl->intervals()[BIG_BREAK_DURATION] ) /
+                           ( double )( glbl->intervals()[TINY_BREAK_DURATION] );
 
             double skipped = a - c + ratio * ( b - d );
             skipped = skipped < 0 ? 0 : skipped;

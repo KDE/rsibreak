@@ -34,4 +34,7 @@ add_subdirectory( icons )
 add_subdirectory( doc )
 add_subdirectory( src )
 
+enable_testing()
+add_subdirectory( test )
+
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
