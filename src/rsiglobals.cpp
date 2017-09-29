@@ -66,33 +66,35 @@ void RSIGlobals::slotReadConfig()
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
 
     m_intervals.resize(INTERVAL_COUNT);
-    m_intervals[TINY_MINIMIZED_INTERVAL] = config.readEntry( "TinyInterval", 10 ) * 60;
-    m_intervals[TINY_MAXIMIZED_INTERVAL] = config.readEntry( "TinyDuration", 20 );
-    m_intervals[BIG_MINIMIZED_INTERVAL] = config.readEntry( "BigInterval", 60 ) * 60;
-    m_intervals[BIG_MAXIMIZED_INTERVAL] = config.readEntry( "BigDuration", 1 ) * 60;
+    m_intervals[TINY_BREAK_INTERVAL] = config.readEntry( "TinyInterval", 10 ) * 60;
+    m_intervals[TINY_BREAK_DURATION] = config.readEntry( "TinyDuration", 20 );
+    m_intervals[TINY_BREAK_THRESHOLD] = config.readEntry( "TinyThreshold", 20 );
+    m_intervals[BIG_BREAK_INTERVAL] = config.readEntry( "BigInterval", 60 ) * 60;
+    m_intervals[BIG_BREAK_DURATION] = config.readEntry( "BigDuration", 1 ) * 60;
+    m_intervals[BIG_BREAK_THRESHOLD] = config.readEntry( "BigThreshold", 1 ) * 60;
     m_intervals[POSTPONE_BREAK_INTERVAL] = config.readEntry( "PostponeBreakDuration", 5 ) * 60;
     m_intervals[PATIENCE_INTERVAL] = config.readEntry( "Patience", 30 );
 
     if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
         qDebug() << "Debug mode activated";
-        m_intervals[TINY_MINIMIZED_INTERVAL] = m_intervals[TINY_MINIMIZED_INTERVAL] / 60;
-        m_intervals[BIG_MINIMIZED_INTERVAL] = m_intervals[BIG_MINIMIZED_INTERVAL] / 60;
-        m_intervals[BIG_MAXIMIZED_INTERVAL] = m_intervals[BIG_MAXIMIZED_INTERVAL] / 60;
+        m_intervals[TINY_BREAK_INTERVAL] = m_intervals[TINY_BREAK_INTERVAL] / 60;
+        m_intervals[BIG_BREAK_INTERVAL] = m_intervals[BIG_BREAK_INTERVAL] / 60;
+        m_intervals[BIG_BREAK_DURATION] = m_intervals[BIG_BREAK_DURATION] / 60;
         m_intervals[POSTPONE_BREAK_INTERVAL] = m_intervals[POSTPONE_BREAK_INTERVAL] / 60;
     }
 
     // if big_maximized < tiny_maximized, the bigbreaks will not get reset,
     // guard against that situation.
-    if ( m_intervals[BIG_MAXIMIZED_INTERVAL] < m_intervals[TINY_MAXIMIZED_INTERVAL] ) {
+    if ( m_intervals[BIG_BREAK_DURATION] < m_intervals[TINY_BREAK_DURATION] ) {
         qDebug() << "max big > max tiny, not allowed & corrected";
-        m_intervals[BIG_MAXIMIZED_INTERVAL] = m_intervals[TINY_MAXIMIZED_INTERVAL];
+        m_intervals[BIG_BREAK_DURATION] = m_intervals[TINY_BREAK_DURATION];
     }
 
 }
 
 QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
 {
-    int minimized = m_intervals[TINY_MINIMIZED_INTERVAL];
+    int minimized = m_intervals[TINY_BREAK_INTERVAL];
     double v = 100 * secsToBreak / ( double )minimized;
 
     v = v > 100 ? 100 : v;
@@ -103,7 +105,7 @@ QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
 
 QColor RSIGlobals::getBigBreakColor( int secsToBreak ) const
 {
-    int minimized = m_intervals[BIG_MINIMIZED_INTERVAL];
+    int minimized = m_intervals[BIG_BREAK_INTERVAL];
     double v = 100 * secsToBreak / ( double )minimized;
 
     v = v > 100 ? 100 : v;
