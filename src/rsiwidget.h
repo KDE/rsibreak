@@ -80,13 +80,11 @@ protected:
 private:
     void findImagesInFolder( const QString& folder );
     void loadImage();
-    void startTimer( bool idle );
+    void configureTimer();
 
     RSIDock*        m_tray;
     RSITimer*       m_timer;
     BreakBase*      m_effect;
-
-    QLabel*         m_tool;
 
     bool            m_useImages;
 

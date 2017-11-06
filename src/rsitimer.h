@@ -22,10 +22,12 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
-#include <QDateTime>
 #include <QThread>
+#include <memory>
 
 #include "rsiglobals.h"
+#include "rsitimercounter.h"
+#include "rsiidletime.h"
 
 /**
  * @class RSITimer
@@ -36,6 +38,7 @@
 class RSITimer : public QThread
 {
     Q_OBJECT
+    friend class RSITimerTest;
 
 public:
     /**
@@ -45,44 +48,27 @@ public:
      */
     explicit RSITimer( QObject *parent = 0 );
 
-    /**
-      Default destructor.
-    */
-    ~RSITimer();
+    // Check whether the timer is suspended.
+    bool isSuspended() const { return m_state == TimerState::Suspended; }
 
-    /**
-      Check whether the timer is suspended.
-    */
-    bool isSuspended() const {
-        return m_suspended;
-    }
+    int tinyLeft() const { return m_tinyBreakCounter->counterLeft(); };
 
-    enum BreakType {
-        TINY_BREAK = 0,
-        BIG_BREAK = 1
-    };
+    int bigLeft() const { return m_bigBreakCounter->counterLeft(); };
 
 public slots:
     /**
-      Reads the configuration and restarts the timer with
-      slotRestart.
-      @param restart If this is true, restart immediately. That
-      means the timer is not suspended. If false, it will restart
-      as soon the timer gets unsuspended.
+      Reads the configuration and restarts the timer with slotRestart.
     */
-    void slotReadConfig( bool restart );
+    void updateConfig( bool doRestart = false );
 
     /**
-      Stops the timer activity. This does not imply
-      resetting counters.
-      @param newImage Load a new image
+      Stops the timer activity. This does not imply resetting counters.
      */
     void slotStop();
 
     /**
       Called when the user suspends RSIBreak from the docker.
-      @param suspend If true the timer will suspend,
-      if false the timer will unsuspend.
+      @param suspend If true the timer will suspend, if false the timer will unsuspend.
     */
     void slotSuspended( bool suspend );
 
@@ -92,10 +78,9 @@ public slots:
     void slotStart();
 
     /**
-      Reset the timer. This implies resetting the counters for a
-      tiny and big break.
+      Called when user locks the screen for pause. Resets current timers if currently suggesting.
     */
-    void slotRestart();
+    void slotLock();
 
     /**
       When the user presses the Skip button during a break,
@@ -103,14 +88,14 @@ public slots:
       just passed.
     */
     void skipBreak();
-   
+
     /**
       When the user presses the postpone break button during a break,
-      this function will be called. It will postpone the break  for the 
+      this function will be called. It will postpone the break for the
       configured amount of seconds.
     */
     void postponeBreak();
-    
+
     /**
       Queries X how many seconds the user has been idle. A value of 0
       means there was activity during the last second.
@@ -118,34 +103,12 @@ public slots:
     */
     int idleTime();
 
-    int tinyLeft() {
-        return m_tiny_left;
-    };
-    int bigLeft() {
-        return m_big_left;
-    };
-
-protected slots:
+private slots:
     /**
-      The pumping heart of the timer. This will evaluate user's activity
-      and decide what to do (wait, popup a relax notification or a
-      fullscreen break.
-      You shouldn't call this function directly.
+      The pumping heart of the timer. This will evaluate user's activity and
+      decide what to do (wait, popup a relax notification or a fullscreen break.
     */
     virtual void timeout();
-
-protected:
-    /** This function is called when a break has passed. */
-    void resetAfterBreak();
-
-    /** Called when the user was idle for the duration of a tiny break. */
-    void resetAfterTinyBreak(bool doNotify);
-
-    /** Called when the user was idle for the duration of a big break. */
-    void resetAfterBigBreak(bool doNotify);
-
-    /** Start this thread */
-    void run();
 
 signals:
     /** Enforce a fullscreen big break. */
@@ -153,12 +116,12 @@ signals:
 
     /**
       Update counters in tooltip.
-      @param tiny If <=0 a tiny break is active, else it defines how
+      @param tinyLeft If <=0 a tiny break is active, else it defines how
       much time is left until the next tiny break.
-      @param big If <=0 a big break is active, else it defines how
+      @param bigLeft If <=0 a big break is active, else it defines how
       much time is left until the next big break.
     */
-    void updateToolTip( int tiny, int big );
+    void updateToolTip( const int tinyLeft, const int bigLeft );
 
     /**
       Update the time shown on the fullscreen widget.
@@ -199,58 +162,45 @@ signals:
      */
     void bigBreakSkipped();
 
-protected: // TODO: What should be private and what not?
-    void readConfig();
-    void writeConfig();
-    void hibernationDetector();
+private:
+    std::unique_ptr<RSIIdleTime> m_idleTimeInstance;
 
-    /**
-      Restores the timers of RSIBreak when the application was closed and
-      started in a short amount of time.
-    */
-    void restoreSession();
+    bool m_usePopup;
+    bool m_useIdleTimers;
+    QVector<int> m_intervals;
+
+    enum class TimerState {
+        Suspended = 0,      // user has suspended either via dbus or tray.
+        Monitoring,         // normal cycle, waiting for break to trigger.
+        Suggesting,         // politely suggest to take a break with some patience.
+        Resting             // suggestion ignored, waiting out the break.
+    } m_state;
+
+    std::unique_ptr<RSITimerCounter> m_bigBreakCounter;
+    std::unique_ptr<RSITimerCounter> m_tinyBreakCounter;
+    std::unique_ptr<RSITimerCounter> m_pauseCounter;
+    std::unique_ptr<RSITimerCounter> m_popupCounter;
+
+    void hibernationDetector( const int totalIdle );
+    void suggestBreak( const int time );
+    void defaultUpdateToolTip();
+    void createTimers();
+
+    // This function is called when a break has passed.
+    void resetAfterBreak();
+
+    // Start this thread.
+    void run();
 
     /**
       Some internal preparations for a fullscreen break window.
-      @param t The amount of seconds to break.
+      @param breakTime The amount of seconds to break.
+      @param nextBreakIsBig Whether the next break will be big.
     */
-    void doBreakNow( int t );
+    void doBreakNow( const int breakTime, const bool nextBreakIsBig );
 
-    bool            m_usePopup;
-    bool            m_suspended; // User has suspended either via dbus or tray
-    bool            m_needRestart;
-    BreakType       m_nextBreak;
-    BreakType       m_nextnextBreak;
-    int             m_debug;
-
-    int             m_tiny_left;
-    int             m_big_left;
-    int             m_pause_left;
-    int             m_relax_left; // relax popup time left
-    int             m_patience; // relax popup patience left
-
-    // restore vars
-    QDateTime       m_lastrunDt;
-    int             m_lastrunTiny;
-    int             m_lastrunBig;
-
-    QVector<int> m_intervals;
-};
-
-/**
- * This timer is almost the same as the RSITimer, except it does not take
- * idle detection into account.
- *
- * @author Bram Schoenmakers <bramschoenmakers@kde.nl>
-*/
-class RSITimerNoIdle : public RSITimer
-{
-    Q_OBJECT
-public:
-    explicit RSITimerNoIdle( QObject *parent = 0 );
-    ~RSITimerNoIdle();
-protected slots:
-    void timeout() override;
+    // Constructor for tests. Ownership is taken over for _idleTime.
+    RSITimer( RSIIdleTime* _idleTime, const QVector<int> _intervals, const bool _usePopup, const bool _useIdleTimers );
 };
 
 #endif
