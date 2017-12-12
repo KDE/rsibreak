@@ -39,8 +39,10 @@ class SetupTimingPriv
 public:
     KPluralHandlingSpinBox*          tinyInterval;
     KPluralHandlingSpinBox*          tinyDuration;
+    KPluralHandlingSpinBox*          tinyThreshold;
     KPluralHandlingSpinBox*          bigInterval;
     KPluralHandlingSpinBox*          bigDuration;
+    KPluralHandlingSpinBox*          bigThreshold;
     KPluralHandlingSpinBox*          postponeDuration;
     int                    debug;
 };
@@ -81,10 +83,25 @@ SetupTiming::SetupTiming( QWidget* parent )
     m2HBoxLayout->addWidget(d->tinyDuration);
     d->tinyDuration->setRange( 1, 1000 );
     l2->setBuddy( d->tinyDuration );
+    connect( d->tinyDuration,  static_cast<void ( KPluralHandlingSpinBox::* )( int )>( &KPluralHandlingSpinBox::valueChanged ),
+             this, &SetupTiming::slotTinyDurationValueChanged );
+
+    QWidget *mTinyThreshold = new QWidget( this );
+    QHBoxLayout *hTinyThreshold = new QHBoxLayout( mTinyThreshold );
+    hTinyThreshold->setMargin( 0 );
+    QLabel *lTinyThreshold = new QLabel( i18n( "Skip if no activity for:" ) + ' ', mTinyThreshold );
+    hTinyThreshold->addWidget( lTinyThreshold );
+    lTinyThreshold->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+    lTinyThreshold->setWhatsThis( i18n( "Set the interval you are idle for that is enough to skip the next short break." ) );
+    d->tinyThreshold = new KPluralHandlingSpinBox( mTinyThreshold );
+    hTinyThreshold->addWidget( d->tinyThreshold );
+    d->tinyThreshold->setRange( 1, 1000 );
+    lTinyThreshold->setBuddy( d->tinyThreshold );
 
     QVBoxLayout *vbox0 = new QVBoxLayout( tinyBox );
     vbox0->addWidget( m );
     vbox0->addWidget( m2 );
+    vbox0->addWidget( mTinyThreshold );
     vbox0->addStretch( 1 );
     tinyBox->setLayout( vbox0 );
 
@@ -116,10 +133,25 @@ SetupTiming::SetupTiming( QWidget* parent )
     m4HBoxLayout->addWidget(d->bigDuration);
     d->bigDuration->setRange( 1, 1000 );
     l4->setBuddy( d->bigDuration );
+    connect( d->bigDuration,  static_cast<void ( KPluralHandlingSpinBox::* )( int )>( &KPluralHandlingSpinBox::valueChanged ),
+             this, &SetupTiming::slotBigDurationValueChanged );
+
+    QWidget *mBigThreshold = new QWidget( this );
+    QHBoxLayout *hBigThreshold = new QHBoxLayout( mBigThreshold );
+    hBigThreshold->setMargin( 0 );
+    QLabel *lBigThreshold = new QLabel( i18n( "Skip if no activity for:" ) + ' ', mBigThreshold );
+    hBigThreshold->addWidget( lBigThreshold );
+    lBigThreshold->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
+    lBigThreshold->setWhatsThis( i18n( "Set the interval you are idle for that is enough to skip the next long break." ) );
+    d->bigThreshold = new KPluralHandlingSpinBox( mBigThreshold );
+    hBigThreshold->addWidget( d->bigThreshold );
+    d->bigThreshold->setRange( 1, 1000 );
+    lBigThreshold->setBuddy( d->bigThreshold );
 
     QVBoxLayout *vbox1 = new QVBoxLayout( bigBox );
     vbox1->addWidget( m3 );
     vbox1->addWidget( m4 );
+    vbox1->addWidget( mBigThreshold );
     vbox1->addStretch( 1 );
     bigBox->setLayout( vbox1 );
 
@@ -161,6 +193,9 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->debug ? d->postponeDuration->setSuffix( ki18np( " second", " seconds" ) )
     : d->postponeDuration->setSuffix( ki18np( " minute", " minutes" ) );
 
+    d->tinyThreshold->setSuffix( ki18np( " second", " seconds" ) );
+    d->bigThreshold->setSuffix( ki18np( " minute", " minutes" ) );
+
     slotTinyValueChanged( d->tinyInterval->value() );
 
     // Resize to minimum possible.
@@ -168,6 +203,8 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->bigInterval->setFixedSize( d->tinyInterval->sizeHint() );
     d->tinyDuration->setFixedSize( d->tinyInterval->sizeHint() );
     d->bigDuration->setFixedSize( d->tinyInterval->sizeHint() );
+    d->tinyThreshold->setFixedSize( d->tinyThreshold->sizeHint() );
+    d->bigThreshold->setFixedSize( d->bigThreshold->sizeHint() );
     d->postponeDuration->setFixedSize( d->tinyInterval->sizeHint() );
 }
 
@@ -181,8 +218,10 @@ void SetupTiming::applySettings()
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     config.writeEntry( "TinyInterval", d->tinyInterval->value() );
     config.writeEntry( "TinyDuration", d->tinyDuration->value() );
+    config.writeEntry( "TinyThreshold", d->tinyThreshold->value() );
     config.writeEntry( "BigInterval", d->bigInterval->value() );
     config.writeEntry( "BigDuration", d->bigDuration->value() );
+    config.writeEntry( "BigThreshold", d->bigThreshold->value() );
     config.writeEntry( "PostponeBreakDuration", d->postponeDuration->value() );
     config.sync();
 }
@@ -194,13 +233,33 @@ void SetupTiming::readSettings()
 
     d->tinyInterval->setValue( config.readEntry( "TinyInterval", 10 ) );
     d->tinyDuration->setValue( config.readEntry( "TinyDuration", 20 ) );
+    d->tinyThreshold->setValue( config.readEntry( "TinyThreshold", 40 ) );
+    d->tinyThreshold->setMinimum( d->tinyDuration->value() );
     d->bigInterval->setValue( config.readEntry( "BigInterval", 60 ) );
     d->bigInterval->setMinimum( d->tinyInterval->value() );
     d->bigDuration->setValue( config.readEntry( "BigDuration", 1 ) );
+    d->bigThreshold->setValue( config.readEntry( "BigThreshold", 5 ) );
+    d->bigThreshold->setMinimum( d->bigDuration->value() );
     d->postponeDuration->setValue( config.readEntry( "PostponeBreakDuration", 5 ) );
 }
 
-void SetupTiming::slotTinyValueChanged( int i )
+void SetupTiming::slotTinyValueChanged( const int tinyIntervalValue  )
 {
-    d->bigInterval->setMinimum( i );
+    d->bigInterval->setMinimum( tinyIntervalValue );
+}
+
+void SetupTiming::slotBigDurationValueChanged( const int bigDurationValue )
+{
+    d->bigThreshold->setMinimum( bigDurationValue );
+}
+
+void SetupTiming::slotTinyDurationValueChanged( const int tinyDurationValue )
+{
+    d->tinyThreshold->setMinimum( tinyDurationValue );
+}
+
+void SetupTiming::slotSetUseIdleTimer( const bool useIdleTimer )
+{
+    d->bigThreshold->setEnabled( useIdleTimer );
+    d->tinyThreshold->setEnabled( useIdleTimer );
 }

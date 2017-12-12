@@ -53,8 +53,13 @@ public:
      */
     void applySettings();
 
+public slots:
+    void slotSetUseIdleTimer( const bool useIdleTimer );
+
 private slots:
-    void slotTinyValueChanged( int i );
+    void slotTinyValueChanged( const int tinyIntervalValue );
+    void slotTinyDurationValueChanged( const int tinyDurationValue );
+    void slotBigDurationValueChanged( const int bigDurationValue );
 
 private:
     void readSettings();

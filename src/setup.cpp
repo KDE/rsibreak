@@ -71,6 +71,8 @@ Setup::Setup( QWidget* parent )
 
     connect(d->generalPage, &SetupGeneral::useIdleTimerChanged, d->maximizedPage, &SetupMaximized::slotSetUseIdleTimer);
     d->maximizedPage->slotSetUseIdleTimer(d->generalPage->useIdleTimer());
+    connect(d->generalPage, &SetupGeneral::useIdleTimerChanged, d->timingPage, &SetupTiming::slotSetUseIdleTimer);
+    d->timingPage->slotSetUseIdleTimer(d->generalPage->useIdleTimer());
 
     KConfigGroup config = KSharedConfig::openConfig()->group( "SetupDimensions" );
     KWindowConfig::restoreWindowSize( windowHandle(), config );
