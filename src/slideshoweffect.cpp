@@ -25,6 +25,8 @@
 #include <QDesktopWidget>
 #include <QDir>
 #include <QTimer>
+#include <QVBoxLayout>
+#include <QLabel>
 
 #include <KWindowSystem>
 
@@ -125,13 +127,16 @@ void SlideEffect::loadImage()
         }
     }
 
-    QImage m( image.scaled( size.width(), size.height(), Qt::KeepAspectRatioByExpanding ) );
+    Qt::AspectRatioMode mode = ( m_keepAspectRatioByExpanding ) ? Qt::KeepAspectRatioByExpanding
+                                                                : Qt::KeepAspectRatio;
+    QImage m( image.scaled( size.width(), size.height(), mode ) );
 
     if ( m.isNull() )
         return;
 
     m_slidewidget->setImage( m );
 }
+
 
 void SlideEffect::findImagesInFolder( const QString& folder )
 {
@@ -176,7 +181,7 @@ void SlideEffect::slotNewSlide()
     loadImage();
 }
 
-void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImages, int slideInterval )
+void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImages, bool keepAspectRatioByExpanding, int slideInterval )
 {
     m_files.clear();
     m_files_done.clear();
@@ -184,6 +189,7 @@ void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImag
     m_searchRecursive = recursive;
     m_showSmallImages = showSmallImages;
     m_slideInterval = slideInterval;
+    m_keepAspectRatioByExpanding = keepAspectRatioByExpanding;
 
     findImagesInFolder( path );
     qDebug() << "Amount of Files:" << m_files.count();
@@ -198,6 +204,15 @@ SlideWidget::SlideWidget( QWidget *parent )
 {
     slotDimension();
     connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &SlideWidget::slotDimension );
+
+    QVBoxLayout *boxLayout = new QVBoxLayout( this );
+    boxLayout->setSpacing(0);
+    boxLayout->setContentsMargins(0, 0, 0, 0);
+    setLayout( boxLayout );
+    imageLabel = new QLabel();
+    imageLabel->setMaximumSize( width(), height() );
+    imageLabel->setAlignment( Qt::AlignCenter );
+    layout()->addWidget(imageLabel);
 }
 
 SlideWidget::~SlideWidget() {}
@@ -211,7 +226,5 @@ void SlideWidget::slotDimension()
 
 void SlideWidget::setImage( const QImage &image )
 {
-    QPalette palette;
-    palette.setBrush( backgroundRole(), QBrush( QPixmap::fromImage( image ) ) );
-    setPalette( palette );
+    imageLabel->setPixmap( QPixmap::fromImage(image) );
 }

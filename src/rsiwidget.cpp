@@ -236,6 +236,7 @@ void RSIObject::readConfig()
     int slideInterval = config.readEntry( "SlideInterval", 10 );
     bool recursive =  config.readEntry( "SearchRecursiveCheck", false );
     bool showSmallImages = config.readEntry( "ShowSmallImagesCheck", true );
+    bool keepAspectRatioByExpanding = config.readEntry( "KeepAspectRatioByExpanding", true );
     QString path = config.readEntry( "ImageFolder" );
 
     bool timertype = config.readEntry( "UseNoIdleTimer", false );
@@ -252,7 +253,7 @@ void RSIObject::readConfig()
     }
     case SlideShow: {
         SlideEffect* slide = new SlideEffect( 0 );
-        slide->reset( path, recursive, showSmallImages, slideInterval );
+        slide->reset( path, recursive, showSmallImages, keepAspectRatioByExpanding, slideInterval );
         if ( slide->hasImages() )
             m_effect = slide;
         else {

@@ -72,6 +72,7 @@ public:
     QComboBox*        effectBox;
     QSlider*          graySlider;
     QCheckBox* showSmallImagesCheck;
+    QCheckBox* keepAspectRatioByExpanding;
 };
 
 SetupMaximized::SetupMaximized( QWidget* parent )
@@ -177,6 +178,8 @@ SetupMaximized::SetupMaximized( QWidget* parent )
             this );
     d->showSmallImagesCheck = new QCheckBox( i18n( "Show small images" ),
             this );
+    d->keepAspectRatioByExpanding = new QCheckBox ( i18n( "Keep aspect ratio by expanding" ),
+            this );
 
     QWidget *m5 = new QWidget( this );
     QHBoxLayout *m5HBoxLayout = new QHBoxLayout(m5);
@@ -198,6 +201,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vboxg->addWidget( imageFolderBox );
     vboxg->addWidget( d->searchRecursiveCheck );
     vboxg->addWidget( d->showSmallImagesCheck );
+    vboxg->addWidget( d->keepAspectRatioByExpanding );
     vboxg->addWidget( m5 );
     d->slideshowBox->setLayout( vboxg );
 
@@ -343,6 +347,8 @@ void SetupMaximized::applySettings()
                        d->searchRecursiveCheck->isChecked() );
     config.writeEntry( "ShowSmallImagesCheck",
                        d->showSmallImagesCheck->isChecked() );
+    config.writeEntry( "KeepAspectRatioByExpanding",
+                       d->keepAspectRatioByExpanding->isChecked() );
     config.writeEntry( "Effect",
                        d->effectBox->itemData( d->effectBox->currentIndex() ) );
 
@@ -386,6 +392,8 @@ void SetupMaximized::readSettings()
         config.readEntry( "SearchRecursiveCheck", false ) );
     d->showSmallImagesCheck->setChecked(
         config.readEntry( "ShowSmallImagesCheck", true ) );
+    d->keepAspectRatioByExpanding->setChecked(
+        config.readEntry( "KeepAspectRatioByExpanding", true ) );
     d->disableAccel->setChecked( config.readEntry( "DisableAccel", false ) );
     d->readOnlyPlasma->setChecked(
         config.readEntry( "UsePlasmaReadOnly", true ) );
