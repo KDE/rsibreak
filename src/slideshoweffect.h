@@ -25,6 +25,7 @@
 #include "breakbase.h"
 
 class SlideWidget;
+class QLabel;
 
 class SlideEffect : public BreakBase
 {
@@ -33,7 +34,7 @@ class SlideEffect : public BreakBase
 public:
     SlideEffect( QObject *parent );
     ~SlideEffect();
-    void reset( const QString& path, bool recursive, bool showSmallImages, int interval );
+    void reset( const QString& path, bool recursive, bool showSmallImages, bool expandImageToFullScreen, int interval );
     void activate() override;
     void deactivate() override;
     bool hasImages();
@@ -52,6 +53,7 @@ private:
 
     bool            m_searchRecursive;
     bool            m_showSmallImages;
+    bool            m_expandImageToFullScreen;
     int             m_slideInterval;
 
     QStringList     m_files;
@@ -78,6 +80,10 @@ public:
 
 private slots:
     void slotDimension();
+
+private:
+    QLabel *m_imageLabel;
+
 };
 
 #   endif

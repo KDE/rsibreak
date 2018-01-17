@@ -72,6 +72,7 @@ public:
     QComboBox*        effectBox;
     QSlider*          graySlider;
     QCheckBox* showSmallImagesCheck;
+    QCheckBox*        expandImageToFullScreen;
 };
 
 SetupMaximized::SetupMaximized( QWidget* parent )
@@ -177,6 +178,11 @@ SetupMaximized::SetupMaximized( QWidget* parent )
             this );
     d->showSmallImagesCheck = new QCheckBox( i18n( "Show small images" ),
             this );
+    d->expandImageToFullScreen = new QCheckBox ( i18n( "Expand image to full screen" ),
+            this );
+    d->expandImageToFullScreen->setWhatsThis( i18n( "If checked then image will be expanded to full screen. "
+                                                    "Part of the image outside the screen area will be cropped. "
+                                                    "Otherwise the image will be displayed completely but there may grey areas around it. " ) );
 
     QWidget *m5 = new QWidget( this );
     QHBoxLayout *m5HBoxLayout = new QHBoxLayout(m5);
@@ -198,6 +204,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
     vboxg->addWidget( imageFolderBox );
     vboxg->addWidget( d->searchRecursiveCheck );
     vboxg->addWidget( d->showSmallImagesCheck );
+    vboxg->addWidget( d->expandImageToFullScreen );
     vboxg->addWidget( m5 );
     d->slideshowBox->setLayout( vboxg );
 
@@ -343,6 +350,8 @@ void SetupMaximized::applySettings()
                        d->searchRecursiveCheck->isChecked() );
     config.writeEntry( "ShowSmallImagesCheck",
                        d->showSmallImagesCheck->isChecked() );
+    config.writeEntry( "ExpandImageToFullScreen",
+                       d->expandImageToFullScreen->isChecked() );
     config.writeEntry( "Effect",
                        d->effectBox->itemData( d->effectBox->currentIndex() ) );
 
@@ -386,6 +395,8 @@ void SetupMaximized::readSettings()
         config.readEntry( "SearchRecursiveCheck", false ) );
     d->showSmallImagesCheck->setChecked(
         config.readEntry( "ShowSmallImagesCheck", true ) );
+    d->expandImageToFullScreen->setChecked(
+        config.readEntry( "ExpandImageToFullScreen", true ) );
     d->disableAccel->setChecked( config.readEntry( "DisableAccel", false ) );
     d->readOnlyPlasma->setChecked(
         config.readEntry( "UsePlasmaReadOnly", true ) );

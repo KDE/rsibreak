@@ -220,6 +220,7 @@ void RSIObject::readConfig()
     int slideInterval = config.readEntry( "SlideInterval", 10 );
     bool recursive =  config.readEntry( "SearchRecursiveCheck", false );
     bool showSmallImages = config.readEntry( "ShowSmallImagesCheck", true );
+    const bool expandImageToFullScreen = config.readEntry( "ExpandImageToFullScreen", true );
     QString path = config.readEntry( "ImageFolder" );
 
     configureTimer();
@@ -235,7 +236,7 @@ void RSIObject::readConfig()
     }
     case SlideShow: {
         SlideEffect* slide = new SlideEffect( 0 );
-        slide->reset( path, recursive, showSmallImages, slideInterval );
+        slide->reset( path, recursive, showSmallImages, expandImageToFullScreen, slideInterval );
         if ( slide->hasImages() )
             m_effect = slide;
         else {
