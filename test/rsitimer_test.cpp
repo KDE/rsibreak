@@ -280,4 +280,100 @@ void RSITimerTest::skipBreak()
     // RSITimer owns idleTime, so not deleting it.
 }
 
+void RSITimerTest::noPopupBreak()
+{
+    RSIIdleTimeFake* idleTime = new RSIIdleTimeFake();
+    RSITimer timer( idleTime, m_intervals, false, true );
+
+    // Part one, no idleness till small break.
+    QSignalSpy spy1BreakNow( &timer, SIGNAL( breakNow( void ) ) );
+    QSignalSpy spy1UpdateWidget( &timer, SIGNAL( updateWidget( int ) ) );
+
+    idleTime->setIdleTime( 0 );
+    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
+        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+        timer.timeout();
+    }
+
+    // Popup is disabled so straight to breaking.
+    QCOMPARE( timer.m_state, RSITimer::TimerState::Resting );
+
+    QCOMPARE( spy1BreakNow.count(), 1 );
+    QList<QVariant> spy1UpdateWidgetSignals = spy1UpdateWidget.takeFirst();
+    QCOMPARE( spy1UpdateWidgetSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] );
+
+    // Part two, waiting out break.
+    QSignalSpy spy2UpdateWidget( &timer, SIGNAL( updateWidget( int ) ) );
+    QSignalSpy spy2Minimize( &timer, SIGNAL( minimize( void ) ) );
+
+    for ( int i = 0; i < m_intervals[TINY_BREAK_DURATION]; i++ ) {
+        QCOMPARE( timer.m_state, RSITimer::TimerState::Resting );
+        idleTime->setIdleTime( ( i + 1 ) * 1000 );
+        timer.timeout();
+    }
+    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    QCOMPARE( spy2Minimize.count(), 1 );
+    QCOMPARE( spy2UpdateWidget.count(), m_intervals[TINY_BREAK_DURATION] - 1 );
+    for ( int i = 1; i < m_intervals[TINY_BREAK_DURATION]; i++ ) {
+        QList<QVariant> spy2UpdateWidgetSignals = spy2UpdateWidget.takeFirst();
+        QCOMPARE( spy2UpdateWidgetSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] - i );
+    }
+
+    // RSITimer owns idleTime, so not deleting it.
+}
+
+void RSITimerTest::regularBreaks()
+{
+    RSIIdleTimeFake* idleTime = new RSIIdleTimeFake();
+    RSITimer timer( idleTime, m_intervals, true, false );
+
+    int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / ( m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
+    int tick = 0;
+
+    for ( int j = 0; j < tinyBreaks; j++ ) {
+        // Tiny break, mix of activity and idleness till small break.
+        QSignalSpy spyRelax( &timer, SIGNAL( relax( int, bool ) ) );
+        QSignalSpy spyUpdateIdleAvg( &timer, SIGNAL( updateIdleAvg( double ) ) );
+
+        for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++, tick++ ) {
+            QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+            if ( i % 2 == 0 ) {
+                idleTime->setIdleTime( 0 );
+            } else {
+                idleTime->setIdleTime( 1000 );
+            }
+            timer.timeout();
+        }
+
+        for ( int i = 0; i < m_intervals[TINY_BREAK_DURATION]; i++, tick++ ) {
+            // No activity during break -- obeying.
+            QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+            idleTime->setIdleTime( ( i + 1 ) * 1000 );
+            timer.timeout();
+        }
+        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    }
+
+    // Expected ticks till big break, accounting for pauses.
+    int ticks = m_intervals[BIG_BREAK_INTERVAL] + tinyBreaks * m_intervals[TINY_BREAK_DURATION];
+    for ( int j = tick; j < ticks; j++ ) {
+        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+        if ( j % 2 == 0 ) {
+            idleTime->setIdleTime( 0 );
+        } else {
+            idleTime->setIdleTime( 1000 );
+        }
+        timer.timeout();
+    }
+    for ( int i = 0; i < m_intervals[BIG_BREAK_DURATION]; i++ ) {
+        // No activity during break -- obeying.
+        QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+        idleTime->setIdleTime( ( i + 1 ) * 1000 );
+        timer.timeout();
+    }
+    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+
+    // RSITimer owns idleTime, so not deleting it.
+}
+
 #include "rsitimer_test.moc"

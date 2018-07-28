@@ -35,6 +35,8 @@ private slots:
     void postponeBreak();
     void screenLock();
     void skipBreak();
+    void noPopupBreak();
+    void regularBreaks();
 };
 
 #endif //RSIBREAK_RSITIMER_TEST_H
