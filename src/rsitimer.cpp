@@ -120,6 +120,7 @@ void RSITimer::resetAfterBreak()
     emit updateIdleAvg( 0.0 );
     emit relax( -1, false );
     emit minimize();
+    RSIGlobals::instance()->NotifyBreak( false, m_bigBreakCounter->isReset() );
 }
 
 // -------------------------- SLOTS ------------------------//
