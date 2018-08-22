@@ -47,7 +47,7 @@ class RSIDock : public KStatusNotifierItem
     Q_OBJECT
 
 public:
-    RSIDock( QObject *parent );
+    explicit RSIDock( QObject *parent );
 
     /**
      * Destructor

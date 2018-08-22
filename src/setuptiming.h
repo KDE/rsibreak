@@ -41,7 +41,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    SetupTiming( QWidget* parent = 0 );
+    explicit SetupTiming( QWidget* parent = 0 );
 
     /**
      * Destructor

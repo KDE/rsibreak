@@ -41,7 +41,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    SetupNotifications( QWidget* parent = 0 );
+    explicit SetupNotifications( QWidget* parent = 0 );
 
     /**
      * Destructor

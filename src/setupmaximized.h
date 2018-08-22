@@ -42,7 +42,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    SetupMaximized( QWidget* parent = 0 );
+    explicit SetupMaximized( QWidget* parent = 0 );
 
     /**
      * Destructor

@@ -31,16 +31,15 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QSlider>
+#include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGroupBox>
 
 // KDE includes.
 #include <KLocalizedString>
-#include <QVBoxLayout>
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <KWindowSystem>
-#include <QHBoxLayout>
 #include <KPluralHandlingSpinBox>
 
 class SetupMaximizedPriv

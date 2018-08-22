@@ -33,7 +33,7 @@ class BreakBase : public QObject
     Q_OBJECT
 
 public:
-    BreakBase( QObject* parent );
+    explicit BreakBase( QObject* parent );
     ~BreakBase();
     virtual void activate();
     virtual void deactivate();

@@ -32,7 +32,7 @@ class SlideEffect : public BreakBase
     Q_OBJECT
 
 public:
-    SlideEffect( QObject *parent );
+    explicit SlideEffect( QObject *parent );
     ~SlideEffect();
     void reset( const QString& path, bool recursive, bool showSmallImages, bool expandImageToFullScreen, int interval );
     void activate() override;

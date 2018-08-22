@@ -17,7 +17,7 @@
 #ifndef RSIBREAK_RSITIMER_TEST_H
 #define RSIBREAK_RSITIMER_TEST_H
 
-#include <QtTest/QtTest>
+#include <QtTest>
 
 class RSITimerTest: public QObject
 {

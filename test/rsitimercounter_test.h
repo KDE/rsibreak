@@ -17,7 +17,7 @@
 #ifndef RSIBREAK_RSITIMERCOUNTER_TEST_H
 #define RSIBREAK_RSITIMERCOUNTER_TEST_H
 
-#include <QtTest/QtTest>
+#include <QtTest>
 
 class RSITimerCounterTest: public QObject
 {

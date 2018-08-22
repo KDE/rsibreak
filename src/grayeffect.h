@@ -30,7 +30,7 @@ class GrayEffect : public BreakBase
     Q_OBJECT
 
 public:
-    GrayEffect( QObject *parent );
+    explicit GrayEffect( QObject *parent );
     ~GrayEffect();
     void activate() override;
     void deactivate() override;

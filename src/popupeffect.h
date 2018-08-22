@@ -31,7 +31,7 @@ class PopupEffect : public BreakBase
     Q_OBJECT
 
 public:
-    PopupEffect( QObject* );
+    explicit PopupEffect( QObject* );
     ~PopupEffect();
     void setLabel( const QString& ) override;
 
