@@ -104,7 +104,7 @@ void SlideEffect::loadImage()
         int j;
         QString name;
         do {
-            j = ( int )( m_files.count() * ( rand() / ( RAND_MAX + 1.0 ) ) );
+            j = ( int )( m_files.count() * ( qrand() / ( RAND_MAX + 1.0 ) ) );
             name = m_files[ j ];
         } while ( m_files_done.indexOf( name ) != -1 );
 

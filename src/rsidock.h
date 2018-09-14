@@ -85,7 +85,7 @@ signals:
 
     /**
      * This signal is emitted when the user wishes to see all
-     * debug timing info. Needs a --enable-debug comiled RSIBreak
+     * debug timing info. Needs a --enable-debug compiled RSIBreak
      */
     void debugRequest();
 
