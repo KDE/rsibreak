@@ -96,7 +96,7 @@ void RSIRelaxPopup::relax( int n, bool bigBreakNext )
         resetcount += 1;
         if ( n > m_progress->value() )
             flash();
-        else if ( resetcount % 4 == 0 ) // flash regularily when the user keeps working
+        else if ( resetcount % 4 == 0 ) // flash regularly when the user keeps working
             flash();
     }
 
