@@ -16,6 +16,7 @@
 
 #include "rsitimer_test.h"
 
+#include "rsiglobals.h"
 #include "rsitimer.h"
 
 static constexpr int RELAX_ENDED_MAGIC_VALUE = -1;
@@ -38,6 +39,8 @@ void RSITimerTest::triggerSimpleTinyBreak()
     std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
     RSIIdleTimeFake* idle_time_ptr = idle_time.get();
     RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+
+    QSignalSpy spyEndShortBreak( &timer, SIGNAL( endShortBreak( void ) ) );
 
     // Part one, no idleness till small break.
     QSignalSpy spy1Relax( &timer, SIGNAL(relax(int,bool)) );
@@ -85,6 +88,7 @@ void RSITimerTest::triggerSimpleTinyBreak()
     }
     QList<QVariant> spy2RelaxSignals = spy2Relax.takeFirst(); // The last one is special.
     QCOMPARE( spy2RelaxSignals.at( 0 ).toInt(), RELAX_ENDED_MAGIC_VALUE );
+    QCOMPARE( spyEndShortBreak.count(), 1 );
 }
 
 void RSITimerTest::triggerComplexTinyBreak()
@@ -166,6 +170,8 @@ void RSITimerTest::triggerSimpleBigBreak()
     // We don't tick big pause timer during tiny breaks and patience, so it will actually happen later.
     int ticks = m_intervals[BIG_BREAK_INTERVAL] + tinyBreaks * ( m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
 
+    QSignalSpy spyEndLongBreak( &timer, SIGNAL( endLongBreak( void ) ) );
+
     // Part one, no idleness till big break.
     QSignalSpy spy1Relax( &timer, SIGNAL(relax(int,bool)) );
     QSignalSpy spy1UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
@@ -189,6 +195,7 @@ void RSITimerTest::triggerSimpleBigBreak()
     }
     QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
     QCOMPARE( spy2Relax.count(), m_intervals[BIG_BREAK_DURATION] );
+    QCOMPARE( spyEndLongBreak.count(), 1 );
 }
 
 void RSITimerTest::postponeBreak()
@@ -279,6 +286,9 @@ void RSITimerTest::noPopupBreak()
     RSIIdleTimeFake* idle_time_ptr = idle_time.get();
     RSITimer timer( std::move( idle_time ), m_intervals, false, true );
 
+    QSignalSpy spyStartShortBreak( &timer, SIGNAL( startShortBreak( void ) ) );
+    QSignalSpy spyEndShortBreak( &timer, SIGNAL( endShortBreak( void ) ) );
+
     // Part one, no idleness till small break.
     QSignalSpy spy1BreakNow( &timer, SIGNAL(breakNow()) );
     QSignalSpy spy1UpdateWidget( &timer, SIGNAL(updateWidget(int)) );
@@ -290,6 +300,7 @@ void RSITimerTest::noPopupBreak()
     }
 
     // Popup is disabled so straight to breaking.
+    QCOMPARE( spyStartShortBreak.count(), 1 );
     QCOMPARE( timer.m_state, RSITimer::TimerState::Resting );
 
     QCOMPARE( spy1BreakNow.count(), 1 );
@@ -312,6 +323,7 @@ void RSITimerTest::noPopupBreak()
         QList<QVariant> spy2UpdateWidgetSignals = spy2UpdateWidget.takeFirst();
         QCOMPARE( spy2UpdateWidgetSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] - i );
     }
+    QCOMPARE( spyEndShortBreak.count(), 1 );
 }
 
 void RSITimerTest::regularBreaks()
@@ -319,6 +331,9 @@ void RSITimerTest::regularBreaks()
     std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
     RSIIdleTimeFake* idle_time_ptr = idle_time.get();
     RSITimer timer( std::move( idle_time ), m_intervals, true, false );
+
+    QSignalSpy spyEndShortBreak( &timer, SIGNAL( endShortBreak( void ) ) );
+    QSignalSpy spyEndLongBreak( &timer, SIGNAL( endLongBreak( void ) ) );
 
     int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / ( m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
     int tick = 0;
@@ -365,6 +380,9 @@ void RSITimerTest::regularBreaks()
         timer.timeout();
     }
     QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+
+    QCOMPARE( spyEndShortBreak.count(), tinyBreaks );
+    QCOMPARE( spyEndLongBreak.count(), 1 );
 }
 
 #include "rsitimer_test.moc"

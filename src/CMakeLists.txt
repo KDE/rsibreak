@@ -26,6 +26,7 @@ breakbase.cpp
 plasmaeffect.cpp
 breakcontrol.cpp
 rsiidletime.cpp
+notificator.cpp
 )
 
 QT5_ADD_DBUS_ADAPTOR( rsibreak_sources

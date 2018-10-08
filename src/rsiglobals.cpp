@@ -110,17 +110,3 @@ void RSIGlobals::resetUsage()
 {
     m_usageArray.fill( false, 60 * 60 * 24 );
 }
-
-void RSIGlobals::NotifyBreak( bool start, bool big )
-{
-    if ( start )
-        big ? KNotification::event( "start long break",
-                                    i18n( "Start of a long break" ) )
-        : KNotification::event( "start short break",
-                                i18n( "Start of a short break" ) );
-    else
-        big ? KNotification::event( "end long break",
-                                    i18n( "End of a long break" ) )
-        : KNotification::event( "end short break",
-                                i18n( "End of a short break" ) );
-}

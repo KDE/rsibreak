@@ -160,16 +160,12 @@ void RSIObject::setIcon( int level )
 
 void RSIObject::tinyBreakSkipped()
 {
-    KNotification::event( "short timer reset",
-                          i18n( "Timer for the short break has now been reset" ),
-                          KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
+    m_notificator.onShortTimerReset();
 }
 
 void RSIObject::bigBreakSkipped()
 {
-    KNotification::event( "timers reset",
-                          i18n( "The timers have now been reset" ),
-                          KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
+    m_notificator.onTimersReset();
 }
 
 //--------------------------- CONFIG ----------------------------//
@@ -190,6 +186,10 @@ void RSIObject::configureTimer()
     connect(m_timer, &RSITimer::relax, m_relaxpopup, &RSIRelaxPopup::relax, Qt::QueuedConnection );
     connect(m_timer, &RSITimer::tinyBreakSkipped, this, &RSIObject::tinyBreakSkipped, Qt::QueuedConnection );
     connect(m_timer, &RSITimer::bigBreakSkipped, this, &RSIObject::bigBreakSkipped, Qt::QueuedConnection );
+    connect(m_timer, &RSITimer::startLongBreak, &m_notificator, &Notificator::onStartLongBreak );
+    connect(m_timer, &RSITimer::endLongBreak, &m_notificator, &Notificator::onEndLongBreak );
+    connect(m_timer, &RSITimer::startShortBreak, &m_notificator, &Notificator::onStartShortBreak );
+    connect(m_timer, &RSITimer::endShortBreak, &m_notificator, &Notificator::onEndShortBreak );
 
     connect(m_tray, &RSIDock::configChanged, m_timer, &RSITimer::updateConfig);
     connect(m_tray, &RSIDock::dialogEntered, m_timer, &RSITimer::slotStop);

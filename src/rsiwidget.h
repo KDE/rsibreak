@@ -22,12 +22,11 @@
 #define RSIWIDGET_H
 
 #include "rsitimer.h"
+#include "notificator.h"
 
 class RSIDock;
 class RSIRelaxPopup;
 class BreakBase;
-
-class QLabel;
 
 /**
  * @class RSIObject
@@ -95,6 +94,7 @@ private:
 
     QString         m_currentIcon;
 
+    Notificator     m_notificator;
 
     /* Available through D-Bus */
 public Q_SLOTS:

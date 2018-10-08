@@ -23,9 +23,9 @@
 #define RSITimer_H
 
 #include <QThread>
+#include <QVector>
 #include <memory>
 
-#include "rsiglobals.h"
 #include "rsitimercounter.h"
 #include "rsiidletime.h"
 
@@ -56,6 +56,7 @@ public:
     int bigLeft() const { return m_bigBreakCounter->counterLeft(); };
 
 public slots:
+
     /**
       Reads the configuration and restarts the timer with slotRestart.
     */
@@ -161,6 +162,11 @@ signals:
        Indicates a bigBreak is skipped because user was enough idle
      */
     void bigBreakSkipped();
+
+    void startLongBreak();
+    void endLongBreak();
+    void startShortBreak();
+    void endShortBreak();
 
 private:
     std::unique_ptr<RSIIdleTime> m_idleTimeInstance;

@@ -30,6 +30,7 @@
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
 
+#include "rsiglobals.h"
 #include "rsistats.h"
 
 RSITimer::RSITimer( QObject *parent ) : QThread( parent )
@@ -106,7 +107,11 @@ void RSITimer::doBreakNow( const int breakTime, const bool nextBreakIsBig )
     m_state = TimerState::Resting;
     m_pauseCounter = std::unique_ptr<RSITimerCounter> { new RSITimerCounter( breakTime, breakTime, INT_MAX ) };
     m_popupCounter = nullptr;
-    RSIGlobals::instance()->NotifyBreak( true, nextBreakIsBig );
+    if ( nextBreakIsBig ) {
+        emit startLongBreak();
+    } else {
+        emit startShortBreak();
+    }
     emit updateWidget( breakTime );
     emit breakNow();
 }
@@ -120,7 +125,11 @@ void RSITimer::resetAfterBreak()
     emit updateIdleAvg( 0.0 );
     emit relax( -1, false );
     emit minimize();
-    RSIGlobals::instance()->NotifyBreak( false, m_bigBreakCounter->isReset() );
+    if ( m_bigBreakCounter->isReset() ) {
+        emit endLongBreak();
+    } else {
+        emit endShortBreak();
+    }
 }
 
 // -------------------------- SLOTS ------------------------//
