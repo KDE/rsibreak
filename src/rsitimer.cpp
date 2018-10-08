@@ -40,9 +40,9 @@ RSITimer::RSITimer( QObject *parent ) : QThread( parent )
     updateConfig( true );
 }
 
-RSITimer::RSITimer( RSIIdleTime* _idleTime, const QVector<int> _intervals,
-                    const bool _usePopup, const bool _useIdleTimers ) : QThread( 0 )
-    , m_idleTimeInstance( _idleTime )
+RSITimer::RSITimer( std::unique_ptr<RSIIdleTime> &&_idleTime, const QVector<int> _intervals,
+                    const bool _usePopup, const bool _useIdleTimers ) : QThread( nullptr )
+    , m_idleTimeInstance( std::move(_idleTime) )
     , m_usePopup( _usePopup )
     , m_useIdleTimers( _useIdleTimers )
     , m_intervals( _intervals )

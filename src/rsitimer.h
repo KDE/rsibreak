@@ -199,8 +199,8 @@ private:
     */
     void doBreakNow( const int breakTime, const bool nextBreakIsBig );
 
-    // Constructor for tests. Ownership is taken over for _idleTime.
-    RSITimer( RSIIdleTime* _idleTime, const QVector<int> _intervals, const bool _usePopup, const bool _useIdleTimers );
+    // Constructor for tests.
+    RSITimer( std::unique_ptr<RSIIdleTime> &&_idleTime, const QVector<int> _intervals, const bool _usePopup, const bool _useIdleTimers );
 };
 
 #endif
