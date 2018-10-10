@@ -9,7 +9,6 @@ X-KDE-autostart-phase=2
 X-KDE-autostart-condition=rsibreakrc:General:AutoStart:false
 X-KDE-autostart-after=panel
 Name=RSIBreak
-Name[ast]=RSIBreak
 Name[bg]=RSIBreak
 Name[bs]=RSIBreak
 Name[ca]=RSIBreak
