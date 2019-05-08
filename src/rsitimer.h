@@ -196,7 +196,7 @@ private:
     void resetAfterBreak();
 
     // Start this thread.
-    void run();
+    void run() override;
 
     /**
       Some internal preparations for a fullscreen break window.
