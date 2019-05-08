@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop-application">
+  <id>org.kde.rsibreak</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>RSI Break</name>
+  <summary>utility to help prevent repetitive strain injury</summary>
+  <description>
+    <p>Prolonged use of a mouse and keyboard can cause a repetitive strain injury
+    (RSI), so computer users are advised to take regular breaks.</p>
+    <p>RSIBreak helps prevent repetitive strain injuries by keeping track of usage
+    patterns and periodically informing users to take breaks.  During break
+    periods, RSIBreak can either show an unobtrusive message, lock the screen
+    entirely, or present a slideshow.</p>
+  </description>
+  <url type="homepage">https://www.kde.org</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=rsibreak</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=rsibreak</url>
+  <launchable type="desktop-id">org.kde.rsibreak</launchable>
+  <screenshots>
+    <screenshot type="default">
+  ​    <caption>RSIBreak Stats.</caption>
+  ​    <image type="source" width="801" height="518">https://cdn.kde.org/screenshots/rsibreak/rsibreak.png</image>
+  ​  </screenshot>
+  </screenshots>
+  <provides>
+    <binary>rsibreak</binary>
+  </provides>
+  <project_group>KDE</project_group>
+</component>
