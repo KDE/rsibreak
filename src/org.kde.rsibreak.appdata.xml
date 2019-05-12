@@ -37,7 +37,7 @@
     <p xml:lang="uk">RSIBreak допомагає запобігти шкідливій для здоров'я надмірній втомі, стежачи за користуванням комп'ютером і періодично інформуючи користувача про те, що слід робити перерви у роботі. Під час перерв RSIBreak може показувати ненав'язливе повідомлення, блокувати екран повністю або показувати вказані користувачем слайди.</p>
     <p xml:lang="x-test">xxRSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.xx</p>
   </description>
-  <url type="homepage">https://www.kde.org</url>
+  <url type="homepage">https://userbase.kde.org/RSIBreak</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=rsibreak</url>
   <url type="donation">https://www.kde.org/community/donations/?app=rsibreak</url>
   <launchable type="desktop-id">org.kde.rsibreak</launchable>
