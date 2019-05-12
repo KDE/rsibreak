@@ -4,14 +4,38 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>RSI Break</name>
+  <name xml:lang="ca">RSI Break</name>
+  <name xml:lang="ca-valencia">RSI Break</name>
+  <name xml:lang="es">RSI Break</name>
+  <name xml:lang="nl">RSI Break</name>
+  <name xml:lang="pl">RSI Break</name>
+  <name xml:lang="pt">RSI Break</name>
+  <name xml:lang="uk">RSIBreak</name>
+  <name xml:lang="x-test">xxRSI Breakxx</name>
   <summary>Utility to help prevent repetitive strain injury</summary>
   <description>
     <p>Prolonged use of a mouse and keyboard can cause a repetitive strain injury
     (RSI), so computer users are advised to take regular breaks.</p>
+    <p xml:lang="ca">L'ús prolongat del ratolí i el teclat pot provocar la síndrome del túnel carpià (en anglès «repetitive strain injury» o RSI), de manera que aconsella als usuaris d'ordinador que facin pauses regulars.</p>
+    <p xml:lang="ca-valencia">L'ús prolongat del ratolí i el teclat pot provocar la síndrome del túnel carpià (en anglés «repetitive strain injury» o RSI), de manera que aconsella als usuaris d'ordinador que facen pauses regulars.</p>
+    <p xml:lang="es">El uso prolongado del ratón y del teclado puede provocar una lesión por esfuerzo repetitivo (RSI), por lo que se recomienda hacer pausas regulares.</p>
+    <p xml:lang="nl">Langdurig gebruik van een muis en toetsenbord kan repetitive strain injury (RSI) veroorzaken, computergebruikers worden geadviseerd om regelmatig pauzes te nemen.</p>
+    <p xml:lang="pl">Długie używanie myszy i klawiatury może spowodować uraz wskutek powtarzającego się wysiłku (RSI), więc zachęca się użytkowników komputera do robienia sobie regularnych przerw.</p>
+    <p xml:lang="pt">O uso prolongado de um rato ou teclado poderá criar lesões por tensão repetitiva (RSI), como problemas de túnel cárpico, pelo que os utilizadores de computadores são aconselhados a fazer pausas regulares.</p>
+    <p xml:lang="uk">Надмірне тривале користування мишею та клавіатурою може призвести до шкоди здоров'ю, заподіяної постійним напруженням (RSI), тому лікарі рекомендують користувачам комп'ютерів робити регулярні перерви у роботі.</p>
+    <p xml:lang="x-test">xxProlonged use of a mouse and keyboard can cause a repetitive strain injury (RSI), so computer users are advised to take regular breaks.xx</p>
     <p>RSIBreak helps prevent repetitive strain injuries by keeping track of usage
     patterns and periodically informing users to take breaks.  During break
     periods, RSIBreak can either show an unobtrusive message, lock the screen
     entirely, or present a slideshow.</p>
+    <p xml:lang="ca">El RSIBreak ajuda a evitar la síndrome del túnel carpià fent un seguiment dels patrons d'ús i informant periòdicament als usuaris que facin pauses. Durant els períodes de pausa, el RSIBreak pot mostrar un missatge no intrusiu, bloquejar completament la pantalla, o mostrar un passi de dispositives.</p>
+    <p xml:lang="ca-valencia">El RSIBreak ajuda a evitar la síndrome del túnel carpià fent un seguiment dels patrons d'ús i informant periòdicament als usuaris que facen pauses. Durant els períodes de pausa, el RSIBreak pot mostrar un missatge no intrusiu, bloquejar completament la pantalla, o mostrar un passe de dispositives.</p>
+    <p xml:lang="es">RSIBreak le ayuda a prevenir lesiones por esfuerzo repetitivo haciendo un seguimiento de patrones de uso e informando periódicamente al usuario de que debe hacer pausas. Durante los periodos de pausa, RSIBreak puede mostrar un mensaje no intrusivo, bloquear completamente la pantalla o mostrar una presentación.</p>
+    <p xml:lang="nl">RSIBreak helpt om repetitive strain injuries te voorkomen door het gebruikspatroon te volgend en periodiek gebruikers te informeren om pauzes te nemen. Gedurende pauzemomenten kan RSIBreak een niet vervelend bericht tonen, het scherm geheel blokkeren of een diashow tonen.</p>
+    <p xml:lang="pl">RSIBreak pomaga uniknąć urazów wskutek powtarzającego się wysiłku śledząc aktywność i okresowo zachęcając użytkownika do zrobienia sobie przerwy. Podczas przerw, RSIBreak może pokazać nieprzeszkadzającą wiadomość, całkowicie zablokować ekran, lub przedstawić pokaz obrazów.</p>
+    <p xml:lang="pt">O RSIBreak ajuda a evitar essas lesões, mantendo um registo dos padrões de utilização e avisando periodicamente os utilizadores para fazerem pausas. Durante os períodos de pausa, o RSIBreak poderá mostrar uma mensagem não incómoda, bloquear o ecrã por inteiro ou mostrar uma apresentação.</p>
+    <p xml:lang="uk">RSIBreak допомагає запобігти шкідливій для здоров'я надмірній втомі, стежачи за користуванням комп'ютером і періодично інформуючи користувача про те, що слід робити перерви у роботі. Під час перерв RSIBreak може показувати ненав'язливе повідомлення, блокувати екран повністю або показувати вказані користувачем слайди.</p>
+    <p xml:lang="x-test">xxRSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.xx</p>
   </description>
   <url type="homepage">https://www.kde.org</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=rsibreak</url>
@@ -20,6 +44,15 @@
   <screenshots>
     <screenshot type="default">
       <caption>RSIBreak Stats.</caption>
+      <caption xml:lang="ca">Estadístiques del RSIBreak.</caption>
+      <caption xml:lang="ca-valencia">Estadístiques del RSIBreak.</caption>
+      <caption xml:lang="es">Estadísticas de RSIBreak.</caption>
+      <caption xml:lang="nl">RSIBreak Statistieken.</caption>
+      <caption xml:lang="pl">Statystyki RSIBreak.</caption>
+      <caption xml:lang="pt">Estatísticas do RSIBreak.</caption>
+      <caption xml:lang="uk">Статистика у RSIBreak.</caption>
+      <caption xml:lang="x-test">xxRSIBreak Stats.xx</caption>
+      <caption xml:lang="zh-TW">RSIBreak 統計</caption>
       <image type="source" width="801" height="518">https://cdn.kde.org/screenshots/rsibreak/rsibreak.png</image>
     </screenshot>
   </screenshots>
