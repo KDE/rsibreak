@@ -11,6 +11,7 @@
   <name xml:lang="nl">RSI Break</name>
   <name xml:lang="pl">RSI Break</name>
   <name xml:lang="pt">RSI Break</name>
+  <name xml:lang="sk">RSI Break</name>
   <name xml:lang="uk">RSIBreak</name>
   <name xml:lang="x-test">xxRSI Breakxx</name>
   <summary>Utility to help prevent repetitive strain injury</summary>
@@ -60,6 +61,7 @@
       <caption xml:lang="nl">RSIBreak Statistieken.</caption>
       <caption xml:lang="pl">Statystyki RSIBreak.</caption>
       <caption xml:lang="pt">Estatísticas do RSIBreak.</caption>
+      <caption xml:lang="sk">RSIBreak štatistiky</caption>
       <caption xml:lang="uk">Статистика у RSIBreak.</caption>
       <caption xml:lang="x-test">xxRSIBreak Stats.xx</caption>
       <caption xml:lang="zh-TW">RSIBreak 統計</caption>
