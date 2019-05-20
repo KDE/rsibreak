@@ -6,8 +6,10 @@
   <name>RSI Break</name>
   <name xml:lang="ca">RSI Break</name>
   <name xml:lang="ca-valencia">RSI Break</name>
+  <name xml:lang="en-GB">RSI Break</name>
   <name xml:lang="es">RSI Break</name>
   <name xml:lang="fi">RSI Break</name>
+  <name xml:lang="ko">RSI 휴식</name>
   <name xml:lang="nl">RSI Break</name>
   <name xml:lang="pl">RSI Break</name>
   <name xml:lang="pt">RSI Break</name>
@@ -18,8 +20,10 @@
   <summary>Utility to help prevent repetitive strain injury</summary>
   <summary xml:lang="ca">Utilitat per ajudar a prevenir la síndrome del canal carpià</summary>
   <summary xml:lang="ca-valencia">Utilitat per ajudar a prevenir la síndrome del canal carpià</summary>
+  <summary xml:lang="en-GB">Utility to help prevent repetitive strain injury</summary>
   <summary xml:lang="es">Utilidad para prevenir las lesiones por esfuerzo repetitivo</summary>
   <summary xml:lang="fi">Auttaa ehkäisemään rasitusvammoja</summary>
+  <summary xml:lang="ko">반복성 긴장 장애를 예방하는 유틸리티</summary>
   <summary xml:lang="nl">Hulpmiddel om te helpen RSI te voorkomen</summary>
   <summary xml:lang="pt">Utilitário para ajudar a evitar lesões por tensão repetitiva</summary>
   <summary xml:lang="pt-BR">Utilitário para ajudar a prevenir lesões por esforço repetitivo</summary>
@@ -30,8 +34,10 @@
     (RSI), so computer users are advised to take regular breaks.</p>
     <p xml:lang="ca">L'ús prolongat del ratolí i el teclat pot provocar la síndrome del canal carpià (en anglès «repetitive strain injury» o RSI), de manera que aconsella als usuaris d'ordinador que facin pauses regulars.</p>
     <p xml:lang="ca-valencia">L'ús prolongat del ratolí i el teclat pot provocar la síndrome del canal carpià (en anglés «repetitive strain injury» o RSI), de manera que aconsella als usuaris d'ordinador que facen pauses regulars.</p>
+    <p xml:lang="en-GB">Prolonged use of a mouse and keyboard can cause a repetitive strain injury (RSI), so computer users are advised to take regular breaks.</p>
     <p xml:lang="es">El uso prolongado del ratón y del teclado puede provocar una lesión por esfuerzo repetitivo (RSI), por lo que se recomienda hacer pausas regulares.</p>
     <p xml:lang="fi">Hiiren ja näppäimistön pitkäaikainen käyttö voi aiheuttaa rasitusvamman, joten tietokoneen käytössä olisi hyvä pitää säännöllisesti taukoja.</p>
+    <p xml:lang="ko">마우스와 키보드를 오래 사용하면 반복성 긴장 장애(RSI)가 발생할 수 있습니다. 컴퓨터를 사용하는 중간중간 휴식을 취하는 것을 권장합니다.</p>
     <p xml:lang="nl">Langdurig gebruik van een muis en toetsenbord kan repetitive strain injury (RSI) veroorzaken, computergebruikers worden geadviseerd om regelmatig pauzes te nemen.</p>
     <p xml:lang="pl">Długie używanie myszy i klawiatury może spowodować uraz wskutek powtarzającego się wysiłku (RSI), więc zachęca się użytkowników komputera do robienia sobie regularnych przerw.</p>
     <p xml:lang="pt">O uso prolongado de um rato ou teclado poderá criar lesões por tensão repetitiva (RSI), como problemas de túnel cárpico, pelo que os utilizadores de computadores são aconselhados a fazer pausas regulares.</p>
@@ -44,8 +50,10 @@
     entirely, or present a slideshow.</p>
     <p xml:lang="ca">El RSIBreak ajuda a evitar la síndrome del canal carpià fent un seguiment dels patrons d'ús i informant periòdicament als usuaris que facin pauses. Durant els períodes de pausa, el RSIBreak pot mostrar un missatge no intrusiu, bloquejar completament la pantalla, o mostrar un passi de dispositives.</p>
     <p xml:lang="ca-valencia">El RSIBreak ajuda a evitar la síndrome del canal carpià fent un seguiment dels patrons d'ús i informant periòdicament als usuaris que facen pauses. Durant els períodes de pausa, el RSIBreak pot mostrar un missatge no intrusiu, bloquejar completament la pantalla, o mostrar un passe de dispositives.</p>
+    <p xml:lang="en-GB">RSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.</p>
     <p xml:lang="es">RSIBreak le ayuda a prevenir lesiones por esfuerzo repetitivo haciendo un seguimiento de patrones de uso e informando periódicamente al usuario de que debe hacer pausas. Durante los periodos de pausa, RSIBreak puede mostrar un mensaje no intrusivo, bloquear completamente la pantalla o mostrar una presentación.</p>
     <p xml:lang="fi">RSI Break auttaa ehkäisemään rasitusvammoja tarkkailemalla tietokoneen käyttöä ja opastamalla käyttäjää pitämään säännöllisesti taukoja. Taukojen aikana RSI Break näyttää joko huomaamattoman viestin, lukitsee näytön täydellisesti tai esittää diaesityksen.</p>
+    <p xml:lang="ko">RSIBreak는 사용 패턴을 추적하고 주기적으로 휴식 알림을 표시하여 반복성 긴장 장애를 예방합니다. 휴식 시간 동안에는 RSIBreak에서 메시지를 표시하거나, 화면을 잠그거나 슬라이드 쇼를 표시할 수 있습니다.</p>
     <p xml:lang="nl">RSIBreak helpt om repetitive strain injuries te voorkomen door het gebruikspatroon te volgend en periodiek gebruikers te informeren om pauzes te nemen. Gedurende pauzemomenten kan RSIBreak een niet vervelend bericht tonen, het scherm geheel blokkeren of een diashow tonen.</p>
     <p xml:lang="pl">RSIBreak pomaga uniknąć urazów wskutek powtarzającego się wysiłku śledząc aktywność i okresowo zachęcając użytkownika do zrobienia sobie przerwy. Podczas przerw, RSIBreak może pokazać nieprzeszkadzającą wiadomość, całkowicie zablokować ekran, lub przedstawić pokaz obrazów.</p>
     <p xml:lang="pt">O RSIBreak ajuda a evitar essas lesões, mantendo um registo dos padrões de utilização e avisando periodicamente os utilizadores para fazerem pausas. Durante os períodos de pausa, o RSIBreak poderá mostrar uma mensagem não incómoda, bloquear o ecrã por inteiro ou mostrar uma apresentação.</p>
@@ -62,8 +70,10 @@
       <caption>RSIBreak Stats.</caption>
       <caption xml:lang="ca">Estadístiques del RSIBreak.</caption>
       <caption xml:lang="ca-valencia">Estadístiques del RSIBreak.</caption>
+      <caption xml:lang="en-GB">RSIBreak Stats.</caption>
       <caption xml:lang="es">Estadísticas de RSIBreak.</caption>
       <caption xml:lang="fi">RSI Breakin tilastot.</caption>
+      <caption xml:lang="ko">RSIBreak 통계.</caption>
       <caption xml:lang="nl">RSIBreak Statistieken.</caption>
       <caption xml:lang="pl">Statystyki RSIBreak.</caption>
       <caption xml:lang="pt">Estatísticas do RSIBreak.</caption>
