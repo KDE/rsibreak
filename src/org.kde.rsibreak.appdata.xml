@@ -76,7 +76,7 @@
   </description>
   <url type="homepage">https://userbase.kde.org/RSIBreak</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=rsibreak</url>
-  <url type="donation">https://www.kde.org/community/donations/?app=rsibreak</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=rsibreak&amp;source=appdata</url>
   <launchable type="desktop-id">org.kde.rsibreak.desktop</launchable>
   <screenshots>
     <screenshot type="default">
