@@ -1,5 +1,6 @@
 [Global]
 IconName=rsibreak
+DesktopEntry=org.kde.rsibreak
 Comment=RSIBreak
 Comment[bg]=RSIBreak
 Comment[ca]=RSIBreak
