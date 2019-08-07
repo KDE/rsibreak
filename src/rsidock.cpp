@@ -31,6 +31,7 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KIconLoader>
+#include <KGlobalAccel>
 #include <QMenu>
 #include <KNotifyConfigWidget>
 #include <KHelpMenu>
@@ -83,6 +84,10 @@ RSIDock::RSIDock( QObject *parent )
 
     menu->addSeparator();
     m_suspendItem = doAddAction(menu, SmallIcon( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotToggleSuspend );
+    QString suspendName = aboutData.displayName() + "suspend-resume";
+    m_suspendItem->setObjectName( suspendName );
+    KGlobalAccel::setGlobalShortcut( m_suspendItem, QKeySequence( Qt::META + Qt::SHIFT + Qt::Key_S ) );
+
     doAddAction(menu, SmallIcon( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );
     doAddAction(menu, SmallIcon( "preferences-desktop-notification" ), i18n( "Configure &Notifications..." ), this, &RSIDock::slotConfigureNotifications );
     doAddAction(menu, QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ), this, &RSIDock::slotConfigure );

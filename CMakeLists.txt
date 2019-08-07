@@ -21,6 +21,7 @@ find_package(KF5 REQUIRED COMPONENTS
     TextWidgets
     XmlGui
     WindowSystem
+    GlobalAccel
     )
 
 include(KDEInstallDirs)

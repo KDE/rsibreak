@@ -52,6 +52,7 @@ target_link_libraries(rsibreak_lib
     KF5::TextWidgets
     KF5::XmlGui
     KF5::WindowSystem
+    KF5::GlobalAccel
     Qt5::DBus
 )
 target_link_libraries(rsibreak rsibreak_lib)
