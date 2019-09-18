@@ -41,14 +41,14 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
 
     QWidget *vbox = new QWidget( m_popup );
     QVBoxLayout *vboxVBoxLayout = new QVBoxLayout(vbox);
-    vboxVBoxLayout->setMargin(0);
+    vboxVBoxLayout->setContentsMargins(0, 0, 0, 0);
     vboxVBoxLayout->setSpacing( 5 );
     m_message = new QLabel( vbox );
     vboxVBoxLayout->addWidget(m_message);
 
     QWidget *hbox = new QWidget( vbox );
     QHBoxLayout *hboxHBoxLayout = new QHBoxLayout(hbox);
-    hboxHBoxLayout->setMargin(0);
+    hboxHBoxLayout->setContentsMargins(0, 0, 0, 0);
     vboxVBoxLayout->addWidget(hbox);
     hboxHBoxLayout->setSpacing( 15 );
 

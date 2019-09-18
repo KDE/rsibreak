@@ -61,7 +61,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *m = new QWidget( this );
     QHBoxLayout *mHBoxLayout = new QHBoxLayout(m);
-    mHBoxLayout->setMargin(0);
+    mHBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *l1 = new QLabel( i18n( "Short break every:" ) + ' ', m );
     mHBoxLayout->addWidget(l1);
     l1->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -74,7 +74,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *m2 = new QWidget( this );
     QHBoxLayout *m2HBoxLayout = new QHBoxLayout(m2);
-    m2HBoxLayout->setMargin(0);
+    m2HBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *l2 = new QLabel( i18n( "For a duration of:" ) + ' ', m2 );
     m2HBoxLayout->addWidget(l2);
     l2->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -88,7 +88,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *mTinyThreshold = new QWidget( this );
     QHBoxLayout *hTinyThreshold = new QHBoxLayout( mTinyThreshold );
-    hTinyThreshold->setMargin( 0 );
+    hTinyThreshold->setContentsMargins( 0, 0, 0, 0 );
     QLabel *lTinyThreshold = new QLabel( i18n( "Skip if no activity for:" ) + ' ', mTinyThreshold );
     hTinyThreshold->addWidget( lTinyThreshold );
     lTinyThreshold->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -112,7 +112,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *m3 = new QWidget( this );
     QHBoxLayout *m3HBoxLayout = new QHBoxLayout(m3);
-    m3HBoxLayout->setMargin(0);
+    m3HBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *l3 = new QLabel( i18n( "Long break every:" ) + ' ', m3 );
     m3HBoxLayout->addWidget(l3);
     l3->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -124,7 +124,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *m4 = new QWidget( this );
     QHBoxLayout *m4HBoxLayout = new QHBoxLayout(m4);
-    m4HBoxLayout->setMargin(0);
+    m4HBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *l4 = new QLabel( i18n( "For a duration of:" ) + ' ', m4 );
     m4HBoxLayout->addWidget(l4);
     l4->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -138,7 +138,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *mBigThreshold = new QWidget( this );
     QHBoxLayout *hBigThreshold = new QHBoxLayout( mBigThreshold );
-    hBigThreshold->setMargin( 0 );
+    hBigThreshold->setContentsMargins( 0, 0, 0, 0 );
     QLabel *lBigThreshold = new QLabel( i18n( "Skip if no activity for:" ) + ' ', mBigThreshold );
     hBigThreshold->addWidget( lBigThreshold );
     lBigThreshold->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -162,7 +162,7 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     QWidget *m5 = new QWidget( this );
     QHBoxLayout *m5HBoxLayout = new QHBoxLayout(m5);
-    m5HBoxLayout->setMargin(0);
+    m5HBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *l5 = new QLabel( i18n( "For a duration of:" ) + ' ', m5 );
     m5HBoxLayout->addWidget(l5);
     l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );

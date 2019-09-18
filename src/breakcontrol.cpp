@@ -40,7 +40,7 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
 
     QWidget* hbox = new QWidget( this );
     QHBoxLayout *hboxHBoxLayout = new QHBoxLayout(hbox);
-    hboxHBoxLayout->setMargin(0);
+    hboxHBoxLayout->setContentsMargins(0, 0, 0, 0);
     hboxHBoxLayout->setSpacing( 25 );
 
     m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );

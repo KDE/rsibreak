@@ -139,7 +139,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QWidget* hboxslider = new QWidget( this );
     QHBoxLayout *hboxsliderHBoxLayout = new QHBoxLayout(hboxslider);
-    hboxsliderHBoxLayout->setMargin(0);
+    hboxsliderHBoxLayout->setContentsMargins(0, 0, 0, 0);
     hboxsliderHBoxLayout->setSpacing( 30 );
     QLabel *lt = new QLabel( i18n( "Transparent" ), hboxslider );
     hboxsliderHBoxLayout->addWidget(lt);
@@ -164,7 +164,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QWidget *imageFolderBox = new QWidget( this );
     QHBoxLayout *imageFolderBoxHBoxLayout = new QHBoxLayout(imageFolderBox);
-    imageFolderBoxHBoxLayout->setMargin(0);
+    imageFolderBoxHBoxLayout->setContentsMargins(0, 0, 0, 0);
     d->imageFolderEdit = new QLineEdit( imageFolderBox );
     d->imageFolderEdit->setWhatsThis( i18n( "Select the folder from which you "
                                             "want to see images. These images are randomly shown during the breaks. "
@@ -185,7 +185,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QWidget *m5 = new QWidget( this );
     QHBoxLayout *m5HBoxLayout = new QHBoxLayout(m5);
-    m5HBoxLayout->setMargin(0);
+    m5HBoxLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *l5 = new QLabel( i18n( "Change images every:" ) + ' ', m5 );
     m5HBoxLayout->addWidget(l5);
     l5->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
@@ -222,7 +222,7 @@ SetupMaximized::SetupMaximized( QWidget* parent )
 
     QWidget *m6 = new QWidget( this );
     QHBoxLayout *m6HBoxLayout = new QHBoxLayout(m6);
-    m6HBoxLayout->setMargin(0);
+    m6HBoxLayout->setContentsMargins(0, 0, 0, 0);
     d->popupDurationLabel = new QLabel( i18n( "Popup patience:" ) + ' ', m6 );
     m6HBoxLayout->addWidget( d->popupDurationLabel );
     d->popupDurationLabel->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
