@@ -175,7 +175,7 @@ GrayEffectOnAllScreens::GrayEffectOnAllScreens()
 
 GrayEffectOnAllScreens::~GrayEffectOnAllScreens()
 {
-    qDeleteAll( m_widgets.values() );
+    qDeleteAll( m_widgets );
 }
 
 void GrayEffectOnAllScreens::disable( QScreen *screen )

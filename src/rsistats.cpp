@@ -261,7 +261,6 @@ void RSIStats::updateStat( RSIStat stat, bool updateDerived )
 void RSIStats::updateLabel( RSIStat stat )
 {
     QLabel *l = m_labels[ stat ];
-    QColor c;
     double v;
 
     switch ( stat ) {

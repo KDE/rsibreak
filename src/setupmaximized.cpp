@@ -369,9 +369,7 @@ void SetupMaximized::applySettings()
 
 void SetupMaximized::readSettings()
 {
-    QColor Black( Qt::black );
-    QFont font( QApplication::font().family(), 40, 75, true );
-    QString dir = QDir::home().path();
+    const QString dir = QDir::home().path();
 
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     d->imageFolderEdit->setText( config.readEntry( "ImageFolder", dir ) );

@@ -199,9 +199,7 @@ void RSIDock::slotResetStats()
 static QString colorizedText( const QString& text, const QColor& color )
 {
     return QString("<font color='%1'>&#9679;</font> %2")
-        .arg(color.name())
-        .arg(text.toHtmlEscaped())
-        ;
+        .arg(color.name(), text.toHtmlEscaped());
 }
 
 void RSIDock::setCounters( int tiny_left, int big_left )
