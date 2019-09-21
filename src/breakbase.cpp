@@ -24,10 +24,10 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QObject>
 #include <QPainter>
 #include <QKeyEvent>
+#include <QScreen>
 
 
 BreakBase::BreakBase( QObject* parent )
@@ -146,7 +146,7 @@ void BreakBase::setGrayEffectLevel( int level )
     m_grayEffectOnAllScreens->setLevel( level );
 }
 
-void BreakBase::excludeGrayEffectOnScreen( int screen )
+void BreakBase::excludeGrayEffectOnScreen( QScreen *screen )
 {
     m_grayEffectOnAllScreens->disable( screen );
 }
@@ -156,11 +156,11 @@ void BreakBase::excludeGrayEffectOnScreen( int screen )
 
 GrayEffectOnAllScreens::GrayEffectOnAllScreens()
 {
-    for ( int i = 0; i < QApplication::desktop()->numScreens(); ++i ) {
+    for ( QScreen *screen : QGuiApplication::screens() ) {
         GrayWidget* grayWidget = new GrayWidget( 0 );
-        m_widgets.insert( i, grayWidget );
+        m_widgets.insert( screen, grayWidget );
 
-        QRect rect = QApplication::desktop()->screenGeometry( i );
+        const QRect rect = screen->geometry();
         grayWidget->move( rect.topLeft() );
         grayWidget->setGeometry( rect );
 
@@ -169,7 +169,7 @@ GrayEffectOnAllScreens::GrayEffectOnAllScreens()
         KWindowSystem::setOnAllDesktops( grayWidget->winId(), true );
         KWindowSystem::setState( grayWidget->winId(), NET::FullScreen );
 
-        qDebug() << "Created widget for screen" << i << "Position:" << rect.topLeft();
+        qDebug() << "Created widget for screen" << screen << "Position:" << rect.topLeft();
     }
 }
 
@@ -178,14 +178,13 @@ GrayEffectOnAllScreens::~GrayEffectOnAllScreens()
     qDeleteAll( m_widgets.values() );
 }
 
-void GrayEffectOnAllScreens::disable( int screen )
+void GrayEffectOnAllScreens::disable( QScreen *screen )
 {
     qDebug() << "Removing widget from screen" << screen;
     if ( !m_widgets.contains( screen ) )
         return;
 
-    delete m_widgets.value( screen );
-    m_widgets.remove( screen );
+    delete m_widgets.take( screen );
 }
 
 void GrayEffectOnAllScreens::activate()

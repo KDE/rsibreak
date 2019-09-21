@@ -46,7 +46,7 @@ public:
     void disableShortcut( bool disable );
     void setGrayEffectOnAllScreens( bool on );
     void setGrayEffectLevel( int level );
-    void excludeGrayEffectOnScreen( int screen );
+    void excludeGrayEffectOnScreen( QScreen *screen );
 
 protected:
     bool eventFilter( QObject *obj, QEvent *event ) override;
@@ -72,10 +72,10 @@ public:
     void activate();
     void deactivate();
     void setLevel( int val );
-    void disable( int screen );
+    void disable( QScreen *screen );
 
 private:
-    QHash<int,GrayWidget*> m_widgets;
+    QHash<QScreen *,GrayWidget*> m_widgets;
 };
 
 class GrayWidget : public QWidget

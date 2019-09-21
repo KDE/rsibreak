@@ -20,11 +20,11 @@
 #include "breakcontrol.h"
 
 #include <QApplication>
-#include <QDesktopWidget>
 #include <QPainter>
 #include <QPaintEvent>
 #include <QLabel>
 #include <QPushButton>
+#include <QScreen>
 #include <QVBoxLayout>
 
 #include <QHBoxLayout>
@@ -69,15 +69,15 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
 
     setLayout( m_vbox );
 
-    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &BreakControl::slotCenterIt );
+    connect( qApp, &QGuiApplication::screenAdded, this, &BreakControl::slotCenterIt );
+    connect( qApp, &QGuiApplication::screenRemoved, this, &BreakControl::slotCenterIt );
 
     slotCenterIt();
 }
 
 void BreakControl::slotCenterIt()
 {
-    const QRect r( QApplication::desktop()->screenGeometry(
-                       QApplication::desktop()->primaryScreen() ) );
+    const QRect r( QGuiApplication::primaryScreen()->geometry() );
 
     const QPoint center( r.width() / 2 - sizeHint().width() / 2, r.y() );
     move( center );

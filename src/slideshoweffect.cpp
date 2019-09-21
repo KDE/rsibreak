@@ -22,11 +22,11 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QDir>
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QScreen>
 
 #include <KWindowSystem>
 
@@ -36,7 +36,8 @@ SlideEffect::SlideEffect( QObject *parent )
 {
     // Make all other screens gray...
     slotGray();
-    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &SlideEffect::slotGray );
+    connect( qApp, &QGuiApplication::screenAdded, this, &SlideEffect::slotGray );
+    connect( qApp, &QGuiApplication::screenRemoved, this, &SlideEffect::slotGray );
 
     m_slidewidget = new SlideWidget( 0 );
     KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
@@ -59,7 +60,7 @@ void SlideEffect::slotGray()
 {
     // Make all other screens gray...
     setGrayEffectOnAllScreens( true );
-    excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
+    excludeGrayEffectOnScreen( QGuiApplication::primaryScreen() );
 }
 
 bool SlideEffect::hasImages()
@@ -87,8 +88,7 @@ void SlideEffect::loadImage()
         return;
 
     // Base the size on the size of the screen, for xinerama.
-    QRect size = QApplication::desktop()->screenGeometry(
-                     QApplication::desktop()->primaryScreen() );
+    const QSize size = QGuiApplication::primaryScreen()->geometry().size();
 
     // Do not accept images whose surface is more than 3 times smaller than
     // screen
@@ -203,7 +203,8 @@ SlideWidget::SlideWidget( QWidget *parent )
         : QWidget( parent, Qt::Popup )
 {
     slotDimension();
-    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &SlideWidget::slotDimension );
+    connect( qApp, &QGuiApplication::screenAdded, this, &SlideWidget::slotDimension );
+    connect( qApp, &QGuiApplication::screenRemoved, this, &SlideWidget::slotDimension );
 
     QVBoxLayout *boxLayout = new QVBoxLayout( this );
     boxLayout->setSpacing(0);
@@ -219,8 +220,7 @@ SlideWidget::~SlideWidget() {}
 
 void SlideWidget::slotDimension()
 {
-    QRect rect = QApplication::desktop()->screenGeometry(
-                     QApplication::desktop()->primaryScreen() );
+    const QRect rect = QGuiApplication::primaryScreen()->geometry();
     setGeometry( rect );
 }
 

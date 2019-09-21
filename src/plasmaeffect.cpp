@@ -20,8 +20,8 @@
 
 #include <QApplication>
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QDBusInterface>
+#include <QScreen>
 
 PlasmaEffect::PlasmaEffect( QObject* parent )
         : BreakBase( parent )
@@ -29,14 +29,15 @@ PlasmaEffect::PlasmaEffect( QObject* parent )
     // Make all other screens gray...
     slotGray();
 
-    connect( QApplication::desktop(), &QDesktopWidget::screenCountChanged, this, &PlasmaEffect::slotGray );
+    connect( qApp, &QGuiApplication::screenAdded, this, &PlasmaEffect::slotGray );
+    connect( qApp, &QGuiApplication::screenRemoved, this, &PlasmaEffect::slotGray );
 }
 
 void PlasmaEffect::slotGray()
 {
     // Make all other screens gray...
     setGrayEffectOnAllScreens( true );
-    excludeGrayEffectOnScreen( QApplication::desktop()->primaryScreen() );
+    excludeGrayEffectOnScreen( QGuiApplication::primaryScreen() );
 }
 
 void PlasmaEffect::activate()
