@@ -11,6 +11,7 @@
   <name xml:lang="el">RSI Break</name>
   <name xml:lang="en-GB">RSI Break</name>
   <name xml:lang="es">RSI Break</name>
+  <name xml:lang="et">RSIBreak</name>
   <name xml:lang="fi">RSI Break</name>
   <name xml:lang="fr">RSI Break</name>
   <name xml:lang="gl">RSI Break</name>
@@ -32,6 +33,7 @@
   <summary xml:lang="el">Εργαλείο για την αποφυγή κακώσεων λόγω επεναλαμβανόμενης καταπόνησης</summary>
   <summary xml:lang="en-GB">Utility to help prevent repetitive strain injury</summary>
   <summary xml:lang="es">Utilidad para prevenir las lesiones por esfuerzo repetitivo</summary>
+  <summary xml:lang="et">Tööriist ülekoormuskahjustuse vältimiseks</summary>
   <summary xml:lang="fi">Auttaa ehkäisemään rasitusvammoja</summary>
   <summary xml:lang="fr">Utilitaire contribuant à éviter les troubles musculo-squelettiques</summary>
   <summary xml:lang="gl">Utilidade para axudar a evitar as lesións por tensión repetitiva</summary>
@@ -53,6 +55,7 @@
     <p xml:lang="el">Η παρατεταμένη χρήση ποντικιού και πληκτρολογίου ίσως προκαλέσει σύνδρομο κακώσεων λόγω επαναλαμβανόμενης καταπόνησης (RSI), έτσι συνιστάται στους χρήστες υπολογιστών να κάνουν συχνά διαλείμματα.</p>
     <p xml:lang="en-GB">Prolonged use of a mouse and keyboard can cause a repetitive strain injury (RSI), so computer users are advised to take regular breaks.</p>
     <p xml:lang="es">El uso prolongado del ratón y del teclado puede provocar una lesión por esfuerzo repetitivo (RSI), por lo que se recomienda hacer pausas regulares.</p>
+    <p xml:lang="et">Pikaajaline hiire ja klaviatuuri kasutamine võib tekitada ülekoormuskahjustust (RSI), mistõttu arvutikasutajatel on soovitatav teha regulaarseid pause.</p>
     <p xml:lang="fi">Hiiren ja näppäimistön pitkäaikainen käyttö voi aiheuttaa rasitusvamman, joten tietokoneen käytössä olisi hyvä pitää säännöllisesti taukoja.</p>
     <p xml:lang="fr">L'utilisation prolongée d'une souris et d'un clavier est susceptible d'occasionner des troubles musculo-squelettiques, il est conseillé aux utilisateurs d'ordinateurs de faire des pauses régulières.</p>
     <p xml:lang="gl">O uso prolongado de rato ou teclado pode causar lesións por tensión repetitiva (RSI), así que aos usuarios de computador recoméndaselles facer descansos regulares.</p>
@@ -75,6 +78,7 @@
     <p xml:lang="el">Το RSIBreak βοηθάει στην αποφυγή κακώσεων λόγω επαναλαμβανόμενης καταπόνησης ανιχνεύοντας μοτίβα χρήσης και ενημερώνοντας περιοδικά τους χρήστες για να κάνουν διάλειμμα. Κατά τις περιόδους των διαλειμμάτων το RSIBreak μπορεί να εμφανίσει ένα μη παρεμβατικό μήνυμα, να κλειδώσει την οθόνη ή να κάνει παρουσίαση διαφανειών.</p>
     <p xml:lang="en-GB">RSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.</p>
     <p xml:lang="es">RSIBreak le ayuda a prevenir lesiones por esfuerzo repetitivo haciendo un seguimiento de patrones de uso e informando periódicamente al usuario de que debe hacer pausas. Durante los periodos de pausa, RSIBreak puede mostrar un mensaje no intrusivo, bloquear completamente la pantalla o mostrar una presentación.</p>
+    <p xml:lang="et">RSIBreak aitab vältida ülekoormuskahjustusi, hoides silma peal arvuti kasutamise mustril ja teavitades kasutajat perioodiliselt vajaduse kohta teha paus. Pauside ajal võib RSIBreak näidata meeleolu leevendavat sõnumit, lukustada ekraani või panna käima slaidiseansi.</p>
     <p xml:lang="fi">RSI Break auttaa ehkäisemään rasitusvammoja tarkkailemalla tietokoneen käyttöä ja opastamalla käyttäjää pitämään säännöllisesti taukoja. Taukojen aikana RSI Break näyttää joko huomaamattoman viestin, lukitsee näytön täydellisesti tai esittää diaesityksen.</p>
     <p xml:lang="fr">RSIBreak contribue à éviter les troubles musculo-squelettiques en surveillant leur utilisation et en leur recommandant régulièrement de faire une pause. Durant les pauses, RSIBreak peut afficher un message non bloquant, verrouiller entièrement l'écran ou présenter des diapositives.</p>
     <p xml:lang="gl">RSIBreak axuda a evitar as lesións por tensión repetitiva facendo un seguimento dos padróns de uso e informando de maneira periódica aos usuarios de que fagan descansos. Durante os períodos de descanso, RSIBreak pode mostrar unha mensaxe non intrusiva, bloquear completamente a pantalla ou reproducir unha presentación de diapositivas.</p>
@@ -102,6 +106,7 @@
       <caption xml:lang="el">RSIBreak stats.</caption>
       <caption xml:lang="en-GB">RSIBreak Stats.</caption>
       <caption xml:lang="es">Estadísticas de RSIBreak.</caption>
+      <caption xml:lang="et">RSIBreaki statistika.</caption>
       <caption xml:lang="fi">RSI Breakin tilastot.</caption>
       <caption xml:lang="fr">Statistiques RSIBreak.</caption>
       <caption xml:lang="gl">Estatísticas de RSIBreak.</caption>
