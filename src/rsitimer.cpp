@@ -121,6 +121,7 @@ void RSITimer::resetAfterBreak()
     m_state = TimerState::Monitoring;
     m_pauseCounter = nullptr;
     m_popupCounter = nullptr;
+    m_shortInputCounter = nullptr;
     defaultUpdateToolTip();
     emit updateIdleAvg( 0.0 );
     emit relax( -1, false );
@@ -256,7 +257,8 @@ void RSITimer::timeout()
             break;
         }
 
-        int inverseTick = ( idleSeconds == 0 ) ? 1 : 0; // inverting as we account idle seconds here.
+        bool isInputLong = (m_shortInputCounter->tick(idleSeconds) > 0);
+        int inverseTick = ( idleSeconds == 0 && isInputLong) ? 1 : 0; // inverting as we account idle seconds here.
         breakTime = m_pauseCounter->tick( inverseTick );
         if ( breakTime > 0 ) {
             // User has waited out the pause, back to monitoring.
@@ -268,7 +270,8 @@ void RSITimer::timeout()
         break;
     }
     case TimerState::Resting: {
-        int inverseTick = ( idleSeconds == 0 ) ? 1 : 0; // inverting as we account idle seconds here.
+        bool isInputLong = (m_shortInputCounter->tick(idleSeconds) > 0);
+        int inverseTick = ( idleSeconds == 0 && isInputLong > 0 ) ? 1 : 0; // inverting as we account idle seconds here.
         int breakTime = m_pauseCounter->tick( inverseTick );
         if ( breakTime > 0 ) {
             resetAfterBreak();
@@ -308,6 +311,10 @@ void RSITimer::suggestBreak( const int breakTime )
     };
     // Threshold of one means the timer is reset on every non-zero tick.
     m_pauseCounter = std::unique_ptr<RSITimerCounter> { new RSITimerCounter( breakTime, breakTime, 1 ) };
+
+    // For measuring input duration in order to limit influence of short inputs on resetting pause counter.
+    // Example of short input is: mouse sent input due to accidental touch or desk vibration.
+    m_shortInputCounter = std::unique_ptr<RSITimerCounter> { new RSITimerCounter( 2, 2, 1 ) };
 
     emit relax( breakTime, nextOneIsBig );
 }

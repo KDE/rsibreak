@@ -186,6 +186,7 @@ private:
     std::unique_ptr<RSITimerCounter> m_tinyBreakCounter;
     std::unique_ptr<RSITimerCounter> m_pauseCounter;
     std::unique_ptr<RSITimerCounter> m_popupCounter;
+    std::unique_ptr<RSITimerCounter> m_shortInputCounter;
 
     void hibernationDetector( const int totalIdle );
     void suggestBreak( const int time );
