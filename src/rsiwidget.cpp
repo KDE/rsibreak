@@ -67,8 +67,6 @@ RSIObject::RSIObject( QWidget *parent ) : QObject( parent )
     connect(m_tray, &RSIDock::configChanged, m_relaxpopup, &RSIRelaxPopup::slotReadConfig);
     connect(m_tray, &RSIDock::suspend, m_relaxpopup, &RSIRelaxPopup::setSuspended);
 
-    qsrand( time( NULL ) );
-
     readConfig();
 
     setIcon( 0 );

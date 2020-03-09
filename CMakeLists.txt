@@ -1,7 +1,7 @@
 project( rsibreak )
 
 cmake_minimum_required (VERSION 3.5.0 FATAL_ERROR)
-set (QT_MIN_VERSION "5.6.0")
+set (QT_MIN_VERSION "5.10.0")
 
 find_package(ECM 5.18.0 REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})

@@ -27,6 +27,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QScreen>
+#include <QRandomGenerator>
 
 #include <KWindowSystem>
 
@@ -104,7 +105,7 @@ void SlideEffect::loadImage()
         int j;
         QString name;
         do {
-            j = ( int )( m_files.count() * ( qrand() / ( RAND_MAX + 1.0 ) ) );
+            j = QRandomGenerator::global()->bounded(m_files.count());
             name = m_files[ j ];
         } while ( m_files_done.indexOf( name ) != -1 );
 
