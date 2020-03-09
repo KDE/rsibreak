@@ -147,8 +147,7 @@ void SlideEffect::findImagesInFolder( const QString& folder )
     QDir dir( folder );
 
     if ( !dir.exists() || !dir.isReadable() ) {
-        qWarning() << "Folder does not exist or is not readable: "
-        << folder << endl;
+        qWarning() << "Folder does not exist or is not readable: " << folder;
         return;
     }
 
