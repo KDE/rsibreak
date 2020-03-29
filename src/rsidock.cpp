@@ -27,6 +27,7 @@
 
 #include <QPointer>
 #include <QTextDocument>
+#include <QIcon>
 
 #include <KAboutData>
 #include <KLocalizedString>
@@ -82,9 +83,9 @@ RSIDock::RSIDock( QObject *parent )
     doAddAction( menu, i18n( "Switch application &language..." ), m_help, &KHelpMenu::switchApplicationLanguage );
 
     menu->addSeparator();
-    m_suspendItem = doAddAction(menu, SmallIcon( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotToggleSuspend );
-    doAddAction(menu, SmallIcon( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );
-    doAddAction(menu, SmallIcon( "preferences-desktop-notification" ), i18n( "Configure &Notifications..." ), this, &RSIDock::slotConfigureNotifications );
+    m_suspendItem = doAddAction(menu, QIcon::fromTheme( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotToggleSuspend );
+    doAddAction(menu, QIcon::fromTheme( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );
+    doAddAction(menu, QIcon::fromTheme( "preferences-desktop-notification" ), i18n( "Configure &Notifications..." ), this, &RSIDock::slotConfigureNotifications );
     doAddAction(menu, QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ), this, &RSIDock::slotConfigure );
 
     connect(this, &RSIDock::activateRequested, this, &RSIDock::slotShowStatistics);
@@ -135,13 +136,13 @@ void RSIDock::slotToggleSuspend()
         emit suspend( false );
 
         setIconByName( "rsibreak0" );
-        m_suspendItem->setIcon( SmallIcon( "media-playback-pause" ) );
+        m_suspendItem->setIcon( QIcon::fromTheme( "media-playback-pause" ) );
         m_suspendItem->setText( i18n( "&Suspend RSIBreak" ) );
     } else {
         emit suspend( true );
 
         setIconByName( "rsibreakx" );
-        m_suspendItem->setIcon( SmallIcon( "media-playback-start" ) );
+        m_suspendItem->setIcon( QIcon::fromTheme( "media-playback-start" ) );
         m_suspendItem->setText( i18n( "&Resume RSIBreak" ) );
     }
 
