@@ -27,7 +27,6 @@
 #include <QPushButton>
 #include <QScreen>
 #include <QVBoxLayout>
-#include <QStyle>
 
 #include <QHBoxLayout>
 #include <KIconLoader>
@@ -48,14 +47,14 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     m_skipButton = new QPushButton( i18n( "Skip Break" ), hbox );
     hboxHBoxLayout->addWidget(m_skipButton);
     QSize sizeSkip( m_skipButton->size() );
-    m_skipButton->setIcon( QIcon::fromTheme(QStringLiteral("dialog-cancel")).pixmap(qApp->style()->pixelMetric(QStyle::PM_SmallIconSize)));
+    m_skipButton->setIcon( SmallIcon( "dialog-cancel" ) );
     m_skipButton->setFixedHeight( sizeSkip.height() );
     connect(m_skipButton, &QPushButton::clicked, this, &BreakControl::skip);
     
     m_postponeButton = new QPushButton( i18n( "Postpone Break" ), hbox );    
     hboxHBoxLayout->addWidget(m_postponeButton);
     QSize sizePostpone(m_postponeButton->size());
-    m_postponeButton->setIcon(QIcon::fromTheme(QStringLiteral("go-next")).pixmap(qApp->style()->pixelMetric(QStyle::PM_SmallIconSize)));
+    m_postponeButton->setIcon(SmallIcon("go-next"));    
     m_postponeButton->setFixedHeight(sizePostpone.height());
     connect(m_postponeButton, &QPushButton::clicked, this, &BreakControl::postpone);
 
@@ -63,7 +62,7 @@ BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )
     hboxHBoxLayout->addWidget(m_lockButton);
     QSize sizeLock( m_skipButton->size() );
     m_lockButton->setFixedHeight( sizeLock.height() );
-    m_lockButton->setIcon( QIcon::fromTheme(QStringLiteral("system-lock-screen")).pixmap(qApp->style()->pixelMetric(QStyle::PM_SmallIconSize)) );
+    m_lockButton->setIcon( SmallIcon( "system-lock-screen" ) );
     connect(m_lockButton, &QPushButton::clicked, this, &BreakControl::slotLock);
 
     m_vbox->addWidget( m_textLabel );

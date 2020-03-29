@@ -24,8 +24,6 @@
 #include <QPushButton>
 #include <QTimer>
 #include <QProgressBar>
-#include <QStyle>
-#include <QApplication>
 
 #include <KColorScheme>
 #include <QVBoxLayout>
@@ -59,17 +57,17 @@ RSIRelaxPopup::RSIRelaxPopup( QWidget *parent )
     m_progress->setFormat( "%v" );
     m_progress->setRange( 0, 0 );
 
-    m_skipbutton = new QPushButton( QIcon::fromTheme(QStringLiteral("dialog-cancel")).pixmap(qApp->style()->pixelMetric(QStyle::PM_SmallIconSize)), i18n( "Skip Break" ), hbox );
+    m_skipbutton = new QPushButton( SmallIcon( "dialog-cancel" ), i18n( "Skip Break" ), hbox );
     hboxHBoxLayout->addWidget(m_skipbutton);
     m_skipbutton->setToolTip( i18n( "Skip this break" ) );
     connect(m_skipbutton, &QPushButton::clicked, this, &RSIRelaxPopup::skip);
 
-    m_postponebutton = new QPushButton( QIcon::fromTheme(QStringLiteral("go-next")).pixmap(qApp->style()->pixelMetric(QStyle::PM_SmallIconSize)), i18n( "Postpone Break" ), hbox );
+    m_postponebutton = new QPushButton( SmallIcon( "go-next" ), i18n( "Postpone Break" ), hbox );
     hboxHBoxLayout->addWidget(m_postponebutton);
     m_postponebutton->setToolTip( i18n( "Postpone this break" ) );
     connect(m_postponebutton, &QPushButton::clicked, this, &RSIRelaxPopup::postpone);
     
-    m_lockbutton = new QPushButton( QIcon::fromTheme(QStringLiteral("system-lock-screen")).pixmap(qApp->style()->pixelMetric(QStyle::PM_SmallIconSize)), i18n( "Lock Screen" ), hbox );
+    m_lockbutton = new QPushButton( SmallIcon( "system-lock-screen" ), i18n( "Lock Screen" ), hbox );
     hboxHBoxLayout->addWidget(m_lockbutton);
     m_lockbutton->setToolTip( i18n( "Lock the session" ) );
     connect(m_lockbutton, &QPushButton::clicked, this, &RSIRelaxPopup::lock);
