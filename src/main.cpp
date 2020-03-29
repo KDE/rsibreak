@@ -68,8 +68,6 @@ int main( int argc, char *argv[] )
 
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
-    parser.addVersionOption();
-    parser.addHelpOption();
     parser.addOption(QCommandLineOption("autostart"));
     aboutData.setupCommandLine(&parser);
     parser.process(app);
