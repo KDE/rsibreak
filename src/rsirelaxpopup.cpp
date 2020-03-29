@@ -30,7 +30,6 @@
 #include <QVBoxLayout>
 #include <KLocalizedString>
 #include <KConfigGroup>
-#include <KIconLoader>
 #include <QHBoxLayout>
 #include <KFormat>
 

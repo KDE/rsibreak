@@ -30,7 +30,6 @@
 #include <QIcon>
 
 #include <QHBoxLayout>
-#include <KIconLoader>
 #include <KLocalizedString>
 
 BreakControl::BreakControl( QWidget* parent, Qt::WindowType type )

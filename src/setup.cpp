@@ -26,7 +26,6 @@
 #include <KConfigGroup>
 #include <KWindowConfig>
 #include <KSharedConfig>
-#include <kiconloader.h>
 #include <klocalizedstring.h>
 
 // Local includes.

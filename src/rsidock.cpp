@@ -31,7 +31,6 @@
 
 #include <KAboutData>
 #include <KLocalizedString>
-#include <KIconLoader>
 #include <QMenu>
 #include <KNotifyConfigWidget>
 #include <KHelpMenu>

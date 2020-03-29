@@ -36,7 +36,6 @@
 
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KIconLoader>
 #include <KNotification>
 #include <QDBusInterface>
 #include <QTemporaryFile>
