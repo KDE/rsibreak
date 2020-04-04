@@ -74,6 +74,7 @@ void RSIGlobals::slotReadConfig()
     m_intervals[BIG_BREAK_THRESHOLD] = config.readEntry( "BigThreshold", 1 ) * 60;
     m_intervals[POSTPONE_BREAK_INTERVAL] = config.readEntry( "PostponeBreakDuration", 5 ) * 60;
     m_intervals[PATIENCE_INTERVAL] = config.readEntry( "Patience", 30 );
+    m_intervals[SHORT_INPUT_INTERVAL] = config.readEntry( "ShortInputInterval", 2 );
 
     if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
         qDebug() << "Debug mode activated";

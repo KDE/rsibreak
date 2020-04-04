@@ -32,6 +32,7 @@ RSITimerTest::RSITimerTest( void )
     m_intervals[BIG_BREAK_THRESHOLD] = 5 * 60;
     m_intervals[POSTPONE_BREAK_INTERVAL] = 3 * 60;
     m_intervals[PATIENCE_INTERVAL] = 30;
+    m_intervals[SHORT_INPUT_INTERVAL] = 2;
 }
 
 void RSITimerTest::triggerSimpleTinyBreak()
@@ -168,7 +169,8 @@ void RSITimerTest::triggerSimpleBigBreak()
 
     int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / ( m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
     // We don't tick big pause timer during tiny breaks and patience, so it will actually happen later.
-    int ticks = m_intervals[BIG_BREAK_INTERVAL] + tinyBreaks * ( m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
+    // In time the patience wears out, the tiny break could already accumulate some seconds due to SHORT_INPUT_INTERVAL filter, so substract them.
+    int ticks = m_intervals[BIG_BREAK_INTERVAL] + tinyBreaks * ( m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] - (m_intervals[PATIENCE_INTERVAL] - 1) % m_intervals[SHORT_INPUT_INTERVAL] );
 
     QSignalSpy spyEndLongBreak( &timer, SIGNAL(endLongBreak()) );
 
