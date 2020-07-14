@@ -29,28 +29,6 @@
   <name xml:lang="uk">RSIBreak</name>
   <name xml:lang="x-test">xxRSI Breakxx</name>
   <summary>Helps prevent Repetitive Strain Injury by reminding you to take a break</summary>
-  <summary xml:lang="ca">Utilitat per ajudar a prevenir la síndrome del canal carpià</summary>
-  <summary xml:lang="ca-valencia">Utilitat per ajudar a prevenir la síndrome del canal carpià</summary>
-  <summary xml:lang="de">Dienstprogramm zur Vorbeugung gegen das RSI-Syndrom</summary>
-  <summary xml:lang="el">Εργαλείο για την αποφυγή κακώσεων λόγω επεναλαμβανόμενης καταπόνησης</summary>
-  <summary xml:lang="en-GB">Utility to help prevent repetitive strain injury</summary>
-  <summary xml:lang="es">Utilidad para prevenir las lesiones por esfuerzo repetitivo</summary>
-  <summary xml:lang="et">Tööriist ülekoormuskahjustuse vältimiseks</summary>
-  <summary xml:lang="fi">Auttaa ehkäisemään rasitusvammoja</summary>
-  <summary xml:lang="fr">Utilitaire contribuant à éviter les troubles musculo-squelettiques</summary>
-  <summary xml:lang="gl">Utilidade para axudar a evitar as lesións por tensión repetitiva</summary>
-  <summary xml:lang="id">Utilitas untuk membantu mencegah cedera regangan berulang</summary>
-  <summary xml:lang="it">Strumento per la prevenzione del disturbo degli arti superiori da lavoro</summary>
-  <summary xml:lang="ko">반복성 긴장 장애를 예방하는 유틸리티</summary>
-  <summary xml:lang="lt">Paslaugų programa, skirta neleisti pasikartojančios įtampos traumų</summary>
-  <summary xml:lang="nl">Hulpmiddel om te helpen RSI te voorkomen</summary>
-  <summary xml:lang="pl">Narzędzie pomagające uniknąć urazów wskutek powtarzającego się wysiłku</summary>
-  <summary xml:lang="pt">Utilitário para ajudar a evitar lesões por tensão repetitiva</summary>
-  <summary xml:lang="pt-BR">Utilitário para ajudar a prevenir lesões por esforço repetitivo</summary>
-  <summary xml:lang="sl">Pomožni program za preprečevanje poškodb zaradi ponavljajočih se gibov</summary>
-  <summary xml:lang="sv">Verktyg för att hjälpa till att förhindra belastningsskador</summary>
-  <summary xml:lang="uk">Програма, яка намагається запобігти шкоді вашому здоров'ю від постійного напруження</summary>
-  <summary xml:lang="x-test">xxUtility to help prevent repetitive strain injuryxx</summary>
   <description>
     <p>Prolonged use of a mouse and keyboard can cause a repetitive strain injury
     (RSI), so computer users are advised to take regular breaks.</p>
