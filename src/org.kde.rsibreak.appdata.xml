@@ -31,9 +31,12 @@
   <summary>Helps prevent Repetitive Strain Injury by reminding you to take a break</summary>
   <summary xml:lang="ca">Ajuda a prevenir la síndrome del canal carpià recordant a l'usuari que descansi</summary>
   <summary xml:lang="ca-valencia">Ajuda a prevenir la síndrome del canal carpià recordant a l'usuari que descansi</summary>
+  <summary xml:lang="it">Aiuta a prevenire il disturbo degli arti superiori da lavoro suggerendo di fare una pausa</summary>
   <summary xml:lang="nl">Helpt Repetitive Strain Injury (RSI) te voorkomen door u te herinneren een pauze te nemen</summary>
   <summary xml:lang="pt">Ajuda a evitar Lesões por Tensão Repetitiva, relembrando-o de fazer uma pausa</summary>
   <summary xml:lang="pt-BR">Ajuda a prevenir lesões por esforço repetitivo (LER) lembrando-o de fazer uma pausa</summary>
+  <summary xml:lang="sv">Hjälper till att förhindra belastningsskador genom att påminna dig om att ta en rast</summary>
+  <summary xml:lang="uk">Допомагає запобігти ушкодженням від постійного напруження шляхом нагадування про потребу у відпочинку</summary>
   <summary xml:lang="x-test">xxHelps prevent Repetitive Strain Injury by reminding you to take a breakxx</summary>
   <description>
     <p>Prolonged use of a mouse and keyboard can cause a repetitive strain injury
