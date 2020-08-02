@@ -7,6 +7,7 @@
   <name xml:lang="ca">RSI Break</name>
   <name xml:lang="ca-valencia">RSI Break</name>
   <name xml:lang="cs">RSI Break</name>
+  <name xml:lang="da">RSI Break</name>
   <name xml:lang="de">RSI Break</name>
   <name xml:lang="el">RSI Break</name>
   <name xml:lang="en-GB">RSI Break</name>
@@ -32,6 +33,7 @@
   <summary xml:lang="ca">Ajuda a prevenir la síndrome del canal carpià recordant a l'usuari que descansi</summary>
   <summary xml:lang="ca-valencia">Ajuda a prevenir la síndrome del canal carpià recordant a l'usuari que descansi</summary>
   <summary xml:lang="cs">Pomáhá předcházet chorobě RSI připomínáním uživateli, aby si odpočinul</summary>
+  <summary xml:lang="da">Hjælper med at forebygge museskader ved at minde dig om at tage pauser</summary>
   <summary xml:lang="es">Ayuda a prevenir lesiones por esfuerzo repetitivo recordándole que debe hacer una pausa</summary>
   <summary xml:lang="fr">Aide à la prévention des blessures musculo-squelettiques en vous rappelant de faire une pause</summary>
   <summary xml:lang="it">Aiuta a prevenire il disturbo degli arti superiori da lavoro suggerendo di fare una pausa</summary>
@@ -47,6 +49,7 @@
     (RSI), so computer users are advised to take regular breaks.</p>
     <p xml:lang="ca">L'ús prolongat del ratolí i el teclat pot provocar la síndrome del canal carpià (en anglès «repetitive strain injury» o RSI), de manera que aconsella als usuaris d'ordinador que facin pauses regulars.</p>
     <p xml:lang="ca-valencia">L'ús prolongat del ratolí i el teclat pot provocar la síndrome del canal carpià (en anglés «repetitive strain injury» o RSI), de manera que aconsella als usuaris d'ordinador que facen pauses regulars.</p>
+    <p xml:lang="da">Vedvarende brug af mus og tastatur kan give museskader (RSI), så computerbrugere tilrådes at holde regelmæssige pauser.</p>
     <p xml:lang="el">Η παρατεταμένη χρήση ποντικιού και πληκτρολογίου ίσως προκαλέσει σύνδρομο κακώσεων λόγω επαναλαμβανόμενης καταπόνησης (RSI), έτσι συνιστάται στους χρήστες υπολογιστών να κάνουν συχνά διαλείμματα.</p>
     <p xml:lang="en-GB">Prolonged use of a mouse and keyboard can cause a repetitive strain injury (RSI), so computer users are advised to take regular breaks.</p>
     <p xml:lang="es">El uso prolongado del ratón y del teclado puede provocar una lesión por esfuerzo repetitivo (RSI), por lo que se recomienda hacer pausas regulares.</p>
@@ -72,6 +75,7 @@
     entirely, or present a slideshow.</p>
     <p xml:lang="ca">El RSIBreak ajuda a evitar la síndrome del canal carpià fent un seguiment dels patrons d'ús i informant periòdicament als usuaris que facin pauses. Durant els períodes de pausa, el RSIBreak pot mostrar un missatge no intrusiu, bloquejar completament la pantalla, o mostrar un passi de dispositives.</p>
     <p xml:lang="ca-valencia">El RSIBreak ajuda a evitar la síndrome del canal carpià fent un seguiment dels patrons d'ús i informant periòdicament als usuaris que facen pauses. Durant els períodes de pausa, el RSIBreak pot mostrar un missatge no intrusiu, bloquejar completament la pantalla, o mostrar un passe de dispositives.</p>
+    <p xml:lang="da">RSIBreak hjælper med at forebygge museskader ved at holde styr på brugsmønstre og periodisk minde brugerne om at holde pauser. Under pauserne kan RSIBreak enten vise en forstyrrende meddelelse, låse skærmen fuldstændigt eller vise et diasshow.</p>
     <p xml:lang="el">Το RSIBreak βοηθάει στην αποφυγή κακώσεων λόγω επαναλαμβανόμενης καταπόνησης ανιχνεύοντας μοτίβα χρήσης και ενημερώνοντας περιοδικά τους χρήστες για να κάνουν διάλειμμα. Κατά τις περιόδους των διαλειμμάτων το RSIBreak μπορεί να εμφανίσει ένα μη παρεμβατικό μήνυμα, να κλειδώσει την οθόνη ή να κάνει παρουσίαση διαφανειών.</p>
     <p xml:lang="en-GB">RSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.</p>
     <p xml:lang="es">RSIBreak le ayuda a prevenir lesiones por esfuerzo repetitivo haciendo un seguimiento de patrones de uso e informando periódicamente al usuario de que debe hacer pausas. Durante los periodos de pausa, RSIBreak puede mostrar un mensaje no intrusivo, bloquear completamente la pantalla o mostrar una presentación.</p>
@@ -101,6 +105,7 @@
       <caption>RSIBreak Stats.</caption>
       <caption xml:lang="ca">Estadístiques del RSIBreak.</caption>
       <caption xml:lang="ca-valencia">Estadístiques del RSIBreak.</caption>
+      <caption xml:lang="da">RSIBreak-statistik.</caption>
       <caption xml:lang="de">RSIBreak-Statistik</caption>
       <caption xml:lang="el">RSIBreak stats.</caption>
       <caption xml:lang="en-GB">RSIBreak Stats.</caption>
