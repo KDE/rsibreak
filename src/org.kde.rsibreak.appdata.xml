@@ -107,31 +107,6 @@
   <screenshots>
     <screenshot type="default">
       <caption>RSIBreak Stats</caption>
-      <caption xml:lang="ca">Estadístiques del RSIBreak.</caption>
-      <caption xml:lang="ca-valencia">Estadístiques del RSIBreak.</caption>
-      <caption xml:lang="da">RSIBreak-statistik.</caption>
-      <caption xml:lang="de">RSIBreak-Statistik</caption>
-      <caption xml:lang="el">RSIBreak stats.</caption>
-      <caption xml:lang="en-GB">RSIBreak Stats.</caption>
-      <caption xml:lang="es">Estadísticas de RSIBreak.</caption>
-      <caption xml:lang="et">RSIBreaki statistika.</caption>
-      <caption xml:lang="fi">RSI Breakin tilastot.</caption>
-      <caption xml:lang="fr">Statistiques RSIBreak.</caption>
-      <caption xml:lang="gl">Estatísticas de RSIBreak.</caption>
-      <caption xml:lang="id">Statistik RSIBreak.</caption>
-      <caption xml:lang="it">Statistiche di RSIBreak.</caption>
-      <caption xml:lang="ko">RSIBreak 통계.</caption>
-      <caption xml:lang="lt">RSIBreak statistika.</caption>
-      <caption xml:lang="nl">RSIBreak Statistieken.</caption>
-      <caption xml:lang="pl">Statystyki RSIBreak.</caption>
-      <caption xml:lang="pt">Estatísticas do RSIBreak.</caption>
-      <caption xml:lang="pt-BR">Estatísticas do RSIBreak.</caption>
-      <caption xml:lang="sk">RSIBreak štatistiky</caption>
-      <caption xml:lang="sl">RSIBreak statistike.</caption>
-      <caption xml:lang="sv">RSIbreak statistik.</caption>
-      <caption xml:lang="uk">Статистика у RSIBreak.</caption>
-      <caption xml:lang="x-test">xxRSIBreak Stats.xx</caption>
-      <caption xml:lang="zh-TW">RSIBreak 統計</caption>
       <image type="source" width="801" height="518">https://cdn.kde.org/screenshots/rsibreak/rsibreak.png</image>
     </screenshot>
   </screenshots>
