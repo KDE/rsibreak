@@ -18,21 +18,22 @@
 
 #include <KNotification>
 #include <KLocalizedString>
-#include <KIconLoader>
 
 void Notificator::onShortTimerReset()
 {
     KNotification::event( "short timer reset",
+                          QString(),
                           i18n( "Timer for the short break has now been reset" ),
-                          KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
+                          QStringLiteral("rsibreak0"));
 
 }
 
 void Notificator::onTimersReset()
 {
     KNotification::event( "timers reset",
+                          QString(),
                           i18n( "The timers have now been reset" ),
-                          KIconLoader::global()->loadIcon( "rsibreak0", KIconLoader::Desktop ) );
+                          QStringLiteral("rsibreak0"));
 }
 
 void Notificator::onStartLongBreak()

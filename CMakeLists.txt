@@ -13,7 +13,6 @@ find_package(KF5 REQUIRED COMPONENTS
     Crash
     DBusAddons
     DocTools
-    IconThemes
     I18n
     IdleTime
     Notifications

@@ -44,7 +44,6 @@ target_link_libraries(rsibreak_lib
     KF5::ConfigWidgets
     KF5::Crash
     KF5::DBusAddons
-    KF5::IconThemes
     KF5::I18n
     KF5::IdleTime
     KF5::Notifications
