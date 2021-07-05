@@ -1,8 +1,8 @@
-/* ============================================================
+/*
     SPDX-FileCopyrightText: 2005, 2007 Tom Albers <toma@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
-    ============================================================*/
+ */
 
 #ifndef SETUPMAXIMIZED_H
 #define SETUPMAXIMIZED_H

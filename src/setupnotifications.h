@@ -1,8 +1,8 @@
-/* ============================================================
+/*
     SPDX-FileCopyrightText: 2010 Tom Albers <toma@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
-    ============================================================*/
+ */
 
 #ifndef SETUPNOTIFICATIONS_H
 #define SETUPNOTIFICATIONS_H

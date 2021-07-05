@@ -1,9 +1,8 @@
-/* ============================================================
+/*
     SPDX-FileCopyrightText: 2005-2006 Tom Albers <toma@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
-
-    ============================================================*/
+ */
 
 #ifndef SETUPGENERAL_H
 #define SETUPGENERAL_H

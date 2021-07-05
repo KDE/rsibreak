@@ -1,8 +1,8 @@
-/* ============================================================
+/*
     SPDX-FileCopyrightText: 2006-2007 Tom Albers <toma@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
-    ============================================================*/
+ */
 
 #ifndef SETUPTIMING_H
 #define SETUPTIMING_H

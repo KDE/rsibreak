@@ -1,10 +1,10 @@
-/* ============================================================
+/*
     SPDX-FileCopyrightText: 2005-2007, 2009-2010 Tom Albers <toma@kde.org>
     SPDX-FileCopyrightText: 2006 Bram Schoenmakers <bramschoenmakers@kde.nl>
     SPDX-FileCopyrightText: 2010 Juan Luis Baptiste <juan.baptiste@gmail.com>
 
     SPDX-License-Identifier: GPL-2.0-or-later
-    ============================================================*/
+ */
 
 // Local includes.
 #include "setuptiming.h"
