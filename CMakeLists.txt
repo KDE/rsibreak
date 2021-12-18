@@ -41,5 +41,6 @@ if(BUILD_TESTING)
 endif()
 
 ki18n_install(po)
+kdoctools_install(po)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
