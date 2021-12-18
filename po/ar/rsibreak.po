@@ -1,0 +1,1169 @@
+# translation of rsibreak.po to
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Youssef Chahibi <chahibi@gmail.com>, 2007.
+# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: rsibreak\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"PO-Revision-Date: 2021-07-05 18:52+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 21.07.70\n"
+
+#: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
+#, fuzzy, kde-format
+msgid "Skip Break"
+msgstr "الطفر فواصل"
+
+#: src/breakcontrol.cpp:42 src/rsirelaxpopup.cpp:53
+#, fuzzy, kde-format
+msgid "Postpone Break"
+msgstr "طويل فواصل"
+
+#: src/breakcontrol.cpp:49 src/rsirelaxpopup.cpp:58
+#, fuzzy, kde-format
+msgid "Lock Screen"
+msgstr "اقفل الشّاشة"
+
+#: src/main.cpp:39
+#, fuzzy, kde-format
+msgid "RSIBreak"
+msgstr "RSIBreak"
+
+#: src/main.cpp:41
+#, fuzzy, kde-format
+msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
+msgstr "حاول إلى اتقاء، تجنيب تكراري الإجهاد الجرح أداء a مستخدم إلى."
+
+#: src/main.cpp:44
+#, fuzzy, kde-format
+msgid "(c) 2005-2015, The RSIBreak developers"
+msgstr "c الـ RSIBreak"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Albert Astals Cid"
+msgstr "Albert Astals Cid"
+
+#: src/main.cpp:46
+#, fuzzy, kde-format
+msgid "Maintainer"
+msgstr "المصين"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Tom Albers"
+msgstr "Tom Albers"
+
+#: src/main.cpp:49 src/main.cpp:52
+#, kde-format
+msgid "Former author"
+msgstr ""
+
+#: src/main.cpp:52
+#, kde-format
+msgid "Bram Schoenmakers"
+msgstr "Bram Schoenmakers"
+
+#: src/main.cpp:55
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "يوسف الشهيبي,"
+
+#: src/main.cpp:55
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "chahibi@gmail.com,"
+
+#: src/notificator.cpp:14
+#, fuzzy, kde-format
+msgid "Timer for the short break has now been reset"
+msgstr "المؤقت لـ قصير توقّف الآن أعد الضبط"
+
+#: src/notificator.cpp:23
+#, fuzzy, kde-format
+msgid "The timers have now been reset"
+msgstr "الـ الآن أعد الضبط"
+
+#: src/notificator.cpp:29
+#, fuzzy, kde-format
+msgid "Start of a long break"
+msgstr "ابدأ من a توقّف"
+
+#: src/notificator.cpp:34
+#, fuzzy, kde-format
+msgid "End of a long break"
+msgstr "نهاية من a توقّف"
+
+#: src/notificator.cpp:39
+#, fuzzy, kde-format
+msgid "Start of a short break"
+msgstr "ابدأ من a قصير توقّف"
+
+#: src/notificator.cpp:44
+#, fuzzy, kde-format
+msgid "End of a short break"
+msgstr "نهاية من a قصير توقّف"
+
+#: src/popupeffect.cpp:19
+#, kde-format
+msgid "Take a break...."
+msgstr ""
+
+#: src/popupeffect.cpp:44
+#, fuzzy, kde-format
+msgctxt "%1 is a time string like '2 minutes 42 seconds'"
+msgid "Take a break for %1"
+msgstr "رجاء لـ ثانية"
+
+#: src/rsidock.cpp:76
+#, kde-format
+msgid "About &KDE"
+msgstr "عن &كدي"
+
+#: src/rsidock.cpp:77
+#, fuzzy, kde-format
+msgid "&About RSIBreak"
+msgstr "حول RSIBre&ak"
+
+#: src/rsidock.cpp:78
+#, fuzzy, kde-format
+msgid "RSIBreak &Handbook"
+msgstr "RSIBreak كتيب"
+
+#: src/rsidock.cpp:81
+#, fuzzy, kde-format
+msgid "&Report Bug..."
+msgstr "أ&بلغ عن علّة..."
+
+#: src/rsidock.cpp:82
+#, fuzzy, kde-format
+msgid "Switch application &language..."
+msgstr "بدّل &لغة التّطبيق..."
+
+#: src/rsidock.cpp:85 src/rsidock.cpp:139
+#, fuzzy, kde-format
+msgid "&Suspend RSIBreak"
+msgstr "تعليق R&SIBreak"
+
+#: src/rsidock.cpp:86
+#, fuzzy, kde-format
+msgid "&Usage Statistics"
+msgstr "إحصائيات ال&إستعمال"
+
+#: src/rsidock.cpp:87
+#, fuzzy, kde-format
+msgid "Configure &Notifications..."
+msgstr "اضبط الإ&خطارات..."
+
+#: src/rsidock.cpp:88
+#, fuzzy, kde-format
+msgid "&Configure RSIBreak..."
+msgstr "اضبط RSIBreak."
+
+#: src/rsidock.cpp:145
+#, fuzzy, kde-format
+msgid "&Resume RSIBreak"
+msgstr "متابعة &RSIBreak"
+
+#: src/rsidock.cpp:155
+#, fuzzy, kde-format
+msgid "Usage Statistics"
+msgstr "إحصائيات الإستعمال"
+
+#: src/rsidock.cpp:164 src/rsidock.cpp:191
+#, fuzzy, kde-format
+msgid "Reset"
+msgstr "صفّر"
+
+#: src/rsidock.cpp:188
+#, fuzzy, kde-format
+msgid "This will reset all statistics to zero. Is that what you want?"
+msgstr ""
+"هذا أعد الضبط الكل إحصائيات إلى يضع أصفارا\n"
+"صفر هو?"
+
+#: src/rsidock.cpp:190
+#, fuzzy, kde-format
+msgid "Reset the statistics"
+msgstr "إعادة تعيين إحصائيات"
+
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#, kde-format
+msgid "Suspended"
+msgstr "مُعلَّق"
+
+#: src/rsidock.cpp:224
+#, fuzzy, kde-format
+msgid "%1 remaining until next short break"
+msgstr "باقٍ حتّى التالي قصير توقّف"
+
+#: src/rsidock.cpp:233
+#, fuzzy, kde-format
+msgid "%1 remaining until next long break"
+msgstr "باقٍ حتّى التالي توقّف"
+
+#: src/rsirelaxpopup.cpp:50
+#, fuzzy, kde-format
+msgid "Skip this break"
+msgstr "تخطّي توقّف"
+
+#: src/rsirelaxpopup.cpp:55
+#, fuzzy, kde-format
+msgid "Postpone this break"
+msgstr "تخطّي توقّف"
+
+#: src/rsirelaxpopup.cpp:60
+#, fuzzy, kde-format
+msgid "Lock the session"
+msgstr "أقفل الجلسة"
+
+#: src/rsirelaxpopup.cpp:92
+#, fuzzy, kde-format
+msgid "Please relax for %1"
+msgstr "رجاء لـ ثانية"
+
+#: src/rsirelaxpopup.cpp:96
+#, fuzzy, kde-format
+msgid "Note: next break is a big break"
+msgstr "ملاحظة التالي توقّف هو a توقّف"
+
+#: src/rsistats.cpp:19
+#, fuzzy, kde-format
+msgid "Total recorded time"
+msgstr "المجموع وقت"
+
+#: src/rsistats.cpp:23
+#, fuzzy, kde-format
+msgid "Total time of activity"
+msgstr "المجموع وقت من نشاط"
+
+#: src/rsistats.cpp:30
+#, fuzzy, kde-format
+msgid "Total time being idle"
+msgstr "المجموع وقت عاطل"
+
+#: src/rsistats.cpp:36
+#, fuzzy, kde-format
+msgid "Percentage of activity"
+msgstr "نسبة النشاط المئوية"
+
+#: src/rsistats.cpp:39
+#, fuzzy, kde-format
+msgid "Percentage of activity last minute"
+msgstr "نسبة مئوية من نشاط الأخير دقيقة:"
+
+#: src/rsistats.cpp:42
+#, fuzzy, kde-format
+msgid "Percentage of activity last hour"
+msgstr "نسبة مئوية من نشاط الأخير ساعة:"
+
+#: src/rsistats.cpp:45
+#, fuzzy, kde-format
+msgid "Percentage of activity last 6 hours"
+msgstr "نسبة مئوية من نشاط الأخير ساعات:"
+
+#: src/rsistats.cpp:49
+#, fuzzy, kde-format
+msgid "Maximum idle period"
+msgstr "الأقصى عاطل نقطة"
+
+#: src/rsistats.cpp:53
+#, fuzzy, kde-format
+msgid "Current idle period"
+msgstr "الحالي عاطل نقطة"
+
+#: src/rsistats.cpp:56
+#, fuzzy, kde-format
+msgid "Number of skipped short breaks (idle)"
+msgstr "الرقم من قصير عاطل"
+
+#: src/rsistats.cpp:59
+#, fuzzy, kde-format
+msgid "Number of skipped long breaks (idle)"
+msgstr "الرقم من عاطل"
+
+#: src/rsistats.cpp:62
+#, fuzzy, kde-format
+msgid "Total number of short breaks"
+msgstr "المجموع رقم من قصير"
+
+#: src/rsistats.cpp:67
+#, fuzzy, kde-format
+msgid "Number of skipped short breaks (user)"
+msgstr "الرقم من قصير مستخدم"
+
+#: src/rsistats.cpp:71
+#, fuzzy, kde-format
+msgid "Number of postponed short breaks (user)"
+msgstr "الرقم من قصير مستخدم"
+
+#: src/rsistats.cpp:75
+#, fuzzy, kde-format
+msgid "Last short break"
+msgstr "الأخير قصير توقّف"
+
+#: src/rsistats.cpp:78
+#, fuzzy, kde-format
+msgid "Total number of long breaks"
+msgstr "المجموع رقم من"
+
+#: src/rsistats.cpp:83
+#, fuzzy, kde-format
+msgid "Number of skipped long breaks (user)"
+msgstr "الرقم من مستخدم"
+
+#: src/rsistats.cpp:87
+#, fuzzy, kde-format
+msgid "Number of postponed long breaks (user)"
+msgstr "الرقم من مستخدم"
+
+#: src/rsistats.cpp:90
+#, fuzzy, kde-format
+msgid "Last long break"
+msgstr "الأخير توقّف"
+
+#: src/rsistats.cpp:92
+#, fuzzy, kde-format
+msgid "Pause score"
+msgstr "إيقاف مؤقت"
+
+#: src/rsistats.cpp:343
+#, fuzzy, kde-format
+msgid "This is the total time RSIBreak has been running."
+msgstr "هذا هو الكلى وقت RSIBreak جاري التنفيذ."
+
+#: src/rsistats.cpp:345
+#, fuzzy, kde-format
+msgid "This is the total amount of time you used the keyboard or mouse."
+msgstr "هذا هو الكلى قَدْر من وقت مُستخدَم لوحة مفاتيح أو الماوس."
+
+#: src/rsistats.cpp:348
+#, fuzzy, kde-format
+msgid "This is the total amount of time you did not use the keyboard or mouse."
+msgstr "هذا هو الكلى قَدْر من وقت ليس استخدام لوحة مفاتيح أو الماوس."
+
+#: src/rsistats.cpp:351
+#, fuzzy, kde-format
+msgid ""
+"This is a percentage of activity, based on the periods of activity vs. the "
+"total time RSIBreak has been running. The color indicates the level of your "
+"activity. When the color is close to full red it is recommended you lower "
+"your work pace."
+msgstr ""
+"هذا هو a من نشاط يعمل من نشاط الكلى وقت RSIBreak جاري التنفيذ الـ اللّون "
+"مستوى من نشاط متى اللّون هو اغلق إلى أحمر الإيطالية s مفضّل إلى."
+
+#: src/rsistats.cpp:356
+#, fuzzy, kde-format
+msgid ""
+"This is the longest period of inactivity measured while RSIBreak has been "
+"running."
+msgstr "هذا هو نقطة من بينما RSIBreak جاري التنفيذ."
+
+#: src/rsistats.cpp:359
+#, fuzzy, kde-format
+msgid "This is the total number of short breaks"
+msgstr "هذا هو الكلى رقم من قصير"
+
+#: src/rsistats.cpp:361
+#, fuzzy, kde-format
+msgid ""
+"This is the time of the last finished short break. The color of this text "
+"gradually turns from green to red, indicating when you can expect the next "
+"tiny break."
+msgstr ""
+"هذا هو وقت من الأخير إنتهيت قصير توقّف الـ اللّون من من أخضر إلى أحمر التالي "
+"توقّف."
+
+#: src/rsistats.cpp:365
+#, fuzzy, kde-format
+msgid "This is the total number of short breaks which you skipped."
+msgstr "هذا هو الكلى رقم من قصير."
+
+#: src/rsistats.cpp:368
+#, fuzzy, kde-format
+msgid "This is the total number of short breaks which you postponed."
+msgstr "هذا هو الكلى رقم من قصير."
+
+#: src/rsistats.cpp:371
+#, fuzzy, kde-format
+msgid ""
+"This is the total number of short breaks which were skipped because you were "
+"idle."
+msgstr "هذا هو الكلى رقم من قصير عاطل."
+
+#: src/rsistats.cpp:374
+#, fuzzy, kde-format
+msgid "This is the total number of long breaks."
+msgstr "هذا هو الكلى رقم من."
+
+#: src/rsistats.cpp:376
+#, fuzzy, kde-format
+msgid ""
+"This is the time of the last finished long break.The color of this text "
+"gradually turns from green to red,indicating when you can expect the next "
+"big break."
+msgstr ""
+"هذا هو وقت من الأخير إنتهيت توقّف الـ اللّون من من أخضر إلى أحمر التالي توقّف."
+
+#: src/rsistats.cpp:380
+#, fuzzy, kde-format
+msgid "This is the total number of long breaks which you skipped."
+msgstr "هذا هو الكلى رقم من."
+
+#: src/rsistats.cpp:383
+#, fuzzy, kde-format
+msgid "This is the total number of long breaks which you postponed."
+msgstr "هذا هو الكلى رقم من."
+
+#: src/rsistats.cpp:386
+#, fuzzy, kde-format
+msgid ""
+"This is the total number of long breaks which were skipped because you were "
+"idle."
+msgstr "هذا هو الكلى رقم من عاطل."
+
+#: src/rsistats.cpp:389
+#, fuzzy, kde-format
+msgid ""
+"This is an indication of how well you behaved with the breaks. It decreases "
+"every time you skip a break."
+msgstr "هذا هو من مع itإيطالياهو كل وقت تخطِّ a توقّف."
+
+#: src/rsistats.cpp:392
+#, fuzzy, kde-format
+msgid "This is the current idle time."
+msgstr "هذا هو الحالي عاطل وقت."
+
+#: src/rsistats.cpp:394
+#, fuzzy, kde-format
+msgid ""
+"This is a percentage of activity during the last minute. The color indicates "
+"the level of your activity. When the color is close to full red it is "
+"recommended you lower your work pace."
+msgstr ""
+"هذا هو a من نشاط الأخير دقيقة الـ اللّون مستوى من نشاط متى اللّون هو اغلق إلى "
+"أحمر الإيطالية s مفضّل إلى."
+
+#: src/rsistats.cpp:398
+#, fuzzy, kde-format
+msgid ""
+"This is a percentage of activity during the last hour. The color indicates "
+"the level of your activity. When the color is close to full red it is "
+"recommended you lower your work pace."
+msgstr ""
+"هذا هو a من نشاط الأخير ساعة الـ اللّون مستوى من نشاط متى اللّون هو اغلق إلى "
+"أحمر الإيطالية s مفضّل إلى."
+
+#: src/rsistats.cpp:402
+#, fuzzy, kde-format
+msgid ""
+"This is a percentage of activity during the last 6 hours. The color "
+"indicates the level of your activity. When the color is close to full red it "
+"is recommended you lower your work pace."
+msgstr ""
+"هذا هو a من نشاط الأخير ساعات الـ اللّون مستوى من نشاط متى اللّون هو اغلق إلى "
+"أحمر الإيطالية s مفضّل إلى."
+
+#: src/rsistatwidget.cpp:25
+#, fuzzy, kde-format
+msgid "Time"
+msgstr "الوقت"
+
+#: src/rsistatwidget.cpp:34
+#, fuzzy, kde-format
+msgid "Short Breaks"
+msgstr "قصير فواصل"
+
+#: src/rsistatwidget.cpp:43
+#, fuzzy, kde-format
+msgid "Pause"
+msgstr "ألبث"
+
+#: src/rsistatwidget.cpp:52
+#, fuzzy, kde-format
+msgid "Long Breaks"
+msgstr "طويل فواصل"
+
+#: src/rsistatwidget.cpp:86
+#, fuzzy, kde-format
+msgctxt ""
+"Translate this as the longest plural form. This is used to calculate the "
+"width of window"
+msgid "minutes"
+msgstr "دقيقة"
+
+#: src/rsistatwidget.cpp:88
+#, fuzzy, kde-format
+msgctxt ""
+"Translate this as the longest plural form. This is used to calculate the "
+"width of window"
+msgid "seconds"
+msgstr "ثواني"
+
+#: src/rsiwidget.cpp:78
+#, fuzzy, kde-format
+msgid ""
+"<p>Welcome to RSIBreak</p>\n"
+"<p>In your tray you can now see RSIBreak.</p>\n"
+msgstr "<p> مرحبا إلى RSIBreak</p><p> داخل الآن RSIBreak</p>"
+
+#: src/rsiwidget.cpp:80
+#, fuzzy, kde-format
+msgid ""
+"<p>When you right-click on that you will see a menu, from which you can go "
+"to the configuration for example.</p>\n"
+"<p>When you want to know when the next break is, hover over the icon.</p>\n"
+"<p>Use RSIBreak wisely.</p>"
+msgstr ""
+"<p> متى يمين انقر يعمل a قائمة من اذهب إلى تشكيل لـ<p> متى إلى التالي توقّف "
+"هو أيقونة</p><p> إستعمل RSIBreak</p>"
+
+#: src/rsiwidget.cpp:83
+#, fuzzy, kde-format
+msgid "Welcome"
+msgstr "مرحبا"
+
+#: src/setup.cpp:41
+#, fuzzy, kde-format
+msgid "General Settings"
+msgstr "الإعدادات العامة"
+
+#: src/setup.cpp:45
+#, fuzzy, kde-format
+msgid "Timings"
+msgstr "التوقيت"
+
+#: src/setup.cpp:49
+#, fuzzy, kde-format
+msgid "During Breaks"
+msgstr "أثناء فواصل"
+
+#: src/setup.cpp:53
+#, fuzzy, kde-format
+msgid "Actions"
+msgstr "الإجراءات"
+
+#: src/setupgeneral.cpp:38
+#, fuzzy, kde-format
+msgid "&Automatically start RSIBreak at startup"
+msgstr "تلقائياً تشغيل RSIBre&ak عند البدأ"
+
+#: src/setupgeneral.cpp:39
+#, fuzzy, kde-format
+msgid ""
+"With this option you can indicate that you want RSIBreak to start on Desktop "
+"Environment start."
+msgstr "مع خيار RSIBreak إلى تشغيل كدي."
+
+#: src/setupgeneral.cpp:43
+#, kde-format
+msgid "Timer Settings"
+msgstr "إعدادات المؤقّت"
+
+#: src/setupgeneral.cpp:44
+#, kde-format
+msgid "Break at &fixed times"
+msgstr ""
+
+#: src/setupgeneral.cpp:45
+#, fuzzy, kde-format
+msgid "With this option you indicate that you want to break at fixed intervals"
+msgstr "مع خيار إلى تجاهل و إلى توقّف عند fixed"
+
+#: src/setupgeneral.cpp:47
+#, kde-format
+msgid "Take activity into account"
+msgstr ""
+
+#: src/setupgeneral.cpp:48
+#, fuzzy, kde-format
+msgid ""
+"With this option you indicate that you want to use idle detection. This "
+"means that only the time you are active (when you use the keyboard or the "
+"mouse) will be counted to calculate when to break next."
+msgstr ""
+"مع خيار إلى استخدام عاطل اكتشاف هذا وقت نشط استخدام لوحة مفاتيح أو الماوس "
+"الموضع من التالي توقّف."
+
+#: src/setupmaximized.cpp:76
+#, kde-format
+msgid "Simple Gray Effect"
+msgstr ""
+
+#: src/setupmaximized.cpp:78
+#, kde-format
+msgid "Complete Black Effect"
+msgstr ""
+
+#: src/setupmaximized.cpp:79
+#, kde-format
+msgid "Show Plasma Dashboard"
+msgstr ""
+
+#: src/setupmaximized.cpp:80
+#, kde-format
+msgid "Show Slide Show of Images"
+msgstr ""
+
+#: src/setupmaximized.cpp:81
+#, kde-format
+msgid "Show a Passive Popup"
+msgstr ""
+
+#: src/setupmaximized.cpp:88
+#, fuzzy, kde-format
+msgid "Skipping Breaks"
+msgstr "الطفر فواصل"
+
+#: src/setupmaximized.cpp:90
+#, fuzzy, kde-format
+msgid "&Hide skip button"
+msgstr "إخفاء زر"
+
+#: src/setupmaximized.cpp:91
+#, fuzzy, kde-format
+msgid ""
+"Check this option to disable and hide the skip button. This way you can "
+"prevent skipping the break."
+msgstr "كِش خيار إلى تعطيل و إخفاء تخطِّ زر هذا اتقاء، تجنيب توقّف."
+
+#: src/setupmaximized.cpp:94
+#, fuzzy, kde-format
+msgid "&Hide lock button"
+msgstr "إخفاء زر"
+
+#: src/setupmaximized.cpp:95
+#, fuzzy, kde-format
+msgid ""
+"Check this option to disable and hide the lock button. This way you can "
+"prevent pressing the wrong button."
+msgstr "كِش خيار إلى تعطيل و إخفاء تخطِّ زر هذا اتقاء، تجنيب توقّف."
+
+#: src/setupmaximized.cpp:97
+#, fuzzy, kde-format
+msgid "&Hide postpone button"
+msgstr "إخفاء زر"
+
+#: src/setupmaximized.cpp:98
+#, fuzzy, kde-format
+msgid ""
+"Check this option to disable and hide the postpone break button. This way "
+"you can prevent pressing the wrong button."
+msgstr "كِش خيار إلى تعطيل و إخفاء تخطِّ زر هذا اتقاء، تجنيب توقّف."
+
+#: src/setupmaximized.cpp:101
+#, kde-format
+msgid "&Disable shortcut (Esc)"
+msgstr ""
+
+#: src/setupmaximized.cpp:102
+#, fuzzy, kde-format
+msgid "Check this option to disable the ESC key skipping the break."
+msgstr "كِش خيار إلى تعطيل و إخفاء تخطِّ زر هذا اتقاء، تجنيب توقّف."
+
+#: src/setupmaximized.cpp:115
+#, kde-format
+msgid "Plasma Dashboard"
+msgstr ""
+
+#: src/setupmaximized.cpp:117
+#, kde-format
+msgid "Read Only"
+msgstr "للقراءة فقط"
+
+#: src/setupmaximized.cpp:125
+#, kde-format
+msgid "Transparency level"
+msgstr ""
+
+#: src/setupmaximized.cpp:131
+#, fuzzy, kde-format
+msgid "Transparent"
+msgstr "شفاف"
+
+#: src/setupmaximized.cpp:141
+#, kde-format
+msgid "Solid"
+msgstr "صلب"
+
+#: src/setupmaximized.cpp:150
+#, fuzzy, kde-format
+msgid "Slideshow"
+msgstr "عرض الشرائح"
+
+#: src/setupmaximized.cpp:156
+#, fuzzy, kde-format
+msgid ""
+"Select the folder from which you want to see images. These images are "
+"randomly shown during the breaks. It will be searched recursively if you "
+"want..."
+msgstr "انتقِ مجلد من إلى هذه itإيطالياهو IF."
+
+#: src/setupmaximized.cpp:159
+#, fuzzy, kde-format
+msgid "&Change..."
+msgstr "غيّر"
+
+#: src/setupmaximized.cpp:163
+#, fuzzy, kde-format
+msgid "Search path recursively"
+msgstr "ابحث المسار"
+
+#: src/setupmaximized.cpp:165
+#, kde-format
+msgid "Show small images"
+msgstr ""
+
+#: src/setupmaximized.cpp:167
+#, kde-format
+msgid "Expand image to full screen"
+msgstr ""
+
+#: src/setupmaximized.cpp:169
+#, kde-format
+msgid ""
+"If checked then image will be expanded to full screen. Part of the image "
+"outside the screen area will be cropped. Otherwise the image will be "
+"displayed completely but there may grey areas around it. "
+msgstr ""
+
+#: src/setupmaximized.cpp:176
+#, fuzzy, kde-format
+msgid "Change images every:"
+msgstr "غيّر كل:"
+
+#: src/setupmaximized.cpp:179
+#, fuzzy, kde-format
+msgid ""
+"Here you can set how long one image should be shown before it is replaced by "
+"the next one."
+msgstr "هنا set صورة قبل الإيطالية هو أداء التالي."
+
+#: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
+#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
+#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#, fuzzy, kde-format
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " ثانية"
+msgstr[1] " ثانية"
+msgstr[2] " ثانية"
+msgstr[3] " ثانية"
+msgstr[4] " ثانية"
+msgstr[5] " ثانية"
+
+#: src/setupmaximized.cpp:200
+#, kde-format
+msgid "Popup"
+msgstr "منبثق"
+
+#: src/setupmaximized.cpp:202
+#, fuzzy, kde-format
+msgid ""
+"RSIBreak can show a popup before replacing your whole screen with the effect "
+"chosen above."
+msgstr "RSIBreak إظهار a نافذة منبثقة من شاشة مع a صورة."
+
+#: src/setupmaximized.cpp:205
+#, fuzzy, kde-format
+msgid "&Use the popup"
+msgstr "إستعمل نافذة منبثقة"
+
+#: src/setupmaximized.cpp:207
+#, kde-format
+msgid ""
+"Shows a countdown popup when it is time to break. The countdown resets on "
+"activity."
+msgstr ""
+
+#: src/setupmaximized.cpp:213
+#, kde-format
+msgid "Popup patience:"
+msgstr ""
+
+#: src/setupmaximized.cpp:216
+#, fuzzy, kde-format
+msgid ""
+"Maximum time the patience popup will be shown before the effect kicking in."
+msgstr "هنا set صورة قبل الإيطالية هو أداء التالي."
+
+#: src/setupmaximized.cpp:224
+#, fuzzy, kde-format
+msgid "The popup can flash when it detects that you are still active."
+msgstr "الـ نافذة منبثقة وميض الإيطالية نشط."
+
+#: src/setupmaximized.cpp:228
+#, fuzzy, kde-format
+msgid "&Flash on activity"
+msgstr "فلاش يعمل نشاط"
+
+#: src/setupmaximized.cpp:229
+#, fuzzy, kde-format
+msgid ""
+"With this checkbox you can indicate if you want to see the popup flash when "
+"there is activity."
+msgstr "مع مربع اختيار IF إلى نافذة منبثقة وميض هو نشاط."
+
+#: src/setupmaximized.cpp:314
+#, kde-format
+msgid "Choose the effect you want after patience runs out"
+msgstr ""
+
+#: src/setupmaximized.cpp:315
+#, kde-format
+msgid "Choose the effect you want during breaks"
+msgstr ""
+
+#: src/setuptiming.cpp:47
+#, fuzzy, kde-format
+msgid "Tiny Breaks"
+msgstr "ضئيل فواصل"
+
+#: src/setuptiming.cpp:52
+#, fuzzy, kde-format
+msgid "Short break every:"
+msgstr "قصير توقّف كل:"
+
+#: src/setuptiming.cpp:55
+#, fuzzy, kde-format
+msgid "Here you can set how often you want a short break. "
+msgstr "هنا set من قصير توقّف."
+
+#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#, fuzzy, kde-format
+msgid "For a duration of:"
+msgstr "لـ a من:"
+
+#: src/setuptiming.cpp:68
+#, fuzzy, kde-format
+msgid "Here you can set the duration of the short break."
+msgstr "هنا set من قصير توقّف."
+
+#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#, kde-format
+msgid "Skip if no activity for:"
+msgstr ""
+
+#: src/setuptiming.cpp:82
+#, kde-format
+msgid ""
+"Set the interval you are idle for that is enough to skip the next short "
+"break."
+msgstr ""
+
+#: src/setuptiming.cpp:98
+#, fuzzy, kde-format
+msgid "Big Breaks"
+msgstr "كبير فواصل"
+
+#: src/setuptiming.cpp:103
+#, fuzzy, kde-format
+msgid "Long break every:"
+msgstr "طويل توقّف كل:"
+
+#: src/setuptiming.cpp:106
+#, fuzzy, kde-format
+msgid "Here you can set how often you want a long break. "
+msgstr "هنا set من توقّف."
+
+#: src/setuptiming.cpp:118
+#, fuzzy, kde-format
+msgid "Here you can set the duration of the long break."
+msgstr "هنا set من توقّف."
+
+#: src/setuptiming.cpp:132
+#, kde-format
+msgid ""
+"Set the interval you are idle for that is enough to skip the next long break."
+msgstr ""
+
+#: src/setuptiming.cpp:148
+#, fuzzy, kde-format
+msgid "Postpone Breaks"
+msgstr "طويل فواصل"
+
+#: src/setuptiming.cpp:156
+#, fuzzy, kde-format
+msgid "Here you can set for how much time you want to postpone a break."
+msgstr "هنا set من توقّف."
+
+#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
+#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#, fuzzy, kde-format
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] " (أقلّ من دقيقة)"
+msgstr[1] " دقيقة"
+msgstr[2] " (دقيقتان)"
+msgstr[3] " دقائق"
+msgstr[4] " دقيقة"
+msgstr[5] " دقيقة"
+
+#, fuzzy
+#~ msgid "C&ustom"
+#~ msgstr "الم&عتاد"
+
+#, fuzzy
+#~ msgid "Break at &fixed times and ignore movement during breaks"
+#~ msgstr "توقّف عند &fixed الوقت و تجاهل"
+
+#, fuzzy
+#~ msgid "Take into account the &idle settings"
+#~ msgstr "الوارد الحساب عاطل خصائص"
+
+#, fuzzy
+#~ msgid "Idle Settings"
+#~ msgstr "عاطل إعدادات"
+
+#, fuzzy
+#~ msgid "&Reset timers after period of idleness"
+#~ msgstr "إعادة تعيين بعد نقطة من"
+
+#, fuzzy
+#~ msgid ""
+#~ "With this checkbox you indicate that you want the timers for the next "
+#~ "break to be reset if you are sufficiently idle (you are idle more that "
+#~ "the duration of the corresponding break)"
+#~ msgstr ""
+#~ "مع مربع اختيار لـ التالي توقّف إلى أعد الضبط IF عاطل عاطل المزيد من توقّف"
+
+#, fuzzy
+#~ msgid "&Show when timers are reset"
+#~ msgstr "اعرض أعد الضبط"
+
+#, fuzzy
+#~ msgid ""
+#~ "With this checkbox you indicate that you want to see when the timers are "
+#~ "reset. This happens when you have been idle for a while."
+#~ msgstr "مع مربع اختيار إلى أعد الضبط هذا عاطل لـ a بينما."
+
+#, fuzzy
+#~ msgid "&Ignore idle detection for tiny breaks"
+#~ msgstr "تجاهل عاطل اكتشاف لـ."
+
+#, fuzzy
+#~ msgid ""
+#~ "With this option you select that the <b>short</b> breaks should not be "
+#~ "reset when idle. This is useful, for example, when you are reading "
+#~ "something and you do not touch the mouse or keyboard for the duration of "
+#~ "a short break, but you still want to have a short break every once in a "
+#~ "while."
+#~ msgstr ""
+#~ "مع خيار تحديد<b> قصير</b> t أعد الضبط عاطل هذا هو لـ القراءة شيء مّا و t "
+#~ "الماوس أو لوحة مفاتيح لـ من a قصير توقّف إلى a قصير توقّف كل بوصة a بينما."
+
+#, fuzzy
+#~ msgid ""
+#~ "With this checkbox you can indicate if you want to see the popup when it "
+#~ "is time to break. It will count down to zero, so you know how long this "
+#~ "break will be."
+#~ msgstr ""
+#~ "مع مربع اختيار IF إلى نافذة منبثقة الإيطالية هو وقت إلى توقّف itإيطالياهو "
+#~ "العدد أسفل إلى يضع أصفارا\n"
+#~ "صفر توقّف."
+
+#, fuzzy
+#~ msgid ""
+#~ "Here you can set how often you want a short break. One minute means 60 "
+#~ "seconds of movement with the mouse or typing on the keyboard."
+#~ msgstr ""
+#~ "هنا set a قصير توقّف واحد دقيقة ثوان من مع الماوس أو كتابة يعمل لوحة "
+#~ "مفاتيح."
+
+#, fuzzy
+#~ msgid ""
+#~ "Here you can set how often you want a long break. One minute means 60 "
+#~ "seconds of movement with the mouse or typing on the keyboard"
+#~ msgstr ""
+#~ "هنا set a توقّف واحد دقيقة ثوان من مع الماوس أو كتابة يعمل لوحة مفاتيح"
+
+#, fuzzy
+#~ msgid "Quit"
+#~ msgstr "اخرج"
+
+#, fuzzy
+#~ msgid " seconds"
+#~ msgstr "0 ثوان"
+
+#, fuzzy
+#~ msgid " minutes"
+#~ msgstr "دقيقة"
+
+#, fuzzy
+#~ msgid "Tina Trillitzsch"
+#~ msgstr "تينا"
+
+#, fuzzy
+#~ msgid "Usability"
+#~ msgstr "الإستعمالية"
+
+#, fuzzy
+#~ msgid "Lee Olson"
+#~ msgstr "Lee أولسون"
+
+#, fuzzy
+#~ msgid "Logo and Icons"
+#~ msgstr "الشعار و الأيقونات"
+
+#, fuzzy
+#~ msgid "<p>RSIBreak is already running</p><p>It is located here:</p>"
+#~ msgstr "<p> RSIBreak هو جاري التنفيذ</p><p> itإيطالياهو هو:"
+
+#, fuzzy
+#~ msgid "Already Running"
+#~ msgstr "بالفعل يعمل"
+
+#~ msgid "Skip"
+#~ msgstr "تخطى"
+
+#, fuzzy
+#~ msgid "Lock"
+#~ msgstr "أقفل"
+
+#, fuzzy
+#~ msgid "1 hour"
+#~ msgid_plural "%1 hours"
+#~ msgstr[0] "ساعة واحدة"
+#~ msgstr[1] "ساعة واحدة"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "1 minute"
+#~ msgid_plural "%1 minutes"
+#~ msgstr[0] "دقيقة"
+#~ msgstr[1] "دقيقة"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "1 second"
+#~ msgid_plural "%1 seconds"
+#~ msgstr[0] "ثانية"
+#~ msgstr[1] "ثانية"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgctxt "Arguments: hours, minutes both as you defined earlier"
+#~ msgid "%1 and %2"
+#~ msgstr "و 2"
+
+#, fuzzy
+#~ msgctxt "Arguments: minutes, seconds both as you defined earlier"
+#~ msgid "%1 and %2"
+#~ msgstr "و 2"
+
+#, fuzzy
+#~ msgid "0 seconds"
+#~ msgstr "0 ثوان"
+
+#, fuzzy
+#~ msgctxt "minutes:seconds"
+#~ msgid "%1:%2"
+#~ msgstr "%1:%2"
+
+#~ msgid "Author"
+#~ msgstr "المؤلف"
+
+#, fuzzy
+#~ msgid "Packaging and help with related issues"
+#~ msgstr "تحضير الحزمات و المساعدة في الشؤون المتعلقة  بها"
+
+#, fuzzy
+#~ msgid ""
+#~ "Remaining time:\n"
+#~ "%1"
+#~ msgstr "متبقّ وقت n 1"
+
+#, fuzzy
+#~ msgid "&Shortcut Locks"
+#~ msgstr "إختصار الأقفال"
+
+#, fuzzy
+#~ msgid ""
+#~ "Check this option to disable the skip shortcut. This way you can prevent "
+#~ "skipping the break. Instead it will lock the screen."
+#~ msgstr ""
+#~ "كِش خيار إلى تعطيل تخطِّ مختصر هذا اتقاء، تجنيب توقّف بدلا من ذلك الإيطالية "
+#~ "قفل شاشة."
+
+#, fuzzy
+#~ msgid "second"
+#~ msgid_plural "seconds"
+#~ msgstr[0] "ثانية"
+#~ msgstr[1] "ثانية"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "minute"
+#~ msgid_plural "minutes"
+#~ msgstr[0] "دقيقة"
+#~ msgstr[1] "دقيقة"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "One minute"
+#~ msgid_plural "%1 minutes"
+#~ msgstr[0] "دقيقة واحدة"
+#~ msgstr[1] "دقيقة واحدة"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "one minute"
+#~ msgid_plural "%1 minutes"
+#~ msgstr[0] "دقيقة"
+#~ msgstr[1] "دقيقة"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "One second"
+#~ msgid_plural "%1 seconds"
+#~ msgstr[0] "واحد ثانية"
+#~ msgstr[1] "واحد ثانية"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""
+
+#, fuzzy
+#~ msgid "one second"
+#~ msgid_plural "%1 seconds"
+#~ msgstr[0] "ثانية"
+#~ msgstr[1] "ثانية"
+#~ msgstr[2] ""
+#~ msgstr[3] ""
+#~ msgstr[4] ""
+#~ msgstr[5] ""

@@ -1,0 +1,950 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Tommi Nieminen <translator@legisign.org>, 2015, 2018, 2019.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"PO-Revision-Date: 2019-05-12 18:23+0200\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
+#, kde-format
+msgid "Skip Break"
+msgstr "Ohita tauko"
+
+#: src/breakcontrol.cpp:42 src/rsirelaxpopup.cpp:53
+#, kde-format
+msgid "Postpone Break"
+msgstr "Lykkää taukoa"
+
+#: src/breakcontrol.cpp:49 src/rsirelaxpopup.cpp:58
+#, kde-format
+msgid "Lock Screen"
+msgstr "Lukitse näyttö"
+
+#: src/main.cpp:39
+#, kde-format
+msgid "RSIBreak"
+msgstr "RSI Break"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
+msgstr ""
+"Yritä ehkäistä rasitusvammoja muistuttamalla käyttäjää pitämään välillä "
+"taukoja."
+
+#: src/main.cpp:44
+#, kde-format
+msgid "(c) 2005-2015, The RSIBreak developers"
+msgstr "© 2005–2015 RSIBreak-kehittäjät"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Albert Astals Cid"
+msgstr "Albert Astals Cid"
+
+#: src/main.cpp:46
+#, kde-format
+msgid "Maintainer"
+msgstr "Ylläpitäjä"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Tom Albers"
+msgstr "Tom Albers"
+
+#: src/main.cpp:49 src/main.cpp:52
+#, kde-format
+msgid "Former author"
+msgstr "Aiempi tekijä"
+
+#: src/main.cpp:52
+#, kde-format
+msgid "Bram Schoenmakers"
+msgstr "Bram Schoenmakers"
+
+#: src/main.cpp:55
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Tommi Nieminen"
+
+#: src/main.cpp:55
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "translator@legisign.org"
+
+#: src/notificator.cpp:14
+#, kde-format
+msgid "Timer for the short break has now been reset"
+msgstr "Lyhyiden taukojen ajastin on nyt nollattu"
+
+#: src/notificator.cpp:23
+#, kde-format
+msgid "The timers have now been reset"
+msgstr "Ajastimet on nyt nollattu."
+
+#: src/notificator.cpp:29
+#, kde-format
+msgid "Start of a long break"
+msgstr "Pitkän tauon alku"
+
+#: src/notificator.cpp:34
+#, kde-format
+msgid "End of a long break"
+msgstr "Pitkän tauon loppu"
+
+#: src/notificator.cpp:39
+#, kde-format
+msgid "Start of a short break"
+msgstr "Lyhyen tauon alku"
+
+#: src/notificator.cpp:44
+#, kde-format
+msgid "End of a short break"
+msgstr "Lyhyen tauon loppu"
+
+#: src/popupeffect.cpp:19
+#, kde-format
+msgid "Take a break...."
+msgstr "Pidä tauko…"
+
+#: src/popupeffect.cpp:44
+#, kde-format
+msgctxt "%1 is a time string like '2 minutes 42 seconds'"
+msgid "Take a break for %1"
+msgstr "Pidä %1 tauko"
+
+#: src/rsidock.cpp:76
+#, kde-format
+msgid "About &KDE"
+msgstr "Tietoa &KDE:stä"
+
+#: src/rsidock.cpp:77
+#, kde-format
+msgid "&About RSIBreak"
+msgstr "&Tietoa RSI Breakistä"
+
+#: src/rsidock.cpp:78
+#, kde-format
+msgid "RSIBreak &Handbook"
+msgstr "RSIBreakin &käyttöohje"
+
+#: src/rsidock.cpp:81
+#, kde-format
+msgid "&Report Bug..."
+msgstr "&Ilmoita viasta…"
+
+#: src/rsidock.cpp:82
+#, kde-format
+msgid "Switch application &language..."
+msgstr "Vaihda sovelluksen &kieltä…"
+
+#: src/rsidock.cpp:85 src/rsidock.cpp:139
+#, kde-format
+msgid "&Suspend RSIBreak"
+msgstr "K&eskeytä RSI Break"
+
+#: src/rsidock.cpp:86
+#, kde-format
+msgid "&Usage Statistics"
+msgstr "Käyttöt&ilastot"
+
+#: src/rsidock.cpp:87
+#, kde-format
+msgid "Configure &Notifications..."
+msgstr "Muokkaa &ilmoituksia…"
+
+#: src/rsidock.cpp:88
+#, kde-format
+msgid "&Configure RSIBreak..."
+msgstr "RSI Breakin &asetukset…"
+
+#: src/rsidock.cpp:145
+#, kde-format
+msgid "&Resume RSIBreak"
+msgstr "&Jatka RSI Breakin käyttöä"
+
+#: src/rsidock.cpp:155
+#, kde-format
+msgid "Usage Statistics"
+msgstr "Käyttötilastot"
+
+#: src/rsidock.cpp:164 src/rsidock.cpp:191
+#, kde-format
+msgid "Reset"
+msgstr "Tyhjennä"
+
+#: src/rsidock.cpp:188
+#, kde-format
+msgid "This will reset all statistics to zero. Is that what you want?"
+msgstr "Tämä tyhjentää kaikki tilastot. Haluatko tehdä niin?"
+
+#: src/rsidock.cpp:190
+#, kde-format
+msgid "Reset the statistics"
+msgstr "Tyhjennä tilastot"
+
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#, kde-format
+msgid "Suspended"
+msgstr "Keskeytetty"
+
+#: src/rsidock.cpp:224
+#, kde-format
+msgid "%1 remaining until next short break"
+msgstr "%1 jäljellä ennen seuraavaa lyhyttä taukoa"
+
+#: src/rsidock.cpp:233
+#, kde-format
+msgid "%1 remaining until next long break"
+msgstr "%1 jäljellä ennen seuraavaa pitkää taukoa"
+
+#: src/rsirelaxpopup.cpp:50
+#, kde-format
+msgid "Skip this break"
+msgstr "Ohita tämä tauko"
+
+#: src/rsirelaxpopup.cpp:55
+#, kde-format
+msgid "Postpone this break"
+msgstr "Lykkää tätä taukoa"
+
+#: src/rsirelaxpopup.cpp:60
+#, kde-format
+msgid "Lock the session"
+msgstr "Lukitse istunto"
+
+#: src/rsirelaxpopup.cpp:92
+#, kde-format
+msgid "Please relax for %1"
+msgstr "Rentoudu %1"
+
+#: src/rsirelaxpopup.cpp:96
+#, kde-format
+msgid "Note: next break is a big break"
+msgstr "Huomaa: seuraava tauko on pitkä"
+
+#: src/rsistats.cpp:19
+#, kde-format
+msgid "Total recorded time"
+msgstr "Kokonaistallennusaika"
+
+#: src/rsistats.cpp:23
+#, kde-format
+msgid "Total time of activity"
+msgstr "Kokonaistoiminta-aika"
+
+#: src/rsistats.cpp:30
+#, kde-format
+msgid "Total time being idle"
+msgstr "Kokonaisjoutoaika"
+
+#: src/rsistats.cpp:36
+#, kde-format
+msgid "Percentage of activity"
+msgstr "Toiminnan osuus"
+
+# Tämä ja seuraavat: periaatteessa kai kielenhuollon mukaan ”viimeisimmän” eikä ”viimeisen”, mutta käytetäänkö sitä tässä kontekstissa lainkaan?
+#: src/rsistats.cpp:39
+#, kde-format
+msgid "Percentage of activity last minute"
+msgstr "Viimeisen minuutin toiminnan osuus"
+
+#: src/rsistats.cpp:42
+#, kde-format
+msgid "Percentage of activity last hour"
+msgstr "Viimeisen tunnin toiminnan osuus"
+
+#: src/rsistats.cpp:45
+#, kde-format
+msgid "Percentage of activity last 6 hours"
+msgstr "Viimeisten 6 tunnin toiminnan osuus"
+
+#: src/rsistats.cpp:49
+#, kde-format
+msgid "Maximum idle period"
+msgstr "Enimmäisjoutoaika"
+
+#: src/rsistats.cpp:53
+#, kde-format
+msgid "Current idle period"
+msgstr "Nykyinen joutoaika"
+
+#: src/rsistats.cpp:56
+#, kde-format
+msgid "Number of skipped short breaks (idle)"
+msgstr "Lyhyitä taukoja ohitettu (joutoaika)"
+
+#: src/rsistats.cpp:59
+#, kde-format
+msgid "Number of skipped long breaks (idle)"
+msgstr "Pitkiä taukoja ohitettu (joutoaika)"
+
+#: src/rsistats.cpp:62
+#, kde-format
+msgid "Total number of short breaks"
+msgstr "Lyhyitä taukoja kaikkiaan"
+
+#: src/rsistats.cpp:67
+#, kde-format
+msgid "Number of skipped short breaks (user)"
+msgstr "Lyhyitä taukoja ohitettu (käyttäjä)"
+
+#: src/rsistats.cpp:71
+#, kde-format
+msgid "Number of postponed short breaks (user)"
+msgstr "Lyhyitä taukoja lykätty (käyttäjä)"
+
+#: src/rsistats.cpp:75
+#, kde-format
+msgid "Last short break"
+msgstr "Viimeisin lyhyt tauko"
+
+#: src/rsistats.cpp:78
+#, kde-format
+msgid "Total number of long breaks"
+msgstr "Pitkiä taukoja kaikkiaan"
+
+#: src/rsistats.cpp:83
+#, kde-format
+msgid "Number of skipped long breaks (user)"
+msgstr "Pitkiä taukoja ohitettu (käyttäjä)"
+
+#: src/rsistats.cpp:87
+#, kde-format
+msgid "Number of postponed long breaks (user)"
+msgstr "Pitkiä taukoja lykätty (käyttäjä)"
+
+#: src/rsistats.cpp:90
+#, kde-format
+msgid "Last long break"
+msgstr "Viimeisin pitkä tauko"
+
+#: src/rsistats.cpp:92
+#, kde-format
+msgid "Pause score"
+msgstr "Taukotilanne"
+
+#: src/rsistats.cpp:343
+#, kde-format
+msgid "This is the total time RSIBreak has been running."
+msgstr "Tämä on RSIBreakin kokonaiskäynnissäoloaika."
+
+#: src/rsistats.cpp:345
+#, kde-format
+msgid "This is the total amount of time you used the keyboard or mouse."
+msgstr ""
+"Tämä on kokonaisaika siihen, kun olet käyttänyt näppäimistöä tai hiirtä."
+
+#: src/rsistats.cpp:348
+#, kde-format
+msgid "This is the total amount of time you did not use the keyboard or mouse."
+msgstr "Tämä on kokonaisaika siihen, kun et käyttänyt näppäimistöä tai hiirtä."
+
+#: src/rsistats.cpp:351
+#, kde-format
+msgid ""
+"This is a percentage of activity, based on the periods of activity vs. the "
+"total time RSIBreak has been running. The color indicates the level of your "
+"activity. When the color is close to full red it is recommended you lower "
+"your work pace."
+msgstr ""
+"Tämä on toiminnan osuus perustuen toiminta-aikaan ja RSIBreakin "
+"kokonaiskäynnissäoloaikaan. Väri osoittaa toimintasi astetta. Värin "
+"lähestyessä punaista on suositeltavaa, että hellität työtahtiasi."
+
+#: src/rsistats.cpp:356
+#, kde-format
+msgid ""
+"This is the longest period of inactivity measured while RSIBreak has been "
+"running."
+msgstr "Tämä on pisin RSI Breakin käynnissä ollessa mitattu joutoajan kesto."
+
+#: src/rsistats.cpp:359
+#, kde-format
+msgid "This is the total number of short breaks"
+msgstr "Tämä on lyhyiden taukojen kokonaismäärä"
+
+#: src/rsistats.cpp:361
+#, kde-format
+msgid ""
+"This is the time of the last finished short break. The color of this text "
+"gradually turns from green to red, indicating when you can expect the next "
+"tiny break."
+msgstr ""
+"Tämä on viimeisimmän päättyneen lyhyen tauon aika. Tekstin väri vaihtuu "
+"asteittain vihreästä punaiseksi osoittaen, koska voit odottaa seuraavaa "
+"pikkuruista taukoa."
+
+#: src/rsistats.cpp:365
+#, kde-format
+msgid "This is the total number of short breaks which you skipped."
+msgstr "Tämä on ohittamiesi lyhyiden taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:368
+#, kde-format
+msgid "This is the total number of short breaks which you postponed."
+msgstr "Tämä on lykkäämiesi lyhyiden taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:371
+#, kde-format
+msgid ""
+"This is the total number of short breaks which were skipped because you were "
+"idle."
+msgstr ""
+"Tämä on joutilaisuutesi takia ohitettujen lyhyiden taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:374
+#, kde-format
+msgid "This is the total number of long breaks."
+msgstr "Tämä on pitkien taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:376
+#, kde-format
+msgid ""
+"This is the time of the last finished long break.The color of this text "
+"gradually turns from green to red,indicating when you can expect the next "
+"big break."
+msgstr ""
+"Tämä on viimeisimmän päättyneen pitkän tauon aika. Tekstin väri vaihtuu "
+"asteittain vihreästä punaiseksi osoittaen, koska voit odottaa seuraavaa isoa "
+"taukoa."
+
+#: src/rsistats.cpp:380
+#, kde-format
+msgid "This is the total number of long breaks which you skipped."
+msgstr "Tämä on ohittamiesi pitkien taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:383
+#, kde-format
+msgid "This is the total number of long breaks which you postponed."
+msgstr "Tämä on lykkäämiesi pitkien taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:386
+#, kde-format
+msgid ""
+"This is the total number of long breaks which were skipped because you were "
+"idle."
+msgstr ""
+"Tämä on joutilaisuutesi takia ohitettujen pitkien taukojen kokonaismäärä."
+
+#: src/rsistats.cpp:389
+#, kde-format
+msgid ""
+"This is an indication of how well you behaved with the breaks. It decreases "
+"every time you skip a break."
+msgstr ""
+"Tämä osoittaa, kuinka hyvin käyttäydyit taukojen aikana. Arvio heikkenee "
+"aina, kun ohitat tauon."
+
+#: src/rsistats.cpp:392
+#, kde-format
+msgid "This is the current idle time."
+msgstr "Tämä on nykyinen joutoaika."
+
+#: src/rsistats.cpp:394
+#, kde-format
+msgid ""
+"This is a percentage of activity during the last minute. The color indicates "
+"the level of your activity. When the color is close to full red it is "
+"recommended you lower your work pace."
+msgstr ""
+"Tämä on viimeisen minuutin toiminnan suhteellinen osuus. Väri osoittaa "
+"toimintasi astetta. Värin lähestyessä punaista on suositeltavaa, että "
+"hellität työtahtiasi."
+
+#: src/rsistats.cpp:398
+#, kde-format
+msgid ""
+"This is a percentage of activity during the last hour. The color indicates "
+"the level of your activity. When the color is close to full red it is "
+"recommended you lower your work pace."
+msgstr ""
+"Tämä on viimeisen tunnin toiminnan suhteellinen osuus. Väri osoittaa "
+"toimintasi astetta. Värin lähestyessä punaista on suositeltavaa, että "
+"hellität työtahtiasi."
+
+#: src/rsistats.cpp:402
+#, kde-format
+msgid ""
+"This is a percentage of activity during the last 6 hours. The color "
+"indicates the level of your activity. When the color is close to full red it "
+"is recommended you lower your work pace."
+msgstr ""
+"Tämä on viimeisen 6 tunnin toiminnan suhteellinen osuus. Väri osoittaa "
+"toimintasi astetta. Värin lähestyessä punaista on suositeltavaa, että "
+"hellität työtahtiasi."
+
+#: src/rsistatwidget.cpp:25
+#, kde-format
+msgid "Time"
+msgstr "Aika"
+
+#: src/rsistatwidget.cpp:34
+#, kde-format
+msgid "Short Breaks"
+msgstr "Lyhyet tauot"
+
+#: src/rsistatwidget.cpp:43
+#, kde-format
+msgid "Pause"
+msgstr "Tauko"
+
+#: src/rsistatwidget.cpp:52
+#, kde-format
+msgid "Long Breaks"
+msgstr "Pitkät tauot"
+
+#: src/rsistatwidget.cpp:86
+#, kde-format
+msgctxt ""
+"Translate this as the longest plural form. This is used to calculate the "
+"width of window"
+msgid "minutes"
+msgstr "minuuttia"
+
+#: src/rsistatwidget.cpp:88
+#, kde-format
+msgctxt ""
+"Translate this as the longest plural form. This is used to calculate the "
+"width of window"
+msgid "seconds"
+msgstr "sekuntia"
+
+#: src/rsiwidget.cpp:78
+#, kde-format
+msgid ""
+"<p>Welcome to RSIBreak</p>\n"
+"<p>In your tray you can now see RSIBreak.</p>\n"
+msgstr ""
+"<p>Tervetuloa RSIBreakiin</p>\n"
+"<p>Näet RSIBreakin nyt ilmoitusalueella.</p> \n"
+
+#: src/rsiwidget.cpp:80
+#, kde-format
+msgid ""
+"<p>When you right-click on that you will see a menu, from which you can go "
+"to the configuration for example.</p>\n"
+"<p>When you want to know when the next break is, hover over the icon.</p>\n"
+"<p>Use RSIBreak wisely.</p>"
+msgstr ""
+"<p>Napsauttaessasi sitä hiiren oikealla painikkeella näet valikon, josta "
+"voit siirtyä esimerkiksi asetuksiin.</p>\n"
+"<p>Halutessasi tietää, koska seuraava tauko on, pidä hiiri kuvakkeen yllä.</"
+"p>\n"
+"<p>Käytä RSIBreakiä viisaasti.</p>"
+
+#: src/rsiwidget.cpp:83
+#, kde-format
+msgid "Welcome"
+msgstr "Tervetuloa"
+
+#: src/setup.cpp:41
+#, kde-format
+msgid "General Settings"
+msgstr "Yleisasetukset"
+
+#: src/setup.cpp:45
+#, kde-format
+msgid "Timings"
+msgstr "Ajastukset"
+
+#: src/setup.cpp:49
+#, kde-format
+msgid "During Breaks"
+msgstr "Taukojen aikana"
+
+#: src/setup.cpp:53
+#, kde-format
+msgid "Actions"
+msgstr "Toiminnot"
+
+#: src/setupgeneral.cpp:38
+#, kde-format
+msgid "&Automatically start RSIBreak at startup"
+msgstr "Käynnistä RSI &Break automaattisesti kirjauduttaessa"
+
+#: src/setupgeneral.cpp:39
+#, kde-format
+msgid ""
+"With this option you can indicate that you want RSIBreak to start on Desktop "
+"Environment start."
+msgstr ""
+"Tällä asetuksella voit käynnistää RSI Breakin automaattisesti "
+"työpöytäympäristöön kirjauduttaessa."
+
+#: src/setupgeneral.cpp:43
+#, kde-format
+msgid "Timer Settings"
+msgstr "Ajastinasetukset"
+
+#: src/setupgeneral.cpp:44
+#, kde-format
+msgid "Break at &fixed times"
+msgstr "Tauko &määräajoin"
+
+#: src/setupgeneral.cpp:45
+#, kde-format
+msgid "With this option you indicate that you want to break at fixed intervals"
+msgstr "Tällä asetuksella voit ottaa tauot käyttöön määrävälein"
+
+#: src/setupgeneral.cpp:47
+#, kde-format
+msgid "Take activity into account"
+msgstr "Ota toiminta huomioon"
+
+#: src/setupgeneral.cpp:48
+#, kde-format
+msgid ""
+"With this option you indicate that you want to use idle detection. This "
+"means that only the time you are active (when you use the keyboard or the "
+"mouse) will be counted to calculate when to break next."
+msgstr ""
+"Tällä asetuksella voit käyttää joutoajan tunnistusta, mikä tarkoittaa, että "
+"vain toiminta-aikasi (jolloin käytät näppäimistöä tai hiirtä) otetaan "
+"huomioon seuraavaa taukoa määritettäessä."
+
+#: src/setupmaximized.cpp:76
+#, kde-format
+msgid "Simple Gray Effect"
+msgstr "Yksinkertainen harmaa tehoste"
+
+#: src/setupmaximized.cpp:78
+#, kde-format
+msgid "Complete Black Effect"
+msgstr "Kokomusta tehoste"
+
+#: src/setupmaximized.cpp:79
+#, kde-format
+msgid "Show Plasma Dashboard"
+msgstr "Näytä Plasman kojelauta"
+
+#: src/setupmaximized.cpp:80
+#, kde-format
+msgid "Show Slide Show of Images"
+msgstr "Näytä diaesitys"
+
+#: src/setupmaximized.cpp:81
+#, kde-format
+msgid "Show a Passive Popup"
+msgstr "Näytä passiivinen ponnahdusilmoitus"
+
+#: src/setupmaximized.cpp:88
+#, kde-format
+msgid "Skipping Breaks"
+msgstr "Taukojen ohittaminen"
+
+#: src/setupmaximized.cpp:90
+#, kde-format
+msgid "&Hide skip button"
+msgstr "P&iilota ohituspainike"
+
+#: src/setupmaximized.cpp:91
+#, kde-format
+msgid ""
+"Check this option to disable and hide the skip button. This way you can "
+"prevent skipping the break."
+msgstr ""
+"Poista ohituspainike käytöstä ja piilota se valitsemalla tämä asetus. Näin "
+"voit estää taukojen ohittamisen."
+
+#: src/setupmaximized.cpp:94
+#, kde-format
+msgid "&Hide lock button"
+msgstr "Piilota l&ukituspainike"
+
+#: src/setupmaximized.cpp:95
+#, kde-format
+msgid ""
+"Check this option to disable and hide the lock button. This way you can "
+"prevent pressing the wrong button."
+msgstr ""
+"Poista lukitusnäppäin käytöstä ja piilota se valitsemalla tämä asetus. Näin "
+"voit yrittää estää väärän painikkeen painamisen."
+
+#: src/setupmaximized.cpp:97
+#, kde-format
+msgid "&Hide postpone button"
+msgstr "P&iilota lykkäyspainike"
+
+#: src/setupmaximized.cpp:98
+#, kde-format
+msgid ""
+"Check this option to disable and hide the postpone break button. This way "
+"you can prevent pressing the wrong button."
+msgstr ""
+"Poista tauon lykkäyspainike käytöstä ja piilota se valitsemalla tämä asetus. "
+"Näin voit yrittää estää väärän painikkeen painamisen."
+
+#: src/setupmaximized.cpp:101
+#, kde-format
+msgid "&Disable shortcut (Esc)"
+msgstr "Poista &ohituspikanäppäin (Esc) käytöstä"
+
+#: src/setupmaximized.cpp:102
+#, kde-format
+msgid "Check this option to disable the ESC key skipping the break."
+msgstr "Valitse tämä, jos haluat, ettei Esc-näppäin ohita taukoa."
+
+#: src/setupmaximized.cpp:115
+#, kde-format
+msgid "Plasma Dashboard"
+msgstr "Plasma-kojelauta"
+
+#: src/setupmaximized.cpp:117
+#, kde-format
+msgid "Read Only"
+msgstr "Vain luku"
+
+#: src/setupmaximized.cpp:125
+#, kde-format
+msgid "Transparency level"
+msgstr "Läpinäkyvyyden aste"
+
+#: src/setupmaximized.cpp:131
+#, kde-format
+msgid "Transparent"
+msgstr "Läpinäkyvä"
+
+#: src/setupmaximized.cpp:141
+#, kde-format
+msgid "Solid"
+msgstr "Tasainen väri"
+
+#: src/setupmaximized.cpp:150
+#, kde-format
+msgid "Slideshow"
+msgstr "Diaesitys"
+
+#: src/setupmaximized.cpp:156
+#, kde-format
+msgid ""
+"Select the folder from which you want to see images. These images are "
+"randomly shown during the breaks. It will be searched recursively if you "
+"want..."
+msgstr ""
+"Valitse kansio, josta haluat näyttää kuvia. Taukojen aikana näytetään "
+"satunnaisia kuvia. Niitä etsitään alikansioistakin, jos haluat."
+
+#: src/setupmaximized.cpp:159
+#, kde-format
+msgid "&Change..."
+msgstr "&Muuta…"
+
+#: src/setupmaximized.cpp:163
+#, kde-format
+msgid "Search path recursively"
+msgstr "Etsi myös alikansioista"
+
+# Tarkoituksella ”pikku kuva”, ei ”pikkukuva” (= thumbnail)
+#: src/setupmaximized.cpp:165
+#, kde-format
+msgid "Show small images"
+msgstr "Näytä pikku kuvat"
+
+#: src/setupmaximized.cpp:167
+#, kde-format
+msgid "Expand image to full screen"
+msgstr "Laajenna kuva koko näytölle"
+
+#: src/setupmaximized.cpp:169
+#, kde-format
+msgid ""
+"If checked then image will be expanded to full screen. Part of the image "
+"outside the screen area will be cropped. Otherwise the image will be "
+"displayed completely but there may grey areas around it. "
+msgstr ""
+"Jos valittu, kuva laajennetaan koko näytölle. Näyttöalueen ulkopuolelle "
+"jäävä kuva rajataan pois. Muussa tapauksessa kuva näytetään kokonaan, mutta "
+"sitä ympäröi harmaa alue."
+
+#: src/setupmaximized.cpp:176
+#, kde-format
+msgid "Change images every:"
+msgstr "Vaihda kuvaa joka:"
+
+#: src/setupmaximized.cpp:179
+#, kde-format
+msgid ""
+"Here you can set how long one image should be shown before it is replaced by "
+"the next one."
+msgstr ""
+"Tässä voit asettaa, kauanko yhtä kuvaa näytetään, ennen kuin se korvataan "
+"seuraavalla."
+
+#: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
+#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
+#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#, kde-format
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " sekunti"
+msgstr[1] " sekuntia"
+
+#: src/setupmaximized.cpp:200
+#, kde-format
+msgid "Popup"
+msgstr "Ponnahdusilmoitus"
+
+#: src/setupmaximized.cpp:202
+#, kde-format
+msgid ""
+"RSIBreak can show a popup before replacing your whole screen with the effect "
+"chosen above."
+msgstr ""
+"RSIBreak voi näyttää ponnahdusilmoituksen ennen kuin koko näyttö korvataan "
+"alla valitulla tehosteella."
+
+#: src/setupmaximized.cpp:205
+#, kde-format
+msgid "&Use the popup"
+msgstr "Käytä &ponnahdusilmoitusta"
+
+#: src/setupmaximized.cpp:207
+#, kde-format
+msgid ""
+"Shows a countdown popup when it is time to break. The countdown resets on "
+"activity."
+msgstr ""
+"Näyttää lähtölaskennan, kun on aika pitää tauko. Laskuri nollautuu, kun "
+"toimintaa havaitaan."
+
+#: src/setupmaximized.cpp:213
+#, kde-format
+msgid "Popup patience:"
+msgstr "Ilmoituksen &kärsivällisyys:"
+
+#: src/setupmaximized.cpp:216
+#, kde-format
+msgid ""
+"Maximum time the patience popup will be shown before the effect kicking in."
+msgstr "Kärsivällisyysilmoituksen enimmäisaika ennen kuin tehoste alkaa."
+
+#: src/setupmaximized.cpp:224
+#, kde-format
+msgid "The popup can flash when it detects that you are still active."
+msgstr "Ilmoitus voi välkkyä, kun havaitaan sinun yhä jatkavan toimintaasi."
+
+#: src/setupmaximized.cpp:228
+#, kde-format
+msgid "&Flash on activity"
+msgstr "&Ilmoita toiminnasta"
+
+#: src/setupmaximized.cpp:229
+#, kde-format
+msgid ""
+"With this checkbox you can indicate if you want to see the popup flash when "
+"there is activity."
+msgstr ""
+"Tällä valintaruudulla voit osoittaa, haluatko ponnahdusilmoituksen toiminnan "
+"yhteydessä."
+
+#: src/setupmaximized.cpp:314
+#, kde-format
+msgid "Choose the effect you want after patience runs out"
+msgstr "Valitse tehoste, jonka haluat kärsivällisyyden olevan lopussa"
+
+#: src/setupmaximized.cpp:315
+#, kde-format
+msgid "Choose the effect you want during breaks"
+msgstr "Valitse, minkä tehosteen haluat tauoiksi"
+
+#: src/setuptiming.cpp:47
+#, kde-format
+msgid "Tiny Breaks"
+msgstr "Pikkuruiset tauot"
+
+#: src/setuptiming.cpp:52
+#, kde-format
+msgid "Short break every:"
+msgstr "Lyhyt tauko joka:"
+
+#: src/setuptiming.cpp:55
+#, kde-format
+msgid "Here you can set how often you want a short break. "
+msgstr "Tässä voit asettaa, kuinka usein haluat lyhyen tauon. "
+
+# *** TARKISTA: Tämä on hankala. Ei varsinainen tarkistettava asia, mutta hyvä ehdotus olisi tarpeen.
+#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#, kde-format
+msgid "For a duration of:"
+msgstr "Ajaksi:"
+
+#: src/setuptiming.cpp:68
+#, kde-format
+msgid "Here you can set the duration of the short break."
+msgstr "Tässä voit asettaa lyhyen tauon keston."
+
+#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#, kde-format
+msgid "Skip if no activity for:"
+msgstr "Ohita, jollei mitään toimintaa:"
+
+#: src/setuptiming.cpp:82
+#, kde-format
+msgid ""
+"Set the interval you are idle for that is enough to skip the next short "
+"break."
+msgstr ""
+"Aseta joutenoloaika, jonka kesto riittää seuraavan lyhyen tauon "
+"ohittamiseksi."
+
+#: src/setuptiming.cpp:98
+#, kde-format
+msgid "Big Breaks"
+msgstr "Isot tauot"
+
+#: src/setuptiming.cpp:103
+#, kde-format
+msgid "Long break every:"
+msgstr "Pitkä tauko joka:"
+
+#: src/setuptiming.cpp:106
+#, kde-format
+msgid "Here you can set how often you want a long break. "
+msgstr "Tässä voit asettaa, kuinka usein haluat pitkän tauon. "
+
+#: src/setuptiming.cpp:118
+#, kde-format
+msgid "Here you can set the duration of the long break."
+msgstr "Tässä voit asettaa pitkän tauon keston."
+
+#: src/setuptiming.cpp:132
+#, kde-format
+msgid ""
+"Set the interval you are idle for that is enough to skip the next long break."
+msgstr ""
+"Aseta joutenoloaika, jonka kesto riittää seuraavan pitkän tauon "
+"ohittamiseksi."
+
+#: src/setuptiming.cpp:148
+#, kde-format
+msgid "Postpone Breaks"
+msgstr "Lykkää taukoja"
+
+#: src/setuptiming.cpp:156
+#, kde-format
+msgid "Here you can set for how much time you want to postpone a break."
+msgstr "Tässä voit asettaa, paljonko haluat lykätä taukoa."
+
+#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
+#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#, kde-format
+msgid " minute"
+msgid_plural " minutes"
+msgstr[0] " minuutti"
+msgstr[1] " minuuttia"

@@ -1,0 +1,271 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Portuguese "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>O Manual do &rsibreak;</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>José</firstname
+><surname
+>Pires</surname
+><affiliation
+><address
+><email
+>zepires@gmail.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>0.12</releaseinfo>
+
+<abstract
+><para
+>A Lesão por Tensão Repetitiva é uma doença que poderá ocorrer em função de um trabalho contínuo com um rato e um teclado. O risco de sofrer a lesão aumenta quanto mais tempo as pessoas trabalharem sem pausas. O &rsibreak; simplesmente oferece chamadas de atenção para fazer uma pausa de vez em quando. </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>projecto</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+
+<para
+>A Lesão por Tensão Repetitiva (RSI - Repetitive Strain Injury) é uma doença que poderá ocorrer, em resultado de trabalhar com um rato e um teclado. Este utilitário poderá ser usado para o recordar de fazer uma pausa, daqui em diante. Mostrar-lhe-á uma imagem aleatória de uma colecção configurada por si, durante um período bem definido. Poderá usar estas chamadas de atenção de pausas para fazer alguns exercícios de alongamentos, por exemplo, ou como forma de o afastar do computador durante algum tempo.</para>
+
+<screenshot>
+<screeninfo
+>Logótipo do &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Logótipo do &rsibreak;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>O &rsibreak; foi criado originalmente pelo Tom Albers. No início do seu desenvolvimento, o Bram Schoenmakers juntou-se ao projecto</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>Usar o &rsibreak;</title>
+
+<para
+>A ideia do &rsibreak; é interrompê-lo no seu trabalho. A intenção é que o faça de forma amigável. Poderão ocorrer alturas, todavia, em que apareça quando você está muito ocupado. As opções de configuração do &rsibreak; são um esforço para lhe permitir personalizar as interrupções. Desta forma, esperamos que você seja capaz de melhorar a sua eficácia no trabalho, reduzindo por outro lado as suas hipóteses de lesão.</para>
+
+<para
+>Depois de iniciar, poderá ver um ícone na sua bandeja do sistema, bem como uma mensagem de boas-vindas. Embora a maioria das aplicações corram sem problemas com a configuração predefinida, aconselha-se que vá à configuração e descubra o que está disponível. Carregue com o botão direito no ícone da bandeja e escolha a opção <guilabel
+>Configurar</guilabel
+>. Veja os próximos capítulos para mais algumas informações de configuração.</para>
+
+<screenshot>
+<screeninfo
+>Estatísticas do &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Carregue com o botão esquerdo do rato para ver as estatísticas</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Quando carregar com o botão esquerdo no ícone, irá então ver as suas estatísticas. Quando tiver configurado o &rsibreak; para parar em intervalos fixos, o seu tempo de inactividade não será medido. Nesse caso, algumas das opções nas estatísticas não serão muito informativas.</para>
+
+<para
+>O bloco superior esquerdo mostra algumas estatísticas gerais: alguns totais e outras estatísticas de inactividade. O bloco inferior esquerdo mostra alguns dados sobre o seu ritmo de trabalho. Irá ver a quantidade total de actividade, desde que está a trabalhar no computador (nesta sessão), bem como a quantidade de actividade, durante outros intervalos. A Pontuação de Pausas diminui, sempre que você ignora uma pausa. Os blocos à direita informam-no sobre as pausas pequenas e grandes que já passaram. As legendas na janela poderão estar a preto, a vermelho ou a verde. No último caso, quando uma estatística aparecer a vermelho, recomenda-se que descanse um pouco, para que as estatísticas voltem de novo para verde.</para>
+
+<para
+>Quando carregar com o botão direito no ícone da bandeja, irá ver uma opção para <guilabel
+>Suspender</guilabel
+> o &rsibreak;. Quando não quiser ser interrompido como, por exemplo, durante um jogo ou uma apresentação, poderá usar esta opção para calar o &rsibreak;. Poderá prosseguir com o &rsibreak; quando carregar com o botão direito no ícone e escolher a opção <guilabel
+>Prosseguir</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; suspenso</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>O ícone da bandeja, quando o &rsibreak; está suspenso</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>A última possibilidade de influenciar o &rsibreak; é através do &DBus;. Existem comandos de &DBus; disponíveis para forçar as pausas, bem como para suspender e prosseguir com o &rsibreak;. Podê-las-á usar para interromper o &rsibreak; automaticamente, quando iniciar um jogo ou outra coisa qualquer. Execute <command
+>qdbus org.rsibreak.rsibreak /rsibreak</command
+> para ver as possibilidades.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>Tipos de pausa</title>
+
+<para
+>A maioria da configuração é relativamente simples. Na página geral, existe a opção de arranque automático. Poderá perguntar porque é que esta existe, dado que o gestor de sessões deveria tomar conta disso. Bem, a resposta é que alguns utilizadores pediram para iniciar o &rsibreak; no arranque, embora não usem o gestor de sessões. Lembre-se, por favor, que o <application
+>Gnome</application
+> irá ignorar esta opção.</para>
+
+<para
+>Existem duas opções de comportamento para o &rsibreak;. Existe uma possibilidade de interromper em períodos fixos e existe a opção de reiniciar os relógios, quando o &rsibreak; detectar que você está inactivo durante uma pausa.</para>
+
+<screenshot>
+<screeninfo
+>Janela do &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>O botão de bloqueio permite-lhe bloquear o seu ecrã sempre que deixar o seu computador</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Se achar que a história do ecrã completo é um pouco incómoda, na página de <guilabel
+>Durante as Pausas</guilabel
+>, poderá indicar que deseja usar uma mensagem. Nesse caso, aparecerá uma pequena mensagem perto da bandeja, a alertá-lo para fazer uma pausa. Se optar por ignorá-la, a funcionalidade do ecrã completo irá aparecer à mesma.</para>
+
+<para
+>Existem três opções para a pausa no ecrã completo. Poderá mostrar um <guilabel
+>Efeito de Preto Completo</guilabel
+> (esta é a acção por omissão), a opção <guilabel
+>Mostrar o Painel do Plasma</guilabel
+> ou <guilabel
+>Mostrar uma Apresentação de Imagens</guilabel
+>, onde poderá definir a localização de uma pasta no seu disco rígido que contém imagens. Durante uma pausa, poderá ver uma apresentação dessas imagens.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>Duração/Intervalo de uma pausa</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>O &rsibreak; suporta dois tipos diferentes de pausas: as <quote
+>Pausas pequenas</quote
+> e as <quote
+>Pausas grandes</quote
+>. A forma normal de as usar é fazer pausas pequenas com frequência e, ocasionalmente, algumas pausas grandes. Por exemplo, uma pausa de 20 segundos, a cada 20 minutos (a pausa pequena), e uma pausa maior de 2 minutos a cada hora (a pausa grande).</para>
+
+<tip
+><para
+>Não vale a pena configurar intervalos que sejam irritantes. Estes, por definição, enervá-lo-ão e você sentir-se-á mais tentado a carregar no &Esc; &ndash; ou noutra tecla que tenha configurado na página <guilabel
+>Durante as pausas</guilabel
+> &ndash; para saltar a pausa.</para>
+
+<para
+>Quando descobrir que faz isso com muita frequência, poderá optar por desactivar o atalho e esconder o botão de minimização. Afinal de contas, você é que sabe com que restrição segue a sequência de pausas. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Créditos e Licença</title>
+
+<para
+>&rsibreak; com 'copyright' 2005-2006 de Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>Documentação com 'copyright' 2006 de Rob Moore, Tom Albers, Bram Schoenmakers</para>
+
+<para
+>Tradução de José Nuno Pires <email
+>zepires@gmail.com</email
+></para
+> 
+&underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>
