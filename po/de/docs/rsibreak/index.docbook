@@ -1,0 +1,274 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>Das Handbuch zu &rsibreak;</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Deutsches</firstname
+><surname
+>KDE-Übersetzerteam</surname
+><affiliation
+><address
+><email
+>kde-i18n-de@kde.org</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>0.12</releaseinfo>
+
+<abstract
+><para
+>Die repetitive Belastungsstörung (RSI) ist eine Erkrankung, die als Folge von ständiger Arbeit mit Maus und Tastatur entstehen kann. Das Risiko einer Verletzung steigt,  je länger der Benutzer ohne Pausen arbeitet. &rsibreak; erinnert daran, ab und zu eine Pause einzulegen. </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>Projekt</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einleitung</title>
+
+<para
+>Repetitive Belastungsstörung kann als Folge der Arbeit mit Maus und Tastatur auftreten. Dieses Dienstprogramm kann Sie daran erinnern, ab und zu eine Pause einzulegen. Es zeigt ein zufälliges Bild aus einer Sammlung in bestimmten Intervallen für definierte Zeiträume an. Sie können die anzuzeigenden Bilder und die Dauer der Anzeige einstellen. Sie könnten die Pausen-Erinnerungen z. B. für Dehnungsübungen verwenden -oder als Erinnerung, sich für eine Weile vom Computer zu entfernen.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak;-Logo</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&rsibreak;-Logo</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>&rsibreak; wurde ursprünglich von Tom Albers geschrieben. Am Beginn der Entwicklung hat sich Bram Schoenmakers am Projekt beteiligt.</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>&rsibreak; verwenden</title>
+
+<para
+>Die Idee von &rsibreak; ist es, Sie bei Ihrer Arbeit zu unterbrechen. Dies soll auf eine benutzerfreundliche Weise geschehen. Es wird jedoch Zeiten geben, in denen es sich meldet, wenn Sie sehr beschäftigt sind. Die Einstellungen in &rsibreak; geben Ihnen die Möglichkeit, die Unterbrechungen anzupassen. Wir hoffen, dass Sie auf diese Weise Ihre Effektivität bei der Arbeit verbessern und gleichzeitig Ihr Verletzungsrisiko zu verringern.</para>
+
+<para
+>Nach dem Start sehen Sie ein Symbol in Ihrer Kontrollleiste und ein Aufklappfenster.  Obwohl die Anwendung mit den Standardeinstellungen nützlich sein sollte, sollten Sie die Einstellungen überprüfen. Dazu klicken Sie mit der rechten Maustaste auf das Symbol in der Kontrollleiste. Im Kontextmenü wählen Sie dann <guilabel
+>Einrichten</guilabel
+>. In den folgenden Kapiteln finden Sie weitere Informationen zur Einrichtung.</para>
+
+<screenshot>
+<screeninfo
+>Statistiken in &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Klicken Sie mit der <mousebutton
+>linken</mousebutton
+> Maustaste auf das Symbol in der Kontrollleiste, um die Statistik anzuzeigen.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Wenn Sie mit der linken Maustaste auf das Symbol in der Kontrollleiste klicken, werden einige Statistiken angezeigt. Wenn Sie in &rsibreak; Pausen zu festen Zeiten einstellen, wird Ihre Leerlaufzeit nicht gemessen. In diesem Fall sind einige der Einstellungen in der Statistik möglicherweise nicht nicht sehr informativ.</para>
+
+<para
+>Der obere linke Block zeigt allgemeine Statistiken: einige Gesamtwerte und einige Informationen über die Leerlaufzeit. Der untere linke Block zeigt etwas über Ihr Arbeitstempo. Sie sehen die Gesamtmenge der Aktivitäten seit dem Sie sich in dieser Sitzung angemeldet haben. Der Umfang der Aktivität während anderer Intervallen wird ebenfalls angezeigt. Der Pausenwert verringert sich jedes Mal, wenn Sie eine Pause machen. Die Blöcke auf der rechten Seite zeigen an, welche kurzen und langen Pausen bereits vergangen sind. Aktuell können die Beschriftungen im Dialog entweder schwarz oder rot und grün sein. Im letzteren Fall bedeutet eine rote Statistik sich zu entspannen und eine Pause zu machen, was die Farbe dann weiter zu Grün ändert.</para>
+
+<para
+>Wenn Sie mit der rechten Maustaste auf das Symbol in der Kontrollleiste klicken, Wenn Sie sich nicht unterbrechen lassen möchten, z. B. während eines Spiels oder einer Präsentation, können Sie damit <guilabel
+>&rsibreak; anhalten</guilabel
+>. Sie können &rsibreak; wieder fortsetzen, wenn Sie erneut mit der rechten Maustaste auf das Symbol klicken und <guilabel
+>&rsibreak; fortsetzen</guilabel
+> wählen.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; anhalten</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Das Symbol im Systemabschnitt der Kontrollleiste mit angehaltenem &rsibreak;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Sie können &rsibreak; auch über &DBus; steuern;. Es gibt &DBus;-Befehle, um Pausen zu erzwingen und um &rsibreak; zu unterbrechen und fortzusetzen. Sie können diese Befehle verwenden, um &rsibreak; automatisch zu unterbrechen, wenn Sie ein Spiel oder ein anderes angegebenes Programm starten. Führen Sie <command
+>qdbus org.kde.rsibreak /rsibreak</command
+> aus, um die Möglichkeiten zu sehen.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>Arten von Pausen</title>
+
+<para
+>Die meisten Einstellungen sind einfach zu handhaben. Auf der Seite„Allgemein“ gibt es eine Einstellung zum automatischen Starten bei der Anmeldung in &kde;. Normalerweise sollte sich die Sitzungsverwaltung darum kümmern, aber einige Benutzer möchten möglicherweise &rsibreak; beim Anmelden starten, während sie die Sitzungsverwaltung nicht verwenden. Beachten Sie dass <application
+>Gnome</application
+> diese Einstellung ignoriert.</para>
+
+<para
+>Es gibt zwei Verhaltensweisen in &rsibreak;. Es gibt eine Einstellung für Pausen in festen Intervallen für feste Zeiträume und eine Einstellung zum Zurücksetzen der Zeitmesser, wenn &rsibreak; feststellt, dass Sie für die Dauer einer Pause nicht aktiv waren.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak;-Kontextmenü</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Mit <guilabel
+>Bildschirm sperren</guilabel
+> können Sie immer dann Ihren Bildschirm sperren, wenn Sie Ihren Rechner verlassen.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Möglicherweise ist ein Bildschirm füllender Hinweis auf eine Pause störend. In diesem Fall können Sie auf der Seite <guilabel
+>Während Pausen</guilabel
+> angeben, dass Sie ein Aufklappfenster verwenden möchten. Dann wird es in der Nähe der Kontrollleiste angezeigt und fordert Sie auf, eine Pause zu machen. Wenn Sie dies ignorieren, wird der Aktivitätsblock im Vollbildmodus trotzdem angezeigt.</para>
+
+<para
+>Es gibt drei Einstellungen für die Vollbildpause. Es kann ein <guilabel
+>Schwarzer-Bildschirm-Effekt</guilabel
+> als Standard, <guilabel
+>Plasma-Dashboard anzeigen</guilabel
+> oder <guilabel
+>Diashow anzeigen</guilabel
+> gewählt werden, dabei kann ein Pfad zu einem Ordner auf Ihrer Festplatte mit Bildern angegeben werden. Während einer Pause sehen Sie dann eine Diashow dieser Bilder.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>Dauer und Abstand einer Pause</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>&rsibreak; unterstützt zwei verschiedene Arten von Pausen: <quote
+>Kurze Pause</quote
+> und <quote
+>Lange Pause</quote
+>. Normalerweise sollten Sie  häufige kurze Pausen und gelegentliche lange Pausen machen. Zum Beispiel eine Pause von 20 Sekunden alle 20  Minuten (die kurze Pause) und eine längere Pause von 2 Minuten jede Stunde (die lange Pause).</para>
+
+<tip
+><para
+>Es ist nicht sinnvoll. irritierende Intervalle einzustellen. Diese werden nur stören  und Sie werden dann eher die Taste &Esc; oder eine andere Taste, die Sie auf der Seite <guilabel
+>Während Pausen</guilabel
+> eingerichtet haben, benutzen um die Pause zu überspringen.</para>
+
+<para
+>Wenn Sie feststellen, dass Sie häufig Pausen auslassen, können Sie die Tastenkombination deaktivieren und den Knopf zum Minimieren ausblenden. Sie entscheiden, wie strikt Sie die Pausenabfolge einhalten wollen. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Mitwirkende und Lizenz</title>
+
+<para
+>&rsibreak; Copyright 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>Dokumentation Copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+
+<para
+>Übersetzung Deutsches KDE-Übersetzerteam<email
+>kde-i18n-de@kde.org</email
+></para
+> &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>

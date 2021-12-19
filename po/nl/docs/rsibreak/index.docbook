@@ -1,0 +1,252 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Dutch "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>Het handboek van &rsibreak;</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+&Rinse.Devries; 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>0.12</releaseinfo>
+
+<abstract
+><para
+>Repetitive Strain Injury (RSI) is een aandoening die zich kan voordoen als resultaat van het weken met een toetsenbord en muis. &rsibreak; kan worden gebruikt om u er aan te herinneren zo nu en dan een pauze te nemen. </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>project</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+
+<para
+>Repetitive Strain Injury (RSI) is een aandoening die zich kan voordoen als resultaat van het weken met een toetsenbord en muis. Dit programma kan worden gebruikt om u eraan te herinneren zo nu en dan een pauze te nemen. Het zal een willekeurige afbeelding uit een door u opgegeven verzameling tonen op een door u ingestelde interval. U kunt deze pauzes gebruiken om bijv. enkele rekoefeningen te doen, of om even bij de computer weg te lopen.</para>
+
+<screenshot>
+<screeninfo
+>Logo van &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Logo van &rsibreak;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>&rsibreak; is oorspronkelijk geschreven door Tom Albers. Al in het begin van het ontwikkelen heeft Bram Schoenmakers zich bij het project gevoegd.</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>&rsibreak; gebruiken</title>
+
+<para
+>Het idee achter &rsibreak; is om u in uw werk te onderbreken. Het probeert dat op een vriendelijke manier te doen. Maar er zullen momenten zijn dat u het programma u onderbreekt terwijl u het erg druk heeft. De configuratiemogelijkheden van &rsibreak; zijn bedoeld om het u mogelijk te maken om deze onderbrekingen in te stellen. We hopen dat u op die manier uw effectiviteit op het werk te verbeteren terwijl u uw kans op letsel vermindert.</para>
+
+<para
+>Nadat het programma is opgestart ziet u een pictogram in uw systeemvak en een welkomstvenster. Alhoewel de meeste programma's goed draaien met hun standaardinstellingen, is het raadzaam om de instellingen te doorlopen en te ontdekken wat er zoal beschikbaar is. Rechtsklik op het systeemvakpictogram en kies voor menuoptie <guilabel
+>Instellen</guilabel
+>. Zie de volgende hoofdstukken over hoe u het programma kunt instellen.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak;-statistieken</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Linksklik op het systeemvakpictogram om de statistieken te zien</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Als u met de linker muisknop op het systeemvakpictogram klikt, dan zult u de statistieken zien. als u &rsibreak; hebt ingesteld om op vaste tijden een pauze in te lassen, dan zullen enkele opties in de statistieken niet erg informatief zijn. Dit omdat de tijd dat u niet actief bent niet zal worden gemeten.</para>
+
+<para
+>Het vak linksboven toont algemene statistieken: enkele totalen en enkele inactiviteitsstatistieken. Het vak linksonder toont uw werktempo U ziet de totale hoeveelheid activiteit sinds u begon te werken op uw computer (tijdens die sessie) en de hoeveelheid activiteit gedurende enkele andere intervals. De pauzescore wordt elke keer dat u een pauze overslaat verlaagd. De vakken rechts vertellen iets over de kleine en grote pauzes die u al gehad heeft. De labels in dit dialoog kunnen zwart zijn, of rood en groen. In het laatste geval, als een statistiek rood wordt weergegeven is het aan te bevelen meer pauzes te nemen zodat de statistieken weer dichter bij groen komen.</para>
+
+<para
+>Als u rechtsklikt op het systeemvakpictogram zult u een optie zien met de naam &rsibreak; <guilabel
+>onderbreken</guilabel
+>;. Als u niet gestoord wilt worden, bijv. gedurende een spel of een presentatie, dan kunt u dit gebruiken om &rsibreak; stop te zetten. U kunt &rsibreak; hervatten door te rechtsklikken op het pictogram en te kiezen voor <guilabel
+>Hervatten</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; onderbreken</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Het systeemvakpictogram wanneer &rsibreak; is onderbroken</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Een andere manier om &rsibreak; te beïnvloeden is via &DBus;. Er zijn &DBus;-commando's beschikbaar die pauzes forceren en die &rsibreak; onderbreken en hervatten. U kunt deze gebruiken om &rsibreak; automatisch te onderbreken als u een spel gaat spelen e.d. Voer het commando <command
+>qdbus org.kde.rsibreak /rsibreak</command
+> uit voor een overzicht van de mogelijkheden.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>Type pauzes</title>
+
+<para
+>De meeste instellingen spreken voor zich. We zullen hier enkele instellingen uitleggen. Op de algemene pagina vindt u de optie om het programma automatisch te starten. U zult zich misschien afvragen waarom die er is, omdat de sessiebeheerder dat ook kan verzorgen. Het antwoord is dat sommige gebruikers hebben verzocht om &rsibreak; tijdens het opstarten te kunnen starten terwijl ze geen sessiebeheer gebruiken. Opmerking: andere omgevingen, zoals <application
+>GNOME</application
+>, negeren deze instelling.</para>
+
+<para
+>Er zijn twee manieren waarop &rsibreak; kan functioneren. Er is de mogelijkheid om te pauzeren op vaste intervallen voor vaste periodes en er is de mogelijkheid om de tijdklokken te resetten als &rsibreak; merkt dat u gedurende de tijd van een pauze inactief bent.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak;-popup</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>De vergrendelknop maakt het mogelijk om het scherm te vergrendelen als u uw computer gedurende een pauze verlaat.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Als u dat volledig scherm ergerlijk vindt, dan kunt u op de pagina <guilabel
+>Tijdens pauzes</guilabel
+> aangeven dat u een popup wilt gebruiken. Er verschijnt dan een kleine popup bij het systeemvak waarin u wordt gevraagd om een pauze te nemen. Als u die vraagt negeert zal het volledige scherm alsnog worden geblokkeerd.</para>
+
+<para
+>Er zijn drie opties voor de pauze met volledig scherm. Het kan een <guilabel
+> Geheel zwart effect</guilabel
+> tonen (dit is de standaard actie), <guilabel
+>Plasma Dashboard tonen</guilabel
+> of <guilabel
+>Diavoorstelling van afbeeldingen tonen</guilabel
+>, waar een pad ingesteld kan worden naar een map op uw harde schijf die afbeeldingen bevat. Tijdens de pauze ziet u een diavoorstelling van die afbeeldingen.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>Duur/interval van een pauze</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>&rsibreak; kent twee typen pauzes: <quote
+>korte pauzes</quote
+> en <quote
+>lange pauzes</quote
+>. Normaliter neemt u regelmatig een korte pauze en zo nu en dan een lange pauze. Bijvoorbeeld, elke 20 minuten een pauze van 20 seconden (korte pauze) en elk uur een pauze van 2 minuten (lange pauze).</para>
+
+<tip
+><para
+>Het is zinloos om intervals in te stellen die u zullen irriteren. Ze zullen u alleen maar op uw zenuwen werken, en u zult dan sneller op de toets &Esc; &ndash; of andere sneltoets die u hebt ingesteld op de pagina <guilabel
+>Tijdens pauzes</guilabel
+> &ndash; drukken om de pauze te onderbreken.</para>
+
+<para
+>Als u merkt dat u dat vaak doet, dan kunt u overwegen om de sneltoets uit te schakelen en de minimaliseerknop te verbergen. U heeft dus zelf in de hand hoe strikt u de pauzes dient op te volgen. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Dankbetuigingen en licentie</title>
+
+<para
+>&rsibreak; copyright 2005-2006 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>Documentatie copyright 2006 Rob Moore, Tom Albers en Bram Schoenmakers</para>
+
+&meld.fouten;&vertaling.freek; &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>

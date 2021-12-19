@@ -1,0 +1,260 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Continental-Chinese "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>&rsibreak; 手册</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Zonglin</firstname
+> <surname
+>Yang</surname
+></author
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-08-24</date>
+<releaseinfo
+>0.12</releaseinfo>
+
+<abstract
+><para
+>重复性劳损是由于不断使用鼠标和键盘而导致的疾病。使用者不间断工作的时间越长，受伤的风险就越大。&rsibreak; 可以提醒您偶尔休息一下。 </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>方案</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>介绍</title>
+
+<para
+>使用鼠标和键盘可能会导致重复性劳损。该实用程序可用于提醒您不时进行休息。它以指定的时间间隔在定义的持续时间内显示来自收藏集的随机图片。您可以配置要显示的图片和显示它们的时间长度。例如，您可以在休息提醒时做一些伸展运动，或者暂时离开计算机。</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; 标志</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&rsibreak; 标志</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>&rsibreak; 最初由 Tom Albers 开发。Bram Schoenmakers 在早期开发阶段参与了项目。</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>使用 &rsibreak;</title>
+
+<para
+>&rsibreak; 意图以用户友好的方式打断您的工作。尽管有时在您非常忙的时候它也会显示。&rsibreak; 的配置选项允许您自定义打断行为。我们希望以此让您在提高工作效率的同时减少受伤的可能性。</para>
+
+<para
+>启动后，您可以在托盘上看到一个图标和一个欢迎弹出窗口。虽然应用程序在默认设置下应该工作良好，但通过检查设置来控制选项可能是明智的。要发现和获取可用选项的访问权限，请右键点击托盘图标； 在显示的右键菜单中选择 <guilabel
+>配置</guilabel
+>。以下各章载有进一步的配置信息。</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; 统计</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>左键点击托盘图标以查看统计</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>当你左键点击托盘图标时，你会看到一些统计数据。如果你配置 &rsibreak; 以在固定时间休息，你的空闲时间将不会被测量。在这种情况下，统计信息中的某些选项可能不会提供很多信息。</para>
+
+<para
+>左上方的方框显示常规统计信息：一些总计和一些有关空闲时间的信息。左下方的方框显示有关您的工作进度的信息。您将看到自您启动当前登录会话以来的活动总数。还将显示其他一些时间间隔内的活动量。每次跳过休息时，暂停分数都会降低。 右侧的块报告了短休息和长休息的信息。目前，对话框中的标签可能是黑色或者红、绿色。在后一种情况下，红色统计表明建议放松并稍作休息，这将使颜色更接近绿色。</para>
+
+<para
+>当您右键单击托盘图标时，右键菜单将显示 <guilabel
+>挂起</guilabel
+> &rsibreak;的选项。当您不想被打断时，例如在游戏或演示文稿中，您可以使用此选项来静音 &rsibreak; 当您再次点击右侧图标并选择 <guilabel
+>继续</guilabel
+> 时，您可以继续 &rsibreak;。</para>
+
+<screenshot>
+<screeninfo
+>挂起 &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&rsibreak; 被挂起时的托盘图标</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>最后一个影响 &rsibreak; 的方式是通过 &DBus;。一些 &DBus; 命令可用来强制休息以及挂起或继续 &rsibreak;当你开始游戏或任何其他指定程序时，你可以使用这些来自动挂起 &rsibreak; 。执行 <command
+>qdbus org.kde.rsible/rsible</command
+> 查看可能性。</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>休息类型</title>
+
+<para
+>大多数设置都很简单。在一般页面上，有一个选项可以在 &kde; 启动时自动启动。尽管会话管理器可以处理这个问题，但有些用户可能需要在启动时开始 &rsibreak; ，而他们没有使用会话管理器。 请注意 <application
+>Gnome</application
+> 将忽略设置。</para>
+
+<para
+>&rsibreak;中有两个行为选项。一个选项是在固定时间段内每隔固定时间休息一次，另一个选项使得当 &rsibreak; 检测到您在休息期间闲置时重置计时器。</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; 弹出窗口</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>锁定按钮允许您在离开计算机时锁定屏幕</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>您可能发现全屏通知在出现时会造成一些不便。在这种情况下，在 <guilabel
+>休息</guilabel
+> 页面上，您可以指定您想要使用弹出窗口，这样在托盘附近会出现一个小的弹出窗口，提醒您休息。如果您忽略这个弹出窗口，全屏活动块仍然会出现。</para>
+
+<para
+>全屏休息有三个选项。它可以显示 <guilabel
+>完整的黑色效果</guilabel
+> (这是默认动作)， <guilabel
+>显示 Plasma 仪表盘</guilabel
+> 或 <guilabel
+>显示图像幻灯片</guilabel
+> ，图像路径可以设置为在您硬盘上的包含图像的指定文件夹。 在休息期间，您将看到这些图像的幻灯片。</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>休息持续时间/间隔</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>&rsibreak; 支持两种不同类型的休息：<quote
+>小休息</quote
+> 和 <quote
+>大休息</quote
+>。通常采用的方法是经常进行小休息和偶尔进行大休息。例如，每20分钟休息20秒(小休息)，并且每小时休息2分钟(大休息)。</para>
+
+<tip
+><para
+>设置恼人的间隔是没有意义的。顾名思义，恼人的间隔会使你感到厌烦，你将更有可能按 &Esc; &ndash; 或您在 <guilabel
+>休息</guilabel
+> 页面 &ndash; 配置的其他按键来跳过休息。</para>
+
+<para
+>如果您发现您经常跳过休息，您可以禁用快捷键并隐藏最小化按钮。请记住，您可以选择是否严格遵循休息序列。 </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>致谢和授权</title>
+
+<para
+>&rsibreak; 版权所有 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>文档版权所有 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+
+<para
+>本文档由 Guo Yunhe 同学翻译。</para
+> &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>

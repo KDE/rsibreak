@@ -1,0 +1,256 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Catalan  "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>El manual del &rsibreak;</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24 d'agost de 2016</date>
+<releaseinfo
+>0.12</releaseinfo>
+
+<abstract
+><para
+>La lesió per moviment repetitiu (LMR) és una malaltia que es pot produir a conseqüència d'un treball continu amb un ratolí i un teclat. El risc de patir lesions augmenta mentre els usuaris treballen durant més temps sense fer pauses. El &rsibreak;, simplement ofereix recordatoris per a prendre's un descans ara mateix. </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>LMR</keyword
+><keyword
+>RSI</keyword>
+<keyword
+>projecte</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+
+<para
+>Una lesió per moviment repetitiu es pot produir com a resultat del treball amb un ratolí i un teclat. Aquesta utilitat es pot utilitzar per a recordar-vos que feu un descans ara mateix. Mostra una imatge aleatòria des d'una col·lecció a intervals específics en durades definides. Podeu configurar les imatges que es mostraran i la quantitat de temps que es mostraran. Podeu utilitzar els recordatoris de descans per a fer exercicis d'estirament, per exemple, o com a recordatori per allunyar-vos de l'ordinador durant un temps.</para>
+
+<screenshot>
+<screeninfo
+>Logotip del &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Logotip del &rsibreak;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>El &rsibreak; va ser escrit originalment per en Tom Albers. Al principi del desenvolupament en Bram Schoenmakers es va unir al projecte</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>Usar el &rsibreak;</title>
+
+<para
+>La idea del &rsibreak; és interrompre el vostre treball. La intenció és fer-ho de manera fàcil. Hi haurà temps, però, es mostrarà quan estigueu molt ocupat. Les opcions de configuració al &rsibreak; són un intent per a permetre personalitzar les interrupcions. D'aquesta manera, esperem que pugui millorar la seva efectivitat en el vostre treball, alhora que redueix les possibilitats de patir lesions.</para>
+
+<para
+>Després de començar, veureu una icona a la safata i un element emergent de benvinguda. Encara que l'aplicació hauria de ser útil amb les opcions de configuració predeterminades, seria prudent examinant-les. Per a descobrir i obtenir accés a les opcions disponibles, feu clic dret sobre la icona de la safata. Al menú contextual que apareix, seleccioneu <guilabel
+>Configura</guilabel
+>. Els següents capítols contenen més informació sobre la configuració.</para>
+
+<screenshot>
+<screeninfo
+>Estadístiques del &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Feu clic esquerre sobre la icona de la safata per a veure les estadístiques</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Quan feu clic esquerre sobre la icona de la safata, veureu algunes estadístiques. Si configureu el &rsibreak; per a fer un descans en temps fixos, no es mesurarà el temps inactiu. En aquest cas, algunes de les opcions a les estadístiques podrien no ser gaire informatives.</para>
+
+<para
+>El bloc superior esquerre mostra les estadístiques generals: alguns totals i certa informació sobre el temps d'inactivitat. El bloc inferior esquerre mostra quelcom sobre el vostre ritme de treball. Veureu la quantitat total d'activitat des que vàreu iniciar la sessió actual. També es mostrarà la quantitat d'activitat durant alguns altres intervals. La puntuació per fer pauses disminuirà cada vegada que ometeu algun descans. Els blocs de la dreta informen sobre quins descansos breus i llargs han passat. Actualment, les etiquetes del diàleg poden ser de color negre o vermell i verd. En aquest últim cas, una estadística vermella indicarà una recomanació per a relaxar-vos i prendre un descans, el qual farà que el color s'aproximi al verd.</para>
+
+<para
+>Quan feu clic dret sobre la icona de la safata, el menú contextual mostrarà una opció per a <guilabel
+>Suspèn</guilabel
+> el &rsibreak;. Quan no vulgueu interrupcions, com durant un joc o una presentació, podeu utilitzar-ho per a silenciar el &rsibreak;. El podreu reprendre quan feu clic novament sobre la icona i seleccioneu <guilabel
+>Reprèn</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Suspenent el &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>La icona de la safata ens indica que el &rsibreak; està suspès</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>L'última manera d'influir en el &rsibreak; és a través de &DBus;. Hi ha disponibles ordres de &DBus; per a forçar descansos, suspendre i reprendre el &rsibreak;. Podeu utilitzar-les per a suspendre el &rsibreak; automàticament quan inicieu un joc o qualsevol altre programa especificat. Executeu <command
+>qdbus org.kde.rsibreak /rsibreak</command
+> per a veure les possibilitats.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>Tipus de descansos</title>
+
+<para
+>La majoria de les opcions de configuració són molt senzilles. A la pàgina general, hi ha una opció per a iniciar-lo automàticament en engegar el &kde;. Podríeu preguntar-vos perquè el gestor de sessions hauria de tenir cura d'això. És possible que alguns usuaris hagin d'iniciar el &rsibreak; durant l'inici mentre no utilitzen el gestor de sessions. Tingueu en compte que el <application
+>Gnome</application
+> ignorarà aquesta opció.</para>
+
+<para
+>Hi ha dues opcions de comportament al &rsibreak;. Hi ha una opció per a descansar en intervals fixos per períodes fixos, i hi ha una opció per a restablir els temporitzadors quan el &rsibreak; detecta que heu estat inactiu durant la durada d'un descans.</para>
+
+<screenshot>
+<screeninfo
+>Emergent del &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>El botó de bloqueig permet bloquejar la pantalla cada vegada que deixeu l'ordinador</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Podeu trobar l'avís a pantalla completa per a prendre un inconvenient descans en el moment que aparegui. En aquest cas, a la pàgina <guilabel
+>Durant els descansos</guilabel
+> podreu indicar que voleu utilitzar una finestra emergent. Apareixerà una petita finestra emergent a prop de la safata per a demanar-vos un descans. Si decidiu ignorar-lo, el bloc d'activitats de la pantalla completa apareixerà de totes maneres.</para>
+
+<para
+>Hi ha tres opcions per al descans a pantalla completa. Es pot mostrar un <guilabel
+>Efecte negre complet</guilabel
+> (aquesta és l'acció predeterminada), <guilabel
+>Mostra el tauler del plasma</guilabel
+> o <guilabel
+>Mostra un passi de diapositives</guilabel
+>, el qual pot ser un camí per especificar una carpeta del vostre disc dur que contingui les imatges. Durant un descans, veureu un passi de diapositives d'aquestes imatges.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>Durada/Interval d'un descans</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>El &rsibreak; admet dos tipus de descans diferents: <quote
+>Descansos petits</quote
+> i <quote
+>Descansos grans</quote
+>. La manera habitual d'utilitzar-los és prendre petits descansos freqüents i descansos grans ocasionals. Per exemple, un descans de 20 segons cada 20 minuts (el descans petit), i un descans més llarg de 2 minuts cada hora (el descans gran).</para>
+
+<tip
+><para
+>No serveix de res establir intervals que esdevinguin irritants. Aquests causaran, per definició, més nervis i més probablement voldreu prémer la tecla &Esc; &ndash;o qualsevol altra tecla que hàgiu configurat a la pàgina <guilabel
+>Durant els descansos</guilabel
+> i així ometre aquest descans&ndash;.</para>
+
+<para
+>Si trobeu que sovint no voleu ometre els descansos, podríeu decidir inhabilitar la drecera i ocultar el botó de minimitzar. Recordeu, vosaltres escolliu com d'estrictament seguiu la seqüència del descans. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Crèdits i llicència</title>
+
+<para
+>Copyright del &rsibreak; 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>Copyright de la documentació 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>
