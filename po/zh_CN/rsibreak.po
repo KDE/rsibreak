@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-07-06 00:20+0000\n"
-"PO-Revision-Date: 2021-12-22 14:06\n"
+"PO-Revision-Date: 2022-01-08 15:23\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -51,7 +51,7 @@ msgstr ""
 #: src/main.cpp:44
 #, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
-msgstr "(c) 2005-2015，RSIBreak 开发者"
+msgstr "(c) 2005-2015, The RSIBreak developers"
 
 #: src/main.cpp:46
 #, kde-format
