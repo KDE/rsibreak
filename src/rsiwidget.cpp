@@ -49,8 +49,8 @@ RSIObject::RSIObject( QWidget *parent ) : QObject( parent )
     m_relaxpopup = new RSIRelaxPopup( 0 );
     connect(m_relaxpopup, &RSIRelaxPopup::lock, this, &RSIObject::slotLock);
 
-    connect(m_tray, &RSIDock::configChanged, this, &RSIObject::readConfig);
     connect(m_tray, &RSIDock::configChanged, RSIGlobals::instance(), &RSIGlobals::slotReadConfig );
+    connect(m_tray, &RSIDock::configChanged, this, &RSIObject::readConfig);
     connect(m_tray, &RSIDock::configChanged, m_relaxpopup, &RSIRelaxPopup::slotReadConfig);
     connect(m_tray, &RSIDock::suspend, m_relaxpopup, &RSIRelaxPopup::setSuspended);
 
@@ -176,7 +176,6 @@ void RSIObject::configureTimer()
     connect(m_timer, &RSITimer::startShortBreak, &m_notificator, &Notificator::onStartShortBreak );
     connect(m_timer, &RSITimer::endShortBreak, &m_notificator, &Notificator::onEndShortBreak );
 
-    connect(m_tray, &RSIDock::configChanged, m_timer, &RSITimer::updateConfig);
     connect(m_tray, &RSIDock::dialogEntered, m_timer, &RSITimer::slotStop);
     connect(m_tray, &RSIDock::dialogLeft, m_timer, &RSITimer::slotStart);
     connect(m_tray, &RSIDock::suspend, m_timer, &RSITimer::slotSuspended);

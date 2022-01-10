@@ -122,7 +122,7 @@ void RSIDock::slotConfigure()
     QPointer<Setup> setup = new Setup( 0 );
     emit dialogEntered();
     if ( setup->exec() == QDialog::Accepted )
-        emit configChanged( !m_suspended );
+        emit configChanged();
     delete setup;
 
     if ( !m_suspended )
