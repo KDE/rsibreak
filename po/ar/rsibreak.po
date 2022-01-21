@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2021.
+# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-07-06 00:20+0000\n"
-"PO-Revision-Date: 2021-07-05 18:52+0400\n"
+"PO-Revision-Date: 2022-01-20 23:32+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -66,9 +66,9 @@ msgid "Tom Albers"
 msgstr "Tom Albers"
 
 #: src/main.cpp:49 src/main.cpp:52
-#, kde-format
+#, fuzzy, kde-format
 msgid "Former author"
-msgstr ""
+msgstr "المطور السابق"
 
 #: src/main.cpp:52
 #, kde-format
@@ -151,7 +151,7 @@ msgstr "أ&بلغ عن علّة..."
 #: src/rsidock.cpp:82
 #, fuzzy, kde-format
 msgid "Switch application &language..."
-msgstr "بدّل &لغة التّطبيق..."
+msgstr "بدل &لغة التطبيق..."
 
 #: src/rsidock.cpp:85 src/rsidock.cpp:139
 #, fuzzy, kde-format
@@ -512,7 +512,7 @@ msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
 msgid "seconds"
-msgstr "ثواني"
+msgstr "ثانية"
 
 #: src/rsiwidget.cpp:78
 #, fuzzy, kde-format
