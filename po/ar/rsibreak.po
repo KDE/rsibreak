@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-07-06 00:20+0000\n"
-"PO-Revision-Date: 2022-01-20 23:32+0400\n"
+"PO-Revision-Date: 2022-01-23 23:12+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -85,7 +85,7 @@ msgstr "يوسف الشهيبي,"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "chahibi@gmail.com,"
+msgstr "chahibi@gmail.com"
 
 #: src/notificator.cpp:14
 #, fuzzy, kde-format
@@ -535,7 +535,7 @@ msgstr ""
 #: src/rsiwidget.cpp:83
 #, fuzzy, kde-format
 msgid "Welcome"
-msgstr "مرحبا"
+msgstr "مرحباً"
 
 #: src/setup.cpp:41
 #, fuzzy, kde-format
