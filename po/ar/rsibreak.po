@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-07-06 00:20+0000\n"
-"PO-Revision-Date: 2022-01-23 23:12+0400\n"
+"PO-Revision-Date: 2022-01-29 14:19+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -31,7 +31,7 @@ msgid "Postpone Break"
 msgstr "طويل فواصل"
 
 #: src/breakcontrol.cpp:49 src/rsirelaxpopup.cpp:58
-#, fuzzy, kde-format
+#, kde-format
 msgid "Lock Screen"
 msgstr "اقفل الشّاشة"
 
@@ -56,7 +56,7 @@ msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
 #: src/main.cpp:46
-#, fuzzy, kde-format
+#, kde-format
 msgid "Maintainer"
 msgstr "المصين"
 
@@ -66,7 +66,7 @@ msgid "Tom Albers"
 msgstr "Tom Albers"
 
 #: src/main.cpp:49 src/main.cpp:52
-#, fuzzy, kde-format
+#, kde-format
 msgid "Former author"
 msgstr "المطور السابق"
 
@@ -144,12 +144,12 @@ msgid "RSIBreak &Handbook"
 msgstr "RSIBreak كتيب"
 
 #: src/rsidock.cpp:81
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Report Bug..."
 msgstr "أ&بلغ عن علّة..."
 
 #: src/rsidock.cpp:82
-#, fuzzy, kde-format
+#, kde-format
 msgid "Switch application &language..."
 msgstr "بدل &لغة التطبيق..."
 
@@ -164,7 +164,7 @@ msgid "&Usage Statistics"
 msgstr "إحصائيات ال&إستعمال"
 
 #: src/rsidock.cpp:87
-#, fuzzy, kde-format
+#, kde-format
 msgid "Configure &Notifications..."
 msgstr "اضبط الإ&خطارات..."
 
@@ -184,7 +184,7 @@ msgid "Usage Statistics"
 msgstr "إحصائيات الإستعمال"
 
 #: src/rsidock.cpp:164 src/rsidock.cpp:191
-#, fuzzy, kde-format
+#, kde-format
 msgid "Reset"
 msgstr "صفّر"
 
@@ -479,7 +479,7 @@ msgstr ""
 "أحمر الإيطالية s مفضّل إلى."
 
 #: src/rsistatwidget.cpp:25
-#, fuzzy, kde-format
+#, kde-format
 msgid "Time"
 msgstr "الوقت"
 
@@ -489,7 +489,7 @@ msgid "Short Breaks"
 msgstr "قصير فواصل"
 
 #: src/rsistatwidget.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 msgid "Pause"
 msgstr "ألبث"
 
@@ -499,7 +499,7 @@ msgid "Long Breaks"
 msgstr "طويل فواصل"
 
 #: src/rsistatwidget.cpp:86
-#, fuzzy, kde-format
+#, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
@@ -507,7 +507,7 @@ msgid "minutes"
 msgstr "دقيقة"
 
 #: src/rsistatwidget.cpp:88
-#, fuzzy, kde-format
+#, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
@@ -533,12 +533,12 @@ msgstr ""
 "هو أيقونة</p><p> إستعمل RSIBreak</p>"
 
 #: src/rsiwidget.cpp:83
-#, fuzzy, kde-format
+#, kde-format
 msgid "Welcome"
 msgstr "مرحباً"
 
 #: src/setup.cpp:41
-#, fuzzy, kde-format
+#, kde-format
 msgid "General Settings"
 msgstr "الإعدادات العامة"
 
@@ -553,7 +553,7 @@ msgid "During Breaks"
 msgstr "أثناء فواصل"
 
 #: src/setup.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "Actions"
 msgstr "الإجراءات"
 
@@ -691,7 +691,7 @@ msgid "Transparency level"
 msgstr ""
 
 #: src/setupmaximized.cpp:131
-#, fuzzy, kde-format
+#, kde-format
 msgid "Transparent"
 msgstr "شفاف"
 
@@ -701,7 +701,7 @@ msgid "Solid"
 msgstr "صلب"
 
 #: src/setupmaximized.cpp:150
-#, fuzzy, kde-format
+#, kde-format
 msgid "Slideshow"
 msgstr "عرض الشرائح"
 
@@ -714,9 +714,9 @@ msgid ""
 msgstr "انتقِ مجلد من إلى هذه itإيطالياهو IF."
 
 #: src/setupmaximized.cpp:159
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Change..."
-msgstr "غيّر"
+msgstr "&غيّر..."
 
 #: src/setupmaximized.cpp:163
 #, fuzzy, kde-format
