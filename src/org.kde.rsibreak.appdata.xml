@@ -41,7 +41,7 @@
   <summary xml:lang="es">Ayuda a prevenir lesiones por esfuerzo repetitivo recordándole que debe hacer una pausa</summary>
   <summary xml:lang="et">Aitab vältida ülekoormuskahjustusi, meenutades vajadust puhata</summary>
   <summary xml:lang="fr">Aide à la prévention des blessures musculo-squelettiques en vous rappelant de faire une pause</summary>
-  <summary xml:lang="id">Membantu mencegah pegal-pegal (Repetitive Strain Injury) dengan mengingatkan kamu untuk beristirahat</summary>
+  <summary xml:lang="id">Membantu mencegah pegal-pegal (Repetitive Strain Injury) dengan mengingatkan Anda untuk beristirahat</summary>
   <summary xml:lang="it">Aiuta a prevenire il disturbo degli arti superiori da lavoro suggerendo di fare una pausa</summary>
   <summary xml:lang="ko">사용자에게 쉬는 것을 알려서 반복성 긴장 장애를 예방합니다</summary>
   <summary xml:lang="nl">Helpt Repetitive Strain Injury (RSI) te voorkomen door u te herinneren een pauze te nemen</summary>
@@ -97,7 +97,7 @@
     <p xml:lang="fi">RSI Break auttaa ehkäisemään rasitusvammoja tarkkailemalla tietokoneen käyttöä ja opastamalla käyttäjää pitämään säännöllisesti taukoja. Taukojen aikana RSI Break näyttää joko huomaamattoman viestin, lukitsee näytön täydellisesti tai esittää diaesityksen.</p>
     <p xml:lang="fr">RSIBreak contribue à éviter les troubles musculo-squelettiques en surveillant leur utilisation et en leur recommandant régulièrement de faire une pause. Durant les pauses, RSIBreak peut afficher un message non bloquant, verrouiller entièrement l'écran ou présenter des diapositives.</p>
     <p xml:lang="gl">RSIBreak axuda a evitar as lesións por tensión repetitiva facendo un seguimento dos padróns de uso e informando de maneira periódica aos usuarios de que fagan descansos. Durante os períodos de descanso, RSIBreak pode mostrar unha mensaxe non intrusiva, bloquear completamente a pantalla ou reproducir unha presentación de diapositivas.</p>
-    <p xml:lang="id">RSIBreak membantu mencegah pegal-pegal dengan melacak pola penggunaan dan secara berkala memberi tahu pengguna untuk beristirahat. Selama periode istirahat, RSIBreak bisa menampilkan pesan yang tidak mencolok, mengunci layar seluruhnya, atau menyuguhkan tampilan slide.</p>
+    <p xml:lang="id">RSIBreak membantu mencegah pegal-pegal dengan melacak pola penggunaan dan secara berkala memberitahu pengguna untuk beristirahat. Selama periode istirahat, RSIBreak bisa menampilkan pesan yang tidak mencolok, mengunci layar seluruhnya, atau menyuguhkan tampilan slide.</p>
     <p xml:lang="it">RSIBreak aiuta a prevenire il disturbo degli arti superiori da lavoro tenendo traccia degli schermi di utilizzo ed informando gli utenti di effettuare delle pause. Negli intervalli di pausa, RSIBreak può mostrare un messaggio non appariscente, bloccare totalmente lo schermo, o mostrare una sequenza di immagini.</p>
     <p xml:lang="ko">RSIBreak는 사용 패턴을 추적하고 주기적으로 휴식 알림을 표시하여 반복성 긴장 장애를 예방합니다. 휴식 시간 동안에는 RSIBreak에서 메시지를 표시하거나, 화면을 잠그거나 슬라이드 쇼를 표시할 수 있습니다.</p>
     <p xml:lang="lt">Programa RSIBreak padeda išvengti pasikartojančios įtampos traumų, sekdama naudojimosi kompiuteriu šablonus ir periodiškai informuodama naudotojus, kad pasidarytų pertrauką. Pertraukų metu, RSIBreak gali rodyti neįkyrų pranešimą, visiškai užrakinti ekraną arba pateikti skaidrių rodymą.</p>
