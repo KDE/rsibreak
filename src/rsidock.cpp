@@ -207,8 +207,13 @@ void RSIDock::setCounters( int tiny_left, int big_left )
     if ( m_suspended )
         setToolTipSubTitle( i18n( "Suspended" ) );
     else {
-        QColor tinyColor = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
-        RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, tinyColor );
+        bool tinyBreaks = RSIGlobals::instance()->useTinyBreaks();
+
+        QColor tinyColor;
+        if ( tinyBreaks ) {
+            tinyColor = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
+            RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, tinyColor );
+        }
 
         QColor bigColor = RSIGlobals::instance()-> getBigBreakColor( big_left );
         RSIGlobals::instance()->stats()->setColor( LAST_BIG_BREAK, bigColor );
@@ -217,7 +222,7 @@ void RSIDock::setCounters( int tiny_left, int big_left )
         // a big break planned at the same time.
 
         QStringList lines;
-        if ( tiny_left != big_left ) {
+        if ( tinyBreaks && tiny_left != big_left ) {
             QString formattedText = RSIGlobals::instance()->formatSeconds( tiny_left );
             if ( !formattedText.isNull() ) {
                 lines << colorizedText(

@@ -54,7 +54,8 @@ void RSIGlobals::slotReadConfig()
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
 
     m_intervals.resize(INTERVAL_COUNT);
-    m_intervals[TINY_BREAK_INTERVAL] = config.readEntry( "TinyInterval", 10 ) * 60;
+    m_intervals[TINY_BREAK_INTERVAL] = config.readEntry( "TinyEnabled", true ) ?
+                config.readEntry( "TinyInterval", 10 ) * 60 : 0;
     m_intervals[TINY_BREAK_DURATION] = config.readEntry( "TinyDuration", 20 );
     m_intervals[TINY_BREAK_THRESHOLD] = config.readEntry( "TinyThreshold", 20 );
     m_intervals[BIG_BREAK_INTERVAL] = config.readEntry( "BigInterval", 60 ) * 60;

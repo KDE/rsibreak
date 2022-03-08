@@ -102,6 +102,13 @@ public:
     }
 
     /**
+     * Returns true if tiny breaks are to be made at all.
+     */
+    bool useTinyBreaks() const {
+        return m_intervals[TINY_BREAK_INTERVAL] != 0;
+    }
+
+    /**
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */

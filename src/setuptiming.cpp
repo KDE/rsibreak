@@ -24,6 +24,7 @@
 class SetupTimingPriv
 {
 public:
+    QGroupBox*                       tinyBox;
     KPluralHandlingSpinBox*          tinyInterval;
     KPluralHandlingSpinBox*          tinyDuration;
     KPluralHandlingSpinBox*          tinyThreshold;
@@ -43,8 +44,10 @@ SetupTiming::SetupTiming( QWidget* parent )
 
     // ------------------------ Tinybox
 
-    QGroupBox *tinyBox = new QGroupBox( this );
-    tinyBox->setTitle( i18n( "Tiny Breaks" ) );
+    d->tinyBox = new QGroupBox( this );
+    d->tinyBox->setTitle( i18n( "Tiny Breaks" ) );
+    d->tinyBox->setCheckable( true );
+    connect( d->tinyBox, &QGroupBox::toggled, this, &SetupTiming::slotTinyValueEnabled );
 
     QWidget *m = new QWidget( this );
     QHBoxLayout *mHBoxLayout = new QHBoxLayout(m);
@@ -85,12 +88,12 @@ SetupTiming::SetupTiming( QWidget* parent )
     d->tinyThreshold->setRange( 1, 1000 );
     lTinyThreshold->setBuddy( d->tinyThreshold );
 
-    QVBoxLayout *vbox0 = new QVBoxLayout( tinyBox );
+    QVBoxLayout *vbox0 = new QVBoxLayout( d->tinyBox );
     vbox0->addWidget( m );
     vbox0->addWidget( m2 );
     vbox0->addWidget( mTinyThreshold );
     vbox0->addStretch( 1 );
-    tinyBox->setLayout( vbox0 );
+    d->tinyBox->setLayout( vbox0 );
 
     // ------------------------ Bigbox
 
@@ -164,7 +167,7 @@ SetupTiming::SetupTiming( QWidget* parent )
     vbox2->addStretch( 1 );
     postponeBox->setLayout( vbox2 );    
     
-    l->addWidget( tinyBox );
+    l->addWidget( d->tinyBox );
     l->addWidget( bigBox );
     l->addWidget( postponeBox );
     setLayout( l );
@@ -203,6 +206,7 @@ SetupTiming::~SetupTiming()
 void SetupTiming::applySettings()
 {
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
+    config.writeEntry( "TinyEnabled", d->tinyBox->isChecked() );
     config.writeEntry( "TinyInterval", d->tinyInterval->value() );
     config.writeEntry( "TinyDuration", d->tinyDuration->value() );
     config.writeEntry( "TinyThreshold", d->tinyThreshold->value() );
@@ -218,6 +222,7 @@ void SetupTiming::readSettings()
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
     d->debug = config.readEntry( "DEBUG", 0 );
 
+    d->tinyBox->setChecked( config.readEntry( "TinyEnabled", true ) );
     d->tinyInterval->setValue( config.readEntry( "TinyInterval", 10 ) );
     d->tinyDuration->setValue( config.readEntry( "TinyDuration", 20 ) );
     d->tinyThreshold->setValue( config.readEntry( "TinyThreshold", 40 ) );
@@ -227,9 +232,16 @@ void SetupTiming::readSettings()
     d->postponeDuration->setValue( config.readEntry( "PostponeBreakDuration", 5 ) );
 }
 
+void SetupTiming::slotTinyValueEnabled( bool enabled )
+{
+    d->bigInterval->setMinimum( enabled ? d->tinyInterval->value() : 1 );
+}
+
 void SetupTiming::slotTinyValueChanged( const int tinyIntervalValue  )
 {
-    d->bigInterval->setMinimum( tinyIntervalValue );
+    if ( d->tinyBox->isChecked() ) {
+        d->bigInterval->setMinimum( tinyIntervalValue );
+    }
 }
 
 void SetupTiming::slotBigDurationValueChanged( const int bigDurationValue )

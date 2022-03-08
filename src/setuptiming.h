@@ -44,6 +44,7 @@ public slots:
     void slotSetUseIdleTimer( const bool useIdleTimer );
 
 private slots:
+    void slotTinyValueEnabled( bool enabled );
     void slotTinyValueChanged( const int tinyIntervalValue );
     void slotTinyDurationValueChanged( const int tinyDurationValue );
     void slotBigDurationValueChanged( const int bigDurationValue );

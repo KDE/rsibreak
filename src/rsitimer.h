@@ -39,7 +39,7 @@ public:
     // Check whether the timer is suspended.
     bool isSuspended() const { return m_state == TimerState::Suspended; }
 
-    int tinyLeft() const { return m_tinyBreakCounter->counterLeft(); };
+    int tinyLeft() const { return m_tinyBreakCounter ? m_tinyBreakCounter->counterLeft() : 0; };
 
     int bigLeft() const { return m_bigBreakCounter->counterLeft(); };
 
