@@ -173,18 +173,17 @@ SetupTiming::SetupTiming( QWidget* parent )
     setLayout( l );
     readSettings();
 
-    d->debug > 0 ? d->bigInterval->setSuffix( ki18np( " second", " seconds" ) )
-    : d->bigInterval->setSuffix( ki18np( " minute", " minutes" ) );
-    d->debug > 0 ? d->tinyInterval->setSuffix( ki18np( " second", " seconds" ) )
-    : d->tinyInterval->setSuffix( ki18np( " minute", " minutes" ) );
-    d->debug > 0 ? d->bigDuration->setSuffix( ki18np( " second", " seconds" ) )
-    : d->bigDuration->setSuffix( ki18np( " minute", " minutes" ) );
-    d->tinyDuration->setSuffix( ki18np( " second", " seconds" ) );
-    d->debug ? d->postponeDuration->setSuffix( ki18np( " second", " seconds" ) )
-    : d->postponeDuration->setSuffix( ki18np( " minute", " minutes" ) );
-
-    d->tinyThreshold->setSuffix( ki18np( " second", " seconds" ) );
-    d->bigThreshold->setSuffix( ki18np( " minute", " minutes" ) );
+    KLocalizedString sfx = ki18np( " second", " seconds" );
+    d->tinyDuration->setSuffix( sfx );
+    d->tinyThreshold->setSuffix( sfx );
+    if ( !d->debug ) {
+        sfx = ki18np( " minute", " minutes" );
+    }
+    d->tinyInterval->setSuffix( sfx );
+    d->bigInterval->setSuffix( sfx );
+    d->bigDuration->setSuffix( sfx );
+    d->bigThreshold->setSuffix( sfx );
+    d->postponeDuration->setSuffix( sfx );
 
     slotTinyValueChanged( d->tinyInterval->value() );
 

@@ -53,25 +53,23 @@ void RSIGlobals::slotReadConfig()
 {
     KConfigGroup config = KSharedConfig::openConfig()->group( "General Settings" );
 
-    m_intervals.resize(INTERVAL_COUNT);
-    m_intervals[TINY_BREAK_INTERVAL] = config.readEntry( "TinyEnabled", true ) ?
-                config.readEntry( "TinyInterval", 10 ) * 60 : 0;
-    m_intervals[TINY_BREAK_DURATION] = config.readEntry( "TinyDuration", 20 );
-    m_intervals[TINY_BREAK_THRESHOLD] = config.readEntry( "TinyThreshold", 20 );
-    m_intervals[BIG_BREAK_INTERVAL] = config.readEntry( "BigInterval", 60 ) * 60;
-    m_intervals[BIG_BREAK_DURATION] = config.readEntry( "BigDuration", 1 ) * 60;
-    m_intervals[BIG_BREAK_THRESHOLD] = config.readEntry( "BigThreshold", 1 ) * 60;
-    m_intervals[POSTPONE_BREAK_INTERVAL] = config.readEntry( "PostponeBreakDuration", 5 ) * 60;
-    m_intervals[PATIENCE_INTERVAL] = config.readEntry( "Patience", 30 );
-    m_intervals[SHORT_INPUT_INTERVAL] = config.readEntry( "ShortInputInterval", 2 );
-
+    int mult = 60;
     if ( config.readEntry( "DEBUG", 0 ) > 0 ) {
         qDebug() << "Debug mode activated";
-        m_intervals[TINY_BREAK_INTERVAL] = m_intervals[TINY_BREAK_INTERVAL] / 60;
-        m_intervals[BIG_BREAK_INTERVAL] = m_intervals[BIG_BREAK_INTERVAL] / 60;
-        m_intervals[BIG_BREAK_DURATION] = m_intervals[BIG_BREAK_DURATION] / 60;
-        m_intervals[POSTPONE_BREAK_INTERVAL] = m_intervals[POSTPONE_BREAK_INTERVAL] / 60;
+        mult = 1;
     }
+
+    m_intervals.resize(INTERVAL_COUNT);
+    m_intervals[TINY_BREAK_INTERVAL] = config.readEntry( "TinyEnabled", true ) ?
+                config.readEntry( "TinyInterval", 10 ) * mult : 0;
+    m_intervals[TINY_BREAK_DURATION] = config.readEntry( "TinyDuration", 20 );
+    m_intervals[TINY_BREAK_THRESHOLD] = config.readEntry( "TinyThreshold", 20 );
+    m_intervals[BIG_BREAK_INTERVAL] = config.readEntry( "BigInterval", 60 ) * mult;
+    m_intervals[BIG_BREAK_DURATION] = config.readEntry( "BigDuration", 1 ) * mult;
+    m_intervals[BIG_BREAK_THRESHOLD] = config.readEntry( "BigThreshold", 1 ) * mult;
+    m_intervals[POSTPONE_BREAK_INTERVAL] = config.readEntry( "PostponeBreakDuration", 5 ) * mult;
+    m_intervals[PATIENCE_INTERVAL] = config.readEntry( "Patience", 30 );
+    m_intervals[SHORT_INPUT_INTERVAL] = config.readEntry( "ShortInputInterval", 2 );
 }
 
 QColor RSIGlobals::getTinyBreakColor( int secsToBreak ) const
