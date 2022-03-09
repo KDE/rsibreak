@@ -21,16 +21,17 @@
 #include "rsiglobals.h"
 #include "rsistats.h"
 
-RSITimer::RSITimer( QObject *parent ) : QThread( parent )
+RSITimer::RSITimer( QObject *parent ) : QObject( parent )
     , m_idleTimeInstance( new RSIIdleTimeImpl() )
     , m_intervals( RSIGlobals::instance()->intervals() )
     , m_state ( TimerState::Monitoring )
 {
     updateConfig( true );
+    run();
 }
 
 RSITimer::RSITimer( std::unique_ptr<RSIIdleTime> &&_idleTime, const QVector<int> _intervals,
-                    const bool _usePopup, const bool _useIdleTimers ) : QThread( nullptr )
+                    const bool _usePopup, const bool _useIdleTimers ) : QObject( nullptr )
     , m_idleTimeInstance( std::move(_idleTime) )
     , m_usePopup( _usePopup )
     , m_useIdleTimers( _useIdleTimers )
@@ -38,6 +39,7 @@ RSITimer::RSITimer( std::unique_ptr<RSIIdleTime> &&_idleTime, const QVector<int>
     , m_state( TimerState::Monitoring )
 {
     createTimers();
+    run();
 }
 
 void RSITimer::createTimers()
@@ -55,11 +57,10 @@ void RSITimer::createTimers()
 
 void RSITimer::run()
 {
-    QTimer timer;
-    connect( &timer, &QTimer::timeout, this, &RSITimer::timeout );
-    timer.setTimerType( Qt::TimerType::CoarseTimer );
-    timer.start( 1000 );
-    exec(); // start event loop to make timers work.
+    auto timer = new QTimer( this );
+    connect( timer, &QTimer::timeout, this, &RSITimer::timeout );
+    timer->setTimerType( Qt::TimerType::CoarseTimer );
+    timer->start( 1000 );
 }
 
 void RSITimer::hibernationDetector( const int totalIdle )

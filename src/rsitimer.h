@@ -10,7 +10,6 @@
 #ifndef RSITimer_H
 #define RSITimer_H
 
-#include <QThread>
 #include <QVector>
 #include <memory>
 
@@ -23,7 +22,7 @@
  * and minimizing of the widget.
  * @author Tom Albers <toma.org>
  */
-class RSITimer : public QThread
+class RSITimer : public QObject
 {
     Q_OBJECT
     friend class RSITimerTest;
@@ -184,8 +183,8 @@ private:
     // This function is called when a break has passed.
     void resetAfterBreak();
 
-    // Start this thread.
-    void run() override;
+    // Start this timer. Used by the constructors.
+    void run();
 
     /**
       Some internal preparations for a fullscreen break window.

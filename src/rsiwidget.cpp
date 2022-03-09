@@ -65,11 +65,7 @@ RSIObject::~RSIObject()
 {
     delete m_effect;
     delete RSIGlobals::instance();
-    if (m_timer != nullptr) {
-        m_timer->quit();
-        m_timer->wait();
-        delete m_timer;
-    }
+    delete m_timer;
 }
 
 void RSIObject::slotWelcome()
@@ -182,8 +178,6 @@ void RSIObject::configureTimer()
 
     connect(m_relaxpopup, &RSIRelaxPopup::skip, m_timer, &RSITimer::skipBreak);
     connect(m_relaxpopup, &RSIRelaxPopup::postpone, m_timer, &RSITimer::postponeBreak);
-
-    m_timer->start();
 }
 
 void RSIObject::readConfig()
