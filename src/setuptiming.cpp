@@ -221,12 +221,9 @@ void SetupTiming::readSettings()
     d->tinyInterval->setValue( config.readEntry( "TinyInterval", 10 ) );
     d->tinyDuration->setValue( config.readEntry( "TinyDuration", 20 ) );
     d->tinyThreshold->setValue( config.readEntry( "TinyThreshold", 40 ) );
-    d->tinyThreshold->setMinimum( d->tinyDuration->value() );
     d->bigInterval->setValue( config.readEntry( "BigInterval", 60 ) );
-    d->bigInterval->setMinimum( d->tinyInterval->value() );
     d->bigDuration->setValue( config.readEntry( "BigDuration", 1 ) );
     d->bigThreshold->setValue( config.readEntry( "BigThreshold", 5 ) );
-    d->bigThreshold->setMinimum( d->bigDuration->value() );
     d->postponeDuration->setValue( config.readEntry( "PostponeBreakDuration", 5 ) );
 }
 
