@@ -52,12 +52,12 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     QVBoxLayout *vbox = new QVBoxLayout( d->breakTimerSettings );
     vbox->addWidget( d->useNoIdleTimer );
     vbox->addWidget( d->useIdleTimer );
-    vbox->addStretch( 1 );
     d->breakTimerSettings->setLayout( vbox );
     connect(d->useIdleTimer, &QRadioButton::toggled, this, &SetupGeneral::useIdleTimerChanged);
 
     l->addWidget( d->autoStart );
     l->addWidget( d->breakTimerSettings );
+    l->addStretch( 1 );
 
     setLayout( l );
     readSettings();
