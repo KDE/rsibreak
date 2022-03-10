@@ -17,6 +17,7 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
+#include <kwindowsystem.h>
 
 #include "rsiglobals.h"
 #include "rsistats.h"
@@ -63,6 +64,17 @@ void RSITimer::run()
     timer->start( 1000 );
 }
 
+bool RSITimer::suppressionDetector()
+{
+    for ( WId win : KWindowSystem::windows() ) {
+        KWindowInfo info( win, NET::WMDesktop | NET::WMState | NET::XAWMState );
+        if ( (info.state() & NET::FullScreen) && !info.isMinimized() && info.isOnCurrentDesktop() ) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void RSITimer::hibernationDetector( const int totalIdle )
 {
     // poor mans hibernation detector....
@@ -83,11 +95,6 @@ int RSITimer::idleTime()
 {
     int totalIdle = m_idleTimeInstance->getIdleTime() / 1000;
     hibernationDetector( totalIdle );
-
-    // TODO Find a modern-desktop way to check if the screensaver is inhibited
-    // and disable the timer because we assume you're doing for example a presentation and
-    // don't want rsibreak to annoy you
-
     return totalIdle;
 }
 
@@ -178,6 +185,7 @@ void RSITimer::updateConfig( bool doRestart )
 
     bool oldUseIdleTimers = m_useIdleTimers;
     KConfigGroup generalConfig = KSharedConfig::openConfig()->group( "General Settings" );
+    m_suppressable = generalConfig.readEntry( "SuppressIfPresenting", true );
     m_useIdleTimers = !( generalConfig.readEntry( "UseNoIdleTimer", false ) );
     doRestart = doRestart || ( oldUseIdleTimers != m_useIdleTimers );
 
@@ -283,6 +291,10 @@ void RSITimer::timeout()
 
 void RSITimer::suggestBreak( const int breakTime )
 {
+    if ( m_suppressable && suppressionDetector() ) {
+        return;
+    }
+
     if ( m_bigBreakCounter->isReset() ) {
         RSIGlobals::instance()->stats()->increaseStat( BIG_BREAKS );
         RSIGlobals::instance()->stats()->setStat( LAST_BIG_BREAK, QVariant( QDateTime::currentDateTime() ) );

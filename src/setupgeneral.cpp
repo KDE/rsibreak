@@ -25,6 +25,7 @@ public:
     QGroupBox*        breakTimerSettings;
     QRadioButton*     useNoIdleTimer;
     QRadioButton*     useIdleTimer;
+    QCheckBox*        suppressable;
 };
 
 SetupGeneral::SetupGeneral( QWidget* parent )
@@ -55,8 +56,16 @@ SetupGeneral::SetupGeneral( QWidget* parent )
     d->breakTimerSettings->setLayout( vbox );
     connect(d->useIdleTimer, &QRadioButton::toggled, this, &SetupGeneral::useIdleTimerChanged);
 
+    d->suppressable = new QCheckBox(
+        i18n( "&Suppress if fullscreen windows present" ), this );
+    d->suppressable->setWhatsThis( i18n( "With this option you can indicate that "
+                                      "you do not want RSIBreak to interfere with presentations, games, "
+                                      "video playback, and any other fullscreen application on the "
+                                      "current virtual desktop." ) );
+
     l->addWidget( d->autoStart );
     l->addWidget( d->breakTimerSettings );
+    l->addWidget( d->suppressable );
     l->addStretch( 1 );
 
     setLayout( l );
@@ -75,6 +84,8 @@ void SetupGeneral::applySettings()
 
     config = KSharedConfig::openConfig()->group( "General Settings" );
     config.writeEntry( "UseNoIdleTimer", d->useNoIdleTimer->isChecked() );
+    config.writeEntry( "SuppressIfPresenting", d->suppressable->isChecked() );
+
     config.sync();
 }
 
@@ -91,4 +102,5 @@ void SetupGeneral::readSettings()
     config = KSharedConfig::openConfig()->group( "General Settings" );
     d->useNoIdleTimer->setChecked( config.readEntry( "UseNoIdleTimer", false ) );
     d->useIdleTimer->setChecked( !d->useNoIdleTimer->isChecked() );
+    d->suppressable->setChecked( config.readEntry( "SuppressIfPresenting", true ) );
 }

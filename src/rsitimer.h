@@ -158,6 +158,7 @@ signals:
 private:
     std::unique_ptr<RSIIdleTime> m_idleTimeInstance;
 
+    bool m_suppressable;
     bool m_usePopup;
     bool m_useIdleTimers;
     QVector<int> m_intervals;
@@ -175,6 +176,7 @@ private:
     std::unique_ptr<RSITimerCounter> m_popupCounter;
     std::unique_ptr<RSITimerCounter> m_shortInputCounter;
 
+    bool suppressionDetector();
     void hibernationDetector( const int totalIdle );
     void suggestBreak( const int time );
     void defaultUpdateToolTip();
