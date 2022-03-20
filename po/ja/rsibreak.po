@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2010-10-03 21:20-0700\n"
 "Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
 "Language-Team: Japanese <Kdeveloper@kde.gr.jp>\n"
@@ -204,17 +204,17 @@ msgstr "すべての統計値をゼロにリセットします。よろしいで
 msgid "Reset the statistics"
 msgstr "統計をリセット"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "一時停止中"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "次の短い休憩まであと%1"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "次の長い休憩まであと%1"
@@ -529,7 +529,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "秒"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -538,7 +538,7 @@ msgstr ""
 "<p>RSIBreak へようこそ</p>\n"
 "<p>システムトレイに RSIBreak のアイコンがあります。</p>\n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>When you right-click on that you will see a menu, from which you can "
@@ -555,7 +555,7 @@ msgstr ""
 "コンの上にマウスを移動してください。</p><p>RSIBreak を上手に活用してくださ"
 "い。</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "ようこそ"
@@ -580,12 +580,12 @@ msgstr "休憩中"
 msgid "Actions"
 msgstr ""
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "起動時に自動的に RSIBreak を開始する(&A)"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, fuzzy, kde-format
 #| msgid ""
 #| "With this option you can indicate that you want RSIBreak to start when "
@@ -596,18 +596,18 @@ msgid ""
 msgstr ""
 "KDE の起動時に RSIBreak を開始させる場合、このオプションを有効にします。"
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, fuzzy, kde-format
 #| msgid "Break Timer Settings"
 msgid "Timer Settings"
 msgstr "休憩タイマーの設定"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr ""
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, fuzzy, kde-format
 #| msgid ""
 #| "With this option you indicate that you want to ignore movements during "
@@ -617,12 +617,12 @@ msgstr ""
 "休憩時間中の操作を無視して固定時間ごとに休憩したい場合、このオプションを有効"
 "にします。"
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr ""
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, fuzzy, kde-format
 #| msgid ""
 #| "With this option you indicate that you want to use idle detection. This "
@@ -636,6 +636,19 @@ msgstr ""
 "アイドル時間の検出を使用する場合、このオプションを有効にします。これを有効に"
 "すると、マウスまたはキーボードを操作していた時間のみに基づいて次の休憩の開始"
 "時間を計算します。"
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -813,8 +826,7 @@ msgid ""
 msgstr "スライドショーで次の画像に切り替えるまでの時間を設定します。"
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -893,85 +905,84 @@ msgstr ""
 msgid "Choose the effect you want during breaks"
 msgstr ""
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "短い休憩"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "短い休憩の間隔:"
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, fuzzy, kde-format
 #| msgid "Here you can set the duration of the short break."
 msgid "Here you can set how often you want a short break. "
 msgstr "ここで短い休憩の長さを設定します。"
 
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "持続時間:"
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "ここで短い休憩の長さを設定します。"
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr ""
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "長い休憩"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "長い休憩の間隔:"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, fuzzy, kde-format
 #| msgid "Here you can set the duration of the long break."
 msgid "Here you can set how often you want a long break. "
 msgstr "ここで長い休憩の長さを設定します。"
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "ここで長い休憩の長さを設定します。"
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, fuzzy, kde-format
 #| msgid "Long Breaks"
 msgid "Postpone Breaks"
 msgstr "長い休憩"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, fuzzy, kde-format
 #| msgid "Here you can set the duration of the long break."
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "ここで長い休憩の長さを設定します。"
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

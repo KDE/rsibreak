@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2022-03-16 15:47\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -201,17 +201,17 @@ msgstr "这将会把所有统计重置为零。您确认要这么做么？"
 msgid "Reset the statistics"
 msgstr "重置统计"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "挂起"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "到下一次小课间休息还有 %1"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "到下一次大课间休息还有 %1"
@@ -517,7 +517,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "秒"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -526,7 +526,7 @@ msgstr ""
 "<p>欢迎来到 RSIBreak</p>\n"
 "<p>在您的托盘中，您可以看到 RSIBreak：</p>\n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -538,7 +538,7 @@ msgstr ""
 "想知道什么时候开始下一次课间休息，把鼠标浮到图标上即可。</p><p>请聪明地使用 "
 "RSIBreak。</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "欢迎"
@@ -563,41 +563,41 @@ msgstr "课间休息持续时间"
 msgid "Actions"
 msgstr "操作"
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "在 RSIBreak 启动时自动开始(&A)"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr "通过这个选项，您可以选择是否在 KDE 启动时启动 RSIBreak。"
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Timer Settings"
 msgstr "计时器设置"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "在固定的时间休息"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
 "通过这个选项，您可以选择是否在课间休息期间忽略活动并且在固定时间间隔进行课间"
 "休息。"
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr "结合活动情况设置"
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -606,6 +606,19 @@ msgid ""
 msgstr ""
 "通过这个选项，您可以选择是否使用空闲检测。这也就是说只有在您活动时（当使用键"
 "盘或者鼠标的时候），才估算下一次课间休息的时间。"
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -766,8 +779,7 @@ msgid ""
 msgstr "这里您可以设置显示每一张图片的时间。"
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -836,81 +848,80 @@ msgstr "选择等待时间耗尽后的效果"
 msgid "Choose the effect you want during breaks"
 msgstr "选择休息期间的效果"
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "小课间休息"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "小课间休息间隔时间："
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
 msgstr "在这里您可以设置多长时间进行一次短休息。 "
 
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "持续时间："
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "这里您可以设置小课间休息的持续时间。"
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "跳过休息的无活动时间："
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr "设置足以跳过下一个短休息的空闲时间间隔。"
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "大课间休息"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "大课间休息间隔时间："
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr "在这里您可以设置多长时间进行一次长休息。 "
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "这里您可以设置大课间休息的持续时间。"
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr "设置足以跳过下一个长休息的空闲时间间隔。"
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "推迟休息"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "在这里您可以设置多长时间推迟一次休息。"
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

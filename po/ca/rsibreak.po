@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2021-12-11 20:45+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -201,17 +201,17 @@ msgstr "Això inicialitzarà les estadístiques a zero. És el que voleu?"
 msgid "Reset the statistics"
 msgstr "Reinicia les estadístiques"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "Suspèn"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "Falta %1 fins al proper descans curt"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "Falta %1 fins al proper descans llarg"
@@ -532,7 +532,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "segons"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -541,7 +541,7 @@ msgstr ""
 "<p>Us donem la benvinguda al RSIBreak</p>\n"
 "<p>Ara veure el RSIBreak a la safata del sistema.</p>\n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -555,7 +555,7 @@ msgstr ""
 "icona.</p>\n"
 "<p>Useu el RSIBreak sàviament.</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "Us donem la benvinguda"
@@ -580,12 +580,12 @@ msgstr "Durant els descansos"
 msgid "Actions"
 msgstr "Accions"
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "&Inicia el RSIBreak automàticament a l'inici de sessió"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
@@ -594,28 +594,28 @@ msgstr ""
 "Amb aquesta opció podeu indicar que voleu iniciar el RSIBreak cada cop que "
 "s'iniciï l'entorn d'escriptori."
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Timer Settings"
 msgstr "Paràmetres del temporitzador"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "Interromp als temps &establerts"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
 "Amb aquesta opció indiqueu que voleu interrompre als intervals establerts"
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr "Pren en compte l'activitat"
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -625,6 +625,19 @@ msgstr ""
 "Amb aquesta opció indiqueu que voleu usar la detecció d'inactivitat. Això "
 "vol dir que només es comptarà el temps en què esteu actiu (quan useu el "
 "teclat o el ratolí) per a calcular la propera pausa."
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -797,8 +810,7 @@ msgstr ""
 "ser substituïda per la següent."
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -876,37 +888,37 @@ msgstr "Escolliu l'efecte que voleu una vegada s'esgoti la paciència"
 msgid "Choose the effect you want during breaks"
 msgstr "Escolliu l'efecte que voleu durant els descansos"
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "Descansos curts"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "Descans curt cada:"
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
 msgstr "Aquí podeu establir amb quina freqüència voleu un descans curt. "
 
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "Durant:"
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "Aquí podeu establir la duració dels descansos curts."
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "Salta si no hi ha activitat durant:"
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
@@ -915,27 +927,27 @@ msgstr ""
 "Establiu l'interval en el qual esteu inactiu, ja que serà suficient per a "
 "saltar-se el següent descans curt."
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "Descansos llargs"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "Descans llarg cada:"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr "Aquí podeu establir amb quina freqüència voleu un descans llarg. "
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "Aquí podeu establir la duració dels descansos llargs."
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
@@ -943,18 +955,17 @@ msgstr ""
 "Establiu l'interval en el qual esteu inactiu, ja que serà suficient per a "
 "saltar-se el següent descans llarg."
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "Posposa els descansos"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "Aquí podeu establir per quant temps voleu posposar els descansos."
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

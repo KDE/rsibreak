@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2019-05-30 23:39+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -196,17 +196,17 @@ msgstr "모든 통계를 0으로 초기화합니다. 계속 진행하시겠습�
 msgid "Reset the statistics"
 msgstr "통계 초기화"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "일시 정지됨"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "다음 짧은 쉬는 시간까지 %1 남음"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "다음 긴 쉬는 시간까지 %1 남음"
@@ -514,7 +514,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "초"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -523,7 +523,7 @@ msgstr ""
 "<p>RSIBreak에 오신 것을 환영합니다</p>\n"
 "<p>시스템 트레이에 RSIBreak가 표시됩니다.</p>\n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -536,7 +536,7 @@ msgstr ""
 "<p>다음 쉬는 시간을 알아 보려면 아이콘 위에 마우스를 두십시오.</p>\n"
 "<p>RSIBreak를 현명하게 사용하십시오.</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "환영합니다"
@@ -561,12 +561,12 @@ msgstr "쉬는 시간 중"
 msgid "Actions"
 msgstr "동작"
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "시작할 때 자동으로 RSIBreak 시작(&A)"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
@@ -574,27 +574,27 @@ msgid ""
 msgstr ""
 "이 옵션을 사용하여 데스크톱 환경을 시작할 때 RSIBreak를 자동으로 시작합니다."
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Timer Settings"
 msgstr "타이머 설정"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "고정 주기 휴식(&F)"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr "이 옵션을 사용하면 고정 주기로 쉬는 시간을 갖습니다"
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr "활동량 고려"
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -603,6 +603,19 @@ msgid ""
 msgstr ""
 "이 옵션을 사용하면 유휴 상태를 계산에 포함합니다. 다음 쉬는 시간을 계산할 때 "
 "활동 시간(키보드나 마우스 사용)만 계산에 포함합니다."
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -770,8 +783,7 @@ msgid ""
 msgstr "그림을 바꿀 주기를 선택할 수 있습니다."
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -844,81 +856,80 @@ msgstr "한계에 도달했을 때 사용할 효과 선택"
 msgid "Choose the effect you want during breaks"
 msgstr "쉬는 시간 중에 사용할 효과 선택"
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "짧은 쉬는 시간"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "짧은 쉬는 시간 주기:"
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
 msgstr "짧은 쉬는 시간을 가질 주기를 설정할 수 있습니다."
 
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "다음 기간 동안:"
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "짧은 쉬는 시간의 길이를 설정할 수 있습니다."
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "다음 시간 동안 활동 없을 때 건너뜀:"
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr "다음 짧은 쉬는 시간을 건너뛸 유휴 시간을 설정합니다."
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "긴 쉬는 시간"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "긴 쉬는 시간 주기:"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr "긴 쉬는 시간을 가질 주기를 설정할 수 있습니다."
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "긴 쉬는 시간의 길이를 설정할 수 있습니다."
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr "다음 긴 쉬는 시간을 건너뛸 유휴 시간을 설정합니다."
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "쉬는 시간 미루기"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "쉬는 시간을 미룰 간격을 설정할 수 있습니다."
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

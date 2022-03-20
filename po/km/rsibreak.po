@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2012-07-11 11:26+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -203,17 +203,17 @@ msgstr "នេះ​នឹង​កំណត់​ស្ថិតិ​ទាំ
 msgid "Reset the statistics"
 msgstr "កំណត់​ស្ថិតិ​ឡើង​វិញ"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "បានផ្អាក"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "%1 នៅ​សល់​រហូត​ដល់​ការ​សម្រាក​ខ្លី​បន្ទាប់"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 នៅ​សល់​រហូត​ដល់​ការ​សម្រាក​បន្ទាប់"
@@ -520,7 +520,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "វិនាទី"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -529,7 +529,7 @@ msgstr ""
 "<p>សូម​ស្វាគមន៍​​ការ​មក​កាន់ RSIBreak</p>\n"
 "<p>អ្នក​អាច​ឃើញ RSIBreak នៅ​ក្នុង​ថាស​របស់​អ្នក ៖</p>\n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -541,7 +541,7 @@ msgstr ""
 "<p>ពេល​អ្នក​ចង់​ដឹង​ថា ពេល​ណា​ជា​ពេល​សម្រាក​បន្ទាប់ សំកាំង​លើ​រូប​តំណាង ។</p>\n"
 "<p>ប្រើ RSIBreak យ៉ាង​វៃ​ឆ្លាត ។</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "ស្វាគមន៍"
@@ -566,12 +566,12 @@ msgstr "អំឡុង​ពេល​សម្រាក"
 msgid "Actions"
 msgstr "សកម្មភាព"
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "ចាប់ផ្ដើម RSIBreak ដោយ​ស្វ័យ​ប្រវត្តិ ពេល​ចាប់ផ្ដើម"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, fuzzy, kde-format
 #| msgid ""
 #| "With this option you can indicate that you want RSIBreak to start when "
@@ -582,18 +582,18 @@ msgid ""
 msgstr ""
 "ជាមួយ​ជម្រើស​នេះ អ្នក​អាច​ចង្អុល​ប្រាប់​ថា អ្នក​ចង់​ឲ្យ RSIBreak ចាប់ផ្ដើម ពេល KDE ចាប់ផ្ដើម ។"
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, fuzzy, kde-format
 #| msgid "Break Timer Settings"
 msgid "Timer Settings"
 msgstr "ការ​កំណត់​ពេល​វេលា​សម្រាក"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr ""
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, fuzzy, kde-format
 #| msgid ""
 #| "With this option you indicate that you want to ignore movements during "
@@ -602,12 +602,12 @@ msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
 "ជាមួយ​ជម្រើស​នេះ អ្នក​ចង្អុល​ប្រាប់​ថា អ្នក​ចង់​មិន​អើពើ​ការ​ផ្លាស់ទី អំឡុង​ពេល​សម្រាក​នៅ​ចន្លោះ​ពេល​ថេរ​​"
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr ""
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, fuzzy, kde-format
 #| msgid ""
 #| "With this option you indicate that you want to use idle detection. This "
@@ -620,6 +620,19 @@ msgid ""
 msgstr ""
 "ជាមួយ​ជម្រើស​នេះ អ្នក​អាច​ចង្អុល​ប្រាប់​ថា អ្នក​ចង់​ប្រើ​ការ​រក​ឃើញ​ទំនេរ ។ នេះ​មាន​ន័យ​ថា តែ​ពេល​ដែល​អ្នក​"
 "សកម្ម (ពេល​អ្នក​ប្រើ​ក្ដារ​ចុច ឬ​កណ្ដុរ) នឹង​ត្រូវ​បាន​រាប់ ពេល​វាយ​តម្លៃ​ទីតាំង​នៃ​ការ​សម្រាក​បន្ទាប់ ។"
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -783,8 +796,7 @@ msgstr ""
 "ទីនធ​អ្នក​អាច​កំណត់​រយៈ​ពេល​រូបភាព​មួយ​គួរ​ត្រូវ​បាន​បង្ហាញ មុន​ពេល​វា​ត្រូវ​បាន​ជំនួស​ដោយ​រូបភាព​មួយ​បន្ទាប់ ។"
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -862,83 +874,82 @@ msgstr "ជ្រើស​បែបផែន​ដែល​អ្នក​ចង
 msgid "Choose the effect you want during breaks"
 msgstr "ជ្រើស​បែបផែន​ដែល​អ្នក​ចង់​បាន​អំឡុង​ពេល​សម្រាក"
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "ពេល​សម្រាក​តូច"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "ពេល​សម្រាក​ខ្លី​រាល់​ពេល ៖"
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, fuzzy, kde-format
 #| msgid "Here you can set the duration of the short break."
 msgid "Here you can set how often you want a short break. "
 msgstr "ទីនេះ​អ្នក​អាច​កំណត់​ថិរវេលា​នៃ​ការ​សម្រាក​ខ្លី ។"
 
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "សម្រាប់​អំឡុង​ពេល​នៃ ៖"
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "ទីនេះ​អ្នក​អាច​កំណត់​ថិរវេលា​នៃ​ការ​សម្រាក​ខ្លី ។"
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr ""
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "ការ​សម្រាក​ធំ"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "ការ​សម្រាក​វែង​រាល់​ពេល ៖"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, fuzzy, kde-format
 #| msgid "Here you can set the duration of the long break."
 msgid "Here you can set how often you want a long break. "
 msgstr "អ្នក​អាច​កំណត់​ថិរវេលា​នៃ​ការ​សម្រាក​វែង​ទីនេះ ។"
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "អ្នក​អាច​កំណត់​ថិរវេលា​នៃ​ការ​សម្រាក​វែង​ទីនេះ ។"
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "ផ្អាក​ការ​សម្រាក"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "ទីនេះ​អ្នក​អាច​កំណត់​រយៈ​ពេល​ដែល​អ្នក​ចង់​ផ្អាក​ការ​សម្រាក ។"
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

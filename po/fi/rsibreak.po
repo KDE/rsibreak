@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2019-05-12 18:23+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -198,17 +198,17 @@ msgstr "Tämä tyhjentää kaikki tilastot. Haluatko tehdä niin?"
 msgid "Reset the statistics"
 msgstr "Tyhjennä tilastot"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "Keskeytetty"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "%1 jäljellä ennen seuraavaa lyhyttä taukoa"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 jäljellä ennen seuraavaa pitkää taukoa"
@@ -525,7 +525,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "sekuntia"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -534,7 +534,7 @@ msgstr ""
 "<p>Tervetuloa RSIBreakiin</p>\n"
 "<p>Näet RSIBreakin nyt ilmoitusalueella.</p> \n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -548,7 +548,7 @@ msgstr ""
 "p>\n"
 "<p>Käytä RSIBreakiä viisaasti.</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "Tervetuloa"
@@ -573,12 +573,12 @@ msgstr "Taukojen aikana"
 msgid "Actions"
 msgstr "Toiminnot"
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "Käynnistä RSI &Break automaattisesti kirjauduttaessa"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
@@ -587,27 +587,27 @@ msgstr ""
 "Tällä asetuksella voit käynnistää RSI Breakin automaattisesti "
 "työpöytäympäristöön kirjauduttaessa."
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Timer Settings"
 msgstr "Ajastinasetukset"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "Tauko &määräajoin"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr "Tällä asetuksella voit ottaa tauot käyttöön määrävälein"
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr "Ota toiminta huomioon"
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -617,6 +617,19 @@ msgstr ""
 "Tällä asetuksella voit käyttää joutoajan tunnistusta, mikä tarkoittaa, että "
 "vain toiminta-aikasi (jolloin käytät näppäimistöä tai hiirtä) otetaan "
 "huomioon seuraavaa taukoa määritettäessä."
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -787,8 +800,7 @@ msgstr ""
 "seuraavalla."
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -863,38 +875,38 @@ msgstr "Valitse tehoste, jonka haluat kärsivällisyyden olevan lopussa"
 msgid "Choose the effect you want during breaks"
 msgstr "Valitse, minkä tehosteen haluat tauoiksi"
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "Pikkuruiset tauot"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "Lyhyt tauko joka:"
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
 msgstr "Tässä voit asettaa, kuinka usein haluat lyhyen tauon. "
 
 # *** TARKISTA: Tämä on hankala. Ei varsinainen tarkistettava asia, mutta hyvä ehdotus olisi tarpeen.
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "Ajaksi:"
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "Tässä voit asettaa lyhyen tauon keston."
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "Ohita, jollei mitään toimintaa:"
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
@@ -903,27 +915,27 @@ msgstr ""
 "Aseta joutenoloaika, jonka kesto riittää seuraavan lyhyen tauon "
 "ohittamiseksi."
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "Isot tauot"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "Pitkä tauko joka:"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr "Tässä voit asettaa, kuinka usein haluat pitkän tauon. "
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "Tässä voit asettaa pitkän tauon keston."
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
@@ -931,18 +943,17 @@ msgstr ""
 "Aseta joutenoloaika, jonka kesto riittää seuraavan pitkän tauon "
 "ohittamiseksi."
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "Lykkää taukoja"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "Tässä voit asettaa, paljonko haluat lykätä taukoa."
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

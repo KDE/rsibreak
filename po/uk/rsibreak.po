@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-06 00:20+0000\n"
+"POT-Creation-Date: 2022-03-20 00:59+0000\n"
 "PO-Revision-Date: 2018-01-18 08:22+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -202,17 +202,17 @@ msgstr ""
 msgid "Reset the statistics"
 msgstr "Скинути всю статистику"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:112
+#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
 #, kde-format
 msgid "Suspended"
 msgstr "Приспано"
 
-#: src/rsidock.cpp:224
+#: src/rsidock.cpp:229
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "%1 залишилося до наступної короткої перерви"
 
-#: src/rsidock.cpp:233
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 залишилося до наступної довгої перерви"
@@ -536,7 +536,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "секунди"
 
-#: src/rsiwidget.cpp:78
+#: src/rsiwidget.cpp:74
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -545,7 +545,7 @@ msgstr ""
 "<p>Ласкаво просимо до RSIBreak</p>\n"
 "<p>Тепер ви можете бачити у вашому системному лотку RSIBreak.</p>\n"
 
-#: src/rsiwidget.cpp:80
+#: src/rsiwidget.cpp:76
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -559,7 +559,7 @@ msgstr ""
 "миші на піктограму у лотку.</p>\n"
 "<p>Користуйтеся RSIBreak мудро.</p>"
 
-#: src/rsiwidget.cpp:83
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
 msgstr "Ласкаво просимо"
@@ -584,12 +584,12 @@ msgstr "Під час перерв"
 msgid "Actions"
 msgstr "Дії"
 
-#: src/setupgeneral.cpp:38
+#: src/setupgeneral.cpp:39
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "&Автоматично запускати RSIBreak під час запуску"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:40
 #, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
@@ -598,29 +598,29 @@ msgstr ""
 "За допомогою цього параметра ви можете вказати, що бажаєте запускати "
 "RSIBreak під час запуску стільничного середовища."
 
-#: src/setupgeneral.cpp:43
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Timer Settings"
 msgstr "Параметри таймера"
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:45
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "Перерви з &фіксованим інтервалом"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
 "За допомогою цього параметра ви можете вказати, що бажаєте переривати роботу "
 "з фіксованим інтервалом часу між перервами."
 
-#: src/setupgeneral.cpp:47
+#: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
 msgstr "Брати до уваги дії"
 
-#: src/setupgeneral.cpp:48
+#: src/setupgeneral.cpp:49
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -631,6 +631,19 @@ msgstr ""
 "використовувати визначення простою. Це означає, що під час оцінки початку "
 "наступної перерви братиметься до уваги лише час, який ви виконували якісь "
 "дії (використовували клавіатуру або мишу)."
+
+#: src/setupgeneral.cpp:60
+#, kde-format
+msgid "&Suppress if fullscreen windows present"
+msgstr ""
+
+#: src/setupgeneral.cpp:61
+#, kde-format
+msgid ""
+"With this option you can indicate that you do not want RSIBreak to interfere "
+"with presentations, games, video playback, and any other fullscreen "
+"application on the current virtual desktop."
+msgstr ""
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -804,8 +817,7 @@ msgstr ""
 "змінить наступне."
 
 #: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:173 src/setuptiming.cpp:175 src/setuptiming.cpp:177
-#: src/setuptiming.cpp:179 src/setuptiming.cpp:180 src/setuptiming.cpp:183
+#: src/setuptiming.cpp:176
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -887,37 +899,37 @@ msgstr ""
 msgid "Choose the effect you want during breaks"
 msgstr "Оберіть ефект, який буде використано під час перерв"
 
-#: src/setuptiming.cpp:47
+#: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
 msgstr "Невеликі перерви"
 
-#: src/setuptiming.cpp:52
+#: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
 msgstr "Коротка перерва за кожні:"
 
-#: src/setuptiming.cpp:55
+#: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
 msgstr "Тут ви можете встановити частоту короткої перерви. "
 
-#: src/setuptiming.cpp:65 src/setuptiming.cpp:115 src/setuptiming.cpp:153
+#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
 #, kde-format
 msgid "For a duration of:"
 msgstr "На період у:"
 
-#: src/setuptiming.cpp:68
+#: src/setuptiming.cpp:71
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "Тут ви можете встановити тривалість короткої перерви."
 
-#: src/setuptiming.cpp:79 src/setuptiming.cpp:129
+#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "Пропускати, якщо не буде дій протягом"
 
-#: src/setuptiming.cpp:82
+#: src/setuptiming.cpp:85
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
@@ -926,27 +938,27 @@ msgstr ""
 "Встановити проміжок часу, протягом якого ви нічого не робитимете і який буде "
 "достатнім, щоб пропустити наступну коротку перерву."
 
-#: src/setuptiming.cpp:98
+#: src/setuptiming.cpp:101
 #, kde-format
 msgid "Big Breaks"
 msgstr "Великі перерви"
 
-#: src/setuptiming.cpp:103
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Long break every:"
 msgstr "Довга перерва за кожні:"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:109
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr "Тут ви можете встановити частоту довгої перерви. "
 
-#: src/setuptiming.cpp:118
+#: src/setuptiming.cpp:121
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "Тут ви можете встановити тривалість довгої перерви."
 
-#: src/setuptiming.cpp:132
+#: src/setuptiming.cpp:135
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
@@ -954,18 +966,17 @@ msgstr ""
 "Встановити проміжок часу, протягом якого ви нічого не робитимете і який буде "
 "достатнім, щоб пропустити наступну довгу перерву."
 
-#: src/setuptiming.cpp:148
+#: src/setuptiming.cpp:151
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "Відкладення перерв"
 
-#: src/setuptiming.cpp:156
+#: src/setuptiming.cpp:159
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "Тут ви можете вказати проміжок часу, на який слід відкладати перерви."
 
-#: src/setuptiming.cpp:174 src/setuptiming.cpp:176 src/setuptiming.cpp:178
-#: src/setuptiming.cpp:181 src/setuptiming.cpp:184
+#: src/setuptiming.cpp:180
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
