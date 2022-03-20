@@ -41,8 +41,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2016-08-24</date>
-<releaseinfo>0.12</releaseinfo>
+<date>2022-03-20</date>
+<releaseinfo>0.12.14</releaseinfo>
 
 <abstract><para>Repetitive Strain Injury is an illness which can occur as a
 result of continuous work with a mouse and keyboard. The risk of suffering injury increases the longer users work without breaks. &rsibreak; simply offers reminders to take a break now and then. </para></abstract>
@@ -142,6 +142,10 @@ while they are not using the session manager. Note that <application>Gnome</appl
 <para>There are two behavior options in &rsibreak;. There is an option to break at fixed intervals for fixed periods, and there is an option to reset
 the timers when &rsibreak; detects that you have been idle for the duration of a
 break.</para>
+
+<para>You can indicate that you do not want RSIBreak to interfere with presentations, games, video playback, and any other fullscreen 
+application on the current virtual desktop using the <guilabel>Suppress if fullscreen windows present</guilabel> option.
+</para>
 
 <screenshot>
 <screeninfo>&rsibreak; popup</screeninfo>
