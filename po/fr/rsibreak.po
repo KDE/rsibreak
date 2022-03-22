@@ -11,14 +11,14 @@
 # Thomas 'Dark-Side' Refis <refis.thomas@gmail.com>
 # Nicolas Ternisien <nicolas.ternisien@gmail.com>, 2008, 2009, 2010, 2012.
 # Simon Depiets <sdepiets@gmail.com>, 2018.
-# Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021.
+# Xavier Besnard <xavier.besnard@neuf.fr>, 2020, 2021, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-03-20 00:59+0000\n"
-"PO-Revision-Date: 2021-08-31 18:47+0200\n"
+"PO-Revision-Date: 2022-03-21 12:22+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.08.0\n"
+"X-Generator: Lokalize 21.12.3\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -644,7 +644,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&Supprimer si des fenêtres en plein écran sont présentes"
 
 #: src/setupgeneral.cpp:61
 #, kde-format
@@ -653,6 +653,9 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Avec cette option, vous pouvez indiquer que vous ne voulez pas que RSIBreak "
+"interfère avec les présentations, les jeux, la lecture de vidéos et toute "
+"autre application plein écran sur le bureau virtuel courant."
 
 #: src/setupmaximized.cpp:76
 #, kde-format

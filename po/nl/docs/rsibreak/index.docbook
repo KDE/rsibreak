@@ -59,9 +59,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-08-24</date>
+>2022-03-20</date>
 <releaseinfo
->0.12</releaseinfo>
+>0.12.14</releaseinfo>
 
 <abstract
 ><para
@@ -177,6 +177,11 @@
 
 <para
 >Er zijn twee manieren waarop &rsibreak; kan functioneren. Er is de mogelijkheid om te pauzeren op vaste intervallen voor vaste periodes en er is de mogelijkheid om de tijdklokken te resetten als &rsibreak; merkt dat u gedurende de tijd van een pauze inactief bent.</para>
+
+<para
+>U kunt aangegeven dat u niet wilt dat RSIBreak interfereert met presentaties, spellen, video afspelen en andere toepassingen in volledig scherm op het huidige virtuele bureaublad met de optie <guilabel
+>Indien venster in volledig scherm aanwezig is</guilabel
+>. </para>
 
 <screenshot>
 <screeninfo

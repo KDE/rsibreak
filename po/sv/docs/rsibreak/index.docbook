@@ -73,9 +73,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-08-24</date>
+>2022-03-20</date>
 <releaseinfo
->0.12</releaseinfo>
+>0.12.14</releaseinfo>
 
 <abstract
 ><para
@@ -191,6 +191,11 @@
 
 <para
 >Det finns två alternativ för hur RSIbreak ska bete sig. Det finns möjlighet att ta rast med fasta intervall under fasta perioder, och det finns möjlighet att återställa tidtagningen när RSIbreak upptäcker att du är overksam under tiden för en rast.</para>
+
+<para
+>Du kan ange att RSIBreak inte ska påverka presentationer, spel, videouppspelningar eller några annat fullskärmsprogram på det nuvarande virtuella skrivbordet genom att använda alternativet <guilabel
+>Undertryck om fullskärmsfönster närvarande</guilabel
+>. </para>
 
 <screenshot>
 <screeninfo

@@ -59,9 +59,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->24 d'agost de 2016</date>
+>20 de març de 2022</date>
 <releaseinfo
->0.12</releaseinfo>
+>0.12.14</releaseinfo>
 
 <abstract
 ><para
@@ -179,6 +179,11 @@
 
 <para
 >Hi ha dues opcions de comportament al &rsibreak;. Hi ha una opció per a descansar en intervals fixos per períodes fixos, i hi ha una opció per a restablir els temporitzadors quan el &rsibreak; detecta que heu estat inactiu durant la durada d'un descans.</para>
+
+<para
+>Podeu indicar que no voleu que el RSIBreak interfereixi amb presentacions, jocs, reproduccions de vídeo o qualsevol altra aplicació a pantalla completa de l'escriptori virtual actual usant l'opció <guilabel
+>Omet si hi ha finestres a pantalla completa</guilabel
+>. </para>
 
 <screenshot>
 <screeninfo
