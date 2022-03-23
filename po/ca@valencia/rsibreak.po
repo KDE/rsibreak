@@ -761,7 +761,7 @@ msgid ""
 "want..."
 msgstr ""
 "Seleccioneu la carpeta des de la qual voleu veure les imatges. Estes imatges "
-"es mostren aleatòriament durant els descansos. Si ho indiqueu, se cercaran "
+"es mostren aleatòriament durant els descansos. Si ho indiqueu, se buscaran "
 "recursivament..."
 
 #: src/setupmaximized.cpp:159
