@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the rsibreak package.
 #
 # Diniz Bortolotto <diniz.bortolotto@gmail.com>, 2007, 2008.
-# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2008, 2009, 2010, 2020, 2021.
+# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2008, 2009, 2010, 2020, 2021, 2022.
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2009, 2010, 2011, 2015, 2016.
 # Frederico Gonçalves Guimarães <frederico@teia.bio.br>, 2018.
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-03-20 00:59+0000\n"
-"PO-Revision-Date: 2021-10-26 13:47-0300\n"
+"PO-Revision-Date: 2022-03-24 11:10-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -629,7 +629,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&Suprimir se houver janela em tela cheia"
 
 #: src/setupgeneral.cpp:61
 #, kde-format
@@ -638,6 +638,9 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Com esta opção você pode indicar que não quer que o RSIBreak interfira em "
+"apresentações, jogos, reprodução de vídeos ou qualquer outro aplicativo em "
+"tela cheia na área de trabalho virtual atual."
 
 #: src/setupmaximized.cpp:76
 #, kde-format
