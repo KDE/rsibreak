@@ -73,9 +73,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-08-24</date>
+>2022-03-20</date>
 <releaseinfo
->0.12</releaseinfo>
+>0.12.14</releaseinfo>
 
 <abstract
 ><para
@@ -192,6 +192,11 @@
 <para
 >Existen dos opciones para configurar el comportamiento de &rsibreak;. Existe la posibilidad de hacer descansos a intervalos fijos y existe la opción de reiniciar los temporizadores cuando &rsibreak; detecte que ha estado inactivo durante el descanso.</para>
 
+<para
+>Puede indicar que no desea que RSIBreak interfiera con las presentaciones, juegos, reproducción de vídeo y cualquier aplicación a pantalla completa en el escritorio virtual actual usando la opción <guilabel
+>Inhibir si hay ventanas a pantalla completa</guilabel
+>. </para>
+
 <screenshot>
 <screeninfo
 >Mensaje emergente de &rsibreak;</screeninfo>
@@ -259,8 +264,7 @@
 >Traducido por Santiago Fernández Sancho <email
 >santi@kde-es.org</email
 >.</para
-> 
-&underGPL; &underFDL; </chapter>
+> &underGPL; &underFDL; </chapter>
 
 
 &documentation.index;
