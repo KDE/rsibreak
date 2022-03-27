@@ -537,7 +537,7 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
-"<p>Vos donem la benvinguda al RSIBreak</p>\n"
+"<p>Us donem la benvinguda al RSIBreak</p>\n"
 "<p>Ara veure el RSIBreak a la safata del sistema.</p>\n"
 
 #: src/rsiwidget.cpp:76
@@ -557,7 +557,7 @@ msgstr ""
 #: src/rsiwidget.cpp:79
 #, kde-format
 msgid "Welcome"
-msgstr "Vos donem la benvinguda"
+msgstr "Us donem la benvinguda"
 
 #: src/setup.cpp:41
 #, kde-format
