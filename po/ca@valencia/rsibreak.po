@@ -134,12 +134,12 @@ msgstr "Feu un descans de %1"
 #: src/rsidock.cpp:76
 #, kde-format
 msgid "About &KDE"
-msgstr "Quant al &KDE"
+msgstr "Quant a &KDE"
 
 #: src/rsidock.cpp:77
 #, kde-format
 msgid "&About RSIBreak"
-msgstr "&Quant al RSIBreak"
+msgstr "&Quant a RSIBreak"
 
 #: src/rsidock.cpp:78
 #, kde-format
@@ -653,7 +653,7 @@ msgstr "Efecte negre complet"
 #: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Show Plasma Dashboard"
-msgstr "Mostra el tauler del Plasma"
+msgstr "Mostra el tauler de Plasma"
 
 #: src/setupmaximized.cpp:80
 #, kde-format
@@ -726,7 +726,7 @@ msgstr ""
 #: src/setupmaximized.cpp:115
 #, kde-format
 msgid "Plasma Dashboard"
-msgstr "Tauler del Plasma"
+msgstr "Tauler de Plasma"
 
 #: src/setupmaximized.cpp:117
 #, kde-format
@@ -761,7 +761,7 @@ msgid ""
 "want..."
 msgstr ""
 "Seleccioneu la carpeta des de la qual voleu veure les imatges. Estes imatges "
-"es mostren aleatòriament durant els descansos. Si ho indiqueu, se buscaran "
+"es mostren aleatòriament durant els descansos. Si ho indiqueu, es buscaran "
 "recursivament..."
 
 #: src/setupmaximized.cpp:159
@@ -777,7 +777,7 @@ msgstr "Busca al camí recursivament"
 #: src/setupmaximized.cpp:165
 #, kde-format
 msgid "Show small images"
-msgstr "Mostra imatges petites"
+msgstr "Mostra imatges xicotetes"
 
 #: src/setupmaximized.cpp:167
 #, kde-format
