@@ -552,7 +552,7 @@ msgstr ""
 "podreu anar a la configuració.</p>\n"
 "<p>Quan vulgueu saber quan serà el proper descans, poseu el cursor sobre la "
 "icona.</p>\n"
-"<p>Useu RSIBreak sàviament.</p>"
+"<p>Utilitzeu RSIBreak sàviament.</p>"
 
 #: src/rsiwidget.cpp:79
 #, kde-format
