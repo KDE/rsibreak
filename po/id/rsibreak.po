@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-03-20 00:59+0000\n"
-"PO-Revision-Date: 2022-03-29 07:05+0700\n"
+"PO-Revision-Date: 2022-04-08 21:44+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
 "Language: id\n"
@@ -232,7 +232,7 @@ msgstr "Kunci sesi"
 #: src/rsirelaxpopup.cpp:92
 #, kde-format
 msgid "Please relax for %1"
-msgstr "Silakan bersantai untuk %1"
+msgstr "Silakan bersantai %1"
 
 #: src/rsirelaxpopup.cpp:96
 #, kde-format
