@@ -1,14 +1,14 @@
 # Translation of rsibreak to Korean.
 # Copyright (C) 2007 This_file_is_part_of_KDE
 # This file is distributed under the same license as the extragear-utils package.
-# Shinjo Park <kde@peremen.name>, 2007, 2018, 2019.
+# Shinjo Park <kde@peremen.name>, 2007, 2018, 2019, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-03-20 00:59+0000\n"
-"PO-Revision-Date: 2019-05-30 23:39+0200\n"
+"PO-Revision-Date: 2022-04-16 01:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 18.12.3\n"
+"X-Generator: Lokalize 21.08.1\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -607,7 +607,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "전체 화면 창이 있을 때 일시 정지(&S)"
 
 #: src/setupgeneral.cpp:61
 #, kde-format
@@ -616,6 +616,8 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"이 옵션을 사용하면 RSIBreak가 프레젠테이션, 게임, 동영상 재생 등 현재 가상 바"
+"탕 화면에 전체 화면을 사용하는 프로그램이 실행 중일 때 방해하지 않습니다."
 
 #: src/setupmaximized.cpp:76
 #, kde-format
