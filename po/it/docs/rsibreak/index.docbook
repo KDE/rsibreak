@@ -73,9 +73,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-08-24</date>
+>2022-03-20</date>
 <releaseinfo
->0.12</releaseinfo>
+>0.12.14</releaseinfo>
 
 <abstract
 ><para
@@ -191,6 +191,11 @@
 
 <para
 >Ci sono due opzioni relative al comportamento in &rsibreak;.C'è un'opzione per attivare delle pause ad intervalli di tempo prefissati per periodi prefissati, e c'è un'opzione per azzerare i contatori quando &rsibreak; rileva che sei stato inattivo per la durata di una pausa.</para>
+
+<para
+>Puoi indicare che non vuoi che RSIBreak interferisca con presentazioni, giochi, riproduzione di video ed ogni altra applicazione a schermo interno nel desktop virtuale attuale usando l'opzione <guilabel
+>Disattiva se sono presenti finestre a schermo intero</guilabel
+>. </para>
 
 <screenshot>
 <screeninfo
