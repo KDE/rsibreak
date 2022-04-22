@@ -5,7 +5,7 @@
 #ifndef RSIBREAK_RSIIDLETIME_H
 #define RSIBREAK_RSIIDLETIME_H
 
-#include <KIdleTime/KIdleTime>
+#include <KIdleTime>
 
 class RSIIdleTime
 {
