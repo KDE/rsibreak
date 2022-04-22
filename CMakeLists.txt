@@ -8,6 +8,15 @@ set(KF5_REQUIRED_VERSION "5.68.0") # Remember to update the KF_DEPRECATED_WARNIN
 find_package(ECM ${KF5_REQUIRED_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
+include(KDEInstallDirs)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDECMakeSettings)
+include(FeatureSummary)
+include(ECMAddAppIcon)
+include(ECMInstallIcons)
+include(KDEClangFormat)
+include(KDEGitCommitHooks)
+
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS DBus)
 find_package(KF5 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
     Config
@@ -23,15 +32,6 @@ find_package(KF5 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
     XmlGui
     WindowSystem
     )
-
-include(KDEInstallDirs)
-include(KDECompilerSettings NO_POLICY_SCOPE)
-include(KDECMakeSettings)
-include(FeatureSummary)
-include(ECMAddAppIcon)
-include(ECMInstallIcons)
-include(KDEClangFormat)
-include(KDEGitCommitHooks)
 
 add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x050C00)
 add_definitions(-DKF_DEPRECATED_WARNINGS_SINCE=0x054400)
