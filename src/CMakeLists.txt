@@ -29,7 +29,7 @@ rsiidletime.cpp
 notificator.cpp
 )
 
-QT5_ADD_DBUS_ADAPTOR( rsibreak_sources
+QT_ADD_DBUS_ADAPTOR( rsibreak_sources
 org.rsibreak.rsiwidget.xml
 rsiwidget.h RSIObject
 )
@@ -51,14 +51,14 @@ target_link_libraries(rsibreak_lib
     KF5::TextWidgets
     KF5::XmlGui
     KF5::WindowSystem
-    Qt5::DBus
+    Qt::DBus
 )
 target_link_libraries(rsibreak rsibreak_lib)
 
 # install
 install( TARGETS rsibreak ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install( PROGRAMS org.kde.rsibreak.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
-install( FILES rsibreak.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR}  )
+install( FILES rsibreak.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR}  )
 install( FILES org.rsibreak.rsiwidget.xml DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR} )
 install( FILES rsibreak_autostart.desktop DESTINATION ${KDE_INSTALL_AUTOSTARTDIR} )
 install( FILES org.kde.rsibreak.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR} )

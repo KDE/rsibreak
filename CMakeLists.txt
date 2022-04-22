@@ -2,8 +2,9 @@ cmake_minimum_required (VERSION 3.16.0 FATAL_ERROR)
 
 project( rsibreak )
 
-set(QT_MIN_VERSION "5.12.0")  # Remember to update the QT_DEPRECATED_WARNINGS_SINCE below
-set(KF5_REQUIRED_VERSION "5.68.0") # Remember to update the KF_DEPRECATED_WARNINGS_SINCE below
+set(QT_MIN_VERSION "5.15.0")  # Remember to update the QT_DEPRECATED_WARNINGS_SINCE below
+set(KF5_REQUIRED_VERSION "5.89.0") # Remember to update the KF_DEPRECATED_WARNINGS_SINCE below
+set(KDE_COMPILERSETTINGS_LEVEL "5.82.0")
 
 find_package(ECM ${KF5_REQUIRED_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
@@ -33,8 +34,8 @@ find_package(KF5 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
     WindowSystem
     )
 
-add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x050C00)
-add_definitions(-DKF_DEPRECATED_WARNINGS_SINCE=0x054400)
+add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x050F00)
+add_definitions(-DKF_DEPRECATED_WARNINGS_SINCE=0x055900)
 
 add_subdirectory( icons )
 add_subdirectory( doc )
