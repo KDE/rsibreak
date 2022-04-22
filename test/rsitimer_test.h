@@ -7,7 +7,7 @@
 
 #include <QtTest>
 
-class RSITimerTest: public QObject
+class RSITimerTest : public QObject
 {
     Q_OBJECT
     QVector<int> m_intervals;
@@ -27,4 +27,4 @@ private slots:
     void regularBreaks();
 };
 
-#endif //RSIBREAK_RSITIMER_TEST_H
+#endif // RSIBREAK_RSITIMER_TEST_H

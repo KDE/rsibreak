@@ -13,8 +13,10 @@
 
 static const int MARGIN = 30;
 
-PassivePopup::PassivePopup( QWidget *parent )
-        : KPassivePopup( parent ) {}
+PassivePopup::PassivePopup(QWidget *parent)
+    : KPassivePopup(parent)
+{
+}
 
 void PassivePopup::show()
 {
@@ -22,10 +24,10 @@ void PassivePopup::show()
     const QRect screenRect = QGuiApplication::primaryScreen()->availableGeometry();
     const int posX = screenRect.left() + (screenRect.width() - sizeHint().width()) / 2;
     const int posY = screenRect.bottom() - sizeHint().height() - MARGIN;
-    KPassivePopup::show( QPoint( posX, posY ) );
+    KPassivePopup::show(QPoint(posX, posY));
 }
 
-void PassivePopup::mouseReleaseEvent( QMouseEvent * event )
+void PassivePopup::mouseReleaseEvent(QMouseEvent *event)
 {
     event->accept();
     /* eat this! */

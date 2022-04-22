@@ -9,8 +9,8 @@
 #ifndef RSIWIDGET_H
 #define RSIWIDGET_H
 
-#include "rsitimer.h"
 #include "notificator.h"
+#include "rsitimer.h"
 
 class RSIDock;
 class RSIRelaxPopup;
@@ -24,18 +24,17 @@ class BreakBase;
 class RSIObject : public QObject
 {
     Q_OBJECT
-    Q_CLASSINFO( "D-Bus Interface", "org.rsibreak.rsiwidget" )
+    Q_CLASSINFO("D-Bus Interface", "org.rsibreak.rsiwidget")
 
 public:
-
-    enum Effects {  SimpleGray = 0, Plasma, SlideShow, Popup };
+    enum Effects { SimpleGray = 0, Plasma, SlideShow, Popup };
 
     /**
      * Constructor
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit RSIObject( QWidget *parent = 0 );
+    explicit RSIObject(QWidget *parent = 0);
 
     /**
      * Destructor
@@ -45,7 +44,8 @@ public:
     /**
      * Access to the timer
      */
-    RSITimer* timer() {
+    RSITimer *timer()
+    {
         return m_timer;
     };
 
@@ -54,52 +54,56 @@ private slots:
     void slotLock();
     void minimize();
     void maximize();
-    void setCounters( int );
-    void updateIdleAvg( double );
+    void setCounters(int);
+    void updateIdleAvg(double);
     void readConfig();
     void tinyBreakSkipped();
     void bigBreakSkipped();
 
 protected:
     /** Sets appropriate icon in tooltip and docker. */
-    void setIcon( int );
+    void setIcon(int);
 
 private:
-    void findImagesInFolder( const QString& folder );
+    void findImagesInFolder(const QString &folder);
     void loadImage();
     void configureTimer();
 
-    RSIDock*        m_tray;
-    RSITimer*       m_timer;
-    BreakBase*      m_effect;
+    RSIDock *m_tray;
+    RSITimer *m_timer;
+    BreakBase *m_effect;
 
-    bool            m_useImages;
+    bool m_useImages;
 
-    bool            m_usePlasma;
-    bool            m_usePlasmaRO;
+    bool m_usePlasma;
+    bool m_usePlasmaRO;
 
-    RSIRelaxPopup*  m_relaxpopup;
+    RSIRelaxPopup *m_relaxpopup;
 
-    QString         m_currentIcon;
+    QString m_currentIcon;
 
-    Notificator     m_notificator;
+    Notificator m_notificator;
 
     /* Available through D-Bus */
 public Q_SLOTS:
     void resume();
     void suspend();
-    int idleTime() {
+    int idleTime()
+    {
         return timer()->idleTime();
     }
-    int tinyLeft() {
+    int tinyLeft()
+    {
         return timer()->tinyLeft();
     }
-    int bigLeft() {
+    int bigLeft()
+    {
         return timer()->bigLeft();
     }
-    QString currentIcon() {
+    QString currentIcon()
+    {
         return m_currentIcon;
     }
 };
 
-#   endif
+#endif

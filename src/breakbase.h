@@ -8,8 +8,8 @@
 #ifndef BREAKBASE_H
 #define BREAKBASE_H
 
-#include <QObject>
 #include <QHash>
+#include <QObject>
 #include <QWidget>
 
 class BreakControl;
@@ -21,23 +21,23 @@ class BreakBase : public QObject
     Q_OBJECT
 
 public:
-    explicit BreakBase( QObject* parent );
+    explicit BreakBase(QObject *parent);
     ~BreakBase();
     virtual void activate();
     virtual void deactivate();
-    virtual void setLabel( const QString& );
-    void setReadOnly( bool );
+    virtual void setLabel(const QString &);
+    void setReadOnly(bool);
     bool readOnly() const;
-    void showMinimize( bool );
-    void showLock( bool );
-    void showPostpone( bool );    
-    void disableShortcut( bool disable );
-    void setGrayEffectOnAllScreens( bool on );
-    void setGrayEffectLevel( int level );
-    void excludeGrayEffectOnScreen( QScreen *screen );
+    void showMinimize(bool);
+    void showLock(bool);
+    void showPostpone(bool);
+    void disableShortcut(bool disable);
+    void setGrayEffectOnAllScreens(bool on);
+    void setGrayEffectLevel(int level);
+    void excludeGrayEffectOnScreen(QScreen *screen);
 
 protected:
-    bool eventFilter( QObject *obj, QEvent *event ) override;
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 signals:
     void skip();
@@ -45,8 +45,8 @@ signals:
     void postpone();
 
 private:
-    BreakControl* m_breakControl;
-    GrayEffectOnAllScreens* m_grayEffectOnAllScreens;
+    BreakControl *m_breakControl;
+    GrayEffectOnAllScreens *m_grayEffectOnAllScreens;
     bool m_readOnly;
     bool m_disableShortcut;
     bool m_grayEffectOnAllScreensActivated;
@@ -59,11 +59,11 @@ public:
     ~GrayEffectOnAllScreens();
     void activate();
     void deactivate();
-    void setLevel( int val );
-    void disable( QScreen *screen );
+    void setLevel(int val);
+    void disable(QScreen *screen);
 
 private:
-    QHash<QScreen *,GrayWidget*> m_widgets;
+    QHash<QScreen *, GrayWidget *> m_widgets;
 };
 
 class GrayWidget : public QWidget
@@ -75,11 +75,11 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    explicit GrayWidget( QWidget *parent = 0 );
-    void setLevel( int );
+    explicit GrayWidget(QWidget *parent = 0);
+    void setLevel(int);
 
 protected:
-    bool event( QEvent *event ) override;
+    bool event(QEvent *event) override;
 };
 
 #endif // BREAKBASE_H

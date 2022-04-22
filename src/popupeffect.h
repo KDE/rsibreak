@@ -19,17 +19,17 @@ class PopupEffect : public BreakBase
     Q_OBJECT
 
 public:
-    explicit PopupEffect( QObject* );
+    explicit PopupEffect(QObject *);
     ~PopupEffect();
-    void setLabel( const QString& ) override;
+    void setLabel(const QString &) override;
 
 public slots:
     void activate() override;
     void deactivate() override;
 
 private:
-    PassivePopup* m_popup;
-    QLabel* m_label;
+    PassivePopup *m_popup;
+    QLabel *m_label;
 };
 
 #endif // POPUPEFFECT_H

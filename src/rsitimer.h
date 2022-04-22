@@ -13,8 +13,8 @@
 #include <QVector>
 #include <memory>
 
-#include "rsitimercounter.h"
 #include "rsiidletime.h"
+#include "rsitimercounter.h"
 
 /**
  * @class RSITimer
@@ -33,21 +33,30 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit RSITimer( QObject *parent = 0 );
+    explicit RSITimer(QObject *parent = 0);
 
     // Check whether the timer is suspended.
-    bool isSuspended() const { return m_state == TimerState::Suspended; }
+    bool isSuspended() const
+    {
+        return m_state == TimerState::Suspended;
+    }
 
-    int tinyLeft() const { return m_tinyBreakCounter ? m_tinyBreakCounter->counterLeft() : 0; };
+    int tinyLeft() const
+    {
+        return m_tinyBreakCounter ? m_tinyBreakCounter->counterLeft() : 0;
+    };
 
-    int bigLeft() const { return m_bigBreakCounter->counterLeft(); };
+    int bigLeft() const
+    {
+        return m_bigBreakCounter->counterLeft();
+    };
 
 public slots:
 
     /**
       Reads the configuration and restarts the timer with slotRestart.
     */
-    void updateConfig( bool doRestart = false );
+    void updateConfig(bool doRestart = false);
 
     /**
       Stops the timer activity. This does not imply resetting counters.
@@ -58,7 +67,7 @@ public slots:
       Called when the user suspends RSIBreak from the docker.
       @param suspend If true the timer will suspend, if false the timer will unsuspend.
     */
-    void slotSuspended( bool suspend );
+    void slotSuspended(bool suspend);
 
     /**
       Prepares the timer so that it can start/continue.
@@ -109,20 +118,20 @@ signals:
       @param bigLeft If <=0 a big break is active, else it defines how
       much time is left until the next big break.
     */
-    void updateToolTip( const int tinyLeft, const int bigLeft );
+    void updateToolTip(const int tinyLeft, const int bigLeft);
 
     /**
       Update the time shown on the fullscreen widget.
       @param secondsLeft Shows the user how many seconds are remaining.
     */
-    void updateWidget( int secondsLeft );
+    void updateWidget(int secondsLeft);
 
     /**
       Update the systray icon.
       @param v How much time has passed until a tiny break (relative)
                Varies from 0 to 100.
     */
-    void updateIdleAvg( double v );
+    void updateIdleAvg(double v);
 
     /**
       A request to minimize the fullscreen widget, for example when the
@@ -138,7 +147,7 @@ signals:
       @param nextBreakIsBig True if the break after the next break is a big break.
       We can warn the user in advance.
     */
-    void relax( int sec, bool nextBreakIsBig );
+    void relax(int sec, bool nextBreakIsBig);
 
     /**
       Indicates a tinyBreak is skipped because user was enough idle
@@ -164,10 +173,10 @@ private:
     QVector<int> m_intervals;
 
     enum class TimerState {
-        Suspended = 0,      // user has suspended either via dbus or tray.
-        Monitoring,         // normal cycle, waiting for break to trigger.
-        Suggesting,         // politely suggest to take a break with some patience.
-        Resting             // suggestion ignored, waiting out the break.
+        Suspended = 0, // user has suspended either via dbus or tray.
+        Monitoring, // normal cycle, waiting for break to trigger.
+        Suggesting, // politely suggest to take a break with some patience.
+        Resting // suggestion ignored, waiting out the break.
     } m_state;
 
     std::unique_ptr<RSITimerCounter> m_bigBreakCounter;
@@ -177,8 +186,8 @@ private:
     std::unique_ptr<RSITimerCounter> m_shortInputCounter;
 
     bool suppressionDetector();
-    void hibernationDetector( const int totalIdle );
-    void suggestBreak( const int time );
+    void hibernationDetector(const int totalIdle);
+    void suggestBreak(const int time);
     void defaultUpdateToolTip();
     void createTimers();
 
@@ -193,10 +202,10 @@ private:
       @param breakTime The amount of seconds to break.
       @param nextBreakIsBig Whether the next break will be big.
     */
-    void doBreakNow( const int breakTime, const bool nextBreakIsBig );
+    void doBreakNow(const int breakTime, const bool nextBreakIsBig);
 
     // Constructor for tests.
-    RSITimer( std::unique_ptr<RSIIdleTime> &&_idleTime, const QVector<int> _intervals, const bool _usePopup, const bool _useIdleTimers );
+    RSITimer(std::unique_ptr<RSIIdleTime> &&_idleTime, const QVector<int> _intervals, const bool _usePopup, const bool _useIdleTimers);
 };
 
 #endif

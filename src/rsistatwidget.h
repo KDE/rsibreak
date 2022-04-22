@@ -16,13 +16,14 @@ class RSIStatWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RSIStatWidget( QWidget *parent = 0 );
+    explicit RSIStatWidget(QWidget *parent = 0);
     ~RSIStatWidget();
 
 protected:
-    void addStat( RSIStat stat, QGridLayout *grid, int row );
-    void showEvent( QShowEvent * ) override;
-    void hideEvent( QHideEvent * ) override;
+    void addStat(RSIStat stat, QGridLayout *grid, int row);
+    void showEvent(QShowEvent *) override;
+    void hideEvent(QHideEvent *) override;
+
 private:
     QGridLayout *mGrid;
 };

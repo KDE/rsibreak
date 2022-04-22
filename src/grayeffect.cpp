@@ -6,11 +6,11 @@
 
 #include "grayeffect.h"
 
-GrayEffect::GrayEffect( QObject *parent )
-        : BreakBase( parent )
+GrayEffect::GrayEffect(QObject *parent)
+    : BreakBase(parent)
 {
-    setGrayEffectOnAllScreens( true );
-    setReadOnly( true );
+    setGrayEffectOnAllScreens(true);
+    setReadOnly(true);
 }
 
 GrayEffect::~GrayEffect()
@@ -27,7 +27,7 @@ void GrayEffect::deactivate()
     BreakBase::deactivate();
 }
 
-void GrayEffect::setLevel( int val )
+void GrayEffect::setLevel(int val)
 {
-    setGrayEffectLevel( val );
+    setGrayEffectLevel(val);
 }

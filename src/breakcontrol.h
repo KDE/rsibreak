@@ -19,14 +19,14 @@ class BreakControl : public QWidget
     Q_OBJECT
 
 public:
-    BreakControl( QWidget*, Qt::WindowType );
-    void setText( const QString& );
-    void showMinimize( bool show );
-    void showLock( bool show );
+    BreakControl(QWidget *, Qt::WindowType);
+    void setText(const QString &);
+    void showMinimize(bool show);
+    void showLock(bool show);
     void showPostpone(bool arg1);
 
 protected:
-    void paintEvent( QPaintEvent *event ) override;
+    void paintEvent(QPaintEvent *event) override;
 
 private slots:
     void slotCenterIt();
@@ -38,11 +38,11 @@ signals:
     void postpone();
 
 private:
-    QLabel* m_textLabel;
-    QPushButton* m_skipButton;
-    QPushButton* m_lockButton;
-    QVBoxLayout* m_vbox;
-    QPushButton* m_postponeButton;
+    QLabel *m_textLabel;
+    QPushButton *m_skipButton;
+    QPushButton *m_lockButton;
+    QVBoxLayout *m_vbox;
+    QPushButton *m_postponeButton;
 };
 
 #endif // BREAKCONTROL_H

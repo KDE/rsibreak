@@ -21,7 +21,6 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 */
 
-
 #ifndef RSIDOCK_H
 #define RSIDOCK_H
 
@@ -47,7 +46,7 @@ class RSIDock : public KStatusNotifierItem
     Q_OBJECT
 
 public:
-    explicit RSIDock( QObject *parent );
+    explicit RSIDock(QObject *parent);
 
     /**
      * Destructor
@@ -58,7 +57,7 @@ public:
     void doSuspend();
 
 public slots:
-    void setCounters( int tiny_left, int big_left );
+    void setCounters(int tiny_left, int big_left);
 
 signals:
     /**
@@ -88,8 +87,8 @@ signals:
 
     /**
      * Suspend RSIBreak on user's request.
-    */
-    void suspend( bool );
+     */
+    void suspend(bool);
 
 private slots:
     void slotConfigure();
@@ -99,9 +98,9 @@ private slots:
     void slotResetStats();
 
 private:
-    KHelpMenu*    m_help;
+    KHelpMenu *m_help;
 
-    QAction* m_suspendItem;
+    QAction *m_suspendItem;
     bool m_suspended;
 
     QDialog *m_statsDialog;
@@ -109,4 +108,3 @@ private:
 };
 
 #endif // RSIDOCK_H
-

@@ -18,14 +18,14 @@ class GrayEffect : public BreakBase
     Q_OBJECT
 
 public:
-    explicit GrayEffect( QObject *parent );
+    explicit GrayEffect(QObject *parent);
     ~GrayEffect();
     void activate() override;
     void deactivate() override;
-    void setLevel( int val );
+    void setLevel(int val);
 
 private:
-    QList<GrayWidget*> m_widgets;
+    QList<GrayWidget *> m_widgets;
 };
 
-#   endif
+#endif

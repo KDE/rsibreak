@@ -23,12 +23,11 @@ class SetupNotifications : public QWidget
     Q_OBJECT
 
 public:
-
     /**
      * Constructor
      * @param parent Parent Widget
      */
-    explicit SetupNotifications( QWidget* parent = 0 );
+    explicit SetupNotifications(QWidget *parent = 0);
 
     /**
      * Destructor

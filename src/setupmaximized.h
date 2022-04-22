@@ -24,12 +24,11 @@ class SetupMaximized : public QWidget
     Q_OBJECT
 
 public:
-
     /**
      * Constructor
      * @param parent Parent Widget
      */
-    explicit SetupMaximized( QWidget* parent = 0 );
+    explicit SetupMaximized(QWidget *parent = 0);
 
     /**
      * Destructor
@@ -42,17 +41,17 @@ public:
     void applySettings();
 
 public slots:
-    void slotSetUseIdleTimer( bool useIdleTimer );
+    void slotSetUseIdleTimer(bool useIdleTimer);
 
 private slots:
-    void slotEffectChanged( int current );
+    void slotEffectChanged(int current);
     void slotFolderPicker();
-    void slotFolderEdited( const QString& newPath );
+    void slotFolderEdited(const QString &newPath);
     void slotHideFlash();
 
 private:
     void readSettings();
-    SetupMaximizedPriv  *d;
+    SetupMaximizedPriv *d;
 };
 
 #endif /* SETUPMAXIMIZED_H */

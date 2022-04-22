@@ -25,10 +25,11 @@ class RSIIdleTimeFake : public RSIIdleTime
 {
 private:
     int m_idleTime = 0;
+
 public:
     ~RSIIdleTimeFake() = default;
     int getIdleTime() const override;
-    void setIdleTime( const int _idleTime );
+    void setIdleTime(const int _idleTime);
 };
 
-#endif //RSIBREAK_RSIIDLETIME_H
+#endif // RSIBREAK_RSIIDLETIME_H

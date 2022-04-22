@@ -11,32 +11,33 @@
 #include <QApplication>
 #include <QDebug>
 #include <QDir>
+#include <QLabel>
+#include <QRandomGenerator>
+#include <QScreen>
 #include <QTimer>
 #include <QVBoxLayout>
-#include <QLabel>
-#include <QScreen>
-#include <QRandomGenerator>
 
 #include <KWindowSystem>
 
-
-SlideEffect::SlideEffect( QObject *parent )
-        : BreakBase( parent ), m_searchRecursive( false ), m_showSmallImages( false )
+SlideEffect::SlideEffect(QObject *parent)
+    : BreakBase(parent)
+    , m_searchRecursive(false)
+    , m_showSmallImages(false)
 {
     // Make all other screens gray...
     slotGray();
-    connect( qApp, &QGuiApplication::screenAdded, this, &SlideEffect::slotGray );
-    connect( qApp, &QGuiApplication::screenRemoved, this, &SlideEffect::slotGray );
+    connect(qApp, &QGuiApplication::screenAdded, this, &SlideEffect::slotGray);
+    connect(qApp, &QGuiApplication::screenRemoved, this, &SlideEffect::slotGray);
 
-    m_slidewidget = new SlideWidget( 0 );
-    KWindowSystem::forceActiveWindow( m_slidewidget->winId() );
-    KWindowSystem::setOnAllDesktops( m_slidewidget->winId(), true );
-    KWindowSystem::setState( m_slidewidget->winId(), NET::KeepAbove );
-    KWindowSystem::setState( m_slidewidget->winId(), NET::FullScreen );
+    m_slidewidget = new SlideWidget(0);
+    KWindowSystem::forceActiveWindow(m_slidewidget->winId());
+    KWindowSystem::setOnAllDesktops(m_slidewidget->winId(), true);
+    KWindowSystem::setState(m_slidewidget->winId(), NET::KeepAbove);
+    KWindowSystem::setState(m_slidewidget->winId(), NET::FullScreen);
 
-    setReadOnly( true );
+    setReadOnly(true);
 
-    m_timer_slide = new QTimer( this );
+    m_timer_slide = new QTimer(this);
     connect(m_timer_slide, &QTimer::timeout, this, &SlideEffect::slotNewSlide);
 }
 
@@ -48,8 +49,8 @@ SlideEffect::~SlideEffect()
 void SlideEffect::slotGray()
 {
     // Make all other screens gray...
-    setGrayEffectOnAllScreens( true );
-    excludeGrayEffectOnScreen( QGuiApplication::primaryScreen() );
+    setGrayEffectOnAllScreens(true);
+    excludeGrayEffectOnScreen(QGuiApplication::primaryScreen());
 }
 
 bool SlideEffect::hasImages()
@@ -60,7 +61,7 @@ bool SlideEffect::hasImages()
 void SlideEffect::activate()
 {
     m_slidewidget->show();
-    m_timer_slide->start( m_slideInterval*1000 );
+    m_timer_slide->start(m_slideInterval * 1000);
     BreakBase::activate();
 }
 
@@ -73,7 +74,7 @@ void SlideEffect::deactivate()
 
 void SlideEffect::loadImage()
 {
-    if ( m_files.count() == 0 )
+    if (m_files.count() == 0)
         return;
 
     // Base the size on the size of the screen, for xinerama.
@@ -84,9 +85,9 @@ void SlideEffect::loadImage()
     int min_image_surface = size.width() * size.height() / 3;
     QImage image;
 
-    while ( true ) {
+    while (true) {
         // reset if all images are shown
-        if ( m_files_done.count() == m_files.count() )
+        if (m_files_done.count() == m_files.count())
             m_files_done.clear();
 
         // get a not yet used image
@@ -94,82 +95,88 @@ void SlideEffect::loadImage()
         QString name;
         do {
             j = QRandomGenerator::global()->bounded(m_files.count());
-            name = m_files[ j ];
-        } while ( m_files_done.indexOf( name ) != -1 );
+            name = m_files[j];
+        } while (m_files_done.indexOf(name) != -1);
 
         // load image
-        qDebug() << "Loading:" << name << "(" << j << "/"  << m_files.count() << ") ";
-        image.load( name );
+        qDebug() << "Loading:" << name << "(" << j << "/" << m_files.count() << ") ";
+        image.load(name);
 
         // Check size
-        if ( image.width() * image.height() >= min_image_surface || m_showSmallImages ) {
+        if (image.width() * image.height() >= min_image_surface || m_showSmallImages) {
             // Image is big enough, leave while loop
-            m_files_done.append( name );
+            m_files_done.append(name);
             break;
         } else {
             // Too small, remove from list
-            m_files.removeAll( name );
-            if ( m_files.count() == 0 ) {
+            m_files.removeAll(name);
+            if (m_files.count() == 0) {
                 // Couldn't find any image big enough, leave function
                 return;
             }
         }
     }
 
-    const Qt::AspectRatioMode mode = ( m_expandImageToFullScreen ) ? Qt::KeepAspectRatioByExpanding
-                                                             : Qt::KeepAspectRatio;
-    const QImage m( image.scaled( size.width(), size.height(), mode ) );
+    const Qt::AspectRatioMode mode = (m_expandImageToFullScreen) ? Qt::KeepAspectRatioByExpanding : Qt::KeepAspectRatio;
+    const QImage m(image.scaled(size.width(), size.height(), mode));
 
-    if ( m.isNull() )
+    if (m.isNull())
         return;
 
-    m_slidewidget->setImage( m );
+    m_slidewidget->setImage(m);
 }
 
-
-void SlideEffect::findImagesInFolder( const QString& folder )
+void SlideEffect::findImagesInFolder(const QString &folder)
 {
-    if ( folder.isNull() )
+    if (folder.isNull())
         return;
 
-    QDir dir( folder );
+    QDir dir(folder);
 
-    if ( !dir.exists() || !dir.isReadable() ) {
+    if (!dir.exists() || !dir.isReadable()) {
         qWarning() << "Folder does not exist or is not readable: " << folder;
         return;
     }
 
     // TODO: make an automated filter, maybe with QImageIO.
     QStringList filters;
-    filters << "*.png" << "*.jpg" << "*.jpeg" << "*.tif" << "*.tiff" <<
-    "*.gif" << "*.bmp" << "*.xpm" << "*.ppm" <<  "*.pnm"  << "*.xcf" <<
-    "*.pcx";
+    filters << "*.png"
+            << "*.jpg"
+            << "*.jpeg"
+            << "*.tif"
+            << "*.tiff"
+            << "*.gif"
+            << "*.bmp"
+            << "*.xpm"
+            << "*.ppm"
+            << "*.pnm"
+            << "*.xcf"
+            << "*.pcx";
     QStringList filtersUp;
-    for ( int i = 0; i < filters.size(); ++i )
-        filtersUp << filters.at( i ).toUpper();
-    dir.setNameFilters( filters << filtersUp );
-    dir.setFilter( QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs );
+    for (int i = 0; i < filters.size(); ++i)
+        filtersUp << filters.at(i).toUpper();
+    dir.setNameFilters(filters << filtersUp);
+    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs);
 
     const QFileInfoList list = dir.entryInfoList();
-    for ( int i = 0; i < list.count(); ++i ) {
-        QFileInfo fi = list.at( i );
-        if ( fi.isFile() )
-            m_files.append( fi.filePath() );
-        else if ( fi.isDir() && m_searchRecursive &&
-                  fi.fileName() != "." &&  fi.fileName() != ".." )
-            findImagesInFolder( fi.absoluteFilePath() );
+    for (int i = 0; i < list.count(); ++i) {
+        QFileInfo fi = list.at(i);
+        if (fi.isFile())
+            m_files.append(fi.filePath());
+        else if (fi.isDir() && m_searchRecursive && fi.fileName() != "." && fi.fileName() != "..")
+            findImagesInFolder(fi.absoluteFilePath());
     }
 }
 
 void SlideEffect::slotNewSlide()
 {
-    if ( m_files.count() == 1 )
+    if (m_files.count() == 1)
         return;
 
     loadImage();
 }
 
-void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImages, bool expandImageToFullScreen, int slideInterval )
+void SlideEffect::reset(const QString &path, bool recursive, bool showSmallImages, bool expandImageToFullScreen, int slideInterval)
 {
     m_files.clear();
     m_files_done.clear();
@@ -179,40 +186,41 @@ void SlideEffect::reset( const QString& path, bool recursive, bool showSmallImag
     m_slideInterval = slideInterval;
     m_expandImageToFullScreen = expandImageToFullScreen;
 
-    findImagesInFolder( path );
+    findImagesInFolder(path);
     qDebug() << "Amount of Files:" << m_files.count();
-    QTimer::singleShot( 2000, this, &SlideEffect::slotNewSlide );
+    QTimer::singleShot(2000, this, &SlideEffect::slotNewSlide);
 }
 
 // ------------------ Show widget
 
-
-SlideWidget::SlideWidget( QWidget *parent )
-        : QWidget( parent, Qt::Popup )
+SlideWidget::SlideWidget(QWidget *parent)
+    : QWidget(parent, Qt::Popup)
 {
     slotDimension();
-    connect( qApp, &QGuiApplication::screenAdded, this, &SlideWidget::slotDimension );
-    connect( qApp, &QGuiApplication::screenRemoved, this, &SlideWidget::slotDimension );
+    connect(qApp, &QGuiApplication::screenAdded, this, &SlideWidget::slotDimension);
+    connect(qApp, &QGuiApplication::screenRemoved, this, &SlideWidget::slotDimension);
 
-    QVBoxLayout *boxLayout = new QVBoxLayout( this );
+    QVBoxLayout *boxLayout = new QVBoxLayout(this);
     boxLayout->setSpacing(0);
     boxLayout->setContentsMargins(0, 0, 0, 0);
-    setLayout( boxLayout );
+    setLayout(boxLayout);
     m_imageLabel = new QLabel();
-    m_imageLabel->setMaximumSize( width(), height() );
-    m_imageLabel->setAlignment( Qt::AlignCenter );
+    m_imageLabel->setMaximumSize(width(), height());
+    m_imageLabel->setAlignment(Qt::AlignCenter);
     layout()->addWidget(m_imageLabel);
 }
 
-SlideWidget::~SlideWidget() {}
+SlideWidget::~SlideWidget()
+{
+}
 
 void SlideWidget::slotDimension()
 {
     const QRect rect = QGuiApplication::primaryScreen()->geometry();
-    setGeometry( rect );
+    setGeometry(rect);
 }
 
-void SlideWidget::setImage( const QImage &image )
+void SlideWidget::setImage(const QImage &image)
 {
-    m_imageLabel->setPixmap( QPixmap::fromImage(image) );
+    m_imageLabel->setPixmap(QPixmap::fromImage(image));
 }

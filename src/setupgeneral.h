@@ -14,7 +14,7 @@ class SetupGeneralPriv;
 /**
  * @class SetupGeneral
  * These contain the general settings of RSIBreak
-* @author Tom Albers <toma.org>
+ * @author Tom Albers <toma.org>
  */
 
 class SetupGeneral : public QWidget
@@ -22,12 +22,11 @@ class SetupGeneral : public QWidget
     Q_OBJECT
 
 public:
-
     /**
      * Constructor
      * @param parent Parent Widget
      */
-    explicit SetupGeneral( QWidget* parent = 0 );
+    explicit SetupGeneral(QWidget *parent = 0);
 
     /**
      * Destructor
@@ -42,12 +41,12 @@ public:
     bool useIdleTimer() const;
 
 signals:
-    void useIdleTimerChanged( bool useIdleTimer );
+    void useIdleTimerChanged(bool useIdleTimer);
 
 private:
     void readSettings();
 
-    SetupGeneralPriv    *d;
+    SetupGeneralPriv *d;
 };
 
 #endif /* SETUPGENERAL_H */

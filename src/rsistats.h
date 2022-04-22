@@ -43,7 +43,7 @@ public:
     void reset();
 
     /** Increase the value of statistic @p stat with @p delta (default: 1). */
-    void increaseStat( RSIStat stat, int delta = 1 );
+    void increaseStat(RSIStat stat, int delta = 1);
 
     /**
      * Sets the value of a statistic.
@@ -53,17 +53,17 @@ public:
      * value is lower than the given @p value. Please note that derived stats
      * are updated regardless of the fact if a new value is set.
      */
-    void setStat( RSIStat stat, const QVariant &val, bool ifmax = false );
+    void setStat(RSIStat stat, const QVariant &val, bool ifmax = false);
 
     /**
      * Set the color of a given statistic.
      * @param stat The statistic in question.
      * @param color The color in QColor format.
      */
-    void setColor( RSIStat stat, const QColor &color );
+    void setColor(RSIStat stat, const QColor &color);
 
     /** Returns a description for the given @p stat. */
-    QLabel *getDescription( RSIStat stat ) const;
+    QLabel *getDescription(RSIStat stat) const;
 
     /**
      * Updates all labels to the current value of their corresponding
@@ -72,10 +72,10 @@ public:
     void updateLabels();
 
     /** Gets the value given the @p stat.*/
-    QVariant getStat( RSIStat stat ) const;
+    QVariant getStat(RSIStat stat) const;
 
     /** Gets the value of the statistic @p stat in QLabel format. */
-    QLabel *getLabel( RSIStat stat ) const;
+    QLabel *getLabel(RSIStat stat) const;
 
     /**
       This function prevents RSIStats from calls to updateLabel when
@@ -83,17 +83,17 @@ public:
       @param b If true, it will update the labels as soon as the stats
       update.
     */
-    void doUpdates( bool b );
+    void doUpdates(bool b);
 
 protected:
     /** Update the label of given @p stat to it's corresponding value. */
-    void updateLabel( RSIStat stat );
+    void updateLabel(RSIStat stat);
 
     /**
      * Some statistics are calculated based on values of other statistics.
      * This function updates all statistics with @p stat as dependency.
      */
-    void updateDependentStats( RSIStat stat );
+    void updateDependentStats(RSIStat stat);
 
     /**
      * Updates the given statistic.
@@ -101,12 +101,12 @@ protected:
      * @param updateDerived If true, update the derived statistics when
      * calling this function.
      */
-    void updateStat( RSIStat stat, bool updateDerived = true );
+    void updateStat(RSIStat stat, bool updateDerived = true);
 
     /**
      * Retrieves What's This? text for a given statistic @p stat.
      */
-    QString getWhatsThisText( RSIStat stat ) const;
+    QString getWhatsThisText(RSIStat stat) const;
 
 private:
     static RSIStats *m_instance;

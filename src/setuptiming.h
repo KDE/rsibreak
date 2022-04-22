@@ -23,12 +23,11 @@ class SetupTiming : public QWidget
     Q_OBJECT
 
 public:
-
     /**
      * Constructor
      * @param parent Parent Widget
      */
-    explicit SetupTiming( QWidget* parent = 0 );
+    explicit SetupTiming(QWidget *parent = 0);
 
     /**
      * Destructor
@@ -41,17 +40,17 @@ public:
     void applySettings();
 
 public slots:
-    void slotSetUseIdleTimer( const bool useIdleTimer );
+    void slotSetUseIdleTimer(const bool useIdleTimer);
 
 private slots:
-    void slotTinyValueEnabled( bool enabled );
-    void slotTinyValueChanged( const int tinyIntervalValue );
-    void slotTinyDurationValueChanged( const int tinyDurationValue );
-    void slotBigDurationValueChanged( const int bigDurationValue );
+    void slotTinyValueEnabled(bool enabled);
+    void slotTinyValueChanged(const int tinyIntervalValue);
+    void slotTinyDurationValueChanged(const int tinyDurationValue);
+    void slotBigDurationValueChanged(const int bigDurationValue);
 
 private:
     void readSettings();
-    SetupTimingPriv     *d;
+    SetupTimingPriv *d;
 };
 
 #endif /* SETUPTIMING_H */

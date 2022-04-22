@@ -8,9 +8,9 @@
 #ifndef RSISTATITEM_H
 #define RSISTATITEM_H
 
+#include <QLabel>
 #include <QList>
 #include <QVariant>
-#include <QLabel>
 
 #include "rsiglobals.h"
 
@@ -34,18 +34,20 @@ public:
      * @param init The initial value of this statistic. Default value is an
      * integer zero.
      */
-    explicit RSIStatItem( const QString &description = QString(), const QVariant &init = QVariant( 0 ) );
+    explicit RSIStatItem(const QString &description = QString(), const QVariant &init = QVariant(0));
 
     /** Default destructor. */
     virtual ~RSIStatItem();
 
     /** Retrieve the item's description in QLabel format. */
-    QLabel *getDescription() const {
+    QLabel *getDescription() const
+    {
         return m_description;
     }
 
     /** Retrieve the item's value in QVariant format. */
-    QVariant getValue()      const {
+    QVariant getValue() const
+    {
         return m_value;
     }
 
@@ -55,7 +57,8 @@ public:
      *
      * @see QVariant documentation for supported types of values.
      */
-    void setValue( QVariant v ) {
+    void setValue(QVariant v)
+    {
         m_value = v;
     }
 
@@ -64,12 +67,13 @@ public:
      * be added to this list. When this statistic is updated, it will
      * iterate through the list of derived statistics and update them.
      */
-    void addDerivedItem( RSIStat stat );
+    void addDerivedItem(RSIStat stat);
 
     /**
      * Returns the list of derived statistics.
      */
-    QList<RSIStat> getDerivedItems() const {
+    QList<RSIStat> getDerivedItems() const
+    {
         return m_derived;
     }
 
@@ -79,8 +83,8 @@ public:
      */
     virtual void reset();
 
-    //virtual void setActivity() {};
-    //virtual void setIdle() {};
+    // virtual void setActivity() {};
+    // virtual void setIdle() {};
 
 protected:
     QVariant m_value;
@@ -90,10 +94,8 @@ private:
     QLabel *m_description;
 
     /** Contains a list of RSIStats which depend on *this* item. */
-    QList< RSIStat > m_derived;
+    QList<RSIStat> m_derived;
 };
-
-
 
 /**
  * This is a more extended statistic item.
@@ -117,7 +119,7 @@ public:
      * it keeps track of 24 hours of usage. This value should be never higher than
      * 86400 seconds.
      */
-    explicit RSIStatBitArrayItem( const QString &description = QString(), const QVariant &init = QVariant( 0 ), int size = 86400 );
+    explicit RSIStatBitArrayItem(const QString &description = QString(), const QVariant &init = QVariant(0), int size = 86400);
 
     /**
      * Destructor.

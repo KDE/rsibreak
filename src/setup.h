@@ -30,7 +30,7 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit Setup( QWidget* parent = 0 );
+    explicit Setup(QWidget *parent = 0);
 
     /**
      * Destructor
@@ -38,10 +38,10 @@ public:
     ~Setup();
 
 private:
-    SetupPriv        *d;
+    SetupPriv *d;
 
 private slots:
     void slotOkClicked();
 };
 
-#endif  /* SETUP_H  */
+#endif /* SETUP_H  */

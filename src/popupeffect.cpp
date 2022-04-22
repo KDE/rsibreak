@@ -11,15 +11,15 @@
 
 #include <QLabel>
 
-PopupEffect::PopupEffect( QObject* parent )
-        : BreakBase( parent )
+PopupEffect::PopupEffect(QObject *parent)
+    : BreakBase(parent)
 {
-    m_popup = new PassivePopup( 0 );
+    m_popup = new PassivePopup(0);
 
-    m_label = new QLabel( i18n( "Take a break...." ), m_popup );
+    m_label = new QLabel(i18n("Take a break...."), m_popup);
 
-    m_popup->setView( m_label );
-    m_popup->setTimeout( 0 );
+    m_popup->setView(m_label);
+    m_popup->setTimeout(0);
 }
 
 PopupEffect::~PopupEffect()
@@ -37,10 +37,9 @@ void PopupEffect::deactivate()
     m_popup->hide();
 }
 
-void PopupEffect::setLabel( const QString& text )
+void PopupEffect::setLabel(const QString &text)
 {
     // text is a time string like '2 minutes 42 seconds'
     // or '42 seconds', so no plural here
-    m_label->setText( i18nc( "%1 is a time string like '2 minutes 42 seconds'", "Take a break for %1", text ) );
+    m_label->setText(i18nc("%1 is a time string like '2 minutes 42 seconds'", "Take a break for %1", text));
 }
-

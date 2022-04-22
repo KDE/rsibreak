@@ -7,17 +7,17 @@
 #ifndef PASSIVEPOPUP_H
 #define PASSIVEPOPUP_H
 
-#include <kpassivepopup.h>
 #include <QMouseEvent>
-
+#include <kpassivepopup.h>
 
 class PassivePopup : public KPassivePopup
 {
 public:
-    explicit PassivePopup( QWidget *parent = 0 );
+    explicit PassivePopup(QWidget *parent = 0);
     void show();
+
 protected:
-    void mouseReleaseEvent( QMouseEvent * event ) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
 };
 
 #endif

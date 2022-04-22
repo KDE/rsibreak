@@ -5,8 +5,8 @@
 #ifndef RSIBREAK_NOTIFICATOR_H
 #define RSIBREAK_NOTIFICATOR_H
 
-#include <QObject>
 #include <QDebug>
+#include <QObject>
 
 class Notificator : public QObject
 {
@@ -27,4 +27,4 @@ public slots:
     void onEndShortBreak();
 };
 
-#endif //RSIBREAK_NOTIFICATOR_H
+#endif // RSIBREAK_NOTIFICATOR_H

@@ -16,7 +16,7 @@ class PlasmaEffect : public BreakBase
     Q_OBJECT
 
 public:
-    explicit PlasmaEffect( QObject* );
+    explicit PlasmaEffect(QObject *);
 
 public slots:
     void activate() override;

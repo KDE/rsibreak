@@ -9,8 +9,8 @@
 #ifndef RSIRELAXPOPUP_H
 #define RSIRELAXPOPUP_H
 
-#include <passivepopup.h>
 #include <QLabel>
+#include <passivepopup.h>
 
 class QLabel;
 class QPushButton;
@@ -27,7 +27,7 @@ class RSIRelaxPopup : public QObject
     Q_OBJECT
 public:
     /** Constructor */
-    explicit RSIRelaxPopup( QWidget *parent );
+    explicit RSIRelaxPopup(QWidget *parent);
     /** Destructor */
     ~RSIRelaxPopup();
 
@@ -38,7 +38,7 @@ public slots:
       @param bigBreakNext If true, it shows a warning that the next break will be
       a big break.
     */
-    void relax( int n, bool bigBreakNext );
+    void relax(int n, bool bigBreakNext);
 
     /**
       Reread config
@@ -46,24 +46,24 @@ public slots:
     void slotReadConfig();
 
     /** Hides the skip button **/
-    void setSkipButtonHidden( bool );
+    void setSkipButtonHidden(bool);
 
     /** Hides the lock button **/
-    void setLockButtonHidden( bool );
-    
+    void setLockButtonHidden(bool);
+
     /** Hides the postpone break button **/
-    void setPostponeButtonHidden( bool );
+    void setPostponeButtonHidden(bool);
 
     /** Hides/Shows the popup */
-    void setSuspended( bool suspended );
-    
+    void setSuspended(bool suspended);
+
 signals:
     /** Ask the main widget to lock down the desktop. */
     void lock();
 
     /** Ask the main widget to skip the break. */
     void skip();
-    
+
     /** Ask the main widget to postpone the break. */
     void postpone();
 
@@ -80,14 +80,14 @@ protected slots:
 
 private:
     void readSettings();
-    bool    m_useFlash;
-    bool    m_wasShown;
-    PassivePopup* m_popup;
+    bool m_useFlash;
+    bool m_wasShown;
+    PassivePopup *m_popup;
     QLabel *m_message;
     QProgressBar *m_progress;
     QPushButton *m_lockbutton;
     QPushButton *m_skipbutton;
-    QPushButton* m_postponebutton;
+    QPushButton *m_postponebutton;
 };
 
 #endif /* RSIRELAXPOPUP_H */

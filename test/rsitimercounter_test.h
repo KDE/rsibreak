@@ -7,7 +7,7 @@
 
 #include <QtTest>
 
-class RSITimerCounterTest: public QObject
+class RSITimerCounterTest : public QObject
 {
 private:
     Q_OBJECT
@@ -18,5 +18,4 @@ private slots:
     void mixedCountdown();
 };
 
-
-#endif //RSIBREAK_RSITIMERCOUNTER_TEST_H
+#endif // RSIBREAK_RSITIMERCOUNTER_TEST_H

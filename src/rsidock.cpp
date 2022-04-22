@@ -21,27 +21,27 @@
 */
 
 #include "rsidock.h"
-#include "setup.h"
-#include "rsistatwidget.h"
 #include "rsistats.h"
+#include "rsistatwidget.h"
+#include "setup.h"
 
+#include <QIcon>
 #include <QPointer>
 #include <QTextDocument>
-#include <QIcon>
 
 #include <KAboutData>
-#include <KLocalizedString>
-#include <QMenu>
-#include <KNotifyConfigWidget>
-#include <KHelpMenu>
-#include <KStandardShortcut>
-#include <KMessageBox>
-#include <KWindowSystem>
 #include <KConfigGroup>
+#include <KHelpMenu>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KNotifyConfigWidget>
+#include <KStandardShortcut>
+#include <KWindowSystem>
+#include <QDebug>
 #include <QDialogButtonBox>
+#include <QMenu>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QDebug>
 
 template<typename Func, typename Object>
 static QAction *doAddAction(QMenu *menu, const QString &text, Object *receiver, Func func)
@@ -59,33 +59,35 @@ static QAction *doAddAction(QMenu *menu, const QIcon &icon, const QString &text,
     return action;
 }
 
-RSIDock::RSIDock( QObject *parent )
-        : KStatusNotifierItem( parent ), m_suspended( false )
-        , m_statsDialog( 0 ), m_statsWidget( 0 )
+RSIDock::RSIDock(QObject *parent)
+    : KStatusNotifierItem(parent)
+    , m_suspended(false)
+    , m_statsDialog(0)
+    , m_statsWidget(0)
 {
     setCategory(ApplicationStatus);
     setStatus(Active);
 
     const KAboutData &aboutData = KAboutData::applicationData();
-    setTitle( aboutData.displayName() );
-    setToolTipTitle( aboutData.displayName() );
+    setTitle(aboutData.displayName());
+    setToolTipTitle(aboutData.displayName());
 
-    m_help = new KHelpMenu( 0, aboutData );
+    m_help = new KHelpMenu(0, aboutData);
 
-    QMenu* menu = contextMenu();
-    doAddAction( menu, QIcon::fromTheme( "kde" ), i18n( "About &KDE" ), m_help, &KHelpMenu::aboutKDE );
-    doAddAction( menu, i18n( "&About RSIBreak" ), m_help, &KHelpMenu::aboutApplication );
-    doAddAction( menu, QIcon::fromTheme( "help-contents" ), i18n( "RSIBreak &Handbook" ), m_help, &KHelpMenu::appHelpActivated );
-
-    menu->addSeparator();
-    doAddAction( menu, QIcon::fromTheme( "tools-report-bug" ), i18n( "&Report Bug..." ), m_help, &KHelpMenu::reportBug );
-    doAddAction( menu, i18n( "Switch application &language..." ), m_help, &KHelpMenu::switchApplicationLanguage );
+    QMenu *menu = contextMenu();
+    doAddAction(menu, QIcon::fromTheme("kde"), i18n("About &KDE"), m_help, &KHelpMenu::aboutKDE);
+    doAddAction(menu, i18n("&About RSIBreak"), m_help, &KHelpMenu::aboutApplication);
+    doAddAction(menu, QIcon::fromTheme("help-contents"), i18n("RSIBreak &Handbook"), m_help, &KHelpMenu::appHelpActivated);
 
     menu->addSeparator();
-    m_suspendItem = doAddAction(menu, QIcon::fromTheme( "media-playback-pause" ), i18n( "&Suspend RSIBreak" ), this, &RSIDock::slotToggleSuspend );
-    doAddAction(menu, QIcon::fromTheme( "view-statistics" ), i18n( "&Usage Statistics" ), this, &RSIDock::slotShowStatistics );
-    doAddAction(menu, QIcon::fromTheme( "preferences-desktop-notification" ), i18n( "Configure &Notifications..." ), this, &RSIDock::slotConfigureNotifications );
-    doAddAction(menu, QIcon::fromTheme( "configure" ), i18n( "&Configure RSIBreak..." ), this, &RSIDock::slotConfigure );
+    doAddAction(menu, QIcon::fromTheme("tools-report-bug"), i18n("&Report Bug..."), m_help, &KHelpMenu::reportBug);
+    doAddAction(menu, i18n("Switch application &language..."), m_help, &KHelpMenu::switchApplicationLanguage);
+
+    menu->addSeparator();
+    m_suspendItem = doAddAction(menu, QIcon::fromTheme("media-playback-pause"), i18n("&Suspend RSIBreak"), this, &RSIDock::slotToggleSuspend);
+    doAddAction(menu, QIcon::fromTheme("view-statistics"), i18n("&Usage Statistics"), this, &RSIDock::slotShowStatistics);
+    doAddAction(menu, QIcon::fromTheme("preferences-desktop-notification"), i18n("Configure &Notifications..."), this, &RSIDock::slotConfigureNotifications);
+    doAddAction(menu, QIcon::fromTheme("configure"), i18n("&Configure RSIBreak..."), this, &RSIDock::slotConfigure);
 
     connect(this, &RSIDock::activateRequested, this, &RSIDock::slotShowStatistics);
 }
@@ -100,49 +102,49 @@ RSIDock::~RSIDock()
 
 void RSIDock::doResume()
 {
-    if ( m_suspended )
+    if (m_suspended)
         slotToggleSuspend();
 }
 
 void RSIDock::doSuspend()
 {
-    if ( !m_suspended )
+    if (!m_suspended)
         slotToggleSuspend();
 }
 
 void RSIDock::slotConfigureNotifications()
 {
-    KNotifyConfigWidget::configure( 0 );
+    KNotifyConfigWidget::configure(0);
 }
 
 void RSIDock::slotConfigure()
 {
     // don't think it is needed, because setup is not accessed after the
     // exec call, but better safe than crash.
-    QPointer<Setup> setup = new Setup( 0 );
+    QPointer<Setup> setup = new Setup(0);
     emit dialogEntered();
-    if ( setup->exec() == QDialog::Accepted )
+    if (setup->exec() == QDialog::Accepted)
         emit configChanged();
     delete setup;
 
-    if ( !m_suspended )
+    if (!m_suspended)
         emit dialogLeft();
 }
 
 void RSIDock::slotToggleSuspend()
 {
-    if ( m_suspended ) {
-        emit suspend( false );
+    if (m_suspended) {
+        emit suspend(false);
 
-        setIconByName( "rsibreak0" );
-        m_suspendItem->setIcon( QIcon::fromTheme( "media-playback-pause" ) );
-        m_suspendItem->setText( i18n( "&Suspend RSIBreak" ) );
+        setIconByName("rsibreak0");
+        m_suspendItem->setIcon(QIcon::fromTheme("media-playback-pause"));
+        m_suspendItem->setText(i18n("&Suspend RSIBreak"));
     } else {
-        emit suspend( true );
+        emit suspend(true);
 
-        setIconByName( "rsibreakx" );
-        m_suspendItem->setIcon( QIcon::fromTheme( "media-playback-start" ) );
-        m_suspendItem->setText( i18n( "&Resume RSIBreak" ) );
+        setIconByName("rsibreakx");
+        m_suspendItem->setIcon(QIcon::fromTheme("media-playback-start"));
+        m_suspendItem->setText(i18n("&Resume RSIBreak"));
     }
 
     m_suspended = !m_suspended;
@@ -150,9 +152,9 @@ void RSIDock::slotToggleSuspend()
 
 void RSIDock::slotShowStatistics()
 {
-    if ( !m_statsDialog ) {
-        m_statsDialog = new QDialog( 0 );
-        m_statsDialog->setWindowTitle( i18n( "Usage Statistics" ) );
+    if (!m_statsDialog) {
+        m_statsDialog = new QDialog(0);
+        m_statsDialog->setWindowTitle(i18n("Usage Statistics"));
         QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
         QVBoxLayout *mainLayout = new QVBoxLayout;
         m_statsDialog->setLayout(mainLayout);
@@ -160,23 +162,23 @@ void RSIDock::slotShowStatistics()
         buttonBox->addButton(user1Button, QDialogButtonBox::ActionRole);
         connect(buttonBox, &QDialogButtonBox::accepted, m_statsDialog, &QDialog::accept);
         connect(buttonBox, &QDialogButtonBox::rejected, m_statsDialog, &QDialog::reject);
-        
-        user1Button->setText(i18n( "Reset"  ));
 
-        m_statsWidget = new RSIStatWidget( m_statsDialog );
+        user1Button->setText(i18n("Reset"));
+
+        m_statsWidget = new RSIStatWidget(m_statsDialog);
         connect(user1Button, &QPushButton::clicked, this, &RSIDock::slotResetStats);
 
         mainLayout->addWidget(m_statsWidget);
         mainLayout->addWidget(buttonBox);
     }
 
-    if ( m_statsDialog->isVisible() && KWindowInfo(m_statsDialog->winId(), NET::WMDesktop ).isOnCurrentDesktop() ) {
+    if (m_statsDialog->isVisible() && KWindowInfo(m_statsDialog->winId(), NET::WMDesktop).isOnCurrentDesktop()) {
         m_statsDialog->hide();
     } else {
         m_statsDialog->show();
 
-        if ( !m_statsDialog->isActiveWindow() )
-            KWindowSystem::forceActiveWindow( m_statsDialog->winId() );
+        if (!m_statsDialog->isActiveWindow())
+            KWindowSystem::forceActiveWindow(m_statsDialog->winId());
 
         m_statsDialog->raise();
     }
@@ -184,61 +186,53 @@ void RSIDock::slotShowStatistics()
 
 void RSIDock::slotResetStats()
 {
-    int i = KMessageBox::warningContinueCancel( 0,
-            i18n( "This will reset all statistics to zero. "
-                  "Is that what you want?" ),
-            i18n( "Reset the statistics" ),
-            KGuiItem( i18n( "Reset" ) ),
-            KStandardGuiItem::cancel(),
-            "resetStatistics" );
+    int i = KMessageBox::warningContinueCancel(0,
+                                               i18n("This will reset all statistics to zero. "
+                                                    "Is that what you want?"),
+                                               i18n("Reset the statistics"),
+                                               KGuiItem(i18n("Reset")),
+                                               KStandardGuiItem::cancel(),
+                                               "resetStatistics");
 
-    if ( i == KMessageBox::Continue )
+    if (i == KMessageBox::Continue)
         RSIGlobals::instance()->stats()->reset();
 }
 
-static QString colorizedText( const QString& text, const QColor& color )
+static QString colorizedText(const QString &text, const QColor &color)
 {
-    return QString("<font color='%1'>&#9679;</font> %2")
-        .arg(color.name(), text.toHtmlEscaped());
+    return QString("<font color='%1'>&#9679;</font> %2").arg(color.name(), text.toHtmlEscaped());
 }
 
-void RSIDock::setCounters( int tiny_left, int big_left )
+void RSIDock::setCounters(int tiny_left, int big_left)
 {
-    if ( m_suspended )
-        setToolTipSubTitle( i18n( "Suspended" ) );
+    if (m_suspended)
+        setToolTipSubTitle(i18n("Suspended"));
     else {
         bool tinyBreaks = RSIGlobals::instance()->useTinyBreaks();
 
         QColor tinyColor;
-        if ( tinyBreaks ) {
-            tinyColor = RSIGlobals::instance()->getTinyBreakColor( tiny_left );
-            RSIGlobals::instance()->stats()->setColor( LAST_TINY_BREAK, tinyColor );
+        if (tinyBreaks) {
+            tinyColor = RSIGlobals::instance()->getTinyBreakColor(tiny_left);
+            RSIGlobals::instance()->stats()->setColor(LAST_TINY_BREAK, tinyColor);
         }
 
-        QColor bigColor = RSIGlobals::instance()-> getBigBreakColor( big_left );
-        RSIGlobals::instance()->stats()->setColor( LAST_BIG_BREAK, bigColor );
+        QColor bigColor = RSIGlobals::instance()->getBigBreakColor(big_left);
+        RSIGlobals::instance()->stats()->setColor(LAST_BIG_BREAK, bigColor);
 
         // Only add the line for the tiny break when there is not
         // a big break planned at the same time.
 
         QStringList lines;
-        if ( tinyBreaks && tiny_left != big_left ) {
-            QString formattedText = RSIGlobals::instance()->formatSeconds( tiny_left );
-            if ( !formattedText.isNull() ) {
-                lines << colorizedText(
-                    i18n( "%1 remaining until next short break", formattedText ),
-                    tinyColor
-                    );
+        if (tinyBreaks && tiny_left != big_left) {
+            QString formattedText = RSIGlobals::instance()->formatSeconds(tiny_left);
+            if (!formattedText.isNull()) {
+                lines << colorizedText(i18n("%1 remaining until next short break", formattedText), tinyColor);
             }
         }
 
         // do the same for the big break
-        if ( big_left > 0 )
-            lines << colorizedText(
-                i18n( "%1 remaining until next long break",
-                    RSIGlobals::instance()->formatSeconds( big_left ) ),
-                bigColor
-                );
+        if (big_left > 0)
+            lines << colorizedText(i18n("%1 remaining until next long break", RSIGlobals::instance()->formatSeconds(big_left)), bigColor);
         setToolTipSubTitle(lines.join("<br>"));
     }
 }

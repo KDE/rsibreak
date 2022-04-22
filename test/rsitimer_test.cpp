@@ -9,9 +9,9 @@
 
 static constexpr int RELAX_ENDED_MAGIC_VALUE = -1;
 
-RSITimerTest::RSITimerTest( void )
+RSITimerTest::RSITimerTest(void)
 {
-    m_intervals.resize( INTERVAL_COUNT );
+    m_intervals.resize(INTERVAL_COUNT);
     m_intervals[TINY_BREAK_INTERVAL] = 15 * 60;
     m_intervals[TINY_BREAK_DURATION] = 20;
     m_intervals[TINY_BREAK_THRESHOLD] = 60;
@@ -25,354 +25,353 @@ RSITimerTest::RSITimerTest( void )
 
 void RSITimerTest::triggerSimpleTinyBreak()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
-    QSignalSpy spyEndShortBreak( &timer, SIGNAL(endShortBreak()) );
+    QSignalSpy spyEndShortBreak(&timer, SIGNAL(endShortBreak()));
 
     // Part one, no idleness till small break.
-    QSignalSpy spy1Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy1UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
+    QSignalSpy spy1Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy1UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
 
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
         timer.timeout();
     }
 
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
 
-    QCOMPARE( spy1Relax.count(), 1 );
+    QCOMPARE(spy1Relax.count(), 1);
     QList<QVariant> spy1RelaxSignals = spy1Relax.takeFirst();
-    QCOMPARE( spy1RelaxSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] );
-    QCOMPARE( spy1RelaxSignals.at( 1 ).toBool(), false );
+    QCOMPARE(spy1RelaxSignals.at(0).toInt(), m_intervals[TINY_BREAK_DURATION]);
+    QCOMPARE(spy1RelaxSignals.at(1).toBool(), false);
 
-    QCOMPARE( spy1UpdateIdleAvg.count(), m_intervals[TINY_BREAK_INTERVAL] );
+    QCOMPARE(spy1UpdateIdleAvg.count(), m_intervals[TINY_BREAK_INTERVAL]);
     double lastAvg = 0;
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
         QList<QVariant> spy1UpdateIdleAvgSignals = spy1UpdateIdleAvg.takeFirst();
         bool ok;
-        double newAvg = spy1UpdateIdleAvgSignals.at( 0 ).toDouble( &ok );
-        QVERIFY2( ok && ( newAvg >= lastAvg ) && ( newAvg <= 100.0 ),
-                  QString( "Unexpected newAvg value: %1, lastAvg: %2" ).arg( newAvg ).arg( lastAvg ).toLatin1() );
+        double newAvg = spy1UpdateIdleAvgSignals.at(0).toDouble(&ok);
+        QVERIFY2(ok && (newAvg >= lastAvg) && (newAvg <= 100.0), QString("Unexpected newAvg value: %1, lastAvg: %2").arg(newAvg).arg(lastAvg).toLatin1());
     }
 
     // Part two, obeying and idle as suggested.
-    QSignalSpy spy2Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy2UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
-    QSignalSpy spy2Minimize( &timer, SIGNAL(minimize()) );
+    QSignalSpy spy2Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy2UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
+    QSignalSpy spy2Minimize(&timer, SIGNAL(minimize()));
 
-    for ( int i = 0; i < m_intervals[TINY_BREAK_DURATION]; i++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
-        idle_time_ptr->setIdleTime( ( i + 1 ) * 1000 );
+    for (int i = 0; i < m_intervals[TINY_BREAK_DURATION]; i++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
+        idle_time_ptr->setIdleTime((i + 1) * 1000);
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
-    QCOMPARE( spy2Minimize.count(), 1 );
-    QCOMPARE( spy2Relax.count(), m_intervals[TINY_BREAK_DURATION] );
-    for ( int i = 1; i < m_intervals[TINY_BREAK_DURATION]; i++ ) {
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
+    QCOMPARE(spy2Minimize.count(), 1);
+    QCOMPARE(spy2Relax.count(), m_intervals[TINY_BREAK_DURATION]);
+    for (int i = 1; i < m_intervals[TINY_BREAK_DURATION]; i++) {
         QList<QVariant> spy2RelaxSignals = spy2Relax.takeFirst();
-        QCOMPARE( spy2RelaxSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] - i );
+        QCOMPARE(spy2RelaxSignals.at(0).toInt(), m_intervals[TINY_BREAK_DURATION] - i);
     }
     QList<QVariant> spy2RelaxSignals = spy2Relax.takeFirst(); // The last one is special.
-    QCOMPARE( spy2RelaxSignals.at( 0 ).toInt(), RELAX_ENDED_MAGIC_VALUE );
-    QCOMPARE( spyEndShortBreak.count(), 1 );
+    QCOMPARE(spy2RelaxSignals.at(0).toInt(), RELAX_ENDED_MAGIC_VALUE);
+    QCOMPARE(spyEndShortBreak.count(), 1);
 }
 
 void RSITimerTest::triggerComplexTinyBreak()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
-    int part1 = 10;         // Non-idle
-    int part2 = 40;         // Idle
-    int part3 = m_intervals[TINY_BREAK_INTERVAL] - part1 - part2;   // The rest non-idle.
+    int part1 = 10; // Non-idle
+    int part2 = 40; // Idle
+    int part3 = m_intervals[TINY_BREAK_INTERVAL] - part1 - part2; // The rest non-idle.
 
     // Part 1, no idleness.
-    QSignalSpy spy1Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy1UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < part1; i++ ) {
+    QSignalSpy spy1Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy1UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < part1; i++) {
         timer.timeout();
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
     }
-    QCOMPARE( spy1Relax.count(), 0 );
-    QCOMPARE( spy1UpdateIdleAvg.count(), part1 );
+    QCOMPARE(spy1Relax.count(), 0);
+    QCOMPARE(spy1UpdateIdleAvg.count(), part1);
 
     // Part 2, idle for a while.
-    QSignalSpy spy2Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy2UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
-    for ( int i = 0; i < part2; i++ ) {
-        idle_time_ptr->setIdleTime( ( i + 1 ) * 1000 );
+    QSignalSpy spy2Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy2UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
+    for (int i = 0; i < part2; i++) {
+        idle_time_ptr->setIdleTime((i + 1) * 1000);
         timer.timeout();
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
     }
-    QCOMPARE( spy2Relax.count(), 0 );
-    QCOMPARE( spy2UpdateIdleAvg.count(), part2 );
+    QCOMPARE(spy2Relax.count(), 0);
+    QCOMPARE(spy2UpdateIdleAvg.count(), part2);
 
     // Part 3, non-idle till break.
-    QSignalSpy spy3Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy3UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
-    for ( int i = 0; i < part3; i++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
-        idle_time_ptr->setIdleTime( 0 );
+    QSignalSpy spy3Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy3UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
+    for (int i = 0; i < part3; i++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
+        idle_time_ptr->setIdleTime(0);
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
-    QCOMPARE( spy3Relax.count(), 1 );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
+    QCOMPARE(spy3Relax.count(), 1);
 }
 
 void RSITimerTest::testSuspended()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
     timer.slotStop();
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suspended );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suspended);
 
-    QSignalSpy spy1Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy1UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
+    QSignalSpy spy1Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy1UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
 
     // Not idle for long enough to have a break.
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
         timer.timeout();
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Suspended );
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Suspended);
     }
-    QCOMPARE( spy1Relax.count(), 0 );
-    QCOMPARE( spy1UpdateIdleAvg.count(), 0 );
+    QCOMPARE(spy1Relax.count(), 0);
+    QCOMPARE(spy1UpdateIdleAvg.count(), 0);
 
     timer.slotStart();
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
 }
 
 void RSITimerTest::triggerSimpleBigBreak()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
-    int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / ( m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
+    int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / (m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION]);
     // We don't tick big pause timer during tiny breaks and patience, so it will actually happen later.
     // In time the patience wears out, the tiny break could already accumulate some seconds due to SHORT_INPUT_INTERVAL filter, so substract them.
-    int ticks = m_intervals[BIG_BREAK_INTERVAL] + tinyBreaks * ( m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] - (m_intervals[PATIENCE_INTERVAL] - 1) % m_intervals[SHORT_INPUT_INTERVAL] );
+    int ticks = m_intervals[BIG_BREAK_INTERVAL]
+        + tinyBreaks
+            * (m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] - (m_intervals[PATIENCE_INTERVAL] - 1) % m_intervals[SHORT_INPUT_INTERVAL]);
 
-    QSignalSpy spyEndLongBreak( &timer, SIGNAL(endLongBreak()) );
+    QSignalSpy spyEndLongBreak(&timer, SIGNAL(endLongBreak()));
 
     // Part one, no idleness till big break.
-    QSignalSpy spy1Relax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spy1UpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
+    QSignalSpy spy1Relax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spy1UpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
 
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < ticks; i++ ) {
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < ticks; i++) {
         timer.timeout();
     }
 
     // Number of relax updates during N tiny breaks, plus one for the actual big break.
-    int relaxCountExp = tinyBreaks * ( 2 + m_intervals[PATIENCE_INTERVAL] ) + 1;
-    QCOMPARE( spy1Relax.count(), relaxCountExp );
-    QVERIFY2( spy1UpdateIdleAvg.count() >= m_intervals[BIG_BREAK_INTERVAL], "Failed to update the indicator regularly." );
+    int relaxCountExp = tinyBreaks * (2 + m_intervals[PATIENCE_INTERVAL]) + 1;
+    QCOMPARE(spy1Relax.count(), relaxCountExp);
+    QVERIFY2(spy1UpdateIdleAvg.count() >= m_intervals[BIG_BREAK_INTERVAL], "Failed to update the indicator regularly.");
 
     // Part two, making the big break.
-    QSignalSpy spy2Relax( &timer, SIGNAL(relax(int,bool)) );
-    for ( int i = 0; i < m_intervals[BIG_BREAK_DURATION]; i++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
-        idle_time_ptr->setIdleTime( ( i + 1 ) * 1000 );
+    QSignalSpy spy2Relax(&timer, SIGNAL(relax(int, bool)));
+    for (int i = 0; i < m_intervals[BIG_BREAK_DURATION]; i++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
+        idle_time_ptr->setIdleTime((i + 1) * 1000);
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
-    QCOMPARE( spy2Relax.count(), m_intervals[BIG_BREAK_DURATION] );
-    QCOMPARE( spyEndLongBreak.count(), 1 );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
+    QCOMPARE(spy2Relax.count(), m_intervals[BIG_BREAK_DURATION]);
+    QCOMPARE(spyEndLongBreak.count(), 1);
 }
 
 void RSITimerTest::postponeBreak()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
     // Not idle for long enough to have a break.
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
 
-    QSignalSpy spyRelax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spyMinimize( &timer, SIGNAL(minimize()) );
+    QSignalSpy spyRelax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spyMinimize(&timer, SIGNAL(minimize()));
     timer.postponeBreak();
 
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
 
     QList<QVariant> spyRelaxSignals = spyRelax.takeFirst();
-    QCOMPARE( spyRelaxSignals.at( 0 ).toInt(), RELAX_ENDED_MAGIC_VALUE );
-    QCOMPARE( spyMinimize.count(), 1 );
+    QCOMPARE(spyRelaxSignals.at(0).toInt(), RELAX_ENDED_MAGIC_VALUE);
+    QCOMPARE(spyMinimize.count(), 1);
 
     // Waiting out postpone interval to confirm the break happens.
-    for ( int i = 0; i < m_intervals[POSTPONE_BREAK_INTERVAL]; i++ ) {
+    for (int i = 0; i < m_intervals[POSTPONE_BREAK_INTERVAL]; i++) {
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
 }
 
 void RSITimerTest::screenLock()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
     // Not idle for long enough to have a break.
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
 
-    QSignalSpy spyRelax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spyMinimize( &timer, SIGNAL(minimize()) );
+    QSignalSpy spyRelax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spyMinimize(&timer, SIGNAL(minimize()));
     timer.slotLock();
 
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
 
     QList<QVariant> spyRelaxSignals = spyRelax.takeFirst();
-    QCOMPARE( spyRelaxSignals.at( 0 ).toInt(), RELAX_ENDED_MAGIC_VALUE );
-    QCOMPARE( spyMinimize.count(), 1 );
-    QVERIFY2( timer.m_bigBreakCounter->counterLeft() < m_intervals[BIG_BREAK_INTERVAL],
-              "Big break counter was reset on screen lock when it should have not." );
+    QCOMPARE(spyRelaxSignals.at(0).toInt(), RELAX_ENDED_MAGIC_VALUE);
+    QCOMPARE(spyMinimize.count(), 1);
+    QVERIFY2(timer.m_bigBreakCounter->counterLeft() < m_intervals[BIG_BREAK_INTERVAL], "Big break counter was reset on screen lock when it should have not.");
 }
 
 void RSITimerTest::skipBreak()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, true);
 
     // Not idle for long enough to have a break.
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
 
-    QSignalSpy spyRelax( &timer, SIGNAL(relax(int,bool)) );
-    QSignalSpy spyMinimize( &timer, SIGNAL(minimize()) );
+    QSignalSpy spyRelax(&timer, SIGNAL(relax(int, bool)));
+    QSignalSpy spyMinimize(&timer, SIGNAL(minimize()));
     timer.skipBreak();
 
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
 
     QList<QVariant> spyRelaxSignals = spyRelax.takeFirst();
-    QCOMPARE( spyRelaxSignals.at( 0 ).toInt(), RELAX_ENDED_MAGIC_VALUE );
-    QCOMPARE( spyMinimize.count(), 1 );
-    QVERIFY2( timer.m_bigBreakCounter->counterLeft() < m_intervals[BIG_BREAK_INTERVAL],
-              "Big break counter was reset on skip break when it should have not." );
+    QCOMPARE(spyRelaxSignals.at(0).toInt(), RELAX_ENDED_MAGIC_VALUE);
+    QCOMPARE(spyMinimize.count(), 1);
+    QVERIFY2(timer.m_bigBreakCounter->counterLeft() < m_intervals[BIG_BREAK_INTERVAL], "Big break counter was reset on skip break when it should have not.");
 }
 
 void RSITimerTest::noPopupBreak()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, false, true );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, false, true);
 
-    QSignalSpy spyStartShortBreak( &timer, SIGNAL(startShortBreak()) );
-    QSignalSpy spyEndShortBreak( &timer, SIGNAL(endShortBreak()) );
+    QSignalSpy spyStartShortBreak(&timer, SIGNAL(startShortBreak()));
+    QSignalSpy spyEndShortBreak(&timer, SIGNAL(endShortBreak()));
 
     // Part one, no idleness till small break.
-    QSignalSpy spy1BreakNow( &timer, SIGNAL(breakNow()) );
-    QSignalSpy spy1UpdateWidget( &timer, SIGNAL(updateWidget(int)) );
+    QSignalSpy spy1BreakNow(&timer, SIGNAL(breakNow()));
+    QSignalSpy spy1UpdateWidget(&timer, SIGNAL(updateWidget(int)));
 
-    idle_time_ptr->setIdleTime( 0 );
-    for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    idle_time_ptr->setIdleTime(0);
+    for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; i++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
         timer.timeout();
     }
 
     // Popup is disabled so straight to breaking.
-    QCOMPARE( spyStartShortBreak.count(), 1 );
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Resting );
+    QCOMPARE(spyStartShortBreak.count(), 1);
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Resting);
 
-    QCOMPARE( spy1BreakNow.count(), 1 );
+    QCOMPARE(spy1BreakNow.count(), 1);
     QList<QVariant> spy1UpdateWidgetSignals = spy1UpdateWidget.takeFirst();
-    QCOMPARE( spy1UpdateWidgetSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] );
+    QCOMPARE(spy1UpdateWidgetSignals.at(0).toInt(), m_intervals[TINY_BREAK_DURATION]);
 
     // Part two, waiting out break.
-    QSignalSpy spy2UpdateWidget( &timer, SIGNAL(updateWidget(int)) );
-    QSignalSpy spy2Minimize( &timer, SIGNAL(minimize()) );
+    QSignalSpy spy2UpdateWidget(&timer, SIGNAL(updateWidget(int)));
+    QSignalSpy spy2Minimize(&timer, SIGNAL(minimize()));
 
-    for ( int i = 0; i < m_intervals[TINY_BREAK_DURATION]; i++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Resting );
-        idle_time_ptr->setIdleTime( ( i + 1 ) * 1000 );
+    for (int i = 0; i < m_intervals[TINY_BREAK_DURATION]; i++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Resting);
+        idle_time_ptr->setIdleTime((i + 1) * 1000);
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
-    QCOMPARE( spy2Minimize.count(), 1 );
-    QCOMPARE( spy2UpdateWidget.count(), m_intervals[TINY_BREAK_DURATION] - 1 );
-    for ( int i = 1; i < m_intervals[TINY_BREAK_DURATION]; i++ ) {
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
+    QCOMPARE(spy2Minimize.count(), 1);
+    QCOMPARE(spy2UpdateWidget.count(), m_intervals[TINY_BREAK_DURATION] - 1);
+    for (int i = 1; i < m_intervals[TINY_BREAK_DURATION]; i++) {
         QList<QVariant> spy2UpdateWidgetSignals = spy2UpdateWidget.takeFirst();
-        QCOMPARE( spy2UpdateWidgetSignals.at( 0 ).toInt(), m_intervals[TINY_BREAK_DURATION] - i );
+        QCOMPARE(spy2UpdateWidgetSignals.at(0).toInt(), m_intervals[TINY_BREAK_DURATION] - i);
     }
-    QCOMPARE( spyEndShortBreak.count(), 1 );
+    QCOMPARE(spyEndShortBreak.count(), 1);
 }
 
 void RSITimerTest::regularBreaks()
 {
-    std::unique_ptr<RSIIdleTimeFake> idle_time( new RSIIdleTimeFake() );
-    RSIIdleTimeFake* idle_time_ptr = idle_time.get();
-    RSITimer timer( std::move( idle_time ), m_intervals, true, false );
+    std::unique_ptr<RSIIdleTimeFake> idle_time(new RSIIdleTimeFake());
+    RSIIdleTimeFake *idle_time_ptr = idle_time.get();
+    RSITimer timer(std::move(idle_time), m_intervals, true, false);
 
-    QSignalSpy spyEndShortBreak( &timer, SIGNAL(endShortBreak()) );
-    QSignalSpy spyEndLongBreak( &timer, SIGNAL(endLongBreak()) );
+    QSignalSpy spyEndShortBreak(&timer, SIGNAL(endShortBreak()));
+    QSignalSpy spyEndLongBreak(&timer, SIGNAL(endLongBreak()));
 
-    int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / ( m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION] );
+    int tinyBreaks = m_intervals[BIG_BREAK_INTERVAL] / (m_intervals[TINY_BREAK_INTERVAL] + m_intervals[PATIENCE_INTERVAL] + m_intervals[TINY_BREAK_DURATION]);
     int tick = 0;
 
-    for ( int j = 0; j < tinyBreaks; j++ ) {
+    for (int j = 0; j < tinyBreaks; j++) {
         // Tiny break, mix of activity and idleness till small break.
-        QSignalSpy spyRelax( &timer, SIGNAL(relax(int,bool)) );
-        QSignalSpy spyUpdateIdleAvg( &timer, SIGNAL(updateIdleAvg(double)) );
+        QSignalSpy spyRelax(&timer, SIGNAL(relax(int, bool)));
+        QSignalSpy spyUpdateIdleAvg(&timer, SIGNAL(updateIdleAvg(double)));
 
-        for ( int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; ++i, ++tick ) {
-            QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
-            if ( i % 2 == 0 ) {
-                idle_time_ptr->setIdleTime( 0 );
+        for (int i = 0; i < m_intervals[TINY_BREAK_INTERVAL]; ++i, ++tick) {
+            QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
+            if (i % 2 == 0) {
+                idle_time_ptr->setIdleTime(0);
             } else {
-                idle_time_ptr->setIdleTime( 1000 );
+                idle_time_ptr->setIdleTime(1000);
             }
             timer.timeout();
         }
 
-        for ( int i = 0; i < m_intervals[TINY_BREAK_DURATION]; ++i, ++tick ) {
+        for (int i = 0; i < m_intervals[TINY_BREAK_DURATION]; ++i, ++tick) {
             // No activity during break -- obeying.
-            QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
-            idle_time_ptr->setIdleTime( ( i + 1 ) * 1000 );
+            QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
+            idle_time_ptr->setIdleTime((i + 1) * 1000);
             timer.timeout();
         }
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
     }
 
     // Expected ticks till big break, accounting for pauses.
     int ticks = m_intervals[BIG_BREAK_INTERVAL] + tinyBreaks * m_intervals[TINY_BREAK_DURATION];
-    for ( int j = tick; j < ticks; j++ ) {
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
-        if ( j % 2 == 0 ) {
-            idle_time_ptr->setIdleTime( 0 );
+    for (int j = tick; j < ticks; j++) {
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
+        if (j % 2 == 0) {
+            idle_time_ptr->setIdleTime(0);
         } else {
-            idle_time_ptr->setIdleTime( 1000 );
+            idle_time_ptr->setIdleTime(1000);
         }
         timer.timeout();
     }
-    for ( int i = 0; i < m_intervals[BIG_BREAK_DURATION]; i++ ) {
+    for (int i = 0; i < m_intervals[BIG_BREAK_DURATION]; i++) {
         // No activity during break -- obeying.
-        QCOMPARE( timer.m_state, RSITimer::TimerState::Suggesting );
-        idle_time_ptr->setIdleTime( ( i + 1 ) * 1000 );
+        QCOMPARE(timer.m_state, RSITimer::TimerState::Suggesting);
+        idle_time_ptr->setIdleTime((i + 1) * 1000);
         timer.timeout();
     }
-    QCOMPARE( timer.m_state, RSITimer::TimerState::Monitoring );
+    QCOMPARE(timer.m_state, RSITimer::TimerState::Monitoring);
 
-    QCOMPARE( spyEndShortBreak.count(), tinyBreaks );
-    QCOMPARE( spyEndLongBreak.count(), 1 );
+    QCOMPARE(spyEndShortBreak.count(), tinyBreaks);
+    QCOMPARE(spyEndLongBreak.count(), 1);
 }
 
 #include "rsitimer_test.moc"

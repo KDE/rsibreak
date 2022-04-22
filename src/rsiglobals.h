@@ -8,9 +8,9 @@
 #define RSIGLOBALS_H
 
 #include <QBitArray>
-#include <qmap.h>
 #include <QObject>
 #include <QStringList>
+#include <qmap.h>
 
 #include <kformat.h>
 #include <kpassivepopup.h>
@@ -64,7 +64,7 @@ class RSIGlobals : public QObject
     Q_OBJECT
 public:
     /** Default constructor. */
-    explicit RSIGlobals( QObject *parent = 0 );
+    explicit RSIGlobals(QObject *parent = 0);
 
     /** Default destructor. */
     ~RSIGlobals();
@@ -81,7 +81,8 @@ public:
      *
      * @see RSIStats
      */
-    static RSIStats *stats() {
+    static RSIStats *stats()
+    {
         return m_stats;
     }
 
@@ -90,21 +91,23 @@ public:
      * @param seconds the amount of seconds
      * @returns a formatted string.
      */
-    QString formatSeconds( const int seconds );
+    QString formatSeconds(const int seconds);
 
     /**
      * Returns a reference to the mapping containing all intervals.
      * These intervals define when a tiny or big break should occur and for how
      * long.
      */
-    const QVector<int> &intervals() const {
+    const QVector<int> &intervals() const
+    {
         return m_intervals;
     }
 
     /**
      * Returns true if tiny breaks are to be made at all.
      */
-    bool useTinyBreaks() const {
+    bool useTinyBreaks() const
+    {
         return m_intervals[TINY_BREAK_INTERVAL] != 0;
     }
 
@@ -112,13 +115,13 @@ public:
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */
-    QColor getTinyBreakColor( int secsToBreak ) const;
+    QColor getTinyBreakColor(int secsToBreak) const;
 
     /**
      * This function returns a color ranging from green to red.
      * The more red, the more the user needs a tiny break.
      */
-    QColor getBigBreakColor( int secsToBreak ) const;
+    QColor getBigBreakColor(int secsToBreak) const;
 
     /**
      * Returns the array which keeps track per second for 24 hours when the
@@ -128,7 +131,8 @@ public:
      *
      * @see RSIStatBitArrayItem
      */
-    QBitArray *usageArray() {
+    QBitArray *usageArray()
+    {
         return &m_usageArray;
     }
 
@@ -144,7 +148,7 @@ public:
      *              the ones at the end of a break.
      * @param big   true for big breaks, false for short ones.
      */
-    void NotifyBreak( bool start, bool big );
+    void NotifyBreak(bool start, bool big);
 
 public slots:
     /**

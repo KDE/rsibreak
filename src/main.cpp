@@ -4,53 +4,50 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <kmessagebox.h>
-#include <kstartupinfo.h>
+#include <KConfigGroup>
+#include <KCrash>
+#include <KDBusService>
 #include <KLocalizedString>
-#include <kaboutdata.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <KSharedConfig>
+#include <Kdelibs4ConfigMigrator>
 #include <QApplication>
 #include <QCommandLineParser>
-#include <QSessionManager>
-#include <KDBusService>
-#include <KConfigGroup>
-#include <KSharedConfig>
 #include <QDebug>
-#include <KCrash>
-#include <Kdelibs4ConfigMigrator>
+#include <QSessionManager>
+#include <kaboutdata.h>
+#include <kmessagebox.h>
+#include <kstartupinfo.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "rsiwidget.h"
 
-int main( int argc, char *argv[] )
+int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute( Qt::AA_UseHighDpiPixmaps, true );
-    QCoreApplication::setAttribute( Qt::AA_EnableHighDpiScaling, true );
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     QApplication app(argc, argv);
-    app.setQuitOnLastWindowClosed( false );
-    
+    app.setQuitOnLastWindowClosed(false);
+
     Kdelibs4ConfigMigrator migrate(QLatin1String("rsibreak"));
     migrate.setConfigFiles(QStringList() << QLatin1String("rsibreakrc") << QLatin1String("rsibreak.notifyrc"));
     migrate.migrate();
 
     KLocalizedString::setApplicationDomain("rsibreak");
 
-    KAboutData aboutData( "rsibreak",
-                          i18n( "RSIBreak" ),
-                          "0.12.14",
-                          i18n( "Try to prevent Repetitive Strain Injury by "
-                                 "reminding a user to rest." ),
-                          KAboutLicense::GPL,
-                          i18n( "(c) 2005-2015, The RSIBreak developers" ) );
+    KAboutData aboutData("rsibreak",
+                         i18n("RSIBreak"),
+                         "0.12.14",
+                         i18n("Try to prevent Repetitive Strain Injury by "
+                              "reminding a user to rest."),
+                         KAboutLicense::GPL,
+                         i18n("(c) 2005-2015, The RSIBreak developers"));
 
-    aboutData.addAuthor( i18n( "Albert Astals Cid" ), i18n( "Maintainer" ),
-                         "aacid@kde.org" );
+    aboutData.addAuthor(i18n("Albert Astals Cid"), i18n("Maintainer"), "aacid@kde.org");
 
-    aboutData.addAuthor( i18n( "Tom Albers" ), i18n( "Former author" ),
-                         "toma@kde.org", "http://www.omat.nl" );
+    aboutData.addAuthor(i18n("Tom Albers"), i18n("Former author"), "toma@kde.org", "http://www.omat.nl");
 
-    aboutData.addAuthor( i18n( "Bram Schoenmakers" ), i18n( "Former author" ),
-                         "bramschoenmakers@kde.nl" );
+    aboutData.addAuthor(i18n("Bram Schoenmakers"), i18n("Former author"), "bramschoenmakers@kde.nl");
 
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
 
@@ -70,8 +67,8 @@ int main( int argc, char *argv[] )
     QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
 
     if (parser.isSet("autostart")) {
-        KConfigGroup config = KSharedConfig::openConfig()->group( "General" );
-        const bool autostart = config.readEntry( "AutoStart", false );
+        KConfigGroup config = KSharedConfig::openConfig()->group("General");
+        const bool autostart = config.readEntry("AutoStart", false);
         if (!autostart)
             return 0;
     }
