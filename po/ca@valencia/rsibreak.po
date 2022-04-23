@@ -339,7 +339,7 @@ msgstr "Últim descans llarg"
 #: src/rsistats.cpp:92
 #, kde-format
 msgid "Pause score"
-msgstr "Valoració de pauses"
+msgstr "Puntuació de pauses"
 
 #: src/rsistats.cpp:343
 #, kde-format
@@ -620,9 +620,9 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Amb esta opció indiqueu que voleu usar la detecció d'inactivitat. Açò vol "
-"dir que només es comptarà el temps en què esteu actiu (quan useu el teclat o "
-"el ratolí) per a calcular la propera pausa."
+"Amb esta opció indiqueu que voleu utilitzar la detecció d'inactivitat. Açò "
+"vol dir que només es comptarà el temps en què esteu actiu (quan useu el "
+"teclat o el ratolí) per a calcular la propera pausa."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
