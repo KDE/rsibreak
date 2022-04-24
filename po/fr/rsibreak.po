@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-03-20 00:59+0000\n"
+"POT-Creation-Date: 2022-04-24 00:47+0000\n"
 "PO-Revision-Date: 2022-03-21 12:22+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -73,59 +73,59 @@ msgstr "Albert Astals Cid"
 msgid "Maintainer"
 msgstr "Mainteneur"
 
-#: src/main.cpp:49
+#: src/main.cpp:48
 #, kde-format
 msgid "Tom Albers"
 msgstr "Tom Albers"
 
-#: src/main.cpp:49 src/main.cpp:52
+#: src/main.cpp:48 src/main.cpp:50
 #, kde-format
 msgid "Former author"
 msgstr "Auteur original"
 
-#: src/main.cpp:52
+#: src/main.cpp:50
 #, kde-format
 msgid "Bram Schoenmakers"
 msgstr "Bram Schoenmakers"
 
-#: src/main.cpp:55
+#: src/main.cpp:52
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Simon Castellan, Nicolas Ternisien"
 
-#: src/main.cpp:55
+#: src/main.cpp:52
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "asmanur@gmail.com, nicolas.ternisien@gmail.com"
 
-#: src/notificator.cpp:14
+#: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
 msgstr "Le minuteur de la pause courte a été réinitialisé"
 
-#: src/notificator.cpp:23
+#: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
 msgstr "Les minuteurs ont été réinitialisés"
 
-#: src/notificator.cpp:29
+#: src/notificator.cpp:22
 #, kde-format
 msgid "Start of a long break"
 msgstr "Début d'une longue pause"
 
-#: src/notificator.cpp:34
+#: src/notificator.cpp:27
 #, kde-format
 msgid "End of a long break"
 msgstr "Fin d'une longue pause"
 
-#: src/notificator.cpp:39
+#: src/notificator.cpp:32
 #, kde-format
 msgid "Start of a short break"
 msgstr "Début d'une courte pause"
 
-#: src/notificator.cpp:44
+#: src/notificator.cpp:37
 #, kde-format
 msgid "End of a short break"
 msgstr "Fin d'une courte pause"
@@ -141,79 +141,79 @@ msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
 msgstr "Prenez une pause pour %1 secondes"
 
-#: src/rsidock.cpp:76
+#: src/rsidock.cpp:78
 #, kde-format
 msgid "About &KDE"
 msgstr "À propos de &KDE"
 
-#: src/rsidock.cpp:77
+#: src/rsidock.cpp:79
 #, kde-format
 msgid "&About RSIBreak"
 msgstr "&À propos de RSIBreak"
 
-#: src/rsidock.cpp:78
+#: src/rsidock.cpp:80
 #, kde-format
 msgid "RSIBreak &Handbook"
 msgstr "&Manuel de RSIBreak"
 
-#: src/rsidock.cpp:81
+#: src/rsidock.cpp:83
 #, kde-format
 msgid "&Report Bug..."
 msgstr "&Rapport un bogue..."
 
-#: src/rsidock.cpp:82
+#: src/rsidock.cpp:84
 #, kde-format
 msgid "Switch application &language..."
 msgstr "Changer la &langue de l'application..."
 
-#: src/rsidock.cpp:85 src/rsidock.cpp:139
+#: src/rsidock.cpp:87 src/rsidock.cpp:141
 #, kde-format
 msgid "&Suspend RSIBreak"
 msgstr "&Suspendre RSIBreak"
 
-#: src/rsidock.cpp:86
+#: src/rsidock.cpp:88
 #, kde-format
 msgid "&Usage Statistics"
 msgstr "Statistiques d'&utilisation"
 
-#: src/rsidock.cpp:87
+#: src/rsidock.cpp:89
 #, kde-format
 msgid "Configure &Notifications..."
 msgstr "Configurer les &notifications..."
 
-#: src/rsidock.cpp:88
+#: src/rsidock.cpp:90
 #, kde-format
 msgid "&Configure RSIBreak..."
 msgstr "&Configurer RSIBreak..."
 
-#: src/rsidock.cpp:145
+#: src/rsidock.cpp:147
 #, kde-format
 msgid "&Resume RSIBreak"
 msgstr "&Reprendre RSIBreak"
 
-#: src/rsidock.cpp:155
+#: src/rsidock.cpp:157
 #, kde-format
 msgid "Usage Statistics"
 msgstr "Statistiques d'utilisation"
 
-#: src/rsidock.cpp:164 src/rsidock.cpp:191
+#: src/rsidock.cpp:166 src/rsidock.cpp:193
 #, kde-format
 msgid "Reset"
 msgstr "Réinitialiser"
 
-#: src/rsidock.cpp:188
+#: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
 msgstr ""
 "Cette action va réinitialiser toutes les statistiques. Voulez-vous vraiment "
 "effectuer cela ?"
 
-#: src/rsidock.cpp:190
+#: src/rsidock.cpp:192
 #, kde-format
 msgid "Reset the statistics"
 msgstr "Réinitialise les statistiques"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
+#: src/rsidock.cpp:209 src/rsiwidget.cpp:114
 #, kde-format
 msgid "Suspended"
 msgstr "Suspendu"
@@ -223,7 +223,7 @@ msgstr "Suspendu"
 msgid "%1 remaining until next short break"
 msgstr "%1 restant avant la prochaine pause courte"
 
-#: src/rsidock.cpp:238
+#: src/rsidock.cpp:235
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 restant avant la prochaine pause longue"
@@ -243,135 +243,135 @@ msgstr "Reporter cette pause"
 msgid "Lock the session"
 msgstr "Verrouiller la session"
 
-#: src/rsirelaxpopup.cpp:92
+#: src/rsirelaxpopup.cpp:94
 #, kde-format
 msgid "Please relax for %1"
 msgstr "Détendez-vous pour %1"
 
-#: src/rsirelaxpopup.cpp:96
+#: src/rsirelaxpopup.cpp:97
 #, kde-format
 msgid "Note: next break is a big break"
 msgstr "Remarque : le prochain arrêt est une grande pause"
 
-#: src/rsistats.cpp:19
+#: src/rsistats.cpp:18
 #, kde-format
 msgid "Total recorded time"
 msgstr "Temps total enregistré"
 
-#: src/rsistats.cpp:23
+#: src/rsistats.cpp:21
 #, kde-format
 msgid "Total time of activity"
 msgstr "Temps total d'activité"
 
-#: src/rsistats.cpp:30
+#: src/rsistats.cpp:27
 #, kde-format
 msgid "Total time being idle"
 msgstr "Temps total d'inactivité"
 
-#: src/rsistats.cpp:36
+#: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
 msgstr "Pourcentage d'activité"
 
-#: src/rsistats.cpp:39
+#: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
 msgstr "Pourcentage d'activité pendant la dernière minute"
 
-#: src/rsistats.cpp:42
+#: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
 msgstr "Pourcentage d'activité pendant la dernière heure"
 
-#: src/rsistats.cpp:45
+#: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
 msgstr "Pourcentage d'activité pendant les 6 dernières heures"
 
-#: src/rsistats.cpp:49
+#: src/rsistats.cpp:38
 #, kde-format
 msgid "Maximum idle period"
 msgstr "Période maximum d'inactivité"
 
-#: src/rsistats.cpp:53
+#: src/rsistats.cpp:41
 #, kde-format
 msgid "Current idle period"
 msgstr "Période actuelle d'inactivité"
 
-#: src/rsistats.cpp:56
+#: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
 msgstr "Nombre de pauses courtes ignorées (inactivité)"
 
-#: src/rsistats.cpp:59
+#: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
 msgstr "Nombre de longues pauses ignorées (inactivité)"
 
-#: src/rsistats.cpp:62
+#: src/rsistats.cpp:47
 #, kde-format
 msgid "Total number of short breaks"
 msgstr "Nombre total de pauses courtes"
 
-#: src/rsistats.cpp:67
+#: src/rsistats.cpp:51
 #, kde-format
 msgid "Number of skipped short breaks (user)"
 msgstr "Nombre de pauses courtes ignorées (utilisateur)"
 
-#: src/rsistats.cpp:71
+#: src/rsistats.cpp:54
 #, kde-format
 msgid "Number of postponed short breaks (user)"
 msgstr "Nombre de pauses courtes reportées (utilisateur)"
 
-#: src/rsistats.cpp:75
+#: src/rsistats.cpp:57
 #, kde-format
 msgid "Last short break"
 msgstr "Dernière pause courte"
 
-#: src/rsistats.cpp:78
+#: src/rsistats.cpp:59
 #, kde-format
 msgid "Total number of long breaks"
 msgstr "Nombre total de pauses longues"
 
-#: src/rsistats.cpp:83
+#: src/rsistats.cpp:63
 #, kde-format
 msgid "Number of skipped long breaks (user)"
 msgstr "Nombre de pauses longues ignorées (utilisateur)"
 
-#: src/rsistats.cpp:87
+#: src/rsistats.cpp:66
 #, kde-format
 msgid "Number of postponed long breaks (user)"
 msgstr "Nombre de pauses longues reportées (utilisateur)"
 
-#: src/rsistats.cpp:90
+#: src/rsistats.cpp:68
 #, kde-format
 msgid "Last long break"
 msgstr "Dernière pause longue"
 
-#: src/rsistats.cpp:92
+#: src/rsistats.cpp:70
 #, kde-format
 msgid "Pause score"
 msgstr "Score de pause"
 
-#: src/rsistats.cpp:343
+#: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
 msgstr "Voici le temps total d'exécution de RSIBreak."
 
-#: src/rsistats.cpp:345
+#: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
 msgstr ""
 "Voici le temps total pendant lequel vous avez utilisé la souris ou le "
 "clavier."
 
-#: src/rsistats.cpp:348
+#: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
 msgstr ""
 "Voici le temps total pendant lequel vous n'avez utilisé ni souris ni clavier."
 
-#: src/rsistats.cpp:351
+#: src/rsistats.cpp:320
 #, kde-format
 msgid ""
 "This is a percentage of activity, based on the periods of activity vs. the "
@@ -384,7 +384,7 @@ msgstr ""
 "de votre activité. Lorsque cette couleur tend vers le rouge, il est "
 "recommandé de ralentir votre rythme de travail."
 
-#: src/rsistats.cpp:356
+#: src/rsistats.cpp:326
 #, kde-format
 msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
@@ -393,12 +393,12 @@ msgstr ""
 "Voici la plus longue période d'inactivité mesurée lorsque RSIBreak était "
 "démarré."
 
-#: src/rsistats.cpp:359
+#: src/rsistats.cpp:329
 #, kde-format
 msgid "This is the total number of short breaks"
 msgstr "Voici le nombre total de pauses courtes"
 
-#: src/rsistats.cpp:361
+#: src/rsistats.cpp:332
 #, kde-format
 msgid ""
 "This is the time of the last finished short break. The color of this text "
@@ -409,17 +409,17 @@ msgstr ""
 "passe graduellement du vert au rouge, indiquant quand vous attendre à la "
 "prochaine petite pause."
 
-#: src/rsistats.cpp:365
+#: src/rsistats.cpp:337
 #, kde-format
 msgid "This is the total number of short breaks which you skipped."
 msgstr "Voici le nombre total de pauses courtes que vous avez ignorées."
 
-#: src/rsistats.cpp:368
+#: src/rsistats.cpp:341
 #, kde-format
 msgid "This is the total number of short breaks which you postponed."
 msgstr "Voici le nombre total de pauses courtes que vous avez reportées."
 
-#: src/rsistats.cpp:371
+#: src/rsistats.cpp:345
 #, kde-format
 msgid ""
 "This is the total number of short breaks which were skipped because you were "
@@ -428,12 +428,12 @@ msgstr ""
 "Voici le nombre total de pauses courtes que vous avez passées car vous étiez "
 "inactif."
 
-#: src/rsistats.cpp:374
+#: src/rsistats.cpp:348
 #, kde-format
 msgid "This is the total number of long breaks."
 msgstr "Voici le nombre total de pauses longues."
 
-#: src/rsistats.cpp:376
+#: src/rsistats.cpp:351
 #, kde-format
 msgid ""
 "This is the time of the last finished long break.The color of this text "
@@ -444,17 +444,17 @@ msgstr ""
 "passe graduellement du vert au rouge, indiquant quand vous attendre à la "
 "prochaine longue pause."
 
-#: src/rsistats.cpp:380
+#: src/rsistats.cpp:356
 #, kde-format
 msgid "This is the total number of long breaks which you skipped."
 msgstr "Voici le nombre total de longues pauses que vous avez ignorées"
 
-#: src/rsistats.cpp:383
+#: src/rsistats.cpp:360
 #, kde-format
 msgid "This is the total number of long breaks which you postponed."
 msgstr "Voici le nombre total de longues pauses que vous avez reportées."
 
-#: src/rsistats.cpp:386
+#: src/rsistats.cpp:364
 #, kde-format
 msgid ""
 "This is the total number of long breaks which were skipped because you were "
@@ -463,7 +463,7 @@ msgstr ""
 "Voici le nombre total de pauses longues que vous avez passées car vous étiez "
 "inactif."
 
-#: src/rsistats.cpp:389
+#: src/rsistats.cpp:368
 #, kde-format
 msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
@@ -472,12 +472,12 @@ msgstr ""
 "Voici une indication de votre respect des pauses. Cette valeur baissera à "
 "chaque fois que vous ignorez une pause."
 
-#: src/rsistats.cpp:392
+#: src/rsistats.cpp:371
 #, kde-format
 msgid "This is the current idle time."
 msgstr "Voici le temps actuel d'inactivité."
 
-#: src/rsistats.cpp:394
+#: src/rsistats.cpp:374
 #, kde-format
 msgid ""
 "This is a percentage of activity during the last minute. The color indicates "
@@ -488,7 +488,7 @@ msgstr ""
 "indique le niveau de votre activité. Lorsque cette couleur tend vers le "
 "rouge, il est recommandé de ralentir votre rythme de travail."
 
-#: src/rsistats.cpp:398
+#: src/rsistats.cpp:379
 #, kde-format
 msgid ""
 "This is a percentage of activity during the last hour. The color indicates "
@@ -499,7 +499,7 @@ msgstr ""
 "indique le niveau de votre activité. Lorsque cette couleur tend vers le "
 "rouge, il est recommandé de ralentir votre rythme de travail."
 
-#: src/rsistats.cpp:402
+#: src/rsistats.cpp:384
 #, kde-format
 msgid ""
 "This is a percentage of activity during the last 6 hours. The color "
@@ -530,7 +530,7 @@ msgstr "Pause"
 msgid "Long Breaks"
 msgstr "Pauses longues"
 
-#: src/rsistatwidget.cpp:86
+#: src/rsistatwidget.cpp:89
 #, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
@@ -538,7 +538,7 @@ msgctxt ""
 msgid "minutes"
 msgstr "minutes"
 
-#: src/rsistatwidget.cpp:88
+#: src/rsistatwidget.cpp:92
 #, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
@@ -546,7 +546,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "secondes"
 
-#: src/rsiwidget.cpp:74
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -555,7 +555,7 @@ msgstr ""
 "<p>Bienvenue dans RSIBreak</p>\n"
 "<p>Vous pouvez voir RSIBreak dans la boîte à miniatures.</p>\n"
 
-#: src/rsiwidget.cpp:76
+#: src/rsiwidget.cpp:81
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -569,32 +569,32 @@ msgstr ""
 "positionnez simplement le curseur sur l'icône.</p>\n"
 "<p>Veuillez utiliser RSIBreak raisonnablement.</p>"
 
-#: src/rsiwidget.cpp:79
+#: src/rsiwidget.cpp:85
 #, kde-format
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: src/setup.cpp:41
+#: src/setup.cpp:40
 #, kde-format
 msgid "General Settings"
 msgstr "Réglages généraux"
 
-#: src/setup.cpp:45
+#: src/setup.cpp:44
 #, kde-format
 msgid "Timings"
 msgstr "Compte à rebours"
 
-#: src/setup.cpp:49
+#: src/setup.cpp:48
 #, kde-format
 msgid "During Breaks"
 msgstr "Pendant les pauses"
 
-#: src/setup.cpp:53
+#: src/setup.cpp:52
 #, kde-format
 msgid "Actions"
 msgstr "Actions"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "Démarrer RSIBreak &automatiquement au démarrage"
@@ -608,12 +608,12 @@ msgstr ""
 "Cette option vous permet d'indiquer que RSIBreak doit démarré en même temps "
 "que l'environnement de bureau."
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:43
 #, kde-format
 msgid "Timer Settings"
 msgstr "Réglages des minuteurs"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "Pause à intervalle dé&fini"
@@ -630,7 +630,7 @@ msgstr ""
 msgid "Take activity into account"
 msgstr "Prendre l'activité en compte"
 
-#: src/setupgeneral.cpp:49
+#: src/setupgeneral.cpp:50
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -646,7 +646,7 @@ msgstr ""
 msgid "&Suppress if fullscreen windows present"
 msgstr "&Supprimer si des fenêtres en plein écran sont présentes"
 
-#: src/setupgeneral.cpp:61
+#: src/setupgeneral.cpp:62
 #, kde-format
 msgid ""
 "With this option you can indicate that you do not want RSIBreak to interfere "
@@ -692,7 +692,7 @@ msgstr "Ignorer les pauses"
 msgid "&Hide skip button"
 msgstr "Mas&quer le bouton « Passer »"
 
-#: src/setupmaximized.cpp:91
+#: src/setupmaximized.cpp:92
 #, kde-format
 msgid ""
 "Check this option to disable and hide the skip button. This way you can "
@@ -701,12 +701,12 @@ msgstr ""
 "Cochez cette option pour désactiver et masquer le bouton permettant "
 "d'ignorer la pause. De cette façon, il sera impossible de l'annuler."
 
-#: src/setupmaximized.cpp:94
+#: src/setupmaximized.cpp:95
 #, kde-format
 msgid "&Hide lock button"
 msgstr "Mas&quer le bouton « Verrouiller »"
 
-#: src/setupmaximized.cpp:95
+#: src/setupmaximized.cpp:97
 #, kde-format
 msgid ""
 "Check this option to disable and hide the lock button. This way you can "
@@ -716,12 +716,12 @@ msgstr ""
 "verrouiller. De cette façon, il sera impossible d'appuyer sur le mauvais "
 "bouton."
 
-#: src/setupmaximized.cpp:97
+#: src/setupmaximized.cpp:99
 #, kde-format
 msgid "&Hide postpone button"
 msgstr "Mas&quer le bouton « Reporter »"
 
-#: src/setupmaximized.cpp:98
+#: src/setupmaximized.cpp:101
 #, kde-format
 msgid ""
 "Check this option to disable and hide the postpone break button. This way "
@@ -731,49 +731,49 @@ msgstr ""
 "reporter une pause. De cette façon, il sera impossible d'appuyer sur le "
 "mauvais bouton."
 
-#: src/setupmaximized.cpp:101
+#: src/setupmaximized.cpp:104
 #, kde-format
 msgid "&Disable shortcut (Esc)"
 msgstr "&Désactiver le raccourci clavier (Esc)"
 
-#: src/setupmaximized.cpp:102
+#: src/setupmaximized.cpp:106
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
 "Cochez cette option pour désactiver le raccourci clavier ESC permettant "
 "d'annuler la pause."
 
-#: src/setupmaximized.cpp:115
+#: src/setupmaximized.cpp:119
 #, kde-format
 msgid "Plasma Dashboard"
 msgstr "Tableau de bord Plasma"
 
-#: src/setupmaximized.cpp:117
+#: src/setupmaximized.cpp:121
 #, kde-format
 msgid "Read Only"
 msgstr "Lecture seule"
 
-#: src/setupmaximized.cpp:125
+#: src/setupmaximized.cpp:129
 #, kde-format
 msgid "Transparency level"
 msgstr "Niveau de transparence"
 
-#: src/setupmaximized.cpp:131
+#: src/setupmaximized.cpp:135
 #, kde-format
 msgid "Transparent"
 msgstr "Transparent"
 
-#: src/setupmaximized.cpp:141
+#: src/setupmaximized.cpp:145
 #, kde-format
 msgid "Solid"
 msgstr "Opaque"
 
-#: src/setupmaximized.cpp:150
+#: src/setupmaximized.cpp:154
 #, kde-format
 msgid "Slideshow"
 msgstr "Diaporama"
 
-#: src/setupmaximized.cpp:156
+#: src/setupmaximized.cpp:161
 #, kde-format
 msgid ""
 "Select the folder from which you want to see images. These images are "
@@ -784,27 +784,27 @@ msgstr ""
 "affichées de façon aléatoire lors des pauses. La recherche peut se faire "
 "récursivement si vous le souhaitez..."
 
-#: src/setupmaximized.cpp:159
+#: src/setupmaximized.cpp:164
 #, kde-format
 msgid "&Change..."
 msgstr "&Modifier…"
 
-#: src/setupmaximized.cpp:163
+#: src/setupmaximized.cpp:167
 #, kde-format
 msgid "Search path recursively"
 msgstr "Analyser le dossier récursivement"
 
-#: src/setupmaximized.cpp:165
+#: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Show small images"
 msgstr "Afficher des petites images"
 
-#: src/setupmaximized.cpp:167
+#: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Expand image to full screen"
 msgstr "Agrandir l'image en plein écran"
 
-#: src/setupmaximized.cpp:169
+#: src/setupmaximized.cpp:171
 #, kde-format
 msgid ""
 "If checked then image will be expanded to full screen. Part of the image "
@@ -816,12 +816,12 @@ msgstr ""
 "affichée en totalité mais il pourrait y avoir des zones grisées autour "
 "d'elle."
 
-#: src/setupmaximized.cpp:176
+#: src/setupmaximized.cpp:178
 #, kde-format
 msgid "Change images every:"
 msgstr "Changer les images toutes les :"
 
-#: src/setupmaximized.cpp:179
+#: src/setupmaximized.cpp:182
 #, kde-format
 msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
@@ -830,20 +830,20 @@ msgstr ""
 "Vous pouvez définir ici le temps qu'une image sera affichée avant d'être "
 "remplacée par la suivante."
 
-#: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:176
+#: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
+#: src/setuptiming.cpp:183
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " seconde"
 msgstr[1] " secondes"
 
-#: src/setupmaximized.cpp:200
+#: src/setupmaximized.cpp:203
 #, kde-format
 msgid "Popup"
 msgstr "Notification"
 
-#: src/setupmaximized.cpp:202
+#: src/setupmaximized.cpp:205
 #, kde-format
 msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
@@ -852,12 +852,12 @@ msgstr ""
 "RSIBreak peut afficher une notification au lieu de remplacer l'ensemble de "
 "l'écran par l'effet choisi ci-dessus."
 
-#: src/setupmaximized.cpp:205
+#: src/setupmaximized.cpp:208
 #, kde-format
 msgid "&Use the popup"
 msgstr "&Utiliser la notification"
 
-#: src/setupmaximized.cpp:207
+#: src/setupmaximized.cpp:210
 #, kde-format
 msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
@@ -866,12 +866,12 @@ msgstr ""
 "Affiche une boîte de dialogue avec un décompteur pour indiquer que le temps "
 "est écoulé. Le décompteur est ré-initialisé en cas d'activité."
 
-#: src/setupmaximized.cpp:213
+#: src/setupmaximized.cpp:216
 #, kde-format
 msgid "Popup patience:"
 msgstr "Boîte de dialogue d'attente :"
 
-#: src/setupmaximized.cpp:216
+#: src/setupmaximized.cpp:219
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
@@ -879,19 +879,19 @@ msgstr ""
 "Temps maximum d'affichage de la boîte de dialogue d'attente avant de "
 "démarrer l'effet."
 
-#: src/setupmaximized.cpp:224
+#: src/setupmaximized.cpp:227
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
 "La notification peut clignoter quand elle détecte que vous êtes toujours en "
 "activité."
 
-#: src/setupmaximized.cpp:228
+#: src/setupmaximized.cpp:231
 #, kde-format
 msgid "&Flash on activity"
 msgstr "&Clignoter lors d'une activité"
 
-#: src/setupmaximized.cpp:229
+#: src/setupmaximized.cpp:233
 #, kde-format
 msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
@@ -900,12 +900,12 @@ msgstr ""
 "Avec cette option, vous pouvez choisir de voir la notification clignoter "
 "lorsqu'il y a de l'activité."
 
-#: src/setupmaximized.cpp:314
+#: src/setupmaximized.cpp:317
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
 msgstr "Sélectionnez l'effet désiré à la fin de la période d'attente"
 
-#: src/setupmaximized.cpp:315
+#: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want during breaks"
 msgstr "Sélectionnez les effets désirés pendant les pauses"
@@ -927,22 +927,22 @@ msgstr ""
 "Vous pouvez régler ici la fréquence selon laquelle vous souhaitez prendre "
 "une courte pause."
 
-#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
+#: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
 msgstr "Pour une durée de :"
 
-#: src/setuptiming.cpp:71
+#: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "Vous pouvez régler ici la durée d'une courte pause."
 
-#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
+#: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "Passer si aucune activité pour :"
 
-#: src/setuptiming.cpp:85
+#: src/setuptiming.cpp:90
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
@@ -951,28 +951,28 @@ msgstr ""
 "Définit votre intervalle durant lequel vous êtes en attente et qui est "
 "suffisant pour passer la prochaine pause courte."
 
-#: src/setuptiming.cpp:101
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Big Breaks"
 msgstr "Pauses longues"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:111
 #, kde-format
 msgid "Long break every:"
 msgstr "Pause longue toutes les :"
 
-#: src/setuptiming.cpp:109
+#: src/setuptiming.cpp:114
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr ""
 "Vous pouvez régler ici la fréquence à laquelle vous voulez une longue pause."
 
-#: src/setuptiming.cpp:121
+#: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "Vous pouvez régler ici la durée d'une longue pause"
 
-#: src/setuptiming.cpp:135
+#: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
@@ -980,18 +980,18 @@ msgstr ""
 "Définit votre intervalle durant lequel vous êtes en attente et qui est "
 "suffisant pour passer la longue pause."
 
-#: src/setuptiming.cpp:151
+#: src/setuptiming.cpp:158
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "Pauses reportées"
 
-#: src/setuptiming.cpp:159
+#: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr ""
 "Vous pouvez régler ici le nombre de fois qu'une pause peut être reportée."
 
-#: src/setuptiming.cpp:180
+#: src/setuptiming.cpp:187
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"

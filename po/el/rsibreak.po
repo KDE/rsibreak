@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-03-20 00:59+0000\n"
+"POT-Creation-Date: 2022-04-24 00:47+0000\n"
 "PO-Revision-Date: 2019-08-14 09:27+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -63,59 +63,59 @@ msgstr "Albert Astals Cid"
 msgid "Maintainer"
 msgstr "Συντηρητής"
 
-#: src/main.cpp:49
+#: src/main.cpp:48
 #, kde-format
 msgid "Tom Albers"
 msgstr "Tom Albers"
 
-#: src/main.cpp:49 src/main.cpp:52
+#: src/main.cpp:48 src/main.cpp:50
 #, kde-format
 msgid "Former author"
 msgstr "Πρώην συγγραφέας"
 
-#: src/main.cpp:52
+#: src/main.cpp:50
 #, kde-format
 msgid "Bram Schoenmakers"
 msgstr "Bram Schoenmakers"
 
-#: src/main.cpp:55
+#: src/main.cpp:52
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Σπύρος Γεωργαράς, Τούσης Μανώλης, Stelios"
 
-#: src/main.cpp:55
+#: src/main.cpp:52
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "sng@hellug.gr, manolis@koppermind.homelinux.rg, sstavra@gmail.com"
 
-#: src/notificator.cpp:14
+#: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
 msgstr "Το χρονόμετρο για το σύντομο διάλειμμα μηδενίστηκε"
 
-#: src/notificator.cpp:23
+#: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
 msgstr "Τα χρονόμετρα μηδενίστηκαν"
 
-#: src/notificator.cpp:29
+#: src/notificator.cpp:22
 #, kde-format
 msgid "Start of a long break"
 msgstr "Έναρξη μεγάλου διαλείμματος"
 
-#: src/notificator.cpp:34
+#: src/notificator.cpp:27
 #, kde-format
 msgid "End of a long break"
 msgstr "Τέλος μεγάλου διαλείμματος"
 
-#: src/notificator.cpp:39
+#: src/notificator.cpp:32
 #, kde-format
 msgid "Start of a short break"
 msgstr "Έναρξη σύντομου διαλείμματος"
 
-#: src/notificator.cpp:44
+#: src/notificator.cpp:37
 #, kde-format
 msgid "End of a short break"
 msgstr "Τέλος σύντομου διαλείμματος"
@@ -131,77 +131,77 @@ msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
 msgstr "Κάντε διάλειμμα για %1"
 
-#: src/rsidock.cpp:76
+#: src/rsidock.cpp:78
 #, kde-format
 msgid "About &KDE"
 msgstr "Σχετικά με το &KDE"
 
-#: src/rsidock.cpp:77
+#: src/rsidock.cpp:79
 #, kde-format
 msgid "&About RSIBreak"
 msgstr "&Σχετικά με το RSIBreak"
 
-#: src/rsidock.cpp:78
+#: src/rsidock.cpp:80
 #, kde-format
 msgid "RSIBreak &Handbook"
 msgstr "Ε&γχειρίδιο RSIBreak"
 
-#: src/rsidock.cpp:81
+#: src/rsidock.cpp:83
 #, kde-format
 msgid "&Report Bug..."
 msgstr "&Αναφορά σφάλματος..."
 
-#: src/rsidock.cpp:82
+#: src/rsidock.cpp:84
 #, kde-format
 msgid "Switch application &language..."
 msgstr "Εναλλαγή &γλώσσας εφαρμογής..."
 
-#: src/rsidock.cpp:85 src/rsidock.cpp:139
+#: src/rsidock.cpp:87 src/rsidock.cpp:141
 #, kde-format
 msgid "&Suspend RSIBreak"
 msgstr "&Αναστολή του RSIBreak"
 
-#: src/rsidock.cpp:86
+#: src/rsidock.cpp:88
 #, kde-format
 msgid "&Usage Statistics"
 msgstr "&Στατιστικά χρήσης"
 
-#: src/rsidock.cpp:87
+#: src/rsidock.cpp:89
 #, kde-format
 msgid "Configure &Notifications..."
 msgstr "Διαμόρφωση ειδο&ποιήσεων..."
 
-#: src/rsidock.cpp:88
+#: src/rsidock.cpp:90
 #, kde-format
 msgid "&Configure RSIBreak..."
 msgstr "&Διαμόρφωση του RSIBreak..."
 
-#: src/rsidock.cpp:145
+#: src/rsidock.cpp:147
 #, kde-format
 msgid "&Resume RSIBreak"
 msgstr "Σ&υνέχιση του RSIBreak"
 
-#: src/rsidock.cpp:155
+#: src/rsidock.cpp:157
 #, kde-format
 msgid "Usage Statistics"
 msgstr "Στατιστικά χρήσης"
 
-#: src/rsidock.cpp:164 src/rsidock.cpp:191
+#: src/rsidock.cpp:166 src/rsidock.cpp:193
 #, kde-format
 msgid "Reset"
 msgstr "Επαναφορά"
 
-#: src/rsidock.cpp:188
+#: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
 msgstr "Αυτό θα μηδενίσει όλα τα στατιστικά. Αυτό θέλετε να κάνετε;"
 
-#: src/rsidock.cpp:190
+#: src/rsidock.cpp:192
 #, kde-format
 msgid "Reset the statistics"
 msgstr "Μηδενισμός των στατιστικών"
 
-#: src/rsidock.cpp:208 src/rsiwidget.cpp:108
+#: src/rsidock.cpp:209 src/rsiwidget.cpp:114
 #, kde-format
 msgid "Suspended"
 msgstr "Σε αναστολή"
@@ -211,7 +211,7 @@ msgstr "Σε αναστολή"
 msgid "%1 remaining until next short break"
 msgstr "%1 ακόμη για το επόμενο σύντομο διάλειμμα"
 
-#: src/rsidock.cpp:238
+#: src/rsidock.cpp:235
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 ακόμη για το επόμενο μεγάλο διάλειμμα"
@@ -231,136 +231,136 @@ msgstr "Αναβολή του διαλείμματος"
 msgid "Lock the session"
 msgstr "Κλείδωμα της συνεδρίας"
 
-#: src/rsirelaxpopup.cpp:92
+#: src/rsirelaxpopup.cpp:94
 #, kde-format
 msgid "Please relax for %1"
 msgstr "Παρακαλώ ξεκουραστείτε για %1"
 
-#: src/rsirelaxpopup.cpp:96
+#: src/rsirelaxpopup.cpp:97
 #, kde-format
 msgid "Note: next break is a big break"
 msgstr "Σημείωση: το επόμενο διάλειμμα θα είναι μεγάλο"
 
-#: src/rsistats.cpp:19
+#: src/rsistats.cpp:18
 #, kde-format
 msgid "Total recorded time"
 msgstr "Συνολικός καταγραμμένος χρόνος"
 
-#: src/rsistats.cpp:23
+#: src/rsistats.cpp:21
 #, kde-format
 msgid "Total time of activity"
 msgstr "Συνολικός χρόνος δραστηριότητας"
 
-#: src/rsistats.cpp:30
+#: src/rsistats.cpp:27
 #, kde-format
 msgid "Total time being idle"
 msgstr "Συνολικός χρόνος αδράνειας"
 
-#: src/rsistats.cpp:36
+#: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
 msgstr "Ποσοστό δραστηριότητας"
 
-#: src/rsistats.cpp:39
+#: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
 msgstr "Ποσοστό δραστηριότητας το τελευταίο λεπτό"
 
-#: src/rsistats.cpp:42
+#: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
 msgstr "Ποσοστό δραστηριότητας την τελευταία ώρα"
 
-#: src/rsistats.cpp:45
+#: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
 msgstr "Ποσοστό δραστηριότητας τις τελευταίες 6 ώρες"
 
-#: src/rsistats.cpp:49
+#: src/rsistats.cpp:38
 #, kde-format
 msgid "Maximum idle period"
 msgstr "Μέγιστη περίοδος αδράνειας"
 
-#: src/rsistats.cpp:53
+#: src/rsistats.cpp:41
 #, kde-format
 msgid "Current idle period"
 msgstr "Τρέχουσα περίοδος αδράνειας"
 
-#: src/rsistats.cpp:56
+#: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
 msgstr "Αριθμός σύντομων διαλειμμάτων που παραλείφθηκαν (αδράνεια)"
 
-#: src/rsistats.cpp:59
+#: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
 msgstr "Αριθμός μεγάλων διαλειμμάτων που παραλείφθηκαν (αδράνεια)"
 
-#: src/rsistats.cpp:62
+#: src/rsistats.cpp:47
 #, kde-format
 msgid "Total number of short breaks"
 msgstr "Συνολικός αριθμός σύντομων διαλειμμάτων"
 
-#: src/rsistats.cpp:67
+#: src/rsistats.cpp:51
 #, kde-format
 msgid "Number of skipped short breaks (user)"
 msgstr "Αριθμός σύντομων διαλειμμάτων που παραλείφθηκαν (χρήστης)"
 
-#: src/rsistats.cpp:71
+#: src/rsistats.cpp:54
 #, kde-format
 msgid "Number of postponed short breaks (user)"
 msgstr "Αριθμός αναβληθέντων σύντομων διαλειμμάτων (χρήστης)"
 
-#: src/rsistats.cpp:75
+#: src/rsistats.cpp:57
 #, kde-format
 msgid "Last short break"
 msgstr "Τελευταίο σύντομο διάλειμμα"
 
-#: src/rsistats.cpp:78
+#: src/rsistats.cpp:59
 #, kde-format
 msgid "Total number of long breaks"
 msgstr "Συνολικός αριθμός μεγάλων διαλειμμάτων"
 
-#: src/rsistats.cpp:83
+#: src/rsistats.cpp:63
 #, kde-format
 msgid "Number of skipped long breaks (user)"
 msgstr "Αριθμός μεγάλων διαλειμμάτων που παραλείφθηκαν (χρήστης)"
 
-#: src/rsistats.cpp:87
+#: src/rsistats.cpp:66
 #, kde-format
 msgid "Number of postponed long breaks (user)"
 msgstr "Αριθμός αναβληθέντων μεγάλων διαλειμμάτων (χρήστης)"
 
-#: src/rsistats.cpp:90
+#: src/rsistats.cpp:68
 #, kde-format
 msgid "Last long break"
 msgstr "Τελευταίο μεγάλο διάλειμμα"
 
-#: src/rsistats.cpp:92
+#: src/rsistats.cpp:70
 #, kde-format
 msgid "Pause score"
 msgstr "Παύση βαθμολόγησης"
 
-#: src/rsistats.cpp:343
+#: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
 msgstr "Αυτός είναι ο συνολικός χρόνος που εκτελείται το RSIBreak."
 
-#: src/rsistats.cpp:345
+#: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
 msgstr ""
 "Αυτός είναι ο συνολικός χρόνος που χρησιμοποιήσατε το πληκτρολόγιο ή το "
 "ποντίκι."
 
-#: src/rsistats.cpp:348
+#: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
 msgstr ""
 "Αυτός είναι ο συνολικός χρόνος που δε χρησιμοποιήσατε το πληκτρολόγιο ή το "
 "ποντίκι."
 
-#: src/rsistats.cpp:351
+#: src/rsistats.cpp:320
 #, kde-format
 msgid ""
 "This is a percentage of activity, based on the periods of activity vs. the "
@@ -373,7 +373,7 @@ msgstr ""
 "χρώμα υποδηλώνει το επίπεδο της δραστηριότητάς σας. Όταν το χρώμα είναι "
 "κοντά στο κόκκινο, συνιστάται να χαλαρώσετε το ρυθμό εργασίας σας."
 
-#: src/rsistats.cpp:356
+#: src/rsistats.cpp:326
 #, kde-format
 msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
@@ -382,12 +382,12 @@ msgstr ""
 "Αυτή είναι η μεγαλύτερη μετρημένη περίοδος μη δραστηριότητας από την "
 "εκτέλεση του RSIBreak."
 
-#: src/rsistats.cpp:359
+#: src/rsistats.cpp:329
 #, kde-format
 msgid "This is the total number of short breaks"
 msgstr "Αυτός είναι ο συνολικός αριθμός των σύντομων διαλειμμάτων"
 
-#: src/rsistats.cpp:361
+#: src/rsistats.cpp:332
 #, kde-format
 msgid ""
 "This is the time of the last finished short break. The color of this text "
@@ -398,17 +398,17 @@ msgstr ""
 "τελειώσει. Το χρώμα μεταβάλλεται σταδιακά από πράσινο σε κόκκινο για να "
 "υποδηλώσει τη στιγμή για το επόμενο σύντομο διάλειμμα."
 
-#: src/rsistats.cpp:365
+#: src/rsistats.cpp:337
 #, kde-format
 msgid "This is the total number of short breaks which you skipped."
 msgstr "Αυτός είναι ο συνολικός αριθμός σύντομων διαλειμμάτων που παραλείψατε."
 
-#: src/rsistats.cpp:368
+#: src/rsistats.cpp:341
 #, kde-format
 msgid "This is the total number of short breaks which you postponed."
 msgstr "Αυτός είναι ο συνολικός αριθμός σύντομων διαλειμμάτων που αναβάλλατε."
 
-#: src/rsistats.cpp:371
+#: src/rsistats.cpp:345
 #, kde-format
 msgid ""
 "This is the total number of short breaks which were skipped because you were "
@@ -417,12 +417,12 @@ msgstr ""
 "Αυτός είναι ο συνολικός αριθμός σύντομων διαλειμμάτων που παραλείψατε επειδή "
 "βρισκόσασταν σε αδράνεια."
 
-#: src/rsistats.cpp:374
+#: src/rsistats.cpp:348
 #, kde-format
 msgid "This is the total number of long breaks."
 msgstr "Αυτός είναι ο συνολικός αριθμός των μεγάλων διαλειμμάτων."
 
-#: src/rsistats.cpp:376
+#: src/rsistats.cpp:351
 #, kde-format
 msgid ""
 "This is the time of the last finished long break.The color of this text "
@@ -433,17 +433,17 @@ msgstr ""
 "Το χρώμα μεταβάλλεται σταδιακά από πράσινο σε κόκκινο για να υποδηλώσει τη "
 "στιγμή για το επόμενο μεγάλο διάλειμμα."
 
-#: src/rsistats.cpp:380
+#: src/rsistats.cpp:356
 #, kde-format
 msgid "This is the total number of long breaks which you skipped."
 msgstr "Αυτός είναι ο συνολικός αριθμός μεγάλων διαλειμμάτων που παραλείψατε."
 
-#: src/rsistats.cpp:383
+#: src/rsistats.cpp:360
 #, kde-format
 msgid "This is the total number of long breaks which you postponed."
 msgstr "Αυτός είναι ο συνολικός αριθμός μεγάλων διαλειμμάτων που αναβάλλατε."
 
-#: src/rsistats.cpp:386
+#: src/rsistats.cpp:364
 #, kde-format
 msgid ""
 "This is the total number of long breaks which were skipped because you were "
@@ -452,7 +452,7 @@ msgstr ""
 "Αυτός είναι ο συνολικός αριθμός μεγάλων διαλειμμάτων που παραλείψατε επειδή "
 "βρισκόσασταν σε αδράνεια."
 
-#: src/rsistats.cpp:389
+#: src/rsistats.cpp:368
 #, kde-format
 msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
@@ -461,12 +461,12 @@ msgstr ""
 "Αυτό εμφανίζει τη συμπεριφορά σας με τα διαλείμματα. Μειώνεται κάθε φορά που "
 "παραλείπετε ένα διάλειμμα."
 
-#: src/rsistats.cpp:392
+#: src/rsistats.cpp:371
 #, kde-format
 msgid "This is the current idle time."
 msgstr "Αυτός είναι ο τρέχων χρόνος αδράνειας."
 
-#: src/rsistats.cpp:394
+#: src/rsistats.cpp:374
 #, kde-format
 msgid ""
 "This is a percentage of activity during the last minute. The color indicates "
@@ -477,7 +477,7 @@ msgstr ""
 "το επίπεδο δραστηριότητάς σας. Όταν το χρώμα βρίσκεται κοντά στο κόκκινο "
 "συνιστάται να χαλαρώσετε το ρυθμό εργασίας σας."
 
-#: src/rsistats.cpp:398
+#: src/rsistats.cpp:379
 #, kde-format
 msgid ""
 "This is a percentage of activity during the last hour. The color indicates "
@@ -488,7 +488,7 @@ msgstr ""
 "το επίπεδο δραστηριότητάς σας. Όταν το χρώμα βρίσκεται κοντά στο κόκκινο "
 "συνιστάται να χαλαρώσετε το ρυθμό εργασίας σας."
 
-#: src/rsistats.cpp:402
+#: src/rsistats.cpp:384
 #, kde-format
 msgid ""
 "This is a percentage of activity during the last 6 hours. The color "
@@ -519,7 +519,7 @@ msgstr "Παύση"
 msgid "Long Breaks"
 msgstr "Μεγάλα διαλείμματα"
 
-#: src/rsistatwidget.cpp:86
+#: src/rsistatwidget.cpp:89
 #, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
@@ -527,7 +527,7 @@ msgctxt ""
 msgid "minutes"
 msgstr "λεπτά"
 
-#: src/rsistatwidget.cpp:88
+#: src/rsistatwidget.cpp:92
 #, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
@@ -535,7 +535,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "δευτερόλεπτα"
 
-#: src/rsiwidget.cpp:74
+#: src/rsiwidget.cpp:79
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -544,7 +544,7 @@ msgstr ""
 "<p>Καλώς ήρθατε στο RSIBreak</p>\n"
 "<p>Στο πλαίσιο συστήματος μπορείτε τώρα να δείτε το RSIBreak.</p>\n"
 
-#: src/rsiwidget.cpp:76
+#: src/rsiwidget.cpp:81
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -558,32 +558,32 @@ msgstr ""
 "το ποντίκι πάνω από το εικονίδιο.</p>\n"
 "<p>Χρησιμοποιήστε το RSIBreak με σύνεση.</p>"
 
-#: src/rsiwidget.cpp:79
+#: src/rsiwidget.cpp:85
 #, kde-format
 msgid "Welcome"
 msgstr "Καλώς ήρθατε"
 
-#: src/setup.cpp:41
+#: src/setup.cpp:40
 #, kde-format
 msgid "General Settings"
 msgstr "Γενικές ρυθμίσεις"
 
-#: src/setup.cpp:45
+#: src/setup.cpp:44
 #, kde-format
 msgid "Timings"
 msgstr "Χρόνοι"
 
-#: src/setup.cpp:49
+#: src/setup.cpp:48
 #, kde-format
 msgid "During Breaks"
 msgstr "Κατά τη διάρκεια των διαλειμμάτων"
 
-#: src/setup.cpp:53
+#: src/setup.cpp:52
 #, kde-format
 msgid "Actions"
 msgstr "Ενέργειες"
 
-#: src/setupgeneral.cpp:39
+#: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
 msgstr "&Αυτόματη έναρξη του RSIBreak κατά την εκκίνηση"
@@ -597,12 +597,12 @@ msgstr ""
 "Με αυτήν την επιλογή δηλώνετε ότι θέλετε το RSIBreak να αρχίζει με την "
 "εκκίνηση του περιβάλλοντος γραφείου."
 
-#: src/setupgeneral.cpp:44
+#: src/setupgeneral.cpp:43
 #, kde-format
 msgid "Timer Settings"
 msgstr "Ρυθμίσεις χρονομέτρου"
 
-#: src/setupgeneral.cpp:45
+#: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
 msgstr "Διακοπή σε &σταθερά χρονικά διαστήματα"
@@ -619,7 +619,7 @@ msgstr ""
 msgid "Take activity into account"
 msgstr "Να λαμβάνεται υπ' όψιν η δραστηριότητα"
 
-#: src/setupgeneral.cpp:49
+#: src/setupgeneral.cpp:50
 #, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
@@ -636,7 +636,7 @@ msgstr ""
 msgid "&Suppress if fullscreen windows present"
 msgstr ""
 
-#: src/setupgeneral.cpp:61
+#: src/setupgeneral.cpp:62
 #, kde-format
 msgid ""
 "With this option you can indicate that you do not want RSIBreak to interfere "
@@ -679,7 +679,7 @@ msgstr "Παράλειψη διαλειμμάτων"
 msgid "&Hide skip button"
 msgstr "&Απόκρυψη κουμπιού παράλειψης"
 
-#: src/setupmaximized.cpp:91
+#: src/setupmaximized.cpp:92
 #, kde-format
 msgid ""
 "Check this option to disable and hide the skip button. This way you can "
@@ -688,12 +688,12 @@ msgstr ""
 "Ενεργοποιήστε αυτή την επιλογή για την απενεργοποίηση και απόκρυψη του "
 "κουμπιού παράλειψης. Έτσι δε θα είναι δυνατή η αποφυγή του διαλείμματος."
 
-#: src/setupmaximized.cpp:94
+#: src/setupmaximized.cpp:95
 #, kde-format
 msgid "&Hide lock button"
 msgstr "&Απόκρυψη κουμπιού κλειδώματος"
 
-#: src/setupmaximized.cpp:95
+#: src/setupmaximized.cpp:97
 #, kde-format
 msgid ""
 "Check this option to disable and hide the lock button. This way you can "
@@ -702,12 +702,12 @@ msgstr ""
 "Ενεργοποιήστε αυτή την επιλογή για την απενεργοποίηση και απόκρυψη του "
 "κουμπιού κλειδώματος. Έτσι δεν θα είναι δυνατό το πάτημα του λάθος κουμπιού."
 
-#: src/setupmaximized.cpp:97
+#: src/setupmaximized.cpp:99
 #, kde-format
 msgid "&Hide postpone button"
 msgstr "&Απόκρυψη κουμπιού αναβολής"
 
-#: src/setupmaximized.cpp:98
+#: src/setupmaximized.cpp:101
 #, kde-format
 msgid ""
 "Check this option to disable and hide the postpone break button. This way "
@@ -717,49 +717,49 @@ msgstr ""
 "κουμπιού αναβολής διαλείμματος. Έτσι δεν θα είναι δυνατό το πάτημα του λάθος "
 "κουμπιού."
 
-#: src/setupmaximized.cpp:101
+#: src/setupmaximized.cpp:104
 #, kde-format
 msgid "&Disable shortcut (Esc)"
 msgstr "Απενε&ργοποίηση συντόμευσης (Esc)"
 
-#: src/setupmaximized.cpp:102
+#: src/setupmaximized.cpp:106
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
 "Ενεργοποιήστε αυτήν την επιλογή για να απενεργοποιήσετε το πλήκτρο ESC "
 "αποφυγής του διαλείμματος."
 
-#: src/setupmaximized.cpp:115
+#: src/setupmaximized.cpp:119
 #, kde-format
 msgid "Plasma Dashboard"
 msgstr "Πίνακας Plasma"
 
-#: src/setupmaximized.cpp:117
+#: src/setupmaximized.cpp:121
 #, kde-format
 msgid "Read Only"
 msgstr "Ανάγνωση μόνο"
 
-#: src/setupmaximized.cpp:125
+#: src/setupmaximized.cpp:129
 #, kde-format
 msgid "Transparency level"
 msgstr "Επίπεδο διαφάνειας"
 
-#: src/setupmaximized.cpp:131
+#: src/setupmaximized.cpp:135
 #, kde-format
 msgid "Transparent"
 msgstr "Διαφάνεια"
 
-#: src/setupmaximized.cpp:141
+#: src/setupmaximized.cpp:145
 #, kde-format
 msgid "Solid"
 msgstr "Συμπαγές"
 
-#: src/setupmaximized.cpp:150
+#: src/setupmaximized.cpp:154
 #, kde-format
 msgid "Slideshow"
 msgstr "Προβολή διαφανειών"
 
-#: src/setupmaximized.cpp:156
+#: src/setupmaximized.cpp:161
 #, kde-format
 msgid ""
 "Select the folder from which you want to see images. These images are "
@@ -770,27 +770,27 @@ msgstr ""
 "εικόνες θα εμφανίζονται με τυχαία σειρά κατά τη διάρκεια των διαλειμμάτων. Ο "
 "φάκελος μπορεί να σαρωθεί αναδρομικά αν το επιθυμείτε..."
 
-#: src/setupmaximized.cpp:159
+#: src/setupmaximized.cpp:164
 #, kde-format
 msgid "&Change..."
 msgstr "Αλλα&γή..."
 
-#: src/setupmaximized.cpp:163
+#: src/setupmaximized.cpp:167
 #, kde-format
 msgid "Search path recursively"
 msgstr "Αναζήτηση διαδρομής αναδρομικά"
 
-#: src/setupmaximized.cpp:165
+#: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Show small images"
 msgstr "Εμφάνιση μικρών εικόνων"
 
-#: src/setupmaximized.cpp:167
+#: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Expand image to full screen"
 msgstr "Επέκταση εικόνας σε πλήρη οθόνη"
 
-#: src/setupmaximized.cpp:169
+#: src/setupmaximized.cpp:171
 #, kde-format
 msgid ""
 "If checked then image will be expanded to full screen. Part of the image "
@@ -801,12 +801,12 @@ msgstr ""
 "τμήμα της εικόνας θα περικοπεί. Διαφορετικά η εικόνα θα εμφανιστεί ολόκληρη "
 "αλλά ίσως υπάρχουν γκρίζες περιοχές γύρω της."
 
-#: src/setupmaximized.cpp:176
+#: src/setupmaximized.cpp:178
 #, kde-format
 msgid "Change images every:"
 msgstr "Αλλαγή εικόνων κάθε:"
 
-#: src/setupmaximized.cpp:179
+#: src/setupmaximized.cpp:182
 #, kde-format
 msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
@@ -815,20 +815,20 @@ msgstr ""
 "Εδώ μπορείτε να ορίσετε το χρόνο εμφάνισης μιας εικόνας πριν αυτή "
 "αντικατασταθεί από την επόμενη."
 
-#: src/setupmaximized.cpp:184 src/setupmaximized.cpp:221
-#: src/setuptiming.cpp:176
+#: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
+#: src/setuptiming.cpp:183
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " δευτερόλεπτο"
 msgstr[1] " δευτερόλεπτα"
 
-#: src/setupmaximized.cpp:200
+#: src/setupmaximized.cpp:203
 #, kde-format
 msgid "Popup"
 msgstr "Αναδυόμενο παράθυρο"
 
-#: src/setupmaximized.cpp:202
+#: src/setupmaximized.cpp:205
 #, kde-format
 msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
@@ -837,12 +837,12 @@ msgstr ""
 "Το RSIBreak μπορεί να εμφανίζει ένα αναδυόμενο παράθυρο πριν αντικαταστήσει "
 "ολόκληρη την οθόνη σας με το επιλεγμένο εφέ."
 
-#: src/setupmaximized.cpp:205
+#: src/setupmaximized.cpp:208
 #, kde-format
 msgid "&Use the popup"
 msgstr "&Χρήση αναδυόμενου"
 
-#: src/setupmaximized.cpp:207
+#: src/setupmaximized.cpp:210
 #, kde-format
 msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
@@ -851,12 +851,12 @@ msgstr ""
 "Εμφανίζει ένα αναδυόμενο παράθυρο όταν είναι ώρα για διάλειμμα. Με τη "
 "δραστηριότητα γίνεται επαναφορά της αντίστροφης μέτρησης."
 
-#: src/setupmaximized.cpp:213
+#: src/setupmaximized.cpp:216
 #, kde-format
 msgid "Popup patience:"
 msgstr "Καθυστέρηση αναδυόμενου παράθυρου:"
 
-#: src/setupmaximized.cpp:216
+#: src/setupmaximized.cpp:219
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
@@ -864,18 +864,18 @@ msgstr ""
 "Μέγιστος χρόνος καθυστέρησης της εμφάνισης του αναδυόμενου παράθυρου πριν "
 "την έναρξη του εφέ."
 
-#: src/setupmaximized.cpp:224
+#: src/setupmaximized.cpp:227
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
 "Το αναδυόμενο μπορεί να αναβοσβήνει αν ανιχνεύσει ότι είστε ακόμη ενεργοί."
 
-#: src/setupmaximized.cpp:228
+#: src/setupmaximized.cpp:231
 #, kde-format
 msgid "&Flash on activity"
 msgstr "&Αναβόσβημα σε δραστηριότητα"
 
-#: src/setupmaximized.cpp:229
+#: src/setupmaximized.cpp:233
 #, kde-format
 msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
@@ -884,12 +884,12 @@ msgstr ""
 "Με αυτή την επιλογή δηλώνετε αν επιθυμείτε να δείτε αναβόσβημα στο "
 "αναδυόμενο μήνυμα όταν υπάρχει δραστηριότητα."
 
-#: src/setupmaximized.cpp:314
+#: src/setupmaximized.cpp:317
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
 msgstr "Επιλέξτε ποιο εφέ να εμφανίζεται όταν λήξει η καθυστέρηση"
 
-#: src/setupmaximized.cpp:315
+#: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want during breaks"
 msgstr "Επιλέξτε ποιο εφέ να εμφανίζεται στη διάρκεια των διαλειμμάτων"
@@ -909,22 +909,22 @@ msgstr "Σύντομο διάλειμμα κάθε:"
 msgid "Here you can set how often you want a short break. "
 msgstr "Εδώ ορίζετε τη συχνότητα του σύντομου διαλείμματος. "
 
-#: src/setuptiming.cpp:68 src/setuptiming.cpp:118 src/setuptiming.cpp:156
+#: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
 msgstr "Με διάρκεια:"
 
-#: src/setuptiming.cpp:71
+#: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
 msgstr "Εδώ ορίζετε τη διάρκεια του σύντομου διαλείμματος."
 
-#: src/setuptiming.cpp:82 src/setuptiming.cpp:132
+#: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
 msgstr "Να αγνοηθεί αν δεν υπάρχει δραστηριότητα για:"
 
-#: src/setuptiming.cpp:85
+#: src/setuptiming.cpp:90
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
@@ -933,27 +933,27 @@ msgstr ""
 "Ρυθμίστε το διάστημα αδράνειας σε μια τιμή επαρκή ώστε να αγνοήσετε το "
 "επόμενο σύντομο διάλειμμα."
 
-#: src/setuptiming.cpp:101
+#: src/setuptiming.cpp:106
 #, kde-format
 msgid "Big Breaks"
 msgstr "Μεγάλα διαλείμματα"
 
-#: src/setuptiming.cpp:106
+#: src/setuptiming.cpp:111
 #, kde-format
 msgid "Long break every:"
 msgstr "Μεγάλο διάλειμμα κάθε:"
 
-#: src/setuptiming.cpp:109
+#: src/setuptiming.cpp:114
 #, kde-format
 msgid "Here you can set how often you want a long break. "
 msgstr "Εδώ ορίζετε τη συχνότητα του μεγάλου διαλείμματος. "
 
-#: src/setuptiming.cpp:121
+#: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
 msgstr "Εδώ ορίζετε τη διάρκεια του μεγάλου διαλείμματος."
 
-#: src/setuptiming.cpp:135
+#: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
@@ -961,17 +961,17 @@ msgstr ""
 "Ρυθμίστε το διάστημα αδράνειας σε μια τιμή επαρκή ώστε να αγνοήσετε το "
 "επόμενο μεγάλο διάλειμμα."
 
-#: src/setuptiming.cpp:151
+#: src/setuptiming.cpp:158
 #, kde-format
 msgid "Postpone Breaks"
 msgstr "Αναβολή διαλειμμάτων"
 
-#: src/setuptiming.cpp:159
+#: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr "Εδώ ορίζετε τη διάρκεια αναβολής διαλείμματος."
 
-#: src/setuptiming.cpp:180
+#: src/setuptiming.cpp:187
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
