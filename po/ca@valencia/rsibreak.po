@@ -601,12 +601,12 @@ msgstr "Paràmetres del temporitzador"
 #: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
-msgstr "Interromp als temps &establerts"
+msgstr "Interromp als temps &establits"
 
 #: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
-msgstr "Amb esta opció indiqueu que voleu interrompre als intervals establerts"
+msgstr "Amb esta opció indiqueu que voleu interrompre als intervals establits"
 
 #: src/setupgeneral.cpp:48
 #, kde-format
