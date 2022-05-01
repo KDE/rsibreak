@@ -637,7 +637,7 @@ msgid ""
 "application on the current virtual desktop."
 msgstr ""
 "Amb esta opció es pot indicar que no es vol que RSIBreak interferisca amb "
-"presentacions, jocs, reproduccions de vídeo o qualsevol altra aplicació a "
+"presentacions, jocs, reproduccions de vídeo o qualsevol atra aplicació a "
 "pantalla completa de l'escriptori virtual actual."
 
 #: src/setupmaximized.cpp:76
@@ -792,8 +792,8 @@ msgid ""
 "displayed completely but there may grey areas around it. "
 msgstr ""
 "Si està marcada, la imatge s'ampliarà a pantalla completa. Es retallarà part "
-"de la imatge que quede fora de l'àrea de la pantalla. Altrament, la imatge "
-"es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
+"de la imatge que quede fora de l'àrea de la pantalla. D'atra manera, la "
+"imatge es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
