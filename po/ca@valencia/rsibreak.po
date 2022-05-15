@@ -354,7 +354,8 @@ msgstr "Este és el temps total que heu usat el teclat o el ratolí."
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
-msgstr "Este és el temps total que no heu estat usant el teclat ni el ratolí."
+msgstr ""
+"Este és el temps total que no heu estat utilitzant el teclat ni el ratolí."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -621,7 +622,7 @@ msgid ""
 "mouse) will be counted to calculate when to break next."
 msgstr ""
 "Amb esta opció indiqueu que voleu utilitzar la detecció d'inactivitat. Açò "
-"vol dir que només es comptarà el temps en què esteu actiu (quan useu el "
+"vol dir que només es comptarà el temps en què esteu actiu (quan utilitzeu el "
 "teclat o el ratolí) per a calcular la propera pausa."
 
 #: src/setupgeneral.cpp:60
