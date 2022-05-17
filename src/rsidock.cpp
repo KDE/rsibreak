@@ -233,6 +233,6 @@ void RSIDock::setCounters(int tiny_left, int big_left)
         // do the same for the big break
         if (big_left > 0)
             lines << colorizedText(i18n("%1 remaining until next long break", RSIGlobals::instance()->formatSeconds(big_left)), bigColor);
-        setToolTipSubTitle(lines.join("<br>"));
+        setToolTipSubTitle(lines.join("<br />"));
     }
 }
