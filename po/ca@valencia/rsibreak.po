@@ -194,7 +194,7 @@ msgstr "Reinicia"
 #: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "Iniciaràlitzarà les estadístiques a zero. És el que voleu?"
+msgstr "Inicialitzarà les estadístiques a zero. És el que voleu?"
 
 #: src/rsidock.cpp:192
 #, kde-format
