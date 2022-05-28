@@ -194,7 +194,7 @@ msgstr "Reinicia"
 #: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "Inicialitzarà les estadístiques a zero. És el que voleu?"
+msgstr "Inicialitzarà les estadístiques a zero. És lo que voleu?"
 
 #: src/rsidock.cpp:192
 #, kde-format
@@ -349,13 +349,13 @@ msgstr "Este és el temps total que RSIBreak ha estat en execució."
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr "Este és el temps total que heu usat el teclat o el ratolí."
+msgstr "Este és el temps total que heu utilisat el teclat o el ratolí."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
 msgstr ""
-"Este és el temps total que no heu estat utilitzant el teclat ni el ratolí."
+"Este és el temps total que no heu estat utilisant el teclat ni el ratolí."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -455,7 +455,7 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
-"Açò és una indicació de com de bé vos heu portat amb els descansos. Decreix "
+"Açò és una indicació de com de be vos heu portat amb els descansos. Decreix "
 "cada vegada que vos salteu un descans."
 
 #: src/rsistats.cpp:371
@@ -553,7 +553,7 @@ msgstr ""
 "anar a la configuració.</p>\n"
 "<p>Quan vulgueu saber quan serà el proper descans, poseu el cursor sobre la "
 "icona.</p>\n"
-"<p>Utilitzeu RSIBreak sàviament.</p>"
+"<p>Utiliseu RSIBreak sàviament.</p>"
 
 #: src/rsiwidget.cpp:85
 #, kde-format
@@ -621,8 +621,8 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Amb esta opció indiqueu que voleu utilitzar la detecció d'inactivitat. Açò "
-"vol dir que només es comptarà el temps en què esteu actiu (quan utilitzeu el "
+"Amb esta opció indiqueu que voleu utilisar la detecció d'inactivitat. Açò "
+"vol dir que només es comptarà el temps en què esteu actiu (quan utiliseu el "
 "teclat o el ratolí) per a calcular la propera pausa."
 
 #: src/setupgeneral.cpp:60
@@ -682,7 +682,7 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de salt. Així podreu "
+"Marqueu esta opció per a desactivar i amagar el botó de salt. Aixina podreu "
 "prevenir de saltar-vos els descansos."
 
 #: src/setupmaximized.cpp:95
@@ -696,7 +696,7 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Així "
+"Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Aixina "
 "podreu prevenir de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:99
@@ -711,7 +711,7 @@ msgid ""
 "you can prevent pressing the wrong button."
 msgstr ""
 "Marqueu esta opció per a desactivar i amagar el botó de posposar el descans. "
-"Així podreu prevenir de prémer el botó equivocat."
+"Aixina podreu prevenir de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:104
 #, kde-format
@@ -794,7 +794,7 @@ msgid ""
 msgstr ""
 "Si està marcada, la imatge s'ampliarà a pantalla completa. Es retallarà part "
 "de la imatge que quede fora de l'àrea de la pantalla. D'atra manera, la "
-"imatge es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
+"imatge es mostrarà sencera, pero hi poden haver àrees grises al seu voltant."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
@@ -835,7 +835,7 @@ msgstr ""
 #: src/setupmaximized.cpp:208
 #, kde-format
 msgid "&Use the popup"
-msgstr "&Utilitza la nota emergent"
+msgstr "&Utilisa la nota emergent"
 
 #: src/setupmaximized.cpp:210
 #, kde-format
@@ -925,7 +925,7 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
-"Establiu l'interval en el qual esteu inactiu, ja que serà suficient per a "
+"Establiu l'interval en el qual esteu inactiu, ya que serà suficient per a "
 "saltar-se el següent descans curt."
 
 #: src/setuptiming.cpp:106
@@ -953,7 +953,7 @@ msgstr "Ací podeu establir la duració dels descansos llargs."
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
-"Establiu l'interval en el qual esteu inactiu, ja que serà suficient per a "
+"Establiu l'interval en el qual esteu inactiu, ya que serà suficient per a "
 "saltar-se el següent descans llarg."
 
 #: src/setuptiming.cpp:158
