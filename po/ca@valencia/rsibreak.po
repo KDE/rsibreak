@@ -93,12 +93,12 @@ msgstr "joanmaspons@gmail.com"
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr "S'ha reinicialitzat el temporitzador per al descans curt"
+msgstr "S'ha reinicialitzat el temporisador per al descans curt"
 
 #: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
-msgstr "S'han reinicialitzat els temporitzadors"
+msgstr "S'han reinicialitzat els temporisadors"
 
 #: src/notificator.cpp:22
 #, kde-format
@@ -194,7 +194,7 @@ msgstr "Reinicia"
 #: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "Inicialitzarà les estadístiques a zero. És lo que voleu?"
+msgstr "Inicialisarà les estadístiques a zero. És lo que voleu?"
 
 #: src/rsidock.cpp:192
 #, kde-format
@@ -597,7 +597,7 @@ msgstr ""
 #: src/setupgeneral.cpp:43
 #, kde-format
 msgid "Timer Settings"
-msgstr "Paràmetres del temporitzador"
+msgstr "Paràmetres del temporisador"
 
 #: src/setupgeneral.cpp:44
 #, kde-format
