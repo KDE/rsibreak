@@ -194,7 +194,7 @@ msgstr "Reinicia"
 #: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "Inicialisarà les estadístiques a zero. És lo que voleu?"
+msgstr "Inicialisarà les estadístiques a zero. És el que voleu?"
 
 #: src/rsidock.cpp:192
 #, kde-format
@@ -259,22 +259,22 @@ msgstr "Temps total en inactivitat"
 #: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
-msgstr "Percentatge d'activitat"
+msgstr "Percentage d'activitat"
 
 #: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
-msgstr "Percentatge d'activitat de l'últim minut"
+msgstr "Percentage d'activitat de l'últim minut"
 
 #: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
-msgstr "Percentatge d'activitat de l'última hora"
+msgstr "Percentage d'activitat de l'última hora"
 
 #: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
-msgstr "Percentatge d'activitat de les últimes 6 hores"
+msgstr "Percentage d'activitat de les últimes 6 hores"
 
 #: src/rsistats.cpp:38
 #, kde-format
@@ -365,7 +365,7 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
-"Este és un percentatge d'activitat, basat en la proporció dels períodes "
+"Este és un percentage d'activitat, basat en la proporció dels períodes "
 "d'activitat respecte al temps total que RSIBreak s'ha estat executant. El "
 "color indica el nivell de la vostra activitat. Quan el color és proper al "
 "roig intens és recomanable que disminuïu el ritme de treball."
@@ -470,7 +470,7 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"Este és el percentatge d'activitat durant l'últim minut. El color indica el "
+"Este és el percentage d'activitat durant l'últim minut. El color indica el "
 "vostre nivell d'activitat. Quan el color és proper al roig intens és "
 "recomanable que disminuïu el ritme de treball."
 
@@ -481,7 +481,7 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"Este és el percentatge d'activitat durant l'última hora. El color indica el "
+"Este és el percentage d'activitat durant l'última hora. El color indica el "
 "vostre nivell d'activitat. Quan el color és proper al roig intens és "
 "recomanable que disminuïu el ritme de treball."
 
@@ -492,7 +492,7 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
-"Este és el percentatge d'activitat durant les últimes 6 hores. El color "
+"Este és el percentage d'activitat durant les últimes 6 hores. El color "
 "indica el vostre nivell d'activitat. Quan el color és proper al roig intens "
 "és recomanable que disminuïu el ritme de treball."
 
@@ -659,7 +659,7 @@ msgstr "Mostra el tauler de Plasma"
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr "Mostra un passe de diapositives d'imatges"
+msgstr "Mostra un passe de diapositives d'imàgens"
 
 #: src/setupmaximized.cpp:81
 #, kde-format
@@ -761,7 +761,7 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
-"Seleccioneu la carpeta des de la qual voleu vore les imatges. Estes imatges "
+"Seleccioneu la carpeta des de la qual voleu vore les imàgens. Estes imàgens "
 "es mostren aleatòriament durant els descansos. Si ho indiqueu, es buscaran "
 "recursivament..."
 
@@ -778,12 +778,12 @@ msgstr "Busca al camí recursivament"
 #: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Show small images"
-msgstr "Mostra imatges xicotetes"
+msgstr "Mostra imàgens xicotetes"
 
 #: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Expand image to full screen"
-msgstr "Amplia la imatge a pantalla completa"
+msgstr "Amplia la image a pantalla completa"
 
 #: src/setupmaximized.cpp:171
 #, kde-format
@@ -792,14 +792,14 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
-"Si està marcada, la imatge s'ampliarà a pantalla completa. Es retallarà part "
-"de la imatge que quede fora de l'àrea de la pantalla. D'atra manera, la "
-"imatge es mostrarà sencera, pero hi poden haver àrees grises al seu voltant."
+"Si està marcada, la image s'ampliarà a pantalla completa. Es retallarà part "
+"de la image que quede fora de l'àrea de la pantalla. D'atra manera, la image "
+"es mostrarà sencera, pero hi poden haver àrees grises al seu voltant."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
 msgid "Change images every:"
-msgstr "Canvia les imatges cada:"
+msgstr "Canvia les imàgens cada:"
 
 #: src/setupmaximized.cpp:182
 #, kde-format
@@ -807,8 +807,8 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
-"Ací podeu establir durant quant temps s'ha de mostrar una imatge abans de "
-"ser substituïda per la següent."
+"Ací podeu establir durant quant temps s'ha de mostrar una image abans de ser "
+"substituïda per la següent."
 
 #: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
 #: src/setuptiming.cpp:183
