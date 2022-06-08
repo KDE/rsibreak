@@ -1,13 +1,15 @@
+cmake_minimum_required (VERSION 3.16.0 FATAL_ERROR)
+
 project( rsibreak )
 
-cmake_minimum_required (VERSION 3.5.0 FATAL_ERROR)
-set (QT_MIN_VERSION "5.10.0")
+set(QT_MIN_VERSION "5.12.0")  # Remember to update the QT_DEPRECATED_WARNINGS_SINCE below
+set(KF5_REQUIRED_VERSION "5.68.0") # Remember to update the KF_DEPRECATED_WARNINGS_SINCE below
 
-find_package(ECM 5.18.0 REQUIRED CONFIG)
+find_package(ECM ${KF5_REQUIRED_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS DBus)
-find_package(KF5 REQUIRED COMPONENTS 
+find_package(KF5 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
     Config
     ConfigWidgets
     Crash
@@ -30,6 +32,9 @@ include(ECMAddAppIcon)
 include(ECMInstallIcons)
 include(KDEClangFormat)
 include(KDEGitCommitHooks)
+
+add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x050C00)
+add_definitions(-DKF_DEPRECATED_WARNINGS_SINCE=0x054400)
 
 add_subdirectory( icons )
 add_subdirectory( doc )
