@@ -93,12 +93,12 @@ msgstr "joanmaspons@gmail.com"
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr "S'ha reinicialitzat el temporisador per al descans curt"
+msgstr "S'ha reinicialitzat el temporitzador per al descans curt"
 
 #: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
-msgstr "S'han reinicialitzat els temporisadors"
+msgstr "S'han reinicialitzat els temporitzadors"
 
 #: src/notificator.cpp:22
 #, kde-format
@@ -194,7 +194,7 @@ msgstr "Reinicia"
 #: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "Inicialisarà les estadístiques a zero. És el que voleu?"
+msgstr "Inicialitzarà les estadístiques a zero. És el que voleu?"
 
 #: src/rsidock.cpp:192
 #, kde-format
@@ -259,22 +259,22 @@ msgstr "Temps total en inactivitat"
 #: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
-msgstr "Percentage d'activitat"
+msgstr "Percentatge d'activitat"
 
 #: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
-msgstr "Percentage d'activitat de l'últim minut"
+msgstr "Percentatge d'activitat de l'últim minut"
 
 #: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
-msgstr "Percentage d'activitat de l'última hora"
+msgstr "Percentatge d'activitat de l'última hora"
 
 #: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
-msgstr "Percentage d'activitat de les últimes 6 hores"
+msgstr "Percentatge d'activitat de les últimes 6 hores"
 
 #: src/rsistats.cpp:38
 #, kde-format
@@ -349,13 +349,13 @@ msgstr "Este és el temps total que RSIBreak ha estat en execució."
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr "Este és el temps total que heu utilisat el teclat o el ratolí."
+msgstr "Este és el temps total que heu utilitzat el teclat o el ratolí."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
 msgstr ""
-"Este és el temps total que no heu estat utilisant el teclat ni el ratolí."
+"Este és el temps total que no heu estat utilitzant el teclat ni el ratolí."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -365,7 +365,7 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
-"Este és un percentage d'activitat, basat en la proporció dels períodes "
+"Este és un percentatge d'activitat, basat en la proporció dels períodes "
 "d'activitat respecte al temps total que RSIBreak s'ha estat executant. El "
 "color indica el nivell de la vostra activitat. Quan el color és proper al "
 "roig intens és recomanable que disminuïu el ritme de treball."
@@ -455,7 +455,7 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
-"Açò és una indicació de com de be vos heu portat amb els descansos. Decreix "
+"Això és una indicació de com de bé vos heu portat amb els descansos. Decreix "
 "cada vegada que vos salteu un descans."
 
 #: src/rsistats.cpp:371
@@ -470,7 +470,7 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"Este és el percentage d'activitat durant l'últim minut. El color indica el "
+"Este és el percentatge d'activitat durant l'últim minut. El color indica el "
 "vostre nivell d'activitat. Quan el color és proper al roig intens és "
 "recomanable que disminuïu el ritme de treball."
 
@@ -481,7 +481,7 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"Este és el percentage d'activitat durant l'última hora. El color indica el "
+"Este és el percentatge d'activitat durant l'última hora. El color indica el "
 "vostre nivell d'activitat. Quan el color és proper al roig intens és "
 "recomanable que disminuïu el ritme de treball."
 
@@ -492,7 +492,7 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
-"Este és el percentage d'activitat durant les últimes 6 hores. El color "
+"Este és el percentatge d'activitat durant les últimes 6 hores. El color "
 "indica el vostre nivell d'activitat. Quan el color és proper al roig intens "
 "és recomanable que disminuïu el ritme de treball."
 
@@ -553,7 +553,7 @@ msgstr ""
 "anar a la configuració.</p>\n"
 "<p>Quan vulgueu saber quan serà el proper descans, poseu el cursor sobre la "
 "icona.</p>\n"
-"<p>Utiliseu RSIBreak sàviament.</p>"
+"<p>Utilitzeu RSIBreak sàviament.</p>"
 
 #: src/rsiwidget.cpp:85
 #, kde-format
@@ -597,7 +597,7 @@ msgstr ""
 #: src/setupgeneral.cpp:43
 #, kde-format
 msgid "Timer Settings"
-msgstr "Paràmetres del temporisador"
+msgstr "Paràmetres del temporitzador"
 
 #: src/setupgeneral.cpp:44
 #, kde-format
@@ -621,8 +621,8 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Amb esta opció indiqueu que voleu utilisar la detecció d'inactivitat. Açò "
-"vol dir que només es comptarà el temps en què esteu actiu (quan utiliseu el "
+"Amb esta opció indiqueu que voleu utilitzar la detecció d'inactivitat. Això "
+"vol dir que només es comptarà el temps en què esteu actiu (quan utilitzeu el "
 "teclat o el ratolí) per a calcular la propera pausa."
 
 #: src/setupgeneral.cpp:60
@@ -638,7 +638,7 @@ msgid ""
 "application on the current virtual desktop."
 msgstr ""
 "Amb esta opció es pot indicar que no es vol que RSIBreak interferisca amb "
-"presentacions, jocs, reproduccions de vídeo o qualsevol atra aplicació a "
+"presentacions, jocs, reproduccions de vídeo o qualsevol altra aplicació a "
 "pantalla completa de l'escriptori virtual actual."
 
 #: src/setupmaximized.cpp:76
@@ -659,7 +659,7 @@ msgstr "Mostra el tauler de Plasma"
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr "Mostra un passe de diapositives d'imàgens"
+msgstr "Mostra un passe de diapositives d'imatges"
 
 #: src/setupmaximized.cpp:81
 #, kde-format
@@ -682,7 +682,7 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de salt. Aixina podreu "
+"Marqueu esta opció per a desactivar i amagar el botó de salt. Així podreu "
 "prevenir de saltar-vos els descansos."
 
 #: src/setupmaximized.cpp:95
@@ -696,7 +696,7 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Aixina "
+"Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Així "
 "podreu prevenir de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:99
@@ -711,7 +711,7 @@ msgid ""
 "you can prevent pressing the wrong button."
 msgstr ""
 "Marqueu esta opció per a desactivar i amagar el botó de posposar el descans. "
-"Aixina podreu prevenir de prémer el botó equivocat."
+"Així podreu prevenir de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:104
 #, kde-format
@@ -761,7 +761,7 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
-"Seleccioneu la carpeta des de la qual voleu vore les imàgens. Estes imàgens "
+"Seleccioneu la carpeta des de la qual voleu vore les imatges. Estes imatges "
 "es mostren aleatòriament durant els descansos. Si ho indiqueu, es buscaran "
 "recursivament..."
 
@@ -778,12 +778,12 @@ msgstr "Busca al camí recursivament"
 #: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Show small images"
-msgstr "Mostra imàgens xicotetes"
+msgstr "Mostra imatges xicotetes"
 
 #: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Expand image to full screen"
-msgstr "Amplia la image a pantalla completa"
+msgstr "Amplia la imatge a pantalla completa"
 
 #: src/setupmaximized.cpp:171
 #, kde-format
@@ -792,14 +792,14 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
-"Si està marcada, la image s'ampliarà a pantalla completa. Es retallarà part "
-"de la image que quede fora de l'àrea de la pantalla. D'atra manera, la image "
-"es mostrarà sencera, pero hi poden haver àrees grises al seu voltant."
+"Si està marcada, la imatge s'ampliarà a pantalla completa. Es retallarà part "
+"de la imatge que quede fora de l'àrea de la pantalla. Altrament, la imatge "
+"es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
 msgid "Change images every:"
-msgstr "Canvia les imàgens cada:"
+msgstr "Canvia les imatges cada:"
 
 #: src/setupmaximized.cpp:182
 #, kde-format
@@ -807,8 +807,8 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
-"Ací podeu establir durant quant temps s'ha de mostrar una image abans de ser "
-"substituïda per la següent."
+"Ací podeu establir durant quant temps s'ha de mostrar una imatge abans de "
+"ser substituïda per la següent."
 
 #: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
 #: src/setuptiming.cpp:183
@@ -835,7 +835,7 @@ msgstr ""
 #: src/setupmaximized.cpp:208
 #, kde-format
 msgid "&Use the popup"
-msgstr "&Utilisa la nota emergent"
+msgstr "&Utilitza la nota emergent"
 
 #: src/setupmaximized.cpp:210
 #, kde-format
@@ -925,7 +925,7 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
-"Establiu l'interval en el qual esteu inactiu, ya que serà suficient per a "
+"Establiu l'interval en el qual esteu inactiu, ja que serà suficient per a "
 "saltar-se el següent descans curt."
 
 #: src/setuptiming.cpp:106
@@ -953,7 +953,7 @@ msgstr "Ací podeu establir la duració dels descansos llargs."
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
-"Establiu l'interval en el qual esteu inactiu, ya que serà suficient per a "
+"Establiu l'interval en el qual esteu inactiu, ja que serà suficient per a "
 "saltar-se el següent descans llarg."
 
 #: src/setuptiming.cpp:158
