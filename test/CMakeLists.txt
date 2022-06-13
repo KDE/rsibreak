@@ -13,4 +13,4 @@ add_executable( rsibreak_tests ${rsibreaktest_src} )
 
 target_link_libraries( rsibreak_tests Qt5::Test rsibreak_lib )
 
-add_test( rsibreak_tests rsibreak_tests )
+add_test(NAME rsibreak_tests COMMAND rsibreak_tests)
