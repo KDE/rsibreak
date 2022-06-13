@@ -67,5 +67,3 @@ void RSITimerCounterTest::mixedCountdown()
     QCOMPARE(breakInterval, 0);
     QVERIFY2(counter.isReset(), QString("Counter is not reset after %1 ticks").arg(TEST_DELAY).toLatin1());
 }
-
-#include "rsitimercounter_test.moc"

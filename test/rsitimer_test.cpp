@@ -373,5 +373,3 @@ void RSITimerTest::regularBreaks()
     QCOMPARE(spyEndShortBreak.count(), tinyBreaks);
     QCOMPARE(spyEndLongBreak.count(), 1);
 }
-
-#include "rsitimer_test.moc"
