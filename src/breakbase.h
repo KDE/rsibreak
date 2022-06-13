@@ -75,7 +75,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    explicit GrayWidget(QWidget *parent = 0);
+    explicit GrayWidget(QWidget *parent = nullptr);
     void setLevel(int);
 
 protected:

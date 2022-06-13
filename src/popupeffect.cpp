@@ -14,7 +14,7 @@
 PopupEffect::PopupEffect(QObject *parent)
     : BreakBase(parent)
 {
-    m_popup = new PassivePopup(0);
+    m_popup = new PassivePopup(nullptr);
 
     m_label = new QLabel(i18n("Take a break...."), m_popup);
 

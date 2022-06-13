@@ -57,7 +57,7 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit SlideWidget(QWidget *parent = 0);
+    explicit SlideWidget(QWidget *parent = nullptr);
 
     /**
      * Destructor

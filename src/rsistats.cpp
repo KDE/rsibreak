@@ -71,7 +71,7 @@ RSIStats::RSIStats()
 
     // initialise labels
     for (int i = 0; i < STAT_COUNT; ++i) {
-        QLabel *l = new QLabel(0);
+        QLabel *l = new QLabel(nullptr);
         const QString whatsThis = getWhatsThisText(static_cast<RSIStat>(i));
         l->setWhatsThis(whatsThis);
         m_statistics[i]->getDescription()->setWhatsThis(whatsThis);

@@ -34,7 +34,7 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit RSIObject(QWidget *parent = 0);
+    explicit RSIObject(QWidget *parent = nullptr);
 
     /**
      * Destructor

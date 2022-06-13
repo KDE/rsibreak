@@ -62,8 +62,8 @@ static QAction *doAddAction(QMenu *menu, const QIcon &icon, const QString &text,
 RSIDock::RSIDock(QObject *parent)
     : KStatusNotifierItem(parent)
     , m_suspended(false)
-    , m_statsDialog(0)
-    , m_statsWidget(0)
+    , m_statsDialog(nullptr)
+    , m_statsWidget(nullptr)
 {
     setCategory(ApplicationStatus);
     setStatus(Active);
@@ -72,7 +72,7 @@ RSIDock::RSIDock(QObject *parent)
     setTitle(aboutData.displayName());
     setToolTipTitle(aboutData.displayName());
 
-    m_help = new KHelpMenu(0, aboutData);
+    m_help = new KHelpMenu(nullptr, aboutData);
 
     QMenu *menu = contextMenu();
     doAddAction(menu, QIcon::fromTheme("kde"), i18n("About &KDE"), m_help, &KHelpMenu::aboutKDE);
@@ -97,7 +97,7 @@ RSIDock::~RSIDock()
     delete m_help;
     delete m_statsWidget;
     delete m_statsDialog;
-    m_statsWidget = 0;
+    m_statsWidget = nullptr;
 }
 
 void RSIDock::doResume()
@@ -114,14 +114,14 @@ void RSIDock::doSuspend()
 
 void RSIDock::slotConfigureNotifications()
 {
-    KNotifyConfigWidget::configure(0);
+    KNotifyConfigWidget::configure(nullptr);
 }
 
 void RSIDock::slotConfigure()
 {
     // don't think it is needed, because setup is not accessed after the
     // exec call, but better safe than crash.
-    QPointer<Setup> setup = new Setup(0);
+    QPointer<Setup> setup = new Setup(nullptr);
     emit dialogEntered();
     if (setup->exec() == QDialog::Accepted)
         emit configChanged();
@@ -153,7 +153,7 @@ void RSIDock::slotToggleSuspend()
 void RSIDock::slotShowStatistics()
 {
     if (!m_statsDialog) {
-        m_statsDialog = new QDialog(0);
+        m_statsDialog = new QDialog(nullptr);
         m_statsDialog->setWindowTitle(i18n("Usage Statistics"));
         QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
         QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -186,7 +186,7 @@ void RSIDock::slotShowStatistics()
 
 void RSIDock::slotResetStats()
 {
-    int i = KMessageBox::warningContinueCancel(0,
+    int i = KMessageBox::warningContinueCancel(nullptr,
                                                i18n("This will reset all statistics to zero. "
                                                     "Is that what you want?"),
                                                i18n("Reset the statistics"),

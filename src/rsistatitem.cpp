@@ -13,7 +13,7 @@ const int totalarraysize = 60 * 60 * 24;
 
 RSIStatItem::RSIStatItem(const QString &description, const QVariant &init)
 {
-    m_description = new QLabel(description, 0);
+    m_description = new QLabel(description, nullptr);
     m_value = init;
     m_init = init;
 }

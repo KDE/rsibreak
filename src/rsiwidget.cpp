@@ -37,7 +37,7 @@
 RSIObject::RSIObject(QWidget *parent)
     : QObject(parent)
     , m_timer(nullptr)
-    , m_effect(0)
+    , m_effect(nullptr)
     , m_useImages(false)
     , m_usePlasma(false)
     , m_usePlasmaRO(false)
@@ -50,7 +50,7 @@ RSIObject::RSIObject(QWidget *parent)
     QDBusConnection dbus = QDBusConnection::sessionBus();
     dbus.registerObject("/rsibreak", this);
 
-    m_relaxpopup = new RSIRelaxPopup(0);
+    m_relaxpopup = new RSIRelaxPopup(nullptr);
     connect(m_relaxpopup, &RSIRelaxPopup::lock, this, &RSIObject::slotLock);
 
     connect(m_tray, &RSIDock::configChanged, RSIGlobals::instance(), &RSIGlobals::slotReadConfig);
@@ -75,7 +75,7 @@ RSIObject::~RSIObject()
 void RSIObject::slotWelcome()
 {
     if (KMessageBox::shouldBeShownContinue("dont_show_welcome_again_for_001")) {
-        KMessageBox::information(0,
+        KMessageBox::information(nullptr,
                                  i18n("<p>Welcome to RSIBreak</p>\n<p>"
                                       "In your tray you can now see RSIBreak.</p>\n")
                                      + i18n("<p>When you right-click on that you will see a menu, from which "
@@ -210,29 +210,29 @@ void RSIObject::readConfig()
     delete m_effect;
     switch (effect) {
     case Plasma: {
-        m_effect = new PlasmaEffect(0);
+        m_effect = new PlasmaEffect(nullptr);
         m_effect->setReadOnly(m_usePlasmaRO);
         break;
     }
     case SlideShow: {
-        SlideEffect *slide = new SlideEffect(0);
+        SlideEffect *slide = new SlideEffect(nullptr);
         slide->reset(path, recursive, showSmallImages, expandImageToFullScreen, slideInterval);
         if (slide->hasImages())
             m_effect = slide;
         else {
             delete slide;
-            m_effect = new GrayEffect(0);
+            m_effect = new GrayEffect(nullptr);
         }
         break;
     }
     case Popup: {
-        PopupEffect *effect = new PopupEffect(0);
+        PopupEffect *effect = new PopupEffect(nullptr);
         m_effect = effect;
         break;
     }
     case SimpleGray:
     default: {
-        GrayEffect *effect = new GrayEffect(0);
+        GrayEffect *effect = new GrayEffect(nullptr);
         effect->setLevel(config.readEntry("Graylevel", 80));
         m_effect = effect;
         break;

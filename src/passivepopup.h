@@ -13,7 +13,7 @@
 class PassivePopup : public KPassivePopup
 {
 public:
-    explicit PassivePopup(QWidget *parent = 0);
+    explicit PassivePopup(QWidget *parent = nullptr);
     void show();
 
 protected:

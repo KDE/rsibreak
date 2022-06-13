@@ -64,7 +64,7 @@ class RSIGlobals : public QObject
     Q_OBJECT
 public:
     /** Default constructor. */
-    explicit RSIGlobals(QObject *parent = 0);
+    explicit RSIGlobals(QObject *parent = nullptr);
 
     /** Default destructor. */
     ~RSIGlobals();

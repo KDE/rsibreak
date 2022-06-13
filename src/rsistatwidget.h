@@ -16,7 +16,7 @@ class RSIStatWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RSIStatWidget(QWidget *parent = 0);
+    explicit RSIStatWidget(QWidget *parent = nullptr);
     ~RSIStatWidget();
 
 protected:

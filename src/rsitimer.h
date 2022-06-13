@@ -33,7 +33,7 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit RSITimer(QObject *parent = 0);
+    explicit RSITimer(QObject *parent = nullptr);
 
     // Check whether the timer is suspended.
     bool isSuspended() const

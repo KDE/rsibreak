@@ -26,7 +26,7 @@ public:
      * Constructor
      * @param parent Parent Widget
      */
-    explicit SetupGeneral(QWidget *parent = 0);
+    explicit SetupGeneral(QWidget *parent = nullptr);
 
     /**
      * Destructor

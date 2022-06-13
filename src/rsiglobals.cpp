@@ -18,8 +18,8 @@
 
 #include "rsistats.h"
 
-RSIGlobals *RSIGlobals::m_instance = 0;
-RSIStats *RSIGlobals::m_stats = 0;
+RSIGlobals *RSIGlobals::m_instance = nullptr;
+RSIStats *RSIGlobals::m_stats = nullptr;
 
 RSIGlobals::RSIGlobals(QObject *parent)
     : QObject(parent)
@@ -31,7 +31,7 @@ RSIGlobals::RSIGlobals(QObject *parent)
 RSIGlobals::~RSIGlobals()
 {
     delete m_stats;
-    m_stats = 0L;
+    m_stats = nullptr;
 }
 
 RSIGlobals *RSIGlobals::instance()

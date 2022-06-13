@@ -19,12 +19,12 @@
 
 BreakBase::BreakBase(QObject *parent)
     : QObject(parent)
-    , m_grayEffectOnAllScreens(0)
+    , m_grayEffectOnAllScreens(nullptr)
     , m_readOnly(false)
     , m_disableShortcut(false)
     , m_grayEffectOnAllScreensActivated(false)
 {
-    m_breakControl = new BreakControl(0, Qt::Popup);
+    m_breakControl = new BreakControl(nullptr, Qt::Popup);
     m_breakControl->hide();
     m_breakControl->installEventFilter(this);
     connect(m_breakControl, &BreakControl::skip, this, &BreakBase::skip);
@@ -143,7 +143,7 @@ void BreakBase::excludeGrayEffectOnScreen(QScreen *screen)
 GrayEffectOnAllScreens::GrayEffectOnAllScreens()
 {
     for (QScreen *screen : QGuiApplication::screens()) {
-        GrayWidget *grayWidget = new GrayWidget(0);
+        GrayWidget *grayWidget = new GrayWidget(nullptr);
         m_widgets.insert(screen, grayWidget);
 
         const QRect rect = screen->geometry();

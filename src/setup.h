@@ -30,7 +30,7 @@ public:
      * @param parent Parent Widget
      * @param name Name
      */
-    explicit Setup(QWidget *parent = 0);
+    explicit Setup(QWidget *parent = nullptr);
 
     /**
      * Destructor
