@@ -455,7 +455,7 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
-"Això és una indicació de com de bé vos heu portat amb els descansos. Decreix "
+"Això és una indicació de com de bé vos heu portat amb els descansos. Decrix "
 "cada vegada que vos salteu un descans."
 
 #: src/rsistats.cpp:371
