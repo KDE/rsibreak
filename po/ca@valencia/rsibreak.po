@@ -455,7 +455,7 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
-"Això és una indicació de com de bé vos heu portat amb els descansos. Decrix "
+"Açò és una indicació de com de bé vos heu portat amb els descansos. Decrix "
 "cada vegada que vos salteu un descans."
 
 #: src/rsistats.cpp:371
@@ -621,7 +621,7 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Amb esta opció indiqueu que voleu utilitzar la detecció d'inactivitat. Això "
+"Amb esta opció indiqueu que voleu utilitzar la detecció d'inactivitat. Açò "
 "vol dir que només es comptarà el temps en què esteu actiu (quan utilitzeu el "
 "teclat o el ratolí) per a calcular la propera pausa."
 
