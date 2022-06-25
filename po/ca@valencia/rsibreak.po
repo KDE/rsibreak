@@ -159,7 +159,7 @@ msgstr "Canvia l'i&dioma de l'aplicació..."
 #: src/rsidock.cpp:87 src/rsidock.cpp:141
 #, kde-format
 msgid "&Suspend RSIBreak"
-msgstr "&Suspèn RSIBreak"
+msgstr "&Suspén RSIBreak"
 
 #: src/rsidock.cpp:88
 #, kde-format
@@ -204,7 +204,7 @@ msgstr "Reinicia les estadístiques"
 #: src/rsidock.cpp:209 src/rsiwidget.cpp:114
 #, kde-format
 msgid "Suspended"
-msgstr "Suspèn"
+msgstr "Suspén"
 
 #: src/rsidock.cpp:229
 #, kde-format
@@ -539,7 +539,7 @@ msgid ""
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
 "<p>Us donem la benvinguda a RSIBreak</p>\n"
-"<p>Ara vore RSIBreak a la safata del sistema.</p>\n"
+"<p>Ara veure RSIBreak a la safata del sistema.</p>\n"
 
 #: src/rsiwidget.cpp:81
 #, kde-format
@@ -549,8 +549,8 @@ msgid ""
 "<p>When you want to know when the next break is, hover over the icon.</p>\n"
 "<p>Use RSIBreak wisely.</p>"
 msgstr ""
-"<p>Quan hi cliqueu amb el botó dret damunt voreu un menú des del qual podreu "
-"anar a la configuració.</p>\n"
+"<p>Quan hi cliqueu amb el botó dret damunt veureu un menú des del qual "
+"podreu anar a la configuració.</p>\n"
 "<p>Quan vulgueu saber quan serà el proper descans, poseu el cursor sobre la "
 "icona.</p>\n"
 "<p>Utilitzeu RSIBreak sàviament.</p>"
@@ -761,7 +761,7 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
-"Seleccioneu la carpeta des de la qual voleu vore les imatges. Estes imatges "
+"Seleccioneu la carpeta des de la qual voleu veure les imatges. Estes imatges "
 "es mostren aleatòriament durant els descansos. Si ho indiqueu, es buscaran "
 "recursivament..."
 
