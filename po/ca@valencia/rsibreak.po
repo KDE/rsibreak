@@ -45,7 +45,7 @@ msgstr "RSIBreak"
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr ""
-"Intenta prevenir lesions per moviments repetitius recordant a l'usuari que "
+"Intenta previndre lesions per moviments repetitius recordant a l'usuari que "
 "descansi."
 
 #: src/main.cpp:44
@@ -683,7 +683,7 @@ msgid ""
 "prevent skipping the break."
 msgstr ""
 "Marqueu esta opció per a desactivar i amagar el botó de salt. Així podreu "
-"prevenir de saltar-vos els descansos."
+"previndre de saltar-vos els descansos."
 
 #: src/setupmaximized.cpp:95
 #, kde-format
@@ -697,7 +697,7 @@ msgid ""
 "prevent pressing the wrong button."
 msgstr ""
 "Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Així "
-"podreu prevenir de prémer el botó equivocat."
+"podreu previndre de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:99
 #, kde-format
@@ -711,7 +711,7 @@ msgid ""
 "you can prevent pressing the wrong button."
 msgstr ""
 "Marqueu esta opció per a desactivar i amagar el botó de posposar el descans. "
-"Així podreu prevenir de prémer el botó equivocat."
+"Així podreu previndre de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:104
 #, kde-format
@@ -863,7 +863,7 @@ msgstr ""
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
-"La nota emergent pot fer pampallugues quan detecti que encara esteu actiu."
+"La nota emergent pot fer pampallugues quan detecte que encara esteu actiu."
 
 #: src/setupmaximized.cpp:231
 #, kde-format
