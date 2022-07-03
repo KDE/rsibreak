@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-24 00:47+0000\n"
-"PO-Revision-Date: 2022-06-25 04:25\n"
+"PO-Revision-Date: 2022-07-02 11:00\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -610,7 +610,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "全屏窗口存在时停用(&S)"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -619,6 +619,8 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"勾选此项后，RSIBreak 将不会在当前虚拟桌面正在显示全屏应用程序时生效，这可以避"
+"免干扰幻灯片演示、游戏、影片播放等使用场合。"
 
 #: src/setupmaximized.cpp:76
 #, kde-format
