@@ -344,7 +344,7 @@ msgstr "Puntuació de pauses"
 #: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
-msgstr "Este és el temps total que RSIBreak ha estat en execució."
+msgstr "Este és el temps total que RSIBreak ha sigut en execució."
 
 #: src/rsistats.cpp:312
 #, kde-format
@@ -366,9 +366,9 @@ msgid ""
 "your work pace."
 msgstr ""
 "Este és un percentatge d'activitat, basat en la proporció dels períodes "
-"d'activitat respecte al temps total que RSIBreak s'ha estat executant. El "
-"color indica el nivell de la vostra activitat. Quan el color és proper al "
-"roig intens és recomanable que disminuïu el ritme de treball."
+"d'activitat respecte al temps total que RSIBreak ha sigut executat. El color "
+"indica el nivell de la vostra activitat. Quan el color és proper al roig "
+"intens és recomanable que disminuïu el ritme de treball."
 
 #: src/rsistats.cpp:326
 #, kde-format
@@ -376,7 +376,7 @@ msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
 "running."
 msgstr ""
-"Este és el període d'inactivitat més llarg mesurat mentre RSIBreak ha estat "
+"Este és el període d'inactivitat més llarg mesurat mentre RSIBreak ha sigut "
 "en execució."
 
 #: src/rsistats.cpp:329
