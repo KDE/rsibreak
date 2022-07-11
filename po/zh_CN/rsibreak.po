@@ -1,14 +1,9 @@
-# translation of rsibreak.po to 简体中文
-# Copyright (C) 2007, 2008 Free Software Foundation, Inc.
-#
-# Liang Qi <cavendish.qi@gmail.com>, 2007.
-# Ni Hui <shuizhuyuanluo@126.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-24 00:47+0000\n"
-"PO-Revision-Date: 2022-07-02 11:00\n"
+"PO-Revision-Date: 2022-07-10 09:19\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
