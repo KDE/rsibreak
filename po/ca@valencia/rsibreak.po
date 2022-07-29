@@ -843,7 +843,7 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
-"Mostra una finestra emergent de compte enrere quan s'abasti el moment d'un "
+"Mostra una finestra emergent de compte enrere quan s'abaste el moment d'un "
 "descans. El compte enrere tornarà a l'activitat."
 
 #: src/setupmaximized.cpp:216
