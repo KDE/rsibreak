@@ -843,8 +843,8 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
-"Mostra una finestra emergent de compte enrere quan s'abaste el moment d'un "
-"descans. El compte enrere tornarà a l'activitat."
+"Mostra una finestra emergent de compte arrere quan s'abaste el moment d'un "
+"descans. El compte arrere tornarà a l'activitat."
 
 #: src/setupmaximized.cpp:216
 #, kde-format
