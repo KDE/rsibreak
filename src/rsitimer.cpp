@@ -83,6 +83,10 @@ void RSITimer::hibernationDetector(const int totalIdle)
         qDebug() << "Not been checking idleTime for more than 60 seconds, "
                  << "assuming the computer hibernated, resetting timers"
                  << "Last: " << last << "Current: " << current << "Idle, s: " << totalIdle;
+        m_bigBreakCounter->reset();
+        if (m_tinyBreakCounter) {
+            m_tinyBreakCounter->reset();
+        }
         resetAfterBreak();
     }
     last = current;
