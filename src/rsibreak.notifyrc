@@ -89,7 +89,7 @@ Name[tr]=Molalar
 Name[ug]=ئۈز
 Name[uk]=Перерви
 Name[x-test]=xxBreaksxx
-Name[zh_CN]=课间休息
+Name[zh_CN]=休息
 Name[zh_TW]=休息
 
 [Event/start short break]
@@ -137,7 +137,7 @@ Name[ta]=குறுகிய இடைவேளையின் தொடக்
 Name[tr]=Kısa bir molanın başlangıcı
 Name[uk]=Почати коротку перерву
 Name[x-test]=xxStart of a short breakxx
-Name[zh_CN]=短休息的开始
+Name[zh_CN]=短休息开始
 Name[zh_TW]=開始短暫休息
 Comment=When a short break starts
 Comment[be]=Калі кароткі перапынак пачынаецца
@@ -181,7 +181,7 @@ Comment[ta]=குறுகிய இடைவேளை துவங்கும
 Comment[tr]=Kısa bir mola başladığında
 Comment[uk]=Час початку короткої перерви
 Comment[x-test]=xxWhen a short break startsxx
-Comment[zh_CN]=什么时候开始短休息
+Comment[zh_CN]=短休息开始时通知
 Comment[zh_TW]=休息開始時間
 
 [Event/end short break]
@@ -229,7 +229,7 @@ Name[ta]=குறுகிய இடைவேளையின் முடிவ
 Name[tr]=Kısa bir molanın sonu
 Name[uk]=Завершити коротку перерву
 Name[x-test]=xxEnd of a short breakxx
-Name[zh_CN]=短休息的结束
+Name[zh_CN]=短休息结束
 Name[zh_TW]=休息結束
 Comment=When a short break ends
 Comment[be]=Калі кароткі перапынак заканчваецца
@@ -273,7 +273,7 @@ Comment[ta]=குறுகிய இடைவேளை முடியும்
 Comment[tr]=Kısa bir mola bittiğinde
 Comment[uk]=Час, коли завершиться коротка перерва
 Comment[x-test]=xxWhen a short break endsxx
-Comment[zh_CN]=什么时候结束短休息
+Comment[zh_CN]=短休息结束时通知
 Comment[zh_TW]=休息結束時間
 
 [Event/start long break]
@@ -321,7 +321,7 @@ Name[ta]=நெடும் இடைவேளையின் தொடக்க
 Name[tr]=Uzun bir molanın başlangıcı
 Name[uk]=Почати довгу перерву
 Name[x-test]=xxStart of a long breakxx
-Name[zh_CN]=长休息的开始
+Name[zh_CN]=长休息开始
 Name[zh_TW]=開始長時間休息
 Comment=When a long break starts
 Comment[be]=Калі доўгі перапынак пачынаецца
@@ -365,7 +365,7 @@ Comment[ta]=நெடும் இடைவேளை துவங்கும்
 Comment[tr]=Uzun bir mola başladığında
 Comment[uk]=Час початку довгої перерви
 Comment[x-test]=xxWhen a long break startsxx
-Comment[zh_CN]=什么时候开始长休息
+Comment[zh_CN]=长休息开始时通知
 Comment[zh_TW]=休息開始時間
 
 [Event/end long break]
@@ -413,7 +413,7 @@ Name[ta]=நெடும் இடைவேளையின் முடிவு
 Name[tr]=Uzun bir molanın sonu
 Name[uk]=Завершити довгу перерву
 Name[x-test]=xxEnd of a long breakxx
-Name[zh_CN]=长休息的结束
+Name[zh_CN]=长休息结束
 Name[zh_TW]=休息結束
 Comment=When a long break ends
 Comment[be]=Калі доўгі перапынак скончваецца
@@ -457,7 +457,7 @@ Comment[ta]=நெடும் இடைவேளை முடியும்ப
 Comment[tr]=Uzun bir mola bittiğinde
 Comment[uk]=Час, коли завершиться довга перерва
 Comment[x-test]=xxWhen a long break endsxx
-Comment[zh_CN]=什么时候结束长休息
+Comment[zh_CN]=长休息结束时通知
 Comment[zh_TW]=休息結束時間
 
 [Context/timers]
@@ -495,7 +495,7 @@ Name[sv]=Rörande tidtagning
 Name[tr]=Zamanlayıcılar hakkında
 Name[uk]=Відповідні таймери
 Name[x-test]=xxRegarding timersxx
-Name[zh_CN]=关于计时器
+Name[zh_CN]=计时器相关
 Name[zh_TW]=關於計時器
 
 [Event/short timer reset]
@@ -537,7 +537,7 @@ Name[ta]=குறுகிய டைமர் மீட்டமைக்கப
 Name[tr]=Kısa bir geri sayım bittiğinde
 Name[uk]=Коли короткому таймеру буде надано нульове значення
 Name[x-test]=xxWhen the short timer has been resetxx
-Name[zh_CN]=当短计时器已被重置
+Name[zh_CN]=短休息计时器被重置时
 Name[zh_TW]=當短計時器被重置時
 
 [Event/timers reset]
@@ -578,6 +578,6 @@ Name[ta]=டைமர்கள் மீட்டமைக்கப்பட்�
 Name[tr]=Zamanlayıcılar sıfırlandığında
 Name[uk]=Коли таймерам буде надано нульових значень
 Name[x-test]=xxWhen the timers have been resetxx
-Name[zh_CN]=当计时器已被重置
+Name[zh_CN]=计时器被重置时
 Name[zh_TW]=當計時器被重置時
 
