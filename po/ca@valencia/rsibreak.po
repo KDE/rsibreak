@@ -4,20 +4,20 @@
 # Albert Astals Cid <aacid@kde.org>, 2006.
 # Josep M. Ferrer <txemaq@gmail.com>, 2010, 2011, 2016, 2017, 2018, 2019, 2021, 2022.
 # Joan Maspons Ventura <joanmaspons@gmail.com>, 2010, 2011.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2015, 2017, 2018, 2020.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2015, 2017, 2018, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-24 00:47+0000\n"
-"PO-Revision-Date: 2022-03-20 10:26+0100\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"PO-Revision-Date: 2022-08-25 15:48+0200\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.08.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -539,7 +539,7 @@ msgid ""
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
 "<p>Us donem la benvinguda a RSIBreak</p>\n"
-"<p>Ara veure RSIBreak a la safata del sistema.</p>\n"
+"<p>Ara veureu RSIBreak en la safata del sistema.</p>\n"
 
 #: src/rsiwidget.cpp:81
 #, kde-format
