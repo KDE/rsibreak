@@ -773,7 +773,7 @@ msgstr "&Canvia..."
 #: src/setupmaximized.cpp:167
 #, kde-format
 msgid "Search path recursively"
-msgstr "Busca al camí recursivament"
+msgstr "Busca en el camí recursivament"
 
 #: src/setupmaximized.cpp:168
 #, kde-format
