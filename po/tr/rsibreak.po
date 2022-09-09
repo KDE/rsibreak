@@ -93,12 +93,12 @@ msgstr "tulliana@gmail.com, muhammet.k@gmail.com, emir_sari@icloud.com"
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr "Kısa mola zamanlayıcısı şimdi sıfırlandı"
+msgstr "Kısa mola sayacı şimdi sıfırlandı"
 
 #: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
-msgstr "Zamanlayıcılar şimdi sıfırlandı"
+msgstr "Sayaçlar sıfırlandı"
 
 #: src/notificator.cpp:22
 #, kde-format
@@ -587,7 +587,7 @@ msgstr ""
 #: src/setupgeneral.cpp:43
 #, kde-format
 msgid "Timer Settings"
-msgstr "Zamanlayıcı Ayarları"
+msgstr "Sayaç Ayarları"
 
 #: src/setupgeneral.cpp:44
 #, kde-format
