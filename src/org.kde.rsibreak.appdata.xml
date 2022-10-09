@@ -18,6 +18,7 @@
   <name xml:lang="gl">RSI Break</name>
   <name xml:lang="id">RSI Break</name>
   <name xml:lang="it">RSI Break</name>
+  <name xml:lang="ka">RSI Break</name>
   <name xml:lang="ko">RSI 휴식</name>
   <name xml:lang="lt">RSI Break</name>
   <name xml:lang="nl">RSI Break</name>
@@ -137,6 +138,7 @@
       <caption xml:lang="fr">Statistiques de RSIBreak.</caption>
       <caption xml:lang="id">Statis RSIBreak</caption>
       <caption xml:lang="it">Statistiche di RSIBreak</caption>
+      <caption xml:lang="ka">RSIBreak-ის სტატისტიკა</caption>
       <caption xml:lang="ko">RSIBreak 통계</caption>
       <caption xml:lang="nl">RSIBreak statistieken</caption>
       <caption xml:lang="nn">RSIBreak-statistikk</caption>
