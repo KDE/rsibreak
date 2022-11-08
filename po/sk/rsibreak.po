@@ -1,13 +1,13 @@
 # translation of rsibreak.po to Slovak
 # Richard Fric <Richard.Fric@kdemail.net>, 2007, 2009.
 # Roman Paholik <wizzardsk@gmail.com>, 2015, 2016.
-# Jose Riha <jose1711@gmail.com>, 2021.
+# Jose Riha <jose1711@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-24 00:47+0000\n"
-"PO-Revision-Date: 2021-10-20 10:05+0200\n"
+"PO-Revision-Date: 2022-11-07 09:24+0100\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
 "Language: sk\n"
@@ -361,8 +361,8 @@ msgid ""
 "your work pace."
 msgstr ""
 "Toto je percento aktivity vyjadrené ako pomer aktívneho času na celkovej "
-"dobe spustenia RSIBreak. Farba označuje úroveň vašej aktivity. Ak sa "
-"zafarbenie približuje červenej, odporúčame vám znížiť tempo práce."
+"dobe spustenia RSIBreak. Farba vyjadruje úroveň vašej aktivity. Ak sa "
+"zafarbenie približuje červenej, odporúčame vám spomaliť tempo práce."
 
 #: src/rsistats.cpp:326
 #, kde-format
@@ -460,6 +460,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"Toto je percento aktivity počas poslednej minúty. Farba vyjadruje úroveň "
+"vašej aktivity. Ak sa zafarbenie blíži červenej, odporúčame vám spomaliť "
+"tempo práce."
 
 #: src/rsistats.cpp:379
 #, kde-format
@@ -468,6 +471,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"Toto je percento aktivity počas poslednej hodiny. Farba vyjadruje úroveň "
+"vašej aktivity. Ak sa zafarbenie blíži červenej, odporúčame vám spomaliť "
+"tempo práce."
 
 #: src/rsistats.cpp:384
 #, kde-format
@@ -476,6 +482,9 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
+"Toto je percento aktivity počas posledných 6 hodín. Farba vyjadruje úroveň "
+"vašej aktivity. Ak sa zafarbenie blíži červenej, odporúčame vám spomaliť "
+"tempo práce."
 
 #: src/rsistatwidget.cpp:25
 #, kde-format
@@ -611,7 +620,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&Potlačiť, ak je prítomné okno v režime celej obrazovky"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -620,6 +629,9 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Toto nastavenie umožňuje RSIBreak povedať, aby neprerušoval prezentácie, "
+"hry, prehrávanie videa a akúkoľvek aplikáciu, ktorá využíva aktuálnu "
+"virtuálnu plochu v režime celoobrazovkového zobrazenia."
 
 #: src/setupmaximized.cpp:76
 #, kde-format
@@ -691,6 +703,8 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
+"Aktivujte toto nastavenie pre vypnutie a skrytie tlačidla na odloženie "
+"prestávky. Týmto spôsobom môžete zabrániť nechcenému stlačeniu tlačidla."
 
 #: src/setupmaximized.cpp:104
 #, kde-format
@@ -771,6 +785,9 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
+"Ak je aktivované, obrázok sa roztiahne na celú obrazovku. Časť obrázka, "
+"ktorá sa na obrazovku nezmestí, bude odstrihnutá. Ak nastavenie vypnete, "
+"obrázok sa zobrazí celý, ale môžu sa okolo neho nachádzať šedé oblasti."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
@@ -852,6 +869,8 @@ msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
 "there is activity."
 msgstr ""
+"Pomocou tohto začiarkavacieho políčka môžete nastaviť, či sa má pri aktivite "
+"zobrazovať vyskakovacie okno."
 
 #: src/setupmaximized.cpp:317
 #, kde-format
@@ -881,7 +900,7 @@ msgstr "Tu môžete nastaviť ako často chcete mať krátke prestávky. "
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
-msgstr "Počas trvania:"
+msgstr "Po dobu:"
 
 #: src/setuptiming.cpp:74
 #, kde-format
@@ -899,8 +918,8 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
-"Nastavte interval nečinnosti, ktorý stačí na to, aby mohla byť ďalšia krátka "
-"prestávka vynechaná."
+"Nastavte interval nečinnosti, ktorý stačí na to, aby došlo k vynechaniu "
+"nasledujúcej krátkej prestávky."
 
 #: src/setuptiming.cpp:106
 #, kde-format
@@ -927,6 +946,8 @@ msgstr "Tu môžete nastaviť trvanie dlhej prestávky."
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
+"Nastavte interval nečinnosti, ktorý stačí na to, aby došlo k vynechaniu "
+"nasledujúcej dlhej prestávky."
 
 #: src/setuptiming.cpp:158
 #, kde-format
@@ -936,7 +957,7 @@ msgstr "Odložiť prestávky"
 #: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
-msgstr ""
+msgstr "Tu môžete nastaviť o aký dlhý čas chcete posúvať prestávku."
 
 #: src/setuptiming.cpp:187
 #, kde-format
