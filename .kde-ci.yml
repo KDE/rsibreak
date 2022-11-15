@@ -17,3 +17,6 @@ Dependencies:
     'frameworks/ktextwidgets': '@stable'
     'frameworks/kxmlgui': '@stable'
     'frameworks/kwindowsystem': '@stable'
+
+Options:
+  require-passing-tests-on: [ '@all' ]
