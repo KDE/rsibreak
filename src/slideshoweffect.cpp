@@ -32,7 +32,7 @@ SlideEffect::SlideEffect(QObject *parent)
     m_slidewidget = new SlideWidget(nullptr);
     KWindowSystem::forceActiveWindow(m_slidewidget->winId());
     KWindowSystem::setOnAllDesktops(m_slidewidget->winId(), true);
-    KWindowSystem::setState(m_slidewidget->winId(), NET::KeepAbove);
+    m_slidewidget->setWindowFlag(Qt::WindowStaysOnTopHint);
     KWindowSystem::setState(m_slidewidget->winId(), NET::FullScreen);
 
     setReadOnly(true);

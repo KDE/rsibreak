@@ -48,7 +48,7 @@ void BreakBase::activate()
 
     KWindowSystem::forceActiveWindow(m_breakControl->winId());
     KWindowSystem::setOnAllDesktops(m_breakControl->winId(), true);
-    KWindowSystem::setState(m_breakControl->winId(), NET::KeepAbove);
+    m_breakControl->setWindowFlag(Qt::WindowStaysOnTopHint);
     KWindowSystem::setState(m_breakControl->winId(), NET::FullScreen);
 
     m_breakControl->grabKeyboard();
@@ -151,7 +151,7 @@ GrayEffectOnAllScreens::GrayEffectOnAllScreens()
         grayWidget->setGeometry(rect);
 
         KWindowSystem::forceActiveWindow(grayWidget->winId());
-        KWindowSystem::setState(grayWidget->winId(), NET::KeepAbove);
+        grayWidget->setWindowFlag(Qt::WindowStaysOnTopHint);
         KWindowSystem::setOnAllDesktops(grayWidget->winId(), true);
         KWindowSystem::setState(grayWidget->winId(), NET::FullScreen);
 
