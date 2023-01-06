@@ -1,273 +1,197 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY % German "INCLUDE"
-> <!-- change language only here -->
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY % addindex "IGNORE">
 ]>
 
 <book lang="&language;">
 
 <bookinfo>
-<title
->Das Handbuch zu &rsibreak;</title>
+<title>The &rsibreak; Handbook</title>
 
 <authorgroup>
-<author
-><firstname
->Tom</firstname
-> <surname
->Albers</surname
-> <affiliation
-> <address
-><email
->tomalbers@kde.nl</email
-></address>
+<author>
+<firstname>Tom</firstname>
+<surname>Albers</surname>
+<affiliation>
+<address><email>tomalbers@kde.nl</email></address>
 </affiliation>
 </author>
 
-<author
-><firstname
->Bram</firstname
-> <surname
->Schoenmakers</surname
-> <affiliation
-> <address
-><email
->bramschoenmakers@kde.nl</email
-></address>
+<author>
+<firstname>Bram</firstname>
+<surname>Schoenmakers</surname>
+<affiliation>
+<address><email>bramschoenmakers@kde.nl</email></address>
 </affiliation>
 </author>
 
-<othercredit role="translator"
-><firstname
->Deutsches</firstname
-><surname
->KDE-Übersetzerteam</surname
-><affiliation
-><address
-><email
->kde-i18n-de@kde.org</email
-></address
-></affiliation
-><contrib
->Übersetzung</contrib
-></othercredit
-> 
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
 <copyright>
-<year
->2006</year>
-<holder
->Tom Albers</holder>
+<year>2006</year>
+<holder>Tom Albers</holder>
 </copyright>
 
 <copyright>
-<year
->2006</year>
-<holder
->Bram Schoenmakers</holder>
+<year>2006</year>
+<holder>Bram Schoenmakers</holder>
 </copyright>
 
-<legalnotice
->&FDLNotice;</legalnotice>
+<legalnotice>&FDLNotice;</legalnotice>
 
-<date
->2016-08-24</date>
-<releaseinfo
->0.12</releaseinfo>
+<date>2022-03-20</date>
+<releaseinfo>0.12.14</releaseinfo>
 
-<abstract
-><para
->Die repetitive Belastungsstörung (RSI) ist eine Erkrankung, die als Folge von ständiger Arbeit mit Maus und Tastatur entstehen kann. Das Risiko einer Verletzung steigt,  je länger der Benutzer ohne Pausen arbeitet. &rsibreak; erinnert daran, ab und zu eine Pause einzulegen. </para
-></abstract>
+<abstract><para>Repetitive Strain Injury is an illness which can occur as a
+result of continuous work with a mouse and keyboard. The risk of suffering injury increases the longer users work without breaks. &rsibreak; simply offers reminders to take a break now and then. </para></abstract>
 
 <keywordset>
-<keyword
->KDE</keyword>
-<keyword
->rsibreak</keyword>
-<keyword
->RSI</keyword>
-<keyword
->Projekt</keyword>
+<keyword>KDE</keyword>
+<keyword>rsibreak</keyword>
+<keyword>RSI</keyword>
+<keyword>project</keyword>
 </keywordset>
 
 </bookinfo>
 
 <chapter id="introduction">
-<title
->Einleitung</title>
+<title>Introduction</title>
 
-<para
->Repetitive Belastungsstörung kann als Folge der Arbeit mit Maus und Tastatur auftreten. Dieses Dienstprogramm kann Sie daran erinnern, ab und zu eine Pause einzulegen. Es zeigt ein zufälliges Bild aus einer Sammlung in bestimmten Intervallen für definierte Zeiträume an. Sie können die anzuzeigenden Bilder und die Dauer der Anzeige einstellen. Sie könnten die Pausen-Erinnerungen z. B. für Dehnungsübungen verwenden -oder als Erinnerung, sich für eine Weile vom Computer zu entfernen.</para>
+<para>Repetitive Strain Injury can occur as a result of working with a mouse and keyboard. This utility can be used to remind you to
+take a break now and then. It displays a random picture from a collection at specified intervals for defined durations. You can configure the pictures to show and lengths of time to show them.
+You might use the breaks reminders to do some stretching exercises, for example, or as a
+reminder to walk away from the computer for a while.</para>
 
 <screenshot>
-<screeninfo
->&rsibreak;-Logo</screeninfo>
+<screeninfo>Logo &rsibreak;</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="logo.png" format="PNG"/>
 </imageobject>
 <textobject>
-<phrase
->&rsibreak;-Logo</phrase>
+<phrase>Logo &rsibreak;</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para
->&rsibreak; wurde ursprünglich von Tom Albers geschrieben. Am Beginn der Entwicklung hat sich Bram Schoenmakers am Projekt beteiligt.</para>
+<para>&rsibreak; was originally written by Tom Albers. Early in the development
+Bram Schoenmakers joined the project</para>
 
 </chapter>
 
 <chapter id="general-use">
-<title
->&rsibreak; verwenden</title>
+<title>Using &rsibreak;</title>
 
-<para
->Die Idee von &rsibreak; ist es, Sie bei Ihrer Arbeit zu unterbrechen. Dies soll auf eine benutzerfreundliche Weise geschehen. Es wird jedoch Zeiten geben, in denen es sich meldet, wenn Sie sehr beschäftigt sind. Die Einstellungen in &rsibreak; geben Ihnen die Möglichkeit, die Unterbrechungen anzupassen. Wir hoffen, dass Sie auf diese Weise Ihre Effektivität bei der Arbeit verbessern und gleichzeitig Ihr Verletzungsrisiko zu verringern.</para>
+<para>The idea of &rsibreak; is to interrupt you in your work. The intention is to do that in
+a user-friendly manner. There will be times, though, that it will display itself when you are very busy. The configuration options in &rsibreak; are an effort to allow you to customize the interruptions. In that way we hope you will be able to improve your effectiveness at work while lessening your chances of injury.</para>
 
-<para
->Nach dem Start sehen Sie ein Symbol in Ihrer Kontrollleiste und ein Aufklappfenster.  Obwohl die Anwendung mit den Standardeinstellungen nützlich sein sollte, sollten Sie die Einstellungen überprüfen. Dazu klicken Sie mit der rechten Maustaste auf das Symbol in der Kontrollleiste. Im Kontextmenü wählen Sie dann <guilabel
->Einrichten</guilabel
->. In den folgenden Kapiteln finden Sie weitere Informationen zur Einrichtung.</para>
+<para>After starting, you can see an icon in your tray and you will see a welcome
+pop up. Although the application should be useful with default settings, it may be wise
+to take control by examining the settings. To discover and to obtain an access to the options available, right click on the tray icon; in the context menu that appears, select <guilabel>Configure</guilabel>. The following chapters contain further configuration information.</para>
 
 <screenshot>
-<screeninfo
->Statistiken in &rsibreak;</screeninfo>
+<screeninfo>&rsibreak; statistics</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="statistics.png" format="PNG"/>
 </imageobject>
 <textobject>
-<phrase
->Klicken Sie mit der <mousebutton
->linken</mousebutton
-> Maustaste auf das Symbol in der Kontrollleiste, um die Statistik anzuzeigen.</phrase>
+<phrase>Left click on the tray icon to see statistics</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para
->Wenn Sie mit der linken Maustaste auf das Symbol in der Kontrollleiste klicken, werden einige Statistiken angezeigt. Wenn Sie in &rsibreak; Pausen zu festen Zeiten einstellen, wird Ihre Leerlaufzeit nicht gemessen. In diesem Fall sind einige der Einstellungen in der Statistik möglicherweise nicht nicht sehr informativ.</para>
+<para>When you left click on the tray icon you will see some statistics. If you
+configure &rsibreak; to break at fixed times your idle time will not be measured. In that case, some of the options in the statistics may not be very informative.</para>
 
-<para
->Der obere linke Block zeigt allgemeine Statistiken: einige Gesamtwerte und einige Informationen über die Leerlaufzeit. Der untere linke Block zeigt etwas über Ihr Arbeitstempo. Sie sehen die Gesamtmenge der Aktivitäten seit dem Sie sich in dieser Sitzung angemeldet haben. Der Umfang der Aktivität während anderer Intervallen wird ebenfalls angezeigt. Der Pausenwert verringert sich jedes Mal, wenn Sie eine Pause machen. Die Blöcke auf der rechten Seite zeigen an, welche kurzen und langen Pausen bereits vergangen sind. Aktuell können die Beschriftungen im Dialog entweder schwarz oder rot und grün sein. Im letzteren Fall bedeutet eine rote Statistik sich zu entspannen und eine Pause zu machen, was die Farbe dann weiter zu Grün ändert.</para>
+<para>The upper left block shows general statistics: some totals and some information about idle time. The bottom left block shows something about your work pace. You will see the total amount of activity since you started the current log-in session. The amount of activity during some other intervals will also be shown. The Pause Score decreases every time you skip a break. The blocks to the right report on which short and long breaks have already passed. At present, the labels in the dialog can either be black or red and green. In the latter case a red statistic indicates a recommendation to relax and take a break, which will bring the color closer to green.</para>
 
-<para
->Wenn Sie mit der rechten Maustaste auf das Symbol in der Kontrollleiste klicken, Wenn Sie sich nicht unterbrechen lassen möchten, z. B. während eines Spiels oder einer Präsentation, können Sie damit <guilabel
->&rsibreak; anhalten</guilabel
->. Sie können &rsibreak; wieder fortsetzen, wenn Sie erneut mit der rechten Maustaste auf das Symbol klicken und <guilabel
->&rsibreak; fortsetzen</guilabel
-> wählen.</para>
+<para>When you right-click the tray icon, the context menu will show an option to
+<guilabel>Suspend</guilabel> &rsibreak;. When you don't want to be interrupted, such as during a game or a presentation, you can use this to silence &rsibreak;
+You can resume &rsibreak; when you click right on the icon again
+and select <guilabel>Resume</guilabel>.</para>
 
 <screenshot>
-<screeninfo
->&rsibreak; anhalten</screeninfo>
+<screeninfo>Suspended &rsibreak;</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="suspend.png" format="PNG"/>
 </imageobject>
 <textobject>
-<phrase
->Das Symbol im Systemabschnitt der Kontrollleiste mit angehaltenem &rsibreak;</phrase>
+<phrase>The tray icon when &rsibreak; is suspended</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para
->Sie können &rsibreak; auch über &DBus; steuern;. Es gibt &DBus;-Befehle, um Pausen zu erzwingen und um &rsibreak; zu unterbrechen und fortzusetzen. Sie können diese Befehle verwenden, um &rsibreak; automatisch zu unterbrechen, wenn Sie ein Spiel oder ein anderes angegebenes Programm starten. Führen Sie <command
->qdbus org.kde.rsibreak /rsibreak</command
-> aus, um die Möglichkeiten zu sehen.</para>
+<para>The last way to influence &rsibreak; is via &DBus;. There are &DBus;
+commands available to force breaks and to suspend and resume &rsibreak;. You can
+use these to suspend &rsibreak; automatically when you start a game or any other specified program.
+Execute <command>qdbus org.kde.rsibreak /rsibreak</command> to see the possibilities.</para>
 </chapter>
 
 <chapter id="break-types">
-<title
->Arten von Pausen</title>
+<title>Break types</title>
 
-<para
->Die meisten Einstellungen sind einfach zu handhaben. Auf der Seite„Allgemein“ gibt es eine Einstellung zum automatischen Starten bei der Anmeldung in &kde;. Normalerweise sollte sich die Sitzungsverwaltung darum kümmern, aber einige Benutzer möchten möglicherweise &rsibreak; beim Anmelden starten, während sie die Sitzungsverwaltung nicht verwenden. Beachten Sie dass <application
->Gnome</application
-> diese Einstellung ignoriert.</para>
+<para>Most settings are straightforward. On the general page, there is an option to start up automatically at &kde; startup.
+You might wonder why that is because the session manager should take care of
+that. Some users may need to start &rsibreak; at startup
+while they are not using the session manager. Note that <application>Gnome</application> will ignore the setting.</para>
 
-<para
->Es gibt zwei Verhaltensweisen in &rsibreak;. Es gibt eine Einstellung für Pausen in festen Intervallen für feste Zeiträume und eine Einstellung zum Zurücksetzen der Zeitmesser, wenn &rsibreak; feststellt, dass Sie für die Dauer einer Pause nicht aktiv waren.</para>
+<para>There are two behavior options in &rsibreak;. There is an option to break at fixed intervals for fixed periods, and there is an option to reset
+the timers when &rsibreak; detects that you have been idle for the duration of a
+break.</para>
+
+<para>You can indicate that you do not want RSIBreak to interfere with presentations, games, video playback, and any other fullscreen 
+application on the current virtual desktop using the <guilabel>Suppress if fullscreen windows present</guilabel> option.
+</para>
 
 <screenshot>
-<screeninfo
->&rsibreak;-Kontextmenü</screeninfo>
+<screeninfo>&rsibreak; popup</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="popup.png" format="PNG"/>
 </imageobject>
 <textobject>
-<phrase
->Mit <guilabel
->Bildschirm sperren</guilabel
-> können Sie immer dann Ihren Bildschirm sperren, wenn Sie Ihren Rechner verlassen.</phrase>
+<phrase>The lock button enables you to lock your screen whenever you leave your
+computer</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
 
-<para
->Möglicherweise ist ein Bildschirm füllender Hinweis auf eine Pause störend. In diesem Fall können Sie auf der Seite <guilabel
->Während Pausen</guilabel
-> angeben, dass Sie ein Aufklappfenster verwenden möchten. Dann wird es in der Nähe der Kontrollleiste angezeigt und fordert Sie auf, eine Pause zu machen. Wenn Sie dies ignorieren, wird der Aktivitätsblock im Vollbildmodus trotzdem angezeigt.</para>
+<para>You may find the full-screen notice to take a break inconvenient at the time it appears. In this case, on the <guilabel>During Breaks</guilabel> page you can indicate that you want to use a popup; a small popup near the tray will appear asking you to take a break. If you choose to ignore that, the full-screen activity-block will appear anyway.</para>
 
-<para
->Es gibt drei Einstellungen für die Vollbildpause. Es kann ein <guilabel
->Schwarzer-Bildschirm-Effekt</guilabel
-> als Standard, <guilabel
->Plasma-Dashboard anzeigen</guilabel
-> oder <guilabel
->Diashow anzeigen</guilabel
-> gewählt werden, dabei kann ein Pfad zu einem Ordner auf Ihrer Festplatte mit Bildern angegeben werden. Während einer Pause sehen Sie dann eine Diashow dieser Bilder.</para>
+<para>There are three options for the full screen break. It can show a <guilabel>Complete Black Effect</guilabel> (this is the default action), <guilabel>Show Plasma Dashboard</guilabel> or <guilabel>Show Slide Show of Images</guilabel> where a path may be set up to specify a folder on your hard disk which contains images. During a break,
+you will see a slideshow of those images.</para>
 </chapter>
 
 <chapter id="timings">
-<title
->Dauer und Abstand einer Pause</title>
+<title>Duration/Interval of a break</title>
 
 <!--
-<para
->On the <guilabel
->Timings</guilabel
->-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+<para>On the <guilabel>Timings</guilabel>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
 -->
 
-<para
->&rsibreak; unterstützt zwei verschiedene Arten von Pausen: <quote
->Kurze Pause</quote
-> und <quote
->Lange Pause</quote
->. Normalerweise sollten Sie  häufige kurze Pausen und gelegentliche lange Pausen machen. Zum Beispiel eine Pause von 20 Sekunden alle 20  Minuten (die kurze Pause) und eine längere Pause von 2 Minuten jede Stunde (die lange Pause).</para>
+<para>&rsibreak; supports two different types of break: <quote>Tiny breaks</quote> and <quote>Big breaks</quote>. The usual way to use these is to take frequent tiny breaks, and occasional big breaks. For example, a break of 20 seconds every 20 minutes (the tiny break), and a longer break of 2 minutes every hour (the big break).</para>
 
-<tip
-><para
->Es ist nicht sinnvoll. irritierende Intervalle einzustellen. Diese werden nur stören  und Sie werden dann eher die Taste &Esc; oder eine andere Taste, die Sie auf der Seite <guilabel
->Während Pausen</guilabel
-> eingerichtet haben, benutzen um die Pause zu überspringen.</para>
+<tip><para>It is no use to set up intervals which are irritating. Those will, by definition, get on your nerves and you will be more likely to hit &Esc; &ndash; or any other key you have setup on the <guilabel>During Breaks</guilabel> page &ndash; to skip the break.</para>
 
-<para
->Wenn Sie feststellen, dass Sie häufig Pausen auslassen, können Sie die Tastenkombination deaktivieren und den Knopf zum Minimieren ausblenden. Sie entscheiden, wie strikt Sie die Pausenabfolge einhalten wollen. </para>
+<para>If you find that you are often skipping breaks, you could decide to disable the shortcut
+and hide the minimize button. Remember, you choose how strictly to follow the break sequence. </para>
     </tip>
 </chapter>
 
 <chapter id="credits-and-license">
-<title
->Mitwirkende und Lizenz</title>
+<title>Credits and License</title>
 
-<para
->&rsibreak; Copyright 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
-<para
->Dokumentation Copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+<para>&rsibreak; copyright 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para>Documentation copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
 
-<para
->Übersetzung Deutsches KDE-Übersetzerteam<email
->kde-i18n-de@kde.org</email
-></para
-> &underGPL; &underFDL; </chapter>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+&underGPL;
+&underFDL;
+</chapter>
 
 
 &documentation.index;
