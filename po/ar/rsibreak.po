@@ -131,7 +131,7 @@ msgstr "رجاء لـ ثانية"
 #: src/rsidock.cpp:78
 #, kde-format
 msgid "About &KDE"
-msgstr "عن &كدي"
+msgstr "عن &كِيدِي"
 
 #: src/rsidock.cpp:79
 #, fuzzy, kde-format
@@ -567,7 +567,7 @@ msgstr "تلقائياً تشغيل RSIBre&ak عند البدأ"
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
-msgstr "مع خيار RSIBreak إلى تشغيل كدي."
+msgstr "مع خيار RSIBreak إلى تشغيل كِيدِي."
 
 #: src/setupgeneral.cpp:43
 #, kde-format
