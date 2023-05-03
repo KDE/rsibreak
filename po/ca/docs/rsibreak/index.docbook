@@ -208,10 +208,10 @@
 >Hi ha tres opcions per al descans a pantalla completa. Es pot mostrar un <guilabel
 >Efecte negre complet</guilabel
 > (aquesta és l'acció predeterminada), <guilabel
->Mostra el tauler del plasma</guilabel
+>Mostra el tauler del Plasma</guilabel
 > o <guilabel
->Mostra un passi de diapositives</guilabel
->, el qual pot ser un camí per especificar una carpeta del vostre disc dur que contingui les imatges. Durant un descans, veureu un passi de diapositives d'aquestes imatges.</para>
+>Mostra una presentació de diapositives</guilabel
+>, la qual pot ser un camí per especificar una carpeta del vostre disc dur que contingui les imatges. Durant un descans, veureu una presentació de diapositives d'aquestes imatges.</para>
 </chapter>
 
 <chapter id="timings">
