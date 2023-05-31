@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
@@ -831,7 +831,6 @@ msgstr "スライドショーで次の画像に切り替えるまでの時間を
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] "秒"
-msgstr[1] "秒"
 
 #: src/setupmaximized.cpp:203
 #, kde-format
@@ -987,4 +986,3 @@ msgstr "ここで長い休憩の長さを設定します。"
 msgid " minute"
 msgid_plural " minutes"
 msgstr[0] "分"
-msgstr[1] "分"
