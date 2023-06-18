@@ -11,6 +11,7 @@
   <name xml:lang="de">RSI Break</name>
   <name xml:lang="el">RSI Break</name>
   <name xml:lang="en-GB">RSI Break</name>
+  <name xml:lang="eo">RSI Break</name>
   <name xml:lang="es">RSI Break</name>
   <name xml:lang="et">RSIBreak</name>
   <name xml:lang="fi">RSI Break</name>
@@ -42,6 +43,7 @@
   <summary xml:lang="de">Erinnert den Benutzer daran, Pause zu machen, und beugt so dem RSI-Syndrom vor</summary>
   <summary xml:lang="el">Βοηθάει στην πρόληψη του συνδρόμου κακώσεων λόγω επαναλαμβανόμενης καταπόνησης (RSI) υπενθυμίζοντάς σας να κάνετε ένα διάλειμμα</summary>
   <summary xml:lang="en-GB">Helps prevent Repetitive Strain Injury by reminding you to take a break</summary>
+  <summary xml:lang="eo">Ĝi helpas eviti Ripetan Streĉiĝvundon memorigante vin preni paŭzon</summary>
   <summary xml:lang="es">Ayuda a prevenir lesiones por esfuerzo repetitivo recordándole que debe hacer una pausa</summary>
   <summary xml:lang="et">Aitab vältida ülekoormuskahjustusi, meenutades vajadust puhata</summary>
   <summary xml:lang="fr">Aide à la prévention des blessures musculo-squelettiques en vous rappelant de faire une pause</summary>
@@ -135,6 +137,7 @@
       <caption xml:lang="de">RSIBreak-Statistik</caption>
       <caption xml:lang="el">RSIBreak Stats</caption>
       <caption xml:lang="en-GB">RSIBreak Stats</caption>
+      <caption xml:lang="eo">RSIBreak-Statistikoj</caption>
       <caption xml:lang="es">Estadísticas de RSIBreak</caption>
       <caption xml:lang="fr">Statistiques de RSIBreak.</caption>
       <caption xml:lang="gl">Estatísticas de RSIBreak</caption>
