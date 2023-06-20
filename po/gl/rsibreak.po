@@ -648,17 +648,17 @@ msgstr "Efecto negro completo"
 #: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Show Plasma Dashboard"
-msgstr "Mostrar o cadro de control de Plasma"
+msgstr "Amosar o cadro de control de Plasma"
 
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr "Mostrar unha presentación de imaxes"
+msgstr "Amosar unha presentación de imaxes"
 
 #: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show a Passive Popup"
-msgstr "Mostrar unha xanela emerxente pasiva"
+msgstr "Amosar unha xanela emerxente pasiva"
 
 #: src/setupmaximized.cpp:88
 #, kde-format
@@ -754,7 +754,7 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
-"Escolla o cartafol do cal quere ver as imaxes. Esta imaxes son mostradas "
+"Escolla o cartafol do cal quere ver as imaxes. Esta imaxes son amosadas "
 "aleatoriamente durante os descansos. Buscarase recursivamente se o quere…"
 
 #: src/setupmaximized.cpp:164
@@ -770,7 +770,7 @@ msgstr "Buscar a ruta recursivamente"
 #: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Show small images"
-msgstr "Mostrar imaxes pequenas"
+msgstr "Amosar imaxes pequenas"
 
 #: src/setupmaximized.cpp:169
 #, kde-format
@@ -785,7 +785,7 @@ msgid ""
 "displayed completely but there may grey areas around it. "
 msgstr ""
 "Se se marca, a imaxe expandirase a pantalla completa. Parte da imaxe fóra da "
-"zona da pantalla recortarase. En caso contrario, a imaxe mostrarase "
+"zona da pantalla recortarase. En caso contrario, a imaxe amosarase "
 "completamente, pero podería haber zonas grises ao seu redor."
 
 #: src/setupmaximized.cpp:178
@@ -799,7 +799,7 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
-"Aquí pode indicar durante canto tempo debe mostrarse unha imaxe antes de "
+"Aquí pode indicar durante canto tempo debe amosarse unha imaxe antes de "
 "substituírse pola seguinte."
 
 #: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
@@ -821,8 +821,8 @@ msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
-"RSIBreak pode mostrar unha xanela emerxente substituíndo toda a pantalla "
-"polo efecto escollido a continuación."
+"RSIBreak pode amosar unha xanela emerxente substituíndo toda a pantalla polo "
+"efecto escollido a continuación."
 
 #: src/setupmaximized.cpp:208
 #, kde-format
