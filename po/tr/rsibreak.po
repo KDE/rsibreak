@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-24 00:47+0000\n"
-"PO-Revision-Date: 2023-05-29 12:44+0300\n"
+"PO-Revision-Date: 2023-08-11 13:45+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 23.11.70\n"
 "X-Poedit-Language: Turkish\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
@@ -39,7 +39,7 @@ msgstr "Ekranı Kilitle"
 #: src/main.cpp:39
 #, kde-format
 msgid "RSIBreak"
-msgstr "RSIBreak"
+msgstr "RSI Molası"
 
 #: src/main.cpp:41
 #, kde-format
@@ -50,7 +50,7 @@ msgstr ""
 #: src/main.cpp:44
 #, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
-msgstr "(c) 2005-2015, RSIBreak geliştiricileri"
+msgstr "(c) 2005-2015, RSI Molası geliştiricileri"
 
 #: src/main.cpp:46
 #, kde-format
@@ -138,12 +138,12 @@ msgstr "&KDE Hakkında"
 #: src/rsidock.cpp:79
 #, kde-format
 msgid "&About RSIBreak"
-msgstr "RSIBreak H&akkında"
+msgstr "RSI Molası H&akkında"
 
 #: src/rsidock.cpp:80
 #, kde-format
 msgid "RSIBreak &Handbook"
-msgstr "RSIBreak &El Kitabı"
+msgstr "RSI Molası &El Kitabı"
 
 #: src/rsidock.cpp:83
 #, kde-format
@@ -158,7 +158,7 @@ msgstr "Uygulama di&lini değiştir..."
 #: src/rsidock.cpp:87 src/rsidock.cpp:141
 #, kde-format
 msgid "&Suspend RSIBreak"
-msgstr "RSIBreak Uygulamasını A&skıya Al"
+msgstr "RSI Molası Uygulamasını A&skıya Al"
 
 #: src/rsidock.cpp:88
 #, kde-format
@@ -173,12 +173,12 @@ msgstr "Bildirimleri &Yapılandır..."
 #: src/rsidock.cpp:90
 #, kde-format
 msgid "&Configure RSIBreak..."
-msgstr "&RSIBreak Uygulamasını Yapılandır..."
+msgstr "&RSI Molası Uygulamasını Yapılandır..."
 
 #: src/rsidock.cpp:147
 #, kde-format
 msgid "&Resume RSIBreak"
-msgstr "RSIBreak Uygulamasını Sü&rdür"
+msgstr "RSI Molası Uygulamasını Sü&rdür"
 
 #: src/rsidock.cpp:157
 #, kde-format
@@ -343,7 +343,7 @@ msgstr "Bekleme puanı"
 #: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
-msgstr "Bu, RSIBreak uygulamasının şimdiye kadarki toplam çalışma zamanıdır."
+msgstr "Bu, RSI Molası uygulamasının şimdiye kadarki toplam çalışma zamanıdır."
 
 #: src/rsistats.cpp:312
 #, kde-format
@@ -363,7 +363,7 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
-"RSIBreak uygulamasının çalışmış olduğu toplam zamana göre etkinlik "
+"RSI Molası uygulamasının çalışmış olduğu toplam zamana göre etkinlik "
 "sürelerinin yüzdesidir. Bu renk etkinlik düzeyinizi belirtir. Bu renk tam "
 "kırmızıya yakın olduğu zaman çalışma hızınızı düşürmeniz önerilir."
 
@@ -372,7 +372,7 @@ msgstr ""
 msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
 "running."
-msgstr "RSIBreak çalıştığı sürece ölçülen en uzun durgunluk süresidir."
+msgstr "RSI Molası çalıştığı sürece ölçülen en uzun durgunluk süresidir."
 
 #: src/rsistats.cpp:329
 #, kde-format
@@ -527,8 +527,8 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
-"<p>RSIBreak Uygulamasına Hoş Geldiniz</p>\n"
-"<p>Şimdi RSIBreak simgesini sistem çekmecenizde görebilirsiniz:</p>\n"
+"<p>RSI Molası Uygulamasına Hoş Geldiniz</p>\n"
+"<p>Şimdi RSI Molası simgesini sistem çekmecenizde görebilirsiniz:</p>\n"
 
 #: src/rsiwidget.cpp:81
 #, kde-format
@@ -542,7 +542,7 @@ msgstr ""
 "bir menü göreceksiniz.</p>\n"
 "<p>Sonraki molanın ne zaman olduğunu bilmek isterseniz farenizi simgenin "
 "üzerine götürün.</p>\n"
-"<p>Sağlığınız için RSIBreak kullanın.</p>"
+"<p>Sağlığınız için RSI Molası kullanın.</p>"
 
 #: src/rsiwidget.cpp:85
 #, kde-format
@@ -572,7 +572,7 @@ msgstr "Eylemler"
 #: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
-msgstr "RSIBreak uygulamasını &açılışta otomatik olarak başlat"
+msgstr "RSI Molası uygulamasını &açılışta otomatik olarak başlat"
 
 #: src/setupgeneral.cpp:40
 #, kde-format
@@ -580,8 +580,8 @@ msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr ""
-"Bu kutucuğu imlerseniz Masaüstü Ortamınız başladığı anda otomatik olarak "
-"RSIBreak çalışmaya başlayacaktır."
+"Bu kutucuğu imlerseniz Masaüstü Ortamınız başladığı anda otomatik olarak RSI "
+"Molası çalışmaya başlayacaktır."
 
 #: src/setupgeneral.cpp:43
 #, kde-format
@@ -629,8 +629,8 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
-"Bu seçenekle, RSIBreak'in sunumlar, oyunlar, video oynatımı ve geçerli sanal "
-"masaüstündeki diğer tam ekran uygulamalara karışmasını istemediğini "
+"Bu seçenekle, RSI Molası'nın sunumlar, oyunlar, video oynatımı ve geçerli "
+"sanal masaüstündeki diğer tam ekran uygulamalara karışmasını istemediğini "
 "belirtebilirsiniz."
 
 #: src/setupmaximized.cpp:76
@@ -822,7 +822,7 @@ msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
-"RSIBreak, tüm ekranınızı kaplamak yerine sistem tepsisinin yakınında bir "
+"RSI Molası, tüm ekranınızı kaplamak yerine sistem tepsisinin yakınında bir "
 "açılır pencere gösterebilir."
 
 #: src/setupmaximized.cpp:208

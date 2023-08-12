@@ -1,6 +1,6 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# Tommi Nieminen <translator@legisign.org>, 2015, 2018, 2019.
+# Tommi Nieminen <translator@legisign.org>, 2015, 2018, 2019, 2023.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2016.
 #
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-04-24 00:47+0000\n"
-"PO-Revision-Date: 2019-05-12 18:23+0200\n"
+"PO-Revision-Date: 2023-07-27 20:12+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -621,7 +621,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&Estä, jos näytöllä on koko näytön ikkuna"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -630,6 +630,9 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Tällä asetuksella voi estää RSIBreakiä häiritsemästä esitystä, peliä, "
+"videotoistoa tai muita koko näytön sovelluksia nykyisellä "
+"virtuaalityöpöydällä."
 
 #: src/setupmaximized.cpp:76
 #, kde-format
