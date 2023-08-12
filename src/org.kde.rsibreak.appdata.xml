@@ -31,7 +31,7 @@
   <name xml:lang="sl">RSI Break</name>
   <name xml:lang="sv">RSIbreak</name>
   <name xml:lang="ta">ஆரெசைபிரேக்</name>
-  <name xml:lang="tr">RSIBreak</name>
+  <name xml:lang="tr">RSI Molası</name>
   <name xml:lang="uk">RSIBreak</name>
   <name xml:lang="x-test">xxRSI Breakxx</name>
   <name xml:lang="zh-CN">RSI Break 重复性劳损预防工具</name>
@@ -46,6 +46,7 @@
   <summary xml:lang="eo">Ĝi helpas eviti Ripetan Streĉiĝvundon memorigante vin preni paŭzon</summary>
   <summary xml:lang="es">Ayuda a prevenir lesiones por esfuerzo repetitivo recordándole que debe hacer una pausa</summary>
   <summary xml:lang="et">Aitab vältida ülekoormuskahjustusi, meenutades vajadust puhata</summary>
+  <summary xml:lang="fi">Auttaa ehkäisemään rasitusvammoja muistuttamalla tauotuksesta</summary>
   <summary xml:lang="fr">Aide à la prévention des blessures musculo-squelettiques en vous rappelant de faire une pause</summary>
   <summary xml:lang="gl">Axuda a evitar as lesións por tensión repetitiva lembrándolle facer descansos.</summary>
   <summary xml:lang="id">Membantu mencegah pegal-pegal (Repetitive Strain Injury) dengan mengingatkan Anda untuk beristirahat</summary>
@@ -121,7 +122,7 @@
     <p xml:lang="sk">RSIBreak pomáha chrániť zdravie pred poškodením z opakovaného namáhania tak, že zaznamenáva používanie počítača a pravidelne informuje používateľa o potrebe prestávok. Počas prestávky môže RSIBreak zobraziť neobťažujúcu správu, úplne zamknúť obrazovku alebo zobrazovať obrázky.</p>
     <p xml:lang="sl">RSIBreak poskuša preprečevati poškodbe zaradi ponavljajočih se gibov s sledenjem vzorcev uporabe in občasno obvešča uporabnike, da si odpočijejo. Med odmori lahko RSIBreak prikaže nevsiljivo sporočilo, v celoti zaklene zaslon ali pa predstavi diaprojekcijo.</p>
     <p xml:lang="sv">RSIbreak hjälper till att förhindra belastningsskador genom att hålla reda på användningsmönster och periodiskt informera användare om att ta raster. Under raster kan RSIbreak antingen visa ett diskret meddelande, låsa skärmen helt och hållet eller visa ett bildspel.</p>
-    <p xml:lang="tr">RSIBreak, kullanım alışkanlıklarını izleyerek ve kullanıcıları periyodik olarak bilgilendirerek yineleyici incinmeyi önlemeye yardımcı olur. Molalar sırasında, RSIBreak rahatsız etmeyen iletiler gösterebilir, ekranı tümüyle kilitleyebilir veya bir slayt gösterisi oynatabilir.</p>
+    <p xml:lang="tr">RSI Molası, kullanım alışkanlıklarını izleyerek ve kullanıcıları periyodik olarak bilgilendirerek yineleyici incinmeyi önlemeye yardımcı olur. Molalar sırasında, RSI Molası rahatsız etmeyen iletiler gösterebilir, ekranı tümüyle kilitleyebilir veya bir slayt gösterisi oynatabilir.</p>
     <p xml:lang="uk">RSIBreak допомагає запобігти шкідливій для здоров'я надмірній втомі, стежачи за користуванням комп'ютером і періодично інформуючи користувача про те, що слід робити перерви у роботі. Під час перерв RSIBreak може показувати ненав'язливе повідомлення, блокувати екран повністю або показувати вказані користувачем слайди.</p>
     <p xml:lang="x-test">xxRSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.xx</p>
     <p xml:lang="zh-CN">RSIBreak 通过跟踪用户的电脑使用习惯并发出休息提醒来预防重复性劳损。您可以设置 RSIBreak 在进入休息期间发出非干扰性的提示、完全锁定屏幕、显示幻灯片等。</p>
@@ -141,6 +142,7 @@
       <caption xml:lang="en-GB">RSIBreak Stats</caption>
       <caption xml:lang="eo">RSIBreak-Statistikoj</caption>
       <caption xml:lang="es">Estadísticas de RSIBreak</caption>
+      <caption xml:lang="fi">RSI Breakin tilastot.</caption>
       <caption xml:lang="fr">Statistiques de RSIBreak.</caption>
       <caption xml:lang="gl">Estatísticas de RSIBreak.</caption>
       <caption xml:lang="id">Statis RSIBreak</caption>
@@ -155,7 +157,7 @@
       <caption xml:lang="sk">Štatistiky RSIBreak</caption>
       <caption xml:lang="sl">RSIBreak statistike</caption>
       <caption xml:lang="sv">RSIbreak statistik</caption>
-      <caption xml:lang="tr">RSIBreak İstatistikleri</caption>
+      <caption xml:lang="tr">RSI Molası İstatistikleri</caption>
       <caption xml:lang="uk">Статистика у RSIBreak</caption>
       <caption xml:lang="x-test">xxRSIBreak Statsxx</caption>
       <caption xml:lang="zh-CN">RSIBreak 统计数据</caption>
