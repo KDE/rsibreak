@@ -716,7 +716,7 @@ msgstr ""
 #: src/setupmaximized.cpp:104
 #, kde-format
 msgid "&Disable shortcut (Esc)"
-msgstr "&Desactiva la drecera (Esc)"
+msgstr "&Desactiva la drecera («Esc»)"
 
 #: src/setupmaximized.cpp:106
 #, kde-format
