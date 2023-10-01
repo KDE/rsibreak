@@ -348,12 +348,12 @@ msgstr "Este é o tempo total que RSIBreak estivo activo."
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr "Este é o tempo total que vocé utilizou o teclado ou rato."
+msgstr "Este é o tempo total que vocé usou o teclado ou rato."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
-msgstr "Este é o tempo total que non utilizou nin o teclado nin o rato."
+msgstr "Este é o tempo total que non usou nin o teclado nin o rato."
 
 #: src/rsistats.cpp:320
 #, kde-format
