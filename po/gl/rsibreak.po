@@ -848,8 +848,8 @@ msgstr "Xanela emerxente de paciencia:"
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr ""
-"Tempo máximo durante o que se mostra a xanela emerxente de paciencia antes "
-"de aplicar o efecto."
+"Tempo máximo durante o que se amosa a xanela emerxente de paciencia antes de "
+"aplicar o efecto."
 
 #: src/setupmaximized.cpp:227
 #, kde-format
