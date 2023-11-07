@@ -33,6 +33,7 @@
   <name xml:lang="ta">ஆரெசைபிரேக்</name>
   <name xml:lang="tr">RSI Molası</name>
   <name xml:lang="uk">RSIBreak</name>
+  <name xml:lang="x-test">xxRSI Breakxx</name>
   <name xml:lang="zh-CN">RSI Break 重复性劳损预防工具</name>
   <summary>Helps prevent Repetitive Strain Injury by reminding you to take a break</summary>
   <summary xml:lang="ca">Ajuda a prevenir lesions per moviments repetitius recordant a l'usuari que descansi</summary>
@@ -60,6 +61,7 @@
   <summary xml:lang="sv">Hjälper till att förhindra belastningsskador genom att påminna dig om att ta en rast</summary>
   <summary xml:lang="tr">Dinlenmeyi anımsatarak Yineleyici İncinmeyi önlemeye çalışır</summary>
   <summary xml:lang="uk">Допомагає запобігти ушкодженням від постійного напруження шляхом нагадування про потребу у відпочинку</summary>
+  <summary xml:lang="x-test">xxHelps prevent Repetitive Strain Injury by reminding you to take a breakxx</summary>
   <summary xml:lang="zh-CN">提醒用户进行休息，预防长时间使用电脑造成的身体重复性劳损。</summary>
   <description>
     <p>Prolonged use of a mouse and keyboard can cause a repetitive strain injury
@@ -90,6 +92,7 @@
     <p xml:lang="sv">Långvarig användning av mus och tangentbord kan orsaka belastningsskador (Repetitive Strain Injury - RSI), och därför råds datoranvändare att ta regelbundna raster.</p>
     <p xml:lang="tr">Fare ve klavyenin uzun bir süre kullanımı, yineleyici incinmeye (RSI) neden olabilir, bu nedenle bilgisayar kullanıcılarının düzenli molalar vermeleri önerilir.</p>
     <p xml:lang="uk">Надмірне тривале користування мишею та клавіатурою може призвести до шкоди здоров'ю, заподіяної постійним напруженням (RSI), тому лікарі рекомендують користувачам комп'ютерів робити регулярні перерви у роботі.</p>
+    <p xml:lang="x-test">xxProlonged use of a mouse and keyboard can cause a repetitive strain injury (RSI), so computer users are advised to take regular breaks.xx</p>
     <p xml:lang="zh-CN">长时间使用鼠标和键盘等外设可能会导致身体的重复性劳损，电脑的使用者应该在工作一段时间后进行休息。</p>
     <p>RSIBreak helps prevent repetitive strain injuries by keeping track of usage
     patterns and periodically informing users to take breaks.  During break
@@ -121,6 +124,7 @@
     <p xml:lang="sv">RSIbreak hjälper till att förhindra belastningsskador genom att hålla reda på användningsmönster och periodiskt informera användare om att ta raster. Under raster kan RSIbreak antingen visa ett diskret meddelande, låsa skärmen helt och hållet eller visa ett bildspel.</p>
     <p xml:lang="tr">RSI Molası, kullanım alışkanlıklarını izleyerek ve kullanıcıları periyodik olarak bilgilendirerek yineleyici incinmeyi önlemeye yardımcı olur. Molalar sırasında, RSI Molası rahatsız etmeyen iletiler gösterebilir, ekranı tümüyle kilitleyebilir veya bir slayt gösterisi oynatabilir.</p>
     <p xml:lang="uk">RSIBreak допомагає запобігти шкідливій для здоров'я надмірній втомі, стежачи за користуванням комп'ютером і періодично інформуючи користувача про те, що слід робити перерви у роботі. Під час перерв RSIBreak може показувати ненав'язливе повідомлення, блокувати екран повністю або показувати вказані користувачем слайди.</p>
+    <p xml:lang="x-test">xxRSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.xx</p>
     <p xml:lang="zh-CN">RSIBreak 通过跟踪用户的电脑使用习惯并发出休息提醒来预防重复性劳损。您可以设置 RSIBreak 在进入休息期间发出非干扰性的提示、完全锁定屏幕、显示幻灯片等。</p>
   </description>
   <url type="homepage">https://userbase.kde.org/RSIBreak</url>
@@ -155,6 +159,7 @@
       <caption xml:lang="sv">RSIbreak statistik</caption>
       <caption xml:lang="tr">RSI Molası İstatistikleri</caption>
       <caption xml:lang="uk">Статистика у RSIBreak</caption>
+      <caption xml:lang="x-test">xxRSIBreak Statsxx</caption>
       <caption xml:lang="zh-CN">RSIBreak 统计数据</caption>
       <image type="source" width="801" height="518">https://cdn.kde.org/screenshots/rsibreak/rsibreak.png</image>
     </screenshot>
