@@ -682,8 +682,8 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de salt. Així podreu "
-"previndre de saltar-vos els descansos."
+"Seleccioneu esta opció per a desactivar i amagar el botó de salt. Així "
+"podreu previndre de saltar-vos els descansos."
 
 #: src/setupmaximized.cpp:95
 #, kde-format
@@ -696,7 +696,7 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Així "
+"Seleccioneu esta opció per a desactivar i amagar el botó de bloqueig. Així "
 "podreu previndre de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:99
@@ -710,8 +710,8 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
-"Marqueu esta opció per a desactivar i amagar el botó de posposar el descans. "
-"Així podreu previndre de prémer el botó equivocat."
+"Seleccioneu esta opció per a desactivar i amagar el botó de posposar el "
+"descans. Així podreu previndre de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:104
 #, kde-format
@@ -722,7 +722,8 @@ msgstr "&Desactiva la drecera («Esc»)"
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
-"Marqueu esta opció per a desactivar la tecla «Esc» per a ometre fer la pausa."
+"Seleccioneu esta opció per a desactivar la tecla «Esc» per a ometre fer la "
+"pausa."
 
 #: src/setupmaximized.cpp:119
 #, kde-format
@@ -792,9 +793,9 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
-"Si està marcada, la imatge s'ampliarà a pantalla completa. Es retallarà part "
-"de la imatge que quede fora de l'àrea de la pantalla. Altrament, la imatge "
-"es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
+"Si se selecciona, la imatge s'ampliarà a pantalla completa. Es retallarà "
+"part de la imatge que quede fora de l'àrea de la pantalla. Altrament, la "
+"imatge es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
