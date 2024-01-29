@@ -88,7 +88,7 @@
 >Introducció</title>
 
 <para
->Una lesió per moviment repetitiu es pot produir com a resultat del treball amb un ratolí i un teclat. Aquesta utilitat es pot utilitzar per a recordar-vos que feu un descans ara mateix. Mostra una imatge aleatòria des d'una col·lecció a intervals específics en durades definides. Podeu configurar les imatges que es mostraran i la quantitat de temps que es mostraran. Podeu utilitzar els recordatoris de descans per a fer exercicis d'estirament, per exemple, o com a recordatori per allunyar-vos de l'ordinador durant un temps.</para>
+>Una lesió per moviment repetitiu es pot produir com a resultat del treball amb un ratolí i un teclat. Aquesta utilitat es pot utilitzar per a recordar-vos que feu un descans ara mateix. Mostra una imatge aleatòria des d'una col·lecció a intervals específics en durades definides. Podeu configurar les imatges que es mostraran i la quantitat de temps que es mostraran. Podeu utilitzar els recordatoris de descans per a fer exercicis d'estirament, per exemple, o com a recordatori per a allunyar-vos de l'ordinador durant un temps.</para>
 
 <screenshot>
 <screeninfo
@@ -119,7 +119,7 @@
 <para
 >Després de començar, veureu una icona a la safata i un element emergent de benvinguda. Encara que l'aplicació hauria de ser útil amb les opcions de configuració predeterminades, seria prudent examinant-les. Per a descobrir i obtenir accés a les opcions disponibles, feu clic dret sobre la icona de la safata. Al menú contextual que apareix, seleccioneu <guilabel
 >Configura</guilabel
->. Els següents capítols contenen més informació sobre la configuració.</para>
+>. Els capítols següents contenen més informació sobre la configuració.</para>
 
 <screenshot>
 <screeninfo
@@ -139,7 +139,7 @@
 >Quan feu clic esquerre sobre la icona de la safata, veureu algunes estadístiques. Si configureu el &rsibreak; per a fer un descans en temps fixos, no es mesurarà el temps inactiu. En aquest cas, algunes de les opcions a les estadístiques podrien no ser gaire informatives.</para>
 
 <para
->El bloc superior esquerre mostra les estadístiques generals: alguns totals i certa informació sobre el temps d'inactivitat. El bloc inferior esquerre mostra quelcom sobre el vostre ritme de treball. Veureu la quantitat total d'activitat des que vàreu iniciar la sessió actual. També es mostrarà la quantitat d'activitat durant alguns altres intervals. La puntuació per fer pauses disminuirà cada vegada que ometeu algun descans. Els blocs de la dreta informen sobre quins descansos breus i llargs han passat. Actualment, les etiquetes del diàleg poden ser de color negre o vermell i verd. En aquest últim cas, una estadística vermella indicarà una recomanació per a relaxar-vos i prendre un descans, el qual farà que el color s'aproximi al verd.</para>
+>El bloc superior esquerre mostra les estadístiques generals: alguns totals i certa informació sobre el temps d'inactivitat. El bloc inferior esquerre mostra quelcom sobre el vostre ritme de treball. Veureu la quantitat total d'activitat des que vàreu iniciar la sessió actual. També es mostrarà la quantitat d'activitat durant alguns altres intervals. La puntuació per a fer pauses disminuirà cada vegada que ometeu algun descans. Els blocs de la dreta informen sobre quins descansos breus i llargs han passat. Actualment, les etiquetes del diàleg poden ser de color negre o vermell i verd. En aquest últim cas, una estadística vermella indicarà una recomanació per a relaxar-vos i prendre un descans, el qual farà que el color s'aproximi al verd.</para>
 
 <para
 >Quan feu clic dret sobre la icona de la safata, el menú contextual mostrarà una opció per a <guilabel
@@ -173,7 +173,7 @@
 >Tipus de descansos</title>
 
 <para
->La majoria de les opcions de configuració són molt senzilles. A la pàgina general, hi ha una opció per a iniciar-lo automàticament en engegar el &kde;. Podríeu preguntar-vos perquè el gestor de sessions hauria de tenir cura d'això. És possible que alguns usuaris hagin d'iniciar el &rsibreak; durant l'inici mentre no utilitzen el gestor de sessions. Tingueu en compte que el <application
+>La majoria de les opcions de configuració són molt senzilles. A la pàgina general, hi ha una opció per a iniciar-lo automàticament en engegar el &kde;. Podríeu preguntar-vos per què el gestor de sessions hauria de tenir cura d'això. És possible que alguns usuaris hagin d'iniciar el &rsibreak; durant l'inici mentre no utilitzen el gestor de sessions. Tingueu en compte que el <application
 >Gnome</application
 > ignorarà aquesta opció.</para>
 
@@ -211,7 +211,7 @@
 >Mostra el tauler del Plasma</guilabel
 > o <guilabel
 >Mostra una presentació de diapositives</guilabel
->, la qual pot ser un camí per especificar una carpeta del vostre disc dur que contingui les imatges. Durant un descans, veureu una presentació de diapositives d'aquestes imatges.</para>
+>, la qual pot ser un camí per a especificar una carpeta del vostre disc dur que contingui les imatges. Durant un descans, veureu una presentació de diapositives d'aquestes imatges.</para>
 </chapter>
 
 <chapter id="timings">
