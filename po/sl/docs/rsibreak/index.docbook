@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>&rsibreak; Priročnik</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2022-03-20</date>
+<releaseinfo
+>0.12.14</releaseinfo>
+
+<abstract
+><para
+>Poškodba zaradi ponavljajočih se gibov je bolezen, ki se lahko pojavi kot posledica neprekinjenega dela z miško in tipkovnico. Tveganje za poškodbe je večje, če uporabniki dlje delajo brez odmora. &rsibreak; preprosto ponuja opomnike, da si občasno vzamete odmor. </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>projekt</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Uvod</title>
+
+<para
+>Poškodba zaradi ponavljajočih se gibov se lahko pojavi kot posledica dela z miško in tipkovnico. Ta pripomoček lahko uporabite, da vas opomni, da si občasno vzamete odmor. Prikaže naključno sliko iz zbirke v določenih intervalih za določena obdobja. Konfigurirate lahko slike za prikaz in čas njihovega prikaza. Opomnike za odmore lahko uporabite, na primer, da naredite nekaj razteznih vaj ali kot opomnik, da za nekaj časa odidete stran od računalnika.</para>
+
+<screenshot>
+<screeninfo
+>Logo &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Logo &rsibreak;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>&rsibreak; je prvotno napisal Tom Albers. Na začetku razvoja se je projektu pridružil Bram Schoenmakers</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>Uporaba &rsibreak;</title>
+
+<para
+>Zamisel &rsibreak; je, da vas zmoti pri vašem delu. Namen je to narediti na uporabniku prijazen način. Vendar se bo včasih prikazalo samo, ko boste zelo zaposleni. Konfiguracijske možnosti v &rsibreak; si prizadevajo, da bi vam omogočili prilagajanje prekinitev. Upamo, da boste na ta način lahko izboljšali svojo učinkovitost pri delu in hkrati zmanjšali možnosti za poškodbe.</para>
+
+<para
+>Po zagonu lahko vidite ikono v pladnju in videli boste pozdravno pojavno okno. Čeprav bi morala biti aplikacija uporabna s privzetimi nastavitvami, je morda pametno prevzeti nadzor tako, da pregledate nastavitve. Če želite odkriti in pridobiti dostop do razpoložljivih možnosti, z desno miškino tipko kliknite ikono v pladnju; v kontekstnem meniju, ki se prikaže, izberite <guilabel
+>Konfiguriraj</guilabel
+>. Naslednja poglavja vsebujejo dodatne informacije o konfiguraciji.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; statistika</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Levi klik na ikono pladnja za ogled statistike</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Ko z levim gumbom kliknete ikono pladnja, boste videli nekaj statističnih podatkov. Če konfigurirate &rsibreak; za prekinitev ob določenih urah vaš čas nedejavnosti ne bo izmerjen. V tem primeru nekatere možnosti v statistiki morda niso preveč informativne.</para>
+
+<para
+>Zgornji levi blok prikazuje splošno statistiko: nekaj skupnih vrednosti in nekaj informacij o času nedejavnosti. Spodnji levi blok prikazuje nekaj o vašem delovnem tempu. Videli boste skupno količino dejavnosti od začetka trenutne seje prijave. Prikazana bo tudi količina aktivnosti v nekaterih drugih intervalih. Ocena premora se zmanjša vsakič, ko preskočite odmor. Bloki na desni poročajo, kateri kratki in dolgi odmori so že minili. Trenutno so oznake v pogovornem oknu lahko črne ali rdeče in zelene. V slednjem primeru rdeča statistika označuje priporočilo za sprostitev in odmor, kar bo barvo približalo zeleni.</para>
+
+<para
+>Ko z desno miškino tipko kliknete ikono pladnja, se v kontekstnem meniju prikaže možnost <guilabel
+>Začasno ustavi</guilabel
+> &rsibreak;. Ko ne želite, da vas motijo, na primer med igro ali predstavitvijo, lahko to uporabite za utišanje &rsibreak; Lahko nadaljujete &rsibreak; ko znova kliknete desno na ikono in izberete <guilabel
+>Nadaljuj</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Odloženo &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Ikona pladnja, ko &rsibreak; je odložen</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Zadnji način vplivanja na &rsibreak; je prek &DBus;. Obstaja &DBus; ukaz, ki so na voljo za prisilne prekinitve ter za prekinitev in nadaljevanje &rsibreak;. Te lahko uporabite za zaustavitev &rsibreak; samodejno, ko zaženete igro ali kateri koli drug določen program. Izvedite <command
+>qdbus org.kde.rsibreak /rsibreak</command
+>, da si ogledate možnosti.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>Vrste odmorov</title>
+
+<para
+>Večina nastavitev je enostavnih. Na splošni strani obstaja možnost samodejnega zagona ob zagonu &kde;. Morda se sprašujete, zakaj je tako, ker bi moral za to poskrbeti upravitelj seje. Nekateri uporabniki bodo morda morali zagnati &rsibreak; ob zagonu, ko ne uporabljajo upravitelja sej. Upoštevajte, da bo <application
+>Gnome</application
+> prezrl nastavitev.</para>
+
+<para
+>V &rsibreak; sta na voljo dve možnosti obnašanja. Obstaja možnost prekinitve v določenih intervalih za določena obdobja in možnost ponastavitve časovnikov, ko &rsibreak; zazna, da ste med odmorom mirovali.</para>
+
+<para
+>Lahko označite, da ne želite, da RSIBreak moti predstavitve, igre, predvajanje videa in katero koli drugo celozaslonsko aplikacijo na trenutnem navideznem namizju z možnostjo <guilabel
+>Zavrni, če so prisotna celozaslonska okna</guilabel
+>. </para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; pojavno okno</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Gumb za zaklepanje vam omogoča, da zaklenete zaslon, kadar koli zapustite računalnik</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Morda se vam zdi celozaslonsko obvestilo o prekinitvi neprijetno, ko se prikaže. V tem primeru lahko na strani <guilabel
+>Med prekinitvami</guilabel
+> označite, da želite uporabiti pojavno okno; v bližini pladnja se prikaže majhno pojavno okno, ki vas poziva, da si vzamete odmor. Če se odločite, da to prezrete, se bo vseeno prikazal celozaslonski blok dejavnosti.</para>
+
+<para
+>Obstajajo tri možnosti za celozaslonsko prekinitev. Lahko prikaže <guilabel
+>Popoln črni učinek</guilabel
+> (to je privzeto dejanje), <guilabel
+>Pokaže nadzorno ploščo Plasma</guilabel
+> ali <guilabel
+>Pokaži predstavitev slik</guilabel
+>, kjer je lahko pot nastavite tako, da določite mapo na trdem disku, ki vsebuje slike. Med odmorom boste videli predstavitev teh slik.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>Trajanje/interval prekinitve</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>&rsibreak; podpira dve različni vrsti prekinitev: <quote
+>Drobne odmore</quote
+> in <quote
+>Velike odmore</quote
+>. Običajni način uporabe teh je pogosti majhni odmori in občasni veliki odmori. Na primer, 20-sekundni odmor vsakih 20 minut (majhen odmor) in daljši 2-minutni odmor vsako uro (veliki odmor).</para>
+
+<tip
+><para
+>Nima smisla postavljati intervalov, ki so dražljivi. Ti vam bodo po definiciji šli na živce in bolj verjetno boste zadeli &Esc; &ndash; ali katero koli drugo tipko, ki ste jo nastavili na strani <guilabel
+>Med odmori</guilabel
+> &ndash; kako preskočiti odmor.</para>
+
+<para
+>Če ugotovite, da pogosto preskakujete odmore, se lahko odločite, da onemogočite bližnjico in skrijete gumb za pomanjšanje. Ne pozabite, da sami izberete, kako natančno boste sledili zaporedju prekinitev. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Zasluge in licenca</title>
+
+<para
+>&rsibreak; avtorske pravice 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>Avtorske pravice za dokumentacijo 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+
+<para
+>Prevod: Matjaž Jeran <email
+>matjaz.jeran@amis.net</email
+></para
+> &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>
