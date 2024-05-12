@@ -123,7 +123,7 @@ msgstr "Fi d'un descans curt"
 #: src/popupeffect.cpp:19
 #, kde-format
 msgid "Take a break...."
-msgstr "Feu un descans..."
+msgstr "Feu un descans…"
 
 #: src/popupeffect.cpp:44
 #, kde-format
@@ -149,12 +149,12 @@ msgstr "&Manual de RSIBreak"
 #: src/rsidock.cpp:83
 #, kde-format
 msgid "&Report Bug..."
-msgstr "&Informeu d'un error..."
+msgstr "&Informeu d'un error…"
 
 #: src/rsidock.cpp:84
 #, kde-format
 msgid "Switch application &language..."
-msgstr "Canvia l'i&dioma de l'aplicació..."
+msgstr "Canvia l'i&dioma de l'aplicació…"
 
 #: src/rsidock.cpp:87 src/rsidock.cpp:141
 #, kde-format
@@ -169,12 +169,12 @@ msgstr "&Estadístiques d'ús"
 #: src/rsidock.cpp:89
 #, kde-format
 msgid "Configure &Notifications..."
-msgstr "Configura les &notificacions..."
+msgstr "Configura les &notificacions…"
 
 #: src/rsidock.cpp:90
 #, kde-format
 msgid "&Configure RSIBreak..."
-msgstr "&Configura RSIBreak..."
+msgstr "&Configura RSIBreak…"
 
 #: src/rsidock.cpp:147
 #, kde-format
@@ -682,8 +682,8 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
-"Seleccioneu esta opció per a desactivar i amagar el botó de salt. Així "
-"podreu previndre de saltar-vos els descansos."
+"Marqueu esta opció per a desactivar i amagar el botó de salt. Així podreu "
+"previndre de saltar-vos els descansos."
 
 #: src/setupmaximized.cpp:95
 #, kde-format
@@ -696,7 +696,7 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
-"Seleccioneu esta opció per a desactivar i amagar el botó de bloqueig. Així "
+"Marqueu esta opció per a desactivar i amagar el botó de bloqueig. Així "
 "podreu previndre de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:99
@@ -710,8 +710,8 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
-"Seleccioneu esta opció per a desactivar i amagar el botó de posposar el "
-"descans. Així podreu previndre de prémer el botó equivocat."
+"Marqueu esta opció per a desactivar i amagar el botó de posposar el descans. "
+"Així podreu previndre de prémer el botó equivocat."
 
 #: src/setupmaximized.cpp:104
 #, kde-format
@@ -722,8 +722,7 @@ msgstr "&Desactiva la drecera («Esc»)"
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
-"Seleccioneu esta opció per a desactivar la tecla «Esc» per a ometre fer la "
-"pausa."
+"Marqueu esta opció per a desactivar la tecla «Esc» per a ometre fer la pausa."
 
 #: src/setupmaximized.cpp:119
 #, kde-format
@@ -764,12 +763,12 @@ msgid ""
 msgstr ""
 "Seleccioneu la carpeta des de la qual voleu veure les imatges. Estes imatges "
 "es mostren aleatòriament durant els descansos. Si ho indiqueu, es buscaran "
-"recursivament..."
+"recursivament…"
 
 #: src/setupmaximized.cpp:164
 #, kde-format
 msgid "&Change..."
-msgstr "&Canvia..."
+msgstr "&Canvia…"
 
 #: src/setupmaximized.cpp:167
 #, kde-format
@@ -793,9 +792,9 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
-"Si se selecciona, la imatge s'ampliarà a pantalla completa. Es retallarà "
-"part de la imatge que quede fora de l'àrea de la pantalla. Altrament, la "
-"imatge es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
+"Si està marcada, la imatge s'ampliarà a pantalla completa. Es retallarà part "
+"de la imatge que quede fora de l'àrea de la pantalla. Altrament, la imatge "
+"es mostrarà sencera, però hi poden haver àrees grises al seu voltant."
 
 #: src/setupmaximized.cpp:178
 #, kde-format
