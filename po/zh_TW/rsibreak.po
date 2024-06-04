@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:41+0000\n"
-"PO-Revision-Date: 2024-01-15 23:31+0900\n"
+"PO-Revision-Date: 2024-06-04 06:09+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 24.01.90\n"
+"X-Generator: Lokalize 24.04.70\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -79,23 +79,23 @@ msgstr "Bram Schoenmakers"
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Frank Weng (a.k.a. Franklin)"
+msgstr "Frank Weng (a.k.a. Franklin), Kisaragi Hiu"
 
 #: src/main.cpp:52
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "franklin at goodhorse dot idv dot tw"
+msgstr "franklin at goodhorse dot idv dot tw, mail@kisaragi-hiu.com"
 
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr "短時間休息的計時器已被重置"
+msgstr "短時間休息的計時器已被重設"
 
 #: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
-msgstr "計時器已被重置"
+msgstr "計時器已被重設"
 
 #: src/notificator.cpp:22
 #, kde-format
@@ -186,17 +186,17 @@ msgstr "用量統計"
 #: src/rsidock.cpp:166 src/rsidock.cpp:193
 #, kde-format
 msgid "Reset"
-msgstr "重置"
+msgstr "重設"
 
 #: src/rsidock.cpp:190
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "這會將所有統計重置回 0。您確定要這樣做嗎？"
+msgstr "這會將所有統計重設回 0。您確定要這樣做嗎？"
 
 #: src/rsidock.cpp:192
 #, kde-format
 msgid "Reset the statistics"
-msgstr "重置統計"
+msgstr "重設統計"
 
 #: src/rsidock.cpp:209 src/rsiwidget.cpp:114
 #, kde-format
