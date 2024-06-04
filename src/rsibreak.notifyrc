@@ -561,7 +561,7 @@ Name[tr]=Kısa bir geri sayım bittiğinde
 Name[uk]=Коли короткому таймеру буде надано нульове значення
 Name[x-test]=xxWhen the short timer has been resetxx
 Name[zh_CN]=短休息计时器被重置时
-Name[zh_TW]=當短計時器被重置時
+Name[zh_TW]=當短計時器被重設時
 
 [Event/timers reset]
 Contexts=timers
@@ -603,5 +603,5 @@ Name[tr]=Zamanlayıcılar sıfırlandığında
 Name[uk]=Коли таймерам буде надано нульових значень
 Name[x-test]=xxWhen the timers have been resetxx
 Name[zh_CN]=计时器被重置时
-Name[zh_TW]=當計時器被重置時
+Name[zh_TW]=當計時器被重設時
 
