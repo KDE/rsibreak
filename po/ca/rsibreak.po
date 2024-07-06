@@ -1,8 +1,8 @@
 # Translation of rsibreak.po to Catalan
-# Copyright (C) 2006-2023 This_file_is_part_of_KDE
+# Copyright (C) 2006-2024 This_file_is_part_of_KDE
 #
 # Albert Astals Cid <aacid@kde.org>, 2006.
-# Josep M. Ferrer <txemaq@gmail.com>, 2010, 2011, 2016, 2017, 2018, 2019, 2021, 2022, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2010, 2011, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024.
 # Joan Maspons Ventura <joanmaspons@gmail.com>, 2010, 2011.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2015, 2017, 2018, 2020, 2022.
 msgid ""
@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:41+0000\n"
-"PO-Revision-Date: 2023-05-02 19:52+0200\n"
+"PO-Revision-Date: 2024-07-05 19:05+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -149,7 +149,7 @@ msgstr "&Manual del RSIBreak"
 #: src/rsidock.cpp:83
 #, kde-format
 msgid "&Report Bug..."
-msgstr "&Informa d'un error..."
+msgstr "&Informeu d'un error..."
 
 #: src/rsidock.cpp:84
 #, kde-format
