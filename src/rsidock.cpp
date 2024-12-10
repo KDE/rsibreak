@@ -125,10 +125,10 @@ void RSIDock::slotConfigure()
     // don't think it is needed, because setup is not accessed after the
     // exec call, but better safe than crash.
     QPointer<Setup> setup = new Setup(nullptr);
+    setup->setAttribute(Qt::WA_DeleteOnClose);
     emit dialogEntered();
     if (setup->exec() == QDialog::Accepted)
         emit configChanged();
-    delete setup;
 
     if (!m_suspended)
         emit dialogLeft();
