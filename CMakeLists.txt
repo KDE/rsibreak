@@ -2,11 +2,11 @@ cmake_minimum_required (VERSION 3.16.0 FATAL_ERROR)
 
 project( rsibreak )
 
-set(QT_MIN_VERSION "5.15.0")  # Remember to update the QT_DEPRECATED_WARNINGS_SINCE below
-set(KF5_REQUIRED_VERSION "5.89.0") # Remember to update the KF_DEPRECATED_WARNINGS_SINCE below
+set(QT_MIN_VERSION "6.7.0")  # Remember to update the QT_DEPRECATED_WARNINGS_SINCE below
+set(KF_REQUIRED_VERSION "6.8") # Remember to update the KF_DEPRECATED_WARNINGS_SINCE below
 set(KDE_COMPILERSETTINGS_LEVEL "5.82.0")
 
-find_package(ECM ${KF5_REQUIRED_VERSION} REQUIRED CONFIG)
+find_package(ECM ${KF_REQUIRED_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
@@ -19,7 +19,7 @@ include(KDEClangFormat)
 include(KDEGitCommitHooks)
 
 find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS DBus)
-find_package(KF6 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
+find_package(KF6 ${KF_REQUIRED_VERSION} REQUIRED COMPONENTS
     CoreAddons
     Config
     ConfigWidgets
@@ -36,8 +36,8 @@ find_package(KF6 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
     StatusNotifierItem
     )
 
-add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x050F00)
-add_definitions(-DKF_DEPRECATED_WARNINGS_SINCE=0x055900)
+add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x060800)
+add_definitions(-DKF_DEPRECATED_WARNINGS_SINCE=0x060900)
 
 add_subdirectory( icons )
 add_subdirectory( doc )
