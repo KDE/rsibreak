@@ -9,7 +9,6 @@
 #include <KDBusService>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <Kdelibs4ConfigMigrator>
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
@@ -28,10 +27,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     QApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
-
-    Kdelibs4ConfigMigrator migrate(QLatin1String("rsibreak"));
-    migrate.setConfigFiles(QStringList() << QLatin1String("rsibreakrc") << QLatin1String("rsibreak.notifyrc"));
-    migrate.migrate();
 
     KLocalizedString::setApplicationDomain("rsibreak");
 
