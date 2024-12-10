@@ -18,7 +18,6 @@
 #include "slideshoweffect.h"
 
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QPainter>
 #include <QTimer>
 
