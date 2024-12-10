@@ -27,6 +27,7 @@ plasmaeffect.cpp
 breakcontrol.cpp
 rsiidletime.cpp
 notificator.cpp
+kpassivepopup.cpp
 )
 
 QT_ADD_DBUS_ADAPTOR( rsibreak_sources
