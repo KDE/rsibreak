@@ -17,7 +17,9 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <ksharedconfig.h>
+#include <kwindowinfo.h>
 #include <kwindowsystem.h>
+#include <kx11extras.h>
 
 #include "rsiglobals.h"
 #include "rsistats.h"
@@ -65,7 +67,7 @@ void RSITimer::run()
 
 bool RSITimer::suppressionDetector()
 {
-    for (WId win : KWindowSystem::windows()) {
+    for (WId win : KX11Extras::windows()) {
         KWindowInfo info(win, NET::WMDesktop | NET::WMState | NET::XAWMState);
         if ((info.state() & NET::FullScreen) && !info.isMinimized() && info.isOnCurrentDesktop()) {
             return true;

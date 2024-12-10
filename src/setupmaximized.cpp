@@ -28,6 +28,7 @@
 #include <KPluralHandlingSpinBox>
 #include <KSharedConfig>
 #include <KWindowSystem>
+#include <KX11Extras>
 
 class SetupMaximizedPriv
 {
@@ -72,7 +73,7 @@ SetupMaximized::SetupMaximized(QWidget *parent)
 
     d->effectLabel = new QLabel();
     d->effectBox = new QComboBox(this);
-    if (KWindowSystem::compositingActive())
+    if (KX11Extras::compositingActive())
         d->effectBox->addItem(i18n("Simple Gray Effect"), QVariant(RSIObject::SimpleGray));
     else
         d->effectBox->addItem(i18n("Complete Black Effect"), QVariant(RSIObject::SimpleGray));
@@ -282,7 +283,7 @@ void SetupMaximized::slotEffectChanged(int current)
     case RSIObject::SimpleGray:
         d->slideshowBox->setVisible(false);
         d->plasmaBox->setVisible(false);
-        d->grayBox->setVisible(KWindowSystem::compositingActive());
+        d->grayBox->setVisible(KX11Extras::compositingActive());
         break;
     case RSIObject::Popup:
     default:

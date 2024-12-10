@@ -9,6 +9,7 @@
 #include "breakcontrol.h"
 
 #include <KWindowSystem>
+#include <KX11Extras>
 
 #include <QApplication>
 #include <QDebug>
@@ -46,10 +47,10 @@ void BreakBase::activate()
     m_breakControl->show();
     m_breakControl->setFocus();
 
-    KWindowSystem::forceActiveWindow(m_breakControl->winId());
-    KWindowSystem::setOnAllDesktops(m_breakControl->winId(), true);
-    KWindowSystem::setState(m_breakControl->winId(), NET::KeepAbove);
-    KWindowSystem::setState(m_breakControl->winId(), NET::FullScreen);
+    KX11Extras::forceActiveWindow(m_breakControl->winId());
+    KX11Extras::setOnAllDesktops(m_breakControl->winId(), true);
+    KX11Extras::setState(m_breakControl->winId(), NET::KeepAbove);
+    KX11Extras::setState(m_breakControl->winId(), NET::FullScreen);
 
     m_breakControl->grabKeyboard();
     m_breakControl->grabMouse();
@@ -150,10 +151,10 @@ GrayEffectOnAllScreens::GrayEffectOnAllScreens()
         grayWidget->move(rect.topLeft());
         grayWidget->setGeometry(rect);
 
-        KWindowSystem::forceActiveWindow(grayWidget->winId());
-        KWindowSystem::setState(grayWidget->winId(), NET::KeepAbove);
-        KWindowSystem::setOnAllDesktops(grayWidget->winId(), true);
-        KWindowSystem::setState(grayWidget->winId(), NET::FullScreen);
+        KX11Extras::forceActiveWindow(grayWidget->winId());
+        KX11Extras::setState(grayWidget->winId(), NET::KeepAbove);
+        KX11Extras::setOnAllDesktops(grayWidget->winId(), true);
+        KX11Extras::setState(grayWidget->winId(), NET::FullScreen);
 
         qDebug() << "Created widget for screen" << screen << "Position:" << rect.topLeft();
     }

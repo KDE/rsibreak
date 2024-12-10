@@ -36,7 +36,10 @@
 #include <KMessageBox>
 #include <KNotifyConfigWidget>
 #include <KStandardShortcut>
+#include <KWindowInfo>
 #include <KWindowSystem>
+#include <KX11Extras>
+#include <NETWM>
 #include <QDebug>
 #include <QDialogButtonBox>
 #include <QMenu>
@@ -178,7 +181,7 @@ void RSIDock::slotShowStatistics()
         m_statsDialog->show();
 
         if (!m_statsDialog->isActiveWindow())
-            KWindowSystem::forceActiveWindow(m_statsDialog->winId());
+            KX11Extras::forceActiveWindow(m_statsDialog->winId());
 
         m_statsDialog->raise();
     }
