@@ -40,18 +40,21 @@ add_executable(rsibreak main.cpp)
 
 # linking
 target_link_libraries(rsibreak_lib
-    KF5::ConfigCore
-    KF5::ConfigWidgets
-    KF5::Crash
-    KF5::DBusAddons
-    KF5::I18n
-    KF5::IdleTime
-    KF5::Notifications
-    KF5::NotifyConfig
-    KF5::TextWidgets
-    KF5::XmlGui
-    KF5::WindowSystem
+    KF6::CoreAddons
+    KF6::ConfigCore
+    KF6::ConfigWidgets
+    KF6::Crash
+    KF6::DBusAddons
+    KF6::I18n
+    KF6::IdleTime
+    KF6::Notifications
+    KF6::NotifyConfig
+    KF6::TextWidgets
+    KF6::XmlGui
+    KF6::WindowSystem
+    KF6::StatusNotifierItem
     Qt::DBus
+    Qt::GuiPrivate
 )
 target_link_libraries(rsibreak rsibreak_lib)
 

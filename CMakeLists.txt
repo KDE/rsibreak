@@ -18,8 +18,9 @@ include(ECMInstallIcons)
 include(KDEClangFormat)
 include(KDEGitCommitHooks)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS DBus)
-find_package(KF5 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
+find_package(Qt6 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS DBus)
+find_package(KF6 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
+    CoreAddons
     Config
     ConfigWidgets
     Crash
@@ -32,6 +33,7 @@ find_package(KF5 ${KF5_REQUIRED_VERSION} REQUIRED COMPONENTS
     TextWidgets
     XmlGui
     WindowSystem
+    StatusNotifierItem
     )
 
 add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x050F00)
