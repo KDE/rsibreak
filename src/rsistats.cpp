@@ -106,11 +106,11 @@ void RSIStats::increaseStat(RSIStat stat, int delta)
 {
     QVariant v = m_statistics[stat]->getValue();
 
-    if (v.type() == QVariant::Int)
+    if (v.userType() == QMetaType::Int)
         m_statistics[stat]->setValue(v.toInt() + delta);
-    else if (v.type() == QVariant::Double)
+    else if (v.userType() == QMetaType::Double)
         m_statistics[stat]->setValue(v.toDouble() + (double)delta);
-    else if (v.type() == QVariant::DateTime)
+    else if (v.userType() == QMetaType::QDateTime)
         m_statistics[stat]->setValue(QDateTime(v.toDateTime()).addSecs(delta));
 
     updateStat(stat);
@@ -120,8 +120,8 @@ void RSIStats::setStat(RSIStat stat, const QVariant &val, bool ifmax)
 {
     QVariant v = m_statistics[stat]->getValue();
 
-    if (!ifmax || (v.type() == QVariant::Int && val.toInt() > v.toInt()) || (v.type() == QVariant::Double && val.toDouble() > v.toDouble())
-        || (v.type() == QVariant::DateTime && val.toDateTime() > v.toDateTime()))
+    if (!ifmax || (v.userType() == QMetaType::Int && val.toInt() > v.toInt()) || (v.userType() == QMetaType::Double && val.toDouble() > v.toDouble())
+        || (v.userType() == QMetaType::QDateTime && val.toDateTime() > v.toDateTime()))
         m_statistics[stat]->setValue(val);
 
     // WATCH OUT: IDLENESS is derived from MAX_IDLENESS and needs to be
