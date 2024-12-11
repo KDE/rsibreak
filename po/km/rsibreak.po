@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:41+0000\n"
+"POT-Creation-Date: 2024-12-11 00:43+0000\n"
 "PO-Revision-Date: 2012-07-11 11:26+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -36,55 +36,55 @@ msgstr "ផ្អាក​ការ​សម្រាក"
 msgid "Lock Screen"
 msgstr "ចាក់សោ​អេក្រង់"
 
-#: src/main.cpp:39
+#: src/main.cpp:32
 #, kde-format
 msgid "RSIBreak"
 msgstr "RSIBreak"
 
-#: src/main.cpp:41
+#: src/main.cpp:34
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr "ព្យាយាម​រារាំង Repetitive Strain Injury ដោយ​រំឮក​អ្នក​ប្រើ​ឲ្យ​សម្រាក ។"
 
-#: src/main.cpp:44
+#: src/main.cpp:37
 #, fuzzy, kde-format
 #| msgid "(c) 2005-2010, The RSIBreak developers"
 msgid "(c) 2005-2015, The RSIBreak developers"
 msgstr "រក្សាសិទ្ធិ​ឆ្នាំ ២០០៥-២០១០ អ្នក​អភិវឌ្ឍន៍ RSIBreak"
 
-#: src/main.cpp:46
+#: src/main.cpp:39
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr ""
 
-#: src/main.cpp:46
+#: src/main.cpp:39
 #, fuzzy, kde-format
 #| msgid "Maintainer and Author"
 msgid "Maintainer"
 msgstr "អ្នក​ថែទាំ និង​អ្នក​និពន្ធ"
 
-#: src/main.cpp:48
+#: src/main.cpp:41
 #, kde-format
 msgid "Tom Albers"
 msgstr "Tom Albers"
 
-#: src/main.cpp:48 src/main.cpp:50
+#: src/main.cpp:41 src/main.cpp:43
 #, kde-format
 msgid "Former author"
 msgstr "អ្នក​និពន្ធ​មុន"
 
-#: src/main.cpp:50
+#: src/main.cpp:43
 #, kde-format
 msgid "Bram Schoenmakers"
 msgstr "Bram Schoenmakers"
 
-#: src/main.cpp:52
+#: src/main.cpp:45
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "ខឹម សុខែម, ម៉ន ម៉េត, សេង សុត្ថា, ចាន់ សម្បត្តិរតនៈ, សុខ សុភា"
 
-#: src/main.cpp:52
+#: src/main.cpp:45
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
@@ -133,87 +133,87 @@ msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
 msgstr "សូម​សម្រាក %1 វិនាទី"
 
-#: src/rsidock.cpp:78
+#: src/rsidock.cpp:81
 #, kde-format
 msgid "About &KDE"
 msgstr "អំពី KDE"
 
-#: src/rsidock.cpp:79
+#: src/rsidock.cpp:82
 #, kde-format
 msgid "&About RSIBreak"
 msgstr "អំពី RSIBreak"
 
-#: src/rsidock.cpp:80
+#: src/rsidock.cpp:83
 #, kde-format
 msgid "RSIBreak &Handbook"
 msgstr "សៀវភៅ​ដៃ RSIBreak"
 
-#: src/rsidock.cpp:83
+#: src/rsidock.cpp:86
 #, kde-format
 msgid "&Report Bug..."
 msgstr "រាយការណ៍​កំហុស..."
 
-#: src/rsidock.cpp:84
+#: src/rsidock.cpp:87
 #, kde-format
 msgid "Switch application &language..."
 msgstr "ប្ដូរ​ភាសា​កម្មវិធី..."
 
-#: src/rsidock.cpp:87 src/rsidock.cpp:141
+#: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
 msgid "&Suspend RSIBreak"
 msgstr "ផ្អាក RSIBreak"
 
-#: src/rsidock.cpp:88
+#: src/rsidock.cpp:91
 #, kde-format
 msgid "&Usage Statistics"
 msgstr "ស្ថិតិ​ការ​ប្រើប្រាស់"
 
-#: src/rsidock.cpp:89
+#: src/rsidock.cpp:92
 #, kde-format
 msgid "Configure &Notifications..."
 msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ការជូន​ដំណឹង..."
 
-#: src/rsidock.cpp:90
+#: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
 msgstr "កំណត់​រចនា​សម្ព័ន្ធ RSIBreak..."
 
-#: src/rsidock.cpp:147
+#: src/rsidock.cpp:150
 #, kde-format
 msgid "&Resume RSIBreak"
 msgstr "បន្ត RSIBreak"
 
-#: src/rsidock.cpp:157
+#: src/rsidock.cpp:160
 #, kde-format
 msgid "Usage Statistics"
 msgstr "ស្ថិតិ​ការ​ប្រើប្រាស់"
 
-#: src/rsidock.cpp:166 src/rsidock.cpp:193
+#: src/rsidock.cpp:169 src/rsidock.cpp:196
 #, kde-format
 msgid "Reset"
 msgstr "កំណត់​ឡើង​វិញ"
 
-#: src/rsidock.cpp:190
+#: src/rsidock.cpp:193
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
 msgstr "នេះ​នឹង​កំណត់​ស្ថិតិ​ទាំងអស់​ឡើង​វិញ​ទៅ សូន្យ ។ នោះ​ជា​អ្វី​ដែល​អ្នក​ត្រូវការ​ឬ?"
 
-#: src/rsidock.cpp:192
+#: src/rsidock.cpp:195
 #, kde-format
 msgid "Reset the statistics"
 msgstr "កំណត់​ស្ថិតិ​ឡើង​វិញ"
 
-#: src/rsidock.cpp:209 src/rsiwidget.cpp:114
+#: src/rsidock.cpp:212 src/rsiwidget.cpp:113
 #, kde-format
 msgid "Suspended"
 msgstr "បានផ្អាក"
 
-#: src/rsidock.cpp:229
+#: src/rsidock.cpp:232
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "%1 នៅ​សល់​រហូត​ដល់​ការ​សម្រាក​ខ្លី​បន្ទាប់"
 
-#: src/rsidock.cpp:235
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 នៅ​សល់​រហូត​ដល់​ការ​សម្រាក​បន្ទាប់"
@@ -520,7 +520,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "វិនាទី"
 
-#: src/rsiwidget.cpp:79
+#: src/rsiwidget.cpp:78
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -529,7 +529,7 @@ msgstr ""
 "<p>សូម​ស្វាគមន៍​​ការ​មក​កាន់ RSIBreak</p>\n"
 "<p>អ្នក​អាច​ឃើញ RSIBreak នៅ​ក្នុង​ថាស​របស់​អ្នក ៖</p>\n"
 
-#: src/rsiwidget.cpp:81
+#: src/rsiwidget.cpp:80
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -541,7 +541,7 @@ msgstr ""
 "<p>ពេល​អ្នក​ចង់​ដឹង​ថា ពេល​ណា​ជា​ពេល​សម្រាក​បន្ទាប់ សំកាំង​លើ​រូប​តំណាង ។</p>\n"
 "<p>ប្រើ RSIBreak យ៉ាង​វៃ​ឆ្លាត ។</p>"
 
-#: src/rsiwidget.cpp:85
+#: src/rsiwidget.cpp:84
 #, kde-format
 msgid "Welcome"
 msgstr "ស្វាគមន៍"
@@ -634,79 +634,79 @@ msgid ""
 "application on the current virtual desktop."
 msgstr ""
 
-#: src/setupmaximized.cpp:76
+#: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
 msgstr "បែបផែន​ប្រផេះ​សាមញ្ញ"
 
-#: src/setupmaximized.cpp:78
+#: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
 msgstr "បែបផែន​ខ្មៅ"
 
-#: src/setupmaximized.cpp:79
+#: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
 msgstr "បង្ហាញ​ផ្ទាំង​គ្រប់គ្រង​ប្លាស្មា"
 
-#: src/setupmaximized.cpp:80
+#: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
 msgstr "បង្ហាញ​ការ​បញ្ចាំង​ស្លាយ​របស់​រូបភាព"
 
-#: src/setupmaximized.cpp:81
+#: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
 msgstr "បង្ហាញ​ការ​លេចឡើង​អកម្ម"
 
-#: src/setupmaximized.cpp:88
+#: src/setupmaximized.cpp:89
 #, kde-format
 msgid "Skipping Breaks"
 msgstr "រំលង​ការ​សម្រាក"
 
-#: src/setupmaximized.cpp:90
+#: src/setupmaximized.cpp:91
 #, kde-format
 msgid "&Hide skip button"
 msgstr "រំលង​ប៊ូតុង​លាក់"
 
-#: src/setupmaximized.cpp:92
+#: src/setupmaximized.cpp:93
 #, kde-format
 msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr "ធីក​ជម្រើស​នេះ​ដើម្បី​បិទ និង​លាក់​ប៊ូតុង​រំលង ។ វិធី​នេះ​អ្នក​អាច​ការពារ​រំលង​ការ​សម្រាក ។"
 
-#: src/setupmaximized.cpp:95
+#: src/setupmaximized.cpp:96
 #, kde-format
 msgid "&Hide lock button"
 msgstr "លាក់​ប៊ូតុង​ជាប់​សោ"
 
-#: src/setupmaximized.cpp:97
+#: src/setupmaximized.cpp:98
 #, kde-format
 msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr "ធីក​ជម្រើស​នេះ​ដើម្បី​បិទ និង​លាក់​ប៊ូតុង​​ជាប់​សោ ។ វិធី​នេះ​អ្នក​អាច​ការពារ​ការ​ចុច​ប៊ូតុង​ខុស ។"
 
-#: src/setupmaximized.cpp:99
+#: src/setupmaximized.cpp:100
 #, kde-format
 msgid "&Hide postpone button"
 msgstr "លាក់​ប៊ូតុង​ផ្អាក"
 
-#: src/setupmaximized.cpp:101
+#: src/setupmaximized.cpp:102
 #, kde-format
 msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr "ធីក​ជម្រើស​នេះ​ដើម្បី​បិទ និង​លាក់​ប៊ូតុង​​ផ្អាក​សម្រាក ។ វិធី​នេះ​អ្នក​អាច​ការពារ​ការ​ចុច​ប៊ូតុង​ខុស ។"
 
-#: src/setupmaximized.cpp:104
+#: src/setupmaximized.cpp:105
 #, fuzzy, kde-format
 #| msgid "&Disable shortcut"
 msgid "&Disable shortcut (Esc)"
 msgstr "បិទ​ផ្លូវកាត់"
 
-#: src/setupmaximized.cpp:106
+#: src/setupmaximized.cpp:107
 #, fuzzy, kde-format
 #| msgid ""
 #| "Check this option to disable the skip shortcut. This way you can prevent "
@@ -714,37 +714,37 @@ msgstr "បិទ​ផ្លូវកាត់"
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr "ចុច​​ជម្រើស​នេះ ដើម្បី​បិទ​រំលង​ផ្លូវកាត់ ។ វិធី​នេះ​អ្នក​អាច​ការ​ពារ​ការ​រំលង​ការ​សម្រាក ។"
 
-#: src/setupmaximized.cpp:119
+#: src/setupmaximized.cpp:120
 #, kde-format
 msgid "Plasma Dashboard"
 msgstr "ផ្ទាំង​គ្រប់គ្រង​ប្លាស្មា"
 
-#: src/setupmaximized.cpp:121
+#: src/setupmaximized.cpp:122
 #, kde-format
 msgid "Read Only"
 msgstr "បាន​តែអាន"
 
-#: src/setupmaximized.cpp:129
+#: src/setupmaximized.cpp:130
 #, kde-format
 msgid "Transparency level"
 msgstr "កម្រិត​ភាព​ថ្លា"
 
-#: src/setupmaximized.cpp:135
+#: src/setupmaximized.cpp:136
 #, kde-format
 msgid "Transparent"
 msgstr "ថ្លា"
 
-#: src/setupmaximized.cpp:145
+#: src/setupmaximized.cpp:146
 #, kde-format
 msgid "Solid"
 msgstr "តាន់"
 
-#: src/setupmaximized.cpp:154
+#: src/setupmaximized.cpp:155
 #, kde-format
 msgid "Slideshow"
 msgstr "ការ​បង្ហាញ​ស្លាយ"
 
-#: src/setupmaximized.cpp:161
+#: src/setupmaximized.cpp:162
 #, kde-format
 msgid ""
 "Select the folder from which you want to see images. These images are "
@@ -754,27 +754,27 @@ msgstr ""
 "ជ្រើស​ថត​ពី​អ្វី​ដែល​អ្នក​ចង់​ឃើញ​រូបភាព ។ រូបភាព​នេះ​ត្រូវ​បាន​បង្ហាញ​ដោយ​ចៃដន្យ​អំឡុង​ពេល​សម្រាក ។ វា​នឹង​ត្រូវ​"
 "បាន​ស្វែងរក​ដោយ​ចៃដន្យ បើ​អ្នក​ចង់..."
 
-#: src/setupmaximized.cpp:164
+#: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
 msgstr "ផ្លាស់ប្ដូរ..."
 
-#: src/setupmaximized.cpp:167
+#: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Search path recursively"
 msgstr "ស្វែងរក​ផ្លូវ​ដោយ​ហៅ​ខ្លួន​ឯង"
 
-#: src/setupmaximized.cpp:168
+#: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Show small images"
 msgstr "បង្ហាញ​រូបភាព​តូច"
 
-#: src/setupmaximized.cpp:169
+#: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
 msgstr ""
 
-#: src/setupmaximized.cpp:171
+#: src/setupmaximized.cpp:172
 #, kde-format
 msgid ""
 "If checked then image will be expanded to full screen. Part of the image "
@@ -782,12 +782,12 @@ msgid ""
 "displayed completely but there may grey areas around it. "
 msgstr ""
 
-#: src/setupmaximized.cpp:178
+#: src/setupmaximized.cpp:179
 #, kde-format
 msgid "Change images every:"
 msgstr "ផ្លាស់ប្ដូរ​រូបភាព​រាល់​ពេល ៖"
 
-#: src/setupmaximized.cpp:182
+#: src/setupmaximized.cpp:183
 #, kde-format
 msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
@@ -795,19 +795,19 @@ msgid ""
 msgstr ""
 "ទីនធ​អ្នក​អាច​កំណត់​រយៈ​ពេល​រូបភាព​មួយ​គួរ​ត្រូវ​បាន​បង្ហាញ មុន​ពេល​វា​ត្រូវ​បាន​ជំនួស​ដោយ​រូបភាព​មួយ​បន្ទាប់ ។"
 
-#: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
+#: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] "វិនាទី"
 
-#: src/setupmaximized.cpp:203
+#: src/setupmaximized.cpp:204
 #, kde-format
 msgid "Popup"
 msgstr "លេច​ឡើង"
 
-#: src/setupmaximized.cpp:205
+#: src/setupmaximized.cpp:206
 #, fuzzy, kde-format
 #| msgid ""
 #| "RSIBreak can show a popup near the systray before replacing your whole "
@@ -819,24 +819,24 @@ msgstr ""
 "RSIBreak អាច​បង្ហាញ​ប្រអប់​លេចឡើង​ជិត​ថាស​ប្រព័ន្ធ ជំនួស​ឲ្យ​ការ​ជំនួស​អេក្រង់​ទាំងមូល​របស់​អ្នក​ជាមួយ​​បែបផែន​"
 "ដែល​បាន​ជ្រើស ។"
 
-#: src/setupmaximized.cpp:208
+#: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
 msgstr "ប្រើ​ប្រអប់​លេចឡើង"
 
-#: src/setupmaximized.cpp:210
+#: src/setupmaximized.cpp:211
 #, kde-format
 msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
 
-#: src/setupmaximized.cpp:216
+#: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
 msgstr ""
 
-#: src/setupmaximized.cpp:219
+#: src/setupmaximized.cpp:220
 #, fuzzy, kde-format
 #| msgid ""
 #| "Here you can set how long the popup will be shown before the effect will "
@@ -845,17 +845,17 @@ msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr "ទីនេះ​អ្នក​អាច​កំណត់​រយៈ​ពេល​លេច​ឡើង​នឹង​ត្រូវ​បាន​បង្ហាញ មុន​បែបផែន​នឹង​ទាត់ ។"
 
-#: src/setupmaximized.cpp:227
+#: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr "ប្រអប់​លេចឡើង​អាច​បញ្ចេញ​ពន្លឺ ពេល​វា​រក​ឃើញ​ថា អ្នក​កំពុង​សកម្ម ។"
 
-#: src/setupmaximized.cpp:231
+#: src/setupmaximized.cpp:232
 #, kde-format
 msgid "&Flash on activity"
 msgstr "បញ្ចេញ​ពន្លឺ​ពេល​សកម្ម"
 
-#: src/setupmaximized.cpp:233
+#: src/setupmaximized.cpp:234
 #, kde-format
 msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
@@ -863,13 +863,13 @@ msgid ""
 msgstr ""
 "ជាមួយ​ប្រអប់​ធីក​នេះ អ្នក​អាច​ចង្អុល​ប្រាប់​ថា បើ​អ្នក​ចង់​ឃើញ​ប្រអប់​លេចឡើង​បញ្ចេញ​ពន្លឺ ពេល​មាន​សកម្មភាព ។"
 
-#: src/setupmaximized.cpp:317
+#: src/setupmaximized.cpp:318
 #, fuzzy, kde-format
 #| msgid "Choose the effect you want during breaks"
 msgid "Choose the effect you want after patience runs out"
 msgstr "ជ្រើស​បែបផែន​ដែល​អ្នក​ចង់​បាន​អំឡុង​ពេល​សម្រាក"
 
-#: src/setupmaximized.cpp:318
+#: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
 msgstr "ជ្រើស​បែបផែន​ដែល​អ្នក​ចង់​បាន​អំឡុង​ពេល​សម្រាក"

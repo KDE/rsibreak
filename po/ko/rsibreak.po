@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:41+0000\n"
+"POT-Creation-Date: 2024-12-11 00:43+0000\n"
 "PO-Revision-Date: 2022-04-16 01:27+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -33,53 +33,53 @@ msgstr "쉬는 시간 미루기"
 msgid "Lock Screen"
 msgstr "화면 잠그기"
 
-#: src/main.cpp:39
+#: src/main.cpp:32
 #, kde-format
 msgid "RSIBreak"
 msgstr "RSIBreak"
 
-#: src/main.cpp:41
+#: src/main.cpp:34
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr "사용자에게 쉬는 것을 알려서 반복성 긴장 장애를 예방합니다."
 
-#: src/main.cpp:44
+#: src/main.cpp:37
 #, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
 msgstr "(c) 2005-2015, The RSIBreak developers"
 
-#: src/main.cpp:46
+#: src/main.cpp:39
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: src/main.cpp:46
+#: src/main.cpp:39
 #, kde-format
 msgid "Maintainer"
 msgstr "관리자"
 
-#: src/main.cpp:48
+#: src/main.cpp:41
 #, kde-format
 msgid "Tom Albers"
 msgstr "Tom Albers"
 
-#: src/main.cpp:48 src/main.cpp:50
+#: src/main.cpp:41 src/main.cpp:43
 #, kde-format
 msgid "Former author"
 msgstr "이전 작성자"
 
-#: src/main.cpp:50
+#: src/main.cpp:43
 #, kde-format
 msgid "Bram Schoenmakers"
 msgstr "Bram Schoenmakers"
 
-#: src/main.cpp:52
+#: src/main.cpp:45
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "박신조"
 
-#: src/main.cpp:52
+#: src/main.cpp:45
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
@@ -126,87 +126,87 @@ msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
 msgstr "%1 동안 쉬는 시간 갖기"
 
-#: src/rsidock.cpp:78
+#: src/rsidock.cpp:81
 #, kde-format
 msgid "About &KDE"
 msgstr "KDE 정보(&K)"
 
-#: src/rsidock.cpp:79
+#: src/rsidock.cpp:82
 #, kde-format
 msgid "&About RSIBreak"
 msgstr "RSIBreak 정보(&A)"
 
-#: src/rsidock.cpp:80
+#: src/rsidock.cpp:83
 #, kde-format
 msgid "RSIBreak &Handbook"
 msgstr "RSIBreak 도움말(&H)"
 
-#: src/rsidock.cpp:83
+#: src/rsidock.cpp:86
 #, kde-format
 msgid "&Report Bug..."
 msgstr "버그 보고(&R)..."
 
-#: src/rsidock.cpp:84
+#: src/rsidock.cpp:87
 #, kde-format
 msgid "Switch application &language..."
 msgstr "앱 언어 변경(&L)..."
 
-#: src/rsidock.cpp:87 src/rsidock.cpp:141
+#: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
 msgid "&Suspend RSIBreak"
 msgstr "RSIBreak 일시 정지(&S)"
 
-#: src/rsidock.cpp:88
+#: src/rsidock.cpp:91
 #, kde-format
 msgid "&Usage Statistics"
 msgstr "사용 통계(&U)"
 
-#: src/rsidock.cpp:89
+#: src/rsidock.cpp:92
 #, kde-format
 msgid "Configure &Notifications..."
 msgstr "알림 설정(&N)..."
 
-#: src/rsidock.cpp:90
+#: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
 msgstr "RSIBreak 설정(&C)..."
 
-#: src/rsidock.cpp:147
+#: src/rsidock.cpp:150
 #, kde-format
 msgid "&Resume RSIBreak"
 msgstr "RSIBreak 다시 시작(&R)"
 
-#: src/rsidock.cpp:157
+#: src/rsidock.cpp:160
 #, kde-format
 msgid "Usage Statistics"
 msgstr "사용 통계"
 
-#: src/rsidock.cpp:166 src/rsidock.cpp:193
+#: src/rsidock.cpp:169 src/rsidock.cpp:196
 #, kde-format
 msgid "Reset"
 msgstr "초기화"
 
-#: src/rsidock.cpp:190
+#: src/rsidock.cpp:193
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
 msgstr "모든 통계를 0으로 초기화합니다. 계속 진행하시겠습니까?"
 
-#: src/rsidock.cpp:192
+#: src/rsidock.cpp:195
 #, kde-format
 msgid "Reset the statistics"
 msgstr "통계 초기화"
 
-#: src/rsidock.cpp:209 src/rsiwidget.cpp:114
+#: src/rsidock.cpp:212 src/rsiwidget.cpp:113
 #, kde-format
 msgid "Suspended"
 msgstr "일시 정지됨"
 
-#: src/rsidock.cpp:229
+#: src/rsidock.cpp:232
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "다음 짧은 쉬는 시간까지 %1 남음"
 
-#: src/rsidock.cpp:235
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "다음 긴 쉬는 시간까지 %1 남음"
@@ -514,7 +514,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "초"
 
-#: src/rsiwidget.cpp:79
+#: src/rsiwidget.cpp:78
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -523,7 +523,7 @@ msgstr ""
 "<p>RSIBreak에 오신 것을 환영합니다</p>\n"
 "<p>시스템 트레이에 RSIBreak가 표시됩니다.</p>\n"
 
-#: src/rsiwidget.cpp:81
+#: src/rsiwidget.cpp:80
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -536,7 +536,7 @@ msgstr ""
 "<p>다음 쉬는 시간을 알아 보려면 아이콘 위에 마우스를 두십시오.</p>\n"
 "<p>RSIBreak를 현명하게 사용하십시오.</p>"
 
-#: src/rsiwidget.cpp:85
+#: src/rsiwidget.cpp:84
 #, kde-format
 msgid "Welcome"
 msgstr "환영합니다"
@@ -619,42 +619,42 @@ msgstr ""
 "이 옵션을 사용하면 RSIBreak가 프레젠테이션, 게임, 동영상 재생 등 현재 가상 바"
 "탕 화면에 전체 화면을 사용하는 앱이 실행 중일 때 방해하지 않습니다."
 
-#: src/setupmaximized.cpp:76
+#: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
 msgstr "간단한 회색 표시 효과"
 
-#: src/setupmaximized.cpp:78
+#: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
 msgstr "완전히 검은색 표시 효과"
 
-#: src/setupmaximized.cpp:79
+#: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
 msgstr "Plasma 대시보드 표시"
 
-#: src/setupmaximized.cpp:80
+#: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
 msgstr "그림 슬라이드 쇼 표시"
 
-#: src/setupmaximized.cpp:81
+#: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
 msgstr "수동적 팝업 표시"
 
-#: src/setupmaximized.cpp:88
+#: src/setupmaximized.cpp:89
 #, kde-format
 msgid "Skipping Breaks"
 msgstr "쉬는 시간 건너뛰기"
 
-#: src/setupmaximized.cpp:90
+#: src/setupmaximized.cpp:91
 #, kde-format
 msgid "&Hide skip button"
 msgstr "건너뛰기 단추 숨기기(&H)"
 
-#: src/setupmaximized.cpp:92
+#: src/setupmaximized.cpp:93
 #, kde-format
 msgid ""
 "Check this option to disable and hide the skip button. This way you can "
@@ -663,12 +663,12 @@ msgstr ""
 "이 옵션을 사용하면 건너뛰기 단추를 비활성화하고 숨깁니다. 휴식 시간을 건너뛸 "
 "수 없습니다."
 
-#: src/setupmaximized.cpp:95
+#: src/setupmaximized.cpp:96
 #, kde-format
 msgid "&Hide lock button"
 msgstr "잠금 단추 숨기기(&H)"
 
-#: src/setupmaximized.cpp:97
+#: src/setupmaximized.cpp:98
 #, kde-format
 msgid ""
 "Check this option to disable and hide the lock button. This way you can "
@@ -677,12 +677,12 @@ msgstr ""
 "이 옵션을 사용하면 잠금 단추를 비활성화하고 숨깁니다. 잘못된 단추를 누를 가능"
 "성을 예방합니다."
 
-#: src/setupmaximized.cpp:99
+#: src/setupmaximized.cpp:100
 #, kde-format
 msgid "&Hide postpone button"
 msgstr "연기 단추 숨기기(&H)"
 
-#: src/setupmaximized.cpp:101
+#: src/setupmaximized.cpp:102
 #, kde-format
 msgid ""
 "Check this option to disable and hide the postpone break button. This way "
@@ -691,47 +691,47 @@ msgstr ""
 "이 옵션을 사용하면 쉬는 시간 연기 단추를 비활성화하고 숨깁니다. 잘못된 단추"
 "를 누를 가능성을 예방합니다."
 
-#: src/setupmaximized.cpp:104
+#: src/setupmaximized.cpp:105
 #, kde-format
 msgid "&Disable shortcut (Esc)"
 msgstr "단축키 비활성화(Esc)(&D)"
 
-#: src/setupmaximized.cpp:106
+#: src/setupmaximized.cpp:107
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr "이 옵션을 사용하면 쉬는 시간 동안 Esc 키를 눌러도 반응하지 않습니다."
 
-#: src/setupmaximized.cpp:119
+#: src/setupmaximized.cpp:120
 #, kde-format
 msgid "Plasma Dashboard"
 msgstr "Plasma 대시보드"
 
-#: src/setupmaximized.cpp:121
+#: src/setupmaximized.cpp:122
 #, kde-format
 msgid "Read Only"
 msgstr "읽기 전용"
 
-#: src/setupmaximized.cpp:129
+#: src/setupmaximized.cpp:130
 #, kde-format
 msgid "Transparency level"
 msgstr "투명도 수준"
 
-#: src/setupmaximized.cpp:135
+#: src/setupmaximized.cpp:136
 #, kde-format
 msgid "Transparent"
 msgstr "투명"
 
-#: src/setupmaximized.cpp:145
+#: src/setupmaximized.cpp:146
 #, kde-format
 msgid "Solid"
 msgstr "단색"
 
-#: src/setupmaximized.cpp:154
+#: src/setupmaximized.cpp:155
 #, kde-format
 msgid "Slideshow"
 msgstr "슬라이드 쇼"
 
-#: src/setupmaximized.cpp:161
+#: src/setupmaximized.cpp:162
 #, kde-format
 msgid ""
 "Select the folder from which you want to see images. These images are "
@@ -741,27 +741,27 @@ msgstr ""
 "슬라이드 쇼에 표시할 그림이 들어 있는 폴더를 선택하십시오. 쉬는 시간 동안 무"
 "작위적 그림을 표시합니다. 필요한 경우 하위 폴더도 모두 검색할 수 있습니다..."
 
-#: src/setupmaximized.cpp:164
+#: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
 msgstr "변경(&C)..."
 
-#: src/setupmaximized.cpp:167
+#: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Search path recursively"
 msgstr "하위 폴더도 검색"
 
-#: src/setupmaximized.cpp:168
+#: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Show small images"
 msgstr "작은 그림 표시"
 
-#: src/setupmaximized.cpp:169
+#: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
 msgstr "전체 화면으로 그림 확장"
 
-#: src/setupmaximized.cpp:171
+#: src/setupmaximized.cpp:172
 #, kde-format
 msgid ""
 "If checked then image will be expanded to full screen. Part of the image "
@@ -772,31 +772,31 @@ msgstr ""
 "림 영역은 잘립니다. 그렇지 않으면 전체 그림을 표시하지만 회색 영역이 주위에 "
 "표시됩니다."
 
-#: src/setupmaximized.cpp:178
+#: src/setupmaximized.cpp:179
 #, kde-format
 msgid "Change images every:"
 msgstr "다음 시간마다 그림 바꾸기:"
 
-#: src/setupmaximized.cpp:182
+#: src/setupmaximized.cpp:183
 #, kde-format
 msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr "그림을 바꿀 주기를 선택할 수 있습니다."
 
-#: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
+#: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] "초"
 
-#: src/setupmaximized.cpp:203
+#: src/setupmaximized.cpp:204
 #, kde-format
 msgid "Popup"
 msgstr "팝업"
 
-#: src/setupmaximized.cpp:205
+#: src/setupmaximized.cpp:206
 #, kde-format
 msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
@@ -805,12 +805,12 @@ msgstr ""
 "RSIBreak에서 전체 화면을 위에서 선택한 것으로 대체하기 전에 팝업 창을 표시할 "
 "수 있습니다."
 
-#: src/setupmaximized.cpp:208
+#: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
 msgstr "팝업 사용(&U)"
 
-#: src/setupmaximized.cpp:210
+#: src/setupmaximized.cpp:211
 #, kde-format
 msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
@@ -819,28 +819,28 @@ msgstr ""
 "쉬는 시간이 다가올 때 카운트다운 팝업을 표시합니다. 활동 중이면 카운트다운이 "
 "초기화됩니다."
 
-#: src/setupmaximized.cpp:216
+#: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
 msgstr "팝업 인내도:"
 
-#: src/setupmaximized.cpp:219
+#: src/setupmaximized.cpp:220
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr "효과를 표시하기 전에 팝업 창을 표시할 최대 시간입니다."
 
-#: src/setupmaximized.cpp:227
+#: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr "계속 활동 중인 경우 팝업이 반짝일 수 있습니다."
 
-#: src/setupmaximized.cpp:231
+#: src/setupmaximized.cpp:232
 #, kde-format
 msgid "&Flash on activity"
 msgstr "활동 중일 때 반짝이기(&F)"
 
-#: src/setupmaximized.cpp:233
+#: src/setupmaximized.cpp:234
 #, kde-format
 msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
@@ -848,12 +848,12 @@ msgid ""
 msgstr ""
 "이 옵션을 선택하면 활동이 감지되었을 때 팝업 창을 반짝일지 여부를 선택합니다."
 
-#: src/setupmaximized.cpp:317
+#: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
 msgstr "한계에 도달했을 때 사용할 효과 선택"
 
-#: src/setupmaximized.cpp:318
+#: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
 msgstr "쉬는 시간 중에 사용할 효과 선택"

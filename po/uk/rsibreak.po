@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:41+0000\n"
+"POT-Creation-Date: 2024-12-11 00:43+0000\n"
 "PO-Revision-Date: 2022-03-20 08:57+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -36,55 +36,55 @@ msgstr "Відкласти перерву"
 msgid "Lock Screen"
 msgstr "Заблокувати екран"
 
-#: src/main.cpp:39
+#: src/main.cpp:32
 #, kde-format
 msgid "RSIBreak"
 msgstr "RSIBreak"
 
-#: src/main.cpp:41
+#: src/main.cpp:34
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr ""
 "Намагається запобігти ушкодженням від постійного напруження шляхом "
 "нагадування про потребу у відпочинку."
 
-#: src/main.cpp:44
+#: src/main.cpp:37
 #, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
 msgstr "© Розробники RSIBreak, 2005–2015"
 
-#: src/main.cpp:46
+#: src/main.cpp:39
 #, kde-format
 msgid "Albert Astals Cid"
 msgstr "Albert Astals Cid"
 
-#: src/main.cpp:46
+#: src/main.cpp:39
 #, kde-format
 msgid "Maintainer"
 msgstr "Супровідник"
 
-#: src/main.cpp:48
+#: src/main.cpp:41
 #, kde-format
 msgid "Tom Albers"
 msgstr "Tom Albers"
 
-#: src/main.cpp:48 src/main.cpp:50
+#: src/main.cpp:41 src/main.cpp:43
 #, kde-format
 msgid "Former author"
 msgstr "Колишній автор"
 
-#: src/main.cpp:50
+#: src/main.cpp:43
 #, kde-format
 msgid "Bram Schoenmakers"
 msgstr "Bram Schoenmakers"
 
-#: src/main.cpp:52
+#: src/main.cpp:45
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
 msgstr "Юрій Чорноіван"
 
-#: src/main.cpp:52
+#: src/main.cpp:45
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
@@ -131,88 +131,88 @@ msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
 msgstr "Будь ласка, відпочиньте ще %1"
 
-#: src/rsidock.cpp:78
+#: src/rsidock.cpp:81
 #, kde-format
 msgid "About &KDE"
 msgstr "Про &KDE"
 
-#: src/rsidock.cpp:79
+#: src/rsidock.cpp:82
 #, kde-format
 msgid "&About RSIBreak"
 msgstr "&Про RSIBreak"
 
-#: src/rsidock.cpp:80
+#: src/rsidock.cpp:83
 #, kde-format
 msgid "RSIBreak &Handbook"
 msgstr "&Довідник з RSIBreak"
 
-#: src/rsidock.cpp:83
+#: src/rsidock.cpp:86
 #, kde-format
 msgid "&Report Bug..."
 msgstr "&Повідомити про ваду..."
 
-#: src/rsidock.cpp:84
+#: src/rsidock.cpp:87
 #, kde-format
 msgid "Switch application &language..."
 msgstr "Перемкнути &мову програми..."
 
-#: src/rsidock.cpp:87 src/rsidock.cpp:141
+#: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
 msgid "&Suspend RSIBreak"
 msgstr "&Приспати RSIBreak"
 
-#: src/rsidock.cpp:88
+#: src/rsidock.cpp:91
 #, kde-format
 msgid "&Usage Statistics"
 msgstr "&Статистика використання"
 
-#: src/rsidock.cpp:89
+#: src/rsidock.cpp:92
 #, kde-format
 msgid "Configure &Notifications..."
 msgstr "Налаштувати с&повіщення..."
 
-#: src/rsidock.cpp:90
+#: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
 msgstr "&Налаштувати RSIBreak..."
 
-#: src/rsidock.cpp:147
+#: src/rsidock.cpp:150
 #, kde-format
 msgid "&Resume RSIBreak"
 msgstr "&Відновити роботу RSIBreak"
 
-#: src/rsidock.cpp:157
+#: src/rsidock.cpp:160
 #, kde-format
 msgid "Usage Statistics"
 msgstr "Статистика використання"
 
-#: src/rsidock.cpp:166 src/rsidock.cpp:193
+#: src/rsidock.cpp:169 src/rsidock.cpp:196
 #, kde-format
 msgid "Reset"
 msgstr "Скинути"
 
-#: src/rsidock.cpp:190
+#: src/rsidock.cpp:193
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
 msgstr ""
 "Ця дія перетворить всі статистичні дані на нулі. Це саме те, чого ви бажаєте?"
 
-#: src/rsidock.cpp:192
+#: src/rsidock.cpp:195
 #, kde-format
 msgid "Reset the statistics"
 msgstr "Скинути всю статистику"
 
-#: src/rsidock.cpp:209 src/rsiwidget.cpp:114
+#: src/rsidock.cpp:212 src/rsiwidget.cpp:113
 #, kde-format
 msgid "Suspended"
 msgstr "Приспано"
 
-#: src/rsidock.cpp:229
+#: src/rsidock.cpp:232
 #, kde-format
 msgid "%1 remaining until next short break"
 msgstr "%1 залишилося до наступної короткої перерви"
 
-#: src/rsidock.cpp:235
+#: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
 msgstr "%1 залишилося до наступної довгої перерви"
@@ -536,7 +536,7 @@ msgctxt ""
 msgid "seconds"
 msgstr "секунди"
 
-#: src/rsiwidget.cpp:79
+#: src/rsiwidget.cpp:78
 #, kde-format
 msgid ""
 "<p>Welcome to RSIBreak</p>\n"
@@ -545,7 +545,7 @@ msgstr ""
 "<p>Ласкаво просимо до RSIBreak</p>\n"
 "<p>Тепер ви можете бачити у вашому системному лотку RSIBreak.</p>\n"
 
-#: src/rsiwidget.cpp:81
+#: src/rsiwidget.cpp:80
 #, kde-format
 msgid ""
 "<p>When you right-click on that you will see a menu, from which you can go "
@@ -559,7 +559,7 @@ msgstr ""
 "миші на піктограму у лотку.</p>\n"
 "<p>Користуйтеся RSIBreak мудро.</p>"
 
-#: src/rsiwidget.cpp:85
+#: src/rsiwidget.cpp:84
 #, kde-format
 msgid "Welcome"
 msgstr "Ласкаво просимо"
@@ -648,42 +648,42 @@ msgstr ""
 "презентації, грати в ігри, відтворювати відео та працювати із іншими "
 "повноекранними програмами на поточній віртуальній стільниці."
 
-#: src/setupmaximized.cpp:76
+#: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
 msgstr "Простий сірий ефект"
 
-#: src/setupmaximized.cpp:78
+#: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
 msgstr "Ефект заповнення чорним"
 
-#: src/setupmaximized.cpp:79
+#: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
 msgstr "Показувати панель приладів Плазми"
 
-#: src/setupmaximized.cpp:80
+#: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
 msgstr "Показ слайдів зображень"
 
-#: src/setupmaximized.cpp:81
+#: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
 msgstr "Показ пасивного контекстного вікна"
 
-#: src/setupmaximized.cpp:88
+#: src/setupmaximized.cpp:89
 #, kde-format
 msgid "Skipping Breaks"
 msgstr "Пропускання перерв"
 
-#: src/setupmaximized.cpp:90
+#: src/setupmaximized.cpp:91
 #, kde-format
 msgid "&Hide skip button"
 msgstr "С&ховати кнопку пропуску"
 
-#: src/setupmaximized.cpp:92
+#: src/setupmaximized.cpp:93
 #, kde-format
 msgid ""
 "Check this option to disable and hide the skip button. This way you can "
@@ -692,12 +692,12 @@ msgstr ""
 "Позначте цей пункт, щоб вимкнути і сховати кнопку пропуску. Таким чином ви "
 "можете запобігти пропусканню перерви."
 
-#: src/setupmaximized.cpp:95
+#: src/setupmaximized.cpp:96
 #, kde-format
 msgid "&Hide lock button"
 msgstr "С&ховати кнопку блокування"
 
-#: src/setupmaximized.cpp:97
+#: src/setupmaximized.cpp:98
 #, kde-format
 msgid ""
 "Check this option to disable and hide the lock button. This way you can "
@@ -706,12 +706,12 @@ msgstr ""
 "Позначте цей пункт, щоб вимкнути і сховати кнопку блокування. Таким чином, "
 "ви можете запобігти помилковому натисканню кнопки."
 
-#: src/setupmaximized.cpp:99
+#: src/setupmaximized.cpp:100
 #, kde-format
 msgid "&Hide postpone button"
 msgstr "С&ховати кнопку відкладення"
 
-#: src/setupmaximized.cpp:101
+#: src/setupmaximized.cpp:102
 #, kde-format
 msgid ""
 "Check this option to disable and hide the postpone break button. This way "
@@ -720,49 +720,49 @@ msgstr ""
 "Позначте цей пункт, щоб вимкнути і сховати кнопку відкладення перерви. Таким "
 "чином, ви можете запобігти помилковому натисканню кнопки."
 
-#: src/setupmaximized.cpp:104
+#: src/setupmaximized.cpp:105
 #, kde-format
 msgid "&Disable shortcut (Esc)"
 msgstr "Ви&мкнути скорочення (Esc)"
 
-#: src/setupmaximized.cpp:106
+#: src/setupmaximized.cpp:107
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
 "Позначте цей пункт, щоб вимкнути клавішу Esc, призначену для пропускання "
 "перерви."
 
-#: src/setupmaximized.cpp:119
+#: src/setupmaximized.cpp:120
 #, kde-format
 msgid "Plasma Dashboard"
 msgstr "Панель приладів Плазми"
 
-#: src/setupmaximized.cpp:121
+#: src/setupmaximized.cpp:122
 #, kde-format
 msgid "Read Only"
 msgstr "Лише для читання"
 
-#: src/setupmaximized.cpp:129
+#: src/setupmaximized.cpp:130
 #, kde-format
 msgid "Transparency level"
 msgstr "Рівень прозорості"
 
-#: src/setupmaximized.cpp:135
+#: src/setupmaximized.cpp:136
 #, kde-format
 msgid "Transparent"
 msgstr "Прозоре"
 
-#: src/setupmaximized.cpp:145
+#: src/setupmaximized.cpp:146
 #, kde-format
 msgid "Solid"
 msgstr "Суцільне"
 
-#: src/setupmaximized.cpp:154
+#: src/setupmaximized.cpp:155
 #, kde-format
 msgid "Slideshow"
 msgstr "Показ слайдів"
 
-#: src/setupmaximized.cpp:161
+#: src/setupmaximized.cpp:162
 #, kde-format
 msgid ""
 "Select the folder from which you want to see images. These images are "
@@ -773,27 +773,27 @@ msgstr ""
 "демонструватися у випадковому порядку під час перерв. За вашого бажання "
 "пошук зображень буде проведено рекурсивно..."
 
-#: src/setupmaximized.cpp:164
+#: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
 msgstr "&Зміна..."
 
-#: src/setupmaximized.cpp:167
+#: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Search path recursively"
 msgstr "Знаходити рекурсивно"
 
-#: src/setupmaximized.cpp:168
+#: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Show small images"
 msgstr "Показувати малі зображення"
 
-#: src/setupmaximized.cpp:169
+#: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
 msgstr "Розгорнути зображення на увесь екран"
 
-#: src/setupmaximized.cpp:171
+#: src/setupmaximized.cpp:172
 #, kde-format
 msgid ""
 "If checked then image will be expanded to full screen. Part of the image "
@@ -805,12 +805,12 @@ msgstr ""
 "зображення будуть меншими за розміри екрана, зображення буде доповнено до "
 "розмірів екрана сірими смугами."
 
-#: src/setupmaximized.cpp:178
+#: src/setupmaximized.cpp:179
 #, kde-format
 msgid "Change images every:"
 msgstr "Змінювати зображення кожні:"
 
-#: src/setupmaximized.cpp:182
+#: src/setupmaximized.cpp:183
 #, kde-format
 msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
@@ -819,7 +819,7 @@ msgstr ""
 "Тут ви можете встановити тривалість показу одного зображення перш ніж його "
 "змінить наступне."
 
-#: src/setupmaximized.cpp:187 src/setupmaximized.cpp:224
+#: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
 #, kde-format
 msgid " second"
@@ -829,12 +829,12 @@ msgstr[1] " секунди"
 msgstr[2] " секунд"
 msgstr[3] " секунда"
 
-#: src/setupmaximized.cpp:203
+#: src/setupmaximized.cpp:204
 #, kde-format
 msgid "Popup"
 msgstr "Контекстне вікно"
 
-#: src/setupmaximized.cpp:205
+#: src/setupmaximized.cpp:206
 #, kde-format
 msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
@@ -843,12 +843,12 @@ msgstr ""
 "RSIBreak може показувати контекстну панель, що замінюватиме вміст вікна, з "
 "використанням вибраного вище ефекту."
 
-#: src/setupmaximized.cpp:208
+#: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
 msgstr "&Використовувати контекстне вікно"
 
-#: src/setupmaximized.cpp:210
+#: src/setupmaximized.cpp:211
 #, kde-format
 msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
@@ -857,12 +857,12 @@ msgstr ""
 "Показує панель із відліком, коли настає час перерватися. Відлік "
 "припиняється, якщо буде виявлено дії."
 
-#: src/setupmaximized.cpp:216
+#: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
 msgstr "Панель потреби у відпочинку:"
 
-#: src/setupmaximized.cpp:219
+#: src/setupmaximized.cpp:220
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
@@ -870,18 +870,18 @@ msgstr ""
 "Максимальний проміжок часу показу попередження щодо потреби у відпочинку, "
 "перш ніж буде застосовано ефект."
 
-#: src/setupmaximized.cpp:227
+#: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
 "Контекстне вікно може блимати, якщо виявиться, що ви не полишили роботи."
 
-#: src/setupmaximized.cpp:231
+#: src/setupmaximized.cpp:232
 #, kde-format
 msgid "&Flash on activity"
 msgstr "&Блимати за активності"
 
-#: src/setupmaximized.cpp:233
+#: src/setupmaximized.cpp:234
 #, kde-format
 msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
@@ -890,14 +890,14 @@ msgstr ""
 "За допомогою цієї позначки ви можете вказати, що бажаєте бачити блимання "
 "контекстного вікна, якщо наявна активність під час перерви."
 
-#: src/setupmaximized.cpp:317
+#: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
 msgstr ""
 "Виберіть ефект, який буде застосовано після попередження про потребу у "
 "відпочинку"
 
-#: src/setupmaximized.cpp:318
+#: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
 msgstr "Оберіть ефект, який буде використано під час перерв"
