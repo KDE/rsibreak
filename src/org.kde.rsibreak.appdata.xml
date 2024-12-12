@@ -51,6 +51,7 @@
   <summary xml:lang="gl">Axuda a evitar as lesións por tensión repetitiva lembrándolle facer descansos.</summary>
   <summary xml:lang="id">Membantu mencegah pegal-pegal (Repetitive Strain Injury) dengan mengingatkan Anda untuk beristirahat</summary>
   <summary xml:lang="it">Aiuta a prevenire il disturbo degli arti superiori da lavoro suggerendo di fare una pausa</summary>
+  <summary xml:lang="ka">დაგეხმარებათ თავიდან აიცილოთ განმეორებითი ტრავმული დაზიანება მისი დასვენების შეხსენებით</summary>
   <summary xml:lang="ko">사용자에게 쉬는 것을 알려서 반복성 긴장 장애를 예방합니다</summary>
   <summary xml:lang="nl">Helpt Repetitive Strain Injury (RSI) te voorkomen door u te herinneren een pauze te nemen</summary>
   <summary xml:lang="pl">Pomaga zapobiec RSI (urazom mięśni i ścięgien spowodowanym długotrwałym powtarzaniem czynności) przypominając ci o robieniu sobie przerw</summary>
@@ -59,7 +60,7 @@
   <summary xml:lang="sk">Krátkymi prestávkami bojujte proti poškodeniu z opakovaného namáhania (RSI)</summary>
   <summary xml:lang="sl">Pomaga preprečevati poškodbe zaradi ponavljajočih se gibov tako, da vas opomni na oddih</summary>
   <summary xml:lang="sv">Hjälper till att förhindra belastningsskador genom att påminna dig om att ta en rast</summary>
-  <summary xml:lang="tr">Dinlenmeyi anımsatarak Yineleyici İncinmeyi önlemeye çalışır</summary>
+  <summary xml:lang="tr">Dinlenmeyi anımsatarak yineleyici incinmeyi önlemeye çalışır</summary>
   <summary xml:lang="uk">Допомагає запобігти ушкодженням від постійного напруження шляхом нагадування про потребу у відпочинку</summary>
   <summary xml:lang="x-test">xxHelps prevent Repetitive Strain Injury by reminding you to take a breakxx</summary>
   <summary xml:lang="zh-CN">提醒用户进行休息，预防长时间使用电脑造成的身体重复性劳损。</summary>
@@ -81,6 +82,7 @@
     <p xml:lang="gl">O uso prolongado de rato ou teclado pode causar lesións por tensión repetitiva (RSI), así que aos usuarios de computador recoméndaselles facer descansos regulares.</p>
     <p xml:lang="id">Penggunaan mouse dan keyboard yang lama bisa menyebabkan pegal-pegal (RSI), sehingga pengguna komputer disarankan untuk beristirahat secara teratur.</p>
     <p xml:lang="it">L'uso prolungato di mouse e tastiera può causare il disturbo degli arti superiori da lavoro (repetitive strain injury, RSI), per cui si consiglia agli utenti di computer di effettuare delle pause con regolarità.</p>
+    <p xml:lang="ka">კლავიატურის და თაგუნას დიდი ხნის განმავლობაში განმეორებითი ტრავმული დაზიანების (RS) გამოწვევა შეუძლია, ასე რომ, სასურველია, კომპიუტერის მომხმარებლებმა ხშირად დაისვენონ.</p>
     <p xml:lang="ko">마우스와 키보드를 오래 사용하면 반복성 긴장 장애(RSI)가 발생할 수 있습니다. 컴퓨터를 사용하는 중간중간 휴식을 취하는 것을 권장합니다.</p>
     <p xml:lang="lt">Užsitęsęs naudojimasis pele ar klaviatūra gali sukelti pasikartojančios įtampos traumas (RSI), todėl kompiuterio naudotojams yra patariama daryti reguliarias pertraukas.</p>
     <p xml:lang="nl">Langdurig gebruik van een muis en toetsenbord kan repetitive strain injury (RSI) veroorzaken, computergebruikers worden geadviseerd om regelmatig pauzes te nemen.</p>
@@ -113,6 +115,7 @@
     <p xml:lang="gl">RSIBreak axuda a evitar as lesións por tensión repetitiva facendo un seguimento dos padróns de uso e informando de maneira periódica aos usuarios de que fagan descansos. Durante os períodos de descanso, RSIBreak pode amosar unha mensaxe non intrusiva, bloquear completamente a pantalla ou reproducir unha presentación de diapositivas.</p>
     <p xml:lang="id">RSIBreak membantu mencegah pegal-pegal dengan melacak pola penggunaan dan secara berkala memberitahu pengguna untuk beristirahat. Selama periode istirahat, RSIBreak bisa menampilkan pesan yang tidak mencolok, mengunci layar seluruhnya, atau menyuguhkan tampilan slide.</p>
     <p xml:lang="it">RSIBreak aiuta a prevenire il disturbo degli arti superiori da lavoro tenendo traccia degli schermi di utilizzo ed informando gli utenti di effettuare delle pause. Negli intervalli di pausa, RSIBreak può mostrare un messaggio non appariscente, bloccare totalmente lo schermo, o mostrare una sequenza di immagini.</p>
+    <p xml:lang="ka">RSIBreak დაგეხმარებათ, თავიდან აიცილოთ განმეორებითი ტრავმული დაზიანება თქვენი გამოყენების ნიმუშების ჩაწერით და პერიოდულად შეხსენებით, რომ დასვენება გჭირდებათ. შესვენებისას RSIBreak-ს შეუძლია, სრულად დაბლოკოს ეკრანი, გაჩვენოთ სლაიდშოუ, ან უბრალო შეტყობინება.</p>
     <p xml:lang="ko">RSIBreak는 사용 패턴을 추적하고 주기적으로 휴식 알림을 표시하여 반복성 긴장 장애를 예방합니다. 휴식 시간 동안에는 RSIBreak에서 메시지를 표시하거나, 화면을 잠그거나 슬라이드 쇼를 표시할 수 있습니다.</p>
     <p xml:lang="lt">Programa RSIBreak padeda išvengti pasikartojančios įtampos traumų, sekdama naudojimosi kompiuteriu šablonus ir periodiškai informuodama naudotojus, kad pasidarytų pertrauką. Pertraukų metu, RSIBreak gali rodyti neįkyrų pranešimą, visiškai užrakinti ekraną arba pateikti skaidrių rodymą.</p>
     <p xml:lang="nl">RSIBreak helpt om repetitive strain injuries te voorkomen door het gebruikspatroon te volgend en periodiek gebruikers te informeren om pauzes te nemen. Gedurende pauzemomenten kan RSIBreak een niet vervelend bericht tonen, het scherm geheel blokkeren of een diashow tonen.</p>
