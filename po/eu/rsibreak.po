@@ -1,56 +1,53 @@
-# translation of rsibreak.po to Turkish
-# translation of rsibreak.po to
-# Copyright (C) 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the rsibreak package.
 #
-# Muhammet Kara <muhammet.k@gmail.com>, 2007, 2008.
-# Serdar Soytetir <tulliana@gmail.com>, 2007, 2008, 2009, 2012.
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2024 Iñigo Salvador Azurmendi <xalba@ni.eus>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-12-11 15:07+0300\n"
-"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
-"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
-"Language: tr\n"
+"PO-Revision-Date: 2024-12-11 23:39+0100\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.03.70\n"
-"X-Poedit-Language: Turkish\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.08.3\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
 msgid "Skip Break"
-msgstr "Molayı Atla"
+msgstr "Saltatu atsedenaldia"
 
 #: src/breakcontrol.cpp:42 src/rsirelaxpopup.cpp:53
 #, kde-format
 msgid "Postpone Break"
-msgstr "Molayı Ertele"
+msgstr "Atzeratu atsedenaldia"
 
 #: src/breakcontrol.cpp:49 src/rsirelaxpopup.cpp:58
 #, kde-format
 msgid "Lock Screen"
-msgstr "Ekranı Kilitle"
+msgstr "Giltzatu pantaila"
 
 #: src/main.cpp:32
 #, kde-format
 msgid "RSIBreak"
-msgstr "RSI Molası"
+msgstr "RSIBreak"
 
 #: src/main.cpp:34
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr ""
-"Bir kullanıcıya dinlenmeyi anımsatarak Yineleyici İncinmeyi önlemeye çalışır."
+"Saiatu esfortzu errepikakorrengatiko lesioa saihesten, erabiltzaile bati "
+"atseden har dezan gogoraraziz."
 
 #: src/main.cpp:37
 #, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
-msgstr "© 2005–2015, RSI Molası geliştiricileri"
+msgstr "(c) 2005-2015, RSIBreak-en garatzaileak"
 
 #: src/main.cpp:39
 #, kde-format
@@ -60,7 +57,7 @@ msgstr "Albert Astals Cid"
 #: src/main.cpp:39
 #, kde-format
 msgid "Maintainer"
-msgstr "Bakımcı"
+msgstr "Mantentzailea"
 
 #: src/main.cpp:41
 #, kde-format
@@ -70,7 +67,7 @@ msgstr "Tom Albers"
 #: src/main.cpp:41 src/main.cpp:43
 #, kde-format
 msgid "Former author"
-msgstr "Önceki yazar"
+msgstr "Egile ohia"
 
 #: src/main.cpp:43
 #, kde-format
@@ -81,279 +78,280 @@ msgstr "Bram Schoenmakers"
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Serdar Soytetir, Muhammet Kara, Emir SARI"
+msgstr "Iñigo Salvador Azurmendi"
 
 #: src/main.cpp:45
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "tulliana@gmail.com, muhammet.k@gmail.com, emir_sari@icloud.com"
+msgstr "xalba@ni.eus"
 
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr "Kısa mola sayacı şimdi sıfırlandı"
+msgstr "Atsedenaldi laburrerako tenporizadorea berrezarri egin da"
 
 #: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
-msgstr "Sayaçlar sıfırlandı"
+msgstr "Tenporizadoreak orain berrezarri egin dira"
 
 #: src/notificator.cpp:22
 #, kde-format
 msgid "Start of a long break"
-msgstr "Uzun bir molanın başlangıcı"
+msgstr "Atsedenaldi luze baten hasiera"
 
 #: src/notificator.cpp:27
 #, kde-format
 msgid "End of a long break"
-msgstr "Uzun bir molanın sonu"
+msgstr "Atsedenaldi luze baten bukaera"
 
 #: src/notificator.cpp:32
 #, kde-format
 msgid "Start of a short break"
-msgstr "Kısa bir molanın başlangıcı"
+msgstr "Atsedenaldi labur baten hasiera"
 
 #: src/notificator.cpp:37
 #, kde-format
 msgid "End of a short break"
-msgstr "Kısa bir molanın sonu"
+msgstr "Atsedenaldi labur baten bukaera"
 
 #: src/popupeffect.cpp:19
 #, kde-format
 msgid "Take a break...."
-msgstr "Bir mola ver…"
+msgstr "Hartu atseden..."
 
 #: src/popupeffect.cpp:44
 #, kde-format
 msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
-msgstr "%1 kadar mola verin"
+msgstr "Hartu atseden bat %1(z)"
 
 #: src/rsidock.cpp:81
 #, kde-format
 msgid "About &KDE"
-msgstr "&KDE Hakkında"
+msgstr "&KDEri buruz"
 
 #: src/rsidock.cpp:82
 #, kde-format
 msgid "&About RSIBreak"
-msgstr "RSI Molası H&akkında"
+msgstr "RSIBreak-eri &buruz"
 
 #: src/rsidock.cpp:83
 #, kde-format
 msgid "RSIBreak &Handbook"
-msgstr "RSI Molası &El Kitabı"
+msgstr "RSIBreak es&kuliburua"
 
 #: src/rsidock.cpp:86
 #, kde-format
 msgid "&Report Bug..."
-msgstr "&Hata Bildir…"
+msgstr "Akatsaren be&rri eman..."
 
 #: src/rsidock.cpp:87
 #, kde-format
 msgid "Switch application &language..."
-msgstr "Uygulama Di&lini Değiştir…"
+msgstr "Aldatu aplikazioaren &hizkuntza..."
 
 #: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
 msgid "&Suspend RSIBreak"
-msgstr "RSI Molası Uygulamasını A&skıya Al"
+msgstr "E&seki RSIBreak"
 
 #: src/rsidock.cpp:91
 #, kde-format
 msgid "&Usage Statistics"
-msgstr "K&ullanım İstatistikleri"
+msgstr "Era&bileraren estatistika"
 
 #: src/rsidock.cpp:92
 #, kde-format
 msgid "Configure &Notifications..."
-msgstr "Bildirimleri &Yapılandır…"
+msgstr "Konfiguratu &jakinarazpenak..."
 
 #: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
-msgstr "&RSI Molası Uygulamasını Yapılandır…"
+msgstr "&Konbiguratu RSIBreak..."
 
 #: src/rsidock.cpp:150
 #, kde-format
 msgid "&Resume RSIBreak"
-msgstr "RSI Molası Uygulamasını Sü&rdür"
+msgstr "Be&rrekin RSIBreak"
 
 #: src/rsidock.cpp:160
 #, kde-format
 msgid "Usage Statistics"
-msgstr "Kullanım İstatistikleri"
+msgstr "Erabileraren estatistika"
 
 #: src/rsidock.cpp:169 src/rsidock.cpp:196
 #, kde-format
 msgid "Reset"
-msgstr "Sıfırla"
+msgstr "Berrezarri"
 
 #: src/rsidock.cpp:193
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr "Bu, tüm istatistikleri sıfırlayacaktır. İstediğiniz bu mudur?"
+msgstr ""
+"Honek estatistika denak zerorekin berrezarriko ditu. Hori da nahi duzuna?"
 
 #: src/rsidock.cpp:195
 #, kde-format
 msgid "Reset the statistics"
-msgstr "İstatistikleri Sıfırla"
+msgstr "Estatistikak berrezarri"
 
 #: src/rsidock.cpp:212 src/rsiwidget.cpp:113
 #, kde-format
 msgid "Suspended"
-msgstr "Askıya Alındı"
+msgstr "Esekita"
 
 #: src/rsidock.cpp:232
 #, kde-format
 msgid "%1 remaining until next short break"
-msgstr "Sonraki kısa molaya %1 kaldı"
+msgstr "%1 falta dira hurrengo atsedenaldi laburrerako"
 
 #: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
-msgstr "Sonraki uzun molaya %1 kaldı"
+msgstr "%1 falta dira hurrengo atsedenaldi luzerako"
 
 #: src/rsirelaxpopup.cpp:50
 #, kde-format
 msgid "Skip this break"
-msgstr "Bu Molayı Atla"
+msgstr "Saltatu atsedenaldi hau"
 
 #: src/rsirelaxpopup.cpp:55
 #, kde-format
 msgid "Postpone this break"
-msgstr "Bu Molayı Ertele"
+msgstr "Atzeratu atsedenaldi hau"
 
 #: src/rsirelaxpopup.cpp:60
 #, kde-format
 msgid "Lock the session"
-msgstr "Oturumu Kilitle"
+msgstr "Giltzatu saioa"
 
 #: src/rsirelaxpopup.cpp:94
 #, kde-format
 msgid "Please relax for %1"
-msgstr "Lütfen %1 saniye için rahatlayın"
+msgstr "Mesedez, erlaxatu %1(z)"
 
 #: src/rsirelaxpopup.cpp:97
 #, kde-format
 msgid "Note: next break is a big break"
-msgstr "Not: Sonraki mola uzun bir mola"
+msgstr "Oharra: hurrengo atsedenaldia handia da"
 
 #: src/rsistats.cpp:18
 #, kde-format
 msgid "Total recorded time"
-msgstr "Toplam kaydedilen zaman"
+msgstr "Grabatutako denbora osoa"
 
 #: src/rsistats.cpp:21
 #, kde-format
 msgid "Total time of activity"
-msgstr "Toplam etkinlik zamanı"
+msgstr "Jardueraren denbora osoa"
 
 #: src/rsistats.cpp:27
 #, kde-format
 msgid "Total time being idle"
-msgstr "Toplam boşta bekleme süresi"
+msgstr ""
 
 #: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
-msgstr "Etkinlik yüzdesi"
+msgstr ""
 
 #: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
-msgstr "Son dakikadaki etkinlik yüzdesi"
+msgstr ""
 
 #: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
-msgstr "Son saatteki etkinlik yüzdesi"
+msgstr ""
 
 #: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
-msgstr "Son 6 saatteki etkinlik yüzdesi"
+msgstr ""
 
 #: src/rsistats.cpp:38
 #, kde-format
 msgid "Maximum idle period"
-msgstr "En fazla boşta bekleme süresi"
+msgstr ""
 
 #: src/rsistats.cpp:41
 #, kde-format
 msgid "Current idle period"
-msgstr "Şu anki boşta bekleme süresi"
+msgstr ""
 
 #: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
-msgstr "Atlanan kısa molaların sayısı (boşta)"
+msgstr ""
 
 #: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
-msgstr "Atlanan uzun molaların sayısı (boşta)"
+msgstr ""
 
 #: src/rsistats.cpp:47
 #, kde-format
 msgid "Total number of short breaks"
-msgstr "Toplam kısa mola sayısı"
+msgstr ""
 
 #: src/rsistats.cpp:51
 #, kde-format
 msgid "Number of skipped short breaks (user)"
-msgstr "Atlanan kısa molaların sayısı (kullanıcı)"
+msgstr ""
 
 #: src/rsistats.cpp:54
 #, kde-format
 msgid "Number of postponed short breaks (user)"
-msgstr "Ertelenen kısa molaların sayısı (kullanıcı)"
+msgstr ""
 
 #: src/rsistats.cpp:57
 #, kde-format
 msgid "Last short break"
-msgstr "Son kısa mola"
+msgstr ""
 
 #: src/rsistats.cpp:59
 #, kde-format
 msgid "Total number of long breaks"
-msgstr "Toplam uzun mola sayısı"
+msgstr ""
 
 #: src/rsistats.cpp:63
 #, kde-format
 msgid "Number of skipped long breaks (user)"
-msgstr "Atlanan uzun molaların sayısı (kullanıcı)"
+msgstr ""
 
 #: src/rsistats.cpp:66
 #, kde-format
 msgid "Number of postponed long breaks (user)"
-msgstr "Ertelenen uzun molaların sayısı (kullanıcı)"
+msgstr ""
 
 #: src/rsistats.cpp:68
 #, kde-format
 msgid "Last long break"
-msgstr "Son uzun mola"
+msgstr ""
 
 #: src/rsistats.cpp:70
 #, kde-format
 msgid "Pause score"
-msgstr "Bekleme puanı"
+msgstr ""
 
 #: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
-msgstr "Bu, RSI Molası uygulamasının şimdiye kadarki toplam çalışma zamanıdır."
+msgstr ""
 
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr "Klavye veya fareyi kullandığınız toplam zaman miktarıdır."
+msgstr ""
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
-msgstr "Klavye veya fareyi kullanmadığınız toplam zaman miktarıdır."
+msgstr ""
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -363,21 +361,18 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
-"RSI Molası uygulamasının çalışmış olduğu toplam zamana göre etkinlik "
-"sürelerinin yüzdesidir. Bu renk etkinlik düzeyinizi belirtir. Bu renk tam "
-"kırmızıya yakın olduğu zaman çalışma hızınızı düşürmeniz önerilir."
 
 #: src/rsistats.cpp:326
 #, kde-format
 msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
 "running."
-msgstr "RSI Molası çalıştığı sürece ölçülen en uzun durgunluk süresidir."
+msgstr ""
 
 #: src/rsistats.cpp:329
 #, kde-format
 msgid "This is the total number of short breaks"
-msgstr "Bu, toplam kısa mola sayısıdır"
+msgstr ""
 
 #: src/rsistats.cpp:332
 #, kde-format
@@ -386,30 +381,28 @@ msgid ""
 "gradually turns from green to red, indicating when you can expect the next "
 "tiny break."
 msgstr ""
-"Bitirilen son kısa molanın bitme zamanıdır. Bu metnin rengi yavaşça yeşilden "
-"kırmızıya döner. Bu, sonraki küçük molanın yaklaştığı anlamına gelir."
 
 #: src/rsistats.cpp:337
 #, kde-format
 msgid "This is the total number of short breaks which you skipped."
-msgstr "Bu, atladığınız toplam kısa mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:341
 #, kde-format
 msgid "This is the total number of short breaks which you postponed."
-msgstr "Bu, ertelediğiniz toplam kısa mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:345
 #, kde-format
 msgid ""
 "This is the total number of short breaks which were skipped because you were "
 "idle."
-msgstr "Bu, boşta olduğunuz için atlanan toplam kısa mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:348
 #, kde-format
 msgid "This is the total number of long breaks."
-msgstr "Bu, toplam uzun mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:351
 #, kde-format
@@ -418,25 +411,23 @@ msgid ""
 "gradually turns from green to red,indicating when you can expect the next "
 "big break."
 msgstr ""
-"Bitirilen son uzun molanın bitme zamanıdır. Bu metnin rengi yavaşça yeşilden "
-"kırmızıya döner. Bu, sonraki büyük molanın yaklaştığı anlamına gelir."
 
 #: src/rsistats.cpp:356
 #, kde-format
 msgid "This is the total number of long breaks which you skipped."
-msgstr "Bu, atladığınız toplam uzun mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:360
 #, kde-format
 msgid "This is the total number of long breaks which you postponed."
-msgstr "Bu, ertelediğiniz toplam uzun mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:364
 #, kde-format
 msgid ""
 "This is the total number of long breaks which were skipped because you were "
 "idle."
-msgstr "Bu, boşta olduğunuz için atlanan toplam uzun mola sayısıdır."
+msgstr ""
 
 #: src/rsistats.cpp:368
 #, kde-format
@@ -444,13 +435,11 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
-"Molalara ne kadar uyduğunuzun bir göstergesidir. Bir molayı her "
-"atlayışınızda azalır."
 
 #: src/rsistats.cpp:371
 #, kde-format
 msgid "This is the current idle time."
-msgstr "Bu, şu anki boşta bekleme zamanıdır."
+msgstr ""
 
 #: src/rsistats.cpp:374
 #, kde-format
@@ -459,9 +448,6 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"Son 1 dakikadaki etkinlik yüzdesidir. Buradaki renk etkinlik düzeyinizi "
-"gösterir. Renk tam kırmızıya yaklaştığında çalışma hızınızı düşürmeniz "
-"önerilir."
 
 #: src/rsistats.cpp:379
 #, kde-format
@@ -470,9 +456,6 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"Son 1 saatteki etkinlik yüzdesidir. Buradaki renk etkinlik düzeyinizi "
-"gösterir. Renk tam kırmızıya yaklaştığında çalışma hızınızı düşürmeniz "
-"önerilir."
 
 #: src/rsistats.cpp:384
 #, kde-format
@@ -481,29 +464,26 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
-"Son 6 saatteki etkinlik yüzdesidir. Buradaki renk etkinlik düzeyinizi "
-"gösterir. Renk tam kırmızıya yaklaştığında çalışma hızınızı düşürmeniz "
-"önerilir."
 
 #: src/rsistatwidget.cpp:25
 #, kde-format
 msgid "Time"
-msgstr "Zaman"
+msgstr "Ordua"
 
 #: src/rsistatwidget.cpp:34
 #, kde-format
 msgid "Short Breaks"
-msgstr "Kısa Molalar"
+msgstr "Atsedenaldi laburrak"
 
 #: src/rsistatwidget.cpp:43
 #, kde-format
 msgid "Pause"
-msgstr "Bekle"
+msgstr "Etenaldia"
 
 #: src/rsistatwidget.cpp:52
 #, kde-format
 msgid "Long Breaks"
-msgstr "Uzun Molalar"
+msgstr "Atsedenaldi luzeak"
 
 #: src/rsistatwidget.cpp:89
 #, kde-format
@@ -511,7 +491,7 @@ msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
 msgid "minutes"
-msgstr "dakika"
+msgstr "minutu"
 
 #: src/rsistatwidget.cpp:92
 #, kde-format
@@ -519,7 +499,7 @@ msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
 msgid "seconds"
-msgstr "saniye"
+msgstr "segundo"
 
 #: src/rsiwidget.cpp:78
 #, kde-format
@@ -527,8 +507,6 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
-"<p>RSI Molası uygulamasına hoş geldiniz</p>\n"
-"<p>Şimdi RSI Molası simgesini sistem tepsisinde görebilirsiniz:</p>\n"
 
 #: src/rsiwidget.cpp:80
 #, kde-format
@@ -538,41 +516,36 @@ msgid ""
 "<p>When you want to know when the next break is, hover over the icon.</p>\n"
 "<p>Use RSIBreak wisely.</p>"
 msgstr ""
-"<p>Üzerine sağ tıkladığınızda, oradan örneğin yapılandırmaya gidebileceğiniz "
-"bir menü göreceksiniz.</p>\n"
-"<p>Sonraki molanın ne zaman olduğunu bilmek isterseniz farenizi simgenin "
-"üzerine götürün.</p>\n"
-"<p>Sağlığınız için RSI Molası uygulamasını kullanın.</p>"
 
 #: src/rsiwidget.cpp:84
 #, kde-format
 msgid "Welcome"
-msgstr "Hoş Geldiniz"
+msgstr "Ongi etorri"
 
 #: src/setup.cpp:40
 #, kde-format
 msgid "General Settings"
-msgstr "Genel Ayarlar"
+msgstr "Ezarpen orokorrak"
 
 #: src/setup.cpp:44
 #, kde-format
 msgid "Timings"
-msgstr "Zamanlamalar"
+msgstr ""
 
 #: src/setup.cpp:48
 #, kde-format
 msgid "During Breaks"
-msgstr "Molalar Sırasında"
+msgstr "Atsedenaldietan"
 
 #: src/setup.cpp:52
 #, kde-format
 msgid "Actions"
-msgstr "Eylemler"
+msgstr "Ekintzak"
 
 #: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
-msgstr "RSI Molası uygulamasını &açılışta kendiliğinden başlat"
+msgstr ""
 
 #: src/setupgeneral.cpp:40
 #, kde-format
@@ -580,30 +553,26 @@ msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr ""
-"Bu seçenek ile, masaüstü ortamınız başladığı anda RSI Molası uygulaması "
-"kendiliğinden başlatılacaktır."
 
 #: src/setupgeneral.cpp:43
 #, kde-format
 msgid "Timer Settings"
-msgstr "Sayaç Ayarları"
+msgstr "Tenporizadorearen ezarpenak"
 
 #: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
-msgstr "Sabit &zamanlarda mola"
+msgstr ""
 
 #: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
-"Bu seçenek ile, sabit aralıklarla mola vermek istediğinizi belirtmiş "
-"olursunuz."
 
 #: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
-msgstr "Etkinliği hesaba kat"
+msgstr ""
 
 #: src/setupgeneral.cpp:50
 #, kde-format
@@ -612,14 +581,11 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Bu seçenek ile, boşta bekleme tespitini kullanmak istediğinizi belirtmiş "
-"olursunuz. Bu, sonraki mola zamanı belirlenirken yalnızca etkin olduğunuz "
-"(klavye veya fareyi kullandığınız) sürenin hesaba katılacağı anlamına gelir."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr "Tam ekran pencereler varken &sustur"
+msgstr ""
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -628,44 +594,41 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
-"Bu seçenekle, RSI Molası’nın sunumlar, oyunlar, video oynatımı ve geçerli "
-"sanal masaüstündeki diğer tam ekran uygulamalara karışmasını istemediğini "
-"belirtebilirsiniz."
 
 #: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
-msgstr "Temel Gri Efekt"
+msgstr ""
 
 #: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
-msgstr "Tam Siyah Efekti"
+msgstr ""
 
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
-msgstr "Plasma Denetim Panelini Göster"
+msgstr ""
 
 #: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr "Görsellerden Oluşan bir Slayt Gösterisi Göster"
+msgstr ""
 
 #: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
-msgstr "Bir Pasif Açılabilir Pencere Göster"
+msgstr ""
 
 #: src/setupmaximized.cpp:89
 #, kde-format
 msgid "Skipping Breaks"
-msgstr "Molaların Atlanması"
+msgstr ""
 
 #: src/setupmaximized.cpp:91
 #, kde-format
 msgid "&Hide skip button"
-msgstr "Atla düğmesini g&izle"
+msgstr ""
 
 #: src/setupmaximized.cpp:93
 #, kde-format
@@ -673,13 +636,11 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
-"Atla düğmesini gizlemek ve etkisizleştirmek için bu seçeneği işaretleyin. Bu "
-"yolla mola atlamasını önleyebilirsiniz."
 
 #: src/setupmaximized.cpp:96
 #, kde-format
 msgid "&Hide lock button"
-msgstr "Kilitle düğmesini g&izle"
+msgstr "Ez&kutatu giltzatzeko botoia"
 
 #: src/setupmaximized.cpp:98
 #, kde-format
@@ -687,13 +648,11 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
-"Kilitle düğmesini gizlemek ve etkisizleştirmek için bu seçeneği imleyin. Bu "
-"yolla düğmeye hatalı basılmasını önleyebilirsiniz."
 
 #: src/setupmaximized.cpp:100
 #, kde-format
 msgid "&Hide postpone button"
-msgstr "Ertele düğmesini g&izle"
+msgstr "&Ezkutatu atzeratzeko botoia"
 
 #: src/setupmaximized.cpp:102
 #, kde-format
@@ -701,50 +660,46 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
-"Ertele düğmesini gizlemek ve etkisizleştirmek için bu seçeneği işaretleyin. "
-"Bu yolla düğmeye hatalı basılmasını önleyebilirsiniz."
 
 #: src/setupmaximized.cpp:105
 #, kde-format
 msgid "&Disable shortcut (Esc)"
-msgstr "&Kısayolu kapat (Vazgeç)"
+msgstr "E&zgaitu lasterbidea (Ihes)"
 
 #: src/setupmaximized.cpp:107
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
-"Molayı atlamak için Vazgeç düğmesinin kullanılmasını iptal etmek için bu "
-"seçeneği işaretleyin."
 
 #: src/setupmaximized.cpp:120
 #, kde-format
 msgid "Plasma Dashboard"
-msgstr "Plasma Denetim Paneli"
+msgstr "Plasmaren aginte-mahaia"
 
 #: src/setupmaximized.cpp:122
 #, kde-format
 msgid "Read Only"
-msgstr "Saltokunur"
+msgstr "Irakurtzeko soilik"
 
 #: src/setupmaximized.cpp:130
 #, kde-format
 msgid "Transparency level"
-msgstr "Saydamlık düzeyi"
+msgstr "Gardentasun maila"
 
 #: src/setupmaximized.cpp:136
 #, kde-format
 msgid "Transparent"
-msgstr "Saydam"
+msgstr "Gardena"
 
 #: src/setupmaximized.cpp:146
 #, kde-format
 msgid "Solid"
-msgstr "Katı"
+msgstr "Solid"
 
 #: src/setupmaximized.cpp:155
 #, kde-format
 msgid "Slideshow"
-msgstr "Slayt Gösterisi"
+msgstr "Diapositiba emanaldia"
 
 #: src/setupmaximized.cpp:162
 #, kde-format
@@ -753,29 +708,26 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
-"Görmek istediğiniz görseller klasörünü seçin. Bu görseller, rastgele olarak "
-"molalar süresince gösterilir. Eğer isterseniz bu yol alt klasörlerle "
-"birlikte aranacaktır…"
 
 #: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
-msgstr "&Değiştir…"
+msgstr "&Al&datu..."
 
 #: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Search path recursively"
-msgstr "Yolu özyineli olarak ara"
+msgstr ""
 
 #: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Show small images"
-msgstr "Küçük görselleri göster"
+msgstr "Erakutsi irudi txikiak"
 
 #: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
-msgstr "Görseli tam ekrana genişlet"
+msgstr ""
 
 #: src/setupmaximized.cpp:172
 #, kde-format
@@ -784,14 +736,11 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
-"İşaretlenirse görsel tam ekrana genişletilecektir. Ekran alanının dışındaki "
-"görsel kısmı kırpılacaktır. Aksi takdirde görsel tümüyle görüntülenecektir; "
-"ancak kenarlarında gri alanlar olabilir. "
 
 #: src/setupmaximized.cpp:179
 #, kde-format
 msgid "Change images every:"
-msgstr "Görsel değiştirme aralığı:"
+msgstr "Aldatu irudia hainbestero:"
 
 #: src/setupmaximized.cpp:183
 #, kde-format
@@ -799,21 +748,19 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
-"Bir görselin sonraki ile değiştirilmesinden önce ne kadar süre geçmesi "
-"gerektiğini buradan ayarlayabilirsiniz."
 
 #: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
-msgstr[0] " saniye"
-msgstr[1] " saniye"
+msgstr[0] " segundo"
+msgstr[1] " segundo"
 
 #: src/setupmaximized.cpp:204
 #, kde-format
 msgid "Popup"
-msgstr "Açılır Pencere"
+msgstr "Gaineratu"
 
 #: src/setupmaximized.cpp:206
 #, kde-format
@@ -821,13 +768,11 @@ msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
-"RSI Molası, tüm ekranınızı kaplamak yerine sistem tepsisinin yakınında bir "
-"açılır pencere gösterebilir."
 
 #: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
-msgstr "Açılır pencereyi k&ullan"
+msgstr ""
 
 #: src/setupmaximized.cpp:211
 #, kde-format
@@ -835,31 +780,27 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
-"Mola zamanı geldiğinde bir geri sayım penceresi görüntüler. Etkinliğinizle "
-"birlikte geri sayım sıfırlanır."
 
 #: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
-msgstr "Açılır pencere süresi:"
+msgstr ""
 
 #: src/setupmaximized.cpp:220
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr ""
-"Oturumdan atmadan önce gösterilecek penceresnin en fazla bekleme süresi."
 
 #: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
-"Açılır pencere, hâlâ etkin olduğunuzu tespit ettiği zaman yanıp sönebilir."
 
 #: src/setupmaximized.cpp:232
 #, kde-format
 msgid "&Flash on activity"
-msgstr "&Etkinlik olursa yanıp sön"
+msgstr ""
 
 #: src/setupmaximized.cpp:234
 #, kde-format
@@ -867,48 +808,46 @@ msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
 "there is activity."
 msgstr ""
-"Bu kutucuğu imleyerek etkinlik durumunda açılır pencerenin yanıp sönmesini "
-"istediğinizi belirtebilirsiniz."
 
 #: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
-msgstr "Bekleme süreniz bittiğinde istediğiniz efekti seçin"
+msgstr ""
 
 #: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
-msgstr "Molalarda kullanmak istediğiniz efekti seçin"
+msgstr ""
 
 #: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
-msgstr "Kısa Molalar"
+msgstr ""
 
 #: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
-msgstr "Kısa mola aralığı:"
+msgstr ""
 
 #: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
-msgstr "Burada hangi sıklıkla kısa mola istediğinizi ayarlayabilirsiniz."
+msgstr ""
 
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
-msgstr "Mola süresi:"
+msgstr ""
 
 #: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
-msgstr "Burada, kısa molanın süresini ayarlayabilirsiniz."
+msgstr ""
 
 #: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
-msgstr "Şu zaman kadar etkinlik olmazsa atla:"
+msgstr ""
 
 #: src/setuptiming.cpp:90
 #, kde-format
@@ -916,51 +855,46 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
-"Bir sonraki kısa molayı atlamaya yetecek kadar boş kalınacak aralığı "
-"ayarlayın."
 
 #: src/setuptiming.cpp:106
 #, kde-format
 msgid "Big Breaks"
-msgstr "Uzun Molalar"
+msgstr ""
 
 #: src/setuptiming.cpp:111
 #, kde-format
 msgid "Long break every:"
-msgstr "Uzun mola aralığı:"
+msgstr ""
 
 #: src/setuptiming.cpp:114
 #, kde-format
 msgid "Here you can set how often you want a long break. "
-msgstr "Burada hangi sıklıkla uzun mola istediğinizi ayarlayabilirsiniz. "
+msgstr ""
 
 #: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
-msgstr "Burada, uzun molanın süresini ayarlayabilirsiniz."
+msgstr ""
 
 #: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
-"Bir sonraki uzun molayı atlamaya yetecek kadar boş kalınacak aralığı "
-"ayarlayın."
 
 #: src/setuptiming.cpp:158
 #, kde-format
 msgid "Postpone Breaks"
-msgstr "Molaları Ertele"
+msgstr ""
 
 #: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
 msgstr ""
-"Burada bir molayı ne kadar süre ertelemek istediğinizi ayarlayabilirsiniz."
 
 #: src/setuptiming.cpp:187
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
-msgstr[0] " dakika"
-msgstr[1] " dakika"
+msgstr[0] " minutu"
+msgstr[1] " minutu"

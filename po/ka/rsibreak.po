@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2022-12-28 07:53+0100\n"
+"PO-Revision-Date: 2024-12-11 08:35+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -42,6 +42,8 @@ msgstr "RSIBreak"
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr ""
+"სცდის, თავიდან აიცილოს განმეორებითი ტრავმული დაზიანება მომხმარებლისთვის "
+"შესვენების აუცილებლობის შეხსენებით."
 
 #: src/main.cpp:37
 #, kde-format
@@ -189,7 +191,7 @@ msgstr "თავიდან"
 #: src/rsidock.cpp:193
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr ""
+msgstr "ეს სტატისტიკას ნულზე ჩამოყრის. ეს გნებავთ?"
 
 #: src/rsidock.cpp:195
 #, kde-format
@@ -284,12 +286,12 @@ msgstr "უქმეობის მიმდინარე პერიოდ�
 #: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
-msgstr ""
+msgstr "გამოტოვებული მოკლე შესვენებების რაოდენობა (უქმე)"
 
 #: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
-msgstr ""
+msgstr "გამოტოვებული გრძელი შესვენებების რაოდენობა (უქმე)"
 
 #: src/rsistats.cpp:47
 #, kde-format
@@ -299,12 +301,12 @@ msgstr "მოკლე შესვენებების ჯამური 
 #: src/rsistats.cpp:51
 #, kde-format
 msgid "Number of skipped short breaks (user)"
-msgstr ""
+msgstr "გამოტოვებული მოკლე შესვენებების რაოდენობა (მომხმარებელი)"
 
 #: src/rsistats.cpp:54
 #, kde-format
 msgid "Number of postponed short breaks (user)"
-msgstr ""
+msgstr "გადადებული მოკლე შესვენებების რაოდენობა (მომხმარებელი)"
 
 #: src/rsistats.cpp:57
 #, kde-format
@@ -319,12 +321,12 @@ msgstr "გრძელი შესვენებების ჯამურ�
 #: src/rsistats.cpp:63
 #, kde-format
 msgid "Number of skipped long breaks (user)"
-msgstr ""
+msgstr "გამოტოვებული გრძელი შესვენებების რაოდენობა (მომხმარებელი)"
 
 #: src/rsistats.cpp:66
 #, kde-format
 msgid "Number of postponed long breaks (user)"
-msgstr ""
+msgstr "გადადებული გრძელი შესვენებების რაოდენობა (მომხმარებელი)"
 
 #: src/rsistats.cpp:68
 #, kde-format
@@ -339,17 +341,17 @@ msgstr "პაუზის ქულები"
 #: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
-msgstr ""
+msgstr "ეს RSIBreak-ის გაშვების ჯამური დროა."
 
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr ""
+msgstr "ეს ჯამური დროა, როცა კლავიატურას და თაგუნას იყენებდით."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
-msgstr ""
+msgstr "ეს ჯამური დროა, როცა კლავიატურას და თაგუნას არ იყენებდით."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -359,6 +361,9 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
+"ეს აქტივობის პროცენტულობაა, რომელიც აქტივობის vs. RSIBreak-ის გაშვებულობიდან "
+"გამოითვლება. ფერი თქვენი აქტივობის დონეზე მიუთითებს. როცა ფერი ახლოსაა "
+"წითელთან, რეკომენდებულია, რომ შეამციროთ მუშაობის ტემპი."
 
 #: src/rsistats.cpp:326
 #, kde-format
@@ -366,11 +371,12 @@ msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
 "running."
 msgstr ""
+"ეს უქმეობის უგრძესი პერიოდია, რომელიც გაიზომა, როცა RSIBreak გაშვებული იყო."
 
 #: src/rsistats.cpp:329
 #, kde-format
 msgid "This is the total number of short breaks"
-msgstr ""
+msgstr "ეს მოკლე შესვენებების ჯამური რიცხვია"
 
 #: src/rsistats.cpp:332
 #, kde-format
@@ -379,16 +385,19 @@ msgid ""
 "gradually turns from green to red, indicating when you can expect the next "
 "tiny break."
 msgstr ""
+"ეს ბოლოს დასრულებული მოკლე შესვენების დროა. ამ ტექსტის ფერი ნელნელა იცვლება "
+"მწვანიდან წითლამდე, რაც მიუთითებს, როდის უნდა მოელოდეთ შემდეგ მცირე "
+"შესვენებას."
 
 #: src/rsistats.cpp:337
 #, kde-format
 msgid "This is the total number of short breaks which you skipped."
-msgstr ""
+msgstr "ეს თქვენს მიერ გამოტოვებული მოკლე შესვენებების ჯამური რაოდენობაა."
 
 #: src/rsistats.cpp:341
 #, kde-format
 msgid "This is the total number of short breaks which you postponed."
-msgstr ""
+msgstr "ეს თქვენს მიერ გადადებული მოკლე შესვენებების ჯამური რაოდენობაა."
 
 #: src/rsistats.cpp:345
 #, kde-format
@@ -396,11 +405,13 @@ msgid ""
 "This is the total number of short breaks which were skipped because you were "
 "idle."
 msgstr ""
+"ეს იმ მოკლე შესვენებების ჯამური რაოდენობაა, რომლებიც გამოტოვებული იყო, "
+"რადგან თქვენ უქმედ იყავით."
 
 #: src/rsistats.cpp:348
 #, kde-format
 msgid "This is the total number of long breaks."
-msgstr ""
+msgstr "ეს გრძელი შესვენებების ჯამური რიცხვია."
 
 #: src/rsistats.cpp:351
 #, kde-format
@@ -409,16 +420,19 @@ msgid ""
 "gradually turns from green to red,indicating when you can expect the next "
 "big break."
 msgstr ""
+"ეს ბოლოს დასრულებული გრძელი შესვენების დროა. ამ ტექსტის ფერი თანდათან "
+"იცვლება მწვანიდან წითელზე, რითიც გაჩვენებთ, როდის უნდა მოელოდეთ შემდეგ დიდ "
+"დასვენებას."
 
 #: src/rsistats.cpp:356
 #, kde-format
 msgid "This is the total number of long breaks which you skipped."
-msgstr ""
+msgstr "ეს თქვენს მიერ გამოტოვებული გრძელი შესვენებების ჯამური რაოდენობაა."
 
 #: src/rsistats.cpp:360
 #, kde-format
 msgid "This is the total number of long breaks which you postponed."
-msgstr ""
+msgstr "ეს თქვენს მიერ გადადებული გრძელი შესვენებების ჯამური რაოდენობაა."
 
 #: src/rsistats.cpp:364
 #, kde-format
@@ -426,6 +440,8 @@ msgid ""
 "This is the total number of long breaks which were skipped because you were "
 "idle."
 msgstr ""
+"ეს იმ გრძელი შესვენებების ჯამური რაოდენობაა, რომლებიც გამოტოვებული იყო, "
+"რადგან თქვენ უქმედ იყავით."
 
 #: src/rsistats.cpp:368
 #, kde-format
@@ -433,6 +449,8 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
+"ეს მაჩვენებელია, რა დონეზე კარგად იქცეოდით შესვენებებით. ის მცირდება ყოველ "
+"ჯერზე, როცა შესვენებას გამოტოვებთ."
 
 #: src/rsistats.cpp:371
 #, kde-format
@@ -446,6 +464,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"ეს ბოლო წუთში აქტივობის პროცენტულობაა. ფერი თქვენი აქტივობის დონეზე "
+"მიუთითებს. როცა ფერი ახლოსაა სრულ წითელთან, რეკომენდებულია, მუშაობის ტემპი "
+"დააგდოთ."
 
 #: src/rsistats.cpp:379
 #, kde-format
@@ -454,6 +475,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"ეს ბოლო საათის განმავლობაში აქტივობის პროცენტულობაა. ფერი თქვენი აქტივობის "
+"დონეზე მიუთითებს. როცა ფერი ახლოსაა სრულ წითელთან, რეკომენდებულია, მუშაობის "
+"ტემპი შეანელოთ."
 
 #: src/rsistats.cpp:384
 #, kde-format
@@ -462,6 +486,9 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
+"ეს ბოლო 6 საათის განმავლობაში აქტივობის პროცენტულობაა. ფერი თქვენი აქტივობის "
+"დონეზე მიუთითებს. როცა ფერი ახლოსაა სრულ წითელთან, რეკომენდებულია, მუშაობის "
+"ტემპი დააგდოთ."
 
 #: src/rsistatwidget.cpp:25
 #, kde-format
@@ -505,6 +532,8 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
+"<p>მოგესალმებათ RSIBreak</p>\n"
+"<p>RSIBreak-ის დანახვა, ახლა, სისტემურ საათთან შეგიძლიათ.</p>\n"
 
 #: src/rsiwidget.cpp:80
 #, kde-format
@@ -514,6 +543,11 @@ msgid ""
 "<p>When you want to know when the next break is, hover over the icon.</p>\n"
 "<p>Use RSIBreak wisely.</p>"
 msgstr ""
+"<p>როცა ამაზე მარჯვენა ღილაკით დააწკაპუნებთ, დაინახავთ მენიუს, საიდანაც, "
+"მაგალითად, მორგების ფანჯარაზე შეგიძლიათ, გადახვიდეთ.</p>\n"
+"<p>როცა გნებავთ, გაიგოთ, როდისაა შემდეგი შესვენება, თაგუნა ხატულაზე გააჩერეთ."
+"</p>\n"
+"<p>იმედია, RSIBreak მოგეწონებათ.</p>"
 
 #: src/rsiwidget.cpp:84
 #, kde-format
@@ -543,7 +577,7 @@ msgstr "ქმედებები"
 #: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
-msgstr ""
+msgstr "RSIBreak-ის ავტომატური გაშვება სისტემაში შესვლისას"
 
 #: src/setupgeneral.cpp:40
 #, kde-format
@@ -551,6 +585,8 @@ msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr ""
+"ამ პარამეტრით თქვენ მიუთითებთ, რომ გნებავთ, RSIBreak სამუშაო გარემოსთან "
+"ერთად გაეშვას."
 
 #: src/setupgeneral.cpp:43
 #, kde-format
@@ -565,12 +601,12 @@ msgstr "შესვენებები &ფიქსირებული ი
 #: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
-msgstr ""
+msgstr "ამ პარამეტრით მიუთითებთ, რომ შესვენება ფიქსირებულ ინტერვალებში გნებავთ"
 
 #: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
-msgstr ""
+msgstr "აქტივობის გათვალისწინება"
 
 #: src/setupgeneral.cpp:50
 #, kde-format
@@ -579,11 +615,14 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
+"ამ პარამეტრით თქვენ მიუთითებთ, რომ უქმეობის აღმოჩენის დადგენა გსურთ. ეს "
+"ნიშნავს, რომ შემდეგი შესვენების გამოთვლისას ჩაითვლება, მხოლოდ, ის დრო, როცა "
+"თქვენ აქტიური (როცა იყენებთ კლავიატურას და თაგუნას) ბრძანდებით."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&ჩახშობა, თუ არსებობს ფანჯრები სრულ ეკრანზე"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -592,6 +631,9 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"ამ პარამეტრით თქვენ შეგიძლიათ, მიუთითოთ, რომ არ გნებავთ, RSIBreak "
+"პრეზენტაციებში, თამაშებში, ვიდეოს დაკვრაში ან ნებისმიერ სხვა სრულეკრანიანი "
+"აპლიკაციის მუშაობაში ჩაერიოს მიმდინარე ვირტუალურ სამუშაო მაგიდაზე."
 
 #: src/setupmaximized.cpp:77
 #, kde-format
@@ -634,6 +676,8 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
+"ჩართეთ ეს პარამეტრი გამოტოვების ღილაკის გასათიშად და დასამალად. ასე "
+"შეგიძლიათ, შესვენების გამოტოვება თავიდან აიცილოთ."
 
 #: src/setupmaximized.cpp:96
 #, kde-format
@@ -646,6 +690,8 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
+"ჩართეთ ე პარამეტრი, რომ გამორთოთ და დამალოთ დაბლოკვის ღილაკი. ასე თავიდან "
+"აიცილებთ არასწორი ღილაკის დაჭერას."
 
 #: src/setupmaximized.cpp:100
 #, kde-format
@@ -658,6 +704,8 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
+"ჩართეთ ეს პარამეტრი, რომ გამორთოთ და დამალოთ შესვენების გადადების ღილაკი. ამ "
+"გზით თავიდან აიცილებთ არასწორი ღილაკის დაჭერას."
 
 #: src/setupmaximized.cpp:105
 #, kde-format
@@ -667,7 +715,7 @@ msgstr "&მალსახმობის გამორთვა (Esc)"
 #: src/setupmaximized.cpp:107
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
-msgstr ""
+msgstr "ჩართეთ ეს პარამეტრი, რომ ESC ღილაკით შესვენების გამოტოვება გამორთოთ."
 
 #: src/setupmaximized.cpp:120
 #, kde-format
@@ -706,6 +754,9 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
+"აირჩიეთ საქაღალდე, საიდანაც გნებავთ, გამოსახულებები იხილოთ. ეს "
+"გამოსახულებები შემთხვევით წესით აირჩევა შესვენების დროს. მასში ძებნა, თუ "
+"გნებავთ, რეკურსიულად მოხდება..."
 
 #: src/setupmaximized.cpp:165
 #, kde-format
@@ -734,6 +785,9 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
+"თუ ჩართულია, მაშინ გამოსახულებები სრულ ეკრანზე გაიწელება. გამოსახულების "
+"ნაწილი, რომელიც ეკრანის ალაგს მიღმაა, ამოიჭრება. თუ არა, გამოსახულება "
+"მთლიანად იქნება ნაჩვენები, მის გარშემო ნაცრისფერი ჩარჩოთი. "
 
 #: src/setupmaximized.cpp:179
 #, kde-format
@@ -746,6 +800,8 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
+"აქ შეგიძლიათ დააყენოთ, რამდენ ხანს იქნება ნაჩვენები გამოსახულება, სანამ "
+"შემდეგზე გადავრთავ."
 
 #: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
@@ -766,6 +822,8 @@ msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
+"RSIBreak-ს შეუძლია, გაჩვენოთ მხტუნარა, სანამ თქვენს ეკრანს ქვემოთ არჩეული "
+"ეფექტით შეავსებს."
 
 #: src/setupmaximized.cpp:209
 #, kde-format
@@ -778,6 +836,8 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
+"აჩვენებს მთვლელის მხტუნარას, როცა შესვენების დროა. ათვლა ჩამოიყრება "
+"ნებისმიერი აქტივობისას."
 
 #: src/setupmaximized.cpp:217
 #, kde-format
@@ -789,11 +849,14 @@ msgstr "მხტუნარას მოლოდინი:"
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr ""
+"მაქსიმალური დრო, როცა მოთმინების მხტუნარა იქნება ნაჩვენები, სანამ ეფექტის "
+"შესრულება დაიწყება."
 
 #: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
+"მხტუნარას შეუძლია იციმციმოს, თუ აღმოაჩენს, რომ ჯერ კიდევ აქტიური ბრძანდებით."
 
 #: src/setupmaximized.cpp:232
 #, kde-format
@@ -806,16 +869,18 @@ msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
 "there is activity."
 msgstr ""
+"ამ თოლიით თქვენ მიუთითებთ, რომ გნებავთ, მხტუნარამ იციმციმოს, როცა აქტივობა "
+"არსებობს."
 
 #: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
-msgstr ""
+msgstr "აირჩიეთ სასურველი ეფექტი, როცა მოთმინება ამოიწურება"
 
 #: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
-msgstr ""
+msgstr "აირჩიეთ სასურველი ეფექტი, რომელიც შესვენებისას გნებავთ"
 
 #: src/setuptiming.cpp:48
 #, kde-format
@@ -830,22 +895,22 @@ msgstr "მოკლე შესვენება ყოველ:"
 #: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
-msgstr ""
+msgstr "აქ შეგიძლიათ, დააყენოთ, რამდენად ხშირად გნებავთ მოკლე შესვენება. "
 
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
-msgstr ""
+msgstr "ხანგრძლივობისთვის რისი:"
 
 #: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
-msgstr ""
+msgstr "აქ შეგიძლიათ, მოკლე შესვენების ხანგრძლივობა დააყენოთ."
 
 #: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
-msgstr ""
+msgstr "გამოტოვება, თუ არააქტიურია:"
 
 #: src/setuptiming.cpp:90
 #, kde-format
@@ -853,6 +918,8 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
+"დააყენეთ ინტერვალი, რომელიც უქმე ბრძანდებით, რომელიც საკმარისია, რომ შემდეგ "
+"მოკლე შესვენებაზე გადახვიდეთ."
 
 #: src/setuptiming.cpp:106
 #, kde-format
@@ -867,18 +934,20 @@ msgstr "დიდი შესვენება ყოველ:"
 #: src/setuptiming.cpp:114
 #, kde-format
 msgid "Here you can set how often you want a long break. "
-msgstr ""
+msgstr "აქ შეგიძლიათ დააყენოთ, რამდენად ხშირად გნებავთ გრძელი დასვენება. "
 
 #: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
-msgstr ""
+msgstr "აქ შეგიძლიათ, გრძელი შესვენების ხანგრძლივობა დააყენოთ."
 
 #: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
+"დააყენეთ ინტერვალი, რომელიც უქმე ბრძანდებით, რომელიც საკმარისია, რომ შემდეგ "
+"გრძელ შესვენებაზე გადახვიდეთ."
 
 #: src/setuptiming.cpp:158
 #, kde-format
@@ -888,7 +957,7 @@ msgstr "შესვენების გადადება"
 #: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
-msgstr ""
+msgstr "აქ შეგიძლიათ, დააყენოთ, რამდენი დროით გნებავთ შესვენების გადადება."
 
 #: src/setuptiming.cpp:187
 #, kde-format

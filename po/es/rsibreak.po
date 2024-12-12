@@ -1,18 +1,16 @@
-# translation of rsibreak.po to Spanish
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Translation of rsibreak.po to Spanish
+# This file is distributed under the same license as the rsibreak package.
 #
-# Israel Garcia <israelgarcia86@gmail.com>, 2007.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2008, 2011, 2016, 2018, 2022.
-# Israel Garcia Garcia <israelgarcia86@gmail.com>, 2010, 2011.
-# Sofia Priego <spriego@darksylvania.net>, 2015, %Y.
-# Sofía Priego <spriego@darksylvania.net>, %Y.
+# SPDX-FileCopyrightText: 2007 Israel Garcia <israelgarcia86@gmail.com>
+# SPDX-FileCopyrightText: 2008, 2011, 2016 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2010, 2011 Israel Garcia Garcia <israelgarcia86@gmail.com>
+# SPDX-FileCopyrightText: 2016, 2018, 2024 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2022-03-23 21:54+0100\n"
+"PO-Revision-Date: 2024-12-11 11:32+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -20,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 24.08.3\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -235,7 +233,7 @@ msgstr "Bloquear la sesión"
 #: src/rsirelaxpopup.cpp:94
 #, kde-format
 msgid "Please relax for %1"
-msgstr "Por favor un momento de descanso durante %1"
+msgstr "Descanse un momento durante %1"
 
 #: src/rsirelaxpopup.cpp:97
 #, kde-format
@@ -718,7 +716,7 @@ msgstr ""
 #: src/setupmaximized.cpp:105
 #, kde-format
 msgid "&Disable shortcut (Esc)"
-msgstr "&Desactivar acceso rápido (Esc)"
+msgstr "&Desactivar atajo de teclado (Esc)"
 
 #: src/setupmaximized.cpp:107
 #, kde-format

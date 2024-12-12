@@ -9,7 +9,7 @@
 
 <bookinfo>
 <title
->El manual de &rsibreak;</title>
+>Manual de &rsibreak;</title>
 
 <authorgroup>
 <author
@@ -100,7 +100,7 @@
 >Introducción</title>
 
 <para
->La lesión por esfuerzos repetitivos es una enfermedad que se produce como resultado de trabajar con un ratón y un teclado. Esta utilidad puede utilizarse para recordarle que haga un descanso. Mostrará una imagen aleatoria de una colección que puede configurar durante un intervalo que también es configurable, Puede utilizar estos descansos para realizar ejercicios contra el extrés, por ejemplo, o para salir fuera del ordenador.</para>
+>La lesión por esfuerzos repetitivos es una enfermedad que se produce como resultado de trabajar con un ratón y un teclado. Esta utilidad puede utilizarse para recordarle que haga un descanso. Mostrará una imagen aleatoria de una colección que puede configurar durante un intervalo que también es configurable, Puede utilizar estos descansos para realizar ejercicios contra el estrés, por ejemplo, o para salir fuera del ordenador.</para>
 
 <screenshot>
 <screeninfo
@@ -185,7 +185,7 @@
 >Tipos de descanso</title>
 
 <para
->La mayor parte de las configuraciones son muy sencillas. En la página general, existe una opción para iniciarlo automáticamente al arrancar &kde;. Esto es fantástico porque el administrador de sesiones se encarga de hacer ésto. Bueno, la razón de ello es que muchos usuarios piden que &rsibreak; se inicie al comienzo, y no están utilizando el administrador de sesiones. Por favor, tenga en cuenta que <application
+>La mayor parte de las configuraciones son muy sencillas. En la página general, existe una opción para iniciarlo automáticamente al arrancar &kde;. Esto es fantástico porque el administrador de sesiones se encarga de hacer ésto. Bueno, la razón de ello es que muchos usuarios piden que &rsibreak; se inicie al comienzo, y no están utilizando el administrador de sesiones. Tenga en cuenta que <application
 >Gnome</application
 > ignorará esta configuración.</para>
 
@@ -247,7 +247,7 @@
 > para saltárselos.</para>
 
 <para
->Cuando se de cuenta de que lo hace con frecuencia, puede decidir desactivar el acceso rápido y ocultar el botón minimizar. Recuerde, que es usted quien debe elegir lo estricta que desea que sea la secuencia de sus descansos. </para>
+>Cuando se dé cuenta de que lo hace con frecuencia, puede decidir desactivar el atajo de teclado y ocultar el botón minimizar. Recuerde, que es usted quien debe elegir lo estricta que desea que sea la secuencia de sus descansos. </para>
     </tip>
 </chapter>
 
