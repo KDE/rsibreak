@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/rsibreak/rsibreak.pot\n"
-"X-Crowdin-File-ID: 5897\n"
+"X-Crowdin-File: /kf6-trunk/messages/rsibreak/rsibreak.pot\n"
+"X-Crowdin-File-ID: 56758\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
