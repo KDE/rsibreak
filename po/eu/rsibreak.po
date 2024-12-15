@@ -1,13 +1,16 @@
+# Translation for rsibreak.po to Euskara/Basque (eu).
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the rsibreak package.
+# SPDX-FileCopyrightText: 2024 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
+# Translators:
 # SPDX-FileCopyrightText: 2024 Iñigo Salvador Azurmendi <xalba@ni.eus>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-12-11 23:39+0100\n"
+"PO-Revision-Date: 2024-12-14 22:42+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -15,17 +18,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.0\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
 msgid "Skip Break"
-msgstr "Saltatu atsedenaldia"
+msgstr "Saltatu etenaldia"
 
 #: src/breakcontrol.cpp:42 src/rsirelaxpopup.cpp:53
 #, kde-format
 msgid "Postpone Break"
-msgstr "Atzeratu atsedenaldia"
+msgstr "Atzeratu etenaldia"
 
 #: src/breakcontrol.cpp:49 src/rsirelaxpopup.cpp:58
 #, kde-format
@@ -89,7 +92,7 @@ msgstr "xalba@ni.eus"
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr "Atsedenaldi laburrerako tenporizadorea berrezarri egin da"
+msgstr "Etenaldi laburrerako tenporizadorea berrezarri egin da"
 
 #: src/notificator.cpp:17
 #, kde-format
@@ -99,22 +102,22 @@ msgstr "Tenporizadoreak orain berrezarri egin dira"
 #: src/notificator.cpp:22
 #, kde-format
 msgid "Start of a long break"
-msgstr "Atsedenaldi luze baten hasiera"
+msgstr "Etenaldi luze baten hasiera"
 
 #: src/notificator.cpp:27
 #, kde-format
 msgid "End of a long break"
-msgstr "Atsedenaldi luze baten bukaera"
+msgstr "Etenaldi luze baten bukaera"
 
 #: src/notificator.cpp:32
 #, kde-format
 msgid "Start of a short break"
-msgstr "Atsedenaldi labur baten hasiera"
+msgstr "Etenaldi labur baten hasiera"
 
 #: src/notificator.cpp:37
 #, kde-format
 msgid "End of a short break"
-msgstr "Atsedenaldi labur baten bukaera"
+msgstr "Etenaldi labur baten bukaera"
 
 #: src/popupeffect.cpp:19
 #, kde-format
@@ -125,7 +128,7 @@ msgstr "Hartu atseden..."
 #, kde-format
 msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
-msgstr "Hartu atseden bat %1(z)"
+msgstr "Hartu atseden %1(z)"
 
 #: src/rsidock.cpp:81
 #, kde-format
@@ -206,22 +209,22 @@ msgstr "Esekita"
 #: src/rsidock.cpp:232
 #, kde-format
 msgid "%1 remaining until next short break"
-msgstr "%1 falta dira hurrengo atsedenaldi laburrerako"
+msgstr "%1 falta dira hurrengo etenaldi laburrerako"
 
 #: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
-msgstr "%1 falta dira hurrengo atsedenaldi luzerako"
+msgstr "%1 falta dira hurrengo etenaldi luzerako"
 
 #: src/rsirelaxpopup.cpp:50
 #, kde-format
 msgid "Skip this break"
-msgstr "Saltatu atsedenaldi hau"
+msgstr "Saltatu etenaldi hau"
 
 #: src/rsirelaxpopup.cpp:55
 #, kde-format
 msgid "Postpone this break"
-msgstr "Atzeratu atsedenaldi hau"
+msgstr "Atzeratu etenaldi hau"
 
 #: src/rsirelaxpopup.cpp:60
 #, kde-format
@@ -236,7 +239,7 @@ msgstr "Mesedez, erlaxatu %1(z)"
 #: src/rsirelaxpopup.cpp:97
 #, kde-format
 msgid "Note: next break is a big break"
-msgstr "Oharra: hurrengo atsedenaldia handia da"
+msgstr "Oharra: hurrengo etenaldia etenaldi luzea da"
 
 #: src/rsistats.cpp:18
 #, kde-format
@@ -251,107 +254,107 @@ msgstr "Jardueraren denbora osoa"
 #: src/rsistats.cpp:27
 #, kde-format
 msgid "Total time being idle"
-msgstr ""
+msgstr "Jarduera gabe emandako denbora osoa"
 
 #: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
-msgstr ""
+msgstr "Jardueraren-ehunekoa"
 
 #: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
-msgstr ""
+msgstr "Jarduera-ehuneko azken minutuan"
 
 #: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
-msgstr ""
+msgstr "Jarduera-ehunekoa azken orduan"
 
 #: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
-msgstr ""
+msgstr "Jarduera-ehuneko azken 6 orduetan"
 
 #: src/rsistats.cpp:38
 #, kde-format
 msgid "Maximum idle period"
-msgstr ""
+msgstr "Jarduera-gabeko aldia"
 
 #: src/rsistats.cpp:41
 #, kde-format
 msgid "Current idle period"
-msgstr ""
+msgstr "Jarduera-gabeko uneko aldia"
 
 #: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
-msgstr ""
+msgstr "Saihestutako etenaldi labur kopurua (jarduera-gabe)"
 
 #: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
-msgstr ""
+msgstr "Saihestutako etenaldi luze kopurua (jarduera-gabe)"
 
 #: src/rsistats.cpp:47
 #, kde-format
 msgid "Total number of short breaks"
-msgstr ""
+msgstr "Etenaldi laburren kopuru osoa"
 
 #: src/rsistats.cpp:51
 #, kde-format
 msgid "Number of skipped short breaks (user)"
-msgstr ""
+msgstr "Saihestutako etenaldi labur kopurua (erabiltzailea)"
 
 #: src/rsistats.cpp:54
 #, kde-format
 msgid "Number of postponed short breaks (user)"
-msgstr ""
+msgstr "Atzeratutako etenaldi labur kopurua (erabiltzailea)"
 
 #: src/rsistats.cpp:57
 #, kde-format
 msgid "Last short break"
-msgstr ""
+msgstr "Azken etenaldi laburra"
 
 #: src/rsistats.cpp:59
 #, kde-format
 msgid "Total number of long breaks"
-msgstr ""
+msgstr "Etenaldi luze kopuru osoa"
 
 #: src/rsistats.cpp:63
 #, kde-format
 msgid "Number of skipped long breaks (user)"
-msgstr ""
+msgstr "Saihestutako etenaldi luze kopurua (erabiltzailea)"
 
 #: src/rsistats.cpp:66
 #, kde-format
 msgid "Number of postponed long breaks (user)"
-msgstr ""
+msgstr "Atzeratutako etenaldi luze kopurua (erabiltzailea)"
 
 #: src/rsistats.cpp:68
 #, kde-format
 msgid "Last long break"
-msgstr ""
+msgstr "Azken etenaldi luzea"
 
 #: src/rsistats.cpp:70
 #, kde-format
 msgid "Pause score"
-msgstr ""
+msgstr "Etenaldi puntuazioa"
 
 #: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
-msgstr ""
+msgstr "Hori da RSIBreak martxan egon den denbora osoa"
 
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr ""
+msgstr "Hori da teklatua edo sagua erabili duzun denbora osoa."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
-msgstr ""
+msgstr "Hori da teklatua edo sagua erabili ez duzun denbora osoa."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -361,6 +364,10 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
+"Hori jardueraren ehuneko bat da, RSIBreak martxan egondako denbora eta "
+"jarduera aldien arteko erlazioan oinarritua. Koloreak zure jardueraren maila "
+"adierazten du. Kolorea erabateko gorritik gertu dagoenean, lan-erritmoa "
+"murriztea gomendatzen da."
 
 #: src/rsistats.cpp:326
 #, kde-format
@@ -368,11 +375,13 @@ msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
 "running."
 msgstr ""
+"RSIBreak martxan egon den bitartean neurtu den jarduera gabeko aldi luzeena "
+"da hau."
 
 #: src/rsistats.cpp:329
 #, kde-format
 msgid "This is the total number of short breaks"
-msgstr ""
+msgstr "Hori da etenaldi laburren kopuru osoa"
 
 #: src/rsistats.cpp:332
 #, kde-format
@@ -381,16 +390,19 @@ msgid ""
 "gradually turns from green to red, indicating when you can expect the next "
 "tiny break."
 msgstr ""
+"Hori da azken etenaldi laburraren unea. Testu horren kolorea pixkanaka "
+"berdetik gorrira aldatzen da, hurrengo etenaldi ñimiñoa noiz espero "
+"dezakezun adieraziz."
 
 #: src/rsistats.cpp:337
 #, kde-format
 msgid "This is the total number of short breaks which you skipped."
-msgstr ""
+msgstr "Hori da saihestu duzun etenaldi laburren kopuru osoa."
 
 #: src/rsistats.cpp:341
 #, kde-format
 msgid "This is the total number of short breaks which you postponed."
-msgstr ""
+msgstr "Hori da atzeratu duzun etenaldi laburren kopuru osoa."
 
 #: src/rsistats.cpp:345
 #, kde-format
@@ -398,11 +410,12 @@ msgid ""
 "This is the total number of short breaks which were skipped because you were "
 "idle."
 msgstr ""
+"Hori da jarduera ezagatik saihestu diren etenaldi laburren kopuru osoa."
 
 #: src/rsistats.cpp:348
 #, kde-format
 msgid "This is the total number of long breaks."
-msgstr ""
+msgstr "Hori da etenaldi luzeen kopuru osoa."
 
 #: src/rsistats.cpp:351
 #, kde-format
@@ -411,16 +424,19 @@ msgid ""
 "gradually turns from green to red,indicating when you can expect the next "
 "big break."
 msgstr ""
+"Hori da azken etenaldi luzearen unea. Testu horren kolorea pixkanaka "
+"berdetik gorrira aldatzen da, hurrengo etenaldi handia noiz espero dezakezun "
+"adieraziz."
 
 #: src/rsistats.cpp:356
 #, kde-format
 msgid "This is the total number of long breaks which you skipped."
-msgstr ""
+msgstr "Hori da saihestu duzun etenaldi luzeen kopuru osoa."
 
 #: src/rsistats.cpp:360
 #, kde-format
 msgid "This is the total number of long breaks which you postponed."
-msgstr ""
+msgstr "Hori da atzeratu duzun etenaldi laburren kopuru osoa."
 
 #: src/rsistats.cpp:364
 #, kde-format
@@ -428,6 +444,7 @@ msgid ""
 "This is the total number of long breaks which were skipped because you were "
 "idle."
 msgstr ""
+"Hori da, jarduera-gabe zeundelako saihestu duzun etenaldi luzeen kopuru osoa."
 
 #: src/rsistats.cpp:368
 #, kde-format
@@ -435,11 +452,13 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
+"Horrek erakusten du etenaldiekin izan duzun jarrera. Etenaldi bat saihesten "
+"duzun bakoitzean gutxitu egiten da."
 
 #: src/rsistats.cpp:371
 #, kde-format
 msgid "This is the current idle time."
-msgstr ""
+msgstr "Hori da jarduera-gabeko uneko denbora."
 
 #: src/rsistats.cpp:374
 #, kde-format
@@ -448,6 +467,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"Hori azken minutuko jardueraren ehuneko bat da. Koloreak zure jardueraren "
+"maila adierazten du. Kolorea erabateko gorritik gertu dagoenean, lan-"
+"erritmoa murriztea gomendatzen da."
 
 #: src/rsistats.cpp:379
 #, kde-format
@@ -456,6 +478,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"Hori azken orduko jardueraren ehuneko bat da. Koloreak zure jardueraren "
+"maila adierazten du. Kolorea erabateko gorritik gertu dagoenean, lan-"
+"erritmoa murriztea gomendatzen da."
 
 #: src/rsistats.cpp:384
 #, kde-format
@@ -464,6 +489,9 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
+"Hori azken 6 orduetako jardueraren ehuneko bat da Koloreak zure jardueraren "
+"maila adierazten du. Kolorea erabateko gorritik gertu dagoenean, lan-"
+"erritmoa murriztea gomendatzen da."
 
 #: src/rsistatwidget.cpp:25
 #, kde-format
@@ -473,7 +501,7 @@ msgstr "Ordua"
 #: src/rsistatwidget.cpp:34
 #, kde-format
 msgid "Short Breaks"
-msgstr "Atsedenaldi laburrak"
+msgstr "Etenaldi laburrak"
 
 #: src/rsistatwidget.cpp:43
 #, kde-format
@@ -483,7 +511,7 @@ msgstr "Etenaldia"
 #: src/rsistatwidget.cpp:52
 #, kde-format
 msgid "Long Breaks"
-msgstr "Atsedenaldi luzeak"
+msgstr "Etenaldi luzeak"
 
 #: src/rsistatwidget.cpp:89
 #, kde-format
@@ -507,6 +535,8 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
+"<p>Ongi etorri RSIBreak-era</p>\n"
+"<p>Zure erretiluan orain RSIBreak ikus dezakezu.</p>\n"
 
 #: src/rsiwidget.cpp:80
 #, kde-format
@@ -516,6 +546,11 @@ msgid ""
 "<p>When you want to know when the next break is, hover over the icon.</p>\n"
 "<p>Use RSIBreak wisely.</p>"
 msgstr ""
+"<p>Horretan eskuineko-klik egiten duzunean menu bat ikusiko duzu, nondik, "
+"adibidez, konfiguraziora joan zaitezkeen.</p>\n"
+"<p>Hurrengo etenaldia noiz izango den jakin nahi duzunean, igaro ikonoaren "
+"gainetik.</p>\n"
+"<p>RSIBreak zuhurtziaz erabili.</p>"
 
 #: src/rsiwidget.cpp:84
 #, kde-format
@@ -530,12 +565,12 @@ msgstr "Ezarpen orokorrak"
 #: src/setup.cpp:44
 #, kde-format
 msgid "Timings"
-msgstr ""
+msgstr "Denborak"
 
 #: src/setup.cpp:48
 #, kde-format
 msgid "During Breaks"
-msgstr "Atsedenaldietan"
+msgstr "Etenaldietan"
 
 #: src/setup.cpp:52
 #, kde-format
@@ -545,7 +580,7 @@ msgstr "Ekintzak"
 #: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
-msgstr ""
+msgstr "Abioan hasi RSIBreak &automatikoki"
 
 #: src/setupgeneral.cpp:40
 #, kde-format
@@ -553,6 +588,8 @@ msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr ""
+"Aukera honen bidez, RSIBreak mahaigain ingurunea abiatzen denean hastea nahi "
+"duzula adieraz dezakezu."
 
 #: src/setupgeneral.cpp:43
 #, kde-format
@@ -562,17 +599,19 @@ msgstr "Tenporizadorearen ezarpenak"
 #: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
-msgstr ""
+msgstr "Etenaldia ordu &finkoetan"
 
 #: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
+"Aukera honekin atsedenaldiak bitarte finkoetan egin nahi duzula adierazten "
+"duzu"
 
 #: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
-msgstr ""
+msgstr "Jarduera kontuan hartu"
 
 #: src/setupgeneral.cpp:50
 #, kde-format
@@ -581,11 +620,14 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
+"Aukera honekin jarduera eza antzeman nahi duzula adierazten duzu. Horrek "
+"esan nahi du, jarduten zaren denbora (teklatua edo sagua erabiltzen "
+"duzunean) bakarrik zenbatuko dela hurrengo etenaldia noiz egin kalkulatzeko."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "Indar&gabetu pantaila-osoko leihoak badaude"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -594,41 +636,44 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Aukera honekin adieraz dezakezu RSIBreak-ek alegiazko uneko pantailako "
+"aurkezpenekin, jokoekin, bideoak atzera-jotzearekin, eta pantaila osoko "
+"beste edozein aplikaziorekin traba eragiterik ez duzula nahi."
 
 #: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
-msgstr ""
+msgstr "Efektu gris sinplea"
 
 #: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
-msgstr ""
+msgstr "Efektu beltz osoa"
 
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
-msgstr ""
+msgstr "Erakutsi Plasmaren aginte-mahaia"
 
 #: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr ""
+msgstr "Erakutsi irudien diapositiba emanaldia"
 
 #: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
-msgstr ""
+msgstr "Erakutsi gainerakor pasibo bat"
 
 #: src/setupmaximized.cpp:89
 #, kde-format
 msgid "Skipping Breaks"
-msgstr ""
+msgstr "Etenaldiak saihestea"
 
 #: src/setupmaximized.cpp:91
 #, kde-format
 msgid "&Hide skip button"
-msgstr ""
+msgstr "E&zkutatu saihestu botoia"
 
 #: src/setupmaximized.cpp:93
 #, kde-format
@@ -636,11 +681,13 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
+"Markatu aukera hau saihestu botoia ezgaitzeko eta ezkutatzeko. Era horretan "
+"etenaldia saihestea ekidin dezakezu."
 
 #: src/setupmaximized.cpp:96
 #, kde-format
 msgid "&Hide lock button"
-msgstr "Ez&kutatu giltzatzeko botoia"
+msgstr "Ez&kutatu giltzatu botoia"
 
 #: src/setupmaximized.cpp:98
 #, kde-format
@@ -648,6 +695,8 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
+"Markatu aukera hau giltzatu botoia ezgaitzeko eta ezkutatzeko. Era horretan "
+"okerreko botoia sakatzea ekidin dezakezu."
 
 #: src/setupmaximized.cpp:100
 #, kde-format
@@ -660,6 +709,8 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
+"Markatu aukera hau atzeratu botoia ezgaitzeko eta ezkutatzeko. Era horretan "
+"okerreko botoia sakatzea ekidin dezakezu."
 
 #: src/setupmaximized.cpp:105
 #, kde-format
@@ -669,7 +720,7 @@ msgstr "E&zgaitu lasterbidea (Ihes)"
 #: src/setupmaximized.cpp:107
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
-msgstr ""
+msgstr "Markatu aukera hau IHES («ESC») teklak etenaldia saihestea ezgaitzeko."
 
 #: src/setupmaximized.cpp:120
 #, kde-format
@@ -708,6 +759,9 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
+"Aukeratu zein karpetetako irudiak ikusi nahi dituzun. Irudi hauek "
+"etenaldietan ausaz erakusten dira. Errekurtsiboki bilatuko da hala nahi "
+"baduzu..."
 
 #: src/setupmaximized.cpp:165
 #, kde-format
@@ -717,7 +771,7 @@ msgstr "&Al&datu..."
 #: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Search path recursively"
-msgstr ""
+msgstr "Bilatu bide-izenean errekurtsiboki"
 
 #: src/setupmaximized.cpp:169
 #, kde-format
@@ -727,7 +781,7 @@ msgstr "Erakutsi irudi txikiak"
 #: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
-msgstr ""
+msgstr "Handitu irudia pantaila osora"
 
 #: src/setupmaximized.cpp:172
 #, kde-format
@@ -736,6 +790,9 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
+"Markatzen bada, irudia pantaila osora handituko da. Pantailatik kanpo "
+"gelditzen den irudiaren zatia moztu egingo da. Bestela irudia osorik "
+"azalduko da, baina haren inguruan azalera grisak egon litezke."
 
 #: src/setupmaximized.cpp:179
 #, kde-format
@@ -748,6 +805,8 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
+"Hemen, irudi bat hurrengoarekin ordezkatu aurretik zenbat denboraz erakutsi "
+"behar den ezar dezakezu."
 
 #: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
@@ -760,7 +819,7 @@ msgstr[1] " segundo"
 #: src/setupmaximized.cpp:204
 #, kde-format
 msgid "Popup"
-msgstr "Gaineratu"
+msgstr "Leiho gainerakorra"
 
 #: src/setupmaximized.cpp:206
 #, kde-format
@@ -768,11 +827,13 @@ msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
+"RSIBreak-ek, zure pantaila osoa goian aukeratutako efektuarekin ordezkatu "
+"aurretik, leiho gainerakor bat erakuts dezake."
 
 #: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
-msgstr ""
+msgstr "E&rabili leiho gainerakorra"
 
 #: src/setupmaximized.cpp:211
 #, kde-format
@@ -780,27 +841,33 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
+"Etenaldi garaia denean, atzerako zenbaketa duen leiho gainerakor bat "
+"erakusten du. Atzera zenbaketa jarduerarekin berrezartzen da."
 
 #: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
-msgstr ""
+msgstr "Pazientzia gaineratzea:"
 
 #: src/setupmaximized.cpp:220
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr ""
+"Efektua sartu aurretik pazientzia leiho gainerakorra gehienez zenbat "
+"denboraz erakutsiko den."
 
 #: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
+"Leiho gainerakorrak distira egin dezake oraindik jardunean zaudela "
+"antzematen duenean."
 
 #: src/setupmaximized.cpp:232
 #, kde-format
 msgid "&Flash on activity"
-msgstr ""
+msgstr "&Distira egin jarduera dagoenean"
 
 #: src/setupmaximized.cpp:234
 #, kde-format
@@ -808,46 +875,48 @@ msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
 "there is activity."
 msgstr ""
+"Hautapen-lauki honekin leiho gainerakorrak distira egitea nahi duzun adieraz "
+"dezakezu."
 
 #: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
-msgstr ""
+msgstr "Aukeratu pazientzia agortu ondoren nahi duzun efektua"
 
 #: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
-msgstr ""
+msgstr "Aukeratu etenaldietan nahi duzun efektua"
 
 #: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
-msgstr ""
+msgstr "Etenaldi ñimiñoak"
 
 #: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
-msgstr ""
+msgstr "Etenaldi laburrak zenbatean behin:"
 
 #: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
-msgstr ""
+msgstr "Hemen ezar dezakezu etenaldi labur bat zenbatean behin nahi duzun."
 
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
-msgstr ""
+msgstr "Iraupena:"
 
 #: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
-msgstr ""
+msgstr "Hemen ezar dezakezu etenaldi labur baten iraupena."
 
 #: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
-msgstr ""
+msgstr "Saihestu jarduerarik ez badago:"
 
 #: src/setuptiming.cpp:90
 #, kde-format
@@ -855,42 +924,46 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
+"Ezarri hurrengo etenaldi laburra saihesteko nahikoa den jarduera gabeko "
+"etenaldia."
 
 #: src/setuptiming.cpp:106
 #, kde-format
 msgid "Big Breaks"
-msgstr ""
+msgstr "Etenaldi luzeak"
 
 #: src/setuptiming.cpp:111
 #, kde-format
 msgid "Long break every:"
-msgstr ""
+msgstr "Etenaldi luzea zenbatean behin:"
 
 #: src/setuptiming.cpp:114
 #, kde-format
 msgid "Here you can set how often you want a long break. "
-msgstr ""
+msgstr "Hemen ezar dezakezu etenaldi luze bat zenbatean behin nahi duzun."
 
 #: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
-msgstr ""
+msgstr "Hemen ezar dezakezu etenaldi luze baten iraupena."
 
 #: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
+"Ezarri, hurrengo etenaldi luzea saihesteko nahikoa den jarduera-gabeko "
+"denbora."
 
 #: src/setuptiming.cpp:158
 #, kde-format
 msgid "Postpone Breaks"
-msgstr ""
+msgstr "Atsedenaldiak atzeratu"
 
 #: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
-msgstr ""
+msgstr "Hemen ezar dezakezu etenaldi bat zenbat denboraz luzatu nahi duzun."
 
 #: src/setuptiming.cpp:187
 #, kde-format

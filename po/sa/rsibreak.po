@@ -78,13 +78,13 @@ msgstr "ब्रैम शॉनमेकर्स"
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "भवतः नामानि"
 
 #: src/main.cpp:45
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "भवतः ईमेलपत्राणि"
 
 #: src/notificator.cpp:12
 #, kde-format
@@ -125,7 +125,7 @@ msgstr "विरामं कुरुत...."
 #, kde-format
 msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
-msgstr ""
+msgstr "%1 कृते विरामं गृह्यताम्"
 
 #: src/rsidock.cpp:81
 #, kde-format
@@ -505,7 +505,7 @@ msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
 msgid "minutes"
-msgstr ""
+msgstr "पन्चनिमेषः"
 
 #: src/rsistatwidget.cpp:92
 #, kde-format
@@ -513,7 +513,7 @@ msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
 msgid "seconds"
-msgstr ""
+msgstr "सेकण्ड्"
 
 #: src/rsiwidget.cpp:78
 #, kde-format
@@ -796,8 +796,8 @@ msgstr ""
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " क्षण"
+msgstr[1] " सेकण्ड्"
 
 #: src/setupmaximized.cpp:204
 #, kde-format
@@ -945,5 +945,5 @@ msgstr "अत्र भवन्तः कियत्कालं यावत
 #, kde-format
 msgid " minute"
 msgid_plural " minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " क्षणं"
+msgstr[1] " पन्चनिमेषः"
