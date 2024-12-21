@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the rsibreak package.
 # Kali <EMAIL@ADDRESS>, 2024.
 #
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-12-13 19:09+0530\n"
-"Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
+"PO-Revision-Date: 2024-12-20 21:54+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: English <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>2);\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -285,12 +287,12 @@ msgstr "वर्तमान निष्क्रिय अवधि"
 #: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
-msgstr "लङ्घितानां लघुविरामानाम् संख्या (निष्क्रिय) २."
+msgstr "लङ्घितानां लघुविरामानाम् संख्या (निष्क्रिय)"
 
 #: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
-msgstr "लङ्घितदीर्घविरामानाम् संख्या (निष्क्रिय) २."
+msgstr "लङ्घितदीर्घविरामानाम् संख्या (निष्क्रिय)"
 
 #: src/rsistats.cpp:47
 #, kde-format
@@ -830,7 +832,7 @@ msgstr ""
 #: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
-msgstr "पॉपअप धैर्यम् : १."
+msgstr "पॉपअप धैर्यम् :"
 
 #: src/setupmaximized.cpp:220
 #, kde-format
@@ -875,7 +877,7 @@ msgstr "लघु विराम"
 #: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
-msgstr "लघु विराम प्रत्येक : १."
+msgstr "लघु विराम प्रत्येक :"
 
 #: src/setuptiming.cpp:58
 #, kde-format
@@ -885,7 +887,7 @@ msgstr "अत्र भवन्तः कियत्वारं अल्प
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
-msgstr "अवधिपर्यन्तं : १."
+msgstr "अवधिपर्यन्तं :"
 
 #: src/setuptiming.cpp:74
 #, kde-format
