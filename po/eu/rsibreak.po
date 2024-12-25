@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-12-14 22:42+0100\n"
+"PO-Revision-Date: 2024-12-24 20:57+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -766,7 +766,7 @@ msgstr ""
 #: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
-msgstr "&Al&datu..."
+msgstr "Al&datu..."
 
 #: src/setupmaximized.cpp:168
 #, kde-format
