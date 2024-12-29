@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-12-11 15:07+0300\n"
+"PO-Revision-Date: 2024-12-28 14:55+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -527,7 +527,7 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
-"<p>RSI Molası uygulamasına hoş geldiniz</p>\n"
+"<p>RSI Molası uygulamasına hoş geldiniz.</p>\n"
 "<p>Şimdi RSI Molası simgesini sistem tepsisinde görebilirsiniz:</p>\n"
 
 #: src/rsiwidget.cpp:80
@@ -538,8 +538,8 @@ msgid ""
 "<p>When you want to know when the next break is, hover over the icon.</p>\n"
 "<p>Use RSIBreak wisely.</p>"
 msgstr ""
-"<p>Üzerine sağ tıkladığınızda, oradan örneğin yapılandırmaya gidebileceğiniz "
-"bir menü göreceksiniz.</p>\n"
+"<p>Simgeye sağ tıkladığınızda yapılandırma ekranını açabileceğiniz bir menü "
+"göreceksiniz.</p>\n"
 "<p>Sonraki molanın ne zaman olduğunu bilmek isterseniz farenizi simgenin "
 "üzerine götürün.</p>\n"
 "<p>Sağlığınız için RSI Molası uygulamasını kullanın.</p>"
@@ -635,27 +635,27 @@ msgstr ""
 #: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
-msgstr "Temel Gri Efekt"
+msgstr "Temel gri efekt"
 
 #: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
-msgstr "Tam Siyah Efekti"
+msgstr "Tam siyah efekt"
 
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
-msgstr "Plasma Denetim Panelini Göster"
+msgstr "Plasma denetim panelini göster"
 
 #: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr "Görsellerden Oluşan bir Slayt Gösterisi Göster"
+msgstr "Görsellerden oluşan bir slayt gösterisi göster"
 
 #: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
-msgstr "Bir Pasif Açılabilir Pencere Göster"
+msgstr "Bir pasif açılabilir pencere göster"
 
 #: src/setupmaximized.cpp:89
 #, kde-format
@@ -729,7 +729,7 @@ msgstr "Saltokunur"
 #: src/setupmaximized.cpp:130
 #, kde-format
 msgid "Transparency level"
-msgstr "Saydamlık düzeyi"
+msgstr "Saydamlık Düzeyi"
 
 #: src/setupmaximized.cpp:136
 #, kde-format
