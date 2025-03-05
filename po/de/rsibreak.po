@@ -81,13 +81,13 @@ msgstr "Bram Schoenmakers"
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Jannick Kuhr"
+msgstr "Deutsches KDE-Übersetzungsteam"
 
 #: src/main.cpp:45
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "opensource@kuhr.org"
+msgstr "kde-i18n-de@kde.org"
 
 #: src/notificator.cpp:12
 #, kde-format
