@@ -44,6 +44,8 @@ int main(int argc, char *argv[])
 
     aboutData.setTranslator(i18nc("NAME OF TRANSLATORS", "Your names"), i18nc("EMAIL OF TRANSLATORS", "Your emails"));
 
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("rsibreak")));
+
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
     parser.addOption(QCommandLineOption("autostart"));
