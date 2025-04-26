@@ -1,16 +1,17 @@
-# Translation of rsibreak.po to Spanish
+# Spanish translations for rsibreak.po package.
+# Copyright (C) 2007-2025 This file is copyright:
 # This file is distributed under the same license as the rsibreak package.
 #
 # SPDX-FileCopyrightText: 2007 Israel Garcia <israelgarcia86@gmail.com>
 # SPDX-FileCopyrightText: 2008, 2011, 2016 Eloy Cuadra <ecuadra@eloihr.net>
 # SPDX-FileCopyrightText: 2010, 2011 Israel Garcia Garcia <israelgarcia86@gmail.com>
-# SPDX-FileCopyrightText: 2016, 2018, 2024 Sofía Priego <spriego@darksylvania.net>
+# SPDX-FileCopyrightText: 2016, 2018, 2024, 2025 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-12-11 11:32+0100\n"
+"PO-Revision-Date: 2025-04-25 22:44+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -122,7 +123,7 @@ msgstr "Fin de un descanso corto"
 #: src/popupeffect.cpp:19
 #, kde-format
 msgid "Take a break...."
-msgstr "Hacer un descanso..."
+msgstr "Hacer un descanso…"
 
 #: src/popupeffect.cpp:44
 #, kde-format
@@ -148,12 +149,12 @@ msgstr "&Manual de RSIBreak"
 #: src/rsidock.cpp:86
 #, kde-format
 msgid "&Report Bug..."
-msgstr "Informa&r de fallo..."
+msgstr "Informa&r de fallo…"
 
 #: src/rsidock.cpp:87
 #, kde-format
 msgid "Switch application &language..."
-msgstr "Conmutar idioma de &la aplicación..."
+msgstr "Conmutar idioma de &la aplicación…"
 
 #: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
@@ -168,12 +169,12 @@ msgstr "Estadísticas de &uso"
 #: src/rsidock.cpp:92
 #, kde-format
 msgid "Configure &Notifications..."
-msgstr "Configurar &notificaciones..."
+msgstr "Configurar &notificaciones…"
 
 #: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
-msgstr "&Configurar RSIBreak..."
+msgstr "&Configurar RSIBreak…"
 
 #: src/rsidock.cpp:150
 #, kde-format
@@ -762,12 +763,12 @@ msgid ""
 msgstr ""
 "Seleccione la carpeta de la que desee ver las imágenes. Estas imágenes se "
 "muestran de forma aleatoria durante el descanso. Se buscará en ella de forma "
-"recursiva si así lo desea..."
+"recursiva si así lo desea…"
 
 #: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
-msgstr "&Cambiar..."
+msgstr "&Cambiar…"
 
 #: src/setupmaximized.cpp:168
 #, kde-format
@@ -972,197 +973,3 @@ msgid " minute"
 msgid_plural " minutes"
 msgstr[0] " minuto"
 msgstr[1] " minutos"
-
-#~ msgid "C&ustom"
-#~ msgstr "P&ersonalizado"
-
-#~ msgid ""
-#~ "RSIBreak is already running in your system tray. If you cannot find it, "
-#~ "it might be behind the arrow."
-#~ msgstr ""
-#~ "RSIBreak está ya en ejecución en su bandeja de sistema. Si no puede "
-#~ "econtrarlo, puede estar detrás de la flecha."
-
-#~ msgid "Break at &fixed times and ignore movement during breaks"
-#~ msgstr ""
-#~ "&Descansar a intervalos regulares e ignorar el movimiento durante los "
-#~ "descansos"
-
-#~ msgid "Take into account the &idle settings"
-#~ msgstr "Tener en cuenta la configuración de &inactividad"
-
-#~ msgid "Idle Settings"
-#~ msgstr "Preferencias de inactividad"
-
-#~ msgid "&Reset timers after period of idleness"
-#~ msgstr "&Reiniciar los temporizadores después del periodo de inactividad"
-
-#~ msgid ""
-#~ "With this checkbox you indicate that you want the timers for the next "
-#~ "break to be reset if you are sufficiently idle (you are idle more that "
-#~ "the duration of the corresponding break)"
-#~ msgstr ""
-#~ "Con esta casilla de verificación puede indicar que desea que se reinicien "
-#~ "los temporizadores para el siguiente descanso, si ha estado lo "
-#~ "suficientemente inactivo (ha estado inactivo durante más tiempo que lo "
-#~ "que correspondería a un descanso)"
-
-#~ msgid "&Show when timers are reset"
-#~ msgstr "&Mostrar cuándo se reinician los temporizadores"
-
-#~ msgid ""
-#~ "With this checkbox you indicate that you want to see when the timers are "
-#~ "reset. This happens when you have been idle for a while."
-#~ msgstr ""
-#~ "Con esta casilla de verificación puede indicar si desea ser avisado "
-#~ "cuando se reinicien los temporizadores. Esto sucede después de un momento "
-#~ "de inactividad."
-
-#~ msgid "&Ignore idle detection for tiny breaks"
-#~ msgstr "&Ignorar detección de inactividad para los descansos pequeños."
-
-#~ msgid ""
-#~ "With this option you select that the <b>short</b> breaks should not be "
-#~ "reset when idle. This is useful, for example, when you are reading "
-#~ "something and you do not touch the mouse or keyboard for the duration of "
-#~ "a short break, but you still want to have a short break every once in a "
-#~ "while."
-#~ msgstr ""
-#~ "Con esta opción puede hacer que los descansos <b>cortos</b> no se "
-#~ "reinicien cuando esté desocupado. Es práctico, por ejemplo, cuando está "
-#~ "leyendo algo y no toca el ratón o el teclado durante la duración de un "
-#~ "descanso corto y desea tener un descanso corto al menos un momento."
-
-#~ msgid ""
-#~ "With this checkbox you can indicate if you want to see the popup when it "
-#~ "is time to break. It will count down to zero, so you know how long this "
-#~ "break will be."
-#~ msgstr ""
-#~ "Con esta casilla de verificación puede indicar si desea ver una ventaja "
-#~ "emergente durante los descansos. Comenzará a contar hasta cero, de forma "
-#~ "que sabrá la duración del descanso."
-
-#~ msgid "Show popup for a maximum of:"
-#~ msgstr "Mostrar una ventana emergente durante un máximo de:"
-
-#~ msgid ""
-#~ "Here you can set how often you want a short break. One minute means 60 "
-#~ "seconds of movement with the mouse or typing on the keyboard."
-#~ msgstr ""
-#~ "Aquí puede establecer la frecuencia de los descansos pequeños. Un minuto "
-#~ "significa 60 segundos de movimiento con el ratón o de trabajo en el "
-#~ "teclado."
-
-#~ msgid ""
-#~ "Here you can set how often you want a long break. One minute means 60 "
-#~ "seconds of movement with the mouse or typing on the keyboard"
-#~ msgstr ""
-#~ "Aquí puede establecer la frecuencia de los descansos largos. Un minuto "
-#~ "significa 60 segundos de movimiento con el ratón o de trabajo en el "
-#~ "teclado."
-
-#~ msgid "Quit"
-#~ msgstr "Salir"
-
-#~ msgid " seconds"
-#~ msgstr " segundos"
-
-#~ msgid " minutes"
-#~ msgstr " minutos"
-
-#~ msgid "Tina Trillitzsch"
-#~ msgstr "Tina Trillitzsch"
-
-#~ msgid "Usability"
-#~ msgstr "Usabilidad"
-
-#~ msgid "Lee Olson"
-#~ msgstr "Lee Olson"
-
-#~ msgid "Logo and Icons"
-#~ msgstr "Logotipo e iconos"
-
-#~ msgid "Achim Bohnet"
-#~ msgstr "Achim Bohnet"
-
-#~ msgid "Former packaging and tester"
-#~ msgstr "Primeros paquetes y pruebas"
-
-#~ msgid "<p>RSIBreak is already running</p><p>It is located here:</p>"
-#~ msgstr "<p>RSIBreak ya se está ejecutando</p><p>Está aquí:</p>"
-
-#~ msgid "Already Running"
-#~ msgstr "Ya está ejecutándose"
-
-#~ msgid "Skip"
-#~ msgstr "Omitir"
-
-#~ msgid "Lock"
-#~ msgstr "Bloquear"
-
-#~ msgid "1 hour"
-#~ msgid_plural "%1 hours"
-#~ msgstr[0] "Una hora"
-#~ msgstr[1] "%1 horas"
-
-#~ msgid "1 minute"
-#~ msgid_plural "%1 minutes"
-#~ msgstr[0] "1 minuto"
-#~ msgstr[1] "%1 minutos"
-
-#~ msgid "1 second"
-#~ msgid_plural "%1 seconds"
-#~ msgstr[0] "1 segundo"
-#~ msgstr[1] "%1 segundos"
-
-#~ msgctxt "Arguments: hours, minutes both as you defined earlier"
-#~ msgid "%1 and %2"
-#~ msgstr "%1 y %2"
-
-#~ msgctxt "Arguments: minutes, seconds both as you defined earlier"
-#~ msgid "%1 and %2"
-#~ msgstr "%1 y %2"
-
-#~ msgid "0 seconds"
-#~ msgstr "0 segundos"
-
-#~ msgctxt "minutes:seconds"
-#~ msgid "%1:%2"
-#~ msgstr "%1:%2"
-
-#~ msgctxt "minutes:seconds"
-#~ msgid "%1:00"
-#~ msgstr "%1:00"
-
-#~ msgid "Author"
-#~ msgstr "Autor"
-
-#~ msgid "Packaging and help with related issues"
-#~ msgstr "Empaquetado y ayuda con los temas relacionados"
-
-#~ msgid ""
-#~ "Remaining time:\n"
-#~ "%1"
-#~ msgstr ""
-#~ "Tiempo restante:\n"
-#~ "%1"
-
-#~ msgid "&Shortcut Locks"
-#~ msgstr "Bloquear acce&so rápido"
-
-#~ msgid ""
-#~ "Check this option to disable the skip shortcut. This way you can prevent "
-#~ "skipping the break. Instead it will lock the screen."
-#~ msgstr ""
-#~ "Marque esta opción para desactivar el botón para saltar descansos. De "
-#~ "esta forma se bloqueará la pantalla mientras dure el descanso."
-
-#~ msgid "second"
-#~ msgid_plural "seconds"
-#~ msgstr[0] "segundo"
-#~ msgstr[1] "segundos"
-
-#~ msgid "minute"
-#~ msgid_plural "minutes"
-#~ msgstr[0] "minuto"
-#~ msgstr[1] "minutos"
