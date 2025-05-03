@@ -34,6 +34,7 @@ find_package(KF6 ${KF_REQUIRED_VERSION} REQUIRED COMPONENTS
     XmlGui
     WindowSystem
     StatusNotifierItem
+    ColorScheme
     )
 
 add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x060800)

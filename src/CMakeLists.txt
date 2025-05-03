@@ -54,6 +54,7 @@ target_link_libraries(rsibreak_lib
     KF6::XmlGui
     KF6::WindowSystem
     KF6::StatusNotifierItem
+    KF6::ColorScheme
     Qt::DBus
     Qt::GuiPrivate
 )
