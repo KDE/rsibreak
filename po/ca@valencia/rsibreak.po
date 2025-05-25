@@ -355,7 +355,7 @@ msgstr "Este és el temps total que heu utilitzat el teclat o el ratolí."
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
 msgstr ""
-"Este és el temps total que no heu estat utilitzant el teclat ni el ratolí."
+"Este és el temps total que no heu sigut utilitzant el teclat ni el ratolí."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -366,9 +366,9 @@ msgid ""
 "your work pace."
 msgstr ""
 "Este és un percentatge d'activitat, basat en la proporció dels períodes "
-"d'activitat respecte al temps total que RSIBreak ha sigut executat. El color "
-"indica el nivell de la vostra activitat. Quan el color és proper al roig "
-"intens és recomanable que disminuïu el ritme de treball."
+"d'activitat respecte al temps total que RSIBreak s'ha sigut executant. El "
+"color indica el nivell de la vostra activitat. Quan el color és proper al "
+"roig intens és recomanable que disminuïu el ritme de treball."
 
 #: src/rsistats.cpp:326
 #, kde-format
@@ -882,12 +882,12 @@ msgstr ""
 #: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
-msgstr "Escolliu l'efecte que voleu una vegada s'esgoti la paciència"
+msgstr "Trieu l'efecte que voleu una vegada s'esgoti la paciència"
 
 #: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
-msgstr "Escolliu l'efecte que voleu durant els descansos"
+msgstr "Trieu l'efecte que voleu durant els descansos"
 
 #: src/setuptiming.cpp:48
 #, kde-format
