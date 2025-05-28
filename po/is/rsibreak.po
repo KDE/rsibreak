@@ -1,357 +1,355 @@
-# translation of rsibreak.po to icelandic
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the rsibreak package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2009, 2016.
+# SPDX-FileCopyrightText: 2025 Gummi <gudmundure@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2016-04-08 22:57+0000\n"
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2025-05-27 17:07+0000\n"
+"Last-Translator: Gummi <gudmundure@gmail.com>\n"
+"Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
-"\n"
-"\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.12.3\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
 msgid "Skip Break"
-msgstr ""
+msgstr "Sleppa pásu"
 
 #: src/breakcontrol.cpp:42 src/rsirelaxpopup.cpp:53
 #, kde-format
 msgid "Postpone Break"
-msgstr ""
+msgstr "Fresta pásu"
 
 #: src/breakcontrol.cpp:49 src/rsirelaxpopup.cpp:58
 #, kde-format
 msgid "Lock Screen"
-msgstr ""
+msgstr "Læsa skjá"
 
 #: src/main.cpp:32
 #, kde-format
 msgid "RSIBreak"
-msgstr ""
+msgstr "RSIBreak"
 
 #: src/main.cpp:34
 #, kde-format
 msgid "Try to prevent Repetitive Strain Injury by reminding a user to rest."
 msgstr ""
+"Koma í veg fyrir álagsmeiðsl með því að minna notandann á að hvíla sig."
 
 #: src/main.cpp:37
 #, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
-msgstr ""
+msgstr "(c) 2005-2015, þróunaraðilar RSIBreak"
 
 #: src/main.cpp:39
 #, kde-format
 msgid "Albert Astals Cid"
-msgstr ""
+msgstr "Albert Astals Cid"
 
 #: src/main.cpp:39
 #, kde-format
 msgid "Maintainer"
-msgstr ""
+msgstr "Umsjónaraðili"
 
 #: src/main.cpp:41
-#, fuzzy, kde-format
+#, kde-format
 msgid "Tom Albers"
 msgstr "Tom Albers"
 
 #: src/main.cpp:41 src/main.cpp:43
 #, kde-format
 msgid "Former author"
-msgstr ""
+msgstr "Fyrrverandi höfundur"
 
 #: src/main.cpp:43
 #, kde-format
 msgid "Bram Schoenmakers"
-msgstr ""
+msgstr "Bram Schoenmakers"
 
 #: src/main.cpp:45
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Sveinn í Felli"
+msgstr "Sveinn í Felli, Guðmundur Erlingsson"
 
 #: src/main.cpp:45
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sv1@fellsnet.is"
+msgstr "sv1@fellsnet.is, gudmundure@gmail.com"
 
 #: src/notificator.cpp:12
 #, kde-format
 msgid "Timer for the short break has now been reset"
-msgstr ""
+msgstr "Teljari fyrir stutta pásu var endurstilltur"
 
 #: src/notificator.cpp:17
 #, kde-format
 msgid "The timers have now been reset"
-msgstr ""
+msgstr "Búið er að endurstilla teljarana"
 
 #: src/notificator.cpp:22
 #, kde-format
 msgid "Start of a long break"
-msgstr ""
+msgstr "Löng pása byrjar"
 
 #: src/notificator.cpp:27
 #, kde-format
 msgid "End of a long break"
-msgstr ""
+msgstr "Löng pása endar"
 
 #: src/notificator.cpp:32
 #, kde-format
 msgid "Start of a short break"
-msgstr ""
+msgstr "Stutt pása byrjar"
 
 #: src/notificator.cpp:37
 #, kde-format
 msgid "End of a short break"
-msgstr ""
+msgstr "Stutt pása endar"
 
 #: src/popupeffect.cpp:19
 #, kde-format
 msgid "Take a break...."
-msgstr ""
+msgstr "Taka pásu...."
 
 #: src/popupeffect.cpp:44
 #, kde-format
 msgctxt "%1 is a time string like '2 minutes 42 seconds'"
 msgid "Take a break for %1"
-msgstr ""
+msgstr "Taka pásu í %1"
 
 #: src/rsidock.cpp:81
-#, fuzzy, kde-format
+#, kde-format
 msgid "About &KDE"
 msgstr "Um &KDE"
 
 #: src/rsidock.cpp:82
 #, kde-format
 msgid "&About RSIBreak"
-msgstr ""
+msgstr "&Um RSIBreak"
 
 #: src/rsidock.cpp:83
 #, kde-format
 msgid "RSIBreak &Handbook"
-msgstr ""
+msgstr "RSIBreak-&handbókin"
 
 #: src/rsidock.cpp:86
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Report Bug..."
-msgstr "&Senda villutilkynnngu..."
+msgstr "Senda &villuskýrslu..."
 
 #: src/rsidock.cpp:87
-#, fuzzy, kde-format
+#, kde-format
 msgid "Switch application &language..."
 msgstr "Skipta um tungumá&l forrits..."
 
 #: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
 msgid "&Suspend RSIBreak"
-msgstr ""
+msgstr "&Stöðva RSIBreak"
 
 #: src/rsidock.cpp:91
 #, kde-format
 msgid "&Usage Statistics"
-msgstr ""
+msgstr "&Talnagögn um notkun"
 
 #: src/rsidock.cpp:92
-#, fuzzy, kde-format
+#, kde-format
 msgid "Configure &Notifications..."
-msgstr "Stilla t&ilkynningar..."
+msgstr "Grunnstilla &tilkynningar..."
 
 #: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
-msgstr ""
+msgstr "&Grunnstilla RSIBreak..."
 
 #: src/rsidock.cpp:150
 #, kde-format
 msgid "&Resume RSIBreak"
-msgstr ""
+msgstr "&Halda áfram í RSIBreak"
 
 #: src/rsidock.cpp:160
 #, kde-format
 msgid "Usage Statistics"
-msgstr ""
+msgstr "Talnagögn um notkun"
 
 #: src/rsidock.cpp:169 src/rsidock.cpp:196
-#, fuzzy, kde-format
+#, kde-format
 msgid "Reset"
-msgstr "Frumstilla"
+msgstr "Endurstilla"
 
 #: src/rsidock.cpp:193
 #, kde-format
 msgid "This will reset all statistics to zero. Is that what you want?"
-msgstr ""
+msgstr "Þetta stillir öll talnagögn á núll. Viltu það örugglega?"
 
 #: src/rsidock.cpp:195
 #, kde-format
 msgid "Reset the statistics"
-msgstr ""
+msgstr "Endurstilla talnagögn"
 
 #: src/rsidock.cpp:212 src/rsiwidget.cpp:113
-#, fuzzy, kde-format
+#, kde-format
 msgid "Suspended"
-msgstr "Sofandi"
+msgstr "Stöðvað"
 
 #: src/rsidock.cpp:232
 #, kde-format
 msgid "%1 remaining until next short break"
-msgstr ""
+msgstr "%1 í næstu stuttu pásu"
 
 #: src/rsidock.cpp:238
 #, kde-format
 msgid "%1 remaining until next long break"
-msgstr ""
+msgstr "%1 í næstu löngu pásu"
 
 #: src/rsirelaxpopup.cpp:50
 #, kde-format
 msgid "Skip this break"
-msgstr ""
+msgstr "Sleppa pásunni"
 
 #: src/rsirelaxpopup.cpp:55
 #, kde-format
 msgid "Postpone this break"
-msgstr ""
+msgstr "Fresta pásunni"
 
 #: src/rsirelaxpopup.cpp:60
-#, fuzzy, kde-format
+#, kde-format
 msgid "Lock the session"
-msgstr "Læsa skjáborði"
+msgstr "Læsa setu"
 
 #: src/rsirelaxpopup.cpp:94
 #, kde-format
 msgid "Please relax for %1"
-msgstr ""
+msgstr "Slakaðu á í %1"
 
 #: src/rsirelaxpopup.cpp:97
 #, kde-format
 msgid "Note: next break is a big break"
-msgstr ""
+msgstr "Ath.: næsta pása er löng pása"
 
 #: src/rsistats.cpp:18
 #, kde-format
 msgid "Total recorded time"
-msgstr ""
+msgstr "Skráður tími alls"
 
 #: src/rsistats.cpp:21
 #, kde-format
 msgid "Total time of activity"
-msgstr ""
+msgstr "Virknitími alls"
 
 #: src/rsistats.cpp:27
 #, kde-format
 msgid "Total time being idle"
-msgstr ""
+msgstr "Aðgerðaleysi alls"
 
 #: src/rsistats.cpp:32
 #, kde-format
 msgid "Percentage of activity"
-msgstr ""
+msgstr "Virknihlutfall"
 
 #: src/rsistats.cpp:34
 #, kde-format
 msgid "Percentage of activity last minute"
-msgstr ""
+msgstr "Virknihlutfall á síðustu mínútu"
 
 #: src/rsistats.cpp:35
 #, kde-format
 msgid "Percentage of activity last hour"
-msgstr ""
+msgstr "Virknihlutfall á síðustu klst."
 
 #: src/rsistats.cpp:36
 #, kde-format
 msgid "Percentage of activity last 6 hours"
-msgstr ""
+msgstr "Virknihlutfall á síðustu 6 klst."
 
 #: src/rsistats.cpp:38
 #, kde-format
 msgid "Maximum idle period"
-msgstr ""
+msgstr "Hámarkstími aðgerðaleysis"
 
 #: src/rsistats.cpp:41
 #, kde-format
 msgid "Current idle period"
-msgstr ""
+msgstr "Núverandi aðgerðaleysistímabil"
 
 #: src/rsistats.cpp:43
 #, kde-format
 msgid "Number of skipped short breaks (idle)"
-msgstr ""
+msgstr "Stuttar pásur sem er sleppt (aðgerðaleysi)"
 
 #: src/rsistats.cpp:45
 #, kde-format
 msgid "Number of skipped long breaks (idle)"
-msgstr ""
+msgstr "Langar pásur sem er sleppt (aðgerðaleysi)"
 
 #: src/rsistats.cpp:47
 #, kde-format
 msgid "Total number of short breaks"
-msgstr ""
+msgstr "Stuttar pásur alls"
 
 #: src/rsistats.cpp:51
 #, kde-format
 msgid "Number of skipped short breaks (user)"
-msgstr ""
+msgstr "Stuttar pásur sem er sleppt (notandi)"
 
 #: src/rsistats.cpp:54
 #, kde-format
 msgid "Number of postponed short breaks (user)"
-msgstr ""
+msgstr "Stuttar pásu sem er frestað (notandi)"
 
 #: src/rsistats.cpp:57
 #, kde-format
 msgid "Last short break"
-msgstr ""
+msgstr "Síðasta stutta pása"
 
 #: src/rsistats.cpp:59
 #, kde-format
 msgid "Total number of long breaks"
-msgstr ""
+msgstr "Langar pásur alls"
 
 #: src/rsistats.cpp:63
 #, kde-format
 msgid "Number of skipped long breaks (user)"
-msgstr ""
+msgstr "Langar pásur sem er sleppt (notandi)"
 
 #: src/rsistats.cpp:66
 #, kde-format
 msgid "Number of postponed long breaks (user)"
-msgstr ""
+msgstr "Langar pásur sem er frestað (notandi)"
 
 #: src/rsistats.cpp:68
 #, kde-format
 msgid "Last long break"
-msgstr ""
+msgstr "Síðasta langa pása"
 
 #: src/rsistats.cpp:70
 #, kde-format
 msgid "Pause score"
-msgstr ""
+msgstr "Pásustig"
 
 #: src/rsistats.cpp:309
 #, kde-format
 msgid "This is the total time RSIBreak has been running."
-msgstr ""
+msgstr "Þetta er heildartíminn sem RSIBreak hefur verið í gangi."
 
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr ""
+msgstr "Þetta er heildartíminn sem þú notaðir lyklaborðið eða músina."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
-msgstr ""
+msgstr "Þetta er heildartíminn sem þú notaðir ekki lyklaborðið eða músina."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -361,6 +359,9 @@ msgid ""
 "activity. When the color is close to full red it is recommended you lower "
 "your work pace."
 msgstr ""
+"Þetta er hlutfall virkni, þ.e. tímabil af virkni á móti heildartímanum sem "
+"RSIBreak hefur verið í gangi. Liturinn sýnir virknistigið þitt. Þegar "
+"liturinn er næstum eldrauður er mælt með að þú dragir aðeins úr vinnuseminni."
 
 #: src/rsistats.cpp:326
 #, kde-format
@@ -368,11 +369,13 @@ msgid ""
 "This is the longest period of inactivity measured while RSIBreak has been "
 "running."
 msgstr ""
+"Þetta er lengsta tímabil aðgerðaleysis sem hefur mælst á meðan RSIBreak er í "
+"gangi."
 
 #: src/rsistats.cpp:329
 #, kde-format
 msgid "This is the total number of short breaks"
-msgstr ""
+msgstr "Þetta er heildarfjöld af stuttum pásum"
 
 #: src/rsistats.cpp:332
 #, kde-format
@@ -381,16 +384,19 @@ msgid ""
 "gradually turns from green to red, indicating when you can expect the next "
 "tiny break."
 msgstr ""
+"Þetta er tíminn þegar síðustu stuttu pásu lauk. Liturinn á þessum texta "
+"breytist smátt og smátt úr grænu í rauðan og sýnir þannig hvenær þú mátt "
+"eiga von á næstu stuttu pásu."
 
 #: src/rsistats.cpp:337
 #, kde-format
 msgid "This is the total number of short breaks which you skipped."
-msgstr ""
+msgstr "Þetta er heildarfjöldi af stuttum pásum sem þú slepptir."
 
 #: src/rsistats.cpp:341
 #, kde-format
 msgid "This is the total number of short breaks which you postponed."
-msgstr ""
+msgstr "Þetta er heildarfjöldi af stuttum pásum sem þú frestaðir."
 
 #: src/rsistats.cpp:345
 #, kde-format
@@ -398,11 +404,13 @@ msgid ""
 "This is the total number of short breaks which were skipped because you were "
 "idle."
 msgstr ""
+"Þetta er heildarfjöldi af stuttum pásum sem var sleppt af því að þú varst "
+"aðgerðalaus."
 
 #: src/rsistats.cpp:348
 #, kde-format
 msgid "This is the total number of long breaks."
-msgstr ""
+msgstr "Þetta er heildarfjöldi af löngum pásum."
 
 #: src/rsistats.cpp:351
 #, kde-format
@@ -411,16 +419,19 @@ msgid ""
 "gradually turns from green to red,indicating when you can expect the next "
 "big break."
 msgstr ""
+"Þetta er tíminn þegar síðustu löngu pásu lauk. Liturinn á þessum texta "
+"breytist smátt og smátt úr grænu í rauðan og sýnir þannig hvenær þú mátt "
+"eiga von á næstu löngu pásu."
 
 #: src/rsistats.cpp:356
 #, kde-format
 msgid "This is the total number of long breaks which you skipped."
-msgstr ""
+msgstr "Þetta er heildarfjöldi af löngum pásum sem þú slepptir."
 
 #: src/rsistats.cpp:360
 #, kde-format
 msgid "This is the total number of long breaks which you postponed."
-msgstr ""
+msgstr "Þetta er heildarfjöldi af löngum pásum sem þú frestaðir."
 
 #: src/rsistats.cpp:364
 #, kde-format
@@ -428,6 +439,8 @@ msgid ""
 "This is the total number of long breaks which were skipped because you were "
 "idle."
 msgstr ""
+"Þetta er heildarfjöldi af löngum pásum sem var sleppt af því að þú varst "
+"aðgerðalaus."
 
 #: src/rsistats.cpp:368
 #, kde-format
@@ -435,11 +448,13 @@ msgid ""
 "This is an indication of how well you behaved with the breaks. It decreases "
 "every time you skip a break."
 msgstr ""
+"Þetta sýnir hversu vel þú stóðst þig með pásurnar. Þetta minnkar í hvert "
+"sinn sem þú sleppir pásu."
 
 #: src/rsistats.cpp:371
 #, kde-format
 msgid "This is the current idle time."
-msgstr ""
+msgstr "Þetta er núverandi tími aðgerðaleysis."
 
 #: src/rsistats.cpp:374
 #, kde-format
@@ -448,6 +463,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"Þetta er hlutfall virkni á síðustu mínútu. Liturinn sýnir virknistigið þitt. "
+"Þegar liturinn er næstum eldrauður er mælt með að þú dragir aðeins úr "
+"vinnuseminni."
 
 #: src/rsistats.cpp:379
 #, kde-format
@@ -456,6 +474,9 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
+"Þetta er hlutfall virkni á síðustu klukkustund. Liturinn sýnir virknistigið "
+"þitt. Þegar liturinn er næstum eldrauður er mælt með að þú dragir aðeins úr "
+"vinnuseminni."
 
 #: src/rsistats.cpp:384
 #, kde-format
@@ -464,29 +485,32 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
+"Þetta er hlutfall virkni á síðustu 6 klukkustundum. Liturinn sýnir "
+"virknistigið þitt. Þegar liturinn er næstum eldrauður er mælt með að þú "
+"dragir aðeins úr vinnuseminni."
 
 #: src/rsistatwidget.cpp:25
-#, fuzzy, kde-format
+#, kde-format
 msgid "Time"
 msgstr "Tími"
 
 #: src/rsistatwidget.cpp:34
 #, kde-format
 msgid "Short Breaks"
-msgstr ""
+msgstr "Stuttar pásur"
 
 #: src/rsistatwidget.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 msgid "Pause"
-msgstr "Bíða"
+msgstr "Á pásu"
 
 #: src/rsistatwidget.cpp:52
 #, kde-format
 msgid "Long Breaks"
-msgstr ""
+msgstr "Langar pásur"
 
 #: src/rsistatwidget.cpp:89
-#, fuzzy, kde-format
+#, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
@@ -494,7 +518,7 @@ msgid "minutes"
 msgstr "mínútur"
 
 #: src/rsistatwidget.cpp:92
-#, fuzzy, kde-format
+#, kde-format
 msgctxt ""
 "Translate this as the longest plural form. This is used to calculate the "
 "width of window"
@@ -507,6 +531,8 @@ msgid ""
 "<p>Welcome to RSIBreak</p>\n"
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
+"<p>Velkomin í RSIBreak</p>\n"
+"<p>RSIBreak er nú sýnilegt í kerfisbakkanum þínum.</p>\n"
 
 #: src/rsiwidget.cpp:80
 #, kde-format
@@ -516,36 +542,41 @@ msgid ""
 "<p>When you want to know when the next break is, hover over the icon.</p>\n"
 "<p>Use RSIBreak wisely.</p>"
 msgstr ""
+"<p>Þegar þú hægrismellir á táknið birtist valmynd þar sem þú getur til dæmis "
+"opnað stillingaglugga.</p>\n"
+"<p>Ef þú vilt vita hversu langt er í næstu pásu skaltu setja músarbendilinn "
+"yfir táknið.</p>\n"
+"<p>Notaðu RSIBreak skynsamlega.</p>"
 
 #: src/rsiwidget.cpp:84
-#, fuzzy, kde-format
+#, kde-format
 msgid "Welcome"
-msgstr "Velkomin(n)"
+msgstr "Velkomin"
 
 #: src/setup.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 msgid "General Settings"
 msgstr "Almennar stillingar"
 
 #: src/setup.cpp:44
 #, kde-format
 msgid "Timings"
-msgstr ""
+msgstr "Teljarar"
 
 #: src/setup.cpp:48
 #, kde-format
 msgid "During Breaks"
-msgstr ""
+msgstr "Í pásum"
 
 #: src/setup.cpp:52
 #, kde-format
 msgid "Actions"
-msgstr ""
+msgstr "Aðgerðir"
 
 #: src/setupgeneral.cpp:38
 #, kde-format
 msgid "&Automatically start RSIBreak at startup"
-msgstr ""
+msgstr "&Keyra RSIBreak sjálfkrafa við ræsingu"
 
 #: src/setupgeneral.cpp:40
 #, kde-format
@@ -553,26 +584,28 @@ msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr ""
+"Með þessum valkosti getur valið að þú viljir að RSIBreak keyri um leið og "
+"skjáborðsumhverfið ræsist."
 
 #: src/setupgeneral.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 msgid "Timer Settings"
-msgstr "Almennar stillingar"
+msgstr "Tímastillingar"
 
 #: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
-msgstr ""
+msgstr "Pása á &föstum tímum"
 
 #: src/setupgeneral.cpp:46
 #, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
-msgstr ""
+msgstr "Með þessum valkosti velurðu að þú viljir taka pásu með föstu millibili"
 
 #: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
-msgstr ""
+msgstr "Taka virkni með í reikninginn"
 
 #: src/setupgeneral.cpp:50
 #, kde-format
@@ -581,11 +614,14 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
+"Með þessum valkosti velurðu að nota aðgerðaleysisgreiningu. Það þýðir að "
+"einungis er miðað við tímann sem þú ert í virkni (þegar þú notar lyklaborðið "
+"eða músina) þegar reiknað er út hvenær næsta pása hefst."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&Fela ef gluggar sem fylla skjáinn eru til staðar"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -594,41 +630,44 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Með þessum valkosti velurðu að þú vilt ekki að RSIBreak birtist á skjánum "
+"þegar kynningar, leikir, vídeóspilun eða önnur forrit sem fylla skjáinn eru "
+"í gangi á núverandi sýndarskjáborði."
 
 #: src/setupmaximized.cpp:77
 #, kde-format
 msgid "Simple Gray Effect"
-msgstr ""
+msgstr "Einföld grá slikja"
 
 #: src/setupmaximized.cpp:79
 #, kde-format
 msgid "Complete Black Effect"
-msgstr ""
+msgstr "Alveg svartur skjár"
 
 #: src/setupmaximized.cpp:80
 #, kde-format
 msgid "Show Plasma Dashboard"
-msgstr ""
+msgstr "Sýna yfirlitsskjá Plasma"
 
 #: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr ""
+msgstr "Sýna myndir í skyggnusýningu"
 
 #: src/setupmaximized.cpp:82
 #, kde-format
 msgid "Show a Passive Popup"
-msgstr ""
+msgstr "Sýna hlutlausan sprettiglugga"
 
 #: src/setupmaximized.cpp:89
 #, kde-format
 msgid "Skipping Breaks"
-msgstr ""
+msgstr "Pásum sleppt"
 
 #: src/setupmaximized.cpp:91
 #, kde-format
 msgid "&Hide skip button"
-msgstr ""
+msgstr "&Fela sleppihnappinn"
 
 #: src/setupmaximized.cpp:93
 #, kde-format
@@ -636,11 +675,13 @@ msgid ""
 "Check this option to disable and hide the skip button. This way you can "
 "prevent skipping the break."
 msgstr ""
+"Hakaðu hér til að fela sleppihnappinn. Þannig kemurðu í veg fyrir að þú "
+"sleppir pásu."
 
 #: src/setupmaximized.cpp:96
 #, kde-format
 msgid "&Hide lock button"
-msgstr ""
+msgstr "&Fela læsihnappinn"
 
 #: src/setupmaximized.cpp:98
 #, kde-format
@@ -648,11 +689,13 @@ msgid ""
 "Check this option to disable and hide the lock button. This way you can "
 "prevent pressing the wrong button."
 msgstr ""
+"Hakaðu hér til að fela læsihnappinn. Þannig kemurðu í veg fyrir að þú ýtir "
+"óvart á rangan hnapp."
 
 #: src/setupmaximized.cpp:100
 #, kde-format
 msgid "&Hide postpone button"
-msgstr ""
+msgstr "&Fela frestunarhnappinn"
 
 #: src/setupmaximized.cpp:102
 #, kde-format
@@ -660,44 +703,46 @@ msgid ""
 "Check this option to disable and hide the postpone break button. This way "
 "you can prevent pressing the wrong button."
 msgstr ""
+"Hakaðu hér til að fela frestunarhnappinn. Þannig kemurðu í veg fyrir að þú "
+"ýtir óvart á rangan hnapp."
 
 #: src/setupmaximized.cpp:105
 #, kde-format
 msgid "&Disable shortcut (Esc)"
-msgstr ""
+msgstr "&Afvirkja flýtilykil (Esc)"
 
 #: src/setupmaximized.cpp:107
 #, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
-msgstr ""
+msgstr "Hakaðu hér ef þú vilt afvirkja Esc-lykilinn til að sleppa pásu."
 
 #: src/setupmaximized.cpp:120
 #, kde-format
 msgid "Plasma Dashboard"
-msgstr ""
+msgstr "Yfirlitsskjár Plasma"
 
 #: src/setupmaximized.cpp:122
 #, kde-format
 msgid "Read Only"
-msgstr ""
+msgstr "Skrifvarið"
 
 #: src/setupmaximized.cpp:130
 #, kde-format
 msgid "Transparency level"
-msgstr ""
+msgstr "Gagnsæi"
 
 #: src/setupmaximized.cpp:136
 #, kde-format
 msgid "Transparent"
-msgstr ""
+msgstr "Gegnsætt"
 
 #: src/setupmaximized.cpp:146
 #, kde-format
 msgid "Solid"
-msgstr ""
+msgstr "Gegnheilt"
 
 #: src/setupmaximized.cpp:155
-#, fuzzy, kde-format
+#, kde-format
 msgid "Slideshow"
 msgstr "Skyggnusýning"
 
@@ -708,26 +753,29 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
+"Veldu möppuna sem geymir myndirnar í skyggnusýningunni. Þessar myndir verða "
+"birtar handahófskennt í pásunum. Hægt er að leita líka í undirmöppum ef þú "
+"vilt..."
 
 #: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
-msgstr ""
+msgstr "&Breyta..."
 
 #: src/setupmaximized.cpp:168
 #, kde-format
 msgid "Search path recursively"
-msgstr ""
+msgstr "Leita líka í undirmöppum"
 
 #: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Show small images"
-msgstr ""
+msgstr "Sýna litlar myndir"
 
 #: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
-msgstr ""
+msgstr "Láta myndir fylla skjáinn"
 
 #: src/setupmaximized.cpp:172
 #, kde-format
@@ -736,11 +784,14 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
+"Ef hakað er hér verður myndin stækkuð svo hún fylli skjáinn. Hluti "
+"myndarinnar sem lendir utan skjásvæðisins verður klipptur af. Annars birtist "
+"myndin í heilu lagi en hugsanlega verða grá svæði í kringum hana."
 
 #: src/setupmaximized.cpp:179
 #, kde-format
 msgid "Change images every:"
-msgstr ""
+msgstr "Skipta um mynd eftir:"
 
 #: src/setupmaximized.cpp:183
 #, kde-format
@@ -748,19 +799,21 @@ msgid ""
 "Here you can set how long one image should be shown before it is replaced by "
 "the next one."
 msgstr ""
+"Hér geturðu valið hversu lengi hver mynd sést þar til henni er skipt út "
+"fyrir þá næstu."
 
 #: src/setupmaximized.cpp:188 src/setupmaximized.cpp:225
 #: src/setuptiming.cpp:183
-#, fuzzy, kde-format
+#, kde-format
 msgid " second"
 msgid_plural " seconds"
-msgstr[0] "1 sekúnda"
-msgstr[1] "1 sekúnda"
+msgstr[0] " sekúnda"
+msgstr[1] " sekúndur"
 
 #: src/setupmaximized.cpp:204
-#, fuzzy, kde-format
+#, kde-format
 msgid "Popup"
-msgstr "Popup"
+msgstr "Flýtivalmynd"
 
 #: src/setupmaximized.cpp:206
 #, kde-format
@@ -768,11 +821,13 @@ msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
+"RSIBreak getur birt sprettiglugga áður en áhrifin sem þú valdir fyrir ofan "
+"taka yfir skjáinn."
 
 #: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
-msgstr ""
+msgstr "&Nota sprettigluggann"
 
 #: src/setupmaximized.cpp:211
 #, kde-format
@@ -780,27 +835,30 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
+"Sýnir niðurtalningu í sprettiglugga þegar komið er að pásu. Niðurtalningin "
+"núllstillist við virkni."
 
 #: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
-msgstr ""
+msgstr "Biðlundargluggi:"
 
 #: src/setupmaximized.cpp:220
 #, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
-msgstr ""
+msgstr "Hámarkstími sem biðlundarglugginn birtist þar til áhrifin taka yfir."
 
 #: src/setupmaximized.cpp:228
 #, kde-format
 msgid "The popup can flash when it detects that you are still active."
 msgstr ""
+"Sprettiglugginn kann að blikka þegar hann greinir að þú sért enn að vinna."
 
 #: src/setupmaximized.cpp:232
 #, kde-format
 msgid "&Flash on activity"
-msgstr ""
+msgstr "&Blikka við virkni"
 
 #: src/setupmaximized.cpp:234
 #, kde-format
@@ -808,46 +866,48 @@ msgid ""
 "With this checkbox you can indicate if you want to see the popup flash when "
 "there is activity."
 msgstr ""
+"Ef hakað er hér sýnirðu að þú viljir sjá sprettigluggann blikka þegar "
+"einhver virkni er."
 
 #: src/setupmaximized.cpp:318
 #, kde-format
 msgid "Choose the effect you want after patience runs out"
-msgstr ""
+msgstr "Veldu áhrifin sem þú vilt þegar biðlundin er á þrotum"
 
 #: src/setupmaximized.cpp:319
 #, kde-format
 msgid "Choose the effect you want during breaks"
-msgstr ""
+msgstr "Veldu áhrifin sem þú vilt í pásum"
 
 #: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
-msgstr ""
+msgstr "Litlar pásur"
 
 #: src/setuptiming.cpp:55
 #, kde-format
 msgid "Short break every:"
-msgstr ""
+msgstr "Stutt pása eftir:"
 
 #: src/setuptiming.cpp:58
 #, kde-format
 msgid "Here you can set how often you want a short break. "
-msgstr ""
+msgstr "Hér geturðu valið hversu oft þú vilt taka stutta pásu."
 
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
 msgid "For a duration of:"
-msgstr ""
+msgstr "Tímalengd:"
 
 #: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
-msgstr ""
+msgstr "Hér geturðu stillt tímalengd stuttu pásunnar."
 
 #: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
-msgstr ""
+msgstr "Sleppa ef engin virkni í:"
 
 #: src/setuptiming.cpp:90
 #, kde-format
@@ -855,129 +915,50 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
+"Veldu tímabilið sem þú ert aðgerðalaus sem er nógu langt til að sleppa næstu "
+"stuttu pásu."
 
 #: src/setuptiming.cpp:106
 #, kde-format
 msgid "Big Breaks"
-msgstr ""
+msgstr "Stórar pásur"
 
 #: src/setuptiming.cpp:111
 #, kde-format
 msgid "Long break every:"
-msgstr ""
+msgstr "Löng pása eftir:"
 
 #: src/setuptiming.cpp:114
 #, kde-format
 msgid "Here you can set how often you want a long break. "
-msgstr ""
+msgstr "Hér geturðu valið hversu oft þú vilt taka langa pásu."
 
 #: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
-msgstr ""
+msgstr "Hér geturðu stillt tímalengd löngu pásunnar."
 
 #: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
+"Veldu tímabilið sem þú ert aðgerðalaus sem er nógu langt til að sleppa næstu "
+"löngu pásu."
 
 #: src/setuptiming.cpp:158
 #, kde-format
 msgid "Postpone Breaks"
-msgstr ""
+msgstr "Fresta pásum"
 
 #: src/setuptiming.cpp:166
 #, kde-format
 msgid "Here you can set for how much time you want to postpone a break."
-msgstr ""
+msgstr "Hér geturðu valið í hversu langan tíma þú vilt fresta pásu."
 
 #: src/setuptiming.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgid " minute"
 msgid_plural " minutes"
-msgstr[0] "1 mínúta"
-msgstr[1] "1 mínúta"
-
-#, fuzzy
-#~ msgid "C&ustom"
-#~ msgstr "&Sérsniðið"
-
-#, fuzzy
-#~ msgid "Quit"
-#~ msgstr "Hætta"
-
-#, fuzzy
-#~ msgid " seconds"
-#~ msgstr "0 sekúndur"
-
-#, fuzzy
-#~ msgid " minutes"
-#~ msgstr "1 mínúta"
-
-#, fuzzy
-#~ msgid "Usability"
-#~ msgstr "Viðmót"
-
-#, fuzzy
-#~ msgid "Lee Olson"
-#~ msgstr "Lee Olson"
-
-#, fuzzy
-#~ msgid "Achim Bohnet"
-#~ msgstr "Achim Bohnet"
-
-#, fuzzy
-#~ msgid "Skip"
-#~ msgstr "Sleppa"
-
-#, fuzzy
-#~ msgid "Lock"
-#~ msgstr "Læsa"
-
-#, fuzzy
-#~ msgid "1 hour"
-#~ msgid_plural "%1 hours"
-#~ msgstr[0] "1 klukkustund"
-#~ msgstr[1] "1 klukkustund"
-
-#, fuzzy
-#~ msgid "1 minute"
-#~ msgid_plural "%1 minutes"
-#~ msgstr[0] "1 mínúta"
-#~ msgstr[1] "1 mínúta"
-
-#, fuzzy
-#~ msgid "1 second"
-#~ msgid_plural "%1 seconds"
-#~ msgstr[0] "1 sekúnda"
-#~ msgstr[1] "1 sekúnda"
-
-#, fuzzy
-#~ msgctxt "Arguments: hours, minutes both as you defined earlier"
-#~ msgid "%1 and %2"
-#~ msgstr "%1 og %2"
-
-#, fuzzy
-#~ msgctxt "Arguments: minutes, seconds both as you defined earlier"
-#~ msgid "%1 and %2"
-#~ msgstr "%1 og %2"
-
-#, fuzzy
-#~ msgid "0 seconds"
-#~ msgstr "0 sekúndur"
-
-#, fuzzy
-#~ msgctxt "minutes:seconds"
-#~ msgid "%1:%2"
-#~ msgstr "%1:%2"
-
-#, fuzzy
-#~ msgid "Author"
-#~ msgstr "Höfundur"
-
-#, fuzzy
-#~ msgid "second"
-#~ msgid_plural "seconds"
-#~ msgstr[0] "2."
-#~ msgstr[1] "2."
+msgstr[0] " mínútu"
+msgstr[1] " mínútur"
