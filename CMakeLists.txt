@@ -27,7 +27,6 @@ endif()
 find_package(KF6 ${KF_REQUIRED_VERSION} REQUIRED COMPONENTS
     CoreAddons
     Config
-    ConfigWidgets
     Crash
     DBusAddons
     DocTools

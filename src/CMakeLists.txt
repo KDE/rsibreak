@@ -43,7 +43,6 @@ add_executable(rsibreak main.cpp)
 target_link_libraries(rsibreak_lib
     KF6::CoreAddons
     KF6::ConfigCore
-    KF6::ConfigWidgets
     KF6::Crash
     KF6::DBusAddons
     KF6::I18n
