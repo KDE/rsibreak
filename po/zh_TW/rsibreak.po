@@ -4,13 +4,13 @@
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011, 2012.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2009.
 # pan93412 <pan93412@gmail.com>, 2019.
-# SPDX-FileCopyrightText: 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# SPDX-FileCopyrightText: 2024, 2025 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
-"PO-Revision-Date: 2024-06-04 06:09+0900\n"
+"PO-Revision-Date: 2025-09-05 17:35+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 24.04.70\n"
+"X-Generator: Lokalize 25.11.70\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -383,8 +383,8 @@ msgid ""
 "gradually turns from green to red, indicating when you can expect the next "
 "tiny break."
 msgstr ""
-"這是上次短暫休息的時間。此文字的顏色會逐漸從綠色轉為紅色，表示何時該再做一次"
-"極短暫休息。"
+"這是上次短時間休息的時間。此文字的顏色會逐漸從綠色轉為紅色，表示何時該再做一"
+"次極短暫休息。"
 
 #: src/rsistats.cpp:337
 #, kde-format
@@ -565,14 +565,11 @@ msgid "&Automatically start RSIBreak at startup"
 msgstr "啟動時自動開始 RSIBreak(&A)"
 
 #: src/setupgeneral.cpp:40
-#, fuzzy, kde-format
-#| msgid ""
-#| "With this option you can indicate that you want RSIBreak to start when "
-#| "KDE starts."
+#, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
-msgstr "這個選項可以讓您設定當 KDE 啟動時，RSIBreak 自動會啟動。"
+msgstr "這個選項可以讓您設定當桌面環境啟動時，RSIBreak 自動會啟動。"
 
 #: src/setupgeneral.cpp:43
 #, kde-format
@@ -582,27 +579,20 @@ msgstr "計時器設定"
 #: src/setupgeneral.cpp:44
 #, kde-format
 msgid "Break at &fixed times"
-msgstr ""
+msgstr "在固定時間休息(&F)"
 
 #: src/setupgeneral.cpp:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "With this option you indicate that you want to ignore movements during "
-#| "breaks and want to break at fixed intervals"
+#, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
-msgstr "這個選項表示您要忽略休息期間的動作，並且要在固定間隔休息。"
+msgstr "這個選項表示您要在固定間隔休息。"
 
 #: src/setupgeneral.cpp:48
 #, kde-format
 msgid "Take activity into account"
-msgstr ""
+msgstr "考量活動狀態"
 
 #: src/setupgeneral.cpp:50
-#, fuzzy, kde-format
-#| msgid ""
-#| "With this option you indicate that you want to use idle detection. This "
-#| "means that only the time you are active (when you use the keyboard or the "
-#| "mouse) will be counted when evaluating the position of the next break."
+#, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
 "means that only the time you are active (when you use the keyboard or the "
@@ -614,7 +604,7 @@ msgstr ""
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "有全螢幕視窗時不干擾"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -623,6 +613,8 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"使用此選項可以讓 RSIBreak 不要干擾投影片、遊戲、影片播放等等目前虛擬桌面上的"
+"全螢幕應用程式。"
 
 #: src/setupmaximized.cpp:77
 #, kde-format
@@ -642,7 +634,7 @@ msgstr "顯示 Plasma 資訊看板"
 #: src/setupmaximized.cpp:81
 #, kde-format
 msgid "Show Slide Show of Images"
-msgstr "顯示影像投影秀"
+msgstr "顯示圖片投影秀"
 
 #: src/setupmaximized.cpp:82
 #, kde-format
@@ -696,12 +688,9 @@ msgid "&Disable shortcut (Esc)"
 msgstr "停用捷徑 (Esc)(&D)"
 
 #: src/setupmaximized.cpp:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "Check this option to disable the skip shortcut. This way you can prevent "
-#| "skipping the break."
+#, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
-msgstr "勾選此選項以關閉跳過捷徑。這樣您可以避免跳過休息時間。"
+msgstr "勾選此選項以關閉 ESC 鍵跳過休息的功能。"
 
 #: src/setupmaximized.cpp:120
 #, kde-format
@@ -740,7 +729,7 @@ msgid ""
 "randomly shown during the breaks. It will be searched recursively if you "
 "want..."
 msgstr ""
-"選擇您要顯示圖片的資料夾。在休息期間，這些影像會隨機顯示。如果您要的話，它也"
+"選擇您要顯示圖片的資料夾。在休息期間，這些圖片會隨機顯示。如果您要的話，它也"
 "可以遞迴進入子資料夾尋找圖片..."
 
 #: src/setupmaximized.cpp:165
@@ -756,12 +745,12 @@ msgstr "遞迴搜尋路徑"
 #: src/setupmaximized.cpp:169
 #, kde-format
 msgid "Show small images"
-msgstr "顯示小圖像"
+msgstr "顯示小圖片"
 
 #: src/setupmaximized.cpp:170
 #, kde-format
 msgid "Expand image to full screen"
-msgstr ""
+msgstr "將圖片展開至全螢幕"
 
 #: src/setupmaximized.cpp:172
 #, kde-format
@@ -770,6 +759,8 @@ msgid ""
 "outside the screen area will be cropped. Otherwise the image will be "
 "displayed completely but there may grey areas around it. "
 msgstr ""
+"勾選此選項來讓圖片展開至全螢幕。圖片超出螢幕範圍外的部分會裁剪掉。圖片比螢幕"
+"範圍小的時候周圍會加上灰色區域。"
 
 #: src/setupmaximized.cpp:179
 #, kde-format
@@ -796,15 +787,11 @@ msgid "Popup"
 msgstr "彈出式"
 
 #: src/setupmaximized.cpp:206
-#, fuzzy, kde-format
-#| msgid ""
-#| "RSIBreak can show a popup near the systray before replacing your whole "
-#| "screen with the effect chosen."
+#, kde-format
 msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
-msgstr ""
-"RSIBreak 可以在系統匣附近顯示彈出式視窗，而不是用您的整個螢幕做出效果。"
+msgstr "RSIBreak 可以顯示彈出式視窗，而不是用您的整個螢幕顯示上方選取的效果。"
 
 #: src/setupmaximized.cpp:209
 #, kde-format
@@ -816,21 +803,18 @@ msgstr "使用彈出式視窗(&U)"
 msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
-msgstr ""
+msgstr "是時間休息的時候顯示倒數彈出視窗。倒數在開始活動時會重設。"
 
 #: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
-msgstr ""
+msgstr "彈出視窗耐心："
 
 #: src/setupmaximized.cpp:220
-#, fuzzy, kde-format
-#| msgid ""
-#| "Here you can set how long the popup will be shown before the effect will "
-#| "kick in."
+#, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
-msgstr "您可以在此設定彈出式視窗在效果啟動前要顯示多久。"
+msgstr "耐心彈出視窗要顯示多久再讓效果啟動。"
 
 #: src/setupmaximized.cpp:228
 #, kde-format
@@ -850,10 +834,9 @@ msgid ""
 msgstr "這個選項可以讓您設定有活動時是否要看到閃爍。"
 
 #: src/setupmaximized.cpp:318
-#, fuzzy, kde-format
-#| msgid "Choose the effect you want during breaks"
+#, kde-format
 msgid "Choose the effect you want after patience runs out"
-msgstr "選擇休息期間您要使用的效果"
+msgstr "選擇耐心期間結束後您要使用的效果"
 
 #: src/setupmaximized.cpp:319
 #, kde-format
@@ -863,7 +846,7 @@ msgstr "選擇休息期間您要使用的效果"
 #: src/setuptiming.cpp:48
 #, kde-format
 msgid "Tiny Breaks"
-msgstr "極短時間休息"
+msgstr "極短暫休息"
 
 #: src/setuptiming.cpp:55
 #, kde-format
@@ -871,10 +854,9 @@ msgid "Short break every:"
 msgstr "短時間休息間隔："
 
 #: src/setuptiming.cpp:58
-#, fuzzy, kde-format
-#| msgid "Here you can set the duration of the short break."
+#, kde-format
 msgid "Here you can set how often you want a short break. "
-msgstr "您可以在此設定短休息的期間。"
+msgstr "您可以在此設定要多經常進行短時間休息。"
 
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
@@ -884,19 +866,19 @@ msgstr "期間："
 #: src/setuptiming.cpp:74
 #, kde-format
 msgid "Here you can set the duration of the short break."
-msgstr "您可以在此設定短休息的期間。"
+msgstr "您可以在此設定短時間休息的長度。"
 
 #: src/setuptiming.cpp:87 src/setuptiming.cpp:139
 #, kde-format
 msgid "Skip if no activity for:"
-msgstr ""
+msgstr "沒有活動多久之後跳過："
 
 #: src/setuptiming.cpp:90
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
-msgstr ""
+msgstr "設定閒置多久會足以跳過下次短時間休息。"
 
 #: src/setuptiming.cpp:106
 #, kde-format
@@ -909,21 +891,20 @@ msgid "Long break every:"
 msgstr "長時間休息間隔："
 
 #: src/setuptiming.cpp:114
-#, fuzzy, kde-format
-#| msgid "Here you can set the duration of the long break."
+#, kde-format
 msgid "Here you can set how often you want a long break. "
-msgstr "您可以在此設定長時間休息的期間。"
+msgstr "您可以在此設定要多經常進行長時間休息。"
 
 #: src/setuptiming.cpp:126
 #, kde-format
 msgid "Here you can set the duration of the long break."
-msgstr "您可以在此設定長時間休息的期間。"
+msgstr "您可以在此設定長時間休息的長度。"
 
 #: src/setuptiming.cpp:142
 #, kde-format
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
-msgstr ""
+msgstr "設定閒置多久會足以跳過下次長時間休息。"
 
 #: src/setuptiming.cpp:158
 #, kde-format
