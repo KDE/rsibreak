@@ -40,6 +40,7 @@
   <name xml:lang="uk">RSIBreak</name>
   <name xml:lang="x-test">xxRSI Breakxx</name>
   <name xml:lang="zh-CN">RSI Break 重复性劳损预防工具</name>
+  <name xml:lang="zh-TW">RSI Break</name>
   <summary>Helps prevent Repetitive Strain Injury by reminding you to take a break</summary>
   <summary xml:lang="ar">يساعد على منع الإصابة بالإجهاد المتكرر من خلال تذكيرك بأخذ قسط من الراحة</summary>
   <summary xml:lang="ca">Ajuda a prevenir lesions per moviments repetitius recordant a l'usuari que descansi</summary>
@@ -74,6 +75,7 @@
   <summary xml:lang="uk">Допомагає запобігти ушкодженням від постійного напруження шляхом нагадування про потребу у відпочинку</summary>
   <summary xml:lang="x-test">xxHelps prevent Repetitive Strain Injury by reminding you to take a breakxx</summary>
   <summary xml:lang="zh-CN">提醒用户进行休息，预防长时间使用电脑造成的身体重复性劳损。</summary>
+  <summary xml:lang="zh-TW">提醒您休息來幫助預防 RSI（重複性勞損）</summary>
   <description>
     <p>Prolonged use of a mouse and keyboard can cause a repetitive strain injury
     (RSI), so computer users are advised to take regular breaks.</p>
@@ -111,6 +113,7 @@
     <p xml:lang="uk">Надмірне тривале користування мишею та клавіатурою може призвести до шкоди здоров'ю, заподіяної постійним напруженням (RSI), тому лікарі рекомендують користувачам комп'ютерів робити регулярні перерви у роботі.</p>
     <p xml:lang="x-test">xxProlonged use of a mouse and keyboard can cause a repetitive strain injury (RSI), so computer users are advised to take regular breaks.xx</p>
     <p xml:lang="zh-CN">长时间使用鼠标和键盘等外设可能会导致身体的重复性劳损，电脑的使用者应该在工作一段时间后进行休息。</p>
+    <p xml:lang="zh-TW">長時間使用滑鼠與鍵盤可能會導致 RSI（重複性勞損），因此電腦使用者建議每隔一段時間就要休息。</p>
     <p>RSIBreak helps prevent repetitive strain injuries by keeping track of usage
     patterns and periodically informing users to take breaks.  During break
     periods, RSIBreak can either show an unobtrusive message, lock the screen
@@ -149,6 +152,7 @@
     <p xml:lang="uk">RSIBreak допомагає запобігти шкідливій для здоров'я надмірній втомі, стежачи за користуванням комп'ютером і періодично інформуючи користувача про те, що слід робити перерви у роботі. Під час перерв RSIBreak може показувати ненав'язливе повідомлення, блокувати екран повністю або показувати вказані користувачем слайди.</p>
     <p xml:lang="x-test">xxRSIBreak helps prevent repetitive strain injuries by keeping track of usage patterns and periodically informing users to take breaks. During break periods, RSIBreak can either show an unobtrusive message, lock the screen entirely, or present a slideshow.xx</p>
     <p xml:lang="zh-CN">RSIBreak 通过跟踪用户的电脑使用习惯并发出休息提醒来预防重复性劳损。您可以设置 RSIBreak 在进入休息期间发出非干扰性的提示、完全锁定屏幕、显示幻灯片等。</p>
+    <p xml:lang="zh-TW">RSIBreak 紀錄使用方式並定時提醒使用者要休息，來防止重複性勞損發生。在休息期間，RSIBreak 可以顯示訊息、完全鎖定螢幕，或是顯示幻燈片。</p>
   </description>
   <url type="homepage">https://userbase.kde.org/RSIBreak</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=rsibreak</url>
@@ -189,6 +193,7 @@
       <caption xml:lang="uk">Статистика у RSIBreak</caption>
       <caption xml:lang="x-test">xxRSIBreak Statsxx</caption>
       <caption xml:lang="zh-CN">RSIBreak 统计数据</caption>
+      <caption xml:lang="zh-TW">RSIBreak 統計</caption>
       <image type="source" width="801" height="518">https://cdn.kde.org/screenshots/rsibreak/rsibreak.png</image>
     </screenshot>
   </screenshots>
