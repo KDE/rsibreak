@@ -185,7 +185,7 @@
 >Tipos de descanso</title>
 
 <para
->La mayor parte de las configuraciones son muy sencillas. En la página general, existe una opción para iniciarlo automáticamente al arrancar &kde;. Esto es fantástico porque el administrador de sesiones se encarga de hacer ésto. Bueno, la razón de ello es que muchos usuarios piden que &rsibreak; se inicie al comienzo, y no están utilizando el administrador de sesiones. Tenga en cuenta que <application
+>La mayor parte de las configuraciones son muy sencillas. En la página general, existe una opción para iniciarlo automáticamente al arrancar &kde;. Esto es fantástico porque el administrador de sesiones se encarga de hacer esto. Bueno, la razón de ello es que muchos usuarios piden que &rsibreak; se inicie al comienzo, y no están utilizando el administrador de sesiones. Tenga en cuenta que <application
 >Gnome</application
 > ignorará esta configuración.</para>
 
@@ -206,7 +206,7 @@
 </imageobject>
 <textobject>
 <phrase
->El botón bloquear activa el bloqueo de su pantalla para que éste se mantenga durante el descanso.</phrase>
+>El botón bloquear activa el bloqueo de su pantalla para que se mantenga durante el descanso.</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
