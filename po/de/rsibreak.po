@@ -1,11 +1,11 @@
-# Thomas Reitelbach <tr@erdfunkstelle.de>, 2006.
-# Jannick Kuhr <jakuhr-linux@gmx.de>, 2006.
-# Thorsten Roeder <thorsten.roeder@weihenstephan.org>, 2006.
-# Jannick Kuhr <jannick.kuhr@kdemail.net>, 2006.
-# Frederik Schwarzer <schwarzer@kde.org>, 2007, 2009, 2010, 2011, 2015, 2016, 2018.
-# Jannick Kuhr <opensource@kuhr.org>, 2009.
-# Burkhard Lück <lueck@hube-lueck.de>, 2009, 2011, 2015, 2021.
-# Panagiotis Papadopoulos <pano_90@gmx.net>, 2010.
+# SPDX-FileCopyrightText: 2006 Thomas Reitelbach <tr@erdfunkstelle.de>
+# SPDX-FileCopyrightText: 2006 Jannick Kuhr <jakuhr-linux@gmx.de>
+# SPDX-FileCopyrightText: 2006 Thorsten Roeder <thorsten.roeder@weihenstephan.org>
+# SPDX-FileCopyrightText: 2006 Jannick Kuhr <jannick.kuhr@kdemail.net>
+# SPDX-FileCopyrightText: 2007, 2009, 2010, 2011, 2015, 2016, 2018 Frederik Schwarzer <schwarzer@kde.org>
+# SPDX-FileCopyrightText: 2009 Jannick Kuhr <opensource@kuhr.org>
+# SPDX-FileCopyrightText: 2009, 2011, 2015, 2021 Burkhard Lück <lueck@hube-lueck.de>
+# SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
