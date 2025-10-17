@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     KAboutData aboutData("rsibreak",
                          i18n("RSIBreak"),
-                         "0.12.15",
+                         "0.13.0",
                          i18n("Try to prevent Repetitive Strain Injury by "
                               "reminding a user to rest."),
                          KAboutLicense::GPL,
