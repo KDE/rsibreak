@@ -20,7 +20,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-11 00:43+0000\n"
 "PO-Revision-Date: 2023-01-06 17:14+0100\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -554,7 +554,7 @@ msgid ""
 "<p>In your tray you can now see RSIBreak.</p>\n"
 msgstr ""
 "<p>Bienvenue dans RSIBreak</p>\n"
-"<p>Vous pouvez voir RSIBreak dans la boîte à miniatures.</p>\n"
+"<p>Vous pouvez voir RSIBreak dans la boite à miniatures.</p>\n"
 
 #: src/rsiwidget.cpp:80
 #, kde-format
@@ -864,7 +864,7 @@ msgid ""
 "Shows a countdown popup when it is time to break. The countdown resets on "
 "activity."
 msgstr ""
-"Affiche une boîte de dialogue avec un décompteur pour indiquer que le temps "
+"Affiche une boite de dialogue avec un décompteur pour indiquer que le temps "
 "est écoulé. Le décompteur est ré-initialisé en cas d'activité."
 
 #: src/setupmaximized.cpp:217
@@ -877,7 +877,7 @@ msgstr "Boîte de dialogue d'attente :"
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr ""
-"Temps maximum d'affichage de la boîte de dialogue d'attente avant de "
+"Temps maximum d'affichage de la boite de dialogue d'attente avant de "
 "démarrer l'effet."
 
 #: src/setupmaximized.cpp:228
