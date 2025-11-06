@@ -12,7 +12,6 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
-#include <QSessionManager>
 #include <kaboutdata.h>
 #include <kmessagebox.h>
 #include <kstartupinfo.h>
@@ -23,6 +22,7 @@
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_DisableSessionManager);
     QApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
@@ -54,12 +54,6 @@ int main(int argc, char *argv[])
     aboutData.processCommandLine(&parser);
 
     KDBusService service(KDBusService::Unique);
-
-    auto disableSessionManagement = [](QSessionManager &sm) {
-        sm.setRestartHint(QSessionManager::RestartNever);
-    };
-    QObject::connect(&app, &QGuiApplication::commitDataRequest, disableSessionManagement);
-    QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
 
     if (parser.isSet("autostart")) {
         KConfigGroup config = KSharedConfig::openConfig()->group("General");
