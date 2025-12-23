@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>&rsibreak; El Kitabı</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>Emir</firstname
+><surname
+>SARI</surname
+><affiliation
+><address
+><email
+>emir_sari@îcloud.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Tom Albers</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>Bram Schoenmakers</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2022‒03‒20</date>
+<releaseinfo
+>0.12.14</releaseinfo>
+
+<abstract
+><para
+>Yineleyen Gerilme Yaralanması, bir fare ve klavye ile sürekli çalışmanın bir sonucu olarak ortaya çıkabilecek bir hastalıktır. Yaralanma riski, kullanıcıların daha uzun süre ara vermeden çalışmasını artırır. &rsibreak; yalnızca şimdi ve sonra mola vermek için anımsatıcılar sunar. </para
+></abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>rsibreak</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>proje</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Giriş</title>
+
+<para
+>Yineleyen Gerilme Yaralanması, bir fare ve klavye ile çalışmanın bir sonucu olarak ortaya çıkabilir. Bu izlence, şimdi ve sonra bir mola vermenizi anımsatmak için kullanılabilir. Tanımlanmış süreler için belirli aralıklarla bir koleksiyondan rastgele bir resim görüntüler. Resimleri gösterecek şekilde ve gösterecek zaman uzunluklarını yapılandırabilirsiniz. Örneğin, bazı germe egzersizleri yapmak için veya bilgisayardan bir süre uzaklaşmak için bir anımsatıcı olarak molalar anımsatıcılarını kullanabilirsiniz.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; logosu</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&rsibreak; logosu</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>&rsibreak; ilk olarak Tom Albers tarafından yazıldı. Geliştirme sürecinin erken aşamalarında Bram Schoenmakers projeye katıldı.</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>&rsibreak; Kullanımı</title>
+
+<para
+>&rsibreak;’in amacı, işinizde sizi kesintiye uğratmaktır. Bunu kullanıcı dostu bir yapmaya çalışır. Yine de, çok meşgul olabileceğiniz zamanlar da olabilir. &rsibreak;’in yapılandırma seçenekleri, kesintileri özelleştirmenize izin verir. Böylece, yaralanma şansınızı azaltırken işinizdeki etkinliğinizi artırabileceğinizi umuyoruz.</para>
+
+<para
+>Başladıktan sonra, sistem tepsinizde bir simge görebilirsiniz ve bir karşılama açılır penceresi ortaya çıkar. Uygulama öntanımlı ayarlarla yararlı olsa da, ayarları inceleyerek denetimi ele almak akıllıca olabilir. Keşfetmek ve var olan seçeneklere erişim elde etmek için tepsi simgesine sağ tıklayın; görünen bağlam menüsünde, <guilabel
+>Yapılandır</guilabel
+>’ı seçin. Aşağıdaki fasıllar daha fazla yapılandırma bilgisi içerir.</para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; istatistikleri</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>İstatistikleri görmek için tepsi simgesine sağ tıklayın.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Tepsi simgesine sol fare düğmesiyle tıkladığınızda bazı istatistikler göreceksiniz. &rsibreak;’i sabit zamanlarda mola vermesi için yapılandırırsanız boşta kalma süreniz ölçülmez. Bu durumda, istatistiklerdeki bazı seçenekler çok bilgilendirici olmayabilir.</para>
+
+<para
+>Sol üst blok genel istatistikleri gösterir: bazı toplamlar ve boşta kalma süresi hakkında bazı bilgiler vardır. Sol alt blok, çalışma hızınızla ilgili bir şeyler gösterir. Geçerli oturumunu başlattığınızdan beri toplam etkinlik miktarını göreceksiniz. Diğer bazı aralıklardaki etkinlik miktarı da gösterilecektir. Duraklatma Puanı, her mola atladığınızda azalır. Kısa ve uzun molaların çoktan geçtiği sağ rapordaki bloklar. Şu anda, iletişim kutusundaki etiketler siyah veya kırmızı ve yeşil olabilir. İkinci durumda, kırmızı bir istatistik, rengi yeşile yaklaştıracak şekilde gevşemek ve mola vermek için bir öneri olduğunu gösterir.</para>
+
+<para
+>Tepsi simgesine sağ tıkladığınızda bağlam menüsü, &rsibreak;’i <guilabel
+>Askıya Al</guilabel
+>’mak için bir seçenek gösterir. Dikkatinizin dağılmasını istemiyorsanız; örneğin bir oyun veya sunum sırasında, bunu &rsibreak;’i susturmak için kullanabilirsiniz. Simgeye yeniden sağ tıklayıp <guilabel
+>Sürdür</guilabel
+> yaparsanız &rsibreak;’in işleyişini sürdürebilirsiniz.</para>
+
+<screenshot>
+<screeninfo
+>Askıya alınmış &rsibreak;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&rsibreak; askıya alındığında tepsi simgesi</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>&rsibreak;’i denetlemenin başka bir yolu da &DBus;’tır. &rsibreak;’ askıya almak ve sürdürmek veya molaları zorlamak için kullanabileceğiniz &DBus; komutları bulunur. Bunları kullanarak; örneğin bir oyuna başladığınızda veya başka bir program belirttiğinizde &rsibreak;’i kendiliğinden askıya alabilirsiniz. Olasılıkları görmek için <command
+>qdbus org.kde.rsibreak /rsibreak</command
+> komutunu yürütün.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>Mola türleri</title>
+
+<para
+>Çoğu ayar gayet basittir. Genel sayfasında, &kde; başlangıcında kendiliğinden başlatmak için bir ayar bulunur. Bunun neden olduğunu merak edebilirsiniz; normalde oturum yöneticisinin bunu ayarlaması gerekir. Bazı kullanıcılar, oturum yöneticisi kullanmadıkları zamanlarda &rsibreak;’i kendiliğinden başlatmak isteyebilirler. <application
+>GNOME</application
+>’un bu ayarı yok sayacağını not edin.</para>
+
+<para
+>&rsibreak;’te iki davranış ayarı bulunur. İlk ayar, sabit aralıklarla sabit molalar verir ve &rsibreak; bir mola süresi kadar boşta kaldığınızı algıladığında sayaçları sıfırlamak için bir seçenek bulunur.</para>
+
+<para
+>&rsibreak;’in sunumlar, oyunlar, video oynatımı veya geçerli sanal masaüstünde başka bir tam ekran uygulama sırasında işinize karışmasını istemiyorsanız <guilabel
+>Tam ekran pencereler varken sustur</guilabel
+> seçeneğini kullanın. </para>
+
+<screenshot>
+<screeninfo
+>&rsibreak; açılır penceresi</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Kilit düğmesi, bilgisayarınızın başından ayrılırken bilgisayarınızı kilitlemenize izin verir.</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>Tam ekran bildirimini bazen rahatsız edici bulabilirsiniz. Bu durumda, <guilabel
+>Molalar Sırasında</guilabel
+> sayfasından tepsinin yanında küçük bir açılır pencere kullanması için yapılandırabilirsiniz. Bunu yok sayarsanız, normal tam ekran bildirim gösterilecektir.</para>
+
+<para
+>Tam ekran mola ekranı için üç adet seçenek vardır. <guilabel
+>Tam siyah efekt</guilabel
+> (bu, öntanımlı eylemdir), <guilabel
+>Plasma denetim panelini göster</guilabel
+> veya sabit diskinizdeki bir klasördeki görselleri göstermesi için <guilabel
+>Görsellerden oluşan bir slayt gösterisi göster</guilabel
+> seçeneğini kullanabilirsiniz.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>Bir molanın süresi/aralığı</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>&rsibreak; iki tür molayı destekler: <quote
+>Kısa molalar</quote
+> ve <quote
+>Uzun molalar</quote
+>. Bunları kullanmanın olağan yolu, sık sık kısa molalar ve arada sırada da uzun molalar almaktır. Örneğin her yirmi dakikada bir yirmi saniyelik bir mola (kısa mola) ve her saatte bir iki dakikalık mola (uzun mola).</para>
+
+<tip
+><para
+>Sizi irite eden aralıklar koymanın pek bir yararı yoktur. Bunlar sizi bıktırır ve &Esc; düğmesine veya <guilabel
+>Molalar Sırasında</guilabel
+> sayfasında belirleyeceğiniz başka bir düğmeye basma isteğinizi artırır.</para>
+
+<para
+>Molaları pek sık atladığınızı fark ettiyseniz kısayolu devre dışı bırakmayı ve simge durumuna küçült düğmesini devre dışı bırakmayı deneyebilirsiniz. Unutmayın; disiplininizi yalnızca siz koruyabilirsiniz. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>Emeği Geçenler ve Lisans</title>
+
+<para
+>&rsibreak; telif hakkı 2005–2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+<para
+>Belgelendirme telif hakkı 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+
+<para
+>Çeviri: Emir SARI <email
+>emir_sari@icloud.com</email
+></para
+> &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>
