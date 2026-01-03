@@ -157,14 +157,14 @@ void SlideEffect::findImagesInFolder(const QString &folder)
     for (int i = 0; i < filters.size(); ++i)
         filtersUp << filters.at(i).toUpper();
     dir.setNameFilters(filters << filtersUp);
-    dir.setFilter(QDir::Dirs | QDir::Files | QDir::NoSymLinks | QDir::AllDirs);
+    dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot | QDir::Files | QDir::NoSymLinks | QDir::AllDirs);
 
     const QFileInfoList list = dir.entryInfoList();
     for (int i = 0; i < list.count(); ++i) {
         QFileInfo fi = list.at(i);
         if (fi.isFile())
             m_files.append(fi.filePath());
-        else if (fi.isDir() && m_searchRecursive && fi.fileName() != "." && fi.fileName() != "..")
+        else if (fi.isDir() && m_searchRecursive)
             findImagesInFolder(fi.absoluteFilePath());
     }
 }
