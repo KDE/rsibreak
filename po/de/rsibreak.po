@@ -6,19 +6,21 @@
 # SPDX-FileCopyrightText: 2009 Jannick Kuhr <opensource@kuhr.org>
 # SPDX-FileCopyrightText: 2009, 2011, 2015, 2021 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
+# SPDX-FileCopyrightText: 2026 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: rsibreak\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:55+0000\n"
-"PO-Revision-Date: 2021-04-25 06:43+0200\n"
-"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"PO-Revision-Date: 2026-01-07 10:12+0100\n"
+"Last-Translator: Alexander Becker <alex-at-kde-l10n-de@freenet.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #: src/breakcontrol.cpp:35 src/rsirelaxpopup.cpp:48
 #, kde-format
@@ -122,7 +124,7 @@ msgstr "Ende einer kurzen Pause"
 #: src/popupeffect.cpp:19
 #, kde-format
 msgid "Take a break...."
-msgstr "Machen Sie eine Pause ..."
+msgstr "Machen Sie eine Pause …"
 
 #: src/popupeffect.cpp:44
 #, kde-format
@@ -148,12 +150,12 @@ msgstr "&Handbuch zu RSIBreak"
 #: src/rsidock.cpp:86
 #, kde-format
 msgid "&Report Bug..."
-msgstr "Probleme oder Wünsche be&richten ..."
+msgstr "&Problem melden …"
 
 #: src/rsidock.cpp:87
 #, kde-format
 msgid "Switch application &language..."
-msgstr "&Sprache der Anwendung umschalten ..."
+msgstr "&Sprache der Anwendung umschalten …"
 
 #: src/rsidock.cpp:90 src/rsidock.cpp:144
 #, kde-format
@@ -168,12 +170,12 @@ msgstr "&Gebrauchsstatistik"
 #: src/rsidock.cpp:92
 #, kde-format
 msgid "Configure &Notifications..."
-msgstr "&Benachrichtigungen festlegen ..."
+msgstr "&Benachrichtigungen einrichten …"
 
 #: src/rsidock.cpp:93
 #, kde-format
 msgid "&Configure RSIBreak..."
-msgstr "&RSIBreak einrichten ..."
+msgstr "&RSIBreak einrichten …"
 
 #: src/rsidock.cpp:150
 #, kde-format
@@ -348,13 +350,13 @@ msgstr "Dies ist die Gesamtlaufzeit von RSIBreak."
 #: src/rsistats.cpp:312
 #, kde-format
 msgid "This is the total amount of time you used the keyboard or mouse."
-msgstr "Dies ist die Gesamtzeit, in der Sie Tastatur und Maus benutzt haben."
+msgstr "Dies ist die Gesamtzeit, in der Sie Tastatur und Maus verwendet haben."
 
 #: src/rsistats.cpp:316
 #, kde-format
 msgid "This is the total amount of time you did not use the keyboard or mouse."
 msgstr ""
-"Dies ist die Gesamtzeit, in der Sie Tastatur und Maus nicht benutzt haben."
+"Dies ist die Gesamtzeit, in der Sie Tastatur und Maus nicht verwendet haben."
 
 #: src/rsistats.cpp:320
 #, kde-format
@@ -622,15 +624,15 @@ msgid ""
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Wenn diese Einstellung aktiviert ist, wird die Inaktivitätserkennung "
-"verwendet. Das bedeutet, dass nur die Zeit, in der Sie aktiv sind (wenn "
-"Tatstatur und Maus benutzt werden), gezählt wird, um den Zeitpunkt der "
-"nächsten Pause festzulegen."
+"Wenn diese Einstellung aktiv ist, wird die Inaktivitätserkennung verwendet. "
+"Das bedeutet, dass nur die Zeit, in der Sie aktiv sind (wenn Tastatur und "
+"Maus verwendet werden), gezählt wird, um den Zeitpunkt der nächsten Pause "
+"festzulegen."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
 msgid "&Suppress if fullscreen windows present"
-msgstr ""
+msgstr "&Unterdrücken, wenn sich Fenster im Vollbildmodus befinden"
 
 #: src/setupgeneral.cpp:62
 #, kde-format
@@ -639,6 +641,10 @@ msgid ""
 "with presentations, games, video playback, and any other fullscreen "
 "application on the current virtual desktop."
 msgstr ""
+"Durch diese Einstellung können Sie RSIBreak signalisieren, dass es nicht "
+"eingreifen soll, wenn Präsentationen, Spiele, Videowiedergabe und weitere "
+"Anwendungen im Vollbildmodus auf der aktuellen virtuellen Arbeitsfläche "
+"laufen."
 
 #: src/setupmaximized.cpp:77
 #, kde-format
@@ -771,7 +777,7 @@ msgstr ""
 #: src/setupmaximized.cpp:165
 #, kde-format
 msgid "&Change..."
-msgstr "Ä&ndern ..."
+msgstr "Ä&ndern …"
 
 #: src/setupmaximized.cpp:168
 #, kde-format
