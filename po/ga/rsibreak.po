@@ -45,10 +45,9 @@ msgstr ""
 "thabhairt don úsáideoir anois agus arís."
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "(c) 2005-2010, The RSIBreak developers"
+#, kde-format
 msgid "(c) 2005-2015, The RSIBreak developers"
-msgstr "© 2005-2010, Forbróirí RSIBreak"
+msgstr ""
 
 #: src/main.cpp:39
 #, kde-format
@@ -56,10 +55,9 @@ msgid "Albert Astals Cid"
 msgstr ""
 
 #: src/main.cpp:39
-#, fuzzy, kde-format
-#| msgid "Maintainer and Author"
+#, kde-format
 msgid "Maintainer"
-msgstr "Cothaitheoir agus Údar"
+msgstr ""
 
 #: src/main.cpp:41
 #, kde-format
@@ -582,22 +580,16 @@ msgid "&Automatically start RSIBreak at startup"
 msgstr "Tos&aigh RSIBreak go huathoibríoch ag am tosaithe"
 
 #: src/setupgeneral.cpp:40
-#, fuzzy, kde-format
-#| msgid ""
-#| "With this option you can indicate that you want RSIBreak to start when "
-#| "KDE starts."
+#, kde-format
 msgid ""
 "With this option you can indicate that you want RSIBreak to start on Desktop "
 "Environment start."
 msgstr ""
-"Leis an rogha seo is féidir a chur in iúl gur mian leat RSIBreak a thosú "
-"nuair a thosaíonn KDE."
 
 #: src/setupgeneral.cpp:43
-#, fuzzy, kde-format
-#| msgid "Break Timer Settings"
+#, kde-format
 msgid "Timer Settings"
-msgstr "Socruithe an Uaineadóra"
+msgstr ""
 
 #: src/setupgeneral.cpp:44
 #, kde-format
@@ -605,15 +597,9 @@ msgid "Break at &fixed times"
 msgstr ""
 
 #: src/setupgeneral.cpp:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "With this option you indicate that you want to ignore movements during "
-#| "breaks and want to break at fixed intervals"
+#, kde-format
 msgid "With this option you indicate that you want to break at fixed intervals"
 msgstr ""
-"Leis an rogha seo is féidir a chur in iúl gur mian leat neamhshuim a "
-"dhéanamh de ghluaiseacht le linn sosanna, agus gur mian leat sosanna a "
-"dhéanamh ag eatraimh shocraithe"
 
 #: src/setupgeneral.cpp:48
 #, kde-format
@@ -621,20 +607,12 @@ msgid "Take activity into account"
 msgstr ""
 
 #: src/setupgeneral.cpp:50
-#, fuzzy, kde-format
-#| msgid ""
-#| "With this option you indicate that you want to use idle detection. This "
-#| "means that only the time you are active (when you use the keyboard or the "
-#| "mouse) will be counted when evaluating the position of the next break."
+#, kde-format
 msgid ""
 "With this option you indicate that you want to use idle detection. This "
 "means that only the time you are active (when you use the keyboard or the "
 "mouse) will be counted to calculate when to break next."
 msgstr ""
-"Leis an rogha seo, léiríonn tú gur mian leat aimsiú díomhaointis a úsáid. "
-"Ciallaíonn sé seo nach gcuirfear tréimhsí díomhaointis (amanna nach bhfuil "
-"an méarchlár ná an luch in úsáid) san áireamh agus am an chéad sosa eile á "
-"shocrú."
 
 #: src/setupgeneral.cpp:60
 #, kde-format
@@ -722,20 +700,14 @@ msgstr ""
 "fholú. Sa chaoi seo, ní bheidh faitíos ort an cnaipe mícheart a bhrú."
 
 #: src/setupmaximized.cpp:105
-#, fuzzy, kde-format
-#| msgid "&Disable shortcut"
+#, kde-format
 msgid "&Disable shortcut (Esc)"
-msgstr "&Díchumasaigh aicearra"
+msgstr ""
 
 #: src/setupmaximized.cpp:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "Check this option to disable and hide the skip button. This way you can "
-#| "prevent skipping the break."
+#, kde-format
 msgid "Check this option to disable the ESC key skipping the break."
 msgstr ""
-"Ticeáil an rogha seo chun an cnaipe scipeála a dhíchumasú agus a fholú. Sa "
-"chaoi seo, ní mór duit gach sos a dhéanamh."
 
 #: src/setupmaximized.cpp:120
 #, kde-format
@@ -835,16 +807,11 @@ msgid "Popup"
 msgstr "Preabfhuinneog"
 
 #: src/setupmaximized.cpp:206
-#, fuzzy, kde-format
-#| msgid ""
-#| "RSIBreak can show a popup near the systray before replacing your whole "
-#| "screen with the effect chosen."
+#, kde-format
 msgid ""
 "RSIBreak can show a popup before replacing your whole screen with the effect "
 "chosen above."
 msgstr ""
-"Is féidir le RSIBreak preabfhuinneog a thaispeáint in aice le tráidire an "
-"chórais, sula gcuirfear an mhaisíocht roghnaithe in áit do scáileáin ar fad."
 
 #: src/setupmaximized.cpp:209
 #, kde-format
@@ -864,15 +831,10 @@ msgid "Popup patience:"
 msgstr ""
 
 #: src/setupmaximized.cpp:220
-#, fuzzy, kde-format
-#| msgid ""
-#| "Here you can set how long the popup will be shown before the effect will "
-#| "kick in."
+#, kde-format
 msgid ""
 "Maximum time the patience popup will be shown before the effect kicking in."
 msgstr ""
-"Anseo is féidir leat a shocrú cá fhad a thaispeánfar an phreabfhuinneog sula "
-"dtosófar an mhaisíocht."
 
 #: src/setupmaximized.cpp:228
 #, kde-format
@@ -915,10 +877,9 @@ msgid "Short break every:"
 msgstr "Sos gairid gach:"
 
 #: src/setuptiming.cpp:58
-#, fuzzy, kde-format
-#| msgid "Here you can set the duration of the short break."
+#, kde-format
 msgid "Here you can set how often you want a short break. "
-msgstr "Is féidir fad an tsosa ghairid a shocrú anseo."
+msgstr ""
 
 #: src/setuptiming.cpp:71 src/setuptiming.cpp:123 src/setuptiming.cpp:163
 #, kde-format
@@ -953,10 +914,9 @@ msgid "Long break every:"
 msgstr "Sos fada gach:"
 
 #: src/setuptiming.cpp:114
-#, fuzzy, kde-format
-#| msgid "Here you can set the duration of the long break."
+#, kde-format
 msgid "Here you can set how often you want a long break. "
-msgstr "Is féidir fad an tsosa fhada a shocrú anseo."
+msgstr ""
 
 #: src/setuptiming.cpp:126
 #, kde-format
@@ -988,243 +948,3 @@ msgstr[1] " nóiméad"
 msgstr[2] " nóiméad"
 msgstr[3] " nóiméad"
 msgstr[4] " nóiméad"
-
-#~ msgid "C&ustom"
-#~ msgstr "Sain&cheaptha"
-
-#~ msgid "Break at &fixed times and ignore movement during breaks"
-#~ msgstr ""
-#~ "Déan sosanna ag amanna &réamhshocraithe agus déan neamhshuim de "
-#~ "ghluaiseacht le linn sosanna"
-
-#~ msgid "Take into account the &idle settings"
-#~ msgstr "Cuir na socruithe &díomhaointis san áireamh"
-
-#~ msgid "Idle Settings"
-#~ msgstr "Socruithe Díomhaointis"
-
-#~ msgid "&Reset timers after period of idleness"
-#~ msgstr "Athshoc&raigh uaineadóirí tar éis tréimhse díomhaointis"
-
-#~ msgid ""
-#~ "With this checkbox you indicate that you want the timers for the next "
-#~ "break to be reset if you are sufficiently idle (you are idle more that "
-#~ "the duration of the corresponding break)"
-#~ msgstr ""
-#~ "Léiríonn an ticbhosca seo gur mian leat uaineadóirí an chéad sosa eile a "
-#~ "athshocrú má tá tú sách díomhaoin (.i. tá tú díomhaoin níos mó ná fad an "
-#~ "tsosa freagraigh)"
-
-#~ msgid "&Show when timers are reset"
-#~ msgstr "Tai&speáin nuair a athshocraítear na huaineadóirí"
-
-#~ msgid ""
-#~ "With this checkbox you indicate that you want to see when the timers are "
-#~ "reset. This happens when you have been idle for a while."
-#~ msgstr ""
-#~ "Leis an ticbhosca seo, cuireann tú in iúl gur mian leat a fheiceáil nuair "
-#~ "a athshocraítear na huaineadóirí. Tarlaíonn sé seo nuair atá tú díomhaoin "
-#~ "ar feadh tamaill."
-
-#~ msgid "&Ignore idle detection for tiny breaks"
-#~ msgstr "&Ná hathshocraigh sosanna an-ghairide nuair atáim díomhaoin"
-
-#~ msgid ""
-#~ "With this option you select that the <b>short</b> breaks should not be "
-#~ "reset when idle. This is useful, for example, when you are reading "
-#~ "something and you do not touch the mouse or keyboard for the duration of "
-#~ "a short break, but you still want to have a short break every once in a "
-#~ "while."
-#~ msgstr ""
-#~ "Leis an rogha seo, cuireann tú in iúl nach mian leat sosanna <b>gairide</"
-#~ "b> a athshocrú nuair atá tú díomhaoin.  Rogha áisiúil é seo, mar shampla "
-#~ "nuair atá rud éigin á léamh agat agus nach bhfuil tú ag teagmháil leis an "
-#~ "luch ná leis an méarchlár ar feadh sosa ghairid, ach mar sin féin is mian "
-#~ "leat sos gairid a ghlacadh anois agus arís."
-
-#~ msgid ""
-#~ "With this checkbox you can indicate if you want to see the popup when it "
-#~ "is time to break. It will count down to zero, so you know how long this "
-#~ "break will be."
-#~ msgstr ""
-#~ "Leis an ticbhosca seo, cuireann tú in iúl gur mian leat an "
-#~ "phreabfhuinneog a fheiceáil nuair is cóir duit sos a ghlacadh. Feicfidh "
-#~ "tú comhaireamh síos sa phreabfhuinneog agus sa chaoi sin beidh fhios agat "
-#~ "cá fhad a bheidh an sos seo."
-
-#~ msgid ""
-#~ "Here you can set how often you want a short break. One minute means 60 "
-#~ "seconds of movement with the mouse or typing on the keyboard."
-#~ msgstr ""
-#~ "Anseo is féidir a shocrú cé chomh minic a theastaíonn sos gairid uait. "
-#~ "Ciallaíonn gach nóiméad 60 soicind de ghluaiseacht leis an luch nó "
-#~ "clóscríobh ar an méarchlár."
-
-#~ msgid ""
-#~ "Here you can set how often you want a long break. One minute means 60 "
-#~ "seconds of movement with the mouse or typing on the keyboard"
-#~ msgstr ""
-#~ "Anseo is féidir a shocrú cé chomh minic a theastaíonn sos fada uait. "
-#~ "Ciallaíonn gach nóiméad 60 soicind de ghluaiseacht leis an luch nó "
-#~ "clóscríobh ar an méarchlár."
-
-#~ msgid "Quit"
-#~ msgstr "Scoir"
-
-#~ msgid "Tina Trillitzsch"
-#~ msgstr "Tina Trillitzsch"
-
-#~ msgid "Usability"
-#~ msgstr "Inúsáidteacht"
-
-#~ msgid "Lee Olson"
-#~ msgstr "Lee Olson"
-
-#~ msgid "Logo and Icons"
-#~ msgstr "Lógó agus Deilbhíní"
-
-#~ msgid "Achim Bohnet"
-#~ msgstr "Achim Bohnet"
-
-#~ msgid "<p>RSIBreak is already running</p><p>It is located here:</p>"
-#~ msgstr "<p>Tá RSIBreak ag rith cheana</p><p>Tá sé anseo:</p>"
-
-#~ msgid "Already Running"
-#~ msgstr "Á Rith Cheana"
-
-#~ msgid "Skip"
-#~ msgstr "Ná bac leis"
-
-#~ msgid "Lock"
-#~ msgstr "Cuir Faoi Ghlas"
-
-#~ msgid "1 hour"
-#~ msgid_plural "%1 hours"
-#~ msgstr[0] "1 uair"
-#~ msgstr[1] "%1 uair"
-#~ msgstr[2] "%1 huaire"
-#~ msgstr[3] "%1 n-uaire"
-#~ msgstr[4] "%1 uair"
-
-#~ msgid "1 minute"
-#~ msgid_plural "%1 minutes"
-#~ msgstr[0] "1 nóiméad"
-#~ msgstr[1] "%1 nóiméad"
-#~ msgstr[2] "%1 nóiméad"
-#~ msgstr[3] "%1 nóiméad"
-#~ msgstr[4] "%1 nóiméad"
-
-#~ msgid "1 second"
-#~ msgid_plural "%1 seconds"
-#~ msgstr[0] "1 soicind"
-#~ msgstr[1] "%1 shoicind"
-#~ msgstr[2] "%1 shoicind"
-#~ msgstr[3] "%1 soicind"
-#~ msgstr[4] "%1 soicind"
-
-#~ msgctxt "Arguments: hours, minutes both as you defined earlier"
-#~ msgid "%1 and %2"
-#~ msgstr "%1 agus %2"
-
-#~ msgctxt "Arguments: minutes, seconds both as you defined earlier"
-#~ msgid "%1 and %2"
-#~ msgstr "%1 agus %2"
-
-#~ msgid "0 seconds"
-#~ msgstr "0 soicind"
-
-#~ msgctxt "minutes:seconds"
-#~ msgid "%1:%2"
-#~ msgstr "%1:%2"
-
-#~ msgctxt "minutes:seconds"
-#~ msgid "%1:00"
-#~ msgstr "%1:00"
-
-#~ msgid "Author"
-#~ msgstr "Údar"
-
-#~ msgid "Packaging and help with related issues"
-#~ msgstr "Pacáistiú agus cabhair le cúrsaí eile a bhaineann leis"
-
-#~ msgid ""
-#~ "Remaining time:\n"
-#~ "%1"
-#~ msgstr ""
-#~ "Am fágtha:\n"
-#~ "%1"
-
-#~ msgid "&Shortcut Locks"
-#~ msgstr "&Cuir an tAicearra Faoi Ghlas"
-
-#~ msgid ""
-#~ "Check this option to disable the skip shortcut. This way you can prevent "
-#~ "skipping the break. Instead it will lock the screen."
-#~ msgstr ""
-#~ "Ticeáil an rogha seo chun an t-aicearra scipeála a dhíchumasú. Sa chaoi "
-#~ "seo, cuirfear an scáileán faoi ghlas agus ní mór duit an sos a dhéanamh."
-
-#~ msgid "second"
-#~ msgid_plural "seconds"
-#~ msgstr[0] "soicind"
-#~ msgstr[1] "shoicind"
-#~ msgstr[2] "shoicind"
-#~ msgstr[3] "soicind"
-#~ msgstr[4] "soicind"
-
-#~ msgid "minute"
-#~ msgid_plural "minutes"
-#~ msgstr[0] "nóiméad"
-#~ msgstr[1] "nóiméad"
-#~ msgstr[2] "nóiméad"
-#~ msgstr[3] "nóiméad"
-#~ msgstr[4] "nóiméad"
-
-#~ msgid "One minute"
-#~ msgid_plural "%1 minutes"
-#~ msgstr[0] "Nóiméad amháin"
-#~ msgstr[1] "%1 nóiméad"
-#~ msgstr[2] "%1 nóiméad"
-#~ msgstr[3] "%1 nóiméad"
-#~ msgstr[4] "%1 nóiméad"
-
-#~ msgid "one minute"
-#~ msgid_plural "%1 minutes"
-#~ msgstr[0] "nóiméad amháin"
-#~ msgstr[1] "%1 nóiméad"
-#~ msgstr[2] "%1 nóiméad"
-#~ msgstr[3] "%1 nóiméad"
-#~ msgstr[4] "%1 nóiméad"
-
-#~ msgid "One second"
-#~ msgid_plural "%1 seconds"
-#~ msgstr[0] "Soicind amháin"
-#~ msgstr[1] "%1 shoicind"
-#~ msgstr[2] "%1 shoicind"
-#~ msgstr[3] "%1 soicind"
-#~ msgstr[4] "%1 soicind"
-
-#~ msgid "one second"
-#~ msgid_plural "%1 seconds"
-#~ msgstr[0] "soicind amháin"
-#~ msgstr[1] "%1 shoicind"
-#~ msgstr[2] "%1 shoicind"
-#~ msgstr[3] "%1 soicind"
-#~ msgstr[4] "%1 soicind"
-
-#~ msgctxt ""
-#~ "This is the title of a box with settings for the counter used during "
-#~ "breaks"
-#~ msgid "Counter"
-#~ msgstr "Áiritheoir"
-
-#~ msgid "H&ide"
-#~ msgstr "Fola&igh"
-
-#~ msgctxt ""
-#~ "This is a label, behind it is a a block filled with the choosed color"
-#~ msgid "&Color:"
-#~ msgstr "&Dath:"
-
-#~ msgid "&Font:"
-#~ msgstr "&Cló:"
