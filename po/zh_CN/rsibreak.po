@@ -359,7 +359,7 @@ msgid ""
 "your work pace."
 msgstr ""
 "这是活动时间的百分比，它是您处于活动状态的时间与 RSIBreak 运行的总时间的比"
-"值。文字颜色代表您的活动强度。当此项文字颜色接近纯红时，建议您放慢工作的节"
+"值。文本颜色代表您的活动强度。当此项文本颜色接近纯红时，建议您放慢工作的节"
 "奏，多休息一下。"
 
 #: src/rsistats.cpp:326
@@ -381,7 +381,7 @@ msgid ""
 "gradually turns from green to red, indicating when you can expect the next "
 "tiny break."
 msgstr ""
-"这是上一次短休息结束的时间。文字颜色会逐渐从绿变红，暗示下一次短休息还有多久"
+"这是上一次短休息结束的时间。文本颜色会逐渐从绿变红，暗示下一次短休息还有多久"
 "开始。"
 
 #: src/rsistats.cpp:337
@@ -413,7 +413,7 @@ msgid ""
 "gradually turns from green to red,indicating when you can expect the next "
 "big break."
 msgstr ""
-"这是上一次长休息结束的时间。文字颜色会逐渐从绿变红，暗示下一次长休息还有多久"
+"这是上一次长休息结束的时间。文本颜色会逐渐从绿变红，暗示下一次长休息还有多久"
 "开始。"
 
 #: src/rsistats.cpp:356
@@ -453,7 +453,7 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"这是最近 1 分钟的活动时间占比。文字颜色代表您的活动强度。当此项文字颜色接近纯"
+"这是最近 1 分钟的活动时间占比。文本颜色代表您的活动强度。当此项文本颜色接近纯"
 "红时，建议您放慢工作的节奏，多休息一下。"
 
 #: src/rsistats.cpp:379
@@ -463,8 +463,8 @@ msgid ""
 "the level of your activity. When the color is close to full red it is "
 "recommended you lower your work pace."
 msgstr ""
-"这是最近 1 小时的活动的百分比颜色表明您活动的水平。文字颜色代表您的活动强度。"
-"当此项文字颜色接近纯红时，建议您放慢工作的节奏，多休息一下。"
+"这是最近 1 小时的活动的百分比颜色表明您活动的水平。文本颜色代表您的活动强度。"
+"当此项文本颜色接近纯红时，建议您放慢工作的节奏，多休息一下。"
 
 #: src/rsistats.cpp:384
 #, kde-format
@@ -473,8 +473,8 @@ msgid ""
 "indicates the level of your activity. When the color is close to full red it "
 "is recommended you lower your work pace."
 msgstr ""
-"这是最近 6 小时的活动的百分比颜色表明您活动的水平。文字颜色代表您的活动强度。"
-"当此项文字颜色接近纯红时，建议您放慢工作的节奏，多休息一下。"
+"这是最近 6 小时的活动的百分比颜色表明您活动的水平。文本颜色代表您的活动强度。"
+"当此项文本颜色接近纯红时，建议您放慢工作的节奏，多休息一下。"
 
 #: src/rsistatwidget.cpp:25
 #, kde-format
