@@ -541,7 +541,7 @@ msgstr ""
 #: src/rsiwidget.cpp:84
 #, kde-format
 msgid "Welcome"
-msgstr "مرحباً"
+msgstr "مرحبًا"
 
 #: src/setup.cpp:40
 #, kde-format
