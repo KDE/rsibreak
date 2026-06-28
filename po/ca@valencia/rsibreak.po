@@ -835,7 +835,7 @@ msgstr ""
 #: src/setupmaximized.cpp:209
 #, kde-format
 msgid "&Use the popup"
-msgstr "Utilit&za la nota emergent"
+msgstr "&Utilitza la nota emergent"
 
 #: src/setupmaximized.cpp:211
 #, kde-format
