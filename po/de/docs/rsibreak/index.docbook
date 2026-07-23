@@ -73,9 +73,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2016-08-24</date>
+>2022–03–20</date>
 <releaseinfo
->0.12</releaseinfo>
+>0.12.14</releaseinfo>
 
 <abstract
 ><para
@@ -100,7 +100,7 @@
 >Einleitung</title>
 
 <para
->Repetitive Belastungsstörung kann als Folge der Arbeit mit Maus und Tastatur auftreten. Dieses Dienstprogramm kann Sie daran erinnern, ab und zu eine Pause einzulegen. Es zeigt ein zufälliges Bild aus einer Sammlung in bestimmten Intervallen für definierte Zeiträume an. Sie können die anzuzeigenden Bilder und die Dauer der Anzeige einstellen. Sie könnten die Pausen-Erinnerungen z. B. für Dehnungsübungen verwenden -oder als Erinnerung, sich für eine Weile vom Computer zu entfernen.</para>
+>Repetitive Belastungsstörung kann als Folge der Arbeit mit Maus und Tastatur auftreten. Dieses Dienstprogramm kann Sie daran erinnern, ab und zu eine Pause einzulegen. Es zeigt ein zufälliges Bild aus einer Sammlung in bestimmten Intervallen für definierte Zeiträume an. Sie können die anzuzeigenden Bilder und die Dauer der Anzeige einstellen. Sie könnten die Pausen-Erinnerungen z. B. für Dehnungsübungen verwenden -oder als Erinnerung, sich für eine Weile vom Computer zu entfernen.</para>
 
 <screenshot>
 <screeninfo
@@ -156,7 +156,7 @@
 >Der obere linke Block zeigt allgemeine Statistiken: einige Gesamtwerte und einige Informationen über die Leerlaufzeit. Der untere linke Block zeigt etwas über Ihr Arbeitstempo. Sie sehen die Gesamtmenge der Aktivitäten seit dem Sie sich in dieser Sitzung angemeldet haben. Der Umfang der Aktivität während anderer Intervallen wird ebenfalls angezeigt. Der Pausenwert verringert sich jedes Mal, wenn Sie eine Pause machen. Die Blöcke auf der rechten Seite zeigen an, welche kurzen und langen Pausen bereits vergangen sind. Aktuell können die Beschriftungen im Dialog entweder schwarz oder rot und grün sein. Im letzteren Fall bedeutet eine rote Statistik sich zu entspannen und eine Pause zu machen, was die Farbe dann weiter zu Grün ändert.</para>
 
 <para
->Wenn Sie mit der rechten Maustaste auf das Symbol in der Kontrollleiste klicken, Wenn Sie sich nicht unterbrechen lassen möchten, z. B. während eines Spiels oder einer Präsentation, können Sie damit <guilabel
+>Wenn Sie mit der rechten Maustaste auf das Symbol in der Kontrollleiste klicken, Wenn Sie sich nicht unterbrechen lassen möchten, z. B. während eines Spiels oder einer Präsentation, können Sie damit <guilabel
 >&rsibreak; anhalten</guilabel
 >. Sie können &rsibreak; wieder fortsetzen, wenn Sie erneut mit der rechten Maustaste auf das Symbol klicken und <guilabel
 >&rsibreak; fortsetzen</guilabel
@@ -193,6 +193,11 @@
 
 <para
 >Es gibt zwei Verhaltensweisen in &rsibreak;. Es gibt eine Einstellung für Pausen in festen Intervallen für feste Zeiträume und eine Einstellung zum Zurücksetzen der Zeitmesser, wenn &rsibreak; feststellt, dass Sie für die Dauer einer Pause nicht aktiv waren.</para>
+
+<para
+>Sie können RSIBreak signalisieren, dass es nicht eingreifen soll, wenn Präsentationen, Spiele, Videowiedergabe und weitere Anwendungen im Vollbildmodus auf der aktuellen virtuellen Arbeitsfläche laufen, indem Sie die Einstellung <guilabel
+>Unterdrücken, wenn sich Fenster im Vollbildmodus befinden</guilabel
+> aktivieren. </para>
 
 <screenshot>
 <screeninfo
@@ -247,10 +252,10 @@
 ><para
 >Es ist nicht sinnvoll. irritierende Intervalle einzustellen. Diese werden nur stören  und Sie werden dann eher die Taste &Esc; oder eine andere Taste, die Sie auf der Seite <guilabel
 >Während Pausen</guilabel
-> eingerichtet haben, benutzen um die Pause zu überspringen.</para>
+> eingerichtet haben, verwenden, um die Pause zu überspringen.</para>
 
 <para
->Wenn Sie feststellen, dass Sie häufig Pausen auslassen, können Sie die Tastenkombination deaktivieren und den Knopf zum Minimieren ausblenden. Sie entscheiden, wie strikt Sie die Pausenabfolge einhalten wollen. </para>
+>Wenn Sie feststellen, dass Sie häufig Pausen auslassen, können Sie die Tastenkombination deaktivieren und den Knopf zum Minimieren ausblenden. Sie entscheiden, wie strikt Sie die Pausenabfolge einhalten möchten. </para>
     </tip>
 </chapter>
 
@@ -259,12 +264,12 @@
 >Mitwirkende und Lizenz</title>
 
 <para
->&rsibreak; Copyright 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
+>&rsibreak;-Copyright 2005-2015 Tom Albers, Bram Schoenmakers, Albert Astals Cid</para>
 <para
->Dokumentation Copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
+>Dokumentation-Copyright 2006 Rob Moore, Tom Albers, Bram Schoenmakers</para>
 
 <para
->Übersetzung Deutsches KDE-Übersetzerteam<email
+>Übersetzung Deutsches KDE-Übersetzungsteam<email
 >kde-i18n-de@kde.org</email
 ></para
 > &underGPL; &underFDL; </chapter>
