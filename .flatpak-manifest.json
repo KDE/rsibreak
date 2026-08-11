@@ -5,10 +5,18 @@
     "runtime-version": "6.11",
     "sdk": "org.kde.Sdk",
     "command": "rsibreak",
-    "tags": ["nightly"],
+    "tags": [
+        "nightly"
+    ],
     "desktop-file-name-suffix": " (Nightly)",
-    "finish-args": ["--share=ipc", "--socket=x11", "--socket=wayland", "--filesystem=host",
-                    "--talk-name=org.kde.StatusNotifierWatcher",  "--own-name=org.kde.StatusNotifierItem-2-2"],
+    "finish-args": [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host",
+        "--talk-name=org.kde.StatusNotifierWatcher",
+        "--own-name=org.kde.StatusNotifierItem-2-2"
+    ],
     "cleanup": [
         "*.a",
         "*.la",
@@ -27,7 +35,12 @@
             "name": "rsibreak",
             "buildsystem": "cmake-ninja",
             "builddir": true,
-            "sources": [ { "type": "dir", "path": "." } ]
+            "sources": [
+                {
+                    "type": "dir",
+                    "path": "."
+                }
+            ]
         }
     ]
 }
