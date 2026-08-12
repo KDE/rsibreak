@@ -402,7 +402,7 @@ msgstr "هذا هو إجمالي عدد فترات الراحة القصيرة �
 msgid ""
 "This is the total number of short breaks which were skipped because you were "
 "idle."
-msgstr "هذا هو إجمالي عدد فترات الراحة القصيرة التي المُتخطاة لأنك كنت خاملاً."
+msgstr "هذا هو إجمالي عدد فترات الراحة القصيرة التي المُتخطاة لأنك كنت خاملًا."
 
 #: src/rsistats.cpp:348
 #, kde-format
@@ -434,7 +434,7 @@ msgstr "هذا هو إجمالي عدد فترات الراحة الطويلة �
 msgid ""
 "This is the total number of long breaks which were skipped because you were "
 "idle."
-msgstr "هذا هو إجمالي عدد فترات الراحة الطويلة التي تخطيها لأنك كنت خاملاً."
+msgstr "هذا هو إجمالي عدد فترات الراحة الطويلة التي تخطيها لأنك كنت خاملًا."
 
 #: src/rsistats.cpp:368
 #, kde-format
@@ -907,7 +907,7 @@ msgid ""
 "Set the interval you are idle for that is enough to skip the next short "
 "break."
 msgstr ""
-"اضبط الفاصل الزمني الذي تكون فيه خاملاً بحيث يكون كافيًا لتخطي الفاصل القصير "
+"اضبط الفاصل الزمني الذي تكون فيه خاملًا بحيث يكون كافيًا لتخطي الفاصل القصير "
 "التالي."
 
 #: src/setuptiming.cpp:106
@@ -935,7 +935,7 @@ msgstr "هنا يمكنك ضبط مدة الاستراحة الطويلة."
 msgid ""
 "Set the interval you are idle for that is enough to skip the next long break."
 msgstr ""
-"اضبط الفاصل الزمني الذي تكون فيه خاملاً بما يكفي لتخطي الفاصل الطويل التالي."
+"اضبط الفاصل الزمني الذي تكون فيه خاملًا بما يكفي لتخطي الفاصل الطويل التالي."
 
 #: src/setuptiming.cpp:158
 #, kde-format
