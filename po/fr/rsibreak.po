@@ -870,7 +870,7 @@ msgstr ""
 #: src/setupmaximized.cpp:217
 #, kde-format
 msgid "Popup patience:"
-msgstr "Boîte de dialogue d'attente :"
+msgstr "Boite de dialogue d'attente :"
 
 #: src/setupmaximized.cpp:220
 #, kde-format
