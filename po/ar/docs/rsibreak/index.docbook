@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE">
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title
+>دليل أرِح</title>
+
+<authorgroup>
+<author
+><firstname
+>Tom</firstname
+> <surname
+>Albers</surname
+> <affiliation
+> <address
+><email
+>tomalbers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<author
+><firstname
+>Bram</firstname
+> <surname
+>Schoenmakers</surname
+> <affiliation
+> <address
+><email
+>bramschoenmakers@kde.nl</email
+></address>
+</affiliation>
+</author>
+
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>توم ألبرز</holder>
+</copyright>
+
+<copyright>
+<year
+>2006</year>
+<holder
+>برام شوينماكرز</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2022-03-20</date>
+<releaseinfo
+>0.12.14</releaseinfo>
+
+<abstract
+><para
+>إصابة الإجهاد المتكرر هي مرض يمكن أن يحدث نتيجة العمل المستمر مع الفأرة ولوحة المفاتيح. يزداد خطر الإصابة كلما طالت مدة عمل المستخدمين دون فترات راحة. يقدم أرِح ببساطة تذكيرات لأخذ قسط من الراحة بين الحين والآخر. </para
+></abstract>
+
+<keywordset>
+<keyword
+>كيدي</keyword>
+<keyword
+>أرِح</keyword>
+<keyword
+>RSI</keyword>
+<keyword
+>مشروع</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>مقدمة</title>
+
+<para
+>يمكن أن تحدث إصابة الإجهاد المتكرر نتيجة العمل مع الفأرة ولوحة المفاتيح. يمكن استخدام هذه الأداة لتذكيرك بأخذ قسط من الراحة بين الحين والآخر. تعرض صورة عشوائية من مجموعة في فترات زمنية محددة ولمدد زمنية محددة. يمكنك ضبط الصور المراد عرضها وأطوال الوقت لعرضها. قد تستخدم تذكيرات الراحة للقيام ببعض تمارين الإطالة، على سبيل المثال، أو كتذكير بالابتعاد عن الحاسوب لفترة.</para>
+
+<screenshot>
+<screeninfo
+>شعار أرِح</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="logo.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>شعار أرِح</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>كتب أرِح في الأصل توم ألبيرز. في وقت مبكر من التطوير، انضم برام شوينماكرز إلى المشروع</para>
+
+</chapter>
+
+<chapter id="general-use">
+<title
+>استخدام أرِح</title>
+
+<para
+>فكرة أرِح هي مقاطعتك في عملك. القصد هو القيام بذلك بطريقة سهلة الاستخدام. ستكون هناك أوقات، مع ذلك، سيعرض فيها نفسه عندما تكون مشغولًا جدًا. خيارات الضبط في أرِح هي جهد للسماح لك بتخصيص المقاطعات. بهذه الطريقة نأمل أن تتمكن من تحسين فعاليتك في العمل مع تقليل فرص إصابتك.</para>
+
+<para
+>بعد البدء، يمكنك رؤية أيقونة في شريط النظام وسترى نافذة ترحيب منبثقة. على الرغم من أن التطبيق يجب أن يكون مفيدًا بالإعدادات المبدئية، فقد يكون من الحكمة السيطرة عليه بفحص الإعدادات. لاكتشاف والحصول على وصول إلى الخيارات المتاحة، انقر بزر الفأرة الأيمن على أيقونة شريط النظام؛ في القائمة السياقية التي تظهر، اختر <guilabel
+>اضبط</guilabel
+>. تحتوي الفصول التالية على مزيد من معلومات الضبط.</para>
+
+<screenshot>
+<screeninfo
+>إحصائيات أرِح</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="statistics.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>انقر بزر الفأرة الأيسر على أيقونة شريط النظام لرؤية الإحصائيات</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>عند النقر بزر الفأرة الأيسر على أيقونة شريط النظام سترى بعض الإحصائيات. إذا ضبطت أرِح للراحة في أوقات ثابتة، فلن يُقاس وقت خمولك. في هذه الحالة، قد لا تكون بعض الخيارات في الإحصائيات مفيدة جدًا.</para>
+
+<para
+>تعرض الكتلة العلوية اليسرى إحصائيات عامة: بعض الإجماليات وبعض المعلومات حول وقت الخمول. تعرض الكتلة السفلية اليسرى شيئًا عن وتيرة عملك. سترى المبلغ الإجمالي للنشاط منذ بدء جلسة تسجيل الدخول الحالية. سيظهر أيضًا مقدار النشاط خلال بعض الفترات الأخرى. تنخفض درجة الإيقاف المؤقت كلما تخطيت راحة. الكتل إلى اليمين تبلغ عن فترات الراحة القصيرة والطويلة التي مضت بالفعل. حاليًا، يمكن أن تكون التسميات في الحوار إما سوداء أو حمراء وخضراء. في الحالة الأخيرة، يشير إحصاء أحمر إلى توصية بالاسترخاء وأخذ راحة، مما سيقرب اللون إلى الأخضر.</para>
+
+<para
+>عند النقر بزر الفأرة الأيمن على أيقونة شريط النظام، ستظهر القائمة السياقية خيارًا لـ <guilabel
+>تعليق</guilabel
+> أرِح. عندما لا تريد أن تُقاطع، مثل أثناء لعبة أو عرض تقديمي، يمكنك استخدام هذا لإسكات أرِح. يمكنك استئناف أرِح عند النقر بزر الفأرة الأيمن على الأيقونة مرة أخرى واختيار <guilabel
+>استئناف</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>أرِح معلق</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="suspend.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>أيقونة شريط النظام عندما يكون أرِح معلقًا</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>الطريقة الأخيرة للتأثير على أرِح هي عبر &DBus;. توجد أوامر &DBus; متاحة لإجبار فترات الراحة وتعليق واستئناف أرِح. يمكنك استخدام هذه لتعليق أرِح آليًا عند بدء لعبة أو أي برنامج آخر محدد. نفذ <command
+>qdbus org.kde.rsibreak /rsibreak</command
+> لرؤية الإمكانيات.</para>
+</chapter>
+
+<chapter id="break-types">
+<title
+>أنواع التوقف</title>
+
+<para
+>معظم الإعدادات مباشرة. في الصفحة العامة، يوجد خيار للبدء آليًا عند بدء تشغيل &kde;. قد تتساءل لماذا ذلك لأن مدير الجلسة يجب أن يعتني بذلك. قد يحتاج بعض المستخدمين إلى بدء أرِح عند بدء التشغيل بينما لا يستخدمون مدير الجلسة. لاحظ أن <application
+>جنوم</application
+> سيتجاهل هذا الإعداد.</para>
+
+<para
+>يوجد خياران للسلوك في أرِح. يوجد خيار للراحة في فترات زمنية ثابتة لفترات ثابتة، ويوجد خيار لإعادة ضبط الموقتات عندما يكتشف أرِح أنك كنت خاملًا لمدة راحة.</para>
+
+<para
+>يمكنك الإشارة إلى أنك لا تريد أن يتداخل RSIBreak مع العروض التقديمية والألعاب وتشغيل الفيديو وأي تطبيق ملء الشاشة على سطح المكتب الافتراضي الحالي باستخدام خيار <guilabel
+>كبت إذا كانت نوافذ ملء الشاشة موجودة</guilabel
+>. </para>
+
+<screenshot>
+<screeninfo
+>نافذة أرِح المنبثقة</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="popup.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>زر القفل يمكنك من قفل شاشتك كلما تركت حاسوبك</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+
+<para
+>قد تجد إشعار ملء الشاشة لأخذ راحة غير مريح في الوقت الذي يظهر فيه. في هذه الحالة، في صفحة <guilabel
+>أثناء فترات الراحة</guilabel
+> يمكنك الإشارة إلى أنك تريد استخدام نافذة منبثقة؛ ستظهر نافذة منبثقة صغيرة بالقرب من شريط النظام تطلب منك أخذ راحة. إذا اخترت تجاهل ذلك، ستظهر شاشة حظر النشاط بملء الشاشة على أي حال.</para>
+
+<para
+>توجد ثلاثة خيارات لراحة ملء الشاشة. يمكنها إظهار <guilabel
+>تأثير أسود كامل</guilabel
+> (هذا هو الإجراء المبدئي)، <guilabel
+>إظهار لوحة تحكم بلازما</guilabel
+> أو <guilabel
+>إظهار عرض شرائح للصور</guilabel
+> حيث يمكن تعيين مسار لتحديد مجلد على قرصك الصلب يحتوي على صور. أثناء الراحة، سترى عرض شرائح لتلك الصور.</para>
+</chapter>
+
+<chapter id="timings">
+<title
+>مدة/فاصل الراحة</title>
+
+<!--
+<para
+>On the <guilabel
+>Timings</guilabel
+>-page of the settings, you can change the duration of a break and the intervals after which it recurs. There are settings available for two different breaks. For example: a break of 20 seconds every 20 minutes ("short break 1"); a longer break of 2 minutes every hour ("long break 2").</para>
+-->
+
+<para
+>يدعم أرِح نوعين مختلفين من الراحة: <quote
+>فترات راحة صغيرة</quote
+> و <quote
+>فترات راحة كبيرة</quote
+>. الطريقة المعتادة لاستخدام هذه هي أخذ فترات راحة صغيرة متكررة، وفترات راحة كبيرة عرضية. على سبيل المثال، راحة لمدة 20 ثانية كل 20 دقيقة (الراحة الصغيرة)، وراحة أطول لمدة دقيقتين كل ساعة (الراحة الكبيرة).</para>
+
+<tip
+><para
+>لا فائدة من ضبط فترات زمنية مزعجة. تلك، بحكم التعريف، ستثير أعصابك وستكون أكثر عرضة لضغط &Esc; &ndash; أو أي مفتاح آخر قمت بإعداده في صفحة <guilabel
+>أثناء فترات الراحة</guilabel
+> &ndash; لتخطي الراحة.</para>
+
+<para
+>إذا وجدت أنك غالبًا ما تتخطى فترات الراحة، يمكنك أن تقرر تعطيل الاختصار وإخفاء زر التصغير. تذكر، أنت تختار مدى صرامة اتباع تسلسل الراحة. </para>
+    </tip>
+</chapter>
+
+<chapter id="credits-and-license">
+<title
+>الحقوق والترخيص</title>
+
+<para
+>حقوق نشر أرِح 2005-2015 توم ألبيرز، برام شوينماكرز، ألبرت أستالس سيد</para>
+<para
+>حقوق نشر التوثيق 2006 روب مور، توم ألبيرز، برام شوينماكرز</para>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underGPL; &underFDL; </chapter>
+
+
+&documentation.index;
+</book>
