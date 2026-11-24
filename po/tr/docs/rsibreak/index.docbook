@@ -129,7 +129,7 @@
 >&rsibreak;’in amacı, işinizde sizi kesintiye uğratmaktır. Bunu kullanıcı dostu bir yapmaya çalışır. Yine de, çok meşgûl olabileceğiniz zamanlar da olabilir. &rsibreak;’in yapılandırma seçenekleri, kesintileri özelleştirmenize izin verir. Böylece, yaralanma şansınızı azaltırken işinizdeki etkinliğinizi artırabileceğinizi umuyoruz.</para>
 
 <para
->Başladıktan sonra, sistem tepsinizde bir simge görebilirsiniz ve bir karşılama açılır penceresi ortaya çıkar. Uygulama öntanımlı ayarlarla yararlı olsa da, ayarları inceleyerek denetimi ele almak akıllıca olabilir. Keşfetmek ve var olan seçeneklere erişim elde etmek için tepsi simgesine sağ tıklayın; görünen bağlam menüsünde, <guilabel
+>Başladıktan sonra, sistem tepsinizde bir simge görebilirsiniz ve bir karşılama açılır penceresi ortaya çıkar. Uygulama varsayılan ayarlarla yararlı olsa da, ayarları inceleyerek denetimi ele almak akıllıca olabilir. Keşfetmek ve var olan seçeneklere erişim elde etmek için tepsi simgesine sağ tıklayın; görünen bağlam menüsünde, <guilabel
 >Yapılandır</guilabel
 >’ı seçin. Aşağıdaki fasıllar daha fazla yapılandırma bilgisi içerir.</para>
 
@@ -219,7 +219,7 @@
 <para
 >Tam ekran mola ekranı için üç adet seçenek vardır. <guilabel
 >Tam siyah efekt</guilabel
-> (bu, öntanımlı eylemdir), <guilabel
+> (bu, varsayılan eylemdir), <guilabel
 >Plasma denetim panelini göster</guilabel
 > veya sabit diskinizdeki bir klasördeki görselleri göstermesi için <guilabel
 >Görsellerden oluşan bir slayt gösterisi göster</guilabel
